@@ -1,0 +1,132 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import PriceBlock from '../components/PriceBlock.astro';
+import FilterTabs from '../components/FilterTabs.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { currentPrice, promoPrice } from '../data/prices';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+const [newest, ...rest] = articles;
+---
+<BaseLayout title="Zilma — профессиональная косметика для салонов">
+  <Hero />
+
+  <div class="container">
+    <div class="price-grid">
+      <PriceBlock
+        kind="current"
+        title="Актуальный прайс-лист"
+        description="Полный прайс на профессиональную косметику Wella, Londa, Schwarzkopf, Matrix, Lebel."
+        file={currentPrice.file}
+        filePdf={currentPrice.filePdf}
+        date={currentPrice.date}
+      />
+      <PriceBlock
+        kind="promo"
+        title="Прайс с акциями"
+        description="Товары со скидкой — не упустите возможность!"
+        file={promoPrice.file}
+        filePdf={promoPrice.filePdf}
+        date={promoPrice.date}
+      />
+    </div>
+
+    <h2 class="section-title">Инфо</h2>
+    <FilterTabs />
+
+    <div class="article-grid">
+      {newest && (
+        <ArticleCard
+          id={newest.id}
+          title={newest.data.title}
+          description={newest.data.description}
+          line={newest.data.line}
+          brand={newest.data.brand}
+          tags={newest.data.tags}
+          coverImage={newest.data.coverImage}
+          publishDate={newest.data.publishDate}
+          verifiedDate={newest.data.verifiedDate}
+          isNew={true}
+          size="lg"
+          accent={newest.data.accent}
+        />
+      )}
+      {rest.map((a) => (
+        <ArticleCard
+          id={a.id}
+          title={a.data.title}
+          description={a.data.description}
+          line={a.data.line}
+          brand={a.data.brand}
+          tags={a.data.tags}
+          coverImage={a.data.coverImage}
+          publishDate={a.data.publishDate}
+          verifiedDate={a.data.verifiedDate}
+          accent={a.data.accent}
+        />
+      ))}
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Zilma — профессиональная косметика для салонов красоты. © {new Date().getFullYear()}</p>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .price-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 44px;
+  }
+
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding-bottom: 60px;
+  }
+
+  .article-grid :global(.card.lg) {
+    grid-column: span 3;
+  }
+
+  .site-footer {
+    background: var(--color-ink);
+    color: #cbb;
+    padding: 24px 0;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 900px) {
+    .article-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .article-grid :global(.card.lg) {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .price-grid {
+      grid-template-columns: 1fr;
+      margin-top: 28px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .article-grid {
+      grid-template-columns: 1fr;
+    }
+    .article-grid :global(.card.lg) {
+      grid-column: span 1;
+    }
+  }
+</style>

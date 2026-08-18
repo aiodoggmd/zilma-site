@@ -1,0 +1,45 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# local Claude Code settings (machine-specific, no secrets but not for repo)
+.claude/settings.local.json
+
+# staging/debug images from article-building workflow (kept on disk, not for repo)
+_tmp_*
+
+# accidental clipboard-paste filename artifact
+Хочу создать сайт*
+
+# raw price files — already served from public/prices/, kept here as originals only
+/Price/
+
+# reference screenshots used during design (not site content)
+/тут.jpg
+/цвета.jpg
+/структура сайта.jpg
+/ориентир цветов.jpg
+/блок1.png
+/блок2.png
+/Снимок экрана*.jpg

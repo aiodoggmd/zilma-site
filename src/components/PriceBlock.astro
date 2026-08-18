@@ -1,0 +1,292 @@
+---
+import { contacts } from '../data/prices';
+
+interface Props {
+  kind: 'current' | 'promo';
+  title: string;
+  description: string;
+  file: string;
+  filePdf?: string;
+  date: string;
+}
+
+const { kind, title, description, file, filePdf, date } = Astro.props;
+const d = new Date(date);
+const day = d.toLocaleDateString('ru-RU', { day: 'numeric' });
+const month = d.toLocaleDateString('ru-RU', { month: 'long' });
+const full = d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+const blockIcon = kind === 'current' ? '/images/blocks/block-current.png' : '/images/blocks/block-promo.png';
+const fileLabel = file.split('.').pop()?.toUpperCase();
+const filePdfLabel = filePdf?.split('.').pop()?.toUpperCase();
+
+const icons: Record<string, string> = {
+  telegram: 'M22 2 11 13 M22 2 15 22 11 13 2 9 22 2Z',
+  email: 'M3 5h18v14H3z M4 7l8 6 8-6',
+};
+// whatsapp и bip — составные иконки (несколько path/circle), нарисованы вручную под currentColor (растровые PNG не подошли: мутные в 18px и ломались на hover)
+---
+<article class:list={['price-card', kind]}>
+  <div class="split">
+    <div class="stat-panel">
+      <p class="stat"><span class="stat-num">{day}</span> <span class="stat-unit">{month}</span></p>
+      <p class="meta-label">актуально на дату</p>
+      <img src={blockIcon} alt="" class="block-icon" />
+    </div>
+    <div class="text-panel">
+      <h2>{title}</h2>
+      <p class="desc">{description}</p>
+      <div class="row">
+        <div class="download-group">
+          <a class="download" href={file} download>Скачать {fileLabel}</a>
+          {filePdf && <a class="download" href={filePdf} download>Скачать {filePdfLabel}</a>}
+        </div>
+        <span class="meta-label">{kind === 'current' ? 'прайс' : 'акции'} · {full}</span>
+      </div>
+    </div>
+  </div>
+  <div class="contacts">
+    <span class="meta-label">оформить заказ</span>
+    <ul>
+      {Object.entries(contacts).map(([key, c]) => (
+        <li>
+          <a href={c.href} target="_blank" rel="noopener" aria-label={`${c.label}: ${c.value}`} title={`${c.label}: ${c.value}`}>
+            {key === 'whatsapp' ? (
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 21a9 9 0 1 0-7.6-4.2L3 21l4.4-1.3A9 9 0 0 0 12 21Z" />
+                <path
+                  transform="translate(6.3,5.3) scale(0.56)"
+                  fill="currentColor"
+                  stroke="none"
+                  d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z"
+                />
+              </svg>
+            ) : key === 'bip' ? (
+              <svg viewBox="0 0 100 100" width="23" height="23" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="46" cy="44" r="38" />
+                <path d="M66 76 L82 82 L74 64" />
+                <line x1="24" y1="24" x2="24" y2="62" />
+                <circle cx="32" cy="54" r="11" />
+                <circle cx="46" cy="27" r="2.3" fill="currentColor" stroke="none" />
+                <line x1="46" y1="35" x2="46" y2="62" />
+                <line x1="62" y1="35" x2="62" y2="74" />
+                <circle cx="70" cy="54" r="11" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d={icons[key]} />
+              </svg>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</article>
+
+<style>
+  .price-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--color-paper);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-panel-line);
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .price-card:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .split {
+    display: flex;
+    flex: 1;
+    min-height: 220px;
+  }
+
+  .stat-panel {
+    flex: 0 0 38%;
+    background: var(--color-panel);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .price-card.current .stat-panel {
+    background: #bcd8f2;
+  }
+
+  .price-card.promo .stat-panel {
+    background: #f3c1c9;
+  }
+
+  .stat {
+    font-family: var(--font-serif);
+    margin: 0;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  .stat-num {
+    font-size: 2.6rem;
+  }
+
+  .stat-unit {
+    font-size: 1.1rem;
+  }
+
+  .block-icon {
+    width: 60px;
+    height: 60px;
+    opacity: 0.62;
+  }
+
+  .text-panel {
+    flex: 1;
+    padding: 28px 30px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+  }
+
+  .text-panel h2 {
+    align-self: start;
+  }
+
+  .text-panel .desc {
+    align-self: start;
+  }
+
+  .text-panel .row {
+    align-self: end;
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.35rem;
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  .desc {
+    margin: 0;
+    color: #5c5049;
+    line-height: 1.55;
+    font-size: 0.95rem;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .download-group {
+    display: flex;
+    align-items: center;
+    gap: 10px 14px;
+    flex-wrap: wrap;
+  }
+
+  .download {
+    display: inline-block;
+    background: var(--color-ink);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+    transition: background 0.2s ease;
+  }
+
+  .price-card.current .download {
+    background: var(--color-blue-dark);
+  }
+
+  .price-card.promo .download {
+    background: var(--color-red);
+  }
+
+  .download:hover {
+    filter: brightness(1.1);
+  }
+
+  .contacts {
+    border-top: 1px solid var(--color-panel-line);
+    padding: 14px 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .contacts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contacts a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-panel);
+    color: var(--color-blue-dark);
+    box-shadow: var(--shadow-sm);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .price-card.promo .contacts a {
+    color: var(--color-red);
+  }
+
+  .contacts a:hover {
+    background: var(--color-blue-dark);
+    color: #fff;
+  }
+
+  .price-card.promo .contacts a:hover {
+    background: var(--color-red);
+    color: #fff;
+  }
+
+  @media (max-width: 640px) {
+    .split {
+      flex-direction: column;
+      min-height: auto;
+    }
+    .stat-panel {
+      flex: none;
+      padding: 20px;
+    }
+    .text-panel {
+      padding: 22px 20px;
+    }
+    .download-group {
+      flex-wrap: wrap;
+    }
+    .row {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>

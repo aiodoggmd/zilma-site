@@ -1,0 +1,191 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  line: string;
+  brand: string;
+  tags: string[];
+  coverImage: string;
+  publishDate: Date;
+  verifiedDate: Date;
+  isNew?: boolean;
+  size?: 'lg' | 'md';
+  accent?: 'blue' | 'red';
+}
+
+const { id, title, description, brand, tags, coverImage, verifiedDate, isNew = false, size = 'md', accent = 'blue' } = Astro.props;
+const formattedVerifiedDate = verifiedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<a href={`/articles/${id}/`} class:list={['card', size]} data-tags={tags.join(',')}>
+  <div class="image-panel">
+    <img src={coverImage} alt={title} loading="lazy" />
+    {isNew && <span class="new-badge">Новое</span>}
+  </div>
+  <div class:list={['text-panel', accent]}>
+    <h3>{title}</h3>
+    <p class="desc">{description}</p>
+    <div class="row">
+      <span class="meta-label">{tags.join(' · ')}</span>
+      <span class="meta-date">Обновлено: {formattedVerifiedDate}</span>
+    </div>
+    <span class="go-arrow" aria-hidden="true">→</span>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    background: var(--color-paper);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-panel-line);
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, opacity 0.8s ease, transform 0.8s ease;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .card.lg {
+    flex-direction: row;
+    min-height: 320px;
+  }
+
+  .image-panel {
+    position: relative;
+    background: var(--color-panel);
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+  }
+
+  .card.lg .image-panel {
+    flex: 0 0 45%;
+    aspect-ratio: auto;
+  }
+
+  .image-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .card:hover .image-panel img {
+    transform: scale(1.05);
+  }
+
+  .new-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--color-red);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .text-panel {
+    position: relative;
+    flex: 1;
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .go-arrow {
+    position: absolute;
+    right: 26px;
+    bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-red);
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1;
+    box-shadow: var(--shadow-sm);
+    transition: background 0.2s ease;
+  }
+
+  .card:hover .go-arrow {
+    background: var(--color-blue-dark);
+  }
+
+  .text-panel.blue {
+    background: var(--color-pastel-blue);
+  }
+
+  .text-panel.red {
+    background: var(--color-pastel-red);
+  }
+
+  .card.lg .text-panel {
+    padding: 32px 36px;
+  }
+
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  .card.lg h3 {
+    font-size: 1.6rem;
+  }
+
+  .desc {
+    margin: 0;
+    color: #5c5049;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: auto;
+    padding-top: 10px;
+    gap: 6px 10px;
+    flex-wrap: wrap;
+    padding-right: 46px;
+  }
+
+  .card.lg .row {
+    padding-right: 56px;
+  }
+
+  .meta-date {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--color-meta);
+  }
+
+  @media (max-width: 720px) {
+    .card.lg {
+      flex-direction: column;
+      min-height: auto;
+    }
+    .card.lg .image-panel {
+      aspect-ratio: 16 / 10;
+    }
+  }
+</style>

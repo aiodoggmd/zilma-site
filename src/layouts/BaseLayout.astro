@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Zilma — профессиональная косметика для салонов красоты: Wella, Londa, Schwarzkopf, Matrix, Lebel.' } = Astro.props;
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <script>
+      function initReveal() {
+        const selector = '.price-card, .section-title, .card, .prose > *';
+        document.querySelectorAll(selector).forEach((el) => el.classList.add('reveal'));
+
+        const revealEls = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        );
+        revealEls.forEach((el) => io.observe(el));
+      }
+      initReveal();
+    </script>
+  </body>
+</html>

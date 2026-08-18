@@ -1,0 +1,64 @@
+---
+const tabs = [
+  { key: 'all', label: 'Все' },
+  { key: 'окрашивание', label: 'Окрашивание' },
+  { key: 'уход', label: 'Уход' },
+];
+---
+<div class="filter-tabs" id="filter-tabs">
+  {tabs.map((t, i) => (
+    <button type="button" class:list={['tab', { active: i === 0 }]} data-tag={t.key}>{t.label}</button>
+  ))}
+</div>
+
+<style>
+  .filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 24px 0 8px;
+  }
+
+  .tab {
+    border: 1px solid var(--color-red);
+    background: var(--color-red);
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+  }
+
+  .tab:hover {
+    background: var(--color-blue-dark);
+    border-color: var(--color-blue-dark);
+    color: #fff;
+  }
+
+  .tab.active {
+    background: var(--color-blue-dark);
+    border-color: var(--color-blue-dark);
+    color: #fff;
+  }
+</style>
+
+<script>
+  const tabsEl = document.getElementById('filter-tabs');
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-tags]'));
+
+  tabsEl?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.tab');
+    if (!btn) return;
+    tabsEl.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
+    btn.classList.add('active');
+    const tag = btn.dataset.tag;
+    cards.forEach((card) => {
+      const tags = card.dataset.tags?.split(',') ?? [];
+      const show = tag === 'all' || tags.includes(tag ?? '');
+      card.style.display = show ? '' : 'none';
+    });
+  });
+</script>

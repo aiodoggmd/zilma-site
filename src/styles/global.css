@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --color-red-dark: #8a000d;
+  --color-red: #c8000f;
+  --color-red-bright: #d00015;
+  --color-blue-dark: #38628c;
+  --color-blue: #4a7fa8;
+  --color-coral: #f7b2ab;
+  --color-mist: #eceaf2;
+  --color-sky: #98c5fc;
+  --color-sky-deep: #69a6fa;
+  --color-pastel-blue: #bcd8f2;
+  --color-pastel-red: #f3c1c9;
+  --color-cream: #faf3ea;
+  --color-ink: #2b201c;
+
+  /* фон страницы и текстовая панель карточки — как на blendsor.com/en/tools */
+  --color-page-bg: #faf6f0;
+  --color-panel: #f1ece4;
+  --color-panel-line: #e7e0d4;
+  --color-paper: #ffffff;
+  --color-meta: #9c948c;
+
+  --shadow-card: 0 2px 8px rgba(43, 32, 28, 0.07);
+  --shadow-card-hover: 0 10px 28px rgba(43, 32, 28, 0.1);
+  --shadow-sm: 0 2px 6px rgba(43, 32, 28, 0.14);
+  --radius-card: 18px;
+  --container-w: 1180px;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-page-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-ink);
+  margin: 56px 0 20px;
+}
+
+.section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-panel-line);
+}
+
+.meta-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-meta);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* ===================== Reveal on scroll ===================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
