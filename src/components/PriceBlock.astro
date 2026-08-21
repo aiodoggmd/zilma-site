@@ -25,12 +25,9 @@ const icons: Record<string, string> = {
 };
 // whatsapp и bip — составные иконки (несколько path/circle), нарисованы вручную под currentColor (растровые PNG не подошли: мутные в 18px и ломались на hover)
 
-// Заготовленный текст заказа — разный для обычного прайса и акций, подставляется в Telegram/WhatsApp/почту.
+// Заготовленный текст заказа — один и тот же для обоих блоков (прайс и акции), подставляется в Telegram/WhatsApp/почту.
 // Bip не поддерживает предзаполнение текста через ссылку — оставлен как есть.
-const orderText =
-  kind === 'current'
-    ? 'Здравствуйте! Интересует прайс на профессиональную косметику Zilma.'
-    : 'Здравствуйте! Интересует акционное предложение Zilma.';
+const orderText = 'Здравствуйте! Хочу оформить заказ. Подскажите, пожалуйста, актуальное наличие.';
 
 const links: Record<string, string> = {
   telegram: `${contacts.telegram.href}?text=${encodeURIComponent(orderText)}`,
