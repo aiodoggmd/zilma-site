@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import PriceBlock from '../components/PriceBlock.astro';
 import FilterTabs from '../components/FilterTabs.astro';
 import ArticleCard from '../components/ArticleCard.astro';
+import OrderForm from '../components/OrderForm.astro';
 import { currentPrice, promoPrice } from '../data/prices';
 
 const articles = (await getCollection('articles')).sort(
@@ -34,6 +35,8 @@ const [newest, ...rest] = articles;
         date={promoPrice.date}
       />
     </div>
+
+    <OrderForm />
 
     <h2 class="section-title">Инфо</h2>
     <FilterTabs />

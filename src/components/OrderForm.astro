@@ -1,0 +1,142 @@
+---
+---
+<section class="order-form" id="order">
+  <h2>Оформить заявку</h2>
+  <p class="desc">Оставьте контакт — свяжусь с вами в течение дня. Или пишите напрямую в мессенджеры выше.</p>
+  <form id="order-form-el" novalidate>
+    <div class="row">
+      <input type="text" name="name" placeholder="Имя" required maxlength="200" autocomplete="name" />
+      <input type="text" name="contact" placeholder="Телефон или Telegram" required maxlength="200" autocomplete="tel" />
+    </div>
+    <textarea name="comment" placeholder="Комментарий (необязательно)" maxlength="2000" rows="3"></textarea>
+    <div class="submit-row">
+      <button type="submit">Отправить заявку</button>
+      <span class="status" role="status" aria-live="polite"></span>
+    </div>
+  </form>
+</section>
+
+<style>
+  .order-form {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px 0;
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0 0 6px;
+    color: var(--color-ink);
+    text-align: center;
+  }
+
+  .desc {
+    margin: 0 0 20px;
+    text-align: center;
+    color: #5c5049;
+    font-size: 0.95rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-panel-line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 24px;
+  }
+
+  .row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  input, textarea {
+    flex: 1;
+    min-width: 200px;
+    font: inherit;
+    font-size: 0.95rem;
+    padding: 12px 14px;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--color-ink);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+
+  input:focus, textarea:focus {
+    outline: 2px solid var(--color-blue-dark);
+    outline-offset: 1px;
+  }
+
+  .submit-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  button {
+    background: var(--color-ink);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 12px 26px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: filter 0.2s ease;
+  }
+
+  button:hover { filter: brightness(1.1); }
+  button:disabled { opacity: 0.6; cursor: default; }
+
+  .status {
+    font-size: 0.9rem;
+  }
+
+  .status.ok { color: var(--color-blue-dark); }
+  .status.err { color: var(--color-red); }
+</style>
+
+<script>
+  const form = document.getElementById('order-form-el') as HTMLFormElement | null;
+  const statusEl = form?.querySelector('.status') as HTMLElement | null;
+  const button = form?.querySelector('button') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!statusEl || !button) return;
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    button.disabled = true;
+    statusEl.textContent = 'Отправляю…';
+    statusEl.className = 'status';
+
+    try {
+      const res = await fetch('/api/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('request_failed');
+      statusEl.textContent = 'Заявка отправлена, спасибо!';
+      statusEl.className = 'status ok';
+      form.reset();
+    } catch {
+      statusEl.textContent = 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.';
+      statusEl.className = 'status err';
+    } finally {
+      button.disabled = false;
+    }
+  });
+</script>
