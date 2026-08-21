@@ -24,6 +24,20 @@ const icons: Record<string, string> = {
   email: 'M3 5h18v14H3z M4 7l8 6 8-6',
 };
 // whatsapp и bip — составные иконки (несколько path/circle), нарисованы вручную под currentColor (растровые PNG не подошли: мутные в 18px и ломались на hover)
+
+// Заготовленный текст заказа — разный для обычного прайса и акций, подставляется в Telegram/WhatsApp/почту.
+// Bip не поддерживает предзаполнение текста через ссылку — оставлен как есть.
+const orderText =
+  kind === 'current'
+    ? 'Здравствуйте! Интересует прайс на профессиональную косметику Zilma.'
+    : 'Здравствуйте! Интересует акционное предложение Zilma.';
+
+const links: Record<string, string> = {
+  telegram: `${contacts.telegram.href}?text=${encodeURIComponent(orderText)}`,
+  whatsapp: `${contacts.whatsapp.href}?text=${encodeURIComponent(orderText)}`,
+  bip: contacts.bip.href,
+  email: `${contacts.email.href}?subject=${encodeURIComponent('Заявка с сайта Zilma')}&body=${encodeURIComponent(orderText)}`,
+};
 ---
 <article class:list={['price-card', kind]}>
   <div class="split">
@@ -49,7 +63,7 @@ const icons: Record<string, string> = {
     <ul>
       {Object.entries(contacts).map(([key, c]) => (
         <li>
-          <a href={c.href} target="_blank" rel="noopener" aria-label={`${c.label}: ${c.value}`} title={`${c.label}: ${c.value}`}>
+          <a href={links[key]} target="_blank" rel="noopener" aria-label={`${c.label}: ${c.value}`} title={`${c.label}: ${c.value}`}>
             {key === 'whatsapp' ? (
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
                 <path d="M12 21a9 9 0 1 0-7.6-4.2L3 21l4.4-1.3A9 9 0 0 0 12 21Z" />
