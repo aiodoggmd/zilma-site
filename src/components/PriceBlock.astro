@@ -6,18 +6,18 @@ interface Props {
   title: string;
   description: string;
   file: string;
-  filePdf?: string;
   date: string;
 }
 
-const { kind, title, description, file, filePdf, date } = Astro.props;
+const { kind, title, description, file, date } = Astro.props;
 const d = new Date(date);
 const day = d.toLocaleDateString('ru-RU', { day: 'numeric' });
 const month = d.toLocaleDateString('ru-RU', { month: 'long' });
 const full = d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 const blockIcon = kind === 'current' ? '/images/blocks/block-current.png' : '/images/blocks/block-promo.png';
-const fileLabel = file.split('.').pop()?.toUpperCase();
-const filePdfLabel = filePdf?.split('.').pop()?.toUpperCase();
+// PDF заменён на интерактивный список товаров с чекбоксами, открывается модальным окном (см. PriceChecklist.astro) —
+// удобнее читать и заказывать с телефона, чем скачанный файл.
+const dialogId = `checklist-${kind}-dialog`;
 
 const icons: Record<string, string> = {
   telegram: 'M22 2 11 13 M22 2 15 22 11 13 2 9 22 2Z',
@@ -29,8 +29,11 @@ const icons: Record<string, string> = {
 // Bip не поддерживает предзаполнение текста через ссылку — оставлен как есть.
 const orderText = 'Здравствуйте! Хочу оформить заказ. Подскажите, пожалуйста, актуальное наличие.';
 
+// У Telegram нет официальной поддержки ?text= для прямой ссылки на человека (только для t.me/share) —
+// клиенты (особенно мобильные) этот параметр игнорируют, поэтому ссылка на Telegram — просто чат,
+// а сам текст копируется в буфer обмена через data-copy-text (см. script ниже).
 const links: Record<string, string> = {
-  telegram: `${contacts.telegram.href}?text=${encodeURIComponent(orderText)}`,
+  telegram: contacts.telegram.href,
   whatsapp: `${contacts.whatsapp.href}?text=${encodeURIComponent(orderText)}`,
   bip: contacts.bip.href,
   email: `${contacts.email.href}?subject=${encodeURIComponent('Заявка с сайта Zilma')}&body=${encodeURIComponent(orderText)}`,
@@ -48,8 +51,8 @@ const links: Record<string, string> = {
       <p class="desc">{description}</p>
       <div class="row">
         <div class="download-group">
-          <a class="download" href={file} download>Скачать {fileLabel}</a>
-          {filePdf && <a class="download" href={filePdf} download>Скачать {filePdfLabel}</a>}
+          <a class="download" href={file} download>Скачать EXCEL</a>
+          <button type="button" class="download outline" data-open-modal={dialogId}>Выбрать и заказать</button>
         </div>
         <span class="meta-label">{kind === 'current' ? 'прайс' : 'акции'} · {full}</span>
       </div>
@@ -60,7 +63,14 @@ const links: Record<string, string> = {
     <ul>
       {Object.entries(contacts).map(([key, c]) => (
         <li>
-          <a href={links[key]} target="_blank" rel="noopener" aria-label={`${c.label}: ${c.value}`} title={`${c.label}: ${c.value}`}>
+          <a
+            href={links[key]}
+            target="_blank"
+            rel="noopener"
+            aria-label={`${c.label}: ${c.value}`}
+            title={`${c.label}: ${c.value}`}
+            data-copy-text={key === 'telegram' ? orderText : undefined}
+          >
             {key === 'whatsapp' ? (
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
                 <path d="M12 21a9 9 0 1 0-7.6-4.2L3 21l4.4-1.3A9 9 0 0 0 12 21Z" />
@@ -93,6 +103,59 @@ const links: Record<string, string> = {
     </ul>
   </div>
 </article>
+
+<script>
+  // Telegram игнорирует ?text= на прямых ссылках — копируем текст заказа в буфер обмена
+  // перед открытием чата, чтобы человеку осталось только вставить (Ctrl+V).
+  let toastEl: HTMLDivElement | null = null;
+  function showToast(message: string) {
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.className = 'copy-toast';
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = message;
+    toastEl.classList.add('show');
+    clearTimeout((toastEl as any)._t);
+    (toastEl as any)._t = setTimeout(() => toastEl?.classList.remove('show'), 2500);
+  }
+
+  document.addEventListener('click', (e) => {
+    const link = (e.target as HTMLElement).closest('a[data-copy-text]') as HTMLAnchorElement | null;
+    if (!link) return;
+    const text = link.getAttribute('data-copy-text');
+    if (!text) return;
+    e.preventDefault();
+    navigator.clipboard?.writeText(text).catch(() => {});
+    showToast('Текст заказа скопирован — вставьте в чат (Ctrl+V)');
+    window.open(link.href, '_blank', 'noopener');
+  });
+</script>
+
+<style is:global>
+  .copy-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translate(-50%, 12px);
+    background: var(--color-ink);
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 12px 20px;
+    border-radius: 999px;
+    box-shadow: var(--shadow-card-hover);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 100;
+    max-width: 90vw;
+    text-align: center;
+  }
+  .copy-toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+</style>
 
 <style>
   .price-card {
@@ -213,12 +276,15 @@ const links: Record<string, string> = {
     background: var(--color-ink);
     color: #fff;
     text-decoration: none;
+    font: inherit;
     font-weight: 600;
     font-size: 0.9rem;
     padding: 10px 20px;
+    border: none;
     border-radius: 999px;
     white-space: nowrap;
     box-shadow: var(--shadow-sm);
+    cursor: pointer;
     transition: background 0.2s ease;
   }
 
@@ -232,6 +298,28 @@ const links: Record<string, string> = {
 
   .download:hover {
     filter: brightness(1.1);
+  }
+
+  .price-card .download.outline {
+    background: transparent;
+    box-shadow: none;
+    border: 1.5px solid var(--color-blue-dark);
+    color: var(--color-blue-dark);
+  }
+
+  .price-card.promo .download.outline {
+    border-color: var(--color-red);
+    color: var(--color-red);
+  }
+
+  .price-card.current .download.outline:hover {
+    background: var(--color-blue-dark);
+    color: #fff;
+  }
+
+  .price-card.promo .download.outline:hover {
+    background: var(--color-red);
+    color: #fff;
   }
 
   .contacts {

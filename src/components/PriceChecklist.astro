@@ -1,0 +1,572 @@
+---
+interface Item {
+  id: number;
+  brand: string | null;
+  line: string | null;
+  name: string;
+  price: number;
+  promo: boolean;
+}
+
+interface Props {
+  items: Item[];
+  instanceId: string;
+  heading: string;
+}
+
+const { items, instanceId, heading } = Astro.props;
+const dialogId = `${instanceId}-dialog`;
+
+// Сортировка: сначала латиница (A-Z), потом кириллица (А-Я), внутри каждой — по алфавиту.
+function scriptRank(s: string): number {
+  const ch = s.trim().charAt(0);
+  if (/[A-Za-z]/.test(ch)) return 0;
+  if (/[А-Яа-яЁё]/.test(ch)) return 1;
+  return 2;
+}
+function alphaCompare(a: string, b: string): number {
+  const ra = scriptRank(a);
+  const rb = scriptRank(b);
+  if (ra !== rb) return ra - rb;
+  return a.localeCompare(b, ra === 0 ? 'en' : 'ru', { sensitivity: 'base' });
+}
+
+// Двухуровневая группировка: бренд (напр. WELLA) -> линейка внутри бренда (напр. EIMI) -> товары.
+// Пустой ключ '' — товары без линейки, показываются плоским списком прямо под брендом.
+const brandMap = new Map<string, Map<string, Item[]>>();
+for (const it of items) {
+  const b = it.brand ?? 'Другое';
+  const l = it.line ?? '';
+  if (!brandMap.has(b)) brandMap.set(b, new Map());
+  const lineMap = brandMap.get(b)!;
+  if (!lineMap.has(l)) lineMap.set(l, []);
+  lineMap.get(l)!.push(it);
+}
+
+const byName = (a: Item, b: Item) => alphaCompare(a.name, b.name);
+
+const brandEntries = [...brandMap.entries()]
+  .sort((a, b) => alphaCompare(a[0], b[0]))
+  .map(([brand, lineMap]) => {
+    const flat = [...(lineMap.get('') ?? [])].sort(byName);
+    const lineEntries = [...lineMap.entries()]
+      .filter(([l]) => l !== '')
+      .sort((a, b) => alphaCompare(a[0], b[0]))
+      .map(([line, list]) => [line, [...list].sort(byName)] as [string, Item[]]);
+    const total = [...lineMap.values()].reduce((s, arr) => s + arr.length, 0);
+    return { brand, total, flat, lineEntries };
+  });
+---
+<dialog class="price-checklist" data-checklist id={dialogId}>
+  <div class="pc-header">
+    <h3>{heading}</h3>
+    <button type="button" class="pc-close" data-close-modal aria-label="Закрыть">✕</button>
+  </div>
+  <div class="pc-controls">
+    <input type="search" class="pc-search" placeholder="Поиск по товару, бренду или линейке…" aria-label="Поиск по прайсу" />
+    <span class="pc-count" data-count></span>
+  </div>
+  <div class="pc-groups">
+    {brandEntries.map(({ brand, total, flat, lineEntries }) => (
+      <details class="pc-group pc-group-brand">
+        <summary>{brand} <span class="pc-group-count">({total})</span></summary>
+        <div class="pc-group-body">
+          {flat.length > 0 && (
+            <ul>
+              {flat.map((it) => (
+                <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="">
+                  <label>
+                    <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                    <span class="pc-item-name">{it.name}</span>
+                    <span class="pc-item-price">
+                      {it.price} ₽
+                      {it.promo && <span class="pc-badge">Акция</span>}
+                    </span>
+                  </label>
+                  <div class="pc-qty">
+                    <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
+                    <input type="number" class="pc-qty-input" value="1" min="1" max="999" inputmode="numeric" aria-label="Количество" />
+                    <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {lineEntries.map(([line, list]) => (
+            <details class="pc-group pc-group-line">
+              <summary>{line} <span class="pc-group-count">({list.length})</span></summary>
+              <ul>
+                {list.map((it) => (
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()}>
+                    <label>
+                      <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                      <span class="pc-item-name">{it.name}</span>
+                      <span class="pc-item-price">
+                        {it.price} ₽
+                        {it.promo && <span class="pc-badge">Акция</span>}
+                      </span>
+                    </label>
+                    <div class="pc-qty">
+                      <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
+                      <input type="number" class="pc-qty-input" value="1" min="1" max="999" inputmode="numeric" aria-label="Количество" />
+                      <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+      </details>
+    ))}
+    <p class="pc-no-results" hidden>Ничего не найдено — попробуйте другой запрос.</p>
+  </div>
+  <div class="pc-bar">
+    <button type="button" class="pc-submit" disabled>Добавить в заявку</button>
+  </div>
+</dialog>
+
+<style>
+  .price-checklist:not([open]) {
+    display: none;
+  }
+
+  .price-checklist {
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card-hover);
+    width: 92vw;
+    max-width: 720px;
+    height: 84vh;
+    max-height: 84vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  .price-checklist::backdrop {
+    background: rgba(43, 32, 28, 0.55);
+  }
+
+  .pc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--color-panel-line);
+    flex: none;
+  }
+
+  .pc-header h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .pc-close {
+    background: var(--color-panel);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 0.95rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-ink);
+    flex: none;
+  }
+
+  .pc-close:hover {
+    background: var(--color-blue-dark);
+    color: #fff;
+  }
+
+  .pc-controls {
+    flex: none;
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-panel-line);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pc-search {
+    flex: 1;
+    font: inherit;
+    font-size: 0.92rem;
+    padding: 10px 14px;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--color-ink);
+  }
+
+  .pc-search:focus {
+    outline: 2px solid var(--color-blue-dark);
+    outline-offset: 1px;
+  }
+
+  .pc-count {
+    font-size: 0.85rem;
+    color: #5c5049;
+    white-space: nowrap;
+  }
+
+  .pc-groups {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px 0;
+  }
+
+  .pc-group-brand {
+    border-bottom: 1px solid var(--color-panel-line);
+  }
+
+  .pc-group[hidden] {
+    display: none;
+  }
+
+  .pc-group-brand > summary {
+    padding: 12px 18px;
+  }
+
+  .pc-group-line > summary {
+    padding: 9px 18px 9px 30px;
+    font-weight: 500;
+    font-size: 0.88rem;
+  }
+
+  .pc-group summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .pc-group summary::-webkit-details-marker { display: none; }
+
+  .pc-group summary::before {
+    content: '▸';
+    color: var(--color-blue-dark);
+    transition: transform 0.15s ease;
+  }
+
+  .pc-group[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  .pc-group-count {
+    font-weight: 400;
+    color: #8a7f7a;
+    font-size: 0.85rem;
+  }
+
+  .pc-group-body {
+    padding-bottom: 4px;
+  }
+
+  .pc-group-brand > .pc-group-body > ul {
+    padding: 0 18px 8px;
+  }
+
+  .pc-group-line ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 18px 8px 30px;
+  }
+
+  .pc-item[hidden] {
+    display: none;
+  }
+
+  .pc-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid var(--color-panel-line);
+  }
+
+  .pc-item:first-child {
+    border-top: none;
+  }
+
+  .pc-item label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+  }
+
+  .pc-qty {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pc-qty-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid var(--color-panel-line);
+    background: #fff;
+    color: var(--color-ink);
+    font-size: 0.85rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pc-qty-btn:hover {
+    background: var(--color-panel);
+  }
+
+  .pc-qty-input {
+    width: 32px;
+    text-align: center;
+    font: inherit;
+    font-size: 0.85rem;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 6px;
+    padding: 3px 0;
+    color: var(--color-ink);
+    background: #fff;
+    -moz-appearance: textfield;
+  }
+
+  .pc-qty-input::-webkit-outer-spin-button,
+  .pc-qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .pc-item:not(:has(.pc-check:checked)) .pc-qty {
+    opacity: 0.4;
+  }
+
+  .pc-item-name {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--color-ink);
+  }
+
+  .pc-promo .pc-item-name {
+    color: var(--color-red);
+  }
+
+  .pc-item-price {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #5c5049;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pc-promo .pc-item-price {
+    color: var(--color-red-dark);
+  }
+
+  .pc-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--color-red);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 999px;
+  }
+
+  .pc-no-results {
+    padding: 24px 18px;
+    text-align: center;
+    color: #8a7f7a;
+    font-size: 0.9rem;
+  }
+
+  .pc-bar {
+    flex: none;
+    border-top: 1px solid var(--color-panel-line);
+    padding: 14px 18px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .pc-submit {
+    background: var(--color-ink);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 11px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: filter 0.2s ease, opacity 0.2s ease;
+  }
+
+  .pc-submit:hover { filter: brightness(1.1); }
+  .pc-submit:disabled { opacity: 0.5; cursor: default; }
+
+  @media (max-width: 640px) {
+    .price-checklist {
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      border-radius: 0;
+    }
+  }
+</style>
+
+<script>
+  // Открытие модалок по клику на любую кнопку с data-open-modal="<id диалога>" (см. PriceBlock.astro).
+  document.addEventListener('click', (e) => {
+    const trigger = (e.target as HTMLElement).closest('[data-open-modal]') as HTMLElement | null;
+    if (!trigger) return;
+    const id = trigger.getAttribute('data-open-modal');
+    const dialog = id && document.getElementById(id);
+    if (dialog instanceof HTMLDialogElement) dialog.showModal();
+  });
+
+  document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((root) => {
+    const search = root.querySelector<HTMLInputElement>('.pc-search');
+    const items = [...root.querySelectorAll<HTMLLIElement>('.pc-item')];
+    const groups = [...root.querySelectorAll<HTMLDetailsElement>('.pc-group')];
+    const checks = [...root.querySelectorAll<HTMLInputElement>('.pc-check')];
+    const submitBtn = root.querySelector<HTMLButtonElement>('.pc-submit');
+    const countEl = root.querySelector<HTMLElement>('[data-count]');
+    const noResults = root.querySelector<HTMLElement>('.pc-no-results');
+
+    root.querySelector('[data-close-modal]')?.addEventListener('click', () => root.close());
+    // Клик по подложке (::backdrop) — событие всплывает с target === сам dialog, а не его содержимое.
+    root.addEventListener('click', (e) => {
+      if (e.target === root) root.close();
+    });
+
+    function updateCount() {
+      const n = checks.filter((c) => c.checked).length;
+      if (countEl) countEl.textContent = n ? `${n} выбрано` : '';
+      if (submitBtn) {
+        submitBtn.textContent = n ? `Добавить в заявку (${n})` : 'Добавить в заявку';
+        submitBtn.disabled = n === 0;
+      }
+    }
+    checks.forEach((c) => c.addEventListener('change', updateCount));
+    updateCount();
+
+    // Степпер количества: +/- меняют значение и, если товар ещё не отмечен, отмечают его.
+    root.querySelectorAll<HTMLElement>('.pc-item').forEach((li) => {
+      const check = li.querySelector<HTMLInputElement>('.pc-check');
+      const qtyInput = li.querySelector<HTMLInputElement>('.pc-qty-input');
+      if (!check || !qtyInput) return;
+
+      function clamp() {
+        const n = Math.max(1, Math.min(999, parseInt(qtyInput!.value, 10) || 1));
+        qtyInput!.value = String(n);
+        return n;
+      }
+
+      li.querySelectorAll<HTMLButtonElement>('.pc-qty-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const dir = Number(btn.dataset.qtyDir) || 0;
+          const n = Math.max(1, Math.min(999, (parseInt(qtyInput.value, 10) || 1) + dir));
+          qtyInput.value = String(n);
+          if (!check.checked) {
+            check.checked = true;
+            check.dispatchEvent(new Event('change'));
+          }
+        });
+      });
+
+      qtyInput.addEventListener('change', clamp);
+      qtyInput.addEventListener('input', () => {
+        if (qtyInput.value && !check.checked) {
+          check.checked = true;
+          check.dispatchEvent(new Event('change'));
+        }
+      });
+
+      check.addEventListener('change', () => {
+        if (!check.checked) qtyInput.value = '1';
+      });
+    });
+
+    search?.addEventListener('input', () => {
+      const q = search.value.trim().toLowerCase();
+      let anyVisibleTotal = false;
+      groups.forEach((g) => {
+        const groupItems = [...g.querySelectorAll<HTMLLIElement>('.pc-item')];
+        let anyVisible = false;
+        groupItems.forEach((li) => {
+          const match =
+            !q ||
+            (li.dataset.name ?? '').includes(q) ||
+            (li.dataset.brand ?? '').includes(q) ||
+            (li.dataset.line ?? '').includes(q);
+          li.hidden = !match;
+          if (match) anyVisible = true;
+        });
+        g.hidden = !anyVisible;
+        g.open = q.length > 0 && anyVisible;
+        if (anyVisible) anyVisibleTotal = true;
+      });
+      if (noResults) noResults.hidden = anyVisibleTotal || items.length === 0;
+    });
+
+    submitBtn?.addEventListener('click', () => {
+      const selected = checks
+        .filter((c) => c.checked)
+        .map((c) => {
+          const qtyInput = c.closest('.pc-item')?.querySelector<HTMLInputElement>('.pc-qty-input');
+          return {
+            name: c.dataset.name ?? '',
+            price: parseFloat(c.dataset.price ?? '0') || 0,
+            qty: Math.max(1, parseInt(qtyInput?.value ?? '1', 10) || 1),
+            brand: c.dataset.brandLabel ?? '',
+            promo: c.dataset.promo === '1',
+          };
+        });
+      if (!selected.length) return;
+
+      const itemsInput = document.querySelector<HTMLInputElement>('#order-form-el input[name="items_json"]');
+      let combined = selected;
+      if (itemsInput) {
+        let existing: typeof selected = [];
+        try {
+          existing = JSON.parse(itemsInput.value || '[]');
+        } catch {
+          existing = [];
+        }
+        combined = [...existing, ...selected];
+        itemsInput.value = JSON.stringify(combined);
+      }
+
+      const summaryEl = document.querySelector<HTMLElement>('#order-form-el .items-summary');
+      if (summaryEl) {
+        const total = combined.reduce((s, it) => s + it.price * it.qty, 0);
+        summaryEl.textContent = `Выбрано товаров: ${combined.length}, на сумму ${total.toFixed(2)} ₽`;
+        summaryEl.hidden = false;
+      }
+
+      root.close();
+      document.getElementById('order')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelector<HTMLInputElement>('#order-form-el input[name="name"]')?.focus();
+    });
+  });
+</script>

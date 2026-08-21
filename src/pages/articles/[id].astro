@@ -1,4 +1,7 @@
 ---
+// Явная статика: с output:'server' (нужен для /api/order) страница иначе рендерилась бы
+// на каждый запрос вместо предсборки — а getStaticPaths() как раз для предсборки и нужен.
+export const prerender = true;
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 

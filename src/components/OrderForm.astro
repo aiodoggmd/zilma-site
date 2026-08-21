@@ -8,9 +8,21 @@
       <input type="text" name="name" placeholder="Имя" required maxlength="200" autocomplete="name" />
       <input type="text" name="contact" placeholder="Телефон или Telegram" required maxlength="200" autocomplete="tel" />
     </div>
-    <textarea name="comment" placeholder="Комментарий (необязательно)" maxlength="2000" rows="3"></textarea>
+    <textarea name="comment" placeholder="Комментарий (необязательно)" rows="3"></textarea>
+    <input type="hidden" name="items_json" />
+
+    <label class="file-drop" id="file-drop" for="attachment-input">
+      <input type="file" name="attachment" id="attachment-input" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" />
+      <span class="file-hint" id="file-hint">Прикрепить файл (фото, скриншот, документ) — до 4 МБ, или перетащите сюда</span>
+      <span class="file-picked" id="file-picked" hidden>
+        <span id="file-picked-name"></span>
+        <button type="button" id="file-remove" aria-label="Убрать файл">✕</button>
+      </span>
+    </label>
+
     <div class="submit-row">
       <button type="submit">Отправить заявку</button>
+      <span class="items-summary" hidden></span>
       <span class="status" role="status" aria-live="polite"></span>
     </div>
   </form>
@@ -56,7 +68,7 @@
     flex-wrap: wrap;
   }
 
-  input, textarea {
+  input[type='text'], textarea {
     flex: 1;
     min-width: 200px;
     font: inherit;
@@ -77,6 +89,58 @@
     outline: 2px solid var(--color-blue-dark);
     outline-offset: 1px;
   }
+
+  .file-drop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    border: 1.5px dashed var(--color-panel-line);
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 0.88rem;
+    color: #5c5049;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .file-drop:hover, .file-drop.drag-over {
+    border-color: var(--color-blue-dark);
+    background: rgba(56, 98, 140, 0.05);
+  }
+
+  .file-drop input[type='file'] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .file-picked {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .file-picked[hidden] {
+    display: none;
+  }
+
+  .file-picked button {
+    background: none;
+    border: none;
+    color: #5c5049;
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 0 4px;
+    box-shadow: none;
+  }
+
+  .file-picked button:hover { color: var(--color-red); filter: none; }
 
   .submit-row {
     display: flex;
@@ -106,34 +170,117 @@
 
   .status.ok { color: var(--color-blue-dark); }
   .status.err { color: var(--color-red); }
+
+  .items-summary {
+    font-size: 0.9rem;
+    color: var(--color-red);
+  }
+
+  .items-summary[hidden] {
+    display: none;
+  }
 </style>
 
 <script>
+  const MAX_FILE_BYTES = 4 * 1024 * 1024;
+
   const form = document.getElementById('order-form-el') as HTMLFormElement | null;
   const statusEl = form?.querySelector('.status') as HTMLElement | null;
   const button = form?.querySelector('button') as HTMLButtonElement | null;
+  const dropzone = document.getElementById('file-drop') as HTMLLabelElement | null;
+  const fileInput = document.getElementById('attachment-input') as HTMLInputElement | null;
+  const fileHint = document.getElementById('file-hint') as HTMLElement | null;
+  const filePicked = document.getElementById('file-picked') as HTMLElement | null;
+  const filePickedName = document.getElementById('file-picked-name') as HTMLElement | null;
+  const fileRemoveBtn = document.getElementById('file-remove') as HTMLButtonElement | null;
+
+  function refreshFileUi() {
+    const f = fileInput?.files?.[0];
+    if (f && fileHint && filePicked && filePickedName) {
+      fileHint.hidden = true;
+      filePicked.hidden = false;
+      filePickedName.textContent = `${f.name} (${(f.size / 1024 / 1024).toFixed(1)} МБ)`;
+    } else if (fileHint && filePicked) {
+      fileHint.hidden = false;
+      filePicked.hidden = true;
+    }
+  }
+
+  function setFile(f: File | null) {
+    if (!fileInput) return;
+    const dt = new DataTransfer();
+    if (f) dt.items.add(f);
+    fileInput.files = dt.files;
+    refreshFileUi();
+  }
+
+  fileInput?.addEventListener('change', refreshFileUi);
+
+  fileRemoveBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    setFile(null);
+  });
+
+  ['dragover', 'dragenter'].forEach((evt) =>
+    dropzone?.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.add('drag-over');
+    })
+  );
+  ['dragleave', 'drop'].forEach((evt) =>
+    dropzone?.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('drag-over');
+    })
+  );
+  dropzone?.addEventListener('drop', (e) => {
+    const f = (e as DragEvent).dataTransfer?.files?.[0];
+    if (f) setFile(f);
+  });
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!statusEl || !button) return;
 
-    const data = Object.fromEntries(new FormData(form).entries());
+    const f = fileInput?.files?.[0];
+    if (f && f.size > MAX_FILE_BYTES) {
+      statusEl.textContent = 'Файл слишком большой — максимум 4 МБ.';
+      statusEl.className = 'status err';
+      return;
+    }
+
     button.disabled = true;
     statusEl.textContent = 'Отправляю…';
     statusEl.className = 'status';
 
+    const errorMessages: Record<string, string> = {
+      missing_fields: 'Заполните имя и контакт.',
+      too_long: 'Имя или контакт слишком длинные.',
+      file_too_large: 'Файл слишком большой — максимум 4 МБ.',
+      server_not_configured: 'Форма временно не работает — напишите в Telegram/WhatsApp напрямую.',
+      telegram_failed: 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.',
+    };
+
     try {
       const res = await fetch('/api/order', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: new FormData(form),
       });
-      if (!res.ok) throw new Error('request_failed');
+      if (!res.ok) {
+        let code = '';
+        try {
+          code = (await res.json())?.error ?? '';
+        } catch {}
+        throw new Error(errorMessages[code] ?? 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.');
+      }
       statusEl.textContent = 'Заявка отправлена, спасибо!';
       statusEl.className = 'status ok';
       form.reset();
-    } catch {
-      statusEl.textContent = 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.';
+      setFile(null);
+      const summaryEl = form.querySelector<HTMLElement>('.items-summary');
+      if (summaryEl) summaryEl.hidden = true;
+    } catch (err) {
+      statusEl.textContent = err instanceof Error ? err.message : 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.';
       statusEl.className = 'status err';
     } finally {
       button.disabled = false;
