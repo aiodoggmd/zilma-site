@@ -22,8 +22,11 @@ const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { da
     <div class={`cover cover-${article.data.accent}`}>
       <div class="cover-overlay"></div>
     </div>
-    <div class="container cover-inner">
-      <p class="cover-tagline">Профессиональная<br />косметика для салонов</p>
+    <div class={`container cover-inner cover-inner-${article.data.accent}`}>
+      <div class="cover-text">
+        <p class="cover-tagline">Профессиональная<br />косметика для салонов</p>
+        <p class="cover-subtitle">Гид по брендам и подбор оттенков — всё для работы мастера.</p>
+      </div>
       <div class="cover-art">
         <div class="cover-halo"></div>
         <div class="cover-bubble">
@@ -82,6 +85,10 @@ const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { da
     pointer-events: none;
   }
 
+  .cover-text {
+    max-width: 460px;
+  }
+
   .cover-tagline {
     font-family: var(--font-serif);
     font-weight: 600;
@@ -89,6 +96,14 @@ const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { da
     font-size: clamp(1.7rem, 3.2vw, 2.5rem);
     line-height: 1.15;
     margin: 0;
+  }
+
+  .cover-subtitle {
+    margin: 8px 0 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--color-cream);
+    opacity: 0.88;
   }
 
   .cover-art {
@@ -144,6 +159,56 @@ const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { da
   @media (prefers-reduced-motion: reduce) {
     .cover-logo {
       animation: none;
+    }
+  }
+
+  /* На мобильных .cover не подстраивался под контент вовсе — фикс.-высота 260px + overflow:hidden
+     обрезали двухстрочный тэглайн и булю-лого сбоку, как только для них переставало хватать ширины
+     (у Hero.astro на главной та же проблема решена стеканием текст-над-лого при max-width:720px).
+     Здесь идём другим путём: .cover и .cover-inner — сиблинги (не родитель/потомок, см. комментарий
+     выше про намеренный нахлёст логотипа на стык баннера и карточки), поэтому вместо того чтобы
+     угадывать высоту .cover в px под стекающийся контент .cover-inner, на мобильных просто прячем
+     исходный .cover, а .cover-inner сам становится цветной полосой — его высота тогда естественно
+     подстраивается под реальный контент (текст + логотип), без нахлёстов и магических отступов. */
+  @media (max-width: 720px) {
+    .cover {
+      display: none;
+    }
+
+    .cover-inner {
+      position: static;
+      height: auto;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      gap: 16px;
+      padding: 28px 20px 56px;
+      pointer-events: auto;
+    }
+
+    .cover-inner-blue {
+      background: linear-gradient(135deg, var(--color-blue-dark), var(--color-blue));
+    }
+
+    .cover-inner-red {
+      background: var(--color-red);
+    }
+
+    .cover-text {
+      max-width: 100%;
+    }
+
+    .cover-tagline {
+      font-size: 1.4rem;
+    }
+
+    .cover-subtitle {
+      font-size: 0.85rem;
+    }
+
+    .cover-art {
+      width: 150px;
     }
   }
 
