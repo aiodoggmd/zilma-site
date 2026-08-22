@@ -7,7 +7,7 @@ tags: ["окрашивание"]
 coverImage: "/images/articles/2026-08-13-illumina-color/cover.webp"
 paletteImage: "/images/articles/2026-08-13-illumina-color/palette.webp"
 publishDate: 2026-08-13T08:00:00
-verifiedDate: 2026-08-18
+verifiedDate: 2026-08-23
 accent: "blue"
 ---
 

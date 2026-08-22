@@ -7,7 +7,7 @@ tags: ["окрашивание"]
 coverImage: "/images/articles/2026-08-13-color-touch/cover.webp"
 paletteImage: "/images/articles/2026-08-13-color-touch/palette.webp"
 publishDate: 2026-08-13T07:00:00
-verifiedDate: 2026-08-17
+verifiedDate: 2026-08-23
 accent: "red"
 ---
 
