@@ -21,7 +21,7 @@
     </label>
 
     <div class="submit-row">
-      <button type="submit">Отправить заявку</button>
+      <button type="submit" disabled>Отправить заявку</button>
       <span class="items-summary" hidden></span>
       <span class="status" role="status" aria-live="polite"></span>
     </div>
@@ -162,7 +162,7 @@
   }
 
   button:hover { filter: brightness(1.1); }
-  button:disabled { opacity: 0.6; cursor: default; }
+  button:disabled { opacity: 0.5; cursor: default; }
 
   .status {
     font-size: 0.9rem;
@@ -186,7 +186,18 @@
 
   const form = document.getElementById('order-form-el') as HTMLFormElement | null;
   const statusEl = form?.querySelector('.status') as HTMLElement | null;
-  const button = form?.querySelector('button') as HTMLButtonElement | null;
+  const button = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+  const nameInput = form?.querySelector<HTMLInputElement>('input[name="name"]');
+  const contactInput = form?.querySelector<HTMLInputElement>('input[name="contact"]');
+
+  // Кнопка серая/неактивна, пока не заполнены обязательные поля — тот же приём, что у «Добавить в заявку» в прайсе.
+  function updateSubmitState() {
+    if (!button) return;
+    button.disabled = !(nameInput?.value.trim() && contactInput?.value.trim());
+  }
+  nameInput?.addEventListener('input', updateSubmitState);
+  contactInput?.addEventListener('input', updateSubmitState);
+  updateSubmitState();
   const dropzone = document.getElementById('file-drop') as HTMLLabelElement | null;
   const fileInput = document.getElementById('attachment-input') as HTMLInputElement | null;
   const fileHint = document.getElementById('file-hint') as HTMLElement | null;
@@ -283,7 +294,7 @@
       statusEl.textContent = err instanceof Error ? err.message : 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.';
       statusEl.className = 'status err';
     } finally {
-      button.disabled = false;
+      updateSubmitState();
     }
   });
 </script>
