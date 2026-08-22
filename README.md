@@ -1,43 +1,81 @@
-# Astro Starter Kit: Minimal
+# Zilma
+
+Сайт-визитка поставщика профессиональной косметики для салонов красоты (Wella, Londa, Schwarzkopf, Matrix, Lebel и др.): скачиваемый прайс-лист, интерактивный каталог с оформлением заявки и лента гидов по брендам/оттенкам.
+
+Живой сайт: **https://zilma.pro** (он же https://zilma-site.vercel.app)
+
+## Стек
+
+- [Astro 7](https://docs.astro.build) — статические страницы + одна серверная функция (форма заказа)
+- Markdown-коллекции контента (`astro:content`) — статьи-гиды
+- Деплой — [Vercel](https://vercel.com), автоматически при каждом `git push` в `main`
+- Без базы данных: цены и статьи — это файлы в репозитории, заявки уходят в Telegram
+
+## Запуск локально
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Сайт откроется на `http://localhost:4321`.
 
-## 🚀 Project Structure
+| Команда | Что делает |
+| --- | --- |
+| `npm run dev` | Локальный сервер с горячей перезагрузкой |
+| `npm run build` | Собрать прод-версию в `dist/` (полезно проверить перед пушем — если есть ошибка в контенте, build её покажет, а `dev` иногда молча не запускается) |
+| `npm run preview` | Посмотреть собранную прод-версию локально |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Структура проекта
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── components/        UI-блоки: хиро, карточки статей, прайс-блоки, форма заказа
+├── content/articles/   markdown-файлы гидов по брендам (по одному на статью)
+├── data/               prices.ts (контакты, ссылки на файлы прайса), priceItems.json (позиции каталога)
+├── layouts/            общий каркас страницы (BaseLayout.astro)
+├── pages/               index.astro (главная), articles/[id].astro (шаблон статьи), api/order.ts (приём заявок)
+└── styles/global.css   цвета, шрифты, общие стили сайта — все переменные (--color-*, --font-*) здесь
+
+public/
+├── images/              логотип, товарные фото статей, иконки
+└── prices/              сами файлы прайса (.xlsx/.pdf), которые скачивают посетители
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Как обновить прайс
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Сейчас — вручную, редактированием файлов:
 
-Any static assets, like images, can be placed in the `public/` directory.
+1. Заменить файлы в `public/prices/` (`price-current.xlsx` — актуальный прайс, `price-promo.xlsx` — акции).
+2. Поправить дату в `src/data/prices.ts` (поле `date` у `currentPrice`/`promoPrice`).
+3. Если менялся ассортимент интерактивного каталога (модалка «Выбрать и заказать» на сайте) — обновить `src/data/priceItems.json` (список позиций: бренд, линейка, название, цена, `promo: true/false`).
 
-## 🧞 Commands
+Больше ничего трогать не нужно — сайт сам подхватит новую дату и файлы.
 
-All commands are run from the root of the project, from a terminal:
+> Со временем формирование `price-promo.xlsx`/раздела акций планируется автоматизировать: из двух Excel-файлов (прайс + себестоимость) считать наценку по каждой позиции и при наценке выше 28% добавлять товар в акции по цене «себестоимость + 28%». Пока не реализовано.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Как добавить статью-гид
 
-## 👀 Want to learn more?
+1. Создать `src/content/articles/ГГГГ-ММ-ДД-название-бренда.md` с фронтматтером по схеме из `src/content.config.ts` (`title`, `description`, `brand`, `line`, `tags`, `coverImage`, `publishDate`, `verifiedDate`, `accent: 'blue' | 'red'`).
+2. Картинки — в `public/images/articles/<id-статьи>/`, обложка — просто фото товара на белом фоне (без текста/градиента).
+3. Для инфографики (пропорции смешивания, время выдержки, чек-листы и т.п.) — использовать готовые CSS-виджеты из `src/pages/articles/[id].astro` (классы `.wheel`, `.mix-card`, `.service-card`, `.checklist`, `.scale-row` и др.), а не картинки-скриншоты из PDF бренда.
+4. `verifiedDate` — дата, когда информацию в статье последний раз сверяли с официальным источником бренда (не дата публикации) — она показывается читателю как «Обновлено: …».
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Форма заказа (`/api/order`)
+
+Принимает данные формы и отправляет сообщение в Telegram. Нужны переменные окружения в Vercel (Project → Settings → Environment Variables):
+
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+
+Локально для теста формы — создать `.env` с этими же переменными (файл в `.gitignore`, в репозиторий не попадёт).
+
+## Деплой
+
+Автоматический: пуш в `main` на GitHub → Vercel сам собирает и выкладывает. Ничего вручную запускать не нужно.
+
+```sh
+git add <файлы>
+git commit -m "..."
+git push origin main
+```
