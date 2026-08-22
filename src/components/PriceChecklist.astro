@@ -220,6 +220,7 @@ const brandEntries = [...brandMap.entries()]
   .pc-groups {
     flex: 1;
     overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 6px 0;
   }
 
@@ -436,12 +437,59 @@ const brandEntries = [...brandMap.entries()]
 
 <script>
   // Открытие модалок по клику на любую кнопку с data-open-modal="<id диалога>" (см. PriceBlock.astro).
+  // Простой overflow:hidden не спасает: showModal() сам фокусирует кнопку закрытия и браузер асинхронно
+  // (уже после нашего кода) скроллит страницу, чтобы она попала в область видимости — window.scrollTo()
+  // сразу после showModal() не успевает это перебить. Поэтому используем стандартный приём scroll-lock:
+  // body переводится в position:fixed на время открытой модалки — тогда фон физически не может сдвинуться
+  // ни от фокуса, ни от колеса/тача внутри диалога, а при закрытии позиция скролла восстанавливается.
+  let lockedScrollY = 0;
+  function lockPageScroll() {
+    lockedScrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+  }
+  function unlockPageScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo(0, lockedScrollY);
+    // close() у <dialog> возвращает фокус на элемент-триггер с задержкой в несколько кадров (замерено
+    // ~28мс в Chromium) — этот возврат фокуса сам скроллит страницу уже ПОСЛЕ того как мы её восстановили.
+    // Подтверждаем правильную позицию ещё десяток кадров вперёд, чтобы перебить этот запоздалый скачок.
+    let ticks = 0;
+    function reassert() {
+      if (window.scrollY !== lockedScrollY) window.scrollTo(0, lockedScrollY);
+      ticks++;
+      if (ticks < 15) requestAnimationFrame(reassert);
+    }
+    requestAnimationFrame(reassert);
+  }
+
+  // dialog.close() сам возвращает фокус на элемент-триггер и скроллит к нему страницу — синхронно, ДО
+  // того как что-либо успевает это перехватить. Если убрать фокус из диалога непосредственно перед close()
+  // (когда активный элемент больше не потомок диалога), браузер видит, что восстанавливать нечего, и скролла
+  // не происходит вовсе — это надёжнее, чем ловить и переигрывать скролл постфактум.
+  function closeDialog(root: HTMLDialogElement) {
+    (document.activeElement as HTMLElement | null)?.blur();
+    root.close();
+  }
+
   document.addEventListener('click', (e) => {
     const trigger = (e.target as HTMLElement).closest('[data-open-modal]') as HTMLElement | null;
     if (!trigger) return;
     const id = trigger.getAttribute('data-open-modal');
     const dialog = id && document.getElementById(id);
-    if (dialog instanceof HTMLDialogElement) dialog.showModal();
+    if (dialog instanceof HTMLDialogElement) {
+      lockPageScroll();
+      dialog.showModal();
+    }
+  });
+
+  document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((dialog) => {
+    dialog.addEventListener('close', unlockPageScroll);
   });
 
   document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((root) => {
@@ -453,10 +501,10 @@ const brandEntries = [...brandMap.entries()]
     const countEl = root.querySelector<HTMLElement>('[data-count]');
     const noResults = root.querySelector<HTMLElement>('.pc-no-results');
 
-    root.querySelector('[data-close-modal]')?.addEventListener('click', () => root.close());
+    root.querySelector('[data-close-modal]')?.addEventListener('click', () => closeDialog(root));
     // Клик по подложке (::backdrop) — событие всплывает с target === сам dialog, а не его содержимое.
     root.addEventListener('click', (e) => {
-      if (e.target === root) root.close();
+      if (e.target === root) closeDialog(root);
     });
 
     function updateCount() {
@@ -564,7 +612,7 @@ const brandEntries = [...brandMap.entries()]
         summaryEl.hidden = false;
       }
 
-      root.close();
+      closeDialog(root);
       document.getElementById('order')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       document.querySelector<HTMLInputElement>('#order-form-el input[name="name"]')?.focus();
     });

@@ -30,6 +30,9 @@ pnpm-debug.log*
 # staging/debug images from article-building workflow (kept on disk, not for repo)
 _tmp_*
 
+# Playwright MCP test artifacts (screenshots/logs from browser-automation testing sessions)
+.playwright-mcp/
+
 # accidental clipboard-paste filename artifact
 Хочу создать сайт*
 
