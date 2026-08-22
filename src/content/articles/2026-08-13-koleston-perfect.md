@@ -4,8 +4,8 @@ description: "Закрашивание седины, схема смешиван
 brand: "Wella"
 line: "Koleston Perfect"
 tags: ["окрашивание"]
-coverImage: "/images/articles/2026-08-13-koleston-perfect/cover.png"
-paletteImage: "/images/articles/2026-08-13-koleston-perfect/palette.png"
+coverImage: "/images/articles/2026-08-13-koleston-perfect/cover.webp"
+paletteImage: "/images/articles/2026-08-13-koleston-perfect/palette.webp"
 publishDate: 2026-08-13T06:00:00
 verifiedDate: 2026-08-18
 accent: "blue"
@@ -13,7 +13,7 @@ accent: "blue"
 
 **Koleston Perfect** — перманентная крем-краска Wella Professionals. Ниже — полный перевод официального руководства по применению из шейд-чарта Wella: закрашивание седины, схемы смешивания с Welloxon Perfect, уходовые техники между окрашиваниями, глянцевание, Special Mix, пастельное тонирование, система нумерации оттенков и обязательный аллерготест.
 
-![Koleston Perfect — краска и линейка оттенков](/images/articles/2026-08-13-koleston-perfect/hero-product.png)
+![Koleston Perfect — краска и линейка оттенков](/images/articles/2026-08-13-koleston-perfect/hero-product.webp)
 
 <div class="callout"><b>Технология ME+.</b> Единственная молекула стойкого окислительного красителя, заменяющая PTD и PPD — снижает риск развития новой аллергии на краску для волос при сохранении полноценного результата окрашивания. Входит в состав отдельных оттенков линеек Pure Naturals, Rich Naturals, Vibrant Reds, Special Blonde и Deep Browns.</div>
 
@@ -207,17 +207,17 @@ accent: "blue"
 <div class="step-flow">
   <div class="step">
     <span class="badge">1</span>
-    <img src="/images/articles/2026-08-13-koleston-perfect/allergy-step1.png" alt="Шаг 1 — смешать оттенок с окислителем" />
+    <img src="/images/articles/2026-08-13-koleston-perfect/allergy-step1.webp" alt="Шаг 1 — смешать оттенок с окислителем" />
     <p>Смешать 5 г оттенка с 5 г окислителя</p>
   </div>
   <div class="step">
     <span class="badge">2</span>
-    <img src="/images/articles/2026-08-13-koleston-perfect/allergy-step2.png" alt="Шаг 2 — нанести на сгиб локтя" />
+    <img src="/images/articles/2026-08-13-koleston-perfect/allergy-step2.webp" alt="Шаг 2 — нанести на сгиб локтя" />
     <p>Нанести на участок 1 см² под сгибом локтя</p>
   </div>
   <div class="step">
     <span class="badge">3</span>
-    <img src="/images/articles/2026-08-13-koleston-perfect/allergy-step3.png" alt="Шаг 3 — оставить на 45 минут" />
+    <img src="/images/articles/2026-08-13-koleston-perfect/allergy-step3.webp" alt="Шаг 3 — оставить на 45 минут" />
     <p>Оставить открытым на 45 минут, смыть тёплой водой</p>
   </div>
   <div class="step">
@@ -239,7 +239,7 @@ accent: "blue"
 
 ## Палитра оттенков
 
-![Палитра оттенков Koleston Perfect](/images/articles/2026-08-13-koleston-perfect/palette.png)
+![Палитра оттенков Koleston Perfect](/images/articles/2026-08-13-koleston-perfect/palette.webp)
 
 <p class="zoom-hint">Нажмите на картинку, чтобы увеличить</p>
 

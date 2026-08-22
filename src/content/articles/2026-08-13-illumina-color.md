@@ -4,8 +4,8 @@ description: "Перманентное окрашивание с сиянием 
 brand: "Wella"
 line: "Illumina Color"
 tags: ["окрашивание"]
-coverImage: "/images/articles/2026-08-13-illumina-color/cover.png"
-paletteImage: "/images/articles/2026-08-13-illumina-color/palette.png"
+coverImage: "/images/articles/2026-08-13-illumina-color/cover.webp"
+paletteImage: "/images/articles/2026-08-13-illumina-color/palette.webp"
 publishDate: 2026-08-13T08:00:00
 verifiedDate: 2026-08-17
 accent: "blue"
@@ -13,7 +13,7 @@ accent: "blue"
 
 **Illumina Color** — перманентная крем-краска Wella Professionals на технологии MICROLIGHT: максимально естественный результат окрашивания с сиянием, заметным при любом освещении. Ниже — полный перевод официального руководства по применению: покрытие седины, схема смешивания с Welloxon Perfect и Color.id, область применения и отдельная линейка металлик-оттенков Opal-Essence.
 
-![Illumina Color — краска и линейка оттенков](/images/articles/2026-08-13-illumina-color/hero-product.png)
+![Illumina Color — краска и линейка оттенков](/images/articles/2026-08-13-illumina-color/hero-product.webp)
 
 ## Что такое Illumina Color
 
@@ -59,7 +59,7 @@ Illumina Color подходит для:
 
 ## Opal-Essence by Illumina Color
 
-![Opal-Essence by Illumina Color — пять металлик-оттенков](/images/articles/2026-08-13-illumina-color/variant-opal-essence.png)
+![Opal-Essence by Illumina Color — пять металлик-оттенков](/images/articles/2026-08-13-illumina-color/variant-opal-essence.webp)
 
 **Opal-Essence** — группа из пяти металлик-оттенков внутри линейки Illumina Color, без глубины тона. Изменение цвета достигается через движение и свет: мягкое сияние с одновременно тёплыми и холодными переливами. Оттенки — **Лиловое серебро, Оливковый хром, Платиновая лилия, Титановый розовый, Медный персик**.
 
@@ -95,7 +95,7 @@ Illumina Color подходит для:
 
 ## Палитра оттенков
 
-![Палитра оттенков Illumina Color](/images/articles/2026-08-13-illumina-color/palette.png)
+![Палитра оттенков Illumina Color](/images/articles/2026-08-13-illumina-color/palette.webp)
 
 <p class="zoom-hint">Нажмите на картинку, чтобы увеличить</p>
 

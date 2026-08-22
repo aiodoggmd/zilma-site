@@ -4,8 +4,8 @@ description: "Демиперманентное тонирование без а�
 brand: "Wella"
 line: "Color Touch"
 tags: ["окрашивание"]
-coverImage: "/images/articles/2026-08-13-color-touch/cover.png"
-paletteImage: "/images/articles/2026-08-13-color-touch/palette.png"
+coverImage: "/images/articles/2026-08-13-color-touch/cover.webp"
+paletteImage: "/images/articles/2026-08-13-color-touch/palette.webp"
 publishDate: 2026-08-13T07:00:00
 verifiedDate: 2026-08-17
 accent: "red"
@@ -13,7 +13,7 @@ accent: "red"
 
 **Color Touch** — интенсивное тонирование Color Touch открывает мир модного цвета для вас и ваших клиентов. Испытайте на себе блеск и яркость стойкого цвета с мягким воздействием, характерным для полуперманентной краски.
 
-![Color Touch — флакон эмульсии и коробки с краской](/images/articles/2026-08-13-color-touch/hero-product.png)
+![Color Touch — флакон эмульсии и коробки с краской](/images/articles/2026-08-13-color-touch/hero-product.webp)
 
 - Без аммиака.
 - Яркий блеск для великолепных модных результатов.
@@ -55,7 +55,7 @@ accent: "red"
 
 ## Color Touch Plus
 
-![Color Touch Plus](/images/articles/2026-08-13-color-touch/variant-plus.png)
+![Color Touch Plus](/images/articles/2026-08-13-color-touch/variant-plus.webp)
 
 <div class="service-card">
   <span class="wheel" style="--split: 33%"></span>
@@ -95,6 +95,6 @@ accent: "red"
 
 Палитра Color Touch разработана так, чтобы точно совпадать с оттенками Koleston Perfect и служить деми-перманентным дополнением к перманентному окрашиванию: Pure Naturals, Rich Naturals, Deep Browns, Vibrant Reds, Special Mix, Plus.
 
-![Палитра оттенков Color Touch](/images/articles/2026-08-13-color-touch/palette.png)
+![Палитра оттенков Color Touch](/images/articles/2026-08-13-color-touch/palette.webp)
 
 <p class="zoom-hint">Нажмите на картинку, чтобы увеличить</p>

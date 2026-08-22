@@ -4,8 +4,8 @@ description: "Zero Lift Glaze с балансом pH — смешивание 1:
 brand: "Wella"
 line: "Shinefinity"
 tags: ["окрашивание"]
-coverImage: "/images/articles/2026-08-13-shinefinity/cover.png"
-paletteImage: "/images/articles/2026-08-13-shinefinity/palette.png"
+coverImage: "/images/articles/2026-08-13-shinefinity/cover.webp"
+paletteImage: "/images/articles/2026-08-13-shinefinity/palette.webp"
 publishDate: 2026-08-13T09:00:00
 verifiedDate: 2026-08-17
 accent: "red"
@@ -13,7 +13,7 @@ accent: "red"
 
 **Shinefinity Zero Lift Glaze** — тонирующий гель-крем Wella Professionals на балансированном pH: без аммиака, без осветления и без повреждения структуры волоса. Формула не течёт (гель-крем без подтёков), даёт предсказуемый результат «точно в оттенок» и стойкий блеск на срок до 6 недель при мытье головы до 3 раз в неделю.
 
-![Shinefinity Zero Lift Glaze — туба крем-краски](/images/articles/2026-08-13-shinefinity/hero-product.png)
+![Shinefinity Zero Lift Glaze — туба крем-краски](/images/articles/2026-08-13-shinefinity/hero-product.webp)
 
 ## Смешивание — 1:1
 
@@ -91,7 +91,7 @@ accent: "red"
   <li><span class="wheel sm" style="--split: 50%"></span><div><b>Глубина 9:</b> Caramel Milk 09/73, Iced Platinum 09/61, Pink Shimmer 09/65, Platinum Opal 09/81</div></li>
 </ul>
 
-![Результаты Flash Glaze на разных основах — необработанные, натуральный блонд, осветлённые 8/0 и 9/0](/images/articles/2026-08-13-shinefinity/flash-glaze-results.png)
+![Результаты Flash Glaze на разных основах — необработанные, натуральный блонд, осветлённые 8/0 и 9/0](/images/articles/2026-08-13-shinefinity/flash-glaze-results.webp)
 
 <p class="zoom-hint">Нажмите на картинку, чтобы увеличить</p>
 
@@ -135,7 +135,7 @@ accent: "red"
 
 ## Палитра оттенков
 
-![Палитра оттенков Shinefinity — тёплая, натуральная и холодная зоны, бустер-тона](/images/articles/2026-08-13-shinefinity/palette.png)
+![Палитра оттенков Shinefinity — тёплая, натуральная и холодная зоны, бустер-тона](/images/articles/2026-08-13-shinefinity/palette.webp)
 
 <p class="zoom-hint">Нажмите на картинку, чтобы увеличить</p>
 
