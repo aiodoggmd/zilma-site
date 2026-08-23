@@ -1,0 +1,189 @@
+<div class="install-banner" id="install-banner" hidden>
+  <img src="/icon-192-maskable.png" alt="" class="install-icon" />
+  <div class="install-text">
+    <p class="install-title">Установите Zilma как приложение</p>
+    <p class="install-hint" id="install-hint-android">Быстрый доступ к прайсу и гидам — без браузера.</p>
+    <p class="install-hint" id="install-hint-ios" hidden>
+      Нажмите
+      <svg class="ios-share-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v12" />
+        <path d="M8 7l4-4 4 4" />
+        <rect x="5" y="11" width="14" height="10" rx="2" />
+      </svg>
+      «Поделиться» внизу экрана, затем «На экран Домой».
+    </p>
+  </div>
+  <button type="button" class="install-btn" id="install-btn" hidden>Установить</button>
+  <button type="button" class="install-close" id="install-close" aria-label="Закрыть">✕</button>
+</div>
+
+<style>
+  .install-banner {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 200;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-ink);
+    color: var(--color-cream);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card-hover);
+    padding: 12px 14px;
+    animation: install-rise 0.3s ease;
+  }
+
+  .install-banner[hidden] {
+    display: none;
+  }
+
+  @keyframes install-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .install-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .install-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .install-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: #fff;
+  }
+
+  .install-hint {
+    margin: 2px 0 0;
+    font-size: 0.8rem;
+    color: #cbb;
+    line-height: 1.4;
+  }
+
+  .install-hint[hidden] {
+    display: none;
+  }
+
+  .ios-share-icon {
+    display: inline-block;
+    vertical-align: -2px;
+    margin: 0 1px;
+  }
+
+  .install-btn {
+    flex: none;
+    background: var(--color-red);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 9px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .install-btn[hidden] {
+    display: none;
+  }
+
+  .install-btn:hover {
+    filter: brightness(1.1);
+  }
+
+  .install-close {
+    flex: none;
+    background: none;
+    border: none;
+    color: #cbb;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 4px;
+    box-shadow: none;
+  }
+
+  .install-close:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 480px) {
+    .install-title {
+      font-size: 0.85rem;
+    }
+    .install-hint {
+      font-size: 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  // Показывается на каждом новом визите (sessionStorage, не localStorage) — закрыть можно, но
+  // не навсегда, чтобы предложение об установке не терялось для тех, кто ещё не поставил приложение.
+  const DISMISS_KEY = 'zilma-install-dismissed';
+
+  function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches || (navigator as any).standalone === true;
+  }
+
+  function isIOS() {
+    const ua = navigator.userAgent;
+    const iOSDevice = /iPhone|iPad|iPod/i.test(ua);
+    const iPadOS13Up = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+    return iOSDevice || iPadOS13Up;
+  }
+
+  if (!isStandalone() && !sessionStorage.getItem(DISMISS_KEY)) {
+    const banner = document.getElementById('install-banner') as HTMLDivElement | null;
+    const btn = document.getElementById('install-btn') as HTMLButtonElement | null;
+    const closeBtn = document.getElementById('install-close') as HTMLButtonElement | null;
+    const hintAndroid = document.getElementById('install-hint-android') as HTMLElement | null;
+    const hintIOS = document.getElementById('install-hint-ios') as HTMLElement | null;
+
+    closeBtn?.addEventListener('click', () => {
+      sessionStorage.setItem(DISMISS_KEY, '1');
+      if (banner) banner.hidden = true;
+    });
+
+    if (isIOS()) {
+      // На iOS нет API для программной установки — только ручная инструкция.
+      if (hintAndroid) hintAndroid.hidden = true;
+      if (hintIOS) hintIOS.hidden = false;
+      if (banner) banner.hidden = false;
+    } else {
+      // На остальных платформах ждём разрешения браузера на установку (событие приходит только
+      // если сайт реально проходит критерии installability — своей кнопкой это не обойти).
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        const deferredPrompt = e as any;
+        if (banner) banner.hidden = false;
+        if (btn) btn.hidden = false;
+
+        btn?.addEventListener(
+          'click',
+          async () => {
+            deferredPrompt.prompt();
+            await deferredPrompt.userChoice;
+            if (banner) banner.hidden = true;
+          },
+          { once: true }
+        );
+      });
+
+      window.addEventListener('appinstalled', () => {
+        if (banner) banner.hidden = true;
+      });
+    }
+  }
+</script>
