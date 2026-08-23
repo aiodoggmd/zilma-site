@@ -1,0 +1,400 @@
+<title>Zilma — журнал разработки</title>
+<style>
+:root {
+  --bg: #faf6f0;
+  --panel: #f1ece4;
+  --panel-line: #e7e0d4;
+  --paper: #ffffff;
+  --ink: #2b201c;
+  --meta: #7a6f66;
+  --red: #c8000f;
+  --red-dark: #8a000d;
+  --blue: #4a7fa8;
+  --blue-dark: #38628c;
+  --cream: #faf3ea;
+  --ok: #3d7a4f;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1512;
+    --panel: #29201c;
+    --panel-line: #3c2f28;
+    --paper: #221a17;
+    --ink: #f3e9e0;
+    --meta: #b4a397;
+    --red: #ff5a68;
+    --red-dark: #ff8188;
+    --blue: #86b4d9;
+    --blue-dark: #6ea0cc;
+    --cream: #f3e9e0;
+    --ok: #6fbf82;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1c1512;
+  --panel: #29201c;
+  --panel-line: #3c2f28;
+  --paper: #221a17;
+  --ink: #f3e9e0;
+  --meta: #b4a397;
+  --red: #ff5a68;
+  --red-dark: #ff8188;
+  --blue: #86b4d9;
+  --blue-dark: #6ea0cc;
+  --cream: #f3e9e0;
+  --ok: #6fbf82;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 100px;
+}
+
+@media (max-width: 640px) {
+  .page { padding: 36px 16px 80px; }
+}
+
+header.hero {
+  margin-bottom: 40px;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin: 8px 0 10px;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.lede {
+  font-size: 1.02rem;
+  color: var(--meta);
+  max-width: 62ch;
+  margin: 0;
+}
+
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--panel-line);
+  color: var(--ink);
+}
+
+.pill::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+  flex: none;
+}
+
+.pill a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
+
+section {
+  margin-top: 44px;
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.28rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+.section-title .num {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--red);
+  flex: none;
+}
+
+.section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--panel-line);
+}
+
+.section-date {
+  font-size: 0.8rem;
+  color: var(--meta);
+  margin: -10px 0 16px;
+}
+
+.entry {
+  background: var(--paper);
+  border: 1px solid var(--panel-line);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+
+.entry h3 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+.entry p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.entry p + p { margin-top: 8px; }
+
+.entry .meta {
+  font-size: 0.78rem;
+  color: var(--meta);
+  margin-top: 8px;
+}
+
+ul.plain {
+  margin: 0;
+  padding-left: 1.15em;
+}
+
+ul.plain li {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+ul.plain li:last-child { margin-bottom: 0; }
+
+.callout {
+  border-left: 3px solid var(--blue-dark);
+  background: var(--panel);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 18px;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.callout.next {
+  border-left-color: var(--red);
+}
+
+.next-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.next-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--paper);
+  border: 1px solid var(--panel-line);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.next-item .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red);
+  margin-top: 6px;
+  flex: none;
+}
+
+.next-item p {
+  margin: 0;
+  font-size: 0.94rem;
+}
+
+.next-item .tag {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--meta);
+  margin-bottom: 3px;
+}
+
+footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--panel-line);
+  font-size: 0.82rem;
+  color: var(--meta);
+}
+
+footer code {
+  background: var(--panel);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.85em;
+}
+
+a { color: var(--blue-dark); }
+</style>
+
+<div class="page">
+
+<header class="hero">
+  <div class="eyebrow">Zilma · сайт-визитка</div>
+  <h1>Журнал разработки сайта</h1>
+  <p class="lede">Человекочитаемая версия рабочего файла Claude Code — что сделано с момента старта проекта и что ещё в планах. Технический двойник этого файла (для меня) — <code>CLAUDE.md</code> в папке сайта.</p>
+  <div class="status-row">
+    <span class="pill">Сайт живёт: <a href="https://www.zilma.pro" target="_blank" rel="noopener">zilma.pro</a></span>
+    <span class="pill">Задеплоено на Vercel</span>
+    <span class="pill">4 из 13 гид-статей готовы</span>
+  </div>
+</header>
+
+<section>
+  <div class="section-title"><span class="num">01</span>С чего всё началось</div>
+  <div class="section-date">16 августа 2026</div>
+  <div class="entry">
+    <p>Домашнее задание курса ZeroCoder по вайб-кодингу — на этот раз не учебный макет, а реально рабочий сайт. Выбрана тема: сайт-визитка для продажи профессиональной косметики для салонов красоты (Wella, Londa, Schwarzkopf, Matrix, Lebel) — скачиваемый прайс, прайс с акциями и лента гидов по оттенкам, переработанных из статей телеграм-канала.</p>
+    <p class="meta">Стек: Astro 7 + Markdown-статьи, деплой на Vercel.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><span class="num">02</span>Дизайн и главная страница</div>
+  <div class="section-date">16–18 августа</div>
+  <div class="entry">
+    <h3>Общий стиль</h3>
+    <p>За основу оформления карточек и секций взят референс blendsor.com — кремовый фон, серифные заголовки, тонкие разделители. Хиро-блок (шапка сайта) — отдельная история: узкий, синий фон, анимированный логотип-«булька», которая появляется через диагональный wipe-эффект.</p>
+    <p class="meta">Финальная версия хиро подтверждена пользователем — больше не менялась.</p>
+  </div>
+  <div class="entry">
+    <h3>Прайс-блоки и заказ</h3>
+    <p>Два блока одинакового размера: актуальный прайс и прайс с акциями. Из PDF/файла заменили на интерактивный список товаров с чекбоксами — можно выбрать нужные позиции и сразу отправить заявку через встроенную форму, без скачивания и переписки вручную.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><span class="num">03</span>Гид-статьи по брендам</div>
+  <div class="section-date">17–23 августа</div>
+  <div class="entry">
+    <h3>Своя дизайн-система виджетов</h3>
+    <p>Вместо того чтобы вставлять скриншоты официальных PDF-инфографик Wella (пропорции смешивания, время выдержки, шаги аллерготеста), сделан свой набор HTML/CSS-виджетов в цветах сайта — колёса-пропорции, карточки-рецепты, шкалы оттенков. Стандарт закреплён на статье про Koleston Perfect и перенесён на остальные готовые статьи.</p>
+  </div>
+  <div class="entry">
+    <h3>Готово 4 из 13 статей</h3>
+    <p>Koleston Perfect, Color Touch, Illumina Color, Shinefinity — полностью пересобраны из официальных PDF-источников брендов (не из старых укороченных версий), включая честную сверку фактов и картинок с официальными сайтами.</p>
+    <p class="meta">18 августа — по каждой статье прогнан автоматический аудит на актуальность фактов и картинок; все найденные расхождения (устаревшие цифры, снятые с производства линейки, старый дизайн упаковки) исправлены к 23 августа.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><span class="num">04</span>Деплой</div>
+  <div class="section-date">18–22 августа</div>
+  <div class="entry">
+    <p>Сайт выложен на Vercel (бесплатный тариф) через GitHub-репозиторий — при каждом обновлении сайт пересобирается и обновляется автоматически, вручную ничего заливать не нужно. Подключён собственный домен.</p>
+    <ul class="plain">
+      <li>Рабочий адрес: <a href="https://www.zilma.pro" target="_blank" rel="noopener">www.zilma.pro</a></li>
+      <li>Технический адрес: <a href="https://zilma-site.vercel.app" target="_blank" rel="noopener">zilma-site.vercel.app</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><span class="num">05</span>SEO и превью при пересылке ссылок</div>
+  <div class="section-date">23 августа</div>
+  <div class="entry">
+    <h3>Красивые превью в Telegram/WhatsApp</h3>
+    <p>Когда ссылку на сайт кидаешь в мессенджер, теперь подтягивается заголовок, описание и картинка — раньше превью не было настроено вообще. Проверено вживую через Telegram-бота, который показывает точно то же самое, что увидит получатель ссылки.</p>
+  </div>
+  <div class="entry">
+    <h3>Отдельная страница для заказа по прайсу</h3>
+    <p>Появилась страница <code>/order/</code> — прямая ссылка на «выбрать товары и оформить заявку», со своим собственным превью при пересылке (раньше эта кнопка жила только внутри главной страницы и своей ссылки не имела).</p>
+  </div>
+  <div class="entry">
+    <h3>Видимость в поисковиках</h3>
+    <p>Настроена карта сайта (sitemap) и файл для поисковых роботов (robots.txt) — стандартный набор, который помогает Google/Яндексу правильно проиндексировать все страницы.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><span class="num">06</span>Установка сайта как приложения</div>
+  <div class="section-date">23 августа</div>
+  <div class="entry">
+    <h3>Свой значок</h3>
+    <p>Заменили безликий значок-заглушку на брендовую иконку — тёмно-красный квадрат с силуэтом «Z» и женского профиля (дизайн пользователя, сгенерирован через GPT).</p>
+  </div>
+  <div class="entry">
+    <h3>Установка на Android и iPhone</h3>
+    <p>Сайт теперь можно поставить на телефон как отдельное приложение — с иконкой на рабочем столе и без адресной строки браузера при запуске. На сайте появился баннер с предложением установить: на Android — настоящая кнопка «Установить», на iPhone — подсказка «Поделиться → На экран Домой» (у Apple нет автоматической установки, это единственный доступный способ).</p>
+    <p class="meta">Работает офлайн-кеширование уже открытых страниц — сайт откроется даже при слабом или пропавшем интернете.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><span class="num">07</span>Что дальше</div>
+  <div class="section-date">открытые задачи</div>
+  <div class="next-list">
+    <div class="next-item">
+      <span class="dot"></span>
+      <p><span class="tag">Контент</span>Перенести дизайн-систему гид-виджетов на оставшиеся 9 статей (Londa, Igora Royal, Matrix, Lebel MATERIA). Часть источников — официальных PDF по этим линейкам — ещё нужно прислать.</p>
+    </div>
+    <div class="next-item">
+      <span class="dot"></span>
+      <p><span class="tag">Проверка</span>Посмотреть баннер установки и адаптивность сайта на реальном телефоне, не только в эмуляции.</p>
+    </div>
+    <div class="next-item">
+      <span class="dot"></span>
+      <p><span class="tag">Ценообразование</span>Прайс с акциями — карточки конкретных акционных товаров (фото/название/цена) пока не заполнены, ждут появления реальных акций.</p>
+    </div>
+  </div>
+  <p class="callout next" style="margin-top:14px;">Новые пункты сюда добавляются через Claude Code — просто скажи, что нужно сделать, а этот файл и <code>CLAUDE.md</code> обновятся вместе.</p>
+</section>
+
+<footer>
+  Обновляется вручную вместе с рабочим файлом <code>Site/CLAUDE.md</code> — актуальная версия всегда по той же ссылке.
+</footer>
+
+</div>
