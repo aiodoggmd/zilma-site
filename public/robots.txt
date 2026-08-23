@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zilma.pro/sitemap-index.xml

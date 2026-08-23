@@ -16,8 +16,29 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const { Content } = await render(article);
 const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.data.title,
+  description: article.data.description,
+  image: `${siteUrl}${article.data.coverImage}`,
+  datePublished: article.data.publishDate.toISOString(),
+  dateModified: article.data.verifiedDate.toISOString(),
+  author: { '@type': 'Organization', name: 'Zilma' },
+  publisher: { '@type': 'Organization', name: 'Zilma', logo: { '@type': 'ImageObject', url: `${siteUrl}/images/logo.jpg` } },
+};
 ---
-<BaseLayout title={`${article.data.title} — Zilma`}>
+<BaseLayout
+  title={`${article.data.title} — Zilma`}
+  description={article.data.description}
+  image={article.data.coverImage}
+  type="article"
+  publishDate={article.data.publishDate}
+  verifiedDate={article.data.verifiedDate}
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleLd)} />
   <div class="cover-wrap">
     <div class={`cover cover-${article.data.accent}`}>
       <div class="cover-overlay"></div>

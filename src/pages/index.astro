@@ -19,8 +19,22 @@ const articles = (await getCollection('articles')).sort(
 const [newest, ...rest] = articles;
 
 const promoItems = priceItems.filter((it) => it.promo);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Zilma',
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo.jpg`,
+  description: 'Zilma — поставщик профессиональной косметики для салонов красоты: Wella, Londa, Schwarzkopf, Matrix, Lebel.',
+};
 ---
-<BaseLayout title="Zilma — профессиональная косметика для салонов">
+<BaseLayout
+  title="Zilma — профессиональная косметика для салонов"
+  description="Актуальный прайс и прайс с акциями на профессиональную косметику Wella, Londa, Schwarzkopf, Matrix, Lebel — плюс гиды по оттенкам для мастеров."
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(organizationLd)} />
   <Hero />
 
   <div class="container">

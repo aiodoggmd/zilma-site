@@ -5,9 +5,23 @@ import Analytics from '@vercel/analytics/astro';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishDate?: Date;
+  verifiedDate?: Date;
 }
 
-const { title, description = 'Zilma — профессиональная косметика для салонов красоты: Wella, Londa, Schwarzkopf, Matrix, Lebel.' } = Astro.props;
+const {
+  title,
+  description = 'Zilma — профессиональная косметика для салонов красоты: Wella, Londa, Schwarzkopf, Matrix, Lebel.',
+  image = '/images/og-default.jpg',
+  type = 'website',
+  publishDate,
+  verifiedDate,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
 ---
 <!doctype html>
 <html lang="ru">
@@ -16,7 +30,32 @@ const { title, description = 'Zilma — профессиональная кос�
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="theme-color" content="#c8000f" />
     <title>{title}</title>
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Zilma" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {type === 'article' && publishDate && (
+      <meta property="article:published_time" content={publishDate.toISOString()} />
+    )}
+    {type === 'article' && verifiedDate && (
+      <meta property="article:modified_time" content={verifiedDate.toISOString()} />
+    )}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <slot name="head" />
   </head>
   <body>
     <Analytics />
