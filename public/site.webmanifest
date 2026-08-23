@@ -1,0 +1,12 @@
+{
+  "name": "Zilma — профессиональная косметика для салонов",
+  "short_name": "Zilma",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf6f0",
+  "theme_color": "#c8000f",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
