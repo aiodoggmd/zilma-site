@@ -247,6 +247,29 @@ ul.plain li:last-child { margin-bottom: 0; }
   flex: none;
 }
 
+.group-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  margin: 24px 0 10px;
+}
+
+.group-label:first-of-type {
+  margin-top: 0;
+}
+
+.empty-state {
+  border: 1px dashed var(--panel-line);
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--meta);
+}
+
 .next-item p {
   margin: 0;
   font-size: 0.94rem;
@@ -374,23 +397,56 @@ a { color: var(--blue-dark); }
 </section>
 
 <section>
-  <div class="section-title"><span class="num">07</span>Что дальше</div>
-  <div class="section-date">открытые задачи</div>
+  <div class="section-title"><span class="num">07</span>План развития сайта</div>
+  <div class="section-date">растущий список — не разовые задачи, а то, что копится со временем</div>
+
+  <p class="group-label">Фронтенд</p>
   <div class="next-list">
     <div class="next-item">
       <span class="dot"></span>
-      <p><span class="tag">Контент</span>Перенести дизайн-систему гид-виджетов на оставшиеся 9 статей (Londa, Igora Royal, Matrix, Lebel MATERIA). Часть источников — официальных PDF по этим линейкам — ещё нужно прислать.</p>
+      <p><span class="tag">23 августа</span>Проверить мобильную адаптивность на реальном телефоне — глазами ещё не подтверждено.</p>
     </div>
     <div class="next-item">
       <span class="dot"></span>
-      <p><span class="tag">Проверка</span>Посмотреть баннер установки и адаптивность сайта на реальном телефоне, не только в эмуляции.</p>
+      <p><span class="tag">23 августа</span>Своя страница 404 вместо голой служебной заглушки Vercel.</p>
     </div>
     <div class="next-item">
       <span class="dot"></span>
-      <p><span class="tag">Ценообразование</span>Прайс с акциями — карточки конкретных акционных товаров (фото/название/цена) пока не заполнены, ждут появления реальных акций.</p>
+      <p><span class="tag">23 августа</span>Прогнать Lighthouse-аудит — объективная проверка SEO/PWA/производительности.</p>
     </div>
   </div>
-  <p class="callout next" style="margin-top:14px;">Новые пункты сюда добавляются через Claude Code — просто скажи, что нужно сделать, а этот файл и <code>CLAUDE.md</code> обновятся вместе.</p>
+
+  <p class="group-label">Контент</p>
+  <div class="next-list">
+    <div class="next-item">
+      <span class="dot"></span>
+      <p><span class="tag">17 августа</span>Перенести дизайн-систему гид-виджетов на оставшиеся 9 статей (Londa, Igora Royal, Matrix, Lebel MATERIA). Часть официальных PDF по этим линейкам ещё нужно прислать.</p>
+    </div>
+    <div class="next-item">
+      <span class="dot"></span>
+      <p><span class="tag">16 августа</span>Прайс с акциями — карточки конкретных акционных товаров (фото/название/цена) пока не заполнены, ждут появления реальных акций.</p>
+    </div>
+  </div>
+
+  <p class="group-label">Документация</p>
+  <div class="next-list">
+    <div class="next-item">
+      <span class="dot"></span>
+      <p><span class="tag">23 августа</span>Обновить README.md — добавить SEO/PWA/страницу заказа, поправить ссылку на сайт на канонический <code>www.zilma.pro</code>.</p>
+    </div>
+    <div class="next-item">
+      <span class="dot"></span>
+      <p><span class="tag">23 августа</span>Добавить <code>.env.example</code> с переменными для формы заявок.</p>
+    </div>
+  </div>
+
+  <p class="group-label">KPI из аналитики</p>
+  <div class="empty-state">Пока пусто — сюда попадут цифры из Vercel Analytics или другой метрики: посещения, конверсия в заявку, популярные статьи.</div>
+
+  <p class="group-label">Мои идеи</p>
+  <div class="empty-state">Пока пусто — записывай сюда мысли по мере появления, не обязательно уже проработанные.</div>
+
+  <p class="callout next" style="margin-top:18px;">Новые пункты сюда добавляются через Claude Code — просто скажи, что нужно сделать, а этот файл и <code>CLAUDE.md</code> обновятся вместе.</p>
 </section>
 
 <footer>
