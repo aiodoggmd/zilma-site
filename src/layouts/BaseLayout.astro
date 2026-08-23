@@ -35,6 +35,9 @@ const ogImageURL = new URL(image, Astro.site);
     <link rel="icon" href="/favicon-16x16.png?v=3" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
     <link rel="manifest" href="/site.webmanifest?v=2" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Zilma" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="theme-color" content="#c8000f" />
@@ -86,6 +89,12 @@ const ogImageURL = new URL(image, Astro.site);
         revealEls.forEach((el) => io.observe(el));
       }
       initReveal();
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
     </script>
   </body>
 </html>
