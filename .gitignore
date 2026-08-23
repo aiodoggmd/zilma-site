@@ -29,6 +29,7 @@ pnpm-debug.log*
 
 # staging/debug images from article-building workflow (kept on disk, not for repo)
 _tmp_*
+/2026-08-16-koleston-perfect-shade-chart/
 
 # Playwright MCP test artifacts (screenshots/logs from browser-automation testing sessions)
 .playwright-mcp/
