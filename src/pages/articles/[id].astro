@@ -17,6 +17,15 @@ const { article } = Astro.props;
 const { Content } = await render(article);
 const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 
+function truncateTitle(title: string, max = 70) {
+  if (title.length <= max) return title;
+  const cut = title.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  const trimmed = (lastSpace > 40 ? cut.slice(0, lastSpace) : cut).replace(/[\s:,.;—-]+$/, '');
+  return `${trimmed}…`;
+}
+const ogTitle = truncateTitle(article.data.title);
+
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const articleLd = {
   '@context': 'https://schema.org',
@@ -32,6 +41,7 @@ const articleLd = {
 ---
 <BaseLayout
   title={`${article.data.title} — Zilma`}
+  ogTitle={ogTitle}
   description={article.data.description}
   image={article.data.coverImage}
   type="article"

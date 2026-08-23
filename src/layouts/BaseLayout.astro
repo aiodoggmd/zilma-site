@@ -4,6 +4,7 @@ import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
+  ogTitle?: string;
   description?: string;
   image?: string;
   type?: 'website' | 'article';
@@ -13,6 +14,7 @@ interface Props {
 
 const {
   title,
+  ogTitle = title,
   description = 'Zilma — профессиональная косметика для салонов красоты: Wella, Londa, Schwarzkopf, Matrix, Lebel.',
   image = '/images/og-default.jpg',
   type = 'website',
@@ -37,7 +39,7 @@ const ogImageURL = new URL(image, Astro.site);
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content="Zilma" />
     <meta property="og:locale" content="ru_RU" />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
@@ -51,7 +53,7 @@ const ogImageURL = new URL(image, Astro.site);
     )}
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
 
