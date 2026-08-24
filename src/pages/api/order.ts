@@ -84,6 +84,102 @@ function fileTimestamp(): string {
   return `${get('year')}-${get('month')}-${get('day')}-${get('hour')}${get('minute')}${get('second')}`;
 }
 
+const WHATSAPP_API_VERSION = 'v21.0';
+
+// Отправка заявки в WhatsApp через Meta Cloud API — необязательная, best-effort: если переменные
+// не заданы или Meta вернёт ошибку (например, не подтверждён номер-получатель, или нужен
+// заранее одобренный шаблон вне 24-часового окна диалога), заявка всё равно считается успешной —
+// Telegram-доставка выше уже прошла и остаётся основным каналом.
+async function sendWhatsappOrder(params: {
+  token: string;
+  phoneId: string;
+  recipient: string;
+  name: string;
+  contact: string;
+  comment: string;
+  commentAsFile: boolean;
+  selectedItems: SelectedItem[];
+  itemsTotal: number;
+  timestamp: string;
+  file: File | null;
+}): Promise<void> {
+  const { token, phoneId, recipient, name, contact, comment, commentAsFile, selectedItems, itemsTotal, timestamp, file } = params;
+  const base = `https://graph.facebook.com/${WHATSAPP_API_VERSION}/${phoneId}`;
+  const authHeaders = { Authorization: `Bearer ${token}` };
+
+  async function callApi(body: Record<string, unknown>) {
+    const res = await fetch(`${base}/messages`, {
+      method: 'POST',
+      headers: { ...authHeaders, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messaging_product: 'whatsapp', to: recipient, ...body }),
+    });
+    if (!res.ok) console.error('order.ts: WhatsApp API error', await res.text());
+    return res;
+  }
+
+  async function uploadMedia(blob: Blob, filename: string, mimeType: string): Promise<string | null> {
+    const form = new FormData();
+    form.set('messaging_product', 'whatsapp');
+    form.set('file', blob, filename);
+    form.set('type', mimeType);
+    const res = await fetch(`${base}/media`, { method: 'POST', headers: authHeaders, body: form });
+    if (!res.ok) {
+      console.error('order.ts: WhatsApp media upload error', await res.text());
+      return null;
+    }
+    const data = (await res.json()) as { id?: string };
+    return data.id ?? null;
+  }
+
+  const text =
+    `*Новая заявка с сайта Zilma*\n\n` +
+    `*Имя:* ${name}\n` +
+    `*Контакт:* ${contact}` +
+    (selectedItems.length
+      ? `\n*Товары из прайса:* ${selectedItems.length} поз. на ${itemsTotal.toFixed(2)} ₽ — таблица во вложении`
+      : '') +
+    (comment
+      ? commentAsFile
+        ? `\n*Комментарий:* список большой — смотрите приложенный файл (${comment.length} симв.)`
+        : `\n*Комментарий:* ${comment}`
+      : '') +
+    (file ? `\n*Приложен файл:* ${file.name}` : '');
+
+  await callApi({ type: 'text', text: { body: text } });
+
+  if (selectedItems.length) {
+    const csvId = await uploadMedia(
+      new Blob([buildCsv(selectedItems)], { type: 'text/csv' }),
+      `zayavka-tovary-${timestamp}.csv`,
+      'text/csv'
+    );
+    if (csvId) {
+      await callApi({ type: 'document', document: { id: csvId, filename: `zayavka-tovary-${timestamp}.csv` } });
+    }
+  }
+
+  if (commentAsFile) {
+    const commentId = await uploadMedia(
+      new Blob([comment], { type: 'text/plain' }),
+      `zayavka-kommentariy-${timestamp}.txt`,
+      'text/plain'
+    );
+    if (commentId) {
+      await callApi({ type: 'document', document: { id: commentId, filename: `zayavka-kommentariy-${timestamp}.txt` } });
+    }
+  }
+
+  if (file) {
+    const isImage = file.type.startsWith('image/');
+    const mediaId = await uploadMedia(file, file.name, file.type || 'application/octet-stream');
+    if (mediaId) {
+      await callApi(
+        isImage ? { type: 'image', image: { id: mediaId } } : { type: 'document', document: { id: mediaId, filename: file.name } }
+      );
+    }
+  }
+}
+
 export const POST: APIRoute = async ({ request }) => {
   let form: FormData;
   try {
@@ -197,6 +293,30 @@ export const POST: APIRoute = async ({ request }) => {
       // Текст заявки уже доставлен — файл best-effort, не проваливаем весь запрос из-за него.
       console.error('order.ts: Telegram file send error', await fileRes.text());
       return new Response(JSON.stringify({ ok: true, warning: 'file_not_delivered' }), { status: 200 });
+    }
+  }
+
+  const waToken = import.meta.env.WHATSAPP_TOKEN;
+  const waPhoneId = import.meta.env.WHATSAPP_PHONE_ID;
+  const waRecipient = import.meta.env.WHATSAPP_RECIPIENT;
+  if (waToken && waPhoneId && waRecipient) {
+    try {
+      await sendWhatsappOrder({
+        token: waToken,
+        phoneId: waPhoneId,
+        recipient: waRecipient,
+        name,
+        contact,
+        comment,
+        commentAsFile,
+        selectedItems,
+        itemsTotal,
+        timestamp,
+        file,
+      });
+    } catch (err) {
+      // Best-effort: Telegram (основной канал) уже доставлен выше, WhatsApp не должен ронять заявку.
+      console.error('order.ts: WhatsApp send failed', err);
     }
   }
 

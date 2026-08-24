@@ -10,7 +10,7 @@ import FilterTabs from '../components/FilterTabs.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import OrderForm from '../components/OrderForm.astro';
 import PriceChecklist from '../components/PriceChecklist.astro';
-import { currentPrice, promoPrice } from '../data/prices';
+import { currentPrice } from '../data/prices';
 import priceItems from '../data/priceItems.json';
 
 const articles = (await getCollection('articles')).sort(
@@ -46,19 +46,11 @@ const organizationLd = {
         file={currentPrice.file}
         date={currentPrice.date}
       />
-      <PriceBlock
-        kind="promo"
-        title="Прайс с акциями"
-        description="Товары со скидкой — не упустите возможность!"
-        file={promoPrice.file}
-        date={promoPrice.date}
-      />
+      <OrderForm framed />
     </div>
 
     <PriceChecklist items={priceItems} instanceId="checklist-current" heading="Полный прайс" />
     <PriceChecklist items={promoItems} instanceId="checklist-promo" heading="Акции" />
-
-    <OrderForm />
 
     <h2 class="section-title">Инфо</h2>
     <FilterTabs />

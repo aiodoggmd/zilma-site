@@ -51,8 +51,15 @@ const links: Record<string, string> = {
       <p class="desc">{description}</p>
       <div class="row">
         <div class="download-group">
-          <a class="download" href={file} download>Скачать EXCEL</a>
-          <button type="button" class="download outline" data-open-modal={dialogId}>Выбрать и заказать</button>
+          <div class="download-row">
+            <a class="download" href={file} download>Скачать EXCEL</a>
+            {kind === 'current' && (
+              <button type="button" class="download outline" data-open-modal={dialogId}>Выбрать и заказать</button>
+            )}
+          </div>
+          {kind === 'current' && (
+            <button type="button" class="download outline promo-trigger" data-open-modal="checklist-promo-dialog">Акции — выбрать и заказать</button>
+          )}
         </div>
         <span class="meta-label">{kind === 'current' ? 'прайс' : 'акции'} · {full}</span>
       </div>
@@ -266,6 +273,13 @@ const links: Record<string, string> = {
 
   .download-group {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .download-row {
+    display: flex;
     align-items: center;
     gap: 10px 14px;
     flex-wrap: wrap;
@@ -318,6 +332,16 @@ const links: Record<string, string> = {
   }
 
   .price-card.promo .download.outline:hover {
+    background: var(--color-red);
+    color: #fff;
+  }
+
+  .price-card .download.outline.promo-trigger {
+    border-color: var(--color-red);
+    color: var(--color-red);
+  }
+
+  .price-card .download.outline.promo-trigger:hover {
     background: var(--color-red);
     color: #fff;
   }
@@ -379,7 +403,7 @@ const links: Record<string, string> = {
     .text-panel {
       padding: 22px 20px;
     }
-    .download-group {
+    .download-row {
       flex-wrap: wrap;
     }
     .row {

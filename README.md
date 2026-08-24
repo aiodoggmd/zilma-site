@@ -96,12 +96,18 @@ python scripts/optimize-image.py <категория> <файл1> [файл2 ...
 
 ## Форма заказа (`/api/order`)
 
-Принимает данные формы и отправляет сообщение в Telegram. Нужны переменные окружения в Vercel (Project → Settings → Environment Variables):
+Принимает данные формы и отправляет сообщение в Telegram (основной канал). Нужны переменные окружения в Vercel (Project → Settings → Environment Variables):
 
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
 
 Локально для теста формы — создать `.env` с этими же переменными (файл в `.gitignore`, в репозиторий не попадёт).
+
+**WhatsApp (Meta Cloud API) — опционально, необязательный второй канал.** Если заданы все три переменные ниже, заявка (текст + CSV-таблица выбранных товаров, best-effort — ошибка не роняет заявку, так как Telegram остаётся основным каналом) дублируется в WhatsApp через `sendWhatsappOrder()` в `api/order.ts`:
+
+- `WHATSAPP_TOKEN` — токен доступа приложения Meta for Developers (WhatsApp → API Setup)
+- `WHATSAPP_PHONE_ID` — Phone number ID оттуда же
+- `WHATSAPP_RECIPIENT` — номер-получатель в формате без `+` (например `79653542256`), должен быть подтверждён в том же кабинете Meta как получатель тестовых сообщений (пока не пройдена верификация бизнеса)
 
 ## SEO
 
