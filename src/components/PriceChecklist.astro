@@ -457,6 +457,12 @@ const brandEntries = [...brandMap.entries()]
   // body переводится в position:fixed на время открытой модалки — тогда фон физически не может сдвинуться
   // ни от фокуса, ни от колеса/тача внутри диалога, а при закрытии позиция скролла восстанавливается.
   let lockedScrollY = 0;
+  // Токен для отмены "reassert"-цикла ниже — когда после закрытия диалога нужно уйти к другому
+  // месту страницы (напр. к #info по клику на плашке), а не вернуться туда, где было до открытия.
+  let reassertToken = 0;
+  // Когда true — unlockPageScroll полностью пропускает свою работу при следующем срабатывании
+  // (см. closeDialogAndScrollTo: мы уже разлочили страницу сами и уводим её в другое место).
+  let skipNextUnlock = false;
   function lockPageScroll() {
     lockedScrollY = window.scrollY;
     document.body.style.position = 'fixed';
@@ -464,17 +470,26 @@ const brandEntries = [...brandMap.entries()]
     document.body.style.left = '0';
     document.body.style.right = '0';
   }
-  function unlockPageScroll() {
+  function resetBodyLockStyles() {
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.left = '';
     document.body.style.right = '';
+  }
+  function unlockPageScroll() {
+    if (skipNextUnlock) {
+      skipNextUnlock = false;
+      return;
+    }
+    resetBodyLockStyles();
     window.scrollTo(0, lockedScrollY);
     // close() у <dialog> возвращает фокус на элемент-триггер с задержкой в несколько кадров (замерено
     // ~28мс в Chromium) — этот возврат фокуса сам скроллит страницу уже ПОСЛЕ того как мы её восстановили.
     // Подтверждаем правильную позицию ещё десяток кадров вперёд, чтобы перебить этот запоздалый скачок.
+    const myToken = ++reassertToken;
     let ticks = 0;
     function reassert() {
+      if (myToken !== reassertToken) return; // отменено — страница уже уводится в другое место
       if (window.scrollY !== lockedScrollY) window.scrollTo(0, lockedScrollY);
       ticks++;
       if (ticks < 15) requestAnimationFrame(reassert);
@@ -482,13 +497,35 @@ const brandEntries = [...brandMap.entries()]
     requestAnimationFrame(reassert);
   }
 
-  // dialog.close() сам возвращает фокус на элемент-триггер и скроллит к нему страницу — синхронно, ДО
-  // того как что-либо успевает это перехватить. Если убрать фокус из диалога непосредственно перед close()
-  // (когда активный элемент больше не потомок диалога), браузер видит, что восстанавливать нечего, и скролла
-  // не происходит вовсе — это надёжнее, чем ловить и переигрывать скролл постфактум.
+  // dialog.close() сам возвращает фокус на элемент-триггер и скроллит к нему страницу и (для диалога,
+  // открытого через .show(), см. openDialog) снимает блокировку скролла НЕ синхронно, а с небольшой
+  // задержкой — если убрать фокус из диалога непосредственно перед close() (когда активный элемент
+  // больше не потомок диалога), браузер видит, что восстанавливать нечего, и лишнего скролла не будет.
   function closeDialog(root: HTMLDialogElement) {
     (document.activeElement as HTMLElement | null)?.blur();
     root.close();
+  }
+
+  // Закрывает диалог и сразу уводит взгляд в другое место страницы (якорь с плашки, форма заявки
+  // после "Добавить в заявку") — а не туда, где был скролл до открытия диалога. Раз close() снимает
+  // блокировку скролла асинхронно (см. выше), обычный scrollIntoView сразу после close() бьётся об
+  // ещё зафиксированный body. Поэтому разлочиваем сами тут же, глушим отложенный автоматический
+  // unlockPageScroll флагом (иначе он позже откатит скролл туда, где было до открытия) и держим
+  // целевую позицию несколько кадров — на случай запоздалого скролла от возврата фокуса (см. выше).
+  function closeDialogAndScrollTo(dialog: HTMLDialogElement, target: Element | null) {
+    skipNextUnlock = true;
+    closeDialog(dialog);
+    resetBodyLockStyles();
+    if (!target) return;
+    const myToken = ++reassertToken;
+    let ticks = 0;
+    const holdScroll = () => {
+      if (myToken !== reassertToken) return;
+      target.scrollIntoView({ behavior: 'auto', block: 'start' });
+      ticks++;
+      if (ticks < 12) requestAnimationFrame(holdScroll);
+    };
+    holdScroll();
   }
 
   function isMobileNav() {
@@ -601,10 +638,26 @@ const brandEntries = [...brandMap.entries()]
     '#open-promo': 'checklist-promo-dialog',
   };
   function openFromHash() {
-    const targetId = HASH_TO_DIALOG[location.hash];
+    const hash = location.hash;
+    const targetId = HASH_TO_DIALOG[hash];
     if (targetId) {
       const dialog = document.getElementById(targetId);
       if (dialog instanceof HTMLDialogElement) openDialog(dialog);
+      history.replaceState(null, '', location.pathname + location.search);
+      return;
+    }
+
+    // Хэш не команда открытия окна (например, "#info" по клику на плашку). Если сейчас открыт
+    // Каталог/Акции — страница физически не может проскроллиться к цели, пока не разлочена
+    // (см. closeDialogAndScrollTo); иначе кнопка выглядит "неживой": и сама не закрывается, и
+    // никуда не ведёт.
+    const openDlg = document.querySelector<HTMLDialogElement>('[data-checklist][open]');
+    const target = hash.length > 1 ? document.getElementById(hash.slice(1)) : null;
+    if (openDlg) {
+      commitSelection(openDlg);
+      closeDialogAndScrollTo(openDlg, target);
+    } else {
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     history.replaceState(null, '', location.pathname + location.search);
   }
@@ -720,8 +773,7 @@ const brandEntries = [...brandMap.entries()]
 
     submitBtn?.addEventListener('click', () => {
       if (!commitSelection(root)) return;
-      closeDialog(root);
-      document.getElementById('order')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      closeDialogAndScrollTo(root, document.getElementById('order'));
       document.querySelector<HTMLInputElement>('#order-form-el input[name="name"]')?.focus();
     });
   });
