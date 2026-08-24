@@ -446,6 +446,33 @@ const brandEntries = [...brandMap.entries()]
       max-height: calc(100vh - 90px);
       border-radius: 0;
     }
+
+    /* Нижняя панель с кнопкой пряталась под плавающей MobileNavBar (реальный баг, найден на телефоне) —
+       кнопку переносим наверх, рядом с крестиком (сама .pc-bar больше не нужна как полоса). Позиционируем
+       абсолютно относительно диалога (position:fixed уже на .price-checklist) — разметку не трогаем,
+       .pc-submit остаётся в DOM там же, просто визуально "телепортируется" наверх на этой ширине.
+       display:contents, а не none — иначе абсолютно позиционированный потомок тоже пропал бы вместе
+       с родителем (проверено на реальном телефоне, кнопка не рендерилась вовсе). */
+    .pc-bar {
+      display: contents;
+    }
+
+    .pc-submit {
+      position: absolute;
+      top: 16px;
+      right: 60px;
+      z-index: 2;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      background: var(--color-pastel-red);
+      color: var(--color-red-dark);
+      opacity: 1;
+    }
+
+    .pc-submit:not(:disabled) {
+      background: var(--color-red);
+      color: #fff;
+    }
   }
 </style>
 
