@@ -94,10 +94,19 @@ const ogImageURL = new URL(image, Astro.site);
       }
       initReveal();
 
-      if ('serviceWorker' in navigator) {
+      // На деве (в т.ч. по локальной сети/VPN на телефоне — так тестируем правки) SW регистрировать
+      // не даём: раньше он кешировал сборку с devserver'а, и с телефона можно было получить старую
+      // версию скрипта после правок на компьютере, хотя на компьютере всё уже работало верно.
+      const isDevHost = ['localhost', '127.0.0.1'].includes(location.hostname) || /^(10|172\.(1[6-9]|2\d|3[01])|192\.168)\./.test(location.hostname);
+      if ('serviceWorker' in navigator && !isDevHost) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js').catch(() => {});
         });
+      } else if ('serviceWorker' in navigator && isDevHost) {
+        // На случай если SW уже успел зарегистрироваться в прошлых сессиях на этом устройстве —
+        // снимаем регистрацию и чистим его кеш, чтобы дальше devserver всегда отдавал свежее.
+        navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister()));
+        if ('caches' in window) caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
       }
     </script>
   </body>
