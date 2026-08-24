@@ -35,7 +35,7 @@ const { framed = false } = Astro.props;
         </div>
       </form>
     </div>
-    <p class="order-note">Доставка по Москве бесплатно на следующий день после подтверждения. В регионы — СДЭК или ваша ТК. Минимальный заказ 5 000 ₽.</p>
+    <p class="order-note">Доставка по Москве бесплатно — на следующий рабочий день (пн–пт) после подтверждения заказа. В регионы — СДЭК или ваша ТК. Минимальный заказ 5 000 ₽.</p>
   </div>
 </section>
 
@@ -83,6 +83,11 @@ const { framed = false } = Astro.props;
     border-top: 1px solid var(--color-panel-line);
     background: var(--color-paper);
     padding: 14px 30px;
+    min-height: 90px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 0.85rem;
     line-height: 1.5;
     color: #5c5049;
