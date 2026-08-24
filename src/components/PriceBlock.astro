@@ -51,15 +51,13 @@ const links: Record<string, string> = {
       <p class="desc">{description}</p>
       <div class="row">
         <div class="download-group">
-          <div class="download-row">
-            <a class="download" href={file} download>Скачать EXCEL</a>
-            {kind === 'current' && (
-              <button type="button" class="download outline" data-open-modal={dialogId}>Каталог — выбрать и заказать</button>
-            )}
-          </div>
           {kind === 'current' && (
-            <button type="button" class="download outline promo-trigger" data-open-modal="checklist-promo-dialog">Акции — выбрать и заказать</button>
+            <button type="button" class="download" data-open-modal={dialogId}>Каталог — выбрать и заказать</button>
           )}
+          {kind === 'current' && (
+            <button type="button" class="download promo-trigger" data-open-modal="checklist-promo-dialog">Акции — выбрать и заказать</button>
+          )}
+          <a class:list={['download', { outline: kind === 'current' }]} href={file} download>Скачать EXCEL</a>
         </div>
         <span class="meta-label">{kind === 'current' ? 'прайс' : 'акции'} · {full}</span>
       </div>
@@ -278,13 +276,6 @@ const links: Record<string, string> = {
     gap: 10px;
   }
 
-  .download-row {
-    display: flex;
-    align-items: center;
-    gap: 10px 14px;
-    flex-wrap: wrap;
-  }
-
   .download {
     display: inline-block;
     background: var(--color-ink);
@@ -336,14 +327,13 @@ const links: Record<string, string> = {
     color: #fff;
   }
 
-  .price-card .download.outline.promo-trigger {
-    border-color: var(--color-red);
-    color: var(--color-red);
-  }
-
-  .price-card .download.outline.promo-trigger:hover {
+  .price-card .download.promo-trigger {
     background: var(--color-red);
     color: #fff;
+  }
+
+  .price-card .download.promo-trigger:hover {
+    filter: brightness(1.1);
   }
 
   .contacts {
@@ -402,9 +392,6 @@ const links: Record<string, string> = {
     }
     .text-panel {
       padding: 22px 20px;
-    }
-    .download-row {
-      flex-wrap: wrap;
     }
     .row {
       align-items: flex-start;
