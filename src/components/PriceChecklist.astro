@@ -488,6 +488,26 @@ const brandEntries = [...brandMap.entries()]
     }
   });
 
+  // Автооткрытие по хэшу-команде из плашки быстрой навигации (MobileNavBar.astro), которая всегда
+  // ссылается на главную (единственная страница, где гарантированно есть обе модалки).
+  // hashchange — на случай клика, когда мы уже на главной (полной перезагрузки страницы не будет).
+  const HASH_TO_DIALOG: Record<string, string> = {
+    '#open-catalog': 'checklist-current-dialog',
+    '#open-promo': 'checklist-promo-dialog',
+  };
+  function openFromHash() {
+    const targetId = HASH_TO_DIALOG[location.hash];
+    if (!targetId) return;
+    const dialog = document.getElementById(targetId);
+    if (dialog instanceof HTMLDialogElement && !dialog.open) {
+      lockPageScroll();
+      dialog.showModal();
+    }
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+
   document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((dialog) => {
     dialog.addEventListener('close', unlockPageScroll);
   });

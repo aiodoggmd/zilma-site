@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Analytics from '@vercel/analytics/astro';
 import InstallPrompt from '../components/InstallPrompt.astro';
+import MobileNavBar from '../components/MobileNavBar.astro';
 
 interface Props {
   title: string;
@@ -71,6 +72,7 @@ const ogImageURL = new URL(image, Astro.site);
     <Analytics />
     <slot />
     <InstallPrompt />
+    <MobileNavBar />
     <script>
       function initReveal() {
         const selector = '.price-card, .section-title, .card, .prose > *';
