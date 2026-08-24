@@ -69,6 +69,34 @@
       border-radius: 24px;
       box-shadow: var(--shadow-card-hover);
       padding: 9px 6px;
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+      animation: nav-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .mobile-nav.nav-hidden {
+      transform: translateY(160%) scale(0.92);
+      opacity: 0;
+    }
+
+    @keyframes nav-rise {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.94);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mobile-nav {
+        animation: none;
+        transition: opacity 0.2s ease;
+      }
+      .mobile-nav.nav-hidden {
+        transform: none;
+      }
     }
   }
 
@@ -107,3 +135,11 @@
     background: var(--color-paper);
   }
 </style>
+
+<script>
+  // Скрытие/показ плашки по кастомным событиям — их шлёт PriceChecklist.astro при скролле списка
+  // внутри открытого окна Каталог/Акции (дальше вниз по списку — прячем, назад к началу — показываем).
+  const nav = document.querySelector<HTMLElement>('.mobile-nav');
+  document.addEventListener('zilma:nav-hide', () => nav?.classList.add('nav-hidden'));
+  document.addEventListener('zilma:nav-show', () => nav?.classList.remove('nav-hidden'));
+</script>

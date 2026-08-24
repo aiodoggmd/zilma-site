@@ -132,6 +132,10 @@ const brandEntries = [...brandMap.entries()]
   }
 
   .price-checklist {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    z-index: 140;
     padding: 0;
     border: none;
     border-radius: var(--radius-card);
@@ -426,10 +430,20 @@ const brandEntries = [...brandMap.entries()]
 
   @media (max-width: 640px) {
     .price-checklist {
+      /* Открывается через .show() (не .showModal()), см. скрипт ниже — иначе нативный modal-режим
+         делает всё остальное содержимое страницы inert (невзаимодействуемым), включая MobileNavBar,
+         даже там, где сам диалог физически её не перекрывает. Без modal-режима ::backdrop браузер
+         не рисует — сам диалог достаточно непрозрачен, чтобы не растеряться без затемнения фона. */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      margin: 0;
       width: 100vw;
-      height: 100vh;
       max-width: 100vw;
-      max-height: 100vh;
+      /* Не на всю высоту — оставляем внизу зазор под плавающую MobileNavBar (см. её же отступ снизу). */
+      height: calc(100vh - 90px);
+      max-height: calc(100vh - 90px);
       border-radius: 0;
     }
   }
@@ -477,31 +491,120 @@ const brandEntries = [...brandMap.entries()]
     root.close();
   }
 
+  function isMobileNav() {
+    return window.matchMedia('(max-width: 640px)').matches;
+  }
+
+  interface CommittedItem {
+    name: string;
+    price: number;
+    qty: number;
+    brand: string;
+    promo: boolean;
+  }
+
+  // Переносит отмеченные позиции диалога в заявку (items_json формы) и сбрасывает отметки внутри
+  // диалога, чтобы при повторном открытии те же товары не задвоились. Используется и кнопкой
+  // «Добавить в заявку», и автопереключением между Каталогом/Акциями с плашки (см. openDialog) —
+  // так набранное в одном окне не теряется, если уйти в другое, не нажав кнопку явно.
+  function commitSelection(root: HTMLDialogElement): boolean {
+    const checks = [...root.querySelectorAll<HTMLInputElement>('.pc-check')];
+    const selected: CommittedItem[] = checks
+      .filter((c) => c.checked)
+      .map((c) => {
+        const qtyInput = c.closest('.pc-item')?.querySelector<HTMLInputElement>('.pc-qty-input');
+        return {
+          name: c.dataset.name ?? '',
+          price: parseFloat(c.dataset.price ?? '0') || 0,
+          qty: Math.max(1, parseInt(qtyInput?.value ?? '1', 10) || 1),
+          brand: c.dataset.brandLabel ?? '',
+          promo: c.dataset.promo === '1',
+        };
+      });
+    if (!selected.length) return false;
+
+    const itemsInput = document.querySelector<HTMLInputElement>('#order-form-el input[name="items_json"]');
+    let combined: CommittedItem[] = selected;
+    if (itemsInput) {
+      let existing: CommittedItem[] = [];
+      try {
+        existing = JSON.parse(itemsInput.value || '[]');
+      } catch {
+        existing = [];
+      }
+      combined = [...existing, ...selected];
+      itemsInput.value = JSON.stringify(combined);
+    }
+
+    const summaryEl = document.querySelector<HTMLElement>('#order-form-el .items-summary');
+    if (summaryEl) {
+      const total = combined.reduce((s, it) => s + it.price * it.qty, 0);
+      summaryEl.textContent = `Выбрано товаров: ${combined.length}, на сумму ${total.toFixed(2)} ₽`;
+      summaryEl.hidden = false;
+    }
+
+    checks.forEach((c) => {
+      c.checked = false;
+    });
+    root.querySelectorAll<HTMLInputElement>('.pc-qty-input').forEach((q) => {
+      q.value = '1';
+    });
+    const submitBtn = root.querySelector<HTMLButtonElement>('.pc-submit');
+    if (submitBtn) {
+      submitBtn.textContent = 'Добавить в заявку';
+      submitBtn.disabled = true;
+    }
+    const countEl = root.querySelector<HTMLElement>('[data-count]');
+    if (countEl) countEl.textContent = '';
+
+    return true;
+  }
+
+  // На мобильном открываем через .show() (не .showModal()): нативный modal-режим делает ВЕСЬ остальной
+  // документ inert (невзаимодействуемым) — это выключило бы MobileNavBar.astro даже в зазоре снизу, где
+  // диалог её физически не перекрывает (см. mobile-медиа-запрос выше). На десктопе плашки нет — там
+  // поведение остаётся прежним, showModal() с фокус-ловушкой и затемнением фона.
+  function openDialog(dialog: HTMLDialogElement) {
+    // Если переключаемся между Каталогом и Акциями (клик по плашке, когда одно окно уже открыто) —
+    // сначала сохраняем отмеченное в этом окне в заявку (см. commitSelection — иначе выбор терялся
+    // бы бесследно при переключении) и закрываем его, чтобы не плодить два открытых диалога разом.
+    document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((d) => {
+      if (d !== dialog && d.open) {
+        commitSelection(d);
+        closeDialog(d);
+      }
+    });
+    if (dialog.open) return;
+    lockPageScroll();
+    if (isMobileNav()) {
+      dialog.show();
+    } else {
+      dialog.showModal();
+    }
+    document.dispatchEvent(new CustomEvent('zilma:nav-show'));
+  }
+
   document.addEventListener('click', (e) => {
     const trigger = (e.target as HTMLElement).closest('[data-open-modal]') as HTMLElement | null;
     if (!trigger) return;
     const id = trigger.getAttribute('data-open-modal');
     const dialog = id && document.getElementById(id);
-    if (dialog instanceof HTMLDialogElement) {
-      lockPageScroll();
-      dialog.showModal();
-    }
+    if (dialog instanceof HTMLDialogElement) openDialog(dialog);
   });
 
   // Автооткрытие по хэшу-команде из плашки быстрой навигации (MobileNavBar.astro), которая всегда
   // ссылается на главную (единственная страница, где гарантированно есть обе модалки).
-  // hashchange — на случай клика, когда мы уже на главной (полной перезагрузки страницы не будет).
+  // hashchange — на случай клика, когда мы уже на главной (полной перезагрузки страницы не будет),
+  // и когда переключаемся между уже открытыми Каталогом/Акциями прямо с плашки.
   const HASH_TO_DIALOG: Record<string, string> = {
     '#open-catalog': 'checklist-current-dialog',
     '#open-promo': 'checklist-promo-dialog',
   };
   function openFromHash() {
     const targetId = HASH_TO_DIALOG[location.hash];
-    if (!targetId) return;
-    const dialog = document.getElementById(targetId);
-    if (dialog instanceof HTMLDialogElement && !dialog.open) {
-      lockPageScroll();
-      dialog.showModal();
+    if (targetId) {
+      const dialog = document.getElementById(targetId);
+      if (dialog instanceof HTMLDialogElement) openDialog(dialog);
     }
     history.replaceState(null, '', location.pathname + location.search);
   }
@@ -510,6 +613,24 @@ const brandEntries = [...brandMap.entries()]
 
   document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((dialog) => {
     dialog.addEventListener('close', unlockPageScroll);
+    dialog.addEventListener('close', () => document.dispatchEvent(new CustomEvent('zilma:nav-show')));
+
+    // Автоскрытие MobileNavBar при скролле списка внутри диалога: листаем дальше вниз по списку —
+    // плашка уезжает, чтобы не мешать; возвращаемся к началу — плашка появляется снова.
+    const scrollArea = dialog.querySelector<HTMLElement>('.pc-groups');
+    let lastTop = 0;
+    scrollArea?.addEventListener(
+      'scroll',
+      () => {
+        const top = scrollArea.scrollTop;
+        const delta = top - lastTop;
+        if (Math.abs(delta) > 6) {
+          document.dispatchEvent(new CustomEvent(delta > 0 ? 'zilma:nav-hide' : 'zilma:nav-show'));
+          lastTop = top;
+        }
+      },
+      { passive: true }
+    );
   });
 
   document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((root) => {
@@ -598,40 +719,7 @@ const brandEntries = [...brandMap.entries()]
     });
 
     submitBtn?.addEventListener('click', () => {
-      const selected = checks
-        .filter((c) => c.checked)
-        .map((c) => {
-          const qtyInput = c.closest('.pc-item')?.querySelector<HTMLInputElement>('.pc-qty-input');
-          return {
-            name: c.dataset.name ?? '',
-            price: parseFloat(c.dataset.price ?? '0') || 0,
-            qty: Math.max(1, parseInt(qtyInput?.value ?? '1', 10) || 1),
-            brand: c.dataset.brandLabel ?? '',
-            promo: c.dataset.promo === '1',
-          };
-        });
-      if (!selected.length) return;
-
-      const itemsInput = document.querySelector<HTMLInputElement>('#order-form-el input[name="items_json"]');
-      let combined = selected;
-      if (itemsInput) {
-        let existing: typeof selected = [];
-        try {
-          existing = JSON.parse(itemsInput.value || '[]');
-        } catch {
-          existing = [];
-        }
-        combined = [...existing, ...selected];
-        itemsInput.value = JSON.stringify(combined);
-      }
-
-      const summaryEl = document.querySelector<HTMLElement>('#order-form-el .items-summary');
-      if (summaryEl) {
-        const total = combined.reduce((s, it) => s + it.price * it.qty, 0);
-        summaryEl.textContent = `Выбрано товаров: ${combined.length}, на сумму ${total.toFixed(2)} ₽`;
-        summaryEl.hidden = false;
-      }
-
+      if (!commitSelection(root)) return;
       closeDialog(root);
       document.getElementById('order')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       document.querySelector<HTMLInputElement>('#order-form-el input[name="name"]')?.focus();
