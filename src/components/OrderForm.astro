@@ -8,31 +8,34 @@ const { framed = false } = Astro.props;
 ---
 <section class:list={['order-form', { framed }]} id="order">
   <div class="order-panel">
-    <h2>Оформить заявку</h2>
-    <p class="desc">Осталось оставить контакт — и заявка уйдёт.</p>
-    <form id="order-form-el" novalidate>
-      <div class="row">
-        <input type="text" name="name" placeholder="Имя" required maxlength="200" autocomplete="name" />
-        <input type="text" name="contact" placeholder="Телефон или Telegram" required maxlength="200" autocomplete="tel" />
-      </div>
-      <textarea name="comment" placeholder="Комментарий (необязательно)" rows="3"></textarea>
-      <input type="hidden" name="items_json" />
+    <div class="order-panel-body">
+      <h2>Оформить заявку</h2>
+      <p class="desc">Осталось оставить контакт — и заявка уйдёт.</p>
+      <form id="order-form-el" novalidate>
+        <div class="row">
+          <input type="text" name="name" placeholder="Имя" required maxlength="200" autocomplete="name" />
+          <input type="text" name="contact" placeholder="Телефон или Telegram" required maxlength="200" autocomplete="tel" />
+        </div>
+        <textarea name="comment" placeholder="Комментарий (необязательно)" rows="3"></textarea>
+        <input type="hidden" name="items_json" />
 
-      <label class="file-drop" id="file-drop" for="attachment-input">
-        <input type="file" name="attachment" id="attachment-input" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" />
-        <span class="file-hint" id="file-hint">Прикрепить файл (фото, скриншот, документ) — до 4 МБ, или перетащите сюда</span>
-        <span class="file-picked" id="file-picked" hidden>
-          <span id="file-picked-name"></span>
-          <button type="button" id="file-remove" aria-label="Убрать файл">✕</button>
-        </span>
-      </label>
+        <label class="file-drop" id="file-drop" for="attachment-input">
+          <input type="file" name="attachment" id="attachment-input" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" />
+          <span class="file-hint" id="file-hint">Прикрепить файл (фото, скриншот, документ) — до 4 МБ, или перетащите сюда</span>
+          <span class="file-picked" id="file-picked" hidden>
+            <span id="file-picked-name"></span>
+            <button type="button" id="file-remove" aria-label="Убрать файл">✕</button>
+          </span>
+        </label>
 
-      <div class="submit-row">
-        <button type="submit" disabled>Отправить заявку</button>
-        <span class="items-summary" hidden></span>
-        <span class="status" role="status" aria-live="polite"></span>
-      </div>
-    </form>
+        <div class="submit-row">
+          <button type="submit" disabled>Отправить заявку</button>
+          <span class="items-summary" hidden></span>
+          <span class="status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+    <p class="order-note">Доставка по Москве бесплатно на следующий день после подтверждения. В регионы — СДЭК или ваша ТК. Минимальный заказ 5 000 ₽.</p>
   </div>
 </section>
 
@@ -54,6 +57,11 @@ const { framed = false } = Astro.props;
     height: 100%;
   }
 
+  .order-panel-body {
+    display: flex;
+    flex-direction: column;
+  }
+
   .order-form.framed .order-panel {
     display: flex;
     flex-direction: column;
@@ -62,7 +70,23 @@ const { framed = false } = Astro.props;
     border: 1px solid var(--color-panel-line);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
-    padding: 28px 30px;
+    overflow: hidden;
+  }
+
+  .order-form.framed .order-panel-body {
+    flex: 1;
+    padding: 26px 30px 18px;
+  }
+
+  .order-note {
+    margin: 0;
+    border-top: 1px solid var(--color-panel-line);
+    background: var(--color-paper);
+    padding: 14px 30px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #5c5049;
+    text-align: center;
   }
 
   .order-form.framed form {
@@ -83,7 +107,7 @@ const { framed = false } = Astro.props;
   }
 
   .desc {
-    margin: 0 0 20px;
+    margin: 0 0 14px;
     text-align: center;
     color: #5c5049;
     font-size: 0.95rem;
