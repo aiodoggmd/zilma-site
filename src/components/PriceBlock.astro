@@ -54,9 +54,6 @@ const links: Record<string, string> = {
           {kind === 'current' && (
             <button type="button" class="download" data-open-modal={dialogId}>Каталог — выбрать и заказать</button>
           )}
-          {kind === 'current' && (
-            <button type="button" class="download promo-trigger" data-open-modal="checklist-promo-dialog">Акции — выбрать и заказать</button>
-          )}
           <a class:list={['download', { outline: kind === 'current' }]} href={file} download>Скачать EXCEL</a>
         </div>
         <span class="meta-label">{kind === 'current' ? 'прайс' : 'акции'} · {full}</span>
@@ -325,15 +322,6 @@ const links: Record<string, string> = {
   .price-card.promo .download.outline:hover {
     background: var(--color-red);
     color: #fff;
-  }
-
-  .price-card .download.promo-trigger {
-    background: var(--color-red);
-    color: #fff;
-  }
-
-  .price-card .download.promo-trigger:hover {
-    filter: brightness(1.1);
   }
 
   .contacts {

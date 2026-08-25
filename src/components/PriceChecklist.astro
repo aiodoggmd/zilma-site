@@ -250,11 +250,21 @@ const brandEntries = [...brandMap.entries()]
     cursor: pointer;
     font-weight: 600;
     font-size: 0.95rem;
-    color: var(--color-ink);
     list-style: none;
     display: flex;
     align-items: baseline;
     gap: 8px;
+  }
+
+  /* Папка (бренд) - чёрный; субпапка (линейка внутри бренда) - серый.
+     Соответствует заливке заголовков в исходном xlsx (indexed=8 чёрный / indexed=22 серый),
+     см. scripts/xlsx-to-price-items.py. */
+  .pc-group-brand > summary {
+    color: var(--color-ink);
+  }
+
+  .pc-group-line > summary {
+    color: #8a7f7a;
   }
 
   .pc-group summary::-webkit-details-marker { display: none; }
@@ -568,9 +578,8 @@ const brandEntries = [...brandMap.entries()]
   }
 
   // Переносит отмеченные позиции диалога в заявку (items_json формы) и сбрасывает отметки внутри
-  // диалога, чтобы при повторном открытии те же товары не задвоились. Используется и кнопкой
-  // «Добавить в заявку», и автопереключением между Каталогом/Акциями с плашки (см. openDialog) —
-  // так набранное в одном окне не теряется, если уйти в другое, не нажав кнопку явно.
+  // диалога, чтобы при повторном открытии те же товары не задвоились. Используется кнопкой
+  // «Добавить в заявку» (см. openDialog).
   function commitSelection(root: HTMLDialogElement): boolean {
     const checks = [...root.querySelectorAll<HTMLInputElement>('.pc-check')];
     const selected: CommittedItem[] = checks
@@ -629,9 +638,9 @@ const brandEntries = [...brandMap.entries()]
   // диалог её физически не перекрывает (см. mobile-медиа-запрос выше). На десктопе плашки нет — там
   // поведение остаётся прежним, showModal() с фокус-ловушкой и затемнением фона.
   function openDialog(dialog: HTMLDialogElement) {
-    // Если переключаемся между Каталогом и Акциями (клик по плашке, когда одно окно уже открыто) —
-    // сначала сохраняем отмеченное в этом окне в заявку (см. commitSelection — иначе выбор терялся
-    // бы бесследно при переключении) и закрываем его, чтобы не плодить два открытых диалога разом.
+    // Если вдруг открыт другой диалог (общий случай на будущее, сейчас на сайте только один) —
+    // сначала сохраняем отмеченное в нём в заявку (см. commitSelection — иначе выбор терялся бы
+    // бесследно) и закрываем его, чтобы не плодить два открытых диалога разом.
     document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((d) => {
       if (d !== dialog && d.open) {
         commitSelection(d);
@@ -657,12 +666,10 @@ const brandEntries = [...brandMap.entries()]
   });
 
   // Автооткрытие по хэшу-команде из плашки быстрой навигации (MobileNavBar.astro), которая всегда
-  // ссылается на главную (единственная страница, где гарантированно есть обе модалки).
-  // hashchange — на случай клика, когда мы уже на главной (полной перезагрузки страницы не будет),
-  // и когда переключаемся между уже открытыми Каталогом/Акциями прямо с плашки.
+  // ссылается на главную (единственная страница, где гарантированно есть модалка).
+  // hashchange — на случай клика, когда мы уже на главной (полной перезагрузки страницы не будет).
   const HASH_TO_DIALOG: Record<string, string> = {
     '#open-catalog': 'checklist-current-dialog',
-    '#open-promo': 'checklist-promo-dialog',
   };
   function openFromHash() {
     const hash = location.hash;
@@ -675,7 +682,7 @@ const brandEntries = [...brandMap.entries()]
     }
 
     // Хэш не команда открытия окна (например, "#info" по клику на плашку). Если сейчас открыт
-    // Каталог/Акции — страница физически не может проскроллиться к цели, пока не разлочена
+    // Каталог — страница физически не может проскроллиться к цели, пока не разлочена
     // (см. closeDialogAndScrollTo); иначе кнопка выглядит "неживой": и сама не закрывается, и
     // никуда не ведёт.
     const openDlg = document.querySelector<HTMLDialogElement>('[data-checklist][open]');
