@@ -16,7 +16,16 @@ const { framed = false } = Astro.props;
           <input type="text" name="name" placeholder="Имя" required maxlength="200" autocomplete="name" />
           <input type="text" name="contact" placeholder="Телефон" required maxlength="200" autocomplete="tel" />
         </div>
+        <div class="messenger-group">
+          <span class="messenger-label">Удобный мессенджер</span>
+          <div class="messenger-chips" id="messenger-chips">
+            {['Telegram', 'WhatsApp', 'MAX', 'Bip'].map((m) => (
+              <button type="button" class="chip" data-messenger={m}>{m}</button>
+            ))}
+          </div>
+        </div>
         <textarea name="comment" placeholder="Комментарий (необязательно)" rows="3"></textarea>
+        <input type="hidden" name="messenger" />
         <input type="hidden" name="items_json" />
 
         <label class="file-drop" id="file-drop" for="attachment-input">
@@ -133,6 +142,46 @@ const { framed = false } = Astro.props;
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+  }
+
+  .messenger-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .messenger-label {
+    font-size: 0.82rem;
+    color: #5c5049;
+  }
+
+  .messenger-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    border: 1px solid var(--color-panel-line);
+    background: #fff;
+    color: var(--color-ink);
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    box-shadow: none;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    border-color: var(--color-blue-dark);
+  }
+
+  .chip.active {
+    background: var(--color-blue-dark);
+    border-color: var(--color-blue-dark);
+    color: #fff;
   }
 
   input[type='text'], textarea {
@@ -270,6 +319,22 @@ const { framed = false } = Astro.props;
   nameInput?.addEventListener('input', updateSubmitState);
   contactInput?.addEventListener('input', updateSubmitState);
   updateSubmitState();
+
+  // Чипы мессенджера — необязательный одиночный выбор, повторный клик по активному снимает выбор.
+  const messengerChips = document.getElementById('messenger-chips');
+  const messengerInput = form?.querySelector<HTMLInputElement>('input[name="messenger"]');
+  messengerChips?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.chip');
+    if (!btn || !messengerInput) return;
+    const alreadyActive = btn.classList.contains('active');
+    messengerChips.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    if (alreadyActive) {
+      messengerInput.value = '';
+    } else {
+      btn.classList.add('active');
+      messengerInput.value = btn.dataset.messenger ?? '';
+    }
+  });
   const dropzone = document.getElementById('file-drop') as HTMLLabelElement | null;
   const fileInput = document.getElementById('attachment-input') as HTMLInputElement | null;
   const fileHint = document.getElementById('file-hint') as HTMLElement | null;
@@ -360,6 +425,7 @@ const { framed = false } = Astro.props;
       statusEl.className = 'status ok';
       form.reset();
       setFile(null);
+      messengerChips?.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
       const summaryEl = form.querySelector<HTMLElement>('.items-summary');
       if (summaryEl) summaryEl.hidden = true;
     } catch (err) {

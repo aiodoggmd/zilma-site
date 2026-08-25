@@ -96,6 +96,7 @@ async function sendWhatsappOrder(params: {
   recipient: string;
   name: string;
   contact: string;
+  messenger: string;
   comment: string;
   commentAsFile: boolean;
   selectedItems: SelectedItem[];
@@ -103,7 +104,7 @@ async function sendWhatsappOrder(params: {
   timestamp: string;
   file: File | null;
 }): Promise<void> {
-  const { token, phoneId, recipient, name, contact, comment, commentAsFile, selectedItems, itemsTotal, timestamp, file } = params;
+  const { token, phoneId, recipient, name, contact, messenger, comment, commentAsFile, selectedItems, itemsTotal, timestamp, file } = params;
   const base = `https://graph.facebook.com/${WHATSAPP_API_VERSION}/${phoneId}`;
   const authHeaders = { Authorization: `Bearer ${token}` };
 
@@ -135,6 +136,7 @@ async function sendWhatsappOrder(params: {
     `*Новая заявка с сайта Zilma*\n\n` +
     `*Имя:* ${name}\n` +
     `*Контакт:* ${contact}` +
+    (messenger ? `\n*Удобный мессенджер:* ${messenger}` : '') +
     (selectedItems.length
       ? `\n*Товары из прайса:* ${selectedItems.length} поз. на ${itemsTotal.toFixed(2)} ₽ — таблица во вложении`
       : '') +
@@ -190,6 +192,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const name = String(form.get('name') ?? '').trim();
   const contact = String(form.get('contact') ?? '').trim();
+  const messenger = String(form.get('messenger') ?? '').trim().slice(0, 50);
   const comment = String(form.get('comment') ?? '').trim();
   const attachment = form.get('attachment');
   const file = attachment instanceof File && attachment.size > 0 ? attachment : null;
@@ -220,6 +223,7 @@ export const POST: APIRoute = async ({ request }) => {
     `<b>Новая заявка с сайта Zilma</b>\n\n` +
     `<b>Имя:</b> ${esc(name)}\n` +
     `<b>Контакт:</b> ${esc(contact)}` +
+    (messenger ? `\n<b>Удобный мессенджер:</b> ${esc(messenger)}` : '') +
     (selectedItems.length
       ? `\n<b>Товары из прайса:</b> ${selectedItems.length} поз. на ${itemsTotal.toFixed(2)} ₽ — таблица во вложении`
       : '') +
@@ -307,6 +311,7 @@ export const POST: APIRoute = async ({ request }) => {
         recipient: waRecipient,
         name,
         contact,
+        messenger,
         comment,
         commentAsFile,
         selectedItems,
