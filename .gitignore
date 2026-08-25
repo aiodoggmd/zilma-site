@@ -31,6 +31,10 @@ pnpm-debug.log*
 _tmp_*
 /2026-08-16-koleston-perfect-shade-chart/
 
+# loose/stray files swept up from the repo root (old drafts, one-off experiments) —
+# kept on disk in case they're needed later, never meant for the repo
+/_trash/
+
 # Playwright MCP test artifacts (screenshots/logs from browser-automation testing sessions)
 .playwright-mcp/
 
