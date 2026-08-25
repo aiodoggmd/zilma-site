@@ -14,7 +14,7 @@ const { framed = false } = Astro.props;
       <form id="order-form-el" novalidate>
         <div class="row">
           <input type="text" name="name" placeholder="Имя" required maxlength="200" autocomplete="name" />
-          <input type="text" name="contact" placeholder="Телефон или Telegram" required maxlength="200" autocomplete="tel" />
+          <input type="text" name="contact" placeholder="Телефон" required maxlength="200" autocomplete="tel" />
         </div>
         <textarea name="comment" placeholder="Комментарий (необязательно)" rows="3"></textarea>
         <input type="hidden" name="items_json" />
