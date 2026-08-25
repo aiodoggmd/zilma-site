@@ -18,6 +18,8 @@ const articles = (await getCollection('articles')).sort(
 );
 const [newest, ...rest] = articles;
 
+const promoItems = priceItems.filter((it) => it.promo);
+
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const organizationLd = {
   '@context': 'https://schema.org',
@@ -48,6 +50,7 @@ const organizationLd = {
     </div>
 
     <PriceChecklist items={priceItems} instanceId="checklist-current" heading="Полный прайс" />
+    <PriceChecklist items={promoItems} instanceId="checklist-promo" heading="Акции" />
 
     <h2 class="section-title" id="info">Инфо</h2>
     <FilterTabs />

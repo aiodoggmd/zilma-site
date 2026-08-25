@@ -1,8 +1,8 @@
 ---
 // Плавающая нижняя плашка быстрой навигации — только на мобильных экранах (см. media query ниже).
-// «Каталог» всегда ведёт на главную с якорем-командой (#open-catalog) — именно там, и только там,
-// гарантированно есть модалка (PriceChecklist.astro); открытие по этому якорю обрабатывает скрипт
-// в PriceChecklist.astro (общий, страница-уровня).
+// «Каталог»/«Акции» всегда ведут на главную с якорем-командой (#open-catalog / #open-promo) —
+// именно там, и только там, гарантированно есть обе модалки (PriceChecklist.astro); открытие по
+// этим якорям обрабатывает скрипт в PriceChecklist.astro (общий, страница-уровня).
 ---
 <nav class="mobile-nav" aria-label="Быстрая навигация">
   <a href="/" class="mobile-nav-item">
@@ -24,6 +24,15 @@
       </svg>
     </span>
     <span class="mobile-nav-label">Каталог</span>
+  </a>
+  <a href="/#open-promo" class="mobile-nav-item">
+    <span class="mobile-nav-icon">
+      <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2h7a2 2 0 0 1 2 2v7a2 2 0 0 1-.6 1.4l-8 8a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1 0-2.8l8-8A2 2 0 0 1 12 2Z" />
+        <circle cx="16.5" cy="7.5" r="1.4" fill="currentColor" stroke="none" />
+      </svg>
+    </span>
+    <span class="mobile-nav-label">Акции</span>
   </a>
   <a href="/#info" class="mobile-nav-item">
     <span class="mobile-nav-icon">
@@ -129,7 +138,7 @@
 
 <script>
   // Скрытие/показ плашки по кастомным событиям — их шлёт PriceChecklist.astro при скролле списка
-  // внутри открытого окна Каталог (дальше вниз по списку — прячем, назад к началу — показываем).
+  // внутри открытого окна Каталог/Акции (дальше вниз по списку — прячем, назад к началу — показываем).
   const nav = document.querySelector<HTMLElement>('.mobile-nav');
   document.addEventListener('zilma:nav-hide', () => nav?.classList.add('nav-hidden'));
   document.addEventListener('zilma:nav-show', () => nav?.classList.remove('nav-hidden'));
