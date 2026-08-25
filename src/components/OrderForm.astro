@@ -157,11 +157,18 @@ const { framed = false } = Astro.props;
 
   .messenger-chips {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .messenger-chips::-webkit-scrollbar {
+    display: none;
   }
 
   .chip {
+    flex: none;
     border: 1px solid var(--color-panel-line);
     background: #fff;
     color: var(--color-ink);
@@ -172,6 +179,16 @@ const { framed = false } = Astro.props;
     cursor: pointer;
     box-shadow: none;
     transition: all 0.2s ease;
+  }
+
+  @media (max-width: 420px) {
+    .chip {
+      padding: 6px 12px;
+      font-size: 0.78rem;
+    }
+    .messenger-chips {
+      gap: 6px;
+    }
   }
 
   .chip:hover {
