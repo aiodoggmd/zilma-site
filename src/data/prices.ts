@@ -10,14 +10,7 @@ export const contacts = {
 
 export const currentPrice = {
   file: '/prices/price-current.xlsx',
-  filePdf: '/prices/price-current.pdf',
-  date: '2026-08-24',
-};
-
-export const promoPrice = {
-  file: '/prices/price-promo.xlsx',
-  filePdf: '/prices/price-promo.pdf',
-  date: '2026-08-24',
+  date: '2026-08-25',
 };
 
 // Карточки акционного товара — заполняются по мере появления акций.

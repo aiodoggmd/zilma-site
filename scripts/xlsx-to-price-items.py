@@ -24,6 +24,34 @@ OUT_JSON = ROOT / "src" / "data" / "priceItems.json"
 BRAND_FILL_INDEX = 8
 LINE_FILL_INDEX = 22
 
+# Служебные строки 1С (не товар) - никогда не должны попадать в каталог сайта.
+# См. Site/CLAUDE.md / Site/Price/build_price_current.py (та же логика, зафиксировано 2026-08-25).
+EXCLUDE_NAME_PREFIXES = ["доставка"]
+EXCLUDE_NAME_SUBSTRINGS = ["мятая", "мятые"]  # брак/мятая упаковка
+EXCLUDE_ARTICLES = {"007927"}
+JUNK_SECTION_SUFFIXES = ("_акция",)  # секции вроде "Wella_Акция"/"Londa_Акция" - клиренс без цены
+
+
+def article(name: str):
+    toks = name.strip().split()
+    return toks[-1] if toks else None
+
+
+def is_excluded(name: str) -> bool:
+    n = name.strip().lower()
+    if any(n.startswith(p) for p in EXCLUDE_NAME_PREFIXES):
+        return True
+    if any(s in n for s in EXCLUDE_NAME_SUBSTRINGS):
+        return True
+    if article(name) in EXCLUDE_ARTICLES:
+        return True
+    return False
+
+
+def is_junk_section_header(name: str) -> bool:
+    n = name.strip().lower()
+    return any(n.endswith(suf) for suf in JUNK_SECTION_SUFFIXES)
+
 
 def is_red(cell) -> bool:
     try:
@@ -53,28 +81,46 @@ def main() -> None:
     line = None
     idx = 0
     unknown_headers = []
+    in_junk_section = False
     for row in ws.iter_rows(min_row=6):
         name_cell = row[1] if len(row) > 1 else None
         price_cell = row[2] if len(row) > 2 else None
+        unit_cell = row[3] if len(row) > 3 else None
         if name_cell is None or name_cell.value is None:
             continue
         name = str(name_cell.value).strip()
         if not name:
             continue
-        price = price_cell.value if price_cell else None
-        if price is None or not isinstance(price, (int, float)):
-            level = header_level(name_cell)
-            if level == "brand":
-                brand = name
-                line = None
-            elif level == "line":
-                line = name
-            else:
-                # Неопознанная заливка — считаем брендом (безопаснее, чем потерять товары внутри).
-                unknown_headers.append(name)
-                brand = name
-                line = None
+        if is_excluded(name):
             continue
+        price = price_cell.value if price_cell else None
+        unit = unit_cell.value if unit_cell else None
+
+        # Настоящий заголовок (бренд/линейка): нет ни цены, ни единицы измерения.
+        if (price is None or not isinstance(price, (int, float))) and unit is None:
+            if is_junk_section_header(name):
+                in_junk_section = True
+            else:
+                in_junk_section = False
+                level = header_level(name_cell)
+                if level == "brand":
+                    brand = name
+                    line = None
+                elif level == "line":
+                    line = name
+                else:
+                    # Неопознанная заливка — считаем брендом (безопаснее, чем потерять товары внутри).
+                    unknown_headers.append(name)
+                    brand = name
+                    line = None
+            continue
+
+        # Товар без цены (в т.ч. внутри мусорной секции выше) - пропускаем, не заголовок и не товар.
+        if price is None or not isinstance(price, (int, float)):
+            continue
+        if in_junk_section:
+            continue
+
         promo = is_red(name_cell) or (price_cell is not None and is_red(price_cell))
         idx += 1
         # round() убирает артефакты двоичного float (напр. 998.5799999999999 -> 998.58)
