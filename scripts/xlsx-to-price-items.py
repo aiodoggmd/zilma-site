@@ -20,6 +20,11 @@ import openpyxl
 ROOT = Path(__file__).resolve().parent.parent
 SRC_XLSX = ROOT / "public" / "prices" / "price-current.xlsx"
 OUT_JSON = ROOT / "src" / "data" / "priceItems.json"
+# Сайдкар из build_price_current.py (Price/ - в .gitignore, не деплоится): старая цена
+# и скидка по каждому акционному товару - price-current.xlsx хранит только цену со
+# скидкой, старая цена иначе теряется. Файла может не быть (напр. кто-то прогнал этот
+# скрипт отдельно, без пересборки прайса) - тогда просто не добавляем oldPrice/discountPct.
+PROMO_META_PATH = ROOT / "Price" / "promo-meta.json"
 
 BRAND_FILL_INDEX = 8
 LINE_FILL_INDEX = 22
@@ -73,6 +78,12 @@ def header_level(cell) -> str:
 
 
 def main() -> None:
+    promo_meta = {}
+    if PROMO_META_PATH.exists():
+        promo_meta = json.loads(PROMO_META_PATH.read_text(encoding="utf-8"))
+    else:
+        print(f"ВНИМАНИЕ: сайдкар {PROMO_META_PATH} не найден - акционные товары останутся без oldPrice/discountPct.")
+
     wb = openpyxl.load_workbook(SRC_XLSX, data_only=True)
     ws = wb.active
 
@@ -125,18 +136,29 @@ def main() -> None:
         idx += 1
         # round() убирает артефакты двоичного float (напр. 998.5799999999999 -> 998.58)
         price_rounded = round(float(price), 2)
-        items.append({
+        clean_name = re.sub(r"\s+", " ", name)
+        item = {
             "id": idx,
             "brand": brand,
             "line": line,
-            "name": re.sub(r"\s+", " ", name),
+            "name": clean_name,
             "price": int(price_rounded) if price_rounded.is_integer() else price_rounded,
             "promo": promo,
-        })
+        }
+        if promo:
+            meta = promo_meta.get(clean_name)
+            if meta:
+                old_price = round(float(meta["old_price"]), 2)
+                item["oldPrice"] = int(old_price) if old_price.is_integer() else old_price
+                item["discountPct"] = meta["discount"]
+        items.append(item)
 
     OUT_JSON.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
     promo_count = sum(1 for i in items if i["promo"])
-    print(f"Сохранено {len(items)} товаров ({promo_count} акционных) -> {OUT_JSON}")
+    with_old_price = sum(1 for i in items if i.get("oldPrice") is not None)
+    print(f"Сохранено {len(items)} товаров ({promo_count} акционных, из них {with_old_price} со старой ценой) -> {OUT_JSON}")
+    if promo_count and with_old_price < promo_count:
+        print(f"ВНИМАНИЕ: {promo_count - with_old_price} акционных товаров не нашлись в сайдкаре по имени - проверить.")
     if unknown_headers:
         print(f"ВНИМАНИЕ: {len(unknown_headers)} заголовков с нераспознанной заливкой (взяты как бренд): {unknown_headers}")
 

@@ -69,7 +69,9 @@
     "line": null,
     "name": "PT Крем-краска д/бровей и ресн.графит 30/20мл 90080/20309",
     "price": 173.4,
-    "promo": true
+    "promo": true,
+    "oldPrice": 204,
+    "discountPct": 15.0
   },
   {
     "id": 10,
@@ -181,7 +183,9 @@
     "line": null,
     "name": "Сыворотка \"Выравнивание и Защита структуры\" 240мл 94156",
     "price": 361.77,
-    "promo": true
+    "promo": true,
+    "oldPrice": 389,
+    "discountPct": 7.0
   },
   {
     "id": 24,
@@ -245,7 +249,9 @@
     "line": null,
     "name": "Бальзам для восстановления волос 1000мл 644028",
     "price": 272,
-    "promo": true
+    "promo": true,
+    "oldPrice": 320,
+    "discountPct": 15.0
   },
   {
     "id": 32,
@@ -253,7 +259,9 @@
     "line": null,
     "name": "Дозаторы универ 644",
     "price": 42.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 50,
+    "discountPct": 15.0
   },
   {
     "id": 33,
@@ -261,7 +269,9 @@
     "line": null,
     "name": "Маска для восстановления волос с кератином Mask with keratin 500мл 644073",
     "price": 255,
-    "promo": true
+    "promo": true,
+    "oldPrice": 300,
+    "discountPct": 15.0
   },
   {
     "id": 34,
@@ -269,7 +279,9 @@
     "line": null,
     "name": "Маска для окрашенных волос ,500мл 644103",
     "price": 255,
-    "promo": true
+    "promo": true,
+    "oldPrice": 300,
+    "discountPct": 15.0
   },
   {
     "id": 35,
@@ -581,7 +593,9 @@
     "line": null,
     "name": "Dia Richesse крем-краска 7 R7",
     "price": 966.27,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1039,
+    "discountPct": 7.0
   },
   {
     "id": 74,
@@ -589,7 +603,9 @@
     "line": null,
     "name": "INOA Aktyvator 3% (10 vol.) 1000 ml. 17762",
     "price": 1254.6,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1476,
+    "discountPct": 15.0
   },
   {
     "id": 75,
@@ -749,7 +765,9 @@
     "line": null,
     "name": "Дозатор - носик, насадка на бутылку Proedit Care Works (element) 6050",
     "price": 85,
-    "promo": true
+    "promo": true,
+    "oldPrice": 100,
+    "discountPct": 15.0
   },
   {
     "id": 95,
@@ -757,7 +775,9 @@
     "line": null,
     "name": "Дозатор - Распылитель для спрея 24*180 мм Proedit Care Works 6052/8149",
     "price": 85,
-    "promo": true
+    "promo": true,
+    "oldPrice": 100,
+    "discountPct": 15.0
   },
   {
     "id": 96,
@@ -765,7 +785,9 @@
     "line": null,
     "name": "Дозатор (длинный) для шампуня/масок в мягких пакетах (33/410) 1000мл 3876лр",
     "price": 127.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 150,
+    "discountPct": 15.0
   },
   {
     "id": 97,
@@ -773,7 +795,9 @@
     "line": null,
     "name": "Дозатор (короткий) для шампуня/масок в мягких пакетах 1000мл 1763лр",
     "price": 75.65,
-    "promo": true
+    "promo": true,
+    "oldPrice": 89,
+    "discountPct": 15.0
   },
   {
     "id": 98,
@@ -781,7 +805,9 @@
     "line": null,
     "name": "Корпус металл. для мягкой упаковки 1000мл 2425лр",
     "price": 297.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 350,
+    "discountPct": 15.0
   },
   {
     "id": 99,
@@ -789,7 +815,9 @@
     "line": null,
     "name": "Корпус пласт. для мягкой упаковки (уход) 1000мл Lebel ONE 1725лр",
     "price": 246.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 290,
+    "discountPct": 15.0
   },
   {
     "id": 100,
@@ -797,7 +825,9 @@
     "line": null,
     "name": "Корпус пласт. для мягкой упаковки (шампунь) 1000мл Lebel ONE 1718лр",
     "price": 246.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 290,
+    "discountPct": 15.0
   },
   {
     "id": 101,
@@ -805,7 +835,9 @@
     "line": null,
     "name": "Корпус пласт. для мягкой упаковки 1000мл Lebel ONE 1732лр",
     "price": 246.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 290,
+    "discountPct": 15.0
   },
   {
     "id": 102,
@@ -893,7 +925,9 @@
     "line": null,
     "name": "Краска д/волос NEW G M-8 120 г 0078лп",
     "price": 1398.35,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1503.6,
+    "discountPct": 7.0
   },
   {
     "id": 113,
@@ -909,7 +943,9 @@
     "line": null,
     "name": "Краска д/волос NEW G P-6 0184",
     "price": 1278.06,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1503.6,
+    "discountPct": 15.0
   },
   {
     "id": 115,
@@ -989,7 +1025,9 @@
     "line": null,
     "name": "Краска д/волос СТОЙКАЯ CB-9 7890",
     "price": 1075.13,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1156.05,
+    "discountPct": 7.0
   },
   {
     "id": 125,
@@ -1029,7 +1067,9 @@
     "line": null,
     "name": "Краска д/волос СТОЙКАЯ V-8 8637",
     "price": 1075.13,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1156.05,
+    "discountPct": 7.0
   },
   {
     "id": 130,
@@ -1061,7 +1101,9 @@
     "line": null,
     "name": "Краска д/волос СТОЙКАЯ WB-8 8033",
     "price": 1075.13,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1156.05,
+    "discountPct": 7.0
   },
   {
     "id": 134,
@@ -1077,7 +1119,9 @@
     "line": null,
     "name": "Краска д/волос тон µ A-8 9283",
     "price": 1200.12,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1290.45,
+    "discountPct": 7.0
   },
   {
     "id": 136,
@@ -1093,7 +1137,9 @@
     "line": null,
     "name": "Краска д/волос тон µ M-6 9221/mM-6",
     "price": 1096.88,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1290.45,
+    "discountPct": 15.0
   },
   {
     "id": 138,
@@ -1117,7 +1163,9 @@
     "line": null,
     "name": "Краска д/волос тон µ P-8 80 г 9375лп",
     "price": 1200.12,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1290.45,
+    "discountPct": 7.0
   },
   {
     "id": 141,
@@ -1125,7 +1173,9 @@
     "line": null,
     "name": "Краска д/волос тон µ Pe-8 9061",
     "price": 1200.12,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1290.45,
+    "discountPct": 7.0
   },
   {
     "id": 142,
@@ -1133,7 +1183,9 @@
     "line": null,
     "name": "Краска д/волос тон µ WB-5 8880/mWB-5",
     "price": 1096.88,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1290.45,
+    "discountPct": 15.0
   },
   {
     "id": 143,
@@ -1373,7 +1425,9 @@
     "line": null,
     "name": "LC крем-краска 10-0 яркий блонд 010",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 173,
@@ -1381,7 +1435,9 @@
     "line": null,
     "name": "LC крем-краска 10-16 блонд пепельно-фиолетовый 01016",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 174,
@@ -1397,7 +1453,9 @@
     "line": null,
     "name": "LC крем-краска 10-38 яркий блонд золот-жемч 01038",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 176,
@@ -1413,7 +1471,9 @@
     "line": null,
     "name": "LC крем-краска 10-96 ярк блонд сандрэ фиолетовый 01096",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 178,
@@ -1421,7 +1481,9 @@
     "line": null,
     "name": "LC крем-краска 12-0 специальный блонд 0120",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 179,
@@ -1429,7 +1491,9 @@
     "line": null,
     "name": "LC крем-краска 12-1 спец блонд пепельный 0121",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 180,
@@ -1461,7 +1525,9 @@
     "line": null,
     "name": "LC крем-краска 12-89 спец блонд жемчужн сандрэ 01289",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 184,
@@ -1469,7 +1535,9 @@
     "line": null,
     "name": "LC крем-краска 12-96 спец. блондин сандрэ фиолет. 01296",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 185,
@@ -1525,7 +1593,9 @@
     "line": null,
     "name": "LC крем-краска 4-07 шатен натурально-коричневый 0407",
     "price": 303.88,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 15.0
   },
   {
     "id": 192,
@@ -1533,7 +1603,9 @@
     "line": null,
     "name": "LC крем-краска 4-65 шатен фиол-красн 0465",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 193,
@@ -1565,7 +1637,9 @@
     "line": null,
     "name": "LC крем-краска 5-07 св. шатен натурально-коричневый 0507",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 197,
@@ -1589,7 +1663,9 @@
     "line": null,
     "name": "LC крем-краска 5-7 светл шатен коричнев 057",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 200,
@@ -1605,7 +1681,9 @@
     "line": null,
     "name": "LC крем-краска 5-74 св.шатен коричнево-медн. 0574",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 202,
@@ -1765,7 +1843,9 @@
     "line": null,
     "name": "LC крем-краска 7-07 блонд натурально-коричневый 0707",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 222,
@@ -1797,7 +1877,9 @@
     "line": null,
     "name": "LC крем-краска 7-18 Жареный миндаль 0718",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 226,
@@ -1813,7 +1895,9 @@
     "line": null,
     "name": "LC крем-краска 7-38 блонд золотисто-жемчужн 0738",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 228,
@@ -1869,7 +1953,9 @@
     "line": null,
     "name": "LC крем-краска 7-77 интенсивн блонд коричневый 0777",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 235,
@@ -1877,7 +1963,9 @@
     "line": null,
     "name": "LC крем-краска 7-81 блонд жемчужно-пепельный 0781",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 236,
@@ -1885,7 +1973,9 @@
     "line": null,
     "name": "LC крем-краска 7-89 блонд жемчужный сандрэ 0789",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 237,
@@ -1909,7 +1999,9 @@
     "line": null,
     "name": "LC крем-краска 8-07 св. блонд натурально-коричневый 0807",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 240,
@@ -1965,7 +2057,9 @@
     "line": null,
     "name": "LC крем-краска 8-7 Светлый блонд коричневый 60мл 087",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 247,
@@ -1989,7 +2083,9 @@
     "line": null,
     "name": "LC крем-краска 8-81 светлый блонд жемчужно-пепельный 0881",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 250,
@@ -1997,7 +2093,9 @@
     "line": null,
     "name": "LC крем-краска 8-96 светлый блонд сандрэ фиолетовый 0896",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 251,
@@ -2005,7 +2103,9 @@
     "line": null,
     "name": "LC крем-краска 8-97 Утренний капучино 0897",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 252,
@@ -2069,7 +2169,9 @@
     "line": null,
     "name": "LC крем-краска 9-60 очень светлый блонд фиолетовый натуральный 0960",
     "price": 303.88,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 15.0
   },
   {
     "id": 260,
@@ -2085,7 +2187,9 @@
     "line": null,
     "name": "LC крем-краска 9-7 оч. св. блонд коричневый 097",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 262,
@@ -2093,7 +2197,9 @@
     "line": null,
     "name": "LC крем-краска 9-79 0979",
     "price": 303.88,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 15.0
   },
   {
     "id": 263,
@@ -2213,7 +2319,9 @@
     "line": null,
     "name": "LC тонирование 10/6 0-106",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 278,
@@ -2253,7 +2361,9 @@
     "line": null,
     "name": "LC тонирование 4/71 шатен корич-пепельный 0-471",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 283,
@@ -2261,7 +2371,9 @@
     "line": null,
     "name": "LC тонирование 4/77 шатен интенсив-коричневый 0-477",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 284,
@@ -2381,7 +2493,9 @@
     "line": null,
     "name": "LC тонирование 8/81 светл блонд перлам-пепельный 0-881",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 299,
@@ -2389,7 +2503,9 @@
     "line": null,
     "name": "LC тонирование 9/16 0-916",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 300,
@@ -2397,7 +2513,9 @@
     "line": null,
     "name": "LC тонирование 9/19 призматический бежево-серый 0-919",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 301,
@@ -2405,7 +2523,9 @@
     "line": null,
     "name": "LC тонирование 9/36 оч. св. блонд золот-фиолетов 0-936",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 302,
@@ -2421,7 +2541,9 @@
     "line": null,
     "name": "LC тонирование 9/86 призматический стальной серый 0-986",
     "price": 332.47,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357.5,
+    "discountPct": 7.0
   },
   {
     "id": 304,
@@ -2453,7 +2575,9 @@
     "line": null,
     "name": "Блондоран осветляющая пудра в коробке 2х500г 647",
     "price": 2278.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 2450,
+    "discountPct": 7.0
   },
   {
     "id": 308,
@@ -2469,7 +2593,9 @@
     "line": null,
     "name": "Кондиционер VELVET OIL с аргановым маслом 250мл 1250",
     "price": 852.9,
-    "promo": true
+    "promo": true,
+    "oldPrice": 917.1,
+    "discountPct": 7.0
   },
   {
     "id": 310,
@@ -2477,7 +2603,9 @@
     "line": null,
     "name": "Кондиционер д/окрашенных волос 1000мл 4765/10559",
     "price": 1474.15,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1734.3,
+    "discountPct": 15.0
   },
   {
     "id": 311,
@@ -2485,7 +2613,9 @@
     "line": null,
     "name": "Кондиционер д/окрашенных волос 250мл 4764/10560",
     "price": 724,
-    "promo": true
+    "promo": true,
+    "oldPrice": 778.5,
+    "discountPct": 7.0
   },
   {
     "id": 312,
@@ -2493,7 +2623,9 @@
     "line": null,
     "name": "Кондиционер д/поврежденных волос 1000мл 4956/10566",
     "price": 1474.15,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1734.3,
+    "discountPct": 15.0
   },
   {
     "id": 313,
@@ -2501,7 +2633,9 @@
     "line": null,
     "name": "Кондиционер д/поврежденных волос 250мл 4955/10567",
     "price": 724,
-    "promo": true
+    "promo": true,
+    "oldPrice": 778.5,
+    "discountPct": 7.0
   },
   {
     "id": 314,
@@ -2509,7 +2643,9 @@
     "line": null,
     "name": "Кондиционер увлажняющий 1000мл 4937/10584",
     "price": 1474.15,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1734.3,
+    "discountPct": 15.0
   },
   {
     "id": 315,
@@ -2517,7 +2653,9 @@
     "line": null,
     "name": "Кондиционер увлажняющий 250мл 4936/10585",
     "price": 724,
-    "promo": true
+    "promo": true,
+    "oldPrice": 778.5,
+    "discountPct": 7.0
   },
   {
     "id": 316,
@@ -2525,7 +2663,9 @@
     "line": null,
     "name": "Кондиционер-бальзам д/поврежденных волос НЕСМЫВАЕМЫЙ 250мл 4961/10568",
     "price": 724,
-    "promo": true
+    "promo": true,
+    "oldPrice": 778.5,
+    "discountPct": 7.0
   },
   {
     "id": 317,
@@ -2533,7 +2673,9 @@
     "line": null,
     "name": "Кондиционер-спрей увлажняющий НЕСМЫВАЕМЫЙ 250мл 4940/10586",
     "price": 724,
-    "promo": true
+    "promo": true,
+    "oldPrice": 778.5,
+    "discountPct": 7.0
   },
   {
     "id": 318,
@@ -2541,7 +2683,9 @@
     "line": null,
     "name": "Лак д/волос №1 Эластич. Фикс. 500мл FLEXIBLE LAYER UP 4736/12472",
     "price": 837.67,
-    "promo": true
+    "promo": true,
+    "oldPrice": 985.5,
+    "discountPct": 15.0
   },
   {
     "id": 319,
@@ -2549,7 +2693,9 @@
     "line": null,
     "name": "Лак д/волос №2 СФ 500мл STRONG FIX IT 5353/12468/10476",
     "price": 916.51,
-    "promo": true
+    "promo": true,
+    "oldPrice": 985.5,
+    "discountPct": 7.0
   },
   {
     "id": 320,
@@ -2557,7 +2703,9 @@
     "line": null,
     "name": "Лак д/волос №3 Экстрасильной Фикс. 500мл START OFF 12470",
     "price": 732.28,
-    "promo": true
+    "promo": true,
+    "oldPrice": 787.4,
+    "discountPct": 7.0
   },
   {
     "id": 321,
@@ -2565,7 +2713,9 @@
     "line": null,
     "name": "Лак д/волос №4 Экстремальной Фиксации 250мл EXTREME STRONG LOCK IT 10645/12465",
     "price": 710.61,
-    "promo": true
+    "promo": true,
+    "oldPrice": 764.1,
+    "discountPct": 7.0
   },
   {
     "id": 322,
@@ -2573,7 +2723,9 @@
     "line": null,
     "name": "Лак д/волос №4 Экстремальной Фиксации 500мл EXTREME STRONG LOCK IT 5274/12466",
     "price": 916.51,
-    "promo": true
+    "promo": true,
+    "oldPrice": 985.5,
+    "discountPct": 7.0
   },
   {
     "id": 323,
@@ -2581,7 +2733,9 @@
     "line": null,
     "name": "Лосьон теплозащ.д/обема НФ 150мл новая PROTECT IT 5250-10458",
     "price": 651.01,
-    "promo": true
+    "promo": true,
+    "oldPrice": 765.9,
+    "discountPct": 15.0
   },
   {
     "id": 324,
@@ -2613,7 +2767,9 @@
     "line": null,
     "name": "Масло VELVET OIL с аргановым маслом 100 мл 7543",
     "price": 833.65,
-    "promo": true
+    "promo": true,
+    "oldPrice": 896.4,
+    "discountPct": 7.0
   },
   {
     "id": 328,
@@ -2629,7 +2785,9 @@
     "line": null,
     "name": "L-Color окислительная эмульсия 1,9% 1000 мл 914 NEW",
     "price": 732.38,
-    "promo": true
+    "promo": true,
+    "oldPrice": 787.5,
+    "discountPct": 7.0
   },
   {
     "id": 330,
@@ -2637,7 +2795,9 @@
     "line": null,
     "name": "окислительная эмульсия 1,9% 60 мл 7371",
     "price": 160.89,
-    "promo": true
+    "promo": true,
+    "oldPrice": 173,
+    "discountPct": 7.0
   },
   {
     "id": 331,
@@ -2645,7 +2805,9 @@
     "line": null,
     "name": "L-Color окислительная эмульсия 12% 1000 мл 919 NEW",
     "price": 732.38,
-    "promo": true
+    "promo": true,
+    "oldPrice": 787.5,
+    "discountPct": 7.0
   },
   {
     "id": 332,
@@ -2661,7 +2823,9 @@
     "line": null,
     "name": "L-Color окислительная эмульсия 4% 1000 мл. 915 NEW",
     "price": 732.38,
-    "promo": true
+    "promo": true,
+    "oldPrice": 787.5,
+    "discountPct": 7.0
   },
   {
     "id": 334,
@@ -2677,7 +2841,9 @@
     "line": null,
     "name": "Окислительная эмульсия 6% 60 мл 7374",
     "price": 160.89,
-    "promo": true
+    "promo": true,
+    "oldPrice": 173,
+    "discountPct": 7.0
   },
   {
     "id": 336,
@@ -2693,7 +2859,9 @@
     "line": null,
     "name": "Окислительная эмульсия 9% 60 мл 7375",
     "price": 147.05,
-    "promo": true
+    "promo": true,
+    "oldPrice": 173,
+    "discountPct": 15.0
   },
   {
     "id": 338,
@@ -2701,7 +2869,9 @@
     "line": null,
     "name": "Пена д/укладки НФ 200 мл ENHANCE IT 5304-10457",
     "price": 748.17,
-    "promo": true
+    "promo": true,
+    "oldPrice": 880.2,
+    "discountPct": 15.0
   },
   {
     "id": 339,
@@ -2709,7 +2879,9 @@
     "line": null,
     "name": "Пена д/укладки СФ 250 мл EXPAND IT 5297-10460",
     "price": 667.09,
-    "promo": true
+    "promo": true,
+    "oldPrice": 717.3,
+    "discountPct": 7.0
   },
   {
     "id": 340,
@@ -2717,7 +2889,9 @@
     "line": null,
     "name": "Спрей без аэрозоля подвижной фиксации SHAPE IT 250мл 5320-10477",
     "price": 708.94,
-    "promo": true
+    "promo": true,
+    "oldPrice": 762.3,
+    "discountPct": 7.0
   },
   {
     "id": 341,
@@ -2725,7 +2899,9 @@
     "line": null,
     "name": "Ср-во FIBER INFUSION восстанавливающий с кератином 200 мл 5086",
     "price": 1058.76,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1245.6,
+    "discountPct": 15.0
   },
   {
     "id": 342,
@@ -2741,7 +2917,9 @@
     "line": null,
     "name": "Ср-во VELVET OIL с аргановым маслом 750мл 1252",
     "price": 1904.17,
-    "promo": true
+    "promo": true,
+    "oldPrice": 2047.5,
+    "discountPct": 7.0
   },
   {
     "id": 344,
@@ -2749,7 +2927,9 @@
     "line": null,
     "name": "ср-во ВОССТАНАВЛИВАЮЩЕЕ д/поврежденных волос 750 мл 4952/10569",
     "price": 1634.66,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1757.7,
+    "discountPct": 7.0
   },
   {
     "id": 345,
@@ -2757,7 +2937,9 @@
     "line": null,
     "name": "Стабилизатор д/сохранения цвета 1000 мл 4927/10562",
     "price": 1457.33,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1714.5,
+    "discountPct": 15.0
   },
   {
     "id": 346,
@@ -2765,7 +2947,9 @@
     "line": null,
     "name": "Шампунь FIBER INFUSION восстанавливающий с кератином 1000 мл. 5094",
     "price": 1574.4,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1692.9,
+    "discountPct": 7.0
   },
   {
     "id": 347,
@@ -2773,7 +2957,9 @@
     "line": null,
     "name": "Шампунь FIBER INFUSION восстанавливающий с кератином 250 мл. 5084",
     "price": 585.06,
-    "promo": true
+    "promo": true,
+    "oldPrice": 629.1,
+    "discountPct": 7.0
   },
   {
     "id": 348,
@@ -2781,7 +2967,9 @@
     "line": null,
     "name": "Шампунь VELVET OIL с аргановым маслом 1000 мл. 1266",
     "price": 1438.97,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1692.9,
+    "discountPct": 15.0
   },
   {
     "id": 349,
@@ -2789,7 +2977,9 @@
     "line": null,
     "name": "Шампунь VELVET OIL с аргановым маслом 250 мл. 1248",
     "price": 513.08,
-    "promo": true
+    "promo": true,
+    "oldPrice": 551.7,
+    "discountPct": 7.0
   },
   {
     "id": 350,
@@ -2805,7 +2995,9 @@
     "line": null,
     "name": "Шампунь д/объма 1000 мл 4943/10588",
     "price": 1316.6,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1415.7,
+    "discountPct": 7.0
   },
   {
     "id": 352,
@@ -2813,7 +3005,9 @@
     "line": null,
     "name": "Шампунь д/поврежденных волос 1000 мл 4959/10564",
     "price": 1316.6,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1415.7,
+    "discountPct": 7.0
   },
   {
     "id": 353,
@@ -2821,7 +3015,9 @@
     "line": null,
     "name": "Шампунь д/поврежденных волос 250 мл 4958/10565",
     "price": 447.52,
-    "promo": true
+    "promo": true,
+    "oldPrice": 526.5,
+    "discountPct": 15.0
   },
   {
     "id": 354,
@@ -2829,7 +3025,9 @@
     "line": null,
     "name": "Шампунь д/сохранения цвета и блеска 250 мл 4934/10558",
     "price": 489.64,
-    "promo": true
+    "promo": true,
+    "oldPrice": 526.5,
+    "discountPct": 7.0
   },
   {
     "id": 355,
@@ -2837,7 +3035,9 @@
     "line": null,
     "name": "Шампунь против перхоти 250 мл 4924/10573",
     "price": 447.52,
-    "promo": true
+    "promo": true,
+    "oldPrice": 526.5,
+    "discountPct": 15.0
   },
   {
     "id": 356,
@@ -2845,7 +3045,9 @@
     "line": null,
     "name": "Шампунь увлажняющий д/волос 1000 мл 4910/10582",
     "price": 1316.6,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1415.7,
+    "discountPct": 7.0
   },
   {
     "id": 357,
@@ -2853,7 +3055,9 @@
     "line": "Total Results New",
     "name": "Дозатор 1000 мл. 12218",
     "price": 104.55,
-    "promo": true
+    "promo": true,
+    "oldPrice": 123,
+    "discountPct": 15.0
   },
   {
     "id": 358,
@@ -2861,7 +3065,9 @@
     "line": "Total Results New",
     "name": "Кондиционер Brass Off 1000 ml. (нейтрализует желтые подтона на волосах 5-8 уровней) 2235800",
     "price": 1812.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1949,
+    "discountPct": 7.0
   },
   {
     "id": 359,
@@ -3861,7 +4067,9 @@
     "line": "MATRIX",
     "name": "Socolor 5BC 5BC",
     "price": 567.3,
-    "promo": true
+    "promo": true,
+    "oldPrice": 610,
+    "discountPct": 7.0
   },
   {
     "id": 484,
@@ -4117,7 +4325,9 @@
     "line": "MATRIX",
     "name": "Socolor 8SP 8SP",
     "price": 567.3,
-    "promo": true
+    "promo": true,
+    "oldPrice": 610,
+    "discountPct": 7.0
   },
   {
     "id": 516,
@@ -4221,7 +4431,9 @@
     "line": "MATRIX",
     "name": "Оксид Color Sync 2,7% 60мл 3453100",
     "price": 87.77,
-    "promo": true
+    "promo": true,
+    "oldPrice": 94.38,
+    "discountPct": 7.0
   },
   {
     "id": 529,
@@ -4229,7 +4441,9 @@
     "line": "MATRIX",
     "name": "Оксид Socolor 12% 1000 мл. 99989418180",
     "price": 1009.05,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1085,
+    "discountPct": 7.0
   },
   {
     "id": 530,
@@ -4237,7 +4451,9 @@
     "line": "MATRIX",
     "name": "Оксид Socolor 9% 1000 мл. 308147",
     "price": 1009.05,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1085,
+    "discountPct": 7.0
   },
   {
     "id": 531,
@@ -4277,7 +4493,9 @@
     "line": null,
     "name": "Color 0/22 фиолетовый 60мл 0-22",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 536,
@@ -4301,7 +4519,9 @@
     "line": null,
     "name": "Color 1/0 1-0",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 539,
@@ -4325,7 +4545,9 @@
     "line": null,
     "name": "Color 10/22 10-22",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 542,
@@ -4349,7 +4571,9 @@
     "line": null,
     "name": "Color 10/8 10-8",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 545,
@@ -4357,7 +4581,9 @@
     "line": null,
     "name": "Color 11/0 11-0",
     "price": 141.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 15.0
   },
   {
     "id": 546,
@@ -4421,7 +4647,9 @@
     "line": null,
     "name": "Color 2/22 2-22",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 554,
@@ -4437,7 +4665,9 @@
     "line": null,
     "name": "Color 4/3 4-3",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 556,
@@ -4445,7 +4675,9 @@
     "line": null,
     "name": "Color 4/4 4-4",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 557,
@@ -4453,7 +4685,9 @@
     "line": null,
     "name": "Color 4/5 4-5",
     "price": 141.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 15.0
   },
   {
     "id": 558,
@@ -4501,7 +4735,9 @@
     "line": null,
     "name": "Color 5/4 5-4",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 564,
@@ -4509,7 +4745,9 @@
     "line": null,
     "name": "Color 5/6 5-6",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 565,
@@ -4581,7 +4819,9 @@
     "line": null,
     "name": "Color 6/5 6-5",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 574,
@@ -4597,7 +4837,9 @@
     "line": null,
     "name": "Color 6/75 6-75",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 576,
@@ -4605,7 +4847,9 @@
     "line": null,
     "name": "Color 7/0 7-0",
     "price": 141.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 15.0
   },
   {
     "id": 577,
@@ -4629,7 +4873,9 @@
     "line": null,
     "name": "Color 7/3 7-3",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 580,
@@ -4661,7 +4907,9 @@
     "line": null,
     "name": "Color 7/46 7-46",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 584,
@@ -4669,7 +4917,9 @@
     "line": null,
     "name": "Color 7/6 7-6",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 585,
@@ -4685,7 +4935,9 @@
     "line": null,
     "name": "Color 8/0 8-0",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 587,
@@ -4701,7 +4953,9 @@
     "line": null,
     "name": "Color 8/03 8-03",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 589,
@@ -4725,7 +4979,9 @@
     "line": null,
     "name": "Color 8/3 8-3",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 592,
@@ -4733,7 +4989,9 @@
     "line": null,
     "name": "Color 8/31 8-31",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 593,
@@ -4741,7 +4999,9 @@
     "line": null,
     "name": "Color 8/4 8-4",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 594,
@@ -4749,7 +5009,9 @@
     "line": null,
     "name": "Color 8/6 8-6",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 595,
@@ -4765,7 +5027,9 @@
     "line": null,
     "name": "Color 8/73 8-73",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 597,
@@ -4781,7 +5045,9 @@
     "line": null,
     "name": "Color 9/03 9-03",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 599,
@@ -4805,7 +5071,9 @@
     "line": null,
     "name": "Color 9/22 9-22",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 602,
@@ -4821,7 +5089,9 @@
     "line": null,
     "name": "Color 9/31 9-31",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 604,
@@ -4829,7 +5099,9 @@
     "line": null,
     "name": "Color 9/43 9-43",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 605,
@@ -4837,7 +5109,9 @@
     "line": null,
     "name": "Color 9/5 9-5",
     "price": 155.31,
-    "promo": true
+    "promo": true,
+    "oldPrice": 167,
+    "discountPct": 7.0
   },
   {
     "id": 606,
@@ -4869,7 +5143,9 @@
     "line": null,
     "name": "Fashion Color Анти-желтый 60мл Перманентная крем-краска для волос 395645",
     "price": 172.98,
-    "promo": true
+    "promo": true,
+    "oldPrice": 186,
+    "discountPct": 7.0
   },
   {
     "id": 610,
@@ -4917,7 +5193,9 @@
     "line": null,
     "name": "Performanse 0-25 60ml 0-025",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 616,
@@ -4925,7 +5203,9 @@
     "line": null,
     "name": "Performanse 0-33 60ml 0-033",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 617,
@@ -4933,7 +5213,9 @@
     "line": null,
     "name": "Performanse 0-66 60ml 0-066",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 618,
@@ -4941,7 +5223,9 @@
     "line": null,
     "name": "Performanse 0-88 60ml фиолетовый 0-088",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 619,
@@ -4949,7 +5233,9 @@
     "line": null,
     "name": "Performanse 1-0 60ml 0-1",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 620,
@@ -4957,7 +5243,9 @@
     "line": null,
     "name": "Performanse 10-31 60ml 0-1031",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 621,
@@ -4973,7 +5261,9 @@
     "line": null,
     "name": "Performanse 10-5 60ml 0-105",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 623,
@@ -4981,7 +5271,9 @@
     "line": null,
     "name": "Performanse 10-72 60ml 0-1072",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 624,
@@ -4989,7 +5281,9 @@
     "line": null,
     "name": "Performanse 10-73 60ml 0-1073",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 625,
@@ -4997,7 +5291,9 @@
     "line": null,
     "name": "Performanse 11-1 60ml 0-111",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 626,
@@ -5013,7 +5309,9 @@
     "line": null,
     "name": "Performanse 11-3 60ml 0-113",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 628,
@@ -5029,7 +5327,9 @@
     "line": null,
     "name": "Performanse 11-7 60ml 0-117",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 630,
@@ -5037,7 +5337,9 @@
     "line": null,
     "name": "Performanse 2-0 60ml 0-20",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 631,
@@ -5045,7 +5347,9 @@
     "line": null,
     "name": "Performanse 2-22 60ml 0-222",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 632,
@@ -5053,7 +5357,9 @@
     "line": null,
     "name": "Performanse 4-3 60ml 0-43",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 633,
@@ -5069,7 +5375,9 @@
     "line": null,
     "name": "Performanse 5-09 60ml 0-509",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 635,
@@ -5077,7 +5385,9 @@
     "line": null,
     "name": "Performanse 5-1 60ml 0-51",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 636,
@@ -5093,7 +5403,9 @@
     "line": null,
     "name": "Performanse 5-3 60ml 0-53",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 638,
@@ -5101,7 +5413,9 @@
     "line": null,
     "name": "Performanse 5-4 60ml 0-54",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 639,
@@ -5109,7 +5423,9 @@
     "line": null,
     "name": "Performanse 5-5 60ml 0-55",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 640,
@@ -5117,7 +5433,9 @@
     "line": null,
     "name": "Performanse 6-09 60ml 0-609",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 641,
@@ -5125,7 +5443,9 @@
     "line": null,
     "name": "Performanse 6-22 60ml 0-622",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 642,
@@ -5133,7 +5453,9 @@
     "line": null,
     "name": "Performanse 6-3 60ml 0-63",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 643,
@@ -5141,7 +5463,9 @@
     "line": null,
     "name": "Performanse 6-34 60ml 0-634",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 644,
@@ -5157,7 +5481,9 @@
     "line": null,
     "name": "Performanse 7-00 60ml 0-700",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 646,
@@ -5165,7 +5491,9 @@
     "line": null,
     "name": "Performanse 7-09 60ml 0-709",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 647,
@@ -5181,7 +5509,9 @@
     "line": null,
     "name": "Performanse 7-3 60ml 0-73",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 649,
@@ -5189,7 +5519,9 @@
     "line": null,
     "name": "Performanse 7-4 60ml 0-74",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 650,
@@ -5205,7 +5537,9 @@
     "line": null,
     "name": "Performanse 7-71 60ml 0-771",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 652,
@@ -5213,7 +5547,9 @@
     "line": null,
     "name": "Performanse 7-75 60ml 0-775",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 653,
@@ -5229,7 +5565,9 @@
     "line": null,
     "name": "Performanse 8-12 60ml 0-812",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 655,
@@ -5237,7 +5575,9 @@
     "line": null,
     "name": "Performanse 8-34 60ml 0-834",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 656,
@@ -5245,7 +5585,9 @@
     "line": null,
     "name": "Performanse 8-43 60ml 0-843",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 657,
@@ -5253,7 +5595,9 @@
     "line": null,
     "name": "Performanse 8-44 60ml 0-844",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 658,
@@ -5261,7 +5605,9 @@
     "line": null,
     "name": "Performanse 8-6 60ml 0-86",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 659,
@@ -5269,7 +5615,9 @@
     "line": null,
     "name": "Performanse 8-71 60ml 0-871",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 660,
@@ -5277,7 +5625,9 @@
     "line": null,
     "name": "Performanse 8-72 60ml 0-872",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 661,
@@ -5285,7 +5635,9 @@
     "line": null,
     "name": "Performanse 8-73 60ml 0-873",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 662,
@@ -5293,7 +5645,9 @@
     "line": null,
     "name": "Performanse 8-8 60ml 0-88",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 663,
@@ -5301,7 +5655,9 @@
     "line": null,
     "name": "Performanse 9-03 60ml 0-903",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 664,
@@ -5309,7 +5665,9 @@
     "line": null,
     "name": "Performanse 9-1 60ml 0-91",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 665,
@@ -5317,7 +5675,9 @@
     "line": null,
     "name": "Performanse 9-12 60ml 0-912",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 666,
@@ -5325,7 +5685,9 @@
     "line": null,
     "name": "Performanse 9-26 60ml 0-926",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 667,
@@ -5333,7 +5695,9 @@
     "line": null,
     "name": "Performanse 9-3 60ml 0-93",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 668,
@@ -5341,7 +5705,9 @@
     "line": null,
     "name": "Performanse 9-31 60ml 0-931",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 669,
@@ -5349,7 +5715,9 @@
     "line": null,
     "name": "Performanse 9-7 60ml 0-97",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 670,
@@ -5357,7 +5725,9 @@
     "line": null,
     "name": "Performanse 9-72 60ml 0-972",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 671,
@@ -5365,7 +5735,9 @@
     "line": null,
     "name": "Performanse 9-8 60ml 0-98",
     "price": 231.57,
-    "promo": true
+    "promo": true,
+    "oldPrice": 249,
+    "discountPct": 7.0
   },
   {
     "id": 672,
@@ -5445,7 +5817,9 @@
     "line": null,
     "name": "Silk Touch Безаммиачный стойкая краска 8/72 60 мл 08-72",
     "price": 238.08,
-    "promo": true
+    "promo": true,
+    "oldPrice": 256,
+    "discountPct": 7.0
   },
   {
     "id": 682,
@@ -5453,7 +5827,9 @@
     "line": null,
     "name": "Silk Touch Безаммиачный стойкая краска 9/0 60 мл 09-0",
     "price": 238.08,
-    "promo": true
+    "promo": true,
+    "oldPrice": 256,
+    "discountPct": 7.0
   },
   {
     "id": 683,
@@ -5637,7 +6013,9 @@
     "line": null,
     "name": "краска д/бровей иссиня-черный (НАБОР) 772543",
     "price": 303.45,
-    "promo": true
+    "promo": true,
+    "oldPrice": 357,
+    "discountPct": 15.0
   },
   {
     "id": 706,
@@ -5653,7 +6031,9 @@
     "line": null,
     "name": "краска д/бровей светло-коричневая 20 мл 772468",
     "price": 186.15,
-    "promo": true
+    "promo": true,
+    "oldPrice": 219,
+    "discountPct": 15.0
   },
   {
     "id": 708,
@@ -5661,7 +6041,9 @@
     "line": null,
     "name": "краска д/бровей темный графит 20 мл VISION 772482",
     "price": 186.15,
-    "promo": true
+    "promo": true,
+    "oldPrice": 219,
+    "discountPct": 15.0
   },
   {
     "id": 709,
@@ -5701,7 +6083,9 @@
     "line": null,
     "name": "Маска CARE д/окрашенных волос 200 мл 395119",
     "price": 275.4,
-    "promo": true
+    "promo": true,
+    "oldPrice": 324,
+    "discountPct": 15.0
   },
   {
     "id": 714,
@@ -5725,7 +6109,9 @@
     "line": null,
     "name": "Оксид (СЕРЫЙ) 1,5%, 90 мл. 397519/728615",
     "price": 60.45,
-    "promo": true
+    "promo": true,
+    "oldPrice": 65,
+    "discountPct": 7.0
   },
   {
     "id": 717,
@@ -5781,7 +6167,9 @@
     "line": null,
     "name": "Супра Blond Powder NO Aroma (голубой порошок) 30 г. 721548",
     "price": 79.05,
-    "promo": true
+    "promo": true,
+    "oldPrice": 93,
+    "discountPct": 15.0
   },
   {
     "id": 724,
@@ -5845,7 +6233,9 @@
     "line": null,
     "name": "Шампунь CARE д/восст. структуры волос 250 мл. 395171",
     "price": 301.32,
-    "promo": true
+    "promo": true,
+    "oldPrice": 324,
+    "discountPct": 7.0
   },
   {
     "id": 732,
@@ -5869,7 +6259,9 @@
     "line": null,
     "name": "Шампунь CARE д/объема волос 250 мл. 395379",
     "price": 301.32,
-    "promo": true
+    "promo": true,
+    "oldPrice": 324,
+    "discountPct": 7.0
   },
   {
     "id": 735,
@@ -5885,7 +6277,9 @@
     "line": null,
     "name": "Шампунь CARE с маслом миндаля 1000 мл. 395515",
     "price": 703.08,
-    "promo": true
+    "promo": true,
+    "oldPrice": 756,
+    "discountPct": 7.0
   },
   {
     "id": 737,
@@ -5901,7 +6295,9 @@
     "line": null,
     "name": "Шампунь CARE увлажняющий 250 мл. 395430",
     "price": 301.32,
-    "promo": true
+    "promo": true,
+    "oldPrice": 324,
+    "discountPct": 7.0
   },
   {
     "id": 739,
@@ -5917,7 +6313,9 @@
     "line": null,
     "name": "Шампунь MEN д/волос и тела освежающий 250 мл. 725485/723207",
     "price": 389.67,
-    "promo": true
+    "promo": true,
+    "oldPrice": 419,
+    "discountPct": 7.0
   },
   {
     "id": 741,
@@ -6013,7 +6411,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "Blond Me Обесцвечивающая пудра, premium lift 9+ 450г",
     "price": 2175.27,
-    "promo": true
+    "promo": true,
+    "oldPrice": 2339,
+    "discountPct": 7.0
   },
   {
     "id": 753,
@@ -6021,7 +6421,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "Blond Me Премиум-окислитель 12% 1000мл 2140321",
     "price": 1209,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1300,
+    "discountPct": 7.0
   },
   {
     "id": 754,
@@ -6029,7 +6431,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "Blond Me Премиум-окислитель 2% 1000мл 2140315",
     "price": 1209,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1300,
+    "discountPct": 7.0
   },
   {
     "id": 755,
@@ -6037,7 +6441,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "NS Лосьон д/химической завивки нормальных волос №1 1000мл 1969343",
     "price": 1956.49,
-    "promo": true
+    "promo": true,
+    "oldPrice": 2103.75,
+    "discountPct": 7.0
   },
   {
     "id": 756,
@@ -6045,7 +6451,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "NS Лосьон д/химической завивки окрашенных волос №2 1000мл 1969347",
     "price": 1956.49,
-    "promo": true
+    "promo": true,
+    "oldPrice": 2103.75,
+    "discountPct": 7.0
   },
   {
     "id": 757,
@@ -6053,7 +6461,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "NS Нейтрализатор для стойкого результата 1000мл 1969345",
     "price": 1956.49,
-    "promo": true
+    "promo": true,
+    "oldPrice": 2103.75,
+    "discountPct": 7.0
   },
   {
     "id": 758,
@@ -6789,7 +7199,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "Оксигент на масляной основе 12% 1000 мл 2184627",
     "price": 929.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 999,
+    "discountPct": 7.0
   },
   {
     "id": 850,
@@ -6797,7 +7209,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "Оксигент на масляной основе 3% 1000 мл 2184625",
     "price": 929.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 999,
+    "discountPct": 7.0
   },
   {
     "id": 851,
@@ -6805,7 +7219,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "Оксигент на масляной основе 6% 1000 мл 2184628",
     "price": 929.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 999,
+    "discountPct": 7.0
   },
   {
     "id": 852,
@@ -6813,7 +7229,9 @@
     "line": "IGORA/BLONDME - Красители и специальные продукты",
     "name": "Оксигент на масляной основе 9% 1000 мл 1847105",
     "price": 929.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 999,
+    "discountPct": 7.0
   },
   {
     "id": 853,
@@ -6821,7 +7239,9 @@
     "line": "OSIS - Уход",
     "name": "Лак д/волос №2 фикс. 3+ СФ FREEZE 300 мл. 1970454",
     "price": 750.97,
-    "promo": true
+    "promo": true,
+    "oldPrice": 807.5,
+    "discountPct": 7.0
   },
   {
     "id": 854,
@@ -6829,7 +7249,9 @@
     "line": "OSIS - Уход",
     "name": "Лак д/волос №2 фикс. 3+ СФ FREEZE 500 мл. 1970621",
     "price": 909.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 977.5,
+    "discountPct": 7.0
   },
   {
     "id": 855,
@@ -6893,7 +7315,9 @@
     "line": "EIMI - Укладка",
     "name": "лак перфоманс ЭСФ 500 мл 11198/4138",
     "price": 939.11,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1009.8,
+    "discountPct": 7.0
   },
   {
     "id": 863,
@@ -6901,7 +7325,9 @@
     "line": "EIMI - Укладка",
     "name": "Пена EIMI д/укладки №2 НФ 300 мл NATURAL VOLUME 11199/1642",
     "price": 915.4,
-    "promo": true
+    "promo": true,
+    "oldPrice": 984.3,
+    "discountPct": 7.0
   },
   {
     "id": 864,
@@ -6909,7 +7335,9 @@
     "line": "EIMI - Укладка",
     "name": "Пена EIMI д/укладки №2 НФ 500мл NATURAL VOLUME 11020/9594",
     "price": 1292.94,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1390.26,
+    "discountPct": 7.0
   },
   {
     "id": 865,
@@ -6917,7 +7345,9 @@
     "line": "EIMI - Укладка",
     "name": "Пена EIMI д/укладки №3 СФ 500 мл EXTRA VOLUME 11021/1650",
     "price": 1181.72,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1390.26,
+    "discountPct": 15.0
   },
   {
     "id": 866,
@@ -6925,7 +7355,9 @@
     "line": "EIMI - Укладка",
     "name": "Спрей EIMI д/объема Body Crafter 150мл. 43744/1743",
     "price": 915.4,
-    "promo": true
+    "promo": true,
+    "oldPrice": 984.3,
+    "discountPct": 7.0
   },
   {
     "id": 867,
@@ -6933,7 +7365,9 @@
     "line": "EIMI - Укладка",
     "name": "Спрей EIMI д/обьема текстуры, сахарный Sugar Lift 150мл 43750/6050",
     "price": 915.4,
-    "promo": true
+    "promo": true,
+    "oldPrice": 984.3,
+    "discountPct": 7.0
   },
   {
     "id": 868,
@@ -6941,7 +7375,9 @@
     "line": "EIMI - Укладка",
     "name": "Спрей EIMI минеральный текстур. Ocean Spritz 150мл. 43747/1687",
     "price": 915.4,
-    "promo": true
+    "promo": true,
+    "oldPrice": 984.3,
+    "discountPct": 7.0
   },
   {
     "id": 869,
@@ -6949,7 +7385,9 @@
     "line": "EIMI - Укладка",
     "name": "Спрей EIMI термозащитный №2 THERMAL IMAGЕ 150мл 43742/1691",
     "price": 915.4,
-    "promo": true
+    "promo": true,
+    "oldPrice": 984.3,
+    "discountPct": 7.0
   },
   {
     "id": 870,
@@ -6957,7 +7395,9 @@
     "line": "EIMI - Укладка",
     "name": "Спрей-мусс EIMI д.прик.объема Root Shoot 200мл 43130/9213",
     "price": 918.24,
-    "promo": true
+    "promo": true,
+    "oldPrice": 987.36,
+    "discountPct": 7.0
   },
   {
     "id": 871,
@@ -6981,7 +7421,9 @@
     "line": "Illumina - Красители",
     "name": "Illumina color Титановый Розовый 08971",
     "price": 705.87,
-    "promo": true
+    "promo": true,
+    "oldPrice": 759,
+    "discountPct": 7.0
   },
   {
     "id": 874,
@@ -7061,7 +7503,9 @@
     "line": "Illumina - Красители",
     "name": "Краска 5/02 Светло-коричневый натуральный матовый 60мл 5/02",
     "price": 705.87,
-    "promo": true
+    "promo": true,
+    "oldPrice": 759,
+    "discountPct": 7.0
   },
   {
     "id": 884,
@@ -7341,7 +7785,9 @@
     "line": "INVIGO - Уход",
     "name": "Дозатор д/WELLAPLEX 500 мл. 012341",
     "price": 212.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 250,
+    "discountPct": 15.0
   },
   {
     "id": 919,
@@ -7349,7 +7795,9 @@
     "line": "INVIGO - Уход",
     "name": "Дозатор д/кондиционера SYSTEM 271484 85282",
     "price": 212.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 250,
+    "discountPct": 15.0
   },
   {
     "id": 920,
@@ -7357,7 +7805,9 @@
     "line": "INVIGO - Уход",
     "name": "Дозатор д/маски 500 мл. 104509",
     "price": 212.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 250,
+    "discountPct": 15.0
   },
   {
     "id": 921,
@@ -7365,7 +7815,9 @@
     "line": "INVIGO - Уход",
     "name": "Дозатор д/шампуней 1000 мл. 99350093395",
     "price": 212.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 250,
+    "discountPct": 15.0
   },
   {
     "id": 922,
@@ -7373,7 +7825,9 @@
     "line": "INVIGO - Уход",
     "name": "Дозатор д/шампуней 500 мл. 034916",
     "price": 212.5,
-    "promo": true
+    "promo": true,
+    "oldPrice": 250,
+    "discountPct": 15.0
   },
   {
     "id": 923,
@@ -7381,7 +7835,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Блондирующий крем масленный 7+ 200 мл 6289/x9225",
     "price": 1242.11,
-    "promo": true
+    "promo": true,
+    "oldPrice": 1335.6,
+    "discountPct": 7.0
   },
   {
     "id": 924,
@@ -7405,7 +7861,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Блондор \"MULTI BLONDE\" 7+ порошок осветяющий 800г 6858/99240008189",
     "price": 2300.36,
-    "promo": true
+    "promo": true,
+    "oldPrice": 2473.5,
+    "discountPct": 7.0
   },
   {
     "id": 927,
@@ -7429,7 +7887,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 10-34 яркий блонд золотисто-красный ct10-34",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 930,
@@ -7437,7 +7897,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 10-6 розовая карамель ct10-6",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 931,
@@ -7445,7 +7907,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 10-81 нежный ангел ct10-81",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 932,
@@ -7453,7 +7917,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 2-0 черный ct2-0",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 933,
@@ -7461,7 +7927,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 4-0 средне-коричневый ct4-0",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 934,
@@ -7485,7 +7953,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 5-0 светло-коричневый ct5-0",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 937,
@@ -7517,7 +7987,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 6-0 темный блондин ct6-0",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 941,
@@ -7557,7 +8029,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 6-77 кофе со сливками ct6-77",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 946,
@@ -7565,7 +8039,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 7-0 средний блондин ct7-0",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 947,
@@ -7589,7 +8065,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 7-7 цвет косули ct7-7",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 950,
@@ -7605,7 +8083,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 7-73 средний блондин коричнево-золотистый ct7-73",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 952,
@@ -7613,7 +8093,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT7-75 светлый палисандр ct7-75",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 953,
@@ -7621,7 +8103,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 7-86 блонд жемчужно-фиолетовый ct7-86",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 954,
@@ -7637,7 +8121,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 7-97 блонд сандре коричневый ct7-97",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 956,
@@ -7645,7 +8131,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 8-0 светлый блондин ct8-0",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 957,
@@ -7669,7 +8157,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 8-43 боярышник ct8-43",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 960,
@@ -7685,7 +8175,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 8-73 светлый блондин коричнево-золотистый ct8-73",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 962,
@@ -7693,7 +8185,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 8-81 светлый блондин коричнево-золотистый ct8-81",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 963,
@@ -7709,7 +8203,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 9-01 пепельный блондин ct9-01",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 965,
@@ -7717,7 +8213,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 9-16 горный хрусталь ct9-16",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 966,
@@ -7725,7 +8223,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 9-36 розовое золото ct9-36",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 967,
@@ -7749,7 +8249,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT 9-86 очень светлый блонд жемчужно-фиолетовый ct9-86",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 970,
@@ -7773,7 +8275,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT Plus 44-07 сакура ct44-07",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 973,
@@ -7781,7 +8285,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT Plus 55-07 кедр ct55-07",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 974,
@@ -7789,7 +8295,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT Plus 66-07 кипарис ct66-07",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 975,
@@ -7797,7 +8305,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT Plus 77-07 олива ct77-07",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 976,
@@ -7805,7 +8315,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска CT Plus 88-07 платан ct88-07",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 977,
@@ -7861,7 +8373,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 0/66 Фиолетовый интенсивный 60мл 0-66",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 984,
@@ -7877,7 +8391,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/0 Яркий блонд 60мл 10-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 986,
@@ -7893,7 +8409,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/03 Пшеница60мл 10-03",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 988,
@@ -7909,7 +8427,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/1 Ванильный лед 60мл 10-1",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 990,
@@ -7917,7 +8437,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/16 Ванильное небо 60мл 10-16",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 991,
@@ -7933,7 +8455,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/31 Яркий блонд золотисто-пепельный Ливорно 60мл 10-31",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 993,
@@ -7941,7 +8465,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/38 Пудровый экрю 60мл 10-38",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 994,
@@ -7949,7 +8475,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/8 Сьерра- Невада 60мл 10-8",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 995,
@@ -7957,7 +8485,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/86 Саламанка 60мл 10-86",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 996,
@@ -7965,7 +8495,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/95 Лавандовый джелато 60мл 10-95",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 997,
@@ -7973,7 +8505,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/96 Бланманже 60мл 10-96",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 998,
@@ -7981,7 +8515,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 10/97 Самбук 60мл 10-97",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 999,
@@ -7989,7 +8525,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 12/0 Кунжут 60мл 12-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1000,
@@ -7997,7 +8535,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 12/1Песочный 60мл 12-1",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1001,
@@ -8013,7 +8553,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 12/16 Слоновая кость 60мл 12-16",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1003,
@@ -8029,7 +8571,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 12/81 Белое золото 60мл 12-81",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1005,
@@ -8037,7 +8581,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 12/89 Ванильный 60мл 12-89",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1006,
@@ -8045,7 +8591,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 12/96 Бежевый иней 60мл 12-96",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1007,
@@ -8077,7 +8625,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 4/0 Коричневый натуральный 60мл 4-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1011,
@@ -8085,7 +8635,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 4/00 Коричневый интенсивный натуральный 60мл 4-00",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1012,
@@ -8093,7 +8645,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 4/77 Горячий шоколад 60мл 4-77",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1013,
@@ -8101,7 +8655,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 44/0 Коричневый интенсивный натуральный 60мл 44-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1014,
@@ -8109,7 +8665,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 5/0 Светло-коричневый натуральный 60мл 5-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1015,
@@ -8117,7 +8675,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 5/00 60мл 5-00",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1016,
@@ -8157,7 +8717,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 5/71 Грильяж 60мл 5-71",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1021,
@@ -8173,7 +8735,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 5/77 Мокко 60мл 5-77",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1023,
@@ -8181,7 +8745,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 55/0 Светло-коричневый интенсивный натуральный 60мл 55-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1024,
@@ -8189,7 +8755,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 6/0 Темный блонд натуральный 60мл 6-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1025,
@@ -8197,7 +8765,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 6/00 Темный блонд натуральный интенс. 60мл 6-00",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1026,
@@ -8213,7 +8783,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 6/1 Темный блонд пепельный Древесный дым 60мл 6-1",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1028,
@@ -8245,7 +8817,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 6/7 Эскимо 60мл 6-7",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1032,
@@ -8269,7 +8843,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 6/77 Кофе со сливками 60мл 6-77",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1035,
@@ -8277,7 +8853,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 6/97 Кофейный мусс 60мл 6-97",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1036,
@@ -8285,7 +8863,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 66/0 Темный блонд натуральный 60мл 66-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1037,
@@ -8301,7 +8881,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 7/00 Блонд натуральный интенс. 60мл 7-00",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1039,
@@ -8325,7 +8907,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 7/1 Табачный маррон 60мл 7-1",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1042,
@@ -8357,7 +8941,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 7/36 7-36",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1046,
@@ -8373,7 +8959,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 7/43 Красный тициан 60мл 7-43",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1048,
@@ -8397,7 +8985,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 7/71 Янтарная куница 60мл 7-71",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1051,
@@ -8429,7 +9019,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 77/0 Блонд интенсивный натуральный 60мл 77-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1055,
@@ -8437,7 +9029,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 8/00 Светлый блонд натуральный интенс. 60мл 8-00",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1056,
@@ -8445,7 +9039,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 8/01 Миндаль 60мл 8-01",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1057,
@@ -8469,7 +9065,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 8/07 Платан 60мл 8-07",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1060,
@@ -8477,7 +9075,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 8/1 Песчаная буря 60мл 8-1",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1061,
@@ -8485,7 +9085,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 8/34 Чилийский оранжевый 60мл 8-34",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1062,
@@ -8493,7 +9095,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 8/38 Золотая умбра 60мл 8-38",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1063,
@@ -8525,7 +9129,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 8/73 Мадейра 60мл 8-73",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1067,
@@ -8541,7 +9147,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 8/96 Панакота 60мл 8-96",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1069,
@@ -8557,7 +9165,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 88/0 Светлый блонд натуральный 60мл 88-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1071,
@@ -8573,7 +9183,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 9/0 Очень светлый блонд натуральный 60мл 9-0",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1073,
@@ -8589,7 +9201,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 9/01 Орех пекан 60мл 9-01",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1075,
@@ -8597,7 +9211,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 9/03 Лен 60мл 9-03",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1076,
@@ -8605,7 +9221,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 9/1 Кремовое облако 60мл 9-1",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1077,
@@ -8645,7 +9263,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 9/8 Анды 60мл 9-8",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1082,
@@ -8653,7 +9273,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 9/81 Сливочный камео 60мл 9-81",
     "price": 650.07,
-    "promo": true
+    "promo": true,
+    "oldPrice": 699,
+    "discountPct": 7.0
   },
   {
     "id": 1083,
@@ -8677,7 +9299,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Окислитель Welloxon Perfect 1,9% 1000мл ДЛЯ ПАСТЕЛЬНОГО ТОНИРОВАНИЯ 6495/6921",
     "price": 928.68,
-    "promo": true
+    "promo": true,
+    "oldPrice": 998.58,
+    "discountPct": 7.0
   },
   {
     "id": 1086,
@@ -8685,7 +9309,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Окислитель Welloxon Perfect 12% 1000мл 6499/6488",
     "price": 928.68,
-    "promo": true
+    "promo": true,
+    "oldPrice": 998.58,
+    "discountPct": 7.0
   },
   {
     "id": 1087,
@@ -8693,7 +9319,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Окислитель Welloxon Perfect 12% 60мл 6494/50931",
     "price": 180.42,
-    "promo": true
+    "promo": true,
+    "oldPrice": 194,
+    "discountPct": 7.0
   },
   {
     "id": 1088,
@@ -8701,7 +9329,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Окислитель Welloxon Perfect 4% 1000мл ДЛЯ ПАСТЕЛЬНОГО ТОНИРОВАНИЯ 6496",
     "price": 928.68,
-    "promo": true
+    "promo": true,
+    "oldPrice": 998.58,
+    "discountPct": 7.0
   },
   {
     "id": 1089,
@@ -8709,7 +9339,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Окислитель Welloxon Perfect 6% 1000мл 6497/6923",
     "price": 928.68,
-    "promo": true
+    "promo": true,
+    "oldPrice": 998.58,
+    "discountPct": 7.0
   },
   {
     "id": 1090,
@@ -8717,7 +9349,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Окислитель Welloxon Perfect 9% 1000 мл. 6498/6484",
     "price": 928.68,
-    "promo": true
+    "promo": true,
+    "oldPrice": 998.58,
+    "discountPct": 7.0
   },
   {
     "id": 1091,
@@ -8733,7 +9367,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Оксид Color Touch 4 % 1000 мл. 6019/6291",
     "price": 928.68,
-    "promo": true
+    "promo": true,
+    "oldPrice": 998.58,
+    "discountPct": 7.0
   },
   {
     "id": 1093,
@@ -8741,7 +9377,9 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Палитра Color Touch 21 12933",
     "price": 425,
-    "promo": true
+    "promo": true,
+    "oldPrice": 500,
+    "discountPct": 15.0
   },
   {
     "id": 1094,
@@ -8757,7 +9395,9 @@
     "line": "SHINEFINITY - Гель-крем краска, цветное глазирование",
     "name": "SHINEFINITY 04/07 Горький шоколад 60мл 4/07",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 1096,
@@ -8789,7 +9429,9 @@
     "line": "SHINEFINITY - Гель-крем краска, цветное глазирование",
     "name": "SHINEFINITY 06/71 Ледяной орех 60мл 6/71",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 1100,
@@ -8853,7 +9495,9 @@
     "line": "SHINEFINITY - Гель-крем краска, цветное глазирование",
     "name": "SHINEFINITY 09/36 Ванильная глазурь 60мл 9/36",
     "price": 664.95,
-    "promo": true
+    "promo": true,
+    "oldPrice": 715,
+    "discountPct": 7.0
   },
   {
     "id": 1108,
@@ -9117,7 +9761,9 @@
     "line": null,
     "name": "фольга 12см*100м*16мкр 02550",
     "price": 344.1,
-    "promo": true
+    "promo": true,
+    "oldPrice": 370,
+    "discountPct": 7.0
   },
   {
     "id": 1141,

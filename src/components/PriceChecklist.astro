@@ -6,15 +6,20 @@ interface Item {
   name: string;
   price: number;
   promo: boolean;
+  oldPrice?: number;
+  discountPct?: number;
 }
 
 interface Props {
   items: Item[];
   instanceId: string;
   heading: string;
+  // 'discount' — верхний уровень группировки не бренд, а ступень скидки (15%/7%),
+  // бренд становится вложенным уровнем внутри. Только для окна «Акции».
+  groupBy?: 'brand' | 'discount';
 }
 
-const { items, instanceId, heading } = Astro.props;
+const { items, instanceId, heading, groupBy = 'brand' } = Astro.props;
 const dialogId = `${instanceId}-dialog`;
 
 // Сортировка: сначала латиница (A-Z), потом кириллица (А-Я), внутри каждой — по алфавиту.
@@ -56,6 +61,40 @@ const brandEntries = [...brandMap.entries()]
     const total = [...lineMap.values()].reduce((s, arr) => s + arr.length, 0);
     return { brand, total, flat, lineEntries };
   });
+
+// Группировка по ступени скидки (15%/7%) -> бренд -> товары — только для окна «Акции».
+// Ступени идут в фиксированном порядке (большая скидка первой), а не по алфавиту.
+const DISCOUNT_TIER_ORDER = [15, 7];
+function discountTierLabel(pct: number | undefined): string {
+  return pct != null ? `Скидка ${pct}%` : 'Акция';
+}
+
+let discountEntries: { tier: string; total: number; brandEntries: [string, Item[]][] }[] = [];
+if (groupBy === 'discount') {
+  const tierMap = new Map<string, Map<string, Item[]>>();
+  for (const it of items) {
+    const tier = discountTierLabel(it.discountPct);
+    const b = it.brand ?? 'Другое';
+    if (!tierMap.has(tier)) tierMap.set(tier, new Map());
+    const bMap = tierMap.get(tier)!;
+    if (!bMap.has(b)) bMap.set(b, []);
+    bMap.get(b)!.push(it);
+  }
+  discountEntries = [...tierMap.entries()]
+    .sort((a, b) => {
+      const ia = DISCOUNT_TIER_ORDER.indexOf(parseInt(a[0].replace(/\D/g, ''), 10));
+      const ib = DISCOUNT_TIER_ORDER.indexOf(parseInt(b[0].replace(/\D/g, ''), 10));
+      if (ia !== -1 || ib !== -1) return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+      return alphaCompare(a[0], b[0]);
+    })
+    .map(([tier, bMap]) => {
+      const total = [...bMap.values()].reduce((s, arr) => s + arr.length, 0);
+      const brandEntriesForTier = [...bMap.entries()]
+        .sort((a, b) => alphaCompare(a[0], b[0]))
+        .map(([brand, list]) => [brand, [...list].sort(byName)] as [string, Item[]]);
+      return { tier, total, brandEntries: brandEntriesForTier };
+    });
+}
 ---
 <dialog class="price-checklist" data-checklist id={dialogId}>
   <div class="pc-header">
@@ -67,7 +106,7 @@ const brandEntries = [...brandMap.entries()]
     <span class="pc-count" data-count></span>
   </div>
   <div class="pc-groups">
-    {brandEntries.map(({ brand, total, flat, lineEntries }) => (
+    {groupBy === 'brand' && brandEntries.map(({ brand, total, flat, lineEntries }) => (
       <details class="pc-group pc-group-brand">
         <summary>{brand} <span class="pc-group-count">({total})</span></summary>
         <div class="pc-group-body">
@@ -79,6 +118,7 @@ const brandEntries = [...brandMap.entries()]
                     <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                     <span class="pc-item-name">{it.name}</span>
                     <span class="pc-item-price">
+                      {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                       {it.price} ₽
                       {it.promo && <span class="pc-badge">Акция</span>}
                     </span>
@@ -102,6 +142,39 @@ const brandEntries = [...brandMap.entries()]
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                       <span class="pc-item-name">{it.name}</span>
                       <span class="pc-item-price">
+                        {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
+                        {it.price} ₽
+                        {it.promo && <span class="pc-badge">Акция</span>}
+                      </span>
+                    </label>
+                    <div class="pc-qty">
+                      <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
+                      <input type="number" class="pc-qty-input" value="1" min="1" max="999" inputmode="numeric" aria-label="Количество" />
+                      <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+      </details>
+    ))}
+    {groupBy === 'discount' && discountEntries.map(({ tier, total, brandEntries: tierBrandEntries }) => (
+      <details class:list={['pc-group', 'pc-group-brand', { 'pc-tier-15': tier === 'Скидка 15%', 'pc-tier-7': tier === 'Скидка 7%' }]}>
+        <summary>{tier} <span class="pc-group-count">({total})</span></summary>
+        <div class="pc-group-body">
+          {tierBrandEntries.map(([brand, list]) => (
+            <details class="pc-group pc-group-line">
+              <summary>{brand} <span class="pc-group-count">({list.length})</span></summary>
+              <ul>
+                {list.map((it) => (
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="">
+                    <label>
+                      <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                      <span class="pc-item-name">{it.name}</span>
+                      <span class="pc-item-price">
+                        {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                         {it.price} ₽
                         {it.promo && <span class="pc-badge">Акция</span>}
                       </span>
@@ -275,6 +348,21 @@ const brandEntries = [...brandMap.entries()]
     font-size: 0.85rem;
   }
 
+  /* Подкатегории «Акции» по ступени скидки — усилены цветом, чтобы 15%/7% различались с первого взгляда. */
+  .pc-tier-15 > summary,
+  .pc-tier-15 > summary .pc-group-count {
+    color: var(--color-red);
+  }
+
+  .pc-tier-15 > summary::before {
+    color: var(--color-red);
+  }
+
+  .pc-tier-7 > summary,
+  .pc-tier-7 > summary .pc-group-count {
+    color: var(--color-blue-dark);
+  }
+
   .pc-group-body {
     padding-bottom: 4px;
   }
@@ -385,6 +473,13 @@ const brandEntries = [...brandMap.entries()]
 
   .pc-promo .pc-item-price {
     color: var(--color-red-dark);
+  }
+
+  .pc-old-price {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #8a7f7a;
+    text-decoration: line-through;
   }
 
   .pc-badge {
