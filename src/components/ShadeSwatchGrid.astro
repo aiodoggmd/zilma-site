@@ -51,7 +51,8 @@ function textVarsFor(hex: string): string {
 }
 ---
 <div class="shade-grid-wrap">
-  <p class="shade-grid-hint">Нажмите на квадрат, чтобы увидеть название и цену по прайсу — {matchedCount} из {shades.length} оттенков сейчас в прайсе. Более точный цвет можно увидеть в <a href="#палитра-оттенков">палитре выше</a>.</p>
+  <p class="shade-grid-hint">Нажмите на квадрат, чтобы увидеть название и цену по прайсу — {matchedCount} из {shades.length} оттенков сейчас в прайсе.</p>
+  <p class="shade-grid-note">Более точный цвет можно увидеть в <a href="#палитра-оттенков">палитре выше</a>.</p>
   {groups.map((g) => (
     <div class="shade-group">
       <p class="shade-group-label">{g.label}</p>
@@ -171,12 +172,23 @@ function textVarsFor(hex: string): string {
   .shade-grid-hint {
     font-size: 0.85rem;
     color: #8a7f7a;
-    margin: 0 0 14px;
+    margin: 0 0 8px;
   }
 
-  .shade-grid-hint a {
-    color: var(--color-blue-dark);
+  .shade-grid-note {
+    font-size: 0.88rem;
     font-weight: 600;
+    color: var(--color-ink);
+    background: var(--color-panel);
+    border-left: 3px solid var(--color-blue-dark);
+    border-radius: 0 10px 10px 0;
+    padding: 10px 14px;
+    margin: 0 0 16px;
+  }
+
+  .shade-grid-note a {
+    color: var(--color-blue-dark);
+    text-decoration: underline;
   }
 
   .shade-group {
