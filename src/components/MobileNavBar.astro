@@ -176,20 +176,14 @@
   document.addEventListener('zilma:nav-hide', () => nav?.classList.add('nav-hidden'));
   document.addEventListener('zilma:nav-show', () => nav?.classList.remove('nav-hidden'));
 
-  // Бейдж на «Корзине» — читает items_json прямо из формы заявки (она есть только на главной;
-  // на других страницах поля нет, бейдж просто остаётся скрытым). Обновляется тем же событием
-  // zilma:cart-updated, что и сама корзина в OrderForm.astro.
+  // Бейдж на «Корзине» — читает общее хранилище корзины (window.zilmaCart, localStorage,
+  // см. CartStore.astro), поэтому теперь верно считает и на страницах статей, не только
+  // на главной. Обновляется тем же событием zilma:cart-updated, что и сама корзина в OrderForm.astro.
   const cartBadge = document.getElementById('mobile-nav-cart-badge') as HTMLElement | null;
   function updateCartBadge() {
     if (!cartBadge) return;
-    const input = document.querySelector<HTMLInputElement>('input[name="items_json"]');
-    let count = 0;
-    try {
-      const parsed = input?.value ? JSON.parse(input.value) : [];
-      count = Array.isArray(parsed) ? parsed.length : 0;
-    } catch {
-      count = 0;
-    }
+    const items = (window as any).zilmaCart?.get() ?? [];
+    const count = Array.isArray(items) ? items.length : 0;
     cartBadge.textContent = String(count);
     cartBadge.hidden = count === 0;
   }

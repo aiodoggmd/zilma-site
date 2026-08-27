@@ -1,0 +1,292 @@
+---
+// Пилотная фича (2026-08-27): кликабельные квадраты-образцы оттенков вместо голой картинки-палитры,
+// связанные с номенклатурой прайса (src/data/illumina-shades.json — код оттенка/hex/цена, собран
+// программно из официальной картинки палитры + priceItems.json, см. Site/CLAUDE.md). Начали с одной
+// линейки (Illumina — меньше всего оттенков) как пилот, не тиражируем на другие бренды без проверки.
+interface Shade {
+  code: string;
+  hex: string;
+  group: 'cool' | 'neutral' | 'warm' | 'opal';
+  row: number;
+  col: number;
+  name?: string;
+  price?: number;
+  label?: string;
+}
+
+interface Props {
+  shades: Shade[];
+}
+
+const { shades } = Astro.props;
+
+const GROUP_LABELS: Record<string, string> = {
+  cool: 'Холодные',
+  neutral: 'Нейтральные',
+  warm: 'Тёплые',
+  opal: 'Opal-Essence',
+};
+const GROUP_ORDER = ['cool', 'neutral', 'warm', 'opal'];
+
+const groups = GROUP_ORDER.map((g) => ({
+  key: g,
+  label: GROUP_LABELS[g],
+  items: shades.filter((s) => s.group === g).sort((a, b) => (g === 'opal' ? a.col - b.col : b.row - a.row || a.col - b.col)),
+})).filter((g) => g.items.length > 0);
+
+const matchedCount = shades.filter((s) => s.price != null).length;
+---
+<div class="shade-grid-wrap">
+  <p class="shade-grid-hint">Нажмите на квадрат, чтобы увидеть название и цену по прайсу — {matchedCount} из {shades.length} оттенков сейчас в прайсе.</p>
+  {groups.map((g) => (
+    <div class="shade-group">
+      <p class="shade-group-label">{g.label}</p>
+      <div class="shade-row">
+        {g.items.map((s) => (
+          <button
+            type="button"
+            class:list={['shade-swatch', { 'shade-swatch-unavailable': s.price == null }]}
+            style={`background:${s.hex}`}
+            data-code={s.code}
+            data-hex={s.hex}
+            data-name={s.name ?? ''}
+            data-price={s.price ?? ''}
+            data-label={s.label ?? ''}
+            aria-label={`${s.label ?? s.code}${s.price != null ? `, ${s.price} ₽` : ', нет в прайсе'}`}
+          >
+            <span class="shade-code">{s.label ? s.label.split(' ')[0] : s.code}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  <div class="shade-detail" id="shade-detail" hidden>
+    <span class="shade-detail-swatch" id="shade-detail-swatch"></span>
+    <div class="shade-detail-text">
+      <p class="shade-detail-name" id="shade-detail-name"></p>
+      <p class="shade-detail-sub" id="shade-detail-sub"></p>
+    </div>
+    <button type="button" class="shade-detail-cta" id="shade-detail-cta">Добавить в заявку</button>
+  </div>
+</div>
+
+<script>
+  const wrap = document.querySelector('.shade-grid-wrap');
+  const detail = document.getElementById('shade-detail');
+  const detailSwatch = document.getElementById('shade-detail-swatch');
+  const detailName = document.getElementById('shade-detail-name');
+  const detailSub = document.getElementById('shade-detail-sub');
+  const detailCta = document.getElementById('shade-detail-cta') as HTMLButtonElement | null;
+
+  interface CartItem {
+    name: string;
+    price: number;
+    qty: number;
+    brand: string;
+    promo: boolean;
+  }
+
+  function cartQtyFor(name: string): number {
+    const items: CartItem[] = (window as any).zilmaCart?.get() ?? [];
+    return items.filter((it) => it.name === name).reduce((s, it) => s + it.qty, 0);
+  }
+
+  function addToCart(name: string, price: number) {
+    const items: CartItem[] = (window as any).zilmaCart?.get() ?? [];
+    const existing = items.find((it) => it.name === name);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      items.push({ name, price, qty: 1, brand: 'WELLA', promo: false });
+    }
+    (window as any).zilmaCart?.set(items);
+  }
+
+  let activeName = '';
+
+  function refreshCtaLabel() {
+    if (!detailCta || !activeName) return;
+    const qty = cartQtyFor(activeName);
+    detailCta.textContent = qty > 0 ? `Добавить ещё (в заявке: ${qty})` : 'Добавить в заявку';
+  }
+
+  wrap?.querySelectorAll<HTMLButtonElement>('.shade-swatch').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      wrap?.querySelectorAll('.shade-swatch').forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      if (!detail || !detailSwatch || !detailName || !detailSub) return;
+      const hex = btn.dataset.hex ?? '#ccc';
+      const name = btn.dataset.name;
+      const price = btn.dataset.price;
+      const label = btn.dataset.label;
+      const code = btn.dataset.code ?? '';
+      detailSwatch.setAttribute('style', `background:${hex}`);
+      detailName.textContent = name || (label ? `${label} (${code})` : code);
+      if (price && name) {
+        detailSub.textContent = `Код ${code} · ${price} ₽`;
+        activeName = name;
+        if (detailCta) detailCta.hidden = false;
+        refreshCtaLabel();
+      } else {
+        detailSub.textContent = `Код ${code} · нет в актуальном прайсе`;
+        activeName = '';
+        if (detailCta) detailCta.hidden = true;
+      }
+      detail.hidden = false;
+    });
+  });
+
+  detailCta?.addEventListener('click', () => {
+    const activeBtn = wrap?.querySelector<HTMLButtonElement>('.shade-swatch.is-active');
+    const name = activeBtn?.dataset.name;
+    const price = parseFloat(activeBtn?.dataset.price ?? '');
+    if (!name || !Number.isFinite(price)) return;
+    addToCart(name, price);
+    refreshCtaLabel();
+  });
+
+  document.addEventListener('zilma:cart-updated', refreshCtaLabel);
+</script>
+
+<style>
+  .shade-grid-wrap {
+    margin: 20px 0;
+  }
+
+  .shade-grid-hint {
+    font-size: 0.85rem;
+    color: #8a7f7a;
+    margin: 0 0 14px;
+  }
+
+  .shade-group {
+    margin-bottom: 14px;
+  }
+
+  .shade-group-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-ink);
+    margin: 0 0 8px;
+  }
+
+  .shade-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .shade-swatch {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+
+  .shade-swatch:hover {
+    transform: translateY(-2px) scale(1.05);
+    filter: none;
+  }
+
+  .shade-swatch.is-active {
+    border-color: var(--color-blue-dark);
+    box-shadow: 0 0 0 2px var(--color-blue-dark);
+  }
+
+  .shade-swatch-unavailable {
+    opacity: 0.4;
+  }
+
+  .shade-code {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+    padding-bottom: 3px;
+    pointer-events: none;
+  }
+
+  .shade-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--color-panel);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 12px;
+  }
+
+  .shade-detail[hidden] {
+    display: none;
+  }
+
+  .shade-detail-swatch {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shade-detail-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .shade-detail-name {
+    margin: 0;
+    font-weight: 600;
+    color: var(--color-ink);
+    font-size: 0.92rem;
+  }
+
+  .shade-detail-sub {
+    margin: 2px 0 0;
+    font-size: 0.82rem;
+    color: #5c5049;
+  }
+
+  .shade-detail-cta {
+    flex: none;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-blue-dark);
+    padding: 8px 14px;
+    border: none;
+    border-radius: 999px;
+    box-shadow: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .shade-detail-cta:hover {
+    filter: brightness(1.1);
+  }
+
+  @media (max-width: 480px) {
+    .shade-swatch {
+      width: 38px;
+      height: 38px;
+    }
+    .shade-detail {
+      flex-wrap: wrap;
+    }
+    .shade-detail-cta {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

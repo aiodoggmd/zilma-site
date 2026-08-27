@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import CartStore from '../components/CartStore.astro';
 import InstallPrompt from '../components/InstallPrompt.astro';
 import MobileNavBar from '../components/MobileNavBar.astro';
 
@@ -79,6 +80,7 @@ const ogImageURL = new URL(image, Astro.site);
     <slot name="head" />
   </head>
   <body>
+    <CartStore />
     <Analytics />
     <SpeedInsights />
     <slot />

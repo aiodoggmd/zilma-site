@@ -502,20 +502,21 @@ const { framed = false } = Astro.props;
     input.style.width = len <= 1 ? '24px' : `${len + 1}ch`;
   }
 
+  // Корзина живёт в localStorage (window.zilmaCart, см. CartStore.astro) — переживает переход
+  // между страницами (напр. клик по образцу оттенка в статье, потом заявка на главной).
+  // Скрытое поле items_json здесь остаётся только как источник данных для самой отправки формы —
+  // синхронизируется из хранилища при каждом изменении, но больше не источник правды само по себе.
   function readCartItems(): CartItem[] {
-    try {
-      const parsed = JSON.parse(itemsInput?.value || '[]');
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
+    return (window as any).zilmaCart?.get() ?? [];
   }
 
   function writeCartItems(items: CartItem[]) {
+    (window as any).zilmaCart?.set(items);
+  }
+
+  function syncHiddenInputFromStore() {
+    const items = readCartItems();
     if (itemsInput) itemsInput.value = items.length ? JSON.stringify(items) : '';
-    // Единая точка правды об изменении корзины — на это событие подписан не только renderCart()
-    // здесь же, но и бейдж с количеством товаров в нижней мобильной плашке (MobileNavBar.astro).
-    document.dispatchEvent(new CustomEvent('zilma:cart-updated'));
   }
 
   function renderCart() {
@@ -622,7 +623,14 @@ const { framed = false } = Astro.props;
     setQty(Number(input.dataset.index), parseInt(input.value, 10));
   });
 
-  document.addEventListener('zilma:cart-updated', renderCart);
+  document.addEventListener('zilma:cart-updated', () => {
+    syncHiddenInputFromStore();
+    renderCart();
+  });
+  // Хранилище могло быть заполнено ещё до загрузки этой страницы (напр. добавили товар
+  // на странице статьи) — синхронизируем сразу при открытии, не дожидаясь события.
+  syncHiddenInputFromStore();
+  renderCart();
   nameInput?.addEventListener('input', updateSubmitState);
   contactInput?.addEventListener('input', updateSubmitState);
   updateSubmitState();
@@ -733,7 +741,7 @@ const { framed = false } = Astro.props;
       form.reset();
       setFile(null);
       messengerChips?.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
-      document.dispatchEvent(new CustomEvent('zilma:cart-updated'));
+      (window as any).zilmaCart?.set([]);
     } catch (err) {
       statusEl.textContent = err instanceof Error ? err.message : 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.';
       statusEl.className = 'status err';

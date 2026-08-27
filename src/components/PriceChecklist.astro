@@ -690,22 +690,11 @@ if (groupBy === 'discount') {
       });
     if (!selected.length) return false;
 
-    const itemsInput = document.querySelector<HTMLInputElement>('#order-form-el input[name="items_json"]');
-    let combined: CommittedItem[] = selected;
-    if (itemsInput) {
-      let existing: CommittedItem[] = [];
-      try {
-        existing = JSON.parse(itemsInput.value || '[]');
-      } catch {
-        existing = [];
-      }
-      combined = [...existing, ...selected];
-      itemsInput.value = JSON.stringify(combined);
-    }
-
-    // Список/суммой в виджете заявки теперь занимается сам OrderForm.astro (там же и
-    // удаление позиций) - просто сообщаем ему, что items_json обновился.
-    document.dispatchEvent(new CustomEvent('zilma:cart-updated'));
+    // Корзина — в общем хранилище (window.zilmaCart, localStorage, см. CartStore.astro),
+    // не в скрытом поле формы напрямую — переживает переход между страницами.
+    const existing: CommittedItem[] = (window as any).zilmaCart?.get() ?? [];
+    const combined = [...existing, ...selected];
+    (window as any).zilmaCart?.set(combined);
 
     checks.forEach((c) => {
       c.checked = false;

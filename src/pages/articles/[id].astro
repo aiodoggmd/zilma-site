@@ -4,6 +4,8 @@
 export const prerender = true;
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShadeSwatchGrid from '../../components/ShadeSwatchGrid.astro';
+import illuminaShades from '../../data/illumina-shades.json';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -72,6 +74,12 @@ const articleLd = {
       <div class="prose">
         <Content />
       </div>
+      {article.id === '2026-08-13-illumina-color' && (
+        <div class="prose">
+          <h2>Интерактивная палитра — с ценами по прайсу</h2>
+          <ShadeSwatchGrid shades={illuminaShades} />
+        </div>
+      )}
       <a href="/" class="back back-bottom" aria-label="Все статьи">←</a>
     </article>
   </div>
