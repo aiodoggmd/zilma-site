@@ -28,6 +28,12 @@ const { framed = false } = Astro.props;
         <input type="hidden" name="messenger" />
         <input type="hidden" name="items_json" />
 
+        <div class="cart" id="order-cart" hidden>
+          <span class="cart-label">Выбранные товары</span>
+          <ul class="cart-list" id="cart-list"></ul>
+          <div class="cart-total" id="cart-total"></div>
+        </div>
+
         <label class="file-drop" id="file-drop" for="attachment-input">
           <input type="file" name="attachment" id="attachment-input" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" />
           <span class="file-hint" id="file-hint">Прикрепить файл (фото, скриншот, документ) — до 4 МБ, или перетащите сюда</span>
@@ -39,7 +45,6 @@ const { framed = false } = Astro.props;
 
         <div class="submit-row">
           <button type="submit" disabled>Отправить заявку</button>
-          <span class="items-summary" hidden></span>
           <span class="status" role="status" aria-live="polite"></span>
         </div>
       </form>
@@ -309,13 +314,146 @@ const { framed = false } = Astro.props;
   .status.ok { color: var(--color-blue-dark); }
   .status.err { color: var(--color-red); }
 
-  .items-summary {
-    font-size: 0.9rem;
-    color: var(--color-red);
+  .cart {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 10px;
+    background: var(--color-panel);
+    padding: 12px 14px;
   }
 
-  .items-summary[hidden] {
+  .cart[hidden] {
     display: none;
+  }
+
+  .cart-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #5c5049;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .cart-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 180px;
+    overflow-y: auto;
+  }
+
+  .cart-total {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-red);
+    border-top: 1px solid var(--color-panel-line);
+    padding-top: 8px;
+  }
+</style>
+
+<!--
+  Отдельный is:global блок: строки корзины (.cart-item и всё внутри) создаются в script'е
+  через document.createElement, а не в разметке компонента — Astro не может проскоупить
+  их атрибутом data-astro-cid, поэтому обычный <style> здесь их бы просто не находил.
+-->
+<style is:global>
+  .cart-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.88rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-panel-line);
+  }
+
+  .cart-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .cart-item-name {
+    color: var(--color-ink);
+  }
+
+  .cart-item-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .cart-item-price {
+    flex: none;
+    min-width: 0;
+    color: #5c5049;
+    white-space: nowrap;
+  }
+
+  .cart-item-qty {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cart-item-sq-btn {
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid var(--color-panel-line);
+    background: #fff;
+    color: var(--color-ink);
+    font-size: 0.8rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-item-sq-btn:hover {
+    background: var(--color-panel);
+    filter: none;
+  }
+
+  .cart-item-sq-btn.cart-item-remove {
+    color: var(--color-red);
+    border-color: var(--color-red);
+  }
+
+  .cart-item-sq-btn.cart-item-remove:hover {
+    background: var(--color-red);
+    color: #fff;
+  }
+
+  .cart-item-qty-input {
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    text-align: center;
+    font: inherit;
+    font-size: 0.85rem;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 6px;
+    padding: 0 2px;
+    color: var(--color-ink);
+    background: #fff;
+    -moz-appearance: textfield;
+  }
+
+  .cart-item-qty-input::-webkit-outer-spin-button,
+  .cart-item-qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 </style>
 
@@ -333,6 +471,158 @@ const { framed = false } = Astro.props;
     if (!button) return;
     button.disabled = !(nameInput?.value.trim() && contactInput?.value.trim());
   }
+
+  interface CartItem {
+    name: string;
+    price: number;
+    qty: number;
+    brand: string;
+    promo: boolean;
+  }
+
+  // Корзина — список товаров, отмеченных в окнах Каталог/Акции (PriceChecklist.astro пишет их
+  // в items_json и шлёт событие zilma:cart-updated, сюда же — сам виджет заявки, это последний
+  // шаг оформления, тут и должно быть видно, что именно заказывается, с возможностью убрать позицию.
+  const itemsInput = form?.querySelector<HTMLInputElement>('input[name="items_json"]');
+  const cartEl = document.getElementById('order-cart') as HTMLElement | null;
+  const cartList = document.getElementById('cart-list') as HTMLElement | null;
+  const cartTotal = document.getElementById('cart-total') as HTMLElement | null;
+
+  // Название товара в 1С обычно заканчивается артикулом (одним числом или парой через "/") —
+  // в узкой карточке заявки это слипается с ценой в нечитаемую кашу из цифр, поэтому в корзине
+  // показываем название без него. В items_json и в самой заявке артикул остаётся как есть.
+  function stripArticle(name: string): string {
+    return name.replace(/\s+\d{3,8}(?:\/\d{3,8})?\.?$/, '').trim();
+  }
+
+  // Поле кол-ва по умолчанию — тот же квадрат 24×24, что у соседних кнопок, расширяется
+  // только когда цифр становится больше, чем помещается в квадрат (2-3 цифры).
+  function sizeQtyInput(input: HTMLInputElement) {
+    const len = String(input.value).length;
+    input.style.width = len <= 1 ? '24px' : `${len + 1}ch`;
+  }
+
+  function readCartItems(): CartItem[] {
+    try {
+      const parsed = JSON.parse(itemsInput?.value || '[]');
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function writeCartItems(items: CartItem[]) {
+    if (itemsInput) itemsInput.value = items.length ? JSON.stringify(items) : '';
+    // Единая точка правды об изменении корзины — на это событие подписан не только renderCart()
+    // здесь же, но и бейдж с количеством товаров в нижней мобильной плашке (MobileNavBar.astro).
+    document.dispatchEvent(new CustomEvent('zilma:cart-updated'));
+  }
+
+  function renderCart() {
+    if (!cartEl || !cartList || !cartTotal) return;
+    const items = readCartItems();
+    if (!items.length) {
+      cartEl.hidden = true;
+      cartList.replaceChildren();
+      return;
+    }
+    cartEl.hidden = false;
+    cartList.replaceChildren(
+      ...items.map((it, i) => {
+        const displayName = stripArticle(it.name);
+        const li = document.createElement('li');
+        li.className = 'cart-item';
+        const nameEl = document.createElement('span');
+        nameEl.className = 'cart-item-name';
+        nameEl.textContent = displayName;
+        const priceEl = document.createElement('span');
+        priceEl.className = 'cart-item-price';
+        priceEl.textContent = `${it.price.toFixed(2)} ₽`;
+
+        const qtyBox = document.createElement('div');
+        qtyBox.className = 'cart-item-qty';
+        const qtyInput = document.createElement('input');
+        qtyInput.type = 'number';
+        qtyInput.className = 'cart-item-qty-input';
+        qtyInput.min = '1';
+        qtyInput.max = '999';
+        qtyInput.inputMode = 'numeric';
+        qtyInput.value = String(it.qty);
+        qtyInput.dataset.index = String(i);
+        qtyInput.setAttribute('aria-label', `Количество «${displayName}»`);
+        sizeQtyInput(qtyInput);
+        qtyInput.addEventListener('input', () => sizeQtyInput(qtyInput));
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'cart-item-sq-btn cart-item-remove';
+        removeBtn.dataset.index = String(i);
+        removeBtn.setAttribute('aria-label', `Убрать «${displayName}»`);
+        removeBtn.textContent = '✕';
+
+        const plusBtn = document.createElement('button');
+        plusBtn.type = 'button';
+        plusBtn.className = 'cart-item-sq-btn';
+        plusBtn.dataset.index = String(i);
+        plusBtn.dataset.dir = '1';
+        plusBtn.setAttribute('aria-label', 'Больше');
+        plusBtn.textContent = '+';
+
+        const minusBtn = document.createElement('button');
+        minusBtn.type = 'button';
+        minusBtn.className = 'cart-item-sq-btn';
+        minusBtn.dataset.index = String(i);
+        minusBtn.dataset.dir = '-1';
+        minusBtn.setAttribute('aria-label', 'Меньше');
+        minusBtn.textContent = '−';
+
+        qtyBox.append(qtyInput, removeBtn, plusBtn, minusBtn);
+
+        const controlsRow = document.createElement('div');
+        controlsRow.className = 'cart-item-controls';
+        controlsRow.append(priceEl, qtyBox);
+
+        li.append(nameEl, controlsRow);
+        return li;
+      })
+    );
+    const total = items.reduce((s, it) => s + it.price * it.qty, 0);
+    cartTotal.textContent = `Выбрано товаров: ${items.length}, на сумму ${total.toFixed(2)} ₽`;
+  }
+
+  function setQty(idx: number, qty: number) {
+    const items = readCartItems();
+    if (!items[idx]) return;
+    items[idx].qty = Math.max(1, Math.min(999, Math.round(qty) || 1));
+    writeCartItems(items);
+  }
+
+  cartList?.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const removeBtn = target.closest<HTMLButtonElement>('.cart-item-remove');
+    if (removeBtn) {
+      const idx = Number(removeBtn.dataset.index);
+      const items = readCartItems();
+      items.splice(idx, 1);
+      writeCartItems(items);
+      return;
+    }
+    const qtyBtn = target.closest<HTMLButtonElement>('.cart-item-sq-btn:not(.cart-item-remove)');
+    if (qtyBtn) {
+      const idx = Number(qtyBtn.dataset.index);
+      const dir = Number(qtyBtn.dataset.dir) || 0;
+      const items = readCartItems();
+      setQty(idx, (items[idx]?.qty ?? 1) + dir);
+    }
+  });
+
+  cartList?.addEventListener('change', (e) => {
+    const input = (e.target as HTMLElement).closest<HTMLInputElement>('.cart-item-qty-input');
+    if (!input) return;
+    setQty(Number(input.dataset.index), parseInt(input.value, 10));
+  });
+
+  document.addEventListener('zilma:cart-updated', renderCart);
   nameInput?.addEventListener('input', updateSubmitState);
   contactInput?.addEventListener('input', updateSubmitState);
   updateSubmitState();
@@ -443,8 +733,7 @@ const { framed = false } = Astro.props;
       form.reset();
       setFile(null);
       messengerChips?.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
-      const summaryEl = form.querySelector<HTMLElement>('.items-summary');
-      if (summaryEl) summaryEl.hidden = true;
+      document.dispatchEvent(new CustomEvent('zilma:cart-updated'));
     } catch (err) {
       statusEl.textContent = err instanceof Error ? err.message : 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.';
       statusEl.className = 'status err';

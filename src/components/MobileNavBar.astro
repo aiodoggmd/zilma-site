@@ -34,6 +34,17 @@
     </span>
     <span class="mobile-nav-label">Акции</span>
   </a>
+  <a href="/#order" class="mobile-nav-item">
+    <span class="mobile-nav-icon">
+      <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none" />
+        <circle cx="18" cy="20" r="1.4" fill="currentColor" stroke="none" />
+        <path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.5L21 8H6" />
+      </svg>
+      <span class="mobile-nav-badge" id="mobile-nav-cart-badge" hidden>0</span>
+    </span>
+    <span class="mobile-nav-label">Корзина</span>
+  </a>
   <a href="/#info" class="mobile-nav-item">
     <span class="mobile-nav-icon">
       <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -111,6 +122,7 @@
   }
 
   .mobile-nav-icon {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,6 +133,27 @@
     color: var(--color-red);
     box-shadow: var(--shadow-sm);
     transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .mobile-nav-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--color-red);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    box-shadow: 0 0 0 2px #fff;
+  }
+
+  .mobile-nav-badge[hidden] {
+    display: none;
   }
 
   .mobile-nav-label {
@@ -142,4 +175,24 @@
   const nav = document.querySelector<HTMLElement>('.mobile-nav');
   document.addEventListener('zilma:nav-hide', () => nav?.classList.add('nav-hidden'));
   document.addEventListener('zilma:nav-show', () => nav?.classList.remove('nav-hidden'));
+
+  // Бейдж на «Корзине» — читает items_json прямо из формы заявки (она есть только на главной;
+  // на других страницах поля нет, бейдж просто остаётся скрытым). Обновляется тем же событием
+  // zilma:cart-updated, что и сама корзина в OrderForm.astro.
+  const cartBadge = document.getElementById('mobile-nav-cart-badge') as HTMLElement | null;
+  function updateCartBadge() {
+    if (!cartBadge) return;
+    const input = document.querySelector<HTMLInputElement>('input[name="items_json"]');
+    let count = 0;
+    try {
+      const parsed = input?.value ? JSON.parse(input.value) : [];
+      count = Array.isArray(parsed) ? parsed.length : 0;
+    } catch {
+      count = 0;
+    }
+    cartBadge.textContent = String(count);
+    cartBadge.hidden = count === 0;
+  }
+  document.addEventListener('zilma:cart-updated', updateCartBadge);
+  updateCartBadge();
 </script>

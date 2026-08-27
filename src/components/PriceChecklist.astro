@@ -600,12 +600,9 @@ const brandEntries = [...brandMap.entries()]
       itemsInput.value = JSON.stringify(combined);
     }
 
-    const summaryEl = document.querySelector<HTMLElement>('#order-form-el .items-summary');
-    if (summaryEl) {
-      const total = combined.reduce((s, it) => s + it.price * it.qty, 0);
-      summaryEl.textContent = `Выбрано товаров: ${combined.length}, на сумму ${total.toFixed(2)} ₽`;
-      summaryEl.hidden = false;
-    }
+    // Список/суммой в виджете заявки теперь занимается сам OrderForm.astro (там же и
+    // удаление позиций) - просто сообщаем ему, что items_json обновился.
+    document.dispatchEvent(new CustomEvent('zilma:cart-updated'));
 
     checks.forEach((c) => {
       c.checked = false;
