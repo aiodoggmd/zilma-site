@@ -1,0 +1,318 @@
+[
+  {
+    "code": "010/00",
+    "hex": "#d4d3c4",
+    "group": "neutral",
+    "row": 0,
+    "col": 0,
+    "name": "SHINEFINITY 10/0 Светлый блондин натуральный 60мл 10/0",
+    "price": 715
+  },
+  {
+    "code": "010/6",
+    "hex": "#eaebe5",
+    "group": "cool",
+    "row": 0,
+    "col": 1,
+    "name": "SHINEFINITY 10/6 Светлый блондин лавандовый 60мл 10/6",
+    "price": 715
+  },
+  {
+    "code": "010/8",
+    "hex": "#e4eae4",
+    "group": "cool",
+    "row": 0,
+    "col": 2
+  },
+  {
+    "code": "09/36",
+    "hex": "#f3efe1",
+    "group": "warm",
+    "row": 0,
+    "col": 3,
+    "name": "SHINEFINITY 09/36 Ванильная глазурь 60мл 9/36",
+    "price": 664.95
+  },
+  {
+    "code": "09/73",
+    "hex": "#ecdccb",
+    "group": "warm",
+    "row": 0,
+    "col": 4,
+    "name": "SHINEFINITY 09/73 Карамельное молоко 60мл 9/73",
+    "price": 715
+  },
+  {
+    "code": "09/02",
+    "hex": "#bdb4ac",
+    "group": "neutral",
+    "row": 0,
+    "col": 5,
+    "name": "SHINEFINITY 09/02 Пустынный шалфей 60мл 9/02",
+    "price": 715
+  },
+  {
+    "code": "09/05",
+    "hex": "#f0d8d0",
+    "group": "neutral",
+    "row": 0,
+    "col": 6
+  },
+  {
+    "code": "09/07",
+    "hex": "#eaddda",
+    "group": "neutral",
+    "row": 0,
+    "col": 7
+  },
+  {
+    "code": "09/13",
+    "hex": "#f6f3ea",
+    "group": "cool",
+    "row": 0,
+    "col": 8
+  },
+  {
+    "code": "09/61",
+    "hex": "#d7c9ce",
+    "group": "cool",
+    "row": 0,
+    "col": 9
+  },
+  {
+    "code": "09/65",
+    "hex": "#e6d0d7",
+    "group": "cool",
+    "row": 0,
+    "col": 10,
+    "name": "SHINEFINITY 09/65 Розовое сияние 60мл 9/65",
+    "price": 715
+  },
+  {
+    "code": "09/81",
+    "hex": "#d1cdd3",
+    "group": "cool",
+    "row": 0,
+    "col": 11
+  },
+  {
+    "code": "08/34",
+    "hex": "#da9987",
+    "group": "warm",
+    "row": 0,
+    "col": 12
+  },
+  {
+    "code": "08/38",
+    "hex": "#e0cdbd",
+    "group": "warm",
+    "row": 0,
+    "col": 13,
+    "name": "SHINEFINITY 08/38 Медовое латте 60мл 8/38",
+    "price": 715
+  },
+  {
+    "code": "08/0",
+    "hex": "#cac0b2",
+    "group": "neutral",
+    "row": 0,
+    "col": 14,
+    "name": "SHINEFINITY 08/0 Натуральный Latte 60мл 8/0",
+    "price": 715
+  },
+  {
+    "code": "08/8",
+    "hex": "#f2f7fa",
+    "group": "cool",
+    "row": 0,
+    "col": 15
+  },
+  {
+    "code": "08/98",
+    "hex": "#d5d1d4",
+    "group": "cool",
+    "row": 0,
+    "col": 16,
+    "name": "SHINEFINITY 08/98 Серебряный жемчуг 60мл 8/98",
+    "price": 715
+  },
+  {
+    "code": "07/34",
+    "hex": "#c9917a",
+    "group": "warm",
+    "row": 0,
+    "col": 17
+  },
+  {
+    "code": "07/12",
+    "hex": "#919090",
+    "group": "cool",
+    "row": 0,
+    "col": 18,
+    "name": "SHINEFINITY 07/12 Матовый блонд 60мл 7/12",
+    "price": 715
+  },
+  {
+    "code": "07/13",
+    "hex": "#e2d2cc",
+    "group": "cool",
+    "row": 0,
+    "col": 19,
+    "name": "SHINEFINITY 07/13 Тоффи-крем 60мл 7/13",
+    "price": 715
+  },
+  {
+    "code": "07/59",
+    "hex": "#b88982",
+    "group": "cool",
+    "row": 0,
+    "col": 20
+  },
+  {
+    "code": "07/75",
+    "hex": "#bb9692",
+    "group": "cool",
+    "row": 0,
+    "col": 21
+  },
+  {
+    "code": "07/81",
+    "hex": "#9b999e",
+    "group": "cool",
+    "row": 0,
+    "col": 22,
+    "name": "SHINEFINITY 07/81 Дымчатый опал 60мл 7/81",
+    "price": 715
+  },
+  {
+    "code": "06/43",
+    "hex": "#d37f67",
+    "group": "warm",
+    "row": 0,
+    "col": 23
+  },
+  {
+    "code": "06/73",
+    "hex": "#8e766d",
+    "group": "warm",
+    "row": 0,
+    "col": 24
+  },
+  {
+    "code": "06/0",
+    "hex": "#8f8880",
+    "group": "neutral",
+    "row": 0,
+    "col": 25,
+    "name": "SHINEFINITY 06/0 Натуральный Brandy 60мл 6/0",
+    "price": 715
+  },
+  {
+    "code": "06/02",
+    "hex": "#9f9691",
+    "group": "neutral",
+    "row": 0,
+    "col": 26,
+    "name": "SHINEFINITY 06/02 Темный шалфей 60мл 6/02",
+    "price": 715
+  },
+  {
+    "code": "06/07",
+    "hex": "#908986",
+    "group": "neutral",
+    "row": 0,
+    "col": 27,
+    "name": "SHINEFINITY 06/07 Грецкий орех 60мл 6/07",
+    "price": 715
+  },
+  {
+    "code": "06/6",
+    "hex": "#997889",
+    "group": "cool",
+    "row": 0,
+    "col": 28
+  },
+  {
+    "code": "06/71",
+    "hex": "#78706d",
+    "group": "cool",
+    "row": 0,
+    "col": 29,
+    "name": "SHINEFINITY 06/71 Ледяной орех 60мл 6/71",
+    "price": 664.95
+  },
+  {
+    "code": "05/37",
+    "hex": "#826e67",
+    "group": "warm",
+    "row": 0,
+    "col": 30
+  },
+  {
+    "code": "05/43",
+    "hex": "#bf725c",
+    "group": "warm",
+    "row": 0,
+    "col": 31
+  },
+  {
+    "code": "05/98",
+    "hex": "#858387",
+    "group": "cool",
+    "row": 0,
+    "col": 32
+  },
+  {
+    "code": "04/0",
+    "hex": "#353131",
+    "group": "neutral",
+    "row": 0,
+    "col": 33,
+    "name": "SHINEFINITY 04/0 Натуральный Espresso 60мл 4/0",
+    "price": 715
+  },
+  {
+    "code": "04/07",
+    "hex": "#7a6e68",
+    "group": "neutral",
+    "row": 0,
+    "col": 34,
+    "name": "SHINEFINITY 04/07 Горький шоколад 60мл 4/07",
+    "price": 664.95
+  },
+  {
+    "code": "04/12",
+    "hex": "#676869",
+    "group": "cool",
+    "row": 0,
+    "col": 35
+  },
+  {
+    "code": "04/65",
+    "hex": "#9d6d78",
+    "group": "cool",
+    "row": 0,
+    "col": 36
+  },
+  {
+    "code": "00/00",
+    "hex": "#d5d6cd",
+    "group": "booster",
+    "row": 0,
+    "col": 37
+  },
+  {
+    "code": "00/89",
+    "hex": "#a7abc2",
+    "group": "booster",
+    "row": 0,
+    "col": 38
+  },
+  {
+    "code": "00/66",
+    "hex": "#6f5d6d",
+    "group": "booster",
+    "row": 0,
+    "col": 39
+  }
+]

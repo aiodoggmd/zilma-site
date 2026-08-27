@@ -7,16 +7,28 @@
 // Все места, что раньше писали/читали items_json напрямую (OrderForm.astro,
 // PriceChecklist.astro, MobileNavBar.astro, ShadeSwatchGrid.astro), теперь ходят
 // через window.zilmaCart.get()/.set() — единственный источник правды.
+//
+// Корзина живёт ограниченное время (TTL), а не бессрочно — иначе клиент, который
+// один раз что-то выбрал (напр. потыкал палитру), а потом зашёл на сайт заново через
+// день/неделю оформлять СОВСЕМ ДРУГОЙ заказ, рискует не заметить старые позиции в
+// заявке и отправить лишнее (реальный кейс, поймано пользователем 2026-08-27).
 ---
 <script is:inline>
   (function () {
     var KEY = 'zilma-cart';
+    var TTL_MS = 6 * 60 * 60 * 1000; // 6 часов — с запасом на одну сессию заказа, но не переживает "зашёл в другой раз"
 
     function get() {
       try {
         var raw = localStorage.getItem(KEY);
-        var parsed = raw ? JSON.parse(raw) : [];
-        return Array.isArray(parsed) ? parsed : [];
+        if (!raw) return [];
+        var parsed = JSON.parse(raw);
+        if (!parsed || !Array.isArray(parsed.items)) return [];
+        if (Date.now() - (parsed.updatedAt || 0) > TTL_MS) {
+          localStorage.removeItem(KEY);
+          return [];
+        }
+        return parsed.items;
       } catch (e) {
         return [];
       }
@@ -24,7 +36,7 @@
 
     function set(items) {
       try {
-        localStorage.setItem(KEY, JSON.stringify(items || []));
+        localStorage.setItem(KEY, JSON.stringify({ items: items || [], updatedAt: Date.now() }));
       } catch (e) {}
       document.dispatchEvent(new CustomEvent('zilma:cart-updated'));
     }
