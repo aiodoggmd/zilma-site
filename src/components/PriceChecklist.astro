@@ -802,11 +802,28 @@ if (groupBy === 'discount') {
     );
   });
 
+  // Точку/запятую в номере оттенка приравниваем к слэшу — "wella 1.9" должно находить
+  // товар с "1/9" в названии, люди печатают код оттенка кто как привык.
+  function normalizeSearch(s: string): string {
+    return s.toLowerCase().replace(/[.,]/g, '/');
+  }
+
   document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((root) => {
     const search = root.querySelector<HTMLInputElement>('.pc-search');
     const items = [...root.querySelectorAll<HTMLLIElement>('.pc-item')];
     const groups = [...root.querySelectorAll<HTMLDetailsElement>('.pc-group')];
     const checks = [...root.querySelectorAll<HTMLInputElement>('.pc-check')];
+    // Индекс на каждый товар — считаем один раз, не при каждом нажатии клавиши.
+    const searchIndex = new Map<HTMLLIElement, { name: string; brand: string; line: string }>(
+      items.map((li) => [
+        li,
+        {
+          name: normalizeSearch(li.dataset.name ?? ''),
+          brand: normalizeSearch(li.dataset.brand ?? ''),
+          line: normalizeSearch(li.dataset.line ?? ''),
+        },
+      ])
+    );
     const submitBtn = root.querySelector<HTMLButtonElement>('.pc-submit');
     const countEl = root.querySelector<HTMLElement>('[data-count]');
     const noResults = root.querySelector<HTMLElement>('.pc-no-results');
@@ -866,22 +883,25 @@ if (groupBy === 'discount') {
     });
 
     search?.addEventListener('input', () => {
-      const q = search.value.trim().toLowerCase();
+      // Каждое слово запроса ищем по отдельности (не всю строку целиком) — так "wella 1.9"
+      // находит товар, у которого "wella" в бренде, а "1/9" (точка = слэш) — в названии,
+      // даже если это не идёт подряд как в запросе.
+      const tokens = normalizeSearch(search.value.trim()).split(/\s+/).filter(Boolean);
       let anyVisibleTotal = false;
       groups.forEach((g) => {
         const groupItems = [...g.querySelectorAll<HTMLLIElement>('.pc-item')];
         let anyVisible = false;
         groupItems.forEach((li) => {
+          const entry = searchIndex.get(li);
           const match =
-            !q ||
-            (li.dataset.name ?? '').includes(q) ||
-            (li.dataset.brand ?? '').includes(q) ||
-            (li.dataset.line ?? '').includes(q);
+            tokens.length === 0 ||
+            !entry ||
+            tokens.every((t) => entry.name.includes(t) || entry.brand.includes(t) || entry.line.includes(t));
           li.hidden = !match;
           if (match) anyVisible = true;
         });
         g.hidden = !anyVisible;
-        g.open = q.length > 0 && anyVisible;
+        g.open = tokens.length > 0 && anyVisible;
         if (anyVisible) anyVisibleTotal = true;
       });
       if (noResults) noResults.hidden = anyVisibleTotal || items.length === 0;
