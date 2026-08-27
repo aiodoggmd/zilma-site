@@ -13,6 +13,7 @@
 """
 import json
 import re
+from datetime import date, timedelta
 from pathlib import Path
 
 import openpyxl
@@ -25,6 +26,13 @@ OUT_JSON = ROOT / "src" / "data" / "priceItems.json"
 # скидкой, старая цена иначе теряется. Файла может не быть (напр. кто-то прогнал этот
 # скрипт отдельно, без пересборки прайса) - тогда просто не добавляем oldPrice/discountPct.
 PROMO_META_PATH = ROOT / "Price" / "promo-meta.json"
+# Ведётся В РЕПОЗИТОРИИ (не в Price/, который локальный и в .gitignore) - в отличие от
+# промо-сайдкара, это НАКАПЛИВАЕМЫЙ журнал "когда товар впервые встретился в прайсе",
+# должен пережить любую пересборку и не потеряться со сменой машины/сессии. Формат:
+# {имя_товара: "YYYY-MM-DD" первого появления}. НЕ удалять и не редактировать руками -
+# один раз потерянный файл заставит все текущие товары ошибочно выглядеть "новыми".
+FIRST_SEEN_PATH = ROOT / "src" / "data" / "price-first-seen.json"
+NEW_WINDOW_DAYS = 14
 
 BRAND_FILL_INDEX = 8
 LINE_FILL_INDEX = 22
@@ -83,6 +91,16 @@ def main() -> None:
         promo_meta = json.loads(PROMO_META_PATH.read_text(encoding="utf-8"))
     else:
         print(f"ВНИМАНИЕ: сайдкар {PROMO_META_PATH} не найден - акционные товары останутся без oldPrice/discountPct.")
+
+    today = date.today()
+    is_bootstrap = not FIRST_SEEN_PATH.exists()
+    first_seen = {} if is_bootstrap else json.loads(FIRST_SEEN_PATH.read_text(encoding="utf-8"))
+    # При самом первом запуске (файла ещё нет) весь текущий прайс - не "новинки", а то,
+    # что уже давно продаётся, просто мы только сейчас начали это отслеживать. Ставим
+    # дату заведомо за пределами окна NEW_WINDOW_DAYS, а не сегодняшнюю.
+    bootstrap_date = (today - timedelta(days=NEW_WINDOW_DAYS + 1)).isoformat()
+    if is_bootstrap:
+        print(f"Первый запуск - журнал новинок {FIRST_SEEN_PATH} создаётся, текущий прайс новинками не считается.")
 
     wb = openpyxl.load_workbook(SRC_XLSX, data_only=True)
     ws = wb.active
@@ -151,12 +169,23 @@ def main() -> None:
                 old_price = round(float(meta["old_price"]), 2)
                 item["oldPrice"] = int(old_price) if old_price.is_integer() else old_price
                 item["discountPct"] = meta["discount"]
+
+        seen_date = first_seen.get(clean_name)
+        if seen_date is None:
+            seen_date = bootstrap_date if is_bootstrap else today.isoformat()
+            first_seen[clean_name] = seen_date
+        if (today - date.fromisoformat(seen_date)).days <= NEW_WINDOW_DAYS:
+            item["isNew"] = True
+
         items.append(item)
+
+    FIRST_SEEN_PATH.write_text(json.dumps(first_seen, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
 
     OUT_JSON.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
     promo_count = sum(1 for i in items if i["promo"])
     with_old_price = sum(1 for i in items if i.get("oldPrice") is not None)
-    print(f"Сохранено {len(items)} товаров ({promo_count} акционных, из них {with_old_price} со старой ценой) -> {OUT_JSON}")
+    new_count = sum(1 for i in items if i.get("isNew"))
+    print(f"Сохранено {len(items)} товаров ({promo_count} акционных, из них {with_old_price} со старой ценой; {new_count} новинок за последние {NEW_WINDOW_DAYS} дн.) -> {OUT_JSON}")
     if promo_count and with_old_price < promo_count:
         print(f"ВНИМАНИЕ: {promo_count - with_old_price} акционных товаров не нашлись в сайдкаре по имени - проверить.")
     if unknown_headers:

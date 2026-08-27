@@ -8,6 +8,7 @@ interface Item {
   promo: boolean;
   oldPrice?: number;
   discountPct?: number;
+  isNew?: boolean;
 }
 
 interface Props {
@@ -121,6 +122,7 @@ if (groupBy === 'discount') {
                       {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                       {it.price} ₽
                       {it.promo && <span class="pc-badge">Акция</span>}
+                      {it.isNew && <span class="pc-badge pc-badge-new">Нов</span>}
                     </span>
                   </label>
                   <div class="pc-qty">
@@ -145,6 +147,7 @@ if (groupBy === 'discount') {
                         {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                         {it.price} ₽
                         {it.promo && <span class="pc-badge">Акция</span>}
+                        {it.isNew && <span class="pc-badge pc-badge-new">Нов</span>}
                       </span>
                     </label>
                     <div class="pc-qty">
@@ -177,6 +180,7 @@ if (groupBy === 'discount') {
                         {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                         {it.price} ₽
                         {it.promo && <span class="pc-badge">Акция</span>}
+                        {it.isNew && <span class="pc-badge pc-badge-new">Нов</span>}
                       </span>
                     </label>
                     <div class="pc-qty">
@@ -490,6 +494,10 @@ if (groupBy === 'discount') {
     color: #fff;
     padding: 2px 6px;
     border-radius: 999px;
+  }
+
+  .pc-badge-new {
+    background: var(--color-blue-dark);
   }
 
   .pc-no-results {
