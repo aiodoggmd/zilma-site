@@ -121,6 +121,28 @@ const ogImageURL = new URL(image, Astro.site);
         navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister()));
         if ('caches' in window) caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
       }
+
+      // Реальный баг с телефона (2026-08-27): если свернуть сайт (браузер или установленное
+      // приложение) на несколько минут и вернуться — страница «мёртвая», ничего не реагирует ни
+      // на статьях, ни в каталоге; помогало только жёстко закрыть вкладку/приложение из диспетчера
+      // и открыть заново. Похоже на стандартную заморозку фоновой вкладки мобильным браузером
+      // (Chrome по спецификации Page Lifecycle замораживает скрытые вкладки примерно через 5 минут,
+      // экономя батарею/память) — иногда не отмерзает нормально сама. Раз пользователь и так лечит
+      // это принудительным перезапуском — делаем то же самое сами, автоматически: если страница
+      // была скрыта дольше порога, при возврате видимости просто перезагружаем её. Корзина (главная
+      // ценность на этой странице) переживёт — она в localStorage (CartStore.astro), не в памяти
+      // вкладки; потеряться может только незаполненный черновик текста в полях имени/телефона.
+      const HIDDEN_RELOAD_THRESHOLD_MS = 5 * 60 * 1000;
+      let hiddenAt = 0;
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          hiddenAt = Date.now();
+        } else if (document.visibilityState === 'visible' && hiddenAt) {
+          const hiddenMs = Date.now() - hiddenAt;
+          hiddenAt = 0;
+          if (hiddenMs > HIDDEN_RELOAD_THRESHOLD_MS) location.reload();
+        }
+      });
     </script>
   </body>
 </html>

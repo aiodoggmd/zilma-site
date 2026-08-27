@@ -103,6 +103,7 @@ if (groupBy === 'discount') {
     <button type="button" class="pc-close" data-close-modal aria-label="Закрыть">✕</button>
   </div>
   <div class="pc-controls">
+    <button type="button" class="pc-back" data-back-to-folders aria-label="Назад к списку папок">← Назад</button>
     <input type="search" class="pc-search" placeholder="Поиск по товару, бренду или линейке…" aria-label="Поиск по прайсу" />
     <span class="pc-count" data-count></span>
   </div>
@@ -274,6 +275,25 @@ if (groupBy === 'discount') {
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+
+  .pc-back {
+    flex: none;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-blue-dark);
+    background: var(--color-panel);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 999px;
+    padding: 9px 14px;
+    box-shadow: none;
+    white-space: nowrap;
+  }
+
+  .pc-back:hover {
+    background: #fff;
+    filter: none;
   }
 
   .pc-search {
@@ -544,9 +564,18 @@ if (groupBy === 'discount') {
       margin: 0;
       width: 100vw;
       max-width: 100vw;
-      /* Не на всю высоту — оставляем внизу зазор под плавающую MobileNavBar (см. её же отступ снизу). */
+      /* Не на всю высоту — оставляем внизу зазор под плавающую MobileNavBar (см. её же отступ снизу).
+         100vh на мобильном Chrome/Android считается по "большому" виду (когда адресная строка
+         скрыта) — пока она видна (обычный случай сразу после открытия диалога), реальный видимый
+         экран меньше, и нижний кусок диалога (хвост списка папок в .pc-groups) рендерится ниже
+         фактически видимой области — список выглядит "застрявшим", хотя технически докрутить
+         некуда (реальный баг, найден пользователем 2026-08-27). 100dvh считается по ФАКТИЧЕСКИ
+         видимой области и сам подстраивается под появление/скрытие адресной строки — оставляем
+         100vh первой строкой как запасной вариант для браузеров без поддержки dvh. */
       height: calc(100vh - 90px);
+      height: calc(100dvh - 90px);
       max-height: calc(100vh - 90px);
+      max-height: calc(100dvh - 90px);
       border-radius: 0;
     }
 
@@ -658,6 +687,28 @@ if (groupBy === 'discount') {
     holdScroll();
   }
 
+  // Страховка от «мёртвого» сайта после сворачивания с открытым диалогом (реальный кейс,
+  // пользователь 2026-08-27: свернул телефон на Каталоге, вернулся — страница не реагирует,
+  // помогало только убить вкладку/приложение из памяти). Похоже на то, что мобильный
+  // браузер иногда закрывает/теряет синхронизацию с открытым <dialog> при заморозке вкладки
+  // в фоне, не давая отработать нашему 'close'-слушателю (см. unlockPageScroll выше) — тогда
+  // body остаётся в position:fixed навсегда, и страница выглядит открытой, но не скроллится
+  // и не реагирует на тапы. При возврате видимости страницы проверяем: лок стоит, а реально
+  // открытого диалога нет — значит лок «осиротел», снимаем его сами.
+  function healStuckScrollLock() {
+    const anyOpenDialog = document.querySelector('dialog[open]');
+    if (!anyOpenDialog && document.body.style.position === 'fixed') {
+      resetBodyLockStyles();
+      window.scrollTo(0, lockedScrollY || window.scrollY);
+    }
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') healStuckScrollLock();
+  });
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) healStuckScrollLock();
+  });
+
   function isMobileNav() {
     return window.matchMedia('(max-width: 640px)').matches;
   }
@@ -717,6 +768,32 @@ if (groupBy === 'discount') {
   // документ inert (невзаимодействуемым) — это выключило бы MobileNavBar.astro даже в зазоре снизу, где
   // диалог её физически не перекрывает (см. mobile-медиа-запрос выше). На десктопе плашки нет — там
   // поведение остаётся прежним, showModal() с фокус-ловушкой и затемнением фона.
+  // Повторный клик по той же кнопке ("Каталог"), пока список уже открыт и клиент залистался внутрь
+  // раскрытой папки (бренд/линейка с длинным списком товаров) — сворачивает обратно к списку папок,
+  // чтобы не листать наверх вручную. Отмеченные чекбоксы не трогает — только .open у <details> и скролл.
+  function collapseToFolderList(dialog: HTMLDialogElement) {
+    dialog.querySelectorAll<HTMLDetailsElement>('.pc-group').forEach((d) => {
+      d.open = false;
+    });
+    const search = dialog.querySelector<HTMLInputElement>('.pc-search');
+    if (search && search.value) {
+      search.value = '';
+      search.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    // Реальный баг на Android (найден пользователем 2026-08-27): резкое схлопывание сразу многих
+    // <details> меняет высоту списка одним синхронным рывком, и если тут же скроллить новым
+    // scrollTo() — мобильный Chrome иногда не успевает пересчитать границы скролла и дальше не
+    // даёт пролистать список до конца (застревает на середине). Помогает: ждать кадр отрисовки
+    // (браузер успевает переразметить укороченный список) и сбрасывать позицию простым свойством
+    // scrollTop, а не новым scrollTo() API — так надёжнее на этом классе устройств.
+    const scrollEl = dialog.querySelector<HTMLElement>('.pc-groups');
+    if (scrollEl) {
+      requestAnimationFrame(() => {
+        scrollEl.scrollTop = 0;
+      });
+    }
+  }
+
   function openDialog(dialog: HTMLDialogElement) {
     // Если переключаемся между Каталогом и Акциями (клик по плашке, когда одно окно уже открыто) —
     // сначала сохраняем отмеченное в этом окне в заявку (см. commitSelection — иначе выбор терялся
@@ -727,7 +804,10 @@ if (groupBy === 'discount') {
         closeDialog(d);
       }
     });
-    if (dialog.open) return;
+    if (dialog.open) {
+      collapseToFolderList(dialog);
+      return;
+    }
     lockPageScroll();
     if (isMobileNav()) {
       dialog.show();
@@ -829,6 +909,7 @@ if (groupBy === 'discount') {
     const noResults = root.querySelector<HTMLElement>('.pc-no-results');
 
     root.querySelector('[data-close-modal]')?.addEventListener('click', () => closeDialog(root));
+    root.querySelector('[data-back-to-folders]')?.addEventListener('click', () => collapseToFolderList(root));
     // Клик по подложке (::backdrop) — событие всплывает с target === сам dialog, а не его содержимое.
     root.addEventListener('click', (e) => {
       if (e.target === root) closeDialog(root);
