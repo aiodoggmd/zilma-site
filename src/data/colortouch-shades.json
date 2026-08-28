@@ -1,0 +1,813 @@
+[
+  {
+    "code": "10/0",
+    "hex": "#937d4f",
+    "group": "pure",
+    "row": 10,
+    "col": 0
+  },
+  {
+    "code": "10/01",
+    "hex": "#a08b5c",
+    "group": "pure",
+    "row": 10,
+    "col": 1
+  },
+  {
+    "code": "10/03",
+    "hex": "#a3885b",
+    "group": "pure",
+    "row": 10,
+    "col": 2
+  },
+  {
+    "code": "9/0",
+    "hex": "#856c49",
+    "group": "pure",
+    "row": 9,
+    "col": 0,
+    "name": "Краска CT 9-0 очень светлый блондин ct9-0",
+    "price": 715
+  },
+  {
+    "code": "9/01",
+    "hex": "#9b8254",
+    "group": "pure",
+    "row": 9,
+    "col": 1,
+    "name": "Краска CT 9-01 пепельный блондин ct9-01",
+    "price": 664.95
+  },
+  {
+    "code": "9/03",
+    "hex": "#86613a",
+    "group": "pure",
+    "row": 9,
+    "col": 2
+  },
+  {
+    "code": "8/0",
+    "hex": "#6f572e",
+    "group": "pure",
+    "row": 8,
+    "col": 0,
+    "name": "Краска CT 8-0 светлый блондин ct8-0",
+    "price": 664.95
+  },
+  {
+    "code": "8/03",
+    "hex": "#6f522b",
+    "group": "pure",
+    "row": 8,
+    "col": 1
+  },
+  {
+    "code": "7/0",
+    "hex": "#69552f",
+    "group": "pure",
+    "row": 7,
+    "col": 0,
+    "name": "Краска CT 7-0 средний блондин ct7-0",
+    "price": 664.95
+  },
+  {
+    "code": "7/03",
+    "hex": "#58482e",
+    "group": "pure",
+    "row": 7,
+    "col": 1
+  },
+  {
+    "code": "6/0",
+    "hex": "#40311f",
+    "group": "pure",
+    "row": 6,
+    "col": 0,
+    "name": "Краска CT 6-0 темный блондин ct6-0",
+    "price": 664.95
+  },
+  {
+    "code": "5/0",
+    "hex": "#2a2115",
+    "group": "pure",
+    "row": 5,
+    "col": 0,
+    "name": "Краска CT 5-0 светло-коричневый ct5-0",
+    "price": 664.95
+  },
+  {
+    "code": "5/03",
+    "hex": "#30261a",
+    "group": "pure",
+    "row": 5,
+    "col": 1
+  },
+  {
+    "code": "4/0",
+    "hex": "#28211d",
+    "group": "pure",
+    "row": 4,
+    "col": 0,
+    "name": "Краска CT 4-0 средне-коричневый ct4-0",
+    "price": 664.95
+  },
+  {
+    "code": "3/0",
+    "hex": "#27211e",
+    "group": "pure",
+    "row": 3,
+    "col": 0
+  },
+  {
+    "code": "2/0",
+    "hex": "#2b262a",
+    "group": "pure",
+    "row": 2,
+    "col": 0,
+    "name": "Краска CT 2-0 черный ct2-0",
+    "price": 664.95
+  },
+  {
+    "code": "10/1",
+    "hex": "#9c8a67",
+    "group": "rich",
+    "row": 10,
+    "col": 0,
+    "name": "Краска CT 10-1 яркий блондин пепельный ct10-1",
+    "price": 715
+  },
+  {
+    "code": "10/3",
+    "hex": "#a8854d",
+    "group": "rich",
+    "row": 10,
+    "col": 1
+  },
+  {
+    "code": "10/81",
+    "hex": "#9d8b6b",
+    "group": "rich",
+    "row": 10,
+    "col": 2,
+    "name": "Краска CT 10-81 нежный ангел ct10-81",
+    "price": 664.95
+  },
+  {
+    "code": "9/16",
+    "hex": "#7c634f",
+    "group": "rich",
+    "row": 9,
+    "col": 0,
+    "name": "Краска CT 9-16 горный хрусталь ct9-16",
+    "price": 664.95
+  },
+  {
+    "code": "9/3",
+    "hex": "#7f5f33",
+    "group": "rich",
+    "row": 9,
+    "col": 1
+  },
+  {
+    "code": "9/36",
+    "hex": "#81613c",
+    "group": "rich",
+    "row": 9,
+    "col": 2,
+    "name": "Краска CT 9-36 розовое золото ct9-36",
+    "price": 664.95
+  },
+  {
+    "code": "9/86",
+    "hex": "#b9b3ae",
+    "group": "rich",
+    "row": 9,
+    "col": 3,
+    "name": "Краска CT 9-86 очень светлый блонд жемчужно-фиолетовый ct9-86",
+    "price": 664.95
+  },
+  {
+    "code": "9/96",
+    "hex": "#97837d",
+    "group": "rich",
+    "row": 9,
+    "col": 4,
+    "name": "Краска CT 9-96 очень светлый блонд сандрэ фиолетовый ct9-96",
+    "price": 715
+  },
+  {
+    "code": "9/97",
+    "hex": "#7e604d",
+    "group": "rich",
+    "row": 9,
+    "col": 5,
+    "name": "Краска CT 9-97 Очень светлый блонд сандрэ-коричневый ct9-97",
+    "price": 715
+  },
+  {
+    "code": "8/3",
+    "hex": "#6d502b",
+    "group": "rich",
+    "row": 8,
+    "col": 0
+  },
+  {
+    "code": "8/35",
+    "hex": "#9a756a",
+    "group": "rich",
+    "row": 8,
+    "col": 1
+  },
+  {
+    "code": "8/38",
+    "hex": "#816142",
+    "group": "rich",
+    "row": 8,
+    "col": 2,
+    "name": "Краска CT 8-38 светлый блонд золотой жемчуг ct8-38",
+    "price": 715
+  },
+  {
+    "code": "8/81",
+    "hex": "#686054",
+    "group": "rich",
+    "row": 8,
+    "col": 3,
+    "name": "Краска CT 8-81 светлый блондин коричнево-золотистый ct8-81",
+    "price": 664.95
+  },
+  {
+    "code": "7/1",
+    "hex": "#574731",
+    "group": "rich",
+    "row": 7,
+    "col": 0,
+    "name": "Краска CT 7-1 средне-русый пепельный ct7-1",
+    "price": 715
+  },
+  {
+    "code": "7/3",
+    "hex": "#48341f",
+    "group": "rich",
+    "row": 7,
+    "col": 1
+  },
+  {
+    "code": "7/86",
+    "hex": "#8c838f",
+    "group": "rich",
+    "row": 7,
+    "col": 2,
+    "name": "Краска CT 7-86 блонд жемчужно-фиолетовый ct7-86",
+    "price": 664.95
+  },
+  {
+    "code": "7/89",
+    "hex": "#8a8885",
+    "group": "rich",
+    "row": 7,
+    "col": 3,
+    "name": "Краска CT7-89 серый жемчуг ct7-89",
+    "price": 715
+  },
+  {
+    "code": "7/97",
+    "hex": "#41372e",
+    "group": "rich",
+    "row": 7,
+    "col": 4,
+    "name": "Краска CT 7-97 блонд сандре коричневый ct7-97",
+    "price": 664.95
+  },
+  {
+    "code": "6/3",
+    "hex": "#38281c",
+    "group": "rich",
+    "row": 6,
+    "col": 0
+  },
+  {
+    "code": "6/35",
+    "hex": "#392728",
+    "group": "rich",
+    "row": 6,
+    "col": 1
+  },
+  {
+    "code": "6/37",
+    "hex": "#392821",
+    "group": "rich",
+    "row": 6,
+    "col": 2
+  },
+  {
+    "code": "5/1",
+    "hex": "#2f2c1e",
+    "group": "rich",
+    "row": 5,
+    "col": 0
+  },
+  {
+    "code": "5/3",
+    "hex": "#34281f",
+    "group": "rich",
+    "row": 5,
+    "col": 1,
+    "name": "Краска CT 5-3 светло-коричневый золотистый ct5-3",
+    "price": 715
+  },
+  {
+    "code": "5/37",
+    "hex": "#34221d",
+    "group": "rich",
+    "row": 5,
+    "col": 2
+  },
+  {
+    "code": "5/97",
+    "hex": "#322823",
+    "group": "rich",
+    "row": 5,
+    "col": 3
+  },
+  {
+    "code": "2/8",
+    "hex": "#1f1f26",
+    "group": "rich",
+    "row": 2,
+    "col": 0
+  },
+  {
+    "code": "10/73",
+    "hex": "#907243",
+    "group": "deep",
+    "row": 10,
+    "col": 0
+  },
+  {
+    "code": "9/73",
+    "hex": "#956e42",
+    "group": "deep",
+    "row": 9,
+    "col": 0,
+    "name": "Краска CT 9-73 блондин яркий табак ct9-73",
+    "price": 715
+  },
+  {
+    "code": "9/75",
+    "hex": "#ac8a78",
+    "group": "deep",
+    "row": 9,
+    "col": 1,
+    "name": "Краска CT 9-75 очень светлый блонд коричнево-махагоновый ct9-75",
+    "price": 715
+  },
+  {
+    "code": "8/71",
+    "hex": "#58462b",
+    "group": "deep",
+    "row": 8,
+    "col": 0
+  },
+  {
+    "code": "8/73",
+    "hex": "#624224",
+    "group": "deep",
+    "row": 8,
+    "col": 1,
+    "name": "Краска CT 8-73 светлый блондин коричнево-золотистый ct8-73",
+    "price": 664.95
+  },
+  {
+    "code": "7/7",
+    "hex": "#5e442d",
+    "group": "deep",
+    "row": 7,
+    "col": 0,
+    "name": "Краска CT 7-7 цвет косули ct7-7",
+    "price": 664.95
+  },
+  {
+    "code": "7/71",
+    "hex": "#46331c",
+    "group": "deep",
+    "row": 7,
+    "col": 1,
+    "name": "Краска CT 7-71 янтарная куница ct7-71",
+    "price": 715
+  },
+  {
+    "code": "7/73",
+    "hex": "#5d452d",
+    "group": "deep",
+    "row": 7,
+    "col": 2,
+    "name": "Краска CT 7-73 средний блондин коричнево-золотистый ct7-73",
+    "price": 664.95
+  },
+  {
+    "code": "7/75",
+    "hex": "#473027",
+    "group": "deep",
+    "row": 7,
+    "col": 3,
+    "name": "Краска CT7-75 светлый палисандр ct7-75",
+    "price": 664.95
+  },
+  {
+    "code": "6/7",
+    "hex": "#342720",
+    "group": "deep",
+    "row": 6,
+    "col": 0,
+    "name": "Краска CT 6-7 темный блонд коричневый ct6-7",
+    "price": 715
+  },
+  {
+    "code": "6/71",
+    "hex": "#2b2115",
+    "group": "deep",
+    "row": 6,
+    "col": 1
+  },
+  {
+    "code": "6/73",
+    "hex": "#39281e",
+    "group": "deep",
+    "row": 6,
+    "col": 2,
+    "name": "Краска CT 6-73 темный блондин коричнево-золотистый ct6-73",
+    "price": 715
+  },
+  {
+    "code": "6/75",
+    "hex": "#3a2320",
+    "group": "deep",
+    "row": 6,
+    "col": 3
+  },
+  {
+    "code": "6/77",
+    "hex": "#3c2827",
+    "group": "deep",
+    "row": 6,
+    "col": 4,
+    "name": "Краска CT 6-77 кофе со сливками ct6-77",
+    "price": 664.95
+  },
+  {
+    "code": "5/71",
+    "hex": "#27211c",
+    "group": "deep",
+    "row": 5,
+    "col": 0,
+    "name": "Краска CT 5-71 грильяж ct5-71",
+    "price": 715
+  },
+  {
+    "code": "5/73",
+    "hex": "#362521",
+    "group": "deep",
+    "row": 5,
+    "col": 1
+  },
+  {
+    "code": "5/75",
+    "hex": "#342321",
+    "group": "deep",
+    "row": 5,
+    "col": 2,
+    "name": "Краска CT 5-75** светло-коричневый махагон ct5-75",
+    "price": 715
+  },
+  {
+    "code": "4/71",
+    "hex": "#2a2421",
+    "group": "deep",
+    "row": 4,
+    "col": 0,
+    "name": "Краска CT 4-71 коричнево-пепельный ct4-71",
+    "price": 715
+  },
+  {
+    "code": "10/34",
+    "hex": "#e2a082",
+    "group": "vibrant",
+    "row": 10,
+    "col": 0
+  },
+  {
+    "code": "10/6",
+    "hex": "#a38b80",
+    "group": "vibrant",
+    "row": 10,
+    "col": 1,
+    "name": "Краска CT 10-6 розовая карамель ct10-6",
+    "price": 664.95
+  },
+  {
+    "code": "8/41",
+    "hex": "#753727",
+    "group": "vibrant",
+    "row": 8,
+    "col": 0,
+    "name": "Краска CT 8-41 светлый блонд красно-пепельный ct8-41",
+    "price": 715
+  },
+  {
+    "code": "8/43",
+    "hex": "#763c27",
+    "group": "vibrant",
+    "row": 8,
+    "col": 1,
+    "name": "Краска CT 8-43 боярышник ct8-43",
+    "price": 664.95
+  },
+  {
+    "code": "7/4",
+    "hex": "#58281b",
+    "group": "vibrant",
+    "row": 7,
+    "col": 0
+  },
+  {
+    "code": "7/43",
+    "hex": "#6a3426",
+    "group": "vibrant",
+    "row": 7,
+    "col": 1,
+    "name": "Краска CT 7-43 красный тициан ct7-43",
+    "price": 715
+  },
+  {
+    "code": "77/45",
+    "hex": "#5d2022",
+    "group": "vibrant",
+    "row": 7,
+    "col": 2
+  },
+  {
+    "code": "7/47",
+    "hex": "#693724",
+    "group": "vibrant",
+    "row": 7,
+    "col": 3
+  },
+  {
+    "code": "6/4",
+    "hex": "#45251f",
+    "group": "vibrant",
+    "row": 6,
+    "col": 0
+  },
+  {
+    "code": "66/44",
+    "hex": "#59251f",
+    "group": "vibrant",
+    "row": 6,
+    "col": 1
+  },
+  {
+    "code": "6/45",
+    "hex": "#542120",
+    "group": "vibrant",
+    "row": 6,
+    "col": 2,
+    "name": "краска CT 6-45 глубокий темно-русый красно-махагоновый CT6-45",
+    "price": 715
+  },
+  {
+    "code": "6/47",
+    "hex": "#40241f",
+    "group": "vibrant",
+    "row": 6,
+    "col": 3
+  },
+  {
+    "code": "6/57",
+    "hex": "#3b2827",
+    "group": "vibrant",
+    "row": 6,
+    "col": 4
+  },
+  {
+    "code": "5/4",
+    "hex": "#3d261f",
+    "group": "vibrant",
+    "row": 5,
+    "col": 0
+  },
+  {
+    "code": "66/45",
+    "hex": "#561f1e",
+    "group": "vibrant",
+    "row": 5,
+    "col": 1
+  },
+  {
+    "code": "5/5",
+    "hex": "#3f2521",
+    "group": "vibrant",
+    "row": 5,
+    "col": 2
+  },
+  {
+    "code": "55/54",
+    "hex": "#48272d",
+    "group": "vibrant",
+    "row": 5,
+    "col": 3
+  },
+  {
+    "code": "55/65",
+    "hex": "#402731",
+    "group": "vibrant",
+    "row": 5,
+    "col": 4
+  },
+  {
+    "code": "5/66",
+    "hex": "#3d2639",
+    "group": "vibrant",
+    "row": 5,
+    "col": 5
+  },
+  {
+    "code": "4/5",
+    "hex": "#392024",
+    "group": "vibrant",
+    "row": 4,
+    "col": 0
+  },
+  {
+    "code": "4/57",
+    "hex": "#332322",
+    "group": "vibrant",
+    "row": 4,
+    "col": 1
+  },
+  {
+    "code": "4/6",
+    "hex": "#332024",
+    "group": "vibrant",
+    "row": 4,
+    "col": 2
+  },
+  {
+    "code": "44/65",
+    "hex": "#39232d",
+    "group": "vibrant",
+    "row": 4,
+    "col": 3
+  },
+  {
+    "code": "3/5",
+    "hex": "#2d2020",
+    "group": "vibrant",
+    "row": 3,
+    "col": 0
+  },
+  {
+    "code": "3/66",
+    "hex": "#342029",
+    "group": "vibrant",
+    "row": 3,
+    "col": 1
+  },
+  {
+    "code": "3/68",
+    "hex": "#2f2f40",
+    "group": "vibrant",
+    "row": 3,
+    "col": 2
+  },
+  {
+    "code": "88/03",
+    "hex": "#825b39",
+    "group": "plus",
+    "row": 88,
+    "col": 0
+  },
+  {
+    "code": "88/07",
+    "hex": "#735934",
+    "group": "plus",
+    "row": 88,
+    "col": 1,
+    "name": "Краска CT Plus 88-07 платан ct88-07",
+    "price": 664.95
+  },
+  {
+    "code": "77/03",
+    "hex": "#5f3d27",
+    "group": "plus",
+    "row": 77,
+    "col": 0
+  },
+  {
+    "code": "77/07",
+    "hex": "#59472f",
+    "group": "plus",
+    "row": 77,
+    "col": 1,
+    "name": "Краска CT Plus 77-07 олива ct77-07",
+    "price": 664.95
+  },
+  {
+    "code": "66/03",
+    "hex": "#5d442f",
+    "group": "plus",
+    "row": 66,
+    "col": 0
+  },
+  {
+    "code": "66/07",
+    "hex": "#3e2d1e",
+    "group": "plus",
+    "row": 66,
+    "col": 1,
+    "name": "Краска CT Plus 66-07 кипарис ct66-07",
+    "price": 664.95
+  },
+  {
+    "code": "55/03",
+    "hex": "#33271f",
+    "group": "plus",
+    "row": 55,
+    "col": 0
+  },
+  {
+    "code": "55/07",
+    "hex": "#31251b",
+    "group": "plus",
+    "row": 55,
+    "col": 1,
+    "name": "Краска CT Plus 55-07 кедр ct55-07",
+    "price": 664.95
+  },
+  {
+    "code": "44/03",
+    "hex": "#362727",
+    "group": "plus",
+    "row": 44,
+    "col": 0
+  },
+  {
+    "code": "44/07",
+    "hex": "#2c221f",
+    "group": "plus",
+    "row": 44,
+    "col": 1,
+    "name": "Краска CT Plus 44-07 сакура ct44-07",
+    "price": 664.95
+  },
+  {
+    "code": "33/03",
+    "hex": "#312528",
+    "group": "plus",
+    "row": 33,
+    "col": 0
+  },
+  {
+    "code": "0/00",
+    "hex": "#d9d4cb",
+    "group": "mix",
+    "row": 0,
+    "col": 0
+  },
+  {
+    "code": "0/34",
+    "hex": "#e96446",
+    "group": "mix",
+    "row": 0,
+    "col": 1
+  },
+  {
+    "code": "0/45",
+    "hex": "#c55748",
+    "group": "mix",
+    "row": 0,
+    "col": 2
+  },
+  {
+    "code": "0/56",
+    "hex": "#66454b",
+    "group": "mix",
+    "row": 0,
+    "col": 3
+  },
+  {
+    "code": "0/68",
+    "hex": "#5e4049",
+    "group": "mix",
+    "row": 0,
+    "col": 4
+  },
+  {
+    "code": "0/88",
+    "hex": "#434963",
+    "group": "mix",
+    "row": 0,
+    "col": 5
+  }
+]

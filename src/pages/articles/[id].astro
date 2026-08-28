@@ -8,23 +8,30 @@ import ShadeSwatchGrid from '../../components/ShadeSwatchGrid.astro';
 import illuminaShades from '../../data/illumina-shades.json';
 import shinefinityShades from '../../data/shinefinity-shades.json';
 import kolestonShades from '../../data/koleston-shades.json';
+import colortouchShades from '../../data/colortouch-shades.json';
 
 const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-13-illumina-color': illuminaShades,
   '2026-08-13-shinefinity': shinefinityShades,
   '2026-08-13-koleston-perfect': kolestonShades,
+  '2026-08-13-color-touch': colortouchShades,
 };
 
-const KOLESTON_GROUP_ORDER = ['pure', 'rich', 'deep', 'vibrant', 'blonde', 'mix'];
-const KOLESTON_GROUP_LABELS: Record<string, string> = {
-  pure: 'Pure Naturals',
-  rich: 'Rich Naturals',
-  deep: 'Deep Browns',
-  vibrant: 'Vibrant Reds',
-  blonde: 'Special Blonde',
-  mix: 'Special Mix',
+// Линейки с нерегулярной структурой палитры (несколько несовпадающих семейств оттенков вместо
+// одной ровной сетки) передают свой набор групп сюда — по умолчанию ShadeSwatchGrid использует
+// warm/neutral/cool/opal/booster (Illumina/Shinefinity), этого словаря для них не нужно.
+const PALETTE_GROUP_CONFIG: Record<string, { order: string[]; labels: Record<string, string>; flat: string[] }> = {
+  '2026-08-13-koleston-perfect': {
+    order: ['pure', 'rich', 'deep', 'vibrant', 'blonde', 'mix'],
+    labels: { pure: 'Pure Naturals', rich: 'Rich Naturals', deep: 'Deep Browns', vibrant: 'Vibrant Reds', blonde: 'Special Blonde', mix: 'Special Mix' },
+    flat: ['blonde', 'mix'],
+  },
+  '2026-08-13-color-touch': {
+    order: ['pure', 'rich', 'deep', 'vibrant', 'plus', 'mix'],
+    labels: { pure: 'Pure Naturals', rich: 'Rich Naturals', deep: 'Deep Browns', vibrant: 'Vibrant Reds', plus: 'Color Touch Plus', mix: 'Special Mix' },
+    flat: ['mix'],
+  },
 };
-const KOLESTON_FLAT_GROUPS = ['blonde', 'mix'];
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -98,9 +105,9 @@ const articleLd = {
           <h2>Интерактивная палитра — с ценами по прайсу</h2>
           <ShadeSwatchGrid
             shades={PALETTE_SHADES[article.id]}
-            groupOrder={article.id === '2026-08-13-koleston-perfect' ? KOLESTON_GROUP_ORDER : undefined}
-            groupLabels={article.id === '2026-08-13-koleston-perfect' ? KOLESTON_GROUP_LABELS : undefined}
-            flatGroups={article.id === '2026-08-13-koleston-perfect' ? KOLESTON_FLAT_GROUPS : undefined}
+            groupOrder={PALETTE_GROUP_CONFIG[article.id]?.order}
+            groupLabels={PALETTE_GROUP_CONFIG[article.id]?.labels}
+            flatGroups={PALETTE_GROUP_CONFIG[article.id]?.flat}
           />
         </div>
       )}
