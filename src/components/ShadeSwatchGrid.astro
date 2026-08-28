@@ -6,7 +6,7 @@
 interface Shade {
   code: string;
   hex: string;
-  group: 'cool' | 'neutral' | 'warm' | 'opal' | 'booster';
+  group: string;
   row: number;
   col: number;
   name?: string;
@@ -16,23 +16,29 @@ interface Shade {
 
 interface Props {
   shades: Shade[];
+  groupOrder?: string[];
+  groupLabels?: Record<string, string>;
+  // группы из одной строки (без «глубины») сортируются просто по col, а не по row
+  flatGroups?: string[];
 }
 
-const { shades } = Astro.props;
+const {
+  shades,
+  groupOrder = ['warm', 'neutral', 'cool', 'opal', 'booster'],
+  groupLabels = {
+    warm: 'Тёплые',
+    neutral: 'Нейтральные',
+    cool: 'Холодные',
+    opal: 'Opal-Essence',
+    booster: 'Booster',
+  },
+  flatGroups = ['opal', 'booster'],
+} = Astro.props;
 
-const GROUP_LABELS: Record<string, string> = {
-  warm: 'Тёплые',
-  neutral: 'Нейтральные',
-  cool: 'Холодные',
-  opal: 'Opal-Essence',
-  booster: 'Booster',
-};
-const GROUP_ORDER = ['warm', 'neutral', 'cool', 'opal', 'booster'];
-
-const groups = GROUP_ORDER.map((g) => ({
+const groups = groupOrder.map((g) => ({
   key: g,
-  label: GROUP_LABELS[g],
-  items: shades.filter((s) => s.group === g).sort((a, b) => (g === 'opal' || g === 'booster' ? a.col - b.col : b.row - a.row || a.col - b.col)),
+  label: groupLabels[g] ?? g,
+  items: shades.filter((s) => s.group === g).sort((a, b) => (flatGroups.includes(g) ? a.col - b.col : b.row - a.row || a.col - b.col)),
 })).filter((g) => g.items.length > 0);
 
 const matchedCount = shades.filter((s) => s.price != null).length;

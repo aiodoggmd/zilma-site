@@ -14,7 +14,7 @@ import priceItems from '../data/priceItems.json';
   description="Выберите нужные позиции из актуального прайса Wella, Londa, Schwarzkopf, Matrix, Lebel и оформите заявку — свяжемся с вами для подтверждения."
 >
   <div class="container page">
-    <a href="/" class="back">← На главную</a>
+    <a href="/" class="back" id="order-back">← Назад</a>
     <PriceBlock
       kind="current"
       title="Актуальный прайс-лист"
@@ -26,6 +26,27 @@ import priceItems from '../data/priceItems.json';
     <OrderForm />
   </div>
 </BaseLayout>
+
+<script>
+  // Реальный баг с телефона (2026-08-28): клиент выбирал оттенок в интерактивной палитре
+  // статьи, переходил в корзину указать количество, а обратно попадал не в статью на том же
+  // месте, а на главную (ссылка была жёстко href="/"). Если сюда пришли с другой страницы
+  // этого же сайта (typично — со статьи), настоящий переход «назад» в истории браузера
+  // возвращает именно туда и восстанавливает прокрутку — обычная ссылка на "/" так не умеет,
+  // это всегда новый переход. Если пришли напрямую (закладка, новая вкладка) — просто идём
+  // по обычной ссылке на главную.
+  const backLink = document.getElementById('order-back') as HTMLAnchorElement | null;
+  if (backLink && document.referrer) {
+    try {
+      if (new URL(document.referrer).origin === location.origin) {
+        backLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          history.back();
+        });
+      }
+    } catch {}
+  }
+</script>
 
 <style>
   .page {

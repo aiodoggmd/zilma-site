@@ -34,7 +34,7 @@
     </span>
     <span class="mobile-nav-label">Акции</span>
   </a>
-  <a href="/#order" class="mobile-nav-item">
+  <a href="/order/#order" class="mobile-nav-item" data-cart-link>
     <span class="mobile-nav-icon">
       <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none" />
@@ -45,7 +45,7 @@
     </span>
     <span class="mobile-nav-label">Корзина</span>
   </a>
-  <a href="/#info" class="mobile-nav-item">
+  <a href="/#info" class="mobile-nav-item" data-info-link>
     <span class="mobile-nav-icon">
       <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M6 2.5h8.5L19 7v14.5H6Z" />
@@ -189,4 +189,33 @@
   }
   document.addEventListener('zilma:cart-updated', updateCartBadge);
   updateCartBadge();
+
+  // Реальный баг с телефона (2026-08-28): со страницы статьи «Корзина» вела на /#order —
+  // это полная перезагрузка на главную (с её большим херо-баннером) ради того, чтобы потом
+  // проскроллить вниз к форме заказа. На самой же главной такой переход не нужен — там форма
+  // уже на странице, и /#order — это мгновенный скролл без перезагрузки. Поэтому именно на
+  // главной оставляем якорь, а с любой другой страницы (статьи и т.п.) ведём на лёгкую
+  // страницу /order/ — без херо, без лишней перезагрузки-в-никуда.
+  if (location.pathname === '/') {
+    const cartLink = document.querySelector<HTMLAnchorElement>('[data-cart-link]');
+    if (cartLink) cartLink.href = '/#order';
+  }
+
+  // Тот же баг, вторая часть: на телефоне живой человек возвращается из корзины не через
+  // маленькую ссылку «← Назад» вверху страницы (её ещё надо заметить и до неё доскроллить),
+  // а через всегда видную нижнюю плашку — интуитивно жмёт «Инфо», ожидая вернуться туда, откуда
+  // пришёл. А «Инфо» жёстко вела на секцию «О бренде» на главной. Чиним так же, как «← Назад»
+  // в order.astro: если на страницу корзины (/order/) попали с этого же сайта — «Инфо» ведёт
+  // взаправду назад по истории (и восстанавливает прокрутку), а не на главную.
+  if (location.pathname === '/order/' && document.referrer) {
+    try {
+      if (new URL(document.referrer).origin === location.origin) {
+        const infoLink = document.querySelector<HTMLAnchorElement>('[data-info-link]');
+        infoLink?.addEventListener('click', (e) => {
+          e.preventDefault();
+          history.back();
+        });
+      }
+    } catch {}
+  }
 </script>
