@@ -512,10 +512,46 @@ const articleLd = {
       text-align: center;
     }
 
+    /* Реальный баг (найден 2026-08-28 на статье Lebel): .mix-body/.timer держали
+       grid-column:2 даже в мобильном 1-колоночном режиме — грид молча создавал вторую
+       колонку, чтобы удовлетворить это правило, и карточка визуально оставалась
+       двухколоночной (булька слева, текст сжат справа) несмотря на grid-template-columns:1fr
+       выше. Без явного сброса на grid-column:1 сам факт "поставили одну колонку" ничего
+       не решает — второй селектор всё равно требует несуществующую вторую колонку. */
+    .prose :global(.mix-card .mix-body),
+    .prose :global(.mix-card .timer) {
+      grid-column: 1;
+    }
+
     .prose :global(.mix-card .timer) {
       justify-content: center;
       max-width: none;
       margin: 0 auto;
+    }
+
+    /* Компактная булька: кружок над подписью, а «1:2» и подпись объёма — в одну строку
+     рядом, а не друг под другом — экономит высоту на мобильном (жалоба пользователя). */
+    .prose :global(.mix-card .wheel-badge) {
+      grid-row: auto;
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-content: center;
+      align-items: center;
+      column-gap: 8px;
+      row-gap: 6px;
+    }
+
+    .prose :global(.mix-card .wheel-badge .wheel) {
+      grid-column: 1 / 3;
+      justify-self: center;
+    }
+
+    .prose :global(.mix-card .wheel-badge .wheel-label) {
+      text-align: right;
+    }
+
+    .prose :global(.mix-card .wheel-badge .wheel-caption) {
+      text-align: left;
     }
   }
 
@@ -626,6 +662,7 @@ const articleLd = {
 
   .prose :global(.timer-chip b) {
     color: var(--color-red-dark);
+    white-space: nowrap;
   }
 
   /* шаги аллерготеста */
@@ -746,6 +783,81 @@ const articleLd = {
     font-size: 0.88rem;
   }
 
+  /* .kit-table (Lebel «Абсолютное счастье для волос», малый/большой набор) — две отдельные таблицы
+     с разной длиной названий товаров иначе получают разную ширину колонок (auto table-layout
+     считает ширину каждой таблицы независимо от содержимого), из-за чего № и Артикул визуально
+     «гуляли» между таблицами. ТРИ варианта на голом `<table>` не сработали, все давали одинаковый
+     неверный результат (проверено программно): дело в том, что общее правило `.prose table` выше
+     форсит `display:block` (нужно для горизонтального скролла на мобильном) — с этим display на
+     table браузер, судя по всему, всё равно считает неявную/процентную ширину «свободной» колонки
+     по её собственному контенту, а не по факту заданного CSS, независимо от того, как именно эта
+     ширина задана (голый table-layout:fixed, auto-layout с шириной на крайних ячейках, calc(100%)
+     на col). Рабочий вариант — вернуть самой `<table>` НАСТОЯЩИЙ `display:table` (не block), а
+     горизонтальный скролл повесить на отдельный оборачивающий `<div class="kit-table-wrap">` —
+     тогда стандартный алгоритм fixed-таблиц отрабатывает штатно и одинаково на обеих таблицах. */
+  .prose :global(.kit-table-wrap) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 18px 0;
+  }
+
+  .prose :global(.kit-table-wrap table.kit-table) {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+  }
+
+  .prose :global(table.kit-table col.col-num) {
+    width: 40px;
+  }
+
+  .prose :global(table.kit-table col.col-art) {
+    width: 90px;
+  }
+
+  .prose :global(table.kit-table col.col-order) {
+    width: 108px;
+  }
+
+  .prose :global(table.kit-table td.col-order-cell) {
+    text-align: center;
+  }
+
+  /* кнопка «В заявку» на статичных товарных таблицах/карточках — см. initCartButtons() в script
+     ниже. Синяя, как CTA в интерактивной палитре (ShadeSwatchGrid), для визуальной консистентности. */
+  .prose :global(.cart-add-btn) {
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-blue-dark);
+    border: none;
+    border-radius: 999px;
+    padding: 6px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .prose :global(.cart-add-btn:hover) {
+    filter: brightness(1.1);
+  }
+
+  .prose :global(.cart-add-btn.is-added) {
+    background: var(--color-red-dark);
+  }
+
+  .prose :global(.order-unavailable) {
+    font-size: 0.74rem;
+    color: var(--color-meta);
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  .prose :global(.callout .callout-order) {
+    margin-top: 10px;
+  }
+
   .prose :global(table th) {
     background: var(--color-panel);
     color: var(--color-ink);
@@ -808,6 +920,40 @@ const articleLd = {
     color: var(--color-red-dark);
   }
 
+  /* карточка продукта внутри callout (напр. IAU Essence Moist/Sleek/Forti) — название сверху,
+     затем мелкая подпись объём/артикул. Раньше здесь была отдельная grid-раскладка .mix-card
+     с большим круглым значком слева («булька») — на мобильном при grid-template-columns:1fr
+     значок вставал НАД текстом, съедая огромную высоту экрана на каждой из трёх карточек подряд
+     (реальная жалоба пользователя, 2026-08-28). Просто текстовый блок в callout, без иконки —
+     компактно на любом экране. */
+  .prose :global(.callout .callout-title) {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-ink);
+    margin: 0 0 2px;
+  }
+
+  .prose :global(.callout .callout-sub) {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--color-meta);
+    margin: 0 0 10px;
+  }
+
+  .prose :global(.callout ul) {
+    margin: 0 0 10px;
+    padding-left: 18px;
+  }
+
+  .prose :global(.callout ul:last-child) {
+    margin-bottom: 0;
+  }
+
   .prose :global(.zoom-hint) {
     margin: -10px 0 16px;
     font-size: 0.76rem;
@@ -815,7 +961,10 @@ const articleLd = {
     text-align: center;
   }
 
-  /* чеклист «область применения» — зелёные галочки */
+  /* чеклист «область применения» — зелёные галочки. На мобильном flex-wrap-пилюли разной ширины
+     переносились вразнобой (то 1 в ряд, то 2 неровных) — некрасиво и нечитаемо (реальная жалоба
+     пользователя на статье Lebel, 2026-08-28, но виджет общий для всех гид-статей — чиним сразу
+     везде). На узких экранах — ровная сетка 2 колонки, пилюли тянутся на всю ширину своей ячейки. */
   .prose :global(.checklist) {
     display: flex;
     flex-wrap: wrap;
@@ -835,6 +984,17 @@ const articleLd = {
     padding: 8px 14px 8px 10px;
     font-size: 0.84rem;
     line-height: 1.3;
+  }
+
+  @media (max-width: 640px) {
+    .prose :global(.checklist) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .prose :global(.checklist li) {
+      width: 100%;
+    }
   }
 
   .prose :global(.checklist .check-icon) {
@@ -895,4 +1055,33 @@ const articleLd = {
     });
   }
   initLightbox();
+
+  // Кнопки «В заявку» на статичных товарных таблицах/карточках (Lebel «Абсолютное счастье
+  // для волос», 2026-08-28) — тот же window.zilmaCart, что и в интерактивной палитре оттенков
+  // (ShadeSwatchGrid.astro), просто без пикера цвета: цена и название уже зашиты в data-атрибуты
+  // прямо в markdown статьи (там же, где вручную сверялись с priceItems.json). Общий приём для
+  // любой будущей статьи с обычным списком товаров (не палитрой) — не только для Lebel.
+  function initCartButtons() {
+    document.querySelectorAll<HTMLButtonElement>('.cart-add-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const name = btn.dataset.name;
+        const price = parseFloat(btn.dataset.price ?? '');
+        const brand = btn.dataset.brand || 'LEBEL';
+        if (!name || !Number.isFinite(price)) return;
+        const items = (window as any).zilmaCart?.get() ?? [];
+        const existing = items.find((it: any) => it.name === name);
+        if (existing) existing.qty += 1;
+        else items.push({ name, price, qty: 1, brand, promo: false });
+        (window as any).zilmaCart?.set(items);
+        const original = btn.textContent;
+        btn.textContent = '✓ Добавлено';
+        btn.classList.add('is-added');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('is-added');
+        }, 1200);
+      });
+    });
+  }
+  initCartButtons();
 </script>
