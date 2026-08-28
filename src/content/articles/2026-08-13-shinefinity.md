@@ -3,7 +3,7 @@ title: "Wella Shinefinity: тонирующий уход-глазировани�
 description: "Zero Lift Glaze с балансом pH — смешивание 1:1, пять форматов услуги (Glaze, Speed, Corrective, Flash, Balancing), бустер-тона и полная палитра оттенков"
 brand: "Wella"
 line: "Shinefinity"
-tags: ["окрашивание"]
+tags: ["колористика"]
 coverImage: "/images/articles/2026-08-13-shinefinity/cover.webp"
 paletteImage: "/images/articles/2026-08-13-shinefinity/palette.webp"
 publishDate: 2026-08-13T09:00:00

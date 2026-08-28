@@ -3,7 +3,7 @@ title: "Wella Koleston Perfect: точная формула цвета и 100% �
 description: "Закрашивание седины, схема смешивания с Welloxon Perfect, пастельные тона, глянцевание, Special Mix и аллерготест — гид по применению"
 brand: "Wella"
 line: "Koleston Perfect"
-tags: ["окрашивание"]
+tags: ["колористика"]
 coverImage: "/images/articles/2026-08-13-koleston-perfect/cover.webp"
 paletteImage: "/images/articles/2026-08-13-koleston-perfect/palette.webp"
 publishDate: 2026-08-13T06:00:00

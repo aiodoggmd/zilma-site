@@ -3,7 +3,7 @@ title: "Wella Color Touch: интенсивное деми-перманентн�
 description: "Демиперманентное тонирование без аммиака: базовая линия и Plus — пропорции, время выдержки, закрашивание седины и палитра оттенков"
 brand: "Wella"
 line: "Color Touch"
-tags: ["окрашивание"]
+tags: ["колористика"]
 coverImage: "/images/articles/2026-08-13-color-touch/cover.webp"
 paletteImage: "/images/articles/2026-08-13-color-touch/palette.webp"
 publishDate: 2026-08-13T07:00:00
