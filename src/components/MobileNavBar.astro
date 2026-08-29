@@ -73,7 +73,11 @@
       z-index: 150;
       justify-content: space-around;
       align-items: center;
-      background: rgba(188, 216, 242, 0.58);
+      /* Градиент пастельный-красный → пастельный-синий, 2026-08-29 — пользователю понравился
+         этот же градиент на вкладке «База знаний» (FilterTabs.astro), попросил перенести
+         сюда. Те же цвета, что var(--color-pastel-red)/var(--color-pastel-blue), просто в rgba
+         с той же альфой 0.58, что была у исходного сплошного цвета — сохраняет стеклянный эффект. */
+      background: linear-gradient(90deg, rgba(243, 193, 201, 0.58), rgba(188, 216, 242, 0.58));
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.5);

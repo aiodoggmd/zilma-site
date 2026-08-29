@@ -8,7 +8,6 @@ coverImage: "/images/articles/2026-08-13-shinefinity/cover.webp"
 paletteImage: "/images/articles/2026-08-13-shinefinity/palette.webp"
 publishDate: 2026-08-13T09:00:00
 verifiedDate: 2026-08-23
-accent: "red"
 ---
 
 **Shinefinity Zero Lift Glaze** — тонирующий гель-крем Wella Professionals на балансированном pH: без аммиака, без осветления и без повреждения структуры волоса. Формула не течёт (гель-крем без подтёков), даёт предсказуемый результат «точно в оттенок» и стойкий блеск на срок до 6 недель при мытье головы до 3 раз в неделю.

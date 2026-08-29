@@ -1,4 +1,6 @@
 ---
+import { categoryColor } from '../lib/category-color';
+
 interface Props {
   id: string;
   title: string;
@@ -11,10 +13,10 @@ interface Props {
   verifiedDate: Date;
   isNew?: boolean;
   size?: 'lg' | 'md';
-  accent?: 'blue' | 'red';
 }
 
-const { id, title, description, brand, tags, coverImage, verifiedDate, isNew = false, size = 'md', accent = 'blue' } = Astro.props;
+const { id, title, description, brand, tags, coverImage, verifiedDate, isNew = false, size = 'md' } = Astro.props;
+const accent = categoryColor(tags);
 const formattedVerifiedDate = verifiedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 <a href={`/articles/${id}/`} class:list={['card', size]} data-tags={tags.join(',')}>
@@ -132,6 +134,10 @@ const formattedVerifiedDate = verifiedDate.toLocaleDateString('ru-RU', { day: 'n
 
   .text-panel.red {
     background: var(--color-pastel-red);
+  }
+
+  .text-panel.gradient {
+    background: linear-gradient(90deg, var(--color-pastel-red), var(--color-pastel-blue));
   }
 
   .card.lg .text-panel {

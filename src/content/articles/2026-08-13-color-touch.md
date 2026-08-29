@@ -8,7 +8,6 @@ coverImage: "/images/articles/2026-08-13-color-touch/cover.webp"
 paletteImage: "/images/articles/2026-08-13-color-touch/palette.webp"
 publishDate: 2026-08-13T07:00:00
 verifiedDate: 2026-08-23
-accent: "red"
 ---
 
 **Color Touch** — интенсивное тонирование Color Touch открывает мир модного цвета для вас и ваших клиентов. Испытайте на себе блеск и яркость стойкого цвета с мягким воздействием, характерным для полуперманентной краски.

@@ -8,7 +8,6 @@ coverImage: "/images/articles/2026-08-13-koleston-perfect/cover.webp"
 paletteImage: "/images/articles/2026-08-13-koleston-perfect/palette.webp"
 publishDate: 2026-08-13T06:00:00
 verifiedDate: 2026-08-23
-accent: "blue"
 ---
 
 **Koleston Perfect** — перманентная крем-краска Wella Professionals. Ниже — полный перевод официального руководства по применению из шейд-чарта Wella: закрашивание седины, схемы смешивания с Welloxon Perfect, уходовые техники между окрашиваниями, глянцевание, Special Mix, пастельное тонирование, система нумерации оттенков и обязательный аллерготест.

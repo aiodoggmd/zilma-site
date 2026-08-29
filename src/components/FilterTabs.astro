@@ -1,64 +1,197 @@
 ---
+// Цвета по категориям — установлено 2026-08-29 по прямой просьбе пользователя (раньше все
+// вкладки были одного цвета, синим подсвечивалась только активная/наведённая — см. историю в
+// Site/CLAUDE.md). Каждая категория теперь имеет свой цвет ВСЕГДА (не только в активном
+// состоянии): колористика — синий, уход и восстановление — красный, база знаний (новый раздел
+// с FAQ-статьями, пересекает обе темы) — градиент красный→синий. Только переменные из
+// global.css, ничего нового не придумано.
 const tabs = [
   { key: 'all', label: 'Все' },
   { key: 'колористика', label: 'Колористика' },
   { key: 'уход и восстановление', label: 'Уход и восстановление' },
+  { key: 'база знаний', label: 'База знаний' },
 ];
 ---
-<div class="filter-tabs" id="filter-tabs">
-  {tabs.map((t, i) => (
-    <button type="button" class:list={['tab', { active: i === 0 }]} data-tag={t.key}>{t.label}</button>
-  ))}
+<div class="filter-bar">
+  <div class="filter-tabs" id="filter-tabs">
+    {tabs.map((t, i) => (
+      <button type="button" class:list={['tab', t.key.replace(/\s+/g, '-'), { active: i === 0 }]} data-tag={t.key}>{t.label}</button>
+    ))}
+  </div>
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+    <input type="search" id="article-search" placeholder="Поиск по статьям…" aria-label="Поиск по статьям" />
+  </div>
 </div>
 
 <style>
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 24px 0 8px;
+  }
+
   .filter-tabs {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 24px 0 8px;
   }
 
   .tab {
-    border: 1px solid var(--color-red);
-    background: var(--color-red);
-    color: #fff;
+    border: 1px solid transparent;
     padding: 9px 18px;
     border-radius: 999px;
     font-size: 0.88rem;
     font-family: var(--font-sans);
+    font-weight: 600;
     cursor: pointer;
     box-shadow: var(--shadow-sm);
     transition: all 0.2s ease;
   }
 
-  .tab:hover {
-    background: var(--color-blue-dark);
-    border-color: var(--color-blue-dark);
+  /* «Все» — нейтральный, вне цветовой схемы категорий */
+  .tab.all {
+    background: var(--color-panel);
+    border-color: var(--color-panel-line);
+    color: var(--color-ink);
+  }
+
+  .tab.all.active {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
     color: #fff;
   }
 
-  .tab.active {
+  /* Колористика — синий */
+  .tab.колористика {
+    background: var(--color-pastel-blue);
+    color: var(--color-blue-dark);
+  }
+
+  .tab.колористика.active {
     background: var(--color-blue-dark);
-    border-color: var(--color-blue-dark);
     color: #fff;
+  }
+
+  /* Уход и восстановление — красный */
+  .tab.уход-и-восстановление {
+    background: var(--color-pastel-red);
+    color: var(--color-red-dark);
+  }
+
+  .tab.уход-и-восстановление.active {
+    background: var(--color-red);
+    color: #fff;
+  }
+
+  /* База знаний — градиент красный→синий (пересекает обе темы) */
+  .tab.база-знаний {
+    background: linear-gradient(90deg, var(--color-pastel-red), var(--color-pastel-blue));
+    color: var(--color-ink);
+  }
+
+  .tab.база-знаний.active {
+    background: linear-gradient(90deg, var(--color-red), var(--color-blue-dark));
+    color: #fff;
+  }
+
+  .tab:hover {
+    filter: brightness(0.97);
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 999px;
+    padding: 9px 16px;
+    color: var(--color-meta);
+    box-shadow: var(--shadow-sm);
+    flex: 1 1 220px;
+    max-width: 280px;
+  }
+
+  .search-box svg {
+    flex: none;
+  }
+
+  .search-box input {
+    border: none;
+    outline: none;
+    background: none;
+    font: inherit;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: var(--color-ink);
+    width: 100%;
+  }
+
+  .search-box input::placeholder {
+    color: var(--color-meta);
+  }
+
+  @media (max-width: 640px) {
+    .search-box {
+      max-width: none;
+      flex-basis: 100%;
+      order: 3;
+    }
+
+    /* Тот же приём, что для .checklist в [id].astro: flex-wrap на пилюлях разной ширины
+       переносил их вразнобой (2+1+1) — ровная сетка 2 колонки выглядит аккуратнее. */
+    .filter-tabs {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .tab {
+      width: 100%;
+      text-align: center;
+    }
   }
 </style>
 
 <script>
   const tabsEl = document.getElementById('filter-tabs');
+  const searchInput = document.getElementById('article-search') as HTMLInputElement | null;
   const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-tags]'));
+
+  let activeTag = 'all';
+
+  function normalize(s: string): string {
+    return s.toLowerCase().trim();
+  }
+
+  function applyFilters() {
+    const query = normalize(searchInput?.value ?? '');
+    const tokens = query.split(/\s+/).filter(Boolean);
+
+    cards.forEach((card) => {
+      const tags = card.dataset.tags?.split(',') ?? [];
+      const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+      const haystack = normalize(card.textContent ?? '');
+      const matchesSearch = tokens.every((t) => haystack.includes(t));
+      card.style.display = matchesTag && matchesSearch ? '' : 'none';
+    });
+  }
 
   tabsEl?.addEventListener('click', (e) => {
     const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.tab');
     if (!btn) return;
     tabsEl.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
     btn.classList.add('active');
-    const tag = btn.dataset.tag;
-    cards.forEach((card) => {
-      const tags = card.dataset.tags?.split(',') ?? [];
-      const show = tag === 'all' || tags.includes(tag ?? '');
-      card.style.display = show ? '' : 'none';
-    });
+    activeTag = btn.dataset.tag ?? 'all';
+    applyFilters();
   });
+
+  searchInput?.addEventListener('input', applyFilters);
 </script>

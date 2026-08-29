@@ -7,7 +7,6 @@ tags: ["уход и восстановление"]
 coverImage: "/images/articles/2026-08-28-lebel-absolute-happiness/cover.webp"
 publishDate: 2026-08-28T12:00:00
 verifiedDate: 2026-08-28
-accent: "blue"
 ---
 
 **Lebel «Абсолютное счастье для волос»** (Lebel Absolute Happiness for Hair) — концептуальная салонная программа восстановления и увлажнения волос на молекулярном уровне. Это не отдельное средство, а комплекс из четырёх линеек бренда (PROEDIT HAIRSKIN FLOAT CLEANSING, IAU CELL CARE, PROEDIT CARE WORKS, IAU ESSENCE), которые применяются последовательно за одну процедуру.

@@ -9,12 +9,11 @@ const articles = defineCollection({
     description: z.string(),
     brand: z.string(),
     line: z.string(),
-    tags: z.array(z.enum(['колористика', 'уход и восстановление', 'акции', 'цены'])),
+    tags: z.array(z.enum(['колористика', 'уход и восстановление', 'база знаний', 'акции', 'цены'])),
     coverImage: z.string(),
     paletteImage: z.string().optional(),
     publishDate: z.coerce.date(),
     verifiedDate: z.coerce.date(),
-    accent: z.enum(['blue', 'red']).default('blue'),
   }),
 });
 

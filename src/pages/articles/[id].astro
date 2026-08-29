@@ -4,6 +4,7 @@
 export const prerender = true;
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categoryColor } from '../../lib/category-color';
 import ShadeSwatchGrid from '../../components/ShadeSwatchGrid.astro';
 import illuminaShades from '../../data/illumina-shades.json';
 import shinefinityShades from '../../data/shinefinity-shades.json';
@@ -60,6 +61,7 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const { Content } = await render(article);
 const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+const accent = categoryColor(article.data.tags);
 
 function truncateTitle(title: string, max = 70) {
   if (title.length <= max) return title;
@@ -94,10 +96,10 @@ const articleLd = {
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleLd)} />
   <div class="cover-wrap">
-    <div class={`cover cover-${article.data.accent}`}>
+    <div class={`cover cover-${accent}`}>
       <div class="cover-overlay"></div>
     </div>
-    <div class={`container cover-inner cover-inner-${article.data.accent}`}>
+    <div class={`container cover-inner cover-inner-${accent}`}>
       <div class="cover-text">
         <p class="cover-tagline">Профессиональная<br />косметика для салонов</p>
         <p class="cover-subtitle">Гид по брендам и подбор оттенков — всё для работы мастера.</p>
@@ -150,6 +152,10 @@ const articleLd = {
 
   .cover-red {
     background: var(--color-red);
+  }
+
+  .cover-gradient {
+    background: linear-gradient(135deg, var(--color-red), var(--color-blue-dark));
   }
 
   .cover-overlay {
@@ -280,6 +286,10 @@ const articleLd = {
 
     .cover-inner-red {
       background: var(--color-red);
+    }
+
+    .cover-inner-gradient {
+      background: linear-gradient(135deg, var(--color-red), var(--color-blue-dark));
     }
 
     .cover-text {
@@ -1009,6 +1019,110 @@ const articleLd = {
     justify-content: center;
     font-size: 0.7rem;
     font-weight: 700;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Виджеты для статей раздела «База знаний» (первая — 2026-08-29, «Почему цвет волос выцветает
+     неравномерно») — это не гид по товару, а редакционный лонгрид, поэтому набор виджетов другой:
+     оглавление, вопрос-ответ, нумерованные шаги. Переиспользовать для любой будущей статьи этого
+     раздела, не изобретать заново. */
+
+  /* оглавление «В этой статье» — ссылки на автоматические id заголовков. Проверено программно
+     (2026-08-29): id для заголовков со смайликами генерируются стабильно на каждой сборке (не
+     случайно), просто некрасиво — ведущий дефис вместо вырезанного смайла, а у эмодзи с
+     variation selector (☀️, 🗣️ и т.п.) перед дефисом остаётся невидимый символ ️. Смотреть
+     фактический id в браузере (document.querySelectorAll('h2,h3')) перед тем как проставлять
+     ссылки в новой статье — не гадать по шаблону. */
+  .prose :global(.toc-box) {
+    background: var(--color-panel);
+    border: 1px solid var(--color-panel-line);
+    border-radius: var(--radius-card);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .prose :global(.toc-box .toc-title) {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0 0 10px;
+    color: var(--color-ink);
+  }
+
+  .prose :global(.toc-box ul) {
+    margin: 0;
+    padding-left: 20px;
+    line-height: 1.7;
+  }
+
+  .prose :global(.toc-box a) {
+    color: var(--color-blue-dark);
+    text-decoration: none;
+  }
+
+  .prose :global(.toc-box a:hover) {
+    text-decoration: underline;
+  }
+
+  /* вопрос-ответ (FAQ) */
+  .prose :global(.faq-item) {
+    background: var(--color-panel);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+
+  .prose :global(.faq-item .faq-q) {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0 0 6px;
+  }
+
+  .prose :global(.faq-item .faq-a) {
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  /* нумерованные шаги с кружком-цифрой (порядок важен — не путать с .checklist, там порядок
+     не имеет значения) */
+  .prose :global(.steps-ordered) {
+    list-style: none;
+    counter-reset: step;
+    margin: 16px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .prose :global(.steps-ordered li) {
+    counter-increment: step;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--color-panel);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 12px;
+    padding: 14px 18px;
+    line-height: 1.5;
+  }
+
+  .prose :global(.steps-ordered li::before) {
+    content: counter(step);
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-red-dark);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 0.9rem;
     box-shadow: var(--shadow-sm);
   }
 
