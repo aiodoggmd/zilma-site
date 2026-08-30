@@ -11,6 +11,8 @@ import shinefinityShades from '../../data/shinefinity-shades.json';
 import kolestonShades from '../../data/koleston-shades.json';
 import colortouchShades from '../../data/colortouch-shades.json';
 import igoraRoyalShades from '../../data/igora-royal-shades.json';
+import londaShades from '../../data/londa-shades.json';
+import londaDemiShades from '../../data/londa-demi-shades.json';
 
 const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-13-illumina-color': illuminaShades,
@@ -18,7 +20,38 @@ const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-13-koleston-perfect': kolestonShades,
   '2026-08-13-color-touch': colortouchShades,
   '2026-08-28-igora-royal': igoraRoyalShades,
+  '2026-08-29-londa-professional': londaShades,
 };
+
+// Заголовок над основной палитрой — по умолчанию общий, но для линеек с несколькими
+// категориями оттенков (напр. Londa: аммиачная Permanent и безаммиачная тонирующая) нужно
+// уточнение, чтобы не перепутать с дополнительной палитрой ниже.
+const PALETTE_TITLE: Record<string, string> = {
+  '2026-08-29-londa-professional': 'Аммиачная линия (Permanent) — с ценами по прайсу',
+};
+
+// Вторая, отдельная палитра оттенков для линеек, где один и тот же номер оттенка продаётся
+// в двух разных формулах (напр. Londa Permanent и Londa безаммиачное тонирование —
+// разные товары в прайсе, разные точки-маркеры на официальной карте). Использует ту же
+// группировку по тоновым семействам, что и основная палитра (PALETTE_GROUP_CONFIG ниже).
+const PALETTE_SHADES_SECONDARY: Record<string, typeof illuminaShades> = {
+  '2026-08-29-londa-professional': londaDemiShades,
+};
+const PALETTE_TITLE_SECONDARY: Record<string, string> = {
+  '2026-08-29-londa-professional': 'Безаммиачная линия (тонирование) — с ценами по прайсу',
+};
+
+// Статьи, где интерактивная палитра построена из реальных фото свотчей (не сэмплированного
+// цвета со статичной картинки) — отдельная статичная карта оттенков признана избыточной,
+// подсказка «более точный цвет — в палитре выше» тут не нужна (Londa, 2026-08-30).
+const PALETTE_NO_STATIC_IMAGE = new Set([
+  '2026-08-29-londa-professional',
+  '2026-08-13-illumina-color',
+  '2026-08-13-shinefinity',
+  '2026-08-13-koleston-perfect',
+  '2026-08-13-color-touch',
+  '2026-08-28-igora-royal',
+]);
 
 // Линейки с нерегулярной структурой палитры (несколько несовпадающих семейств оттенков вместо
 // одной ровной сетки) передают свой набор групп сюда — по умолчанию ShadeSwatchGrid использует
@@ -47,6 +80,24 @@ const PALETTE_GROUP_CONFIG: Record<string, { order: string[]; labels: Record<str
       specialities: 'Specialities',
     },
     flat: ['specialities'],
+  },
+  '2026-08-29-londa-professional': {
+    order: ['natural', 'ash', 'matt', 'gold', 'copper', 'red', 'violet', 'brown', 'pearl', 'cendre', 'mixtone', 'pastel'],
+    labels: {
+      natural: 'Натуральные',
+      ash: 'Пепельные',
+      matt: 'Матовые',
+      gold: 'Золотистые',
+      copper: 'Медные',
+      red: 'Красные',
+      violet: 'Фиолетовые',
+      brown: 'Коричневые',
+      pearl: 'Жемчужные',
+      cendre: 'Сандрэ',
+      mixtone: 'Микс-тона',
+      pastel: 'Пастельные микс-тона',
+    },
+    flat: ['mixtone', 'pastel'],
   },
 };
 
@@ -120,13 +171,27 @@ const articleLd = {
       </div>
       {PALETTE_SHADES[article.id] && (
         <div class="prose">
-          <h2>Интерактивная палитра — с ценами по прайсу</h2>
+          <h2>{PALETTE_TITLE[article.id] ?? 'Интерактивная палитра — с ценами по прайсу'}</h2>
           <ShadeSwatchGrid
             shades={PALETTE_SHADES[article.id]}
             groupOrder={PALETTE_GROUP_CONFIG[article.id]?.order}
             groupLabels={PALETTE_GROUP_CONFIG[article.id]?.labels}
             flatGroups={PALETTE_GROUP_CONFIG[article.id]?.flat}
             cartBrand={article.data.brand.toUpperCase()}
+            showPaletteNote={!PALETTE_NO_STATIC_IMAGE.has(article.id)}
+          />
+        </div>
+      )}
+      {PALETTE_SHADES_SECONDARY[article.id] && (
+        <div class="prose">
+          <h2>{PALETTE_TITLE_SECONDARY[article.id]}</h2>
+          <ShadeSwatchGrid
+            shades={PALETTE_SHADES_SECONDARY[article.id]}
+            groupOrder={PALETTE_GROUP_CONFIG[article.id]?.order}
+            groupLabels={PALETTE_GROUP_CONFIG[article.id]?.labels}
+            flatGroups={PALETTE_GROUP_CONFIG[article.id]?.flat}
+            cartBrand={article.data.brand.toUpperCase()}
+            showPaletteNote={!PALETTE_NO_STATIC_IMAGE.has(article.id)}
           />
         </div>
       )}
@@ -656,6 +721,53 @@ const articleLd = {
     line-height: 1.55;
   }
 
+  /* легенда цветных маркеров с официальной карты оттенков (Londa и т.п.) — реальные цвета
+     точек с картинки, не из палитры сайта, поэтому inline-style с настоящим hex оправдан */
+  .prose :global(.marker-legend) {
+    list-style: none;
+    margin: 16px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .prose :global(.marker-legend li) {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--color-panel);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .prose :global(.marker-legend li > span:last-child) {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .prose :global(.marker-dot) {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .prose :global(.marker-dot-m) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 2px solid var(--color-ink);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
   /* инлайн-пилюля со временем выдержки */
   .prose :global(.timer-chip) {
     display: flex;
@@ -1154,6 +1266,18 @@ const articleLd = {
 </style>
 
 <script>
+  // На мобильном pinch-zoom по картинке в лайтбоксе — это зум ВСЕЙ страницы (браузер не умеет
+  // масштабировать один fixed-элемент отдельно от остальных), и после закрытия оверлея масштаб
+  // сайта остаётся «прилипшим» увеличенным. Единственный надёжный кросс-браузерный способ сбросить
+  // зум обратно — на мгновение подменить content у <meta name="viewport">, это форсит перерасчёт.
+  function resetPageZoom() {
+    const viewport = document.querySelector('meta[name="viewport"]');
+    if (!viewport) return;
+    const original = viewport.getAttribute('content') ?? '';
+    viewport.setAttribute('content', original + ', maximum-scale=1');
+    requestAnimationFrame(() => viewport.setAttribute('content', original));
+  }
+
   function initLightbox() {
     document.querySelectorAll('.prose img').forEach((img) => {
       img.addEventListener('click', () => {
@@ -1163,7 +1287,10 @@ const articleLd = {
         big.src = img.currentSrc || img.src;
         big.alt = img.alt;
         overlay.appendChild(big);
-        overlay.addEventListener('click', () => overlay.remove());
+        overlay.addEventListener('click', () => {
+          overlay.remove();
+          resetPageZoom();
+        });
         document.body.appendChild(overlay);
       });
     });

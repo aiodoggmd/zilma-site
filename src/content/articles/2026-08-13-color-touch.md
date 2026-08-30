@@ -94,6 +94,3 @@ verifiedDate: 2026-08-23
 
 Палитра Color Touch разработана так, чтобы точно совпадать с оттенками Koleston Perfect и служить деми-перманентным дополнением к перманентному окрашиванию: Pure Naturals, Rich Naturals, Deep Browns, Vibrant Reds, Special Mix, Plus.
 
-![Палитра оттенков Color Touch](/images/articles/2026-08-13-color-touch/palette.webp)
-
-<p class="zoom-hint">Нажмите на картинку, чтобы увеличить</p>

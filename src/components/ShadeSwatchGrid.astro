@@ -12,6 +12,9 @@ interface Shade {
   name?: string;
   price?: number;
   label?: string;
+  // реальное фото свотча (вырезанное из официального PDF-каталога, круглый кроп без фона) —
+  // пока только у Londa (2026-08-29); линейки без этого поля показывают заливку hex как раньше.
+  image?: string;
 }
 
 interface Props {
@@ -23,6 +26,10 @@ interface Props {
   // бренд, который уходит в заявку при добавлении в корзину — раньше был жёстко 'WELLA',
   // что было не видно, пока все линейки были только Wella; Igora Royal (Schwarzkopf) вскрыла это.
   cartBrand?: string;
+  // подсказка «более точный цвет — в статичной палитре выше» имеет смысл только если такая
+  // статичная картинка реально есть на странице (не у Londa — там фото-свотчи и так реальные
+  // фото с официальной карты, отдельная статичная картинка была признана избыточной).
+  showPaletteNote?: boolean;
 }
 
 const {
@@ -37,6 +44,7 @@ const {
   },
   flatGroups = ['opal', 'booster'],
   cartBrand = 'WELLA',
+  showPaletteNote = true,
 } = Astro.props;
 
 const groups = groupOrder.map((g) => ({
@@ -59,8 +67,10 @@ function textVarsFor(hex: string): string {
 }
 ---
 <div class="shade-grid-wrap" data-cart-brand={cartBrand}>
-  <p class="shade-grid-hint">Нажмите на квадрат, чтобы увидеть название и цену по прайсу.</p>
-  <p class="shade-grid-note">Более точный цвет можно увидеть в <a href="#палитра-оттенков">палитре выше</a>.</p>
+  <p class="shade-grid-hint">Нажмите на цвет, чтобы увидеть наличие и заказать.</p>
+  {showPaletteNote
+    ? <p class="shade-grid-note">Более точный цвет можно увидеть в <a href="#палитра-оттенков">палитре выше</a>.</p>
+    : <p class="shade-grid-note">Серая обводка круга — оттенка сейчас нет в актуальном прайсе.</p>}
   {groups.map((g) => (
     <div class="shade-group">
       <p class="shade-group-label">{g.label}</p>
@@ -68,15 +78,17 @@ function textVarsFor(hex: string): string {
         {g.items.map((s) => (
           <button
             type="button"
-            class:list={['shade-swatch', { 'shade-swatch-unavailable': s.price == null }]}
-            style={`background:${s.hex};${textVarsFor(s.hex)}`}
+            class:list={['shade-swatch', { 'shade-swatch-photo': !!s.image, 'shade-swatch-unavailable': s.price == null }]}
+            style={s.image ? textVarsFor(s.hex) : `background:${s.hex};${textVarsFor(s.hex)}`}
             data-code={s.code}
             data-hex={s.hex}
+            data-image={s.image ?? ''}
             data-name={s.name ?? ''}
             data-price={s.price ?? ''}
             data-label={s.label ?? ''}
             aria-label={`${s.label ?? s.code}${s.price != null ? `, ${s.price} ₽` : ', нет в прайсе'}`}
           >
+            {s.image && <img src={s.image} alt="" class="shade-swatch-img" loading="lazy" width="72" height="72" />}
             <span class="shade-code">{s.label ? s.label.split(' ')[0] : s.code}</span>
           </button>
         ))}
@@ -84,24 +96,22 @@ function textVarsFor(hex: string): string {
     </div>
   ))}
 
-  <div class="shade-detail" id="shade-detail" hidden>
-    <span class="shade-detail-swatch" id="shade-detail-swatch"></span>
+  <div class="shade-detail" hidden>
+    <span class="shade-detail-swatch"><img class="shade-detail-img" alt="" hidden /></span>
     <div class="shade-detail-text">
-      <p class="shade-detail-name" id="shade-detail-name"></p>
-      <p class="shade-detail-sub" id="shade-detail-sub"></p>
+      <p class="shade-detail-name"></p>
+      <p class="shade-detail-sub"></p>
     </div>
-    <button type="button" class="shade-detail-cta" id="shade-detail-cta">Добавить в заявку</button>
+    <button type="button" class="shade-detail-cta">Добавить в заявку</button>
   </div>
 </div>
 
 <script>
-  const wrap = document.querySelector('.shade-grid-wrap');
-  const detail = document.getElementById('shade-detail');
-  const detailSwatch = document.getElementById('shade-detail-swatch');
-  const detailName = document.getElementById('shade-detail-name');
-  const detailSub = document.getElementById('shade-detail-sub');
-  const detailCta = document.getElementById('shade-detail-cta') as HTMLButtonElement | null;
-
+  // Страница может содержать НЕСКОЛЬКО палитр разом (напр. Londa: аммиачная + безаммиачная) —
+  // document.getElementById/querySelector брали бы только первую на странице, и Astro к тому же
+  // дедуплицирует одинаковый inline-script по содержимому (выполнился бы только один раз на все
+  // инстансы). Поэтому вся логика скопирована в замыкание на каждый .shade-grid-wrap отдельно,
+  // все запросы — через сам wrap, а не через document/id.
   interface CartItem {
     name: string;
     price: number;
@@ -115,62 +125,79 @@ function textVarsFor(hex: string): string {
     return items.filter((it) => it.name === name).reduce((s, it) => s + it.qty, 0);
   }
 
-  function addToCart(name: string, price: number) {
+  function addToCart(wrap: HTMLElement, name: string, price: number) {
     const items: CartItem[] = (window as any).zilmaCart?.get() ?? [];
     const existing = items.find((it) => it.name === name);
     if (existing) {
       existing.qty += 1;
     } else {
-      const brand = wrap?.getAttribute('data-cart-brand') || 'WELLA';
+      const brand = wrap.getAttribute('data-cart-brand') || 'WELLA';
       items.push({ name, price, qty: 1, brand, promo: false });
     }
     (window as any).zilmaCart?.set(items);
   }
 
-  let activeName = '';
+  document.querySelectorAll<HTMLElement>('.shade-grid-wrap').forEach((wrap) => {
+    const detail = wrap.querySelector<HTMLElement>('.shade-detail');
+    const detailSwatch = wrap.querySelector<HTMLElement>('.shade-detail-swatch');
+    const detailName = wrap.querySelector<HTMLElement>('.shade-detail-name');
+    const detailSub = wrap.querySelector<HTMLElement>('.shade-detail-sub');
+    const detailCta = wrap.querySelector<HTMLButtonElement>('.shade-detail-cta');
 
-  function refreshCtaLabel() {
-    if (!detailCta || !activeName) return;
-    const qty = cartQtyFor(activeName);
-    detailCta.textContent = qty > 0 ? `Добавить ещё (в заявке: ${qty})` : 'Добавить в заявку';
-  }
+    let activeName = '';
 
-  wrap?.querySelectorAll<HTMLButtonElement>('.shade-swatch').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      wrap?.querySelectorAll('.shade-swatch').forEach((b) => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      if (!detail || !detailSwatch || !detailName || !detailSub) return;
-      const hex = btn.dataset.hex ?? '#ccc';
-      const name = btn.dataset.name;
-      const price = btn.dataset.price;
-      const label = btn.dataset.label;
-      const code = btn.dataset.code ?? '';
-      detailSwatch.setAttribute('style', `background:${hex}`);
-      detailName.textContent = name || (label ? `${label} (${code})` : code);
-      if (price && name) {
-        detailSub.textContent = `Код ${code} · ${price} ₽`;
-        activeName = name;
-        if (detailCta) detailCta.hidden = false;
-        refreshCtaLabel();
-      } else {
-        detailSub.textContent = `Код ${code} · нет в актуальном прайсе`;
-        activeName = '';
-        if (detailCta) detailCta.hidden = true;
-      }
-      detail.hidden = false;
+    function refreshCtaLabel() {
+      if (!detailCta || !activeName) return;
+      const qty = cartQtyFor(activeName);
+      detailCta.textContent = qty > 0 ? `Добавить ещё (в заявке: ${qty})` : 'Добавить в заявку';
+    }
+
+    wrap.querySelectorAll<HTMLButtonElement>('.shade-swatch').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        wrap.querySelectorAll('.shade-swatch').forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        if (!detail || !detailSwatch || !detailName || !detailSub) return;
+        const hex = btn.dataset.hex ?? '#ccc';
+        const image = btn.dataset.image;
+        const name = btn.dataset.name;
+        const price = btn.dataset.price;
+        const label = btn.dataset.label;
+        const code = btn.dataset.code ?? '';
+        const detailImg = detailSwatch.querySelector<HTMLImageElement>('.shade-detail-img');
+        if (image && detailImg) {
+          detailImg.src = image;
+          detailImg.hidden = false;
+          detailSwatch.style.background = 'transparent';
+        } else if (detailImg) {
+          detailImg.hidden = true;
+          detailSwatch.setAttribute('style', `background:${hex}`);
+        }
+        detailName.textContent = name || (label ? `${label} (${code})` : code);
+        if (price && name) {
+          detailSub.textContent = `Код ${code} · ${price} ₽`;
+          activeName = name;
+          if (detailCta) detailCta.hidden = false;
+          refreshCtaLabel();
+        } else {
+          detailSub.textContent = `Код ${code} · нет в актуальном прайсе`;
+          activeName = '';
+          if (detailCta) detailCta.hidden = true;
+        }
+        detail.hidden = false;
+      });
     });
-  });
 
-  detailCta?.addEventListener('click', () => {
-    const activeBtn = wrap?.querySelector<HTMLButtonElement>('.shade-swatch.is-active');
-    const name = activeBtn?.dataset.name;
-    const price = parseFloat(activeBtn?.dataset.price ?? '');
-    if (!name || !Number.isFinite(price)) return;
-    addToCart(name, price);
-    refreshCtaLabel();
-  });
+    detailCta?.addEventListener('click', () => {
+      const activeBtn = wrap.querySelector<HTMLButtonElement>('.shade-swatch.is-active');
+      const name = activeBtn?.dataset.name;
+      const price = parseFloat(activeBtn?.dataset.price ?? '');
+      if (!name || !Number.isFinite(price)) return;
+      addToCart(wrap, name, price);
+      refreshCtaLabel();
+    });
 
-  document.addEventListener('zilma:cart-updated', refreshCtaLabel);
+    document.addEventListener('zilma:cart-updated', refreshCtaLabel);
+  });
 </script>
 
 <style>
@@ -243,8 +270,42 @@ function textVarsFor(hex: string): string {
     box-shadow: 0 0 0 2px var(--color-blue-dark);
   }
 
+  /* Затемнение (opacity) искажало реальный цвет свотча и читалось как ошибка данных, а не
+     статус — теперь «нет в прайсе» показываем серой обводкой по краю (не красный — это уже
+     «акция/скидка» в прайсе; не синий — это кнопки заказа/CTA), цвет остаётся честным. */
   .shade-swatch-unavailable {
-    opacity: 0.4;
+    opacity: 1;
+    border-width: 3px;
+    border-color: var(--color-meta);
+  }
+
+  /* реальное фото свотча (Londa) — крупнее и круглое, а не плоский цветной квадрат */
+  .shade-swatch-photo {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    border-color: rgba(255, 255, 255, 0.85);
+  }
+
+  .shade-swatch-img {
+    /* !important — перебивает общий `.prose :global(img){height:320px}` из [id].astro,
+       рассчитанный на обычные картинки статьи, а не на маленькие круглые свотчи */
+    position: absolute !important;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+    pointer-events: none;
+    cursor: default !important;
+  }
+
+  .shade-swatch-photo .shade-code {
+    position: relative;
+    z-index: 1;
   }
 
   .shade-code {
@@ -277,6 +338,25 @@ function textVarsFor(hex: string): string {
     height: 40px;
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .shade-detail-swatch:has(.shade-detail-img:not([hidden])) {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+
+  .shade-detail-img {
+    position: absolute !important;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+    cursor: default !important;
   }
 
   .shade-detail-text {
@@ -320,6 +400,10 @@ function textVarsFor(hex: string): string {
     .shade-swatch {
       width: 38px;
       height: 38px;
+    }
+    .shade-swatch-photo {
+      width: 54px;
+      height: 54px;
     }
     .shade-detail {
       flex-wrap: wrap;

@@ -208,8 +208,4 @@ TrueLift Complex усиливает осветление, нейтрализуя
 
 ## Палитра оттенков
 
-![Палитра оттенков Igora Royal](/images/articles/2026-08-28-igora-royal/palette.webp)
-
-<p class="zoom-hint">Нажмите на картинку, чтобы увеличить</p>
-
 Палитра включает **Core** (Naturals, Cendrés & Cools, Beiges & Golds, Chocolates, Reds), **Absolutes**, **Highlifts & Pastels** (10-, 12-, 9,5-), **Silver Whites** (Silver / Dove Grey / Grey Lilac / Slate Grey — именные оттенки без цветового образца в чарте) и **Specialities** (Booster, Booster/Neutraliser, Fashion Lights).

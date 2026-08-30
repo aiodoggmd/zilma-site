@@ -238,8 +238,4 @@ verifiedDate: 2026-08-23
 
 ## Палитра оттенков
 
-![Палитра оттенков Koleston Perfect](/images/articles/2026-08-13-koleston-perfect/palette.webp)
-
-<p class="zoom-hint">Нажмите на картинку, чтобы увеличить</p>
-
 Палитра включает линейки **Pure Naturals**, **Rich Naturals**, **Special Blonde** (с подгруппами Natural/Warm/Cool, Resistant/Cover, Cool/Cover/Ultra/Pure), **Deep Browns**, **Vibrant Reds** и **Special Mix/Clear**.

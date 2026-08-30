@@ -98,8 +98,4 @@ Illumina Color подходит для:
 
 ## Палитра оттенков
 
-![Палитра оттенков Illumina Color](/images/articles/2026-08-13-illumina-color/palette.webp)
-
-<p class="zoom-hint">Нажмите на картинку, чтобы увеличить</p>
-
 Палитра включает тёплые и нейтральные оттенки (глубина тона 4/–10/), холодные оттенки той же шкалы и четыре металлик-оттенка Opal-Essence (Silver Mauve, Platinum Lily, Titanium Rose, Copper Peach).
