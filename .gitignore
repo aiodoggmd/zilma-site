@@ -21,6 +21,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Windows folder-view metadata
+desktop.ini
+
 # jetbrains setting folder
 .idea/
 
