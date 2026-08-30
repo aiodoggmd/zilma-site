@@ -990,8 +990,12 @@ if (groupBy === 'discount') {
 
     submitBtn?.addEventListener('click', () => {
       if (!commitSelection(root)) return;
-      closeDialogAndScrollTo(root, document.getElementById('order'));
-      document.querySelector<HTMLInputElement>('#order-form-el input[name="name"]')?.focus();
+      // Раньше сразу после «Добавить в заявку» уводило к форме и ставило фокус в поле имени —
+      // на телефоне это ощущалось как рывок/скачок страницы, даже если человек ещё не собирался
+      // оформлять заказ, а просто добавлял ещё один товар. По прямой просьбе пользователя
+      // (2026-08-30) — вид меняется только по явному нажатию на «Корзина»; здесь просто закрываем
+      // диалог на том же месте, откуда открыли, счётчик в корзине на плашке уже даёт обратную связь.
+      closeDialogAndScrollTo(root, null);
     });
   });
 </script>
