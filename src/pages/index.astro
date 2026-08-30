@@ -109,6 +109,14 @@ const organizationLd = {
     margin-top: 44px;
   }
 
+  /* Без этого grid-элемент по умолчанию min-width:auto — трек 1fr раздувается
+     под min-content самого широкого потомка вместо того чтобы сжаться до контейнера.
+     :global() обязателен — прямые потомки (.price-card, .order-form) рендерятся
+     другими компонентами и не получают scope-атрибут index.astro. */
+  .price-grid > :global(*) {
+    min-width: 0;
+  }
+
   .article-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
