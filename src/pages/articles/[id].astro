@@ -571,6 +571,17 @@ const articleLd = {
     height: 40px;
   }
 
+  /* Иконка для жёсткого максимума времени (напр. «не более 50 минут») — раньше здесь стоял
+     .wheel с --split:100% (сплошной закрашенный круг), но у такого предупреждения нет второй
+     величины для сравнения — сплошной кружок ничего не показывает и выглядит просто декоративным
+     пятном, не «часами». Настоящие песочные часы читаются однозначно и передают «не проспите». */
+  .prose :global(.mix-card .timer .clock-icon) {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    color: var(--color-red);
+  }
+
   .prose :global(.mix-card .timer .time-text) {
     font-size: 0.82rem;
     line-height: 1.6;
@@ -1112,8 +1123,8 @@ const articleLd = {
      пользователя на статье Lebel, 2026-08-28, но виджет общий для всех гид-статей — чиним сразу
      везде). На узких экранах — ровная сетка 2 колонки, пилюли тянутся на всю ширину своей ячейки. */
   .prose :global(.checklist) {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 10px;
     margin: 16px 0;
     padding: 0;
@@ -1130,16 +1141,12 @@ const articleLd = {
     padding: 8px 14px 8px 10px;
     font-size: 0.84rem;
     line-height: 1.3;
+    width: 100%;
   }
 
   @media (max-width: 640px) {
     .prose :global(.checklist) {
-      display: grid;
       grid-template-columns: 1fr 1fr;
-    }
-
-    .prose :global(.checklist li) {
-      width: 100%;
     }
   }
 

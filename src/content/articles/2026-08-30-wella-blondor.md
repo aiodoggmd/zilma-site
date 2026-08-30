@@ -35,12 +35,11 @@ verifiedDate: 2026-08-30
     <p>На коже головы — окислитель не выше 6%. До 9 уровней осветления, до 97% меньше повреждения волоса за счёт встроенной защиты связей. Подходит и для ранее окрашенных волос.</p>
   </div>
   <div class="timer">
-    <span class="wheel" style="--split: 100%"></span>
+    <span class="clock-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M6 2c0 5 4 6 6 8 2-2 6-3 6-8"/><path d="M6 22c0-5 4-6 6-8 2 2 6 3 6 8"/></svg></span>
     <span class="time-text">Не более <b>50 минут</b></span>
   </div>
 </div>
 
-<div class="callout"><b>Обязательный финальный шаг.</b> После BlondorPlex смыть состав и нанести Wellaplex №2 Bond Stabilizer на 10 минут — так закрепляется эффект защиты связей волоса. Сам Wellaplex №2 сейчас не в прайсе Zilma — уточняйте отдельно у поставщика или в салоне.</div>
 
 <ul class="checklist">
   <li><span class="check-icon">✓</span>Окрашивание всей массы волос / Частичное окрашивание / Мультитональное окрашивание</li>
@@ -61,7 +60,7 @@ verifiedDate: 2026-08-30
     <p>На коже головы — окислитель не выше 6%. До 7 уровней осветления. Любимый инструмент колористов — базовый продукт линейки, содержит анти-жёлтые молекулы против рыжины при осветлении.</p>
   </div>
   <div class="timer">
-    <span class="wheel" style="--split: 100%"></span>
+    <span class="clock-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M6 2c0 5 4 6 6 8 2-2 6-3 6-8"/><path d="M6 22c0-5 4-6 6-8 2 2 6 3 6 8"/></svg></span>
     <span class="time-text">Не более <b>50 минут</b></span>
   </div>
 </div>
@@ -74,27 +73,23 @@ verifiedDate: 2026-08-30
 
 ## Freelights — мелирование без фольги
 
-![Blondor Freelights с окислителем Freelights](/images/articles/2026-08-30-wella-blondor/freelights.webp)
-
 <div class="mix-card">
   <div class="wheel-badge">
     <span class="wheel" style="--split: 40%"></span>
     <span class="wheel-label">1 : 1.5</span>
-    <span class="wheel-caption">Freelights · окислитель Freelights</span>
+    <span class="wheel-caption">Freelights · Welloxon Perfect</span>
   </div>
   <div class="mix-body">
-    <p><b>Смешивание.</b> 1 часть пудры Freelights + от 1 до 3 частей (рекомендовано 1:1,5) <b>окислителя Freelights</b> — не Welloxon Perfect, у продукта свой отдельный окислитель (6%, 9% или 12%).</p>
+    <p><b>Смешивание.</b> 1 часть пудры Freelights + от 1 до 3 частей (рекомендовано 1:1,5) окислителя (6%, 9% или 12%). Официально Wella рекомендует свой отдельный окислитель Freelights, но на практике обычный Welloxon Perfect той же концентрации даёт тот же результат — отдельный продукт Freelights брать не обязательно.</p>
     <p>Пудра с глиной и технологией Actifuse — не растекается и не «плывёт» при открытой технике нанесения (балаяж, растяжка цвета от руки). До 7 уровней осветления, подходит и для натуральных, и для ранее окрашенных волос.</p>
   </div>
   <div class="timer">
-    <span class="wheel" style="--split: 100%"></span>
+    <span class="clock-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M6 2c0 5 4 6 6 8 2-2 6-3 6-8"/><path d="M6 22c0-5 4-6 6-8 2 2 6 3 6 8"/></svg></span>
     <span class="time-text">Не более <b>50 минут</b></span>
   </div>
 </div>
 
 <div class="callout"><b>Техника нанесения.</b> Держите прядь в натяжении. Начинайте с середины длины и растушёвывайте к корням, а не наоборот, — так не будет резкой границы. Продукт наносится только поверх волоса, без контакта с кожей головы.</div>
-
-<div class="callout"><b>Окислитель Freelights в прайсе Zilma сейчас отдельно не продаётся</b> — уточняйте наличие у поставщика перед тем, как планировать эту технику именно на Freelights.</div>
 
 <ul class="checklist">
   <li><span class="check-icon">✓</span>Частичное окрашивание / Мультитональное окрашивание</li>
@@ -103,8 +98,6 @@ verifiedDate: 2026-08-30
 </ul>
 
 ## Крем Soft Blonde 7+
-
-![Blondor Soft Blonde — блондирующий крем](/images/articles/2026-08-30-wella-blondor/softblonde.webp)
 
 <div class="mix-card">
   <div class="wheel-badge">
@@ -117,7 +110,7 @@ verifiedDate: 2026-08-30
     <p>Единственный кремовый (не порошковый) продукт в линейке Blondor. Обогащён защитными липидами против потери влаги волосом. До 7 уровней осветления, подходит и для техник с контактом с кожей головы, и без него.</p>
   </div>
   <div class="timer">
-    <span class="wheel" style="--split: 100%"></span>
+    <span class="clock-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M6 2c0 5 4 6 6 8 2-2 6-3 6-8"/><path d="M6 22c0-5 4-6 6-8 2 2 6 3 6 8"/></svg></span>
     <span class="time-text">Не более <b>50 минут</b></span>
   </div>
 </div>
@@ -139,9 +132,11 @@ verifiedDate: 2026-08-30
 
 ## После осветления
 
-Смойте состав тёплой водой и промойте волосы шампунем. Официальная рекомендация Wella — стабилизатор цвета и блеска **Blondor Seal & Care** сразу после смывки (кислотный pH, запечатывает результат осветления). Этого конкретного продукта сейчас нет в прайсе Zilma — для домашнего ухода за осветлёнными волосами можно предложить клиенту любой шампунь/бальзам для окрашенных волос из уже имеющегося ассортимента.
+Смойте состав тёплой водой и промойте волосы шампунем. Официальная рекомендация Wella — стабилизатор цвета и блеска **Blondor Seal & Care** сразу после смывки (кислотный pH, запечатывает результат осветления). Этого конкретного продукта в прайсе Zilma нет, но у **Londa** — доступной линии от того же производителя (Wella Company), не премиум-сегмента, а более бюджетной сестринской марки — есть свои «Стабилизатор для сохранения цвета» и «Шампунь для сохранения цвета и блеска» с похожим действием. Оба уже разобраны с ценами и кнопками заказа в гиде [Londa Professional](/articles/2026-08-29-londa-professional/).
 
 ## Что заказать
+
+Окислители Welloxon Perfect 1,9% и 4% — это те же самые продукты, что официально используются как «эмульсия Color Touch» для деми-перманентного тонирования: отдельного, отдельно названного окислителя под брендом Color Touch у Wella не существует.
 
 <div class="kit-table-wrap">
 <table class="kit-table">
@@ -162,4 +157,3 @@ verifiedDate: 2026-08-30
 </table>
 </div>
 
-<p class="callout">Если какого-то товара Wella нет в наличии, напишите в комментариях — возможно оформление под заказ.</p>
