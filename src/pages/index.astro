@@ -17,6 +17,7 @@ const articles = (await getCollection('articles')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
 const [newest, ...rest] = articles;
+const brands = [...new Set(articles.map((a) => a.data.brand))].sort((a, b) => a.localeCompare(b, 'ru'));
 
 const promoItems = priceItems.filter((it) => it.promo);
 
@@ -59,7 +60,7 @@ const organizationLd = {
     <PriceChecklist items={promoItems} instanceId="checklist-promo" heading="Акции" groupBy="discount" />
 
     <h2 class="section-title" id="info">Инфо</h2>
-    <FilterTabs />
+    <FilterTabs brands={brands} />
 
     <div class="article-grid">
       {newest && (

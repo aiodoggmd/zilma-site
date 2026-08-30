@@ -63,6 +63,8 @@ verifiedDate: 2026-08-23
 </table>
 </div>
 
+<div class="callout"><b>О названиях окислителей.</b> Официальная инструкция Wella привязывает каждый продукт линейки к своему фирменному окислителю (Welloxon Perfect, «Оксид Color Touch», окислитель Freelights). На одинаковом проценте они технически близки, как и <a href="/articles/2026-08-29-londa-professional/#окислитель-l-color">окислительная эмульсия Londa L-Color</a> — но решение, придерживаться ли фирменной пары или заменить окислитель на равнозначный по проценту, остаётся на усмотрение мастера.</div>
+
 ## Color Touch Plus
 
 ![Color Touch Plus](/images/articles/2026-08-13-color-touch/variant-plus.webp)

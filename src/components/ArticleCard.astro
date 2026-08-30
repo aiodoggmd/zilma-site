@@ -19,7 +19,7 @@ const { id, title, description, brand, tags, coverImage, verifiedDate, isNew = f
 const accent = categoryColor(tags);
 const formattedVerifiedDate = verifiedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<a href={`/articles/${id}/`} class:list={['card', size]} data-tags={tags.join(',')}>
+<a href={`/articles/${id}/`} class:list={['card', size]} data-tags={tags.join(',')} data-brand={brand}>
   <div class="image-panel">
     <img src={coverImage} alt={title} loading="lazy" />
     {isNew && <span class="new-badge">Новое</span>}
