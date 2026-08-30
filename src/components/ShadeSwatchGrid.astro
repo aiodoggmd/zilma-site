@@ -273,7 +273,9 @@ function textVarsFor(hex: string): string {
   /* Затемнение (opacity) искажало реальный цвет свотча и читалось как ошибка данных, а не
      статус — теперь «нет в прайсе» показываем серой обводкой по краю (не красный — это уже
      «акция/скидка» в прайсе; не синий — это кнопки заказа/CTA), цвет остаётся честным. */
-  .shade-swatch-unavailable {
+  /* специфичность двумя классами нужна, чтобы выигрывать у `.shade-swatch-photo`
+     (тоже задаёт border-color) независимо от порядка правил в файле */
+  .shade-swatch.shade-swatch-unavailable {
     opacity: 1;
     border-width: 3px;
     border-color: var(--color-meta);
