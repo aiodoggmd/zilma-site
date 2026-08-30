@@ -1297,6 +1297,25 @@ const articleLd = {
   // масштабировать один fixed-элемент отдельно от остальных), и после закрытия оверлея масштаб
   // сайта остаётся «прилипшим» увеличенным. Единственный надёжный кросс-браузерный способ сбросить
   // зум обратно — на мгновение подменить content у <meta name="viewport">, это форсит перерасчёт.
+  // Реальная жалоба (2026-08-30): «← Все статьи» на телефоне вела жёстко на "/" — новый
+  // переход всегда открывает главную с самого верха (херо), теряя место в ленте, откуда
+  // читатель зашёл в статью, и не давая продолжить скролл. Тот же приём, что уже работает
+  // на /order/ (см. order.astro) — если сюда пришли с этого же сайта, настоящий history.back()
+  // возвращает именно на прежнее место (ленту с той же прокруткой, или #info, или куда угодно
+  // ещё) вместо нового перехода. Прямые заходы (закладка, поиск, соцсети) — обычная ссылка на "/".
+  if (document.referrer) {
+    try {
+      if (new URL(document.referrer).origin === location.origin) {
+        document.querySelectorAll<HTMLAnchorElement>('a.back').forEach((link) => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            history.back();
+          });
+        });
+      }
+    } catch {}
+  }
+
   function resetPageZoom() {
     const viewport = document.querySelector('meta[name="viewport"]');
     if (!viewport) return;
