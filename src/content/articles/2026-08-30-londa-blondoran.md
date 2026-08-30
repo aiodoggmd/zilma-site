@@ -110,8 +110,6 @@ verifiedDate: 2026-08-30
 
 ## Что заказать
 
-<div class="callout"><b>Про окислитель.</b> Отдельного фирменного окислителя под Blondoran в прайсе Zilma нет — используется обычная <a href="/articles/2026-08-29-londa-professional/#окислитель-l-color">окислительная эмульсия Londa L-Color</a> нужного процента (6%, 9% или 12%).</div>
-
 <div class="kit-table-wrap">
 <table class="kit-table">
 <colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
