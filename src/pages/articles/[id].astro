@@ -1045,8 +1045,32 @@ const articleLd = {
     width: 130px;
   }
 
+  /* Колонка «Заказ» прилипает к правому краю обёртки при горизонтальном скролле (найдено
+     2026-08-30: на узком экране кнопка «+» уезжала за край без сдвига таблицы, и ничего
+     не намекало, что таблицу вообще можно докрутить). Фон должен быть непрозрачным —
+     иначе сквозь sticky-ячейку было бы видно уезжающий текст соседних колонок под ней.
+     Чётные строки красим тем же rgba-тоном, что и обычные ячейки (`tr:nth-child(even) td`
+     ниже), но наложенным непрозрачным слоем (linear-gradient с одинаковым цветом на обоих
+     стопах) поверх сплошной var(--color-paper) — иначе сам rgba(...,0.4) остался бы
+     полупрозрачным и не решил бы исходную проблему. */
   .prose :global(table.kit-table td.col-order-cell) {
     text-align: center;
+    position: sticky;
+    right: 0;
+    z-index: 1;
+    background: var(--color-paper);
+    box-shadow: -6px 0 8px -6px rgba(43, 32, 28, 0.18);
+  }
+
+  .prose :global(table.kit-table tr:nth-child(even) td.col-order-cell) {
+    background: linear-gradient(rgba(241, 236, 228, 0.4), rgba(241, 236, 228, 0.4)), var(--color-paper);
+  }
+
+  .prose :global(table.kit-table thead th:last-child) {
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    box-shadow: -6px 0 8px -6px rgba(43, 32, 28, 0.18);
   }
 
   /* Реальная авария (найдено 2026-08-30): при промо в ячейке одновременно старая цена, новая
