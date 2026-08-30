@@ -15,6 +15,13 @@ import priceItems from '../data/priceItems.json';
 >
   <div class="container page">
     <a href="/" class="back" id="order-back">← Назад</a>
+    <!-- Форма/корзина — первым блоком на странице, не после прайса. Раньше OrderForm стояла
+         последней, а сюда обычно приходят по прямому переходу "/order/#order" (кнопка «Корзина»
+         с других страниц) — свежая загрузка страницы должна была допрыгнуть якорем вниз мимо
+         PriceBlock, и на реальном телефоне это было видно как «мелькнул прайс, подвисло, потом
+         скролл к форме» (2026-08-28/30). С формой первым блоком прыгать вообще никуда не нужно —
+         страница открывается сразу в нужном месте, без видимого скачка. -->
+    <OrderForm />
     <PriceBlock
       kind="current"
       title="Актуальный прайс-лист"
@@ -23,7 +30,6 @@ import priceItems from '../data/priceItems.json';
       date={currentPrice.date}
     />
     <PriceChecklist items={priceItems} instanceId="checklist-current" heading="Полный прайс" />
-    <OrderForm />
   </div>
 </BaseLayout>
 
