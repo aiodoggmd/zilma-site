@@ -45,6 +45,21 @@ verifiedDate: 2026-08-23
 
 <div class="callout">При <b>осветлении</b> время выдержки другое: <b>20 мин без тепла / 10 мин с теплом</b> — для деликатного осветления, <b>30–40 мин без тепла / 15–25 мин с теплом</b> — для более интенсивного эффекта.</div>
 
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Окислитель Welloxon Perfect 1,9%, 1000 мл</td><td>6495</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">928,68 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 1,9% 1000мл ДЛЯ ПАСТЕЛЬНОГО ТОНИРОВАНИЯ 6495/6921" data-price="928.68" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Окислитель Welloxon Perfect 4%, 1000 мл</td><td>6496</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">928,68 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 4% 1000мл ДЛЯ ПАСТЕЛЬНОГО ТОНИРОВАНИЯ 6496" data-price="928.68" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Окислитель Welloxon Perfect 6%, 1000 мл</td><td>6497</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">928,68 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 6% 1000мл 6497/6923" data-price="928.68" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Окислитель Welloxon Perfect 9%, 1000 мл</td><td>6498</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">928,68 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 9% 1000 мл. 6498/6484" data-price="928.68" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Окислитель Welloxon Perfect 12%, 1000 мл</td><td>6499</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">928,68 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 12% 1000мл 6499/6488" data-price="928.68" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Окислитель Welloxon Perfect 12%, 60 мл (пробник/докупка)</td><td>6494</td><td class="col-price-cell"><s class="kit-old-price">194 ₽</s><b class="kit-price-now">180,42 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 12% 60мл 6494/50931" data-price="180.42" data-brand="WELLA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
 **Закрашивание седины:**
 
 - **До 70% седины** — использовать любой оттенок Illumina Color как есть.

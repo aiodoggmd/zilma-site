@@ -52,6 +52,17 @@ verifiedDate: 2026-08-23
   <li><span class="check-icon">✓</span>Освежение цвета / Выравнивание цвета</li>
 </ul>
 
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Оксид Color Touch 1,9%, 1000 мл</td><td>6021</td><td class="col-price-cell">998,58 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Color Touch 1,9 % 1000 мл. 6021/6298" data-price="998.58" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Оксид Color Touch 4%, 1000 мл</td><td>6019</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">928,68 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Color Touch 4 % 1000 мл. 6019/6291" data-price="928.68" data-brand="WELLA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
 ## Color Touch Plus
 
 ![Color Touch Plus](/images/articles/2026-08-13-color-touch/variant-plus.webp)
