@@ -103,7 +103,7 @@ verifiedDate: 2026-08-23
 
 ## Палитра оттенков
 
-<div class="callout"><b>Нет под рукой Color Touch нужного оттенка?</b> Номерная система (глубина/тон) у Wella и Londa общая для деми-перманентных безаммиачных линеек — один и тот же код на Color Touch и на <a href="/articles/2026-08-29-londa-professional/#demi-line">Londa Demi-Permanent Ammonia Free</a> означает один и тот же результат. При необходимости мастер может ориентироваться на этот код у обоих брендов — подробный разбор соответствия будет отдельной статьёй.</div>
+<div class="callout"><b>Нет под рукой Color Touch нужного оттенка?</b> Номерная система (глубина/тон) у Wella и Londa общая для деми-перманентных безаммиачных линеек — один и тот же код на Color Touch и на <a href="/articles/2026-08-29-londa-professional/#demi-line">Londa Demi-Permanent Ammonia Free</a> означает один и тот же результат. При необходимости мастер может ориентироваться на этот код у обоих брендов.</div>
 
 Палитра Color Touch разработана так, чтобы точно совпадать с оттенками Koleston Perfect и служить деми-перманентным дополнением к перманентному окрашиванию: Pure Naturals, Rich Naturals, Deep Browns, Vibrant Reds, Special Mix, Plus.
 
