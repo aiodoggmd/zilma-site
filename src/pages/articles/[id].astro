@@ -905,6 +905,30 @@ const articleLd = {
     font-size: 0.88rem;
   }
 
+  /* Отдельная от `.kit-table` проблема с тем же корнем: `display:block` на самой `<table>`
+     (нужен для скролла выше) отключает штатный алгоритм растягивания колонок под ширину
+     контейнера — узкая таблица (мало текста в ячейках, напр. «Special Mix» у Koleston) не
+     дотягивается до ширины страницы, хотя сам элемент table формально 100% ширины, и справа
+     остаётся невидимая пустота внутри его же бокса (проверено программно: сумма ширин ячеек
+     на Koleston — 268px из 662px бокса). Решение то же самое, что и у `.kit-table` — обычной
+     markdown-таблице просто неоткуда взять свою обёртку из коробки, поэтому оборачиваем в
+     `.table-scroll-wrap` через JS (см. initTableScroll ниже) и возвращаем самой `<table>`
+     настоящий display:table, тогда браузер честно распределяет свободную ширину по колонкам. */
+  .prose :global(.table-scroll-wrap) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 18px 0;
+  }
+
+  .prose :global(.table-scroll-wrap table) {
+    display: table;
+    width: 100%;
+    min-width: max-content;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
   /* .kit-table (Lebel «Абсолютное счастье для волос», малый/большой набор) — две отдельные таблицы
      с разной длиной названий товаров иначе получают разную ширину колонок (auto table-layout
      считает ширину каждой таблицы независимо от содержимого), из-за чего № и Артикул визуально
@@ -1238,9 +1262,12 @@ const articleLd = {
     box-shadow: var(--shadow-sm);
   }
 
-  /* лайтбокс — увеличение картинок по клику */
+  /* лайтбокс — увеличение картинок по клику. touch-action:manipulation отключает нативный
+     двойной-тап-зум браузера на самой картинке — без этого на телефоне тап иногда триггерил
+     зум всей страницы вместо клика, открывающего оверлей (реальная жалоба, 2026-08-30). */
   .prose :global(img) {
     cursor: zoom-in;
+    touch-action: manipulation;
   }
 
   :global(.lightbox-overlay) {
@@ -1296,6 +1323,21 @@ const articleLd = {
     });
   }
   initLightbox();
+
+  // Обычная markdown-таблица не может сама себя обернуть в скролл-контейнер — оборачиваем
+  // в рантайме (см. комментарий у `.prose :global(.table-scroll-wrap)` в styles выше про то,
+  // почему `display:block` прямо на `<table>` не даёт колонкам растянуться на всю ширину).
+  // `.kit-table` уже приходит с собственной `.kit-table-wrap` из markdown — не трогаем повторно.
+  function initTableScroll() {
+    document.querySelectorAll('.prose table').forEach((table) => {
+      if (table.classList.contains('kit-table') || table.closest('.table-scroll-wrap')) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'table-scroll-wrap';
+      table.parentNode?.insertBefore(wrap, table);
+      wrap.appendChild(table);
+    });
+  }
+  initTableScroll();
 
   // Кнопки «В заявку» на статичных товарных таблицах/карточках (Lebel «Абсолютное счастье
   // для волос», 2026-08-28) — тот же window.zilmaCart, что и в интерактивной палитре оттенков

@@ -67,7 +67,7 @@ function textVarsFor(hex: string): string {
 }
 ---
 <div class="shade-grid-wrap" data-cart-brand={cartBrand}>
-  <p class="shade-grid-hint">Нажмите на цвет, чтобы увидеть наличие и заказать.</p>
+  <p class="shade-grid-hint">Нажмите на цвет, чтобы увидеть наличие и заказать. Фото оттенка можно увеличить.</p>
   {showPaletteNote
     ? <p class="shade-grid-note">Более точный цвет можно увидеть в <a href="#палитра-оттенков">палитре выше</a>.</p>
     : <p class="shade-grid-note">Серая обводка круга — оттенка сейчас нет в актуальном прайсе.</p>}
@@ -358,7 +358,7 @@ function textVarsFor(hex: string): string {
     max-width: 100% !important;
     object-fit: cover !important;
     margin: 0 !important;
-    cursor: default !important;
+    cursor: zoom-in !important;
   }
 
   .shade-detail-text {
