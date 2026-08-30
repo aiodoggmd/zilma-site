@@ -183,18 +183,18 @@ verifiedDate: 2026-08-29
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col><col style="width:90px"><col style="width:108px"></colgroup>
-<thead><tr><th>Продукт</th><th>Артикул</th><th>Заказ</th></tr></thead>
+<colgroup><col><col style="width:90px"><col style="width:110px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>Шампунь д/сохранения цвета и блеска, 1000 мл</td><td>4933/10557</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
-<tr><td>Шампунь д/сохранения цвета и блеска, 250 мл</td><td>4934/10558</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Шампунь д/сохранения цвета и блеска 250 мл 4934/10558" data-price="489.64" data-brand="LONDA">+ В заявку</button></td></tr>
-<tr><td>Стабилизатор д/сохранения цвета, 1000 мл</td><td>4927/10562</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Стабилизатор д/сохранения цвета 1000 мл 4927/10562" data-price="1457.33" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Шампунь д/сохранения цвета и блеска, 1000 мл</td><td>4933/10557</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>Шампунь д/сохранения цвета и блеска, 250 мл</td><td>4934/10558</td><td class="col-price-cell"><s class="kit-old-price">526,5 ₽</s><b class="kit-price-now">489,64 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Шампунь д/сохранения цвета и блеска 250 мл 4934/10558" data-price="489.64" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Стабилизатор д/сохранения цвета, 1000 мл</td><td>4927/10562</td><td class="col-price-cell"><s class="kit-old-price">1714,5 ₽</s><b class="kit-price-now">1457,33 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Стабилизатор д/сохранения цвета 1000 мл 4927/10562" data-price="1457.33" data-brand="LONDA">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Палитра оттенков
 
-<div class="callout"><b>Нет под рукой Londa нужного оттенка?</b> Номерная система (глубина/тон) у Londa и Wella общая: Londa Professional (аммиачная) по коду соответствует Koleston Perfect, а Londa Demi-Permanent Ammonia Free — Color Touch. Один и тот же код у обоих брендов означает один и тот же результат, можно смело заменять один на другой. Подробный разбор соответствия будет отдельной статьёй.</div>
+<div class="callout"><b>Нет под рукой Londa нужного оттенка?</b> Номерная система (глубина/тон) у Londa и Wella общая: Londa Professional (аммиачная) по коду соответствует Koleston Perfect, а Londa Demi-Permanent Ammonia Free — Color Touch. Один и тот же код у обоих брендов означает один и тот же результат — при необходимости мастер может ориентироваться на это. Подробный разбор соответствия будет отдельной статьёй.</div>
 
 <div class="callout"><b>Микс-тона — это концентраты, не самостоятельные оттенки.</b> Добавляются в небольшом количестве к базовому тону для корректировки — поэтому на палитре они выглядят гораздо ярче и насыщеннее, чем обычные оттенки для волос.</div>

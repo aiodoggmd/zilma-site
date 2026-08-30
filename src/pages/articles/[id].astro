@@ -958,10 +958,18 @@ const articleLd = {
     margin: 18px 0;
   }
 
+  /* min-width на самой таблице — иначе на узком экране table-layout:fixed при нескольких
+     колонках фиксированной ширины (номер+артикул+цена+заказ, до 368px суммарно) схлопывает
+     колонку названия товара до 0px вместо того, чтобы просто стать шире контейнера и
+     проскроллиться (авария реальная, найдено 2026-08-30 после добавления колонки «Цена»
+     во все kit-table сразу — раньше без неё сумма фикс.колонок не превышала ширину контейнера,
+     баг был скрыт). min-width форсит таблицу учитывать реальные нужды колонки названия,
+     .kit-table-wrap уже даёт горизонтальный скролл для этого случая. */
   .prose :global(.kit-table-wrap table.kit-table) {
     display: table;
     table-layout: fixed;
     width: 100%;
+    min-width: 560px;
     margin: 0;
   }
 
@@ -977,8 +985,42 @@ const articleLd = {
     width: 108px;
   }
 
+  .prose :global(table.kit-table col.col-price) {
+    width: 130px;
+  }
+
   .prose :global(table.kit-table td.col-order-cell) {
     text-align: center;
+  }
+
+  .prose :global(table.kit-table td.col-price-cell) {
+    text-align: center;
+    white-space: nowrap;
+    font-size: 0.86rem;
+  }
+
+  .prose :global(.kit-old-price) {
+    display: inline-block;
+    margin-right: 6px;
+    color: var(--color-meta);
+    text-decoration: line-through;
+  }
+
+  .prose :global(.kit-price-now) {
+    color: var(--color-red);
+    font-weight: 700;
+  }
+
+  .prose :global(.kit-promo-badge) {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 7px;
+    background: var(--color-red);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    vertical-align: middle;
   }
 
   /* кнопка «В заявку» на статичных товарных таблицах/карточках — см. initCartButtons() в script

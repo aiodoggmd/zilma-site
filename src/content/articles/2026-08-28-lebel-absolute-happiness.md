@@ -36,19 +36,19 @@ verifiedDate: 2026-08-28
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-order"></colgroup>
-<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Заказ</th></tr></thead>
+<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
+<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Мусс для волос и кожи головы очищающий PROEDIT HAIRSKIN FLOAT CLEANSING, 145 г</td><td>3761</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 145 г. 3761" data-price="1857" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>2</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 500 мл</td><td>5185</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс клеточный увлажняющий IAU CELL CARE (1) 500 мл. 5185" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>3</td><td>Сыворотка PROEDIT CARE WORKS CMC (C), 150 мл</td><td>2849</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
-<tr><td>4</td><td>Сыворотка PROEDIT CARE WORKS NMF (N), 150 мл</td><td>2863</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
-<tr><td>5</td><td>Сыворотка PROEDIT CARE WORKS PPT (P), 150 мл</td><td>2856</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№3 Сыв-ка д/волос PROEDIT CARE WORKS PPT 150 мл. 2856" data-price="2368" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>6</td><td>Сыворотка PROEDIT CARE WORKS ELEMENT FIX, 150 мл</td><td>2870</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№4 Сыв-ка д/волос PROEDIT CARE WORKS ELEMENT FIX 150 мл. 2870" data-price="1986" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>7</td><td>Сыворотка протеиновая IAU CELL CARE (2), 150 мл</td><td>5208</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 150 мл 5208" data-price="3625" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>8</td><td>Крем интенсивный для укрепления IAU CELL CARE (3S), 500 мл</td><td>5222</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенс. д/укр. волос IAU CELL CARE 3S 500мл 5222" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>9</td><td>Крем интенсивный для увлажнения IAU CELL CARE (3M), 500 мл</td><td>5246</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенсивный для увлажнения волос IAU CELL CARE 3М 500мл 5246" data-price="5283" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>10</td><td>Гель фиксирующий IAU CELL CARE (4), 500 мл</td><td>5260</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Гель фиксирующий IAU CELL CARE (4)500ml 5260" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>1</td><td>Мусс для волос и кожи головы очищающий PROEDIT HAIRSKIN FLOAT CLEANSING, 145 г</td><td>3761</td><td class="col-price-cell">1857 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 145 г. 3761" data-price="1857" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 500 мл</td><td>5185</td><td class="col-price-cell">5282 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс клеточный увлажняющий IAU CELL CARE (1) 500 мл. 5185" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>3</td><td>Сыворотка PROEDIT CARE WORKS CMC (C), 150 мл</td><td>2849</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>4</td><td>Сыворотка PROEDIT CARE WORKS NMF (N), 150 мл</td><td>2863</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>5</td><td>Сыворотка PROEDIT CARE WORKS PPT (P), 150 мл</td><td>2856</td><td class="col-price-cell">2368 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№3 Сыв-ка д/волос PROEDIT CARE WORKS PPT 150 мл. 2856" data-price="2368" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>6</td><td>Сыворотка PROEDIT CARE WORKS ELEMENT FIX, 150 мл</td><td>2870</td><td class="col-price-cell">1986 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№4 Сыв-ка д/волос PROEDIT CARE WORKS ELEMENT FIX 150 мл. 2870" data-price="1986" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>7</td><td>Сыворотка протеиновая IAU CELL CARE (2), 150 мл</td><td>5208</td><td class="col-price-cell">3625 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 150 мл 5208" data-price="3625" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>8</td><td>Крем интенсивный для укрепления IAU CELL CARE (3S), 500 мл</td><td>5222</td><td class="col-price-cell">5282 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенс. д/укр. волос IAU CELL CARE 3S 500мл 5222" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>9</td><td>Крем интенсивный для увлажнения IAU CELL CARE (3M), 500 мл</td><td>5246</td><td class="col-price-cell">5283 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенсивный для увлажнения волос IAU CELL CARE 3М 500мл 5246" data-price="5283" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>10</td><td>Гель фиксирующий IAU CELL CARE (4), 500 мл</td><td>5260</td><td class="col-price-cell">5282 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Гель фиксирующий IAU CELL CARE (4)500ml 5260" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>
@@ -57,19 +57,19 @@ verifiedDate: 2026-08-28
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-order"></colgroup>
-<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Заказ</th></tr></thead>
+<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
+<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Мусс очищающий PROEDIT HAIRSKIN FLOAT CLEANSING, 250 г</td><td>4058</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 250 г. 4058" data-price="2616" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>2</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 1000 мл</td><td>5192</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
-<tr><td>3</td><td>Сыворотка CMC (C), 500 мл</td><td>3372</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№1 Сыв-ка д/волос PROEDIT CARE WORKS CMC 500 мл. 3372" data-price="5176" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>4</td><td>Сыворотка NMF (N), 500 мл</td><td>3389</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№2 Сыв-ка д/волос PROEDIT CARE WORKS NMF 500 мл. 3389" data-price="4528" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>5</td><td>Сыворотка PPT (P), 500 мл</td><td>3396</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№3 Сыв-ка д/волос PROEDIT CARE WORKS PPT 500мл 3396" data-price="5176" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>6</td><td>Сыворотка ELEMENT FIX, 500 мл</td><td>3402</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№4 Сыв-ка д/волос PROEDIT CARE WORKS ELEMENT FIX 500 мл. 3402" data-price="4528" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>7</td><td>Сыворотка протеиновая IAU CELL CARE (2), 500 мл</td><td>5215</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 500 мл 5215" data-price="7844" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>8</td><td>Крем укрепляющий IAU CELL CARE (3S), 1000 мл</td><td>5239</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенс. д/укр. волос IAU CELL CARE 3S 1000мл 5239" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>9</td><td>Крем увлажняющий IAU CELL CARE (3M), 1000 мл</td><td>5253</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенсивный для увлажнения волос IAU CELL CARE 3М 1000мл 5253" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>10</td><td>Гель фиксирующий IAU CELL CARE (4), 1000 мл</td><td>5277</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>1</td><td>Мусс очищающий PROEDIT HAIRSKIN FLOAT CLEANSING, 250 г</td><td>4058</td><td class="col-price-cell">2616 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 250 г. 4058" data-price="2616" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 1000 мл</td><td>5192</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>3</td><td>Сыворотка CMC (C), 500 мл</td><td>3372</td><td class="col-price-cell">5176 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№1 Сыв-ка д/волос PROEDIT CARE WORKS CMC 500 мл. 3372" data-price="5176" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>4</td><td>Сыворотка NMF (N), 500 мл</td><td>3389</td><td class="col-price-cell">4528 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№2 Сыв-ка д/волос PROEDIT CARE WORKS NMF 500 мл. 3389" data-price="4528" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>5</td><td>Сыворотка PPT (P), 500 мл</td><td>3396</td><td class="col-price-cell">5176 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№3 Сыв-ка д/волос PROEDIT CARE WORKS PPT 500мл 3396" data-price="5176" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>6</td><td>Сыворотка ELEMENT FIX, 500 мл</td><td>3402</td><td class="col-price-cell">4528 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№4 Сыв-ка д/волос PROEDIT CARE WORKS ELEMENT FIX 500 мл. 3402" data-price="4528" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>7</td><td>Сыворотка протеиновая IAU CELL CARE (2), 500 мл</td><td>5215</td><td class="col-price-cell">7844 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 500 мл 5215" data-price="7844" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>8</td><td>Крем укрепляющий IAU CELL CARE (3S), 1000 мл</td><td>5239</td><td class="col-price-cell">8415 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенс. д/укр. волос IAU CELL CARE 3S 1000мл 5239" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>9</td><td>Крем увлажняющий IAU CELL CARE (3M), 1000 мл</td><td>5253</td><td class="col-price-cell">8415 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенсивный для увлажнения волос IAU CELL CARE 3М 1000мл 5253" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>10</td><td>Гель фиксирующий IAU CELL CARE (4), 1000 мл</td><td>5277</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
 </tbody>
 </table>
 </div>
@@ -201,13 +201,13 @@ verifiedDate: 2026-08-28
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col class="col-name"><col class="col-art"><col class="col-order"></colgroup>
-<thead><tr><th>Дозатор</th><th>Артикул</th><th>Заказ</th></tr></thead>
+<colgroup><col class="col-name"><col class="col-art"><col style="width:130px"><col class="col-order"></colgroup>
+<thead><tr><th>Дозатор</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>Дозатор для сывороток C, N, P (150 мл)</td><td>6052</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Дозатор - Распылитель для спрея 24*180 мм Proedit Care Works 6052/8149" data-price="85" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>Дозатор для сыворотки ELEMENT FIX (150 мл)</td><td>6050</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Дозатор - носик, насадка на бутылку Proedit Care Works (element) 6050" data-price="85" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>Дозатор для мягких упаковок</td><td>3876</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Дозатор (длинный) для шампуня/масок в мягких пакетах (33/410) 1000мл 3876лр" data-price="127.5" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>Корпус для мягких упаковок</td><td>1725</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Корпус пласт. для мягкой упаковки (уход) 1000мл Lebel ONE 1725лр" data-price="246.5" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>Дозатор для сывороток C, N, P (150 мл)</td><td>6052</td><td class="col-price-cell"><s class="kit-old-price">100 ₽</s><b class="kit-price-now">85 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Дозатор - Распылитель для спрея 24*180 мм Proedit Care Works 6052/8149" data-price="85" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>Дозатор для сыворотки ELEMENT FIX (150 мл)</td><td>6050</td><td class="col-price-cell"><s class="kit-old-price">100 ₽</s><b class="kit-price-now">85 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Дозатор - носик, насадка на бутылку Proedit Care Works (element) 6050" data-price="85" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>Дозатор для мягких упаковок</td><td>3876</td><td class="col-price-cell"><s class="kit-old-price">150 ₽</s><b class="kit-price-now">127,5 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Дозатор (длинный) для шампуня/масок в мягких пакетах (33/410) 1000мл 3876лр" data-price="127.5" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>Корпус для мягких упаковок</td><td>1725</td><td class="col-price-cell"><s class="kit-old-price">290 ₽</s><b class="kit-price-now">246,5 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Корпус пласт. для мягкой упаковки (уход) 1000мл Lebel ONE 1725лр" data-price="246.5" data-brand="LEBEL">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>

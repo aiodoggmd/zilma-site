@@ -22,6 +22,18 @@ verifiedDate: 2026-08-23
 
 По окончании выдержки слегка смочить волосы водой и проэмульгировать состав по длине — это исключает окрашивание кожи. Затем промыть волосы шампунем: дополнительный уход после процедуры не требуется, кондиционер — по желанию клиента.
 
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Активатор Shinefinity для нанесения кисточкой, 60 мл</td><td>—</td><td class="col-price-cell">235 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="SHINEFINITY Активатор для нанесения кисточкой 60мл" data-price="235" data-brand="WELLA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="callout">В прайсе Zilma сейчас только формат Brush (для кисти) — формата Bottle в наличии нет.</p>
+
 ## Гибкая формула — результат под задачу
 
 Результат Shinefinity можно регулировать самим способом нанесения — без потери качества цвета.

@@ -32,14 +32,14 @@ verifiedDate: 2026-08-29
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-order"></colgroup>
-<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Заказ</th></tr></thead>
+<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
+<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 500 мл</td><td>5185</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс клеточный увлажняющий IAU CELL CARE (1) 500 мл. 5185" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>2</td><td>Сыворотка протеиновая IAU CELL CARE (2), 150 мл</td><td>5208</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 150 мл 5208" data-price="3625" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>3</td><td>Крем интенсивный для укрепления IAU CELL CARE (3S), 500 мл</td><td>5222</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенс. д/укр. волос IAU CELL CARE 3S 500мл 5222" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>4</td><td>Крем интенсивный для увлажнения IAU CELL CARE (3M), 500 мл</td><td>5246</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенсивный для увлажнения волос IAU CELL CARE 3М 500мл 5246" data-price="5283" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>5</td><td>Гель фиксирующий IAU CELL CARE (4), 500 мл</td><td>5260</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Гель фиксирующий IAU CELL CARE (4)500ml 5260" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>1</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 500 мл</td><td>5185</td><td class="col-price-cell">5282 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс клеточный увлажняющий IAU CELL CARE (1) 500 мл. 5185" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Сыворотка протеиновая IAU CELL CARE (2), 150 мл</td><td>5208</td><td class="col-price-cell">3625 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 150 мл 5208" data-price="3625" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>3</td><td>Крем интенсивный для укрепления IAU CELL CARE (3S), 500 мл</td><td>5222</td><td class="col-price-cell">5282 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенс. д/укр. волос IAU CELL CARE 3S 500мл 5222" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>4</td><td>Крем интенсивный для увлажнения IAU CELL CARE (3M), 500 мл</td><td>5246</td><td class="col-price-cell">5283 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенсивный для увлажнения волос IAU CELL CARE 3М 500мл 5246" data-price="5283" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>5</td><td>Гель фиксирующий IAU CELL CARE (4), 500 мл</td><td>5260</td><td class="col-price-cell">5282 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Гель фиксирующий IAU CELL CARE (4)500ml 5260" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>
@@ -48,14 +48,14 @@ verifiedDate: 2026-08-29
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-order"></colgroup>
-<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Заказ</th></tr></thead>
+<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
+<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 1000 мл</td><td>5192</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
-<tr><td>2</td><td>Сыворотка протеиновая IAU CELL CARE (2), 500 мл</td><td>5215</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 500 мл 5215" data-price="7844" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>3</td><td>Крем интенсивный для укрепления IAU CELL CARE (3S), 1000 мл</td><td>5239</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенс. д/укр. волос IAU CELL CARE 3S 1000мл 5239" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>4</td><td>Крем интенсивный для увлажнения IAU CELL CARE (3M), 1000 мл</td><td>5253</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенсивный для увлажнения волос IAU CELL CARE 3М 1000мл 5253" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>5</td><td>Гель фиксирующий IAU CELL CARE (4), 1000 мл</td><td>5277</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>1</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 1000 мл</td><td>5192</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>2</td><td>Сыворотка протеиновая IAU CELL CARE (2), 500 мл</td><td>5215</td><td class="col-price-cell">7844 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 500 мл 5215" data-price="7844" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>3</td><td>Крем интенсивный для укрепления IAU CELL CARE (3S), 1000 мл</td><td>5239</td><td class="col-price-cell">8415 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенс. д/укр. волос IAU CELL CARE 3S 1000мл 5239" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>4</td><td>Крем интенсивный для увлажнения IAU CELL CARE (3M), 1000 мл</td><td>5253</td><td class="col-price-cell">8415 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенсивный для увлажнения волос IAU CELL CARE 3М 1000мл 5253" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>5</td><td>Гель фиксирующий IAU CELL CARE (4), 1000 мл</td><td>5277</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
 </tbody>
 </table>
 </div>
@@ -101,12 +101,12 @@ verifiedDate: 2026-08-29
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col class="col-name"><col class="col-art"><col class="col-order"></colgroup>
-<thead><tr><th>Продукт</th><th>Артикул</th><th>Заказ</th></tr></thead>
+<colgroup><col class="col-name"><col class="col-art"><col style="width:130px"><col class="col-order"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>IAU Essence Moist, 100 мл</td><td>4676</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Эссенция &quot;Moist&quot; увлажняющее молочко, 100 мл. 4676-3884" data-price="3401" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>IAU Essence Sleek, 100 мл</td><td>4669</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
-<tr><td>IAU Essence Forti, 100 мл</td><td>4683</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>IAU Essence Moist, 100 мл</td><td>4676</td><td class="col-price-cell">3401 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Эссенция &quot;Moist&quot; увлажняющее молочко, 100 мл. 4676-3884" data-price="3401" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>IAU Essence Sleek, 100 мл</td><td>4669</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>IAU Essence Forti, 100 мл</td><td>4683</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
 </tbody>
 </table>
 </div>
@@ -117,11 +117,11 @@ verifiedDate: 2026-08-29
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col class="col-name"><col class="col-art"><col class="col-order"></colgroup>
-<thead><tr><th>Продукт</th><th>Артикул</th><th>Заказ</th></tr></thead>
+<colgroup><col class="col-name"><col class="col-art"><col style="width:130px"><col class="col-order"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>Крем-концентрат для увлажнения волос IAU CELL CARE 5M, 40 мл</td><td>5291</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
-<tr><td>Крем-концентрат для укрепления волос IAU CELL CARE 5S, 40 мл</td><td>5284</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>Крем-концентрат для увлажнения волос IAU CELL CARE 5M, 40 мл</td><td>5291</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>Крем-концентрат для укрепления волос IAU CELL CARE 5S, 40 мл</td><td>5284</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
 </tbody>
 </table>
 </div>
@@ -134,11 +134,11 @@ verifiedDate: 2026-08-29
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col class="col-name"><col class="col-art"><col class="col-order"></colgroup>
-<thead><tr><th>Дозатор</th><th>Артикул</th><th>Заказ</th></tr></thead>
+<colgroup><col class="col-name"><col class="col-art"><col style="width:130px"><col class="col-order"></colgroup>
+<thead><tr><th>Дозатор</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>Дозатор для мягких упаковок</td><td>3876</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Дозатор (длинный) для шампуня/масок в мягких пакетах (33/410) 1000мл 3876лр" data-price="127.5" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>Корпус для мягких упаковок</td><td>1725</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Корпус пласт. для мягкой упаковки (уход) 1000мл Lebel ONE 1725лр" data-price="246.5" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>Дозатор для мягких упаковок</td><td>3876</td><td class="col-price-cell"><s class="kit-old-price">150 ₽</s><b class="kit-price-now">127,5 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Дозатор (длинный) для шампуня/масок в мягких пакетах (33/410) 1000мл 3876лр" data-price="127.5" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>Корпус для мягких упаковок</td><td>1725</td><td class="col-price-cell"><s class="kit-old-price">290 ₽</s><b class="kit-price-now">246,5 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Корпус пласт. для мягкой упаковки (уход) 1000мл Lebel ONE 1725лр" data-price="246.5" data-brand="LEBEL">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>
