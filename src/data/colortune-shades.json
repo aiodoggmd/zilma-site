@@ -1,0 +1,64 @@
+[
+  {
+    "code": "/06",
+    "hex": "#d9b4a2",
+    "group": "tune",
+    "row": 1,
+    "col": 1,
+    "label": "Нежный розовый",
+    "image": "/images/articles/2026-08-30-londa-color-tune/shades/06.webp"
+  },
+  {
+    "code": "/07",
+    "hex": "#baad9d",
+    "group": "tune",
+    "row": 1,
+    "col": 2,
+    "label": "Песочно-бежевый",
+    "name": "LC тонер /07 60 мл. 07",
+    "price": 357.5,
+    "image": "/images/articles/2026-08-30-londa-color-tune/shades/07.webp"
+  },
+  {
+    "code": "/1",
+    "hex": "#e0c2a0",
+    "group": "tune",
+    "row": 1,
+    "col": 3,
+    "label": "Серебристый мел",
+    "name": "LC тонер /1 60 мл. 1",
+    "price": 357.5,
+    "image": "/images/articles/2026-08-30-londa-color-tune/shades/1.webp"
+  },
+  {
+    "code": "/19",
+    "hex": "#a39089",
+    "group": "tune",
+    "row": 1,
+    "col": 4,
+    "label": "Морозный жемчуг",
+    "name": "LC тонер /19 60 мл. 19",
+    "price": 357.5,
+    "image": "/images/articles/2026-08-30-londa-color-tune/shades/19.webp"
+  },
+  {
+    "code": "/69",
+    "hex": "#b6a798",
+    "group": "tune",
+    "row": 1,
+    "col": 5,
+    "label": "Винтажная роза",
+    "name": "LC тонер /69 60 мл. 69",
+    "price": 357.5,
+    "image": "/images/articles/2026-08-30-londa-color-tune/shades/69.webp"
+  },
+  {
+    "code": "/81",
+    "hex": "#8e8986",
+    "group": "tune",
+    "row": 1,
+    "col": 6,
+    "label": "Графитовый серый",
+    "image": "/images/articles/2026-08-30-londa-color-tune/shades/81.webp"
+  }
+]

@@ -13,6 +13,7 @@ import colortouchShades from '../../data/colortouch-shades.json';
 import igoraRoyalShades from '../../data/igora-royal-shades.json';
 import londaShades from '../../data/londa-shades.json';
 import londaDemiShades from '../../data/londa-demi-shades.json';
+import colortuneShades from '../../data/colortune-shades.json';
 
 const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-13-illumina-color': illuminaShades,
@@ -21,6 +22,7 @@ const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-13-color-touch': colortouchShades,
   '2026-08-28-igora-royal': igoraRoyalShades,
   '2026-08-29-londa-professional': londaShades,
+  '2026-08-30-londa-color-tune': colortuneShades,
 };
 
 // Заголовок над основной палитрой — по умолчанию общий, но для линеек с несколькими
@@ -51,6 +53,7 @@ const PALETTE_NO_STATIC_IMAGE = new Set([
   '2026-08-13-koleston-perfect',
   '2026-08-13-color-touch',
   '2026-08-28-igora-royal',
+  '2026-08-30-londa-color-tune',
 ]);
 
 // Линейки с нерегулярной структурой палитры (несколько несовпадающих семейств оттенков вместо
@@ -98,6 +101,11 @@ const PALETTE_GROUP_CONFIG: Record<string, { order: string[]; labels: Record<str
       pastel: 'Пастельные микс-тона',
     },
     flat: ['mixtone', 'pastel'],
+  },
+  '2026-08-30-londa-color-tune': {
+    order: ['tune'],
+    labels: { tune: 'Оттенки Color Tune' },
+    flat: ['tune'],
   },
 };
 
@@ -951,6 +959,74 @@ const articleLd = {
       border: 2px solid var(--color-panel-line);
       border-radius: 12px;
       margin: 0;
+    }
+  }
+
+  /* Сетка готовых формул-миксов (Color Tune) — маленькая иллюстративная миниатюра
+     (текстура из официального гида) + название + формула, без привязки к наличию в прайсе
+     (см. feedback_no-static-availability-text-in-articles — реальное наличие видно только
+     по кнопкам заказа в таблице «Что заказать»/интерактивной палитре, не здесь). */
+  .prose :global(.combo-grid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin: 18px 0;
+  }
+
+  .prose :global(.combo-card) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 10px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 12px;
+  }
+
+  .prose :global(.combo-card img) {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  .prose :global(.combo-card .combo-name) {
+    font-weight: 600;
+    font-size: 0.86rem;
+    color: var(--color-ink);
+  }
+
+  .prose :global(.combo-card .combo-formula) {
+    font-size: 0.78rem;
+    color: var(--color-meta);
+  }
+
+  /* Пара фото «до / после» в примерах Money Piece — два реальных фото модели рядом. */
+  .prose :global(.photo-pair) {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .prose :global(.photo-pair img) {
+    flex: 1;
+    width: 50%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 0;
+  }
+
+  @media (max-width: 480px) {
+    .prose :global(.photo-pair img) {
+      height: 180px;
+    }
+    .prose :global(.combo-card img) {
+      width: 52px;
+      height: 52px;
     }
   }
 
