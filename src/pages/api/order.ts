@@ -15,6 +15,40 @@ const MAX_FILE_BYTES = 4 * 1024 * 1024;
 // вручную впишет много текста) уходит отдельным .txt вместо того, чтобы резать/ронять заявку.
 const INLINE_COMMENT_LIMIT = 3500;
 
+// Человеку физически не хватит времени увидеть форму и отправить её быстрее этого порога —
+// более быстрая отправка почти наверняка бот, заполняющий поля сразу после загрузки страницы.
+const MIN_SUBMIT_MS = 800;
+
+// Rate-limit по IP — best-effort, не полноценная защита: карта живёт в памяти одного
+// serverless-инстанса Vercel и обнуляется при холодном старте/новом деплое (без БД/Redis
+// постоянного стораджа для этого нет). Отсекает грубый спам-скрипт, не защищает от
+// распределённой атаки с разных IP — для B2B-сайта без корзины с оплатой этого достаточно.
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+const rateLimitHits = new Map<string, number[]>();
+
+function getClientIp(request: Request): string {
+  const fwd = request.headers.get('x-forwarded-for');
+  if (fwd) return fwd.split(',')[0].trim();
+  return request.headers.get('x-real-ip') ?? 'unknown';
+}
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const hits = (rateLimitHits.get(ip) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  hits.push(now);
+  rateLimitHits.set(ip, hits);
+
+  // Самоочистка карты, чтобы она не росла бесконечно на долгоживущем тёплом инстансе.
+  if (rateLimitHits.size > 2000) {
+    for (const [key, arr] of rateLimitHits) {
+      if (!arr.some((t) => now - t < RATE_LIMIT_WINDOW_MS)) rateLimitHits.delete(key);
+    }
+  }
+
+  return hits.length > RATE_LIMIT_MAX;
+}
+
 function parseSelectedItems(raw: string): SelectedItem[] {
   if (!raw) return [];
   try {
@@ -183,6 +217,10 @@ async function sendWhatsappOrder(params: {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  if (isRateLimited(getClientIp(request))) {
+    return new Response(JSON.stringify({ ok: false, error: 'rate_limited' }), { status: 429 });
+  }
+
   let form: FormData;
   try {
     form = await request.formData();
@@ -197,6 +235,19 @@ export const POST: APIRoute = async ({ request }) => {
   const attachment = form.get('attachment');
   const file = attachment instanceof File && attachment.size > 0 ? attachment : null;
   const selectedItems = parseSelectedItems(String(form.get('items_json') ?? ''));
+
+  // Honeypot + слишком быстрая отправка — почти наверняка бот. Отвечаем притворным
+  // успехом, ничего никуда не отправляя: так бот не понимает, что его поймали, и не
+  // подстраивается (в отличие от явной ошибки).
+  const honeypot = String(form.get('hp_field') ?? '').trim();
+  const renderedAt = Number(form.get('form_rendered_at') ?? NaN);
+  // Форме и так нужен JS для отправки (submit идёт через fetch, у <form> нет action) —
+  // значит у настоящего браузера метка времени всегда проставлена. Её отсутствие/некорректность
+  // само по себе подозрительно, как и отправка раньше MIN_SUBMIT_MS после рендера формы.
+  const timingSuspicious = !Number.isFinite(renderedAt) || Date.now() - renderedAt < MIN_SUBMIT_MS;
+  if (honeypot || timingSuspicious) {
+    return new Response(JSON.stringify({ ok: true }), { status: 200 });
+  }
 
   if (!name || !contact) {
     return new Response(JSON.stringify({ ok: false, error: 'missing_fields' }), { status: 400 });

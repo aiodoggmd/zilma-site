@@ -27,6 +27,14 @@ const { framed = false } = Astro.props;
         <textarea name="comment" placeholder="Комментарий (необязательно)" rows="3"></textarea>
         <input type="hidden" name="messenger" />
         <input type="hidden" name="items_json" />
+        <input type="hidden" name="form_rendered_at" />
+
+        <!-- Honeypot: реальный посетитель это поле не видит и не заполняет, спам-боты
+             обычно заполняют все поля подряд — заполненное значение выдаёт бота. -->
+        <div class="hp-wrap" aria-hidden="true">
+          <label for="hp-field">Оставьте это поле пустым</label>
+          <input type="text" id="hp-field" name="hp_field" tabindex="-1" autocomplete="off" />
+        </div>
 
         <div class="cart" id="order-cart" hidden>
           <span class="cart-label">Выбранные товары</span>
@@ -69,6 +77,15 @@ const { framed = false } = Astro.props;
 
   .order-panel {
     height: 100%;
+  }
+
+  .hp-wrap {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 
   .order-panel-body {
@@ -466,6 +483,11 @@ const { framed = false } = Astro.props;
   const nameInput = form?.querySelector<HTMLInputElement>('input[name="name"]');
   const contactInput = form?.querySelector<HTMLInputElement>('input[name="contact"]');
 
+  // Метка времени рендера формы — сервер сверяет её с моментом отправки (см. api/order.ts):
+  // отправка быстрее пары секунд после загрузки страницы человеку физически не под силу.
+  const renderedAtInput = form?.querySelector<HTMLInputElement>('input[name="form_rendered_at"]');
+  if (renderedAtInput) renderedAtInput.value = String(Date.now());
+
   // Кнопка серая/неактивна, пока не заполнены обязательные поля — тот же приём, что у «Добавить в заявку» в прайсе.
   function updateSubmitState() {
     if (!button) return;
@@ -722,6 +744,7 @@ const { framed = false } = Astro.props;
       file_too_large: 'Файл слишком большой — максимум 4 МБ.',
       server_not_configured: 'Форма временно не работает — напишите в Telegram/WhatsApp напрямую.',
       telegram_failed: 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.',
+      rate_limited: 'Слишком много попыток отправки — подождите немного и попробуйте снова.',
     };
 
     try {
