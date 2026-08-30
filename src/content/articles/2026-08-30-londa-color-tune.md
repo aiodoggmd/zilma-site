@@ -134,6 +134,7 @@ verifiedDate: 2026-08-30
 
 <div class="photo-pair">
   <img src="/images/articles/2026-08-30-londa-color-tune/mp1-before.webp" alt="До: исходная база 5/0 светлый шатен" />
+  <img src="/images/articles/2026-08-30-londa-color-tune/mp1-swatch.webp" alt="Оттенок /69" class="photo-pair-swatch" />
   <img src="/images/articles/2026-08-30-londa-color-tune/mp1-after.webp" alt="После: контрастный Money Piece с тонированием /69" />
 </div>
 
@@ -167,7 +168,7 @@ verifiedDate: 2026-08-30
   </div>
 </div>
 
-<div class="callout">После выдержки формулы A смойте волосы шампунем Visible Repair и используйте профессиональное средство Visible Repair для нейтрализации процессов осветления. После формулы B — шампунь и стабилизатор окрашивания Color Radiance. Ни один из этих продуктов сейчас не в прайсе Zilma — используйте свой обычный уход за окрашенными/осветлёнными волосами.</div>
+<div class="callout">После выдержки формулы A смойте волосы шампунем для повреждённых волос и используйте восстанавливающее средство. После формулы B — шампунь и стабилизатор для сохранения цвета. Все четыре — в таблице «Что заказать» ниже.</div>
 
 ## Пример: мягкий Money Piece (покрытие +/19 +/81)
 
@@ -175,6 +176,7 @@ verifiedDate: 2026-08-30
 
 <div class="photo-pair">
   <img src="/images/articles/2026-08-30-londa-color-tune/mp2-before.webp" alt="До: исходная база 7/0 блонд" />
+  <img src="/images/articles/2026-08-30-londa-color-tune/mp2-swatch.webp" alt="Оттенки /19 и /81" class="photo-pair-swatch" />
   <img src="/images/articles/2026-08-30-londa-color-tune/mp2-after.webp" alt="После: мягкий Money Piece с покрытием базы и тонированием /19" />
 </div>
 
@@ -209,28 +211,31 @@ verifiedDate: 2026-08-30
   </div>
 </div>
 
-<div class="callout">После выдержки формулы A смойте волосы водой и нанесите профессиональное средство LightPlex на влажные волосы. После 10 минут выдержки смойте водой и используйте шампунь Lightplex, а также средство Visible Repair. После формулы B/C — шампунь и стабилизатор окрашивания Color Radiance. Ни один из этих продуктов сейчас не в прайсе Zilma — используйте свой обычный уход.</div>
+<div class="callout">После выдержки формулы A смойте волосы водой — используйте шампунь и восстанавливающее средство для повреждённых волос. После формулы B/C — шампунь и стабилизатор для сохранения цвета. Все четыре — в таблице «Что заказать» ниже.</div>
 
 ## Стайлинг
 
 Подготовьте волосы к укладке и нанесите масло Velvet Oil на влажные волосы (длину и концы) для более быстрой сушки, предотвращения нежелательной пушистости, термозащиты, а также придания светлым волосам бриллиантового блеска.
 
-## После тонирования
-
-Вымойте волосы шампунем для окрашенных волос и закрепите результат стабилизатором. У Londa уже есть в прайсе Zilma своя пара для этого — «Стабилизатор для сохранения цвета» и «Шампунь для сохранения цвета и блеска», с ценами и кнопками заказа в гиде [Londa Professional](/articles/2026-08-29-londa-professional/#завершение-процедуры).
-
 ## Что заказать
 
-Оттенки Color Tune — выше, в интерактивной палитре, с ценами и кнопкой заказа. Ниже — окислитель и масло для стайлинга.
+Оттенки Color Tune — выше, в интерактивной палитре, с ценами и кнопкой заказа. Ниже — осветляющие порошки для примеров Money Piece, окислитель, уход после процедуры и масло для стайлинга.
 
 <div class="kit-table-wrap">
 <table class="kit-table">
 <colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
 <thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>L-Color окислительная эмульсия 1,9%, 1000 мл</td><td>914</td><td class="col-price-cell"><s class="kit-old-price">787,5 ₽</s><b class="kit-price-now">732,38 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 1,9% 1000 мл 914" data-price="732.38" data-brand="LONDA">+ В заявку</button></td></tr>
-<tr><td>2</td><td>L-Color окислительная эмульсия 4%, 1000 мл</td><td>915</td><td class="col-price-cell"><s class="kit-old-price">787,5 ₽</s><b class="kit-price-now">732,38 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 4% 1000 мл. 915" data-price="732.38" data-brand="LONDA">+ В заявку</button></td></tr>
-<tr><td>3</td><td>Масло VELVET OIL с аргановым маслом, 100 мл</td><td>7543</td><td class="col-price-cell"><s class="kit-old-price">896,4 ₽</s><b class="kit-price-now">833,65 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Масло VELVET OIL с аргановым маслом 100 мл 7543" data-price="833.65" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>1</td><td>Блондоран осветляющая пудра, в коробке 2х500 г</td><td>647</td><td class="col-price-cell"><s class="kit-old-price">2450 ₽</s><b class="kit-price-now">2278,5 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Блондоран осветляющая пудра в коробке 2х500г 647" data-price="2278.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Блондоран LIGHTPLEX осветляющая пудра, в коробке 2х500 г</td><td>99240085775</td><td class="col-price-cell">2999 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Блондоран LIGHTPLEX осветляющая пудра в коробке 2*500г 99240085775" data-price="2999" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>3</td><td>L-Color окислительная эмульсия 1,9%, 1000 мл</td><td>914</td><td class="col-price-cell"><s class="kit-old-price">787,5 ₽</s><b class="kit-price-now">732,38 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 1,9% 1000 мл 914" data-price="732.38" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>4</td><td>L-Color окислительная эмульсия 4%, 1000 мл</td><td>915</td><td class="col-price-cell"><s class="kit-old-price">787,5 ₽</s><b class="kit-price-now">732,38 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 4% 1000 мл. 915" data-price="732.38" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>5</td><td>Шампунь д/повреждённых волос, 250 мл</td><td>4958/10565</td><td class="col-price-cell"><s class="kit-old-price">526,5 ₽</s><b class="kit-price-now">447,52 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Шампунь д/повреждённых волос 250 мл 4958/10565" data-price="447.52" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>6</td><td>Ср-во восстанавливающее д/повреждённых волос, 750 мл</td><td>4952/10569</td><td class="col-price-cell"><s class="kit-old-price">1757,7 ₽</s><b class="kit-price-now">1634,66 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="ср-во ВОССТАНАВЛИВАЮЩЕЕ д/поврежденных волос 750 мл 4952/10569" data-price="1634.66" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>7</td><td>Стабилизатор д/сохранения цвета, 1000 мл</td><td>4927/10562</td><td class="col-price-cell"><s class="kit-old-price">1714,5 ₽</s><b class="kit-price-now">1457,33 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Стабилизатор д/сохранения цвета 1000 мл 4927/10562" data-price="1457.33" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>8</td><td>Шампунь д/сохранения цвета и блеска, 250 мл</td><td>4934/10558</td><td class="col-price-cell"><s class="kit-old-price">526,5 ₽</s><b class="kit-price-now">489,64 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Шампунь д/сохранения цвета и блеска 250 мл 4934/10558" data-price="489.64" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>9</td><td>Масло VELVET OIL с аргановым маслом, 100 мл</td><td>7543</td><td class="col-price-cell"><s class="kit-old-price">896,4 ₽</s><b class="kit-price-now">833,65 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Масло VELVET OIL с аргановым маслом 100 мл 7543" data-price="833.65" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>10</td><td>Шампунь д/сохранения цвета и блеска, 1000 мл</td><td>4933</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Нет в наличии</span></td></tr>
 </tbody>
 </table>
 </div>

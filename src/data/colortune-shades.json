@@ -5,7 +5,6 @@
     "group": "tune",
     "row": 1,
     "col": 1,
-    "label": "Нежный розовый",
     "image": "/images/articles/2026-08-30-londa-color-tune/shades/06.webp"
   },
   {
@@ -14,7 +13,6 @@
     "group": "tune",
     "row": 1,
     "col": 2,
-    "label": "Песочно-бежевый",
     "name": "LC тонер /07 60 мл. 07",
     "price": 357.5,
     "image": "/images/articles/2026-08-30-londa-color-tune/shades/07.webp"
@@ -25,7 +23,6 @@
     "group": "tune",
     "row": 1,
     "col": 3,
-    "label": "Серебристый мел",
     "name": "LC тонер /1 60 мл. 1",
     "price": 357.5,
     "image": "/images/articles/2026-08-30-londa-color-tune/shades/1.webp"
@@ -36,7 +33,6 @@
     "group": "tune",
     "row": 1,
     "col": 4,
-    "label": "Морозный жемчуг",
     "name": "LC тонер /19 60 мл. 19",
     "price": 357.5,
     "image": "/images/articles/2026-08-30-londa-color-tune/shades/19.webp"
@@ -47,7 +43,6 @@
     "group": "tune",
     "row": 1,
     "col": 5,
-    "label": "Винтажная роза",
     "name": "LC тонер /69 60 мл. 69",
     "price": 357.5,
     "image": "/images/articles/2026-08-30-londa-color-tune/shades/69.webp"
@@ -58,7 +53,6 @@
     "group": "tune",
     "row": 1,
     "col": 6,
-    "label": "Графитовый серый",
     "image": "/images/articles/2026-08-30-londa-color-tune/shades/81.webp"
   }
 ]
