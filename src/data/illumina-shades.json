@@ -7,7 +7,7 @@
   "col": 1,
   "name": "Краска 10/05 Яркий блонд натуральный махагоновый 60мл 10/05",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/10-05.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/10-05.webp?v=2"
  },
  {
   "code": "10/1",
@@ -17,7 +17,7 @@
   "col": 2,
   "name": "Краска 10/1 Яркий блонд пепельный 60мл 10/1",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/10-1.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/10-1.webp?v=2"
  },
  {
   "code": "10/69",
@@ -25,7 +25,7 @@
   "group": "cool",
   "row": 10,
   "col": 8,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/10-69.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/10-69.webp?v=2"
  },
  {
   "code": "10/81",
@@ -34,7 +34,8 @@
   "row": 10,
   "col": 9,
   "name": "Краска 10/81 Яркий блондин жемчужно-пепельный 60мл 10/81",
-  "price": 759
+  "price": 759,
+  "image": "/images/articles/2026-08-13-illumina-color/shades/10-81.webp?v=2"
  },
  {
   "code": "10/93",
@@ -44,7 +45,7 @@
   "col": 10,
   "name": "Краска 10/93 Яркий блонд золотистый сандрэ 60мл 10/93",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/10-93.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/10-93.webp?v=2"
  },
  {
   "code": "10/",
@@ -52,7 +53,7 @@
   "group": "neutral",
   "row": 10,
   "col": 0,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/10-.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/10-.webp?v=2"
  },
  {
   "code": "10/36",
@@ -62,7 +63,7 @@
   "col": 3,
   "name": "Краска 10/36 Яркий блонд золотисто-фиолетовый 60мл 10/36",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/10-36.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/10-36.webp?v=2"
  },
  {
   "code": "10/38",
@@ -72,7 +73,7 @@
   "col": 5,
   "name": "Краска 10/38 Яркий блонд золотисто-жемчужный 60мл 10/38",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/10-38.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/10-38.webp?v=2"
  },
  {
   "code": "9/19",
@@ -81,7 +82,8 @@
   "row": 9,
   "col": 5,
   "name": "Краска 9/19 Очень светлый блонд пепельный сандрэ 60мл 9/19",
-  "price": 759
+  "price": 759,
+  "image": "/images/articles/2026-08-13-illumina-color/shades/9-19.webp?v=2"
  },
  {
   "code": "9/59",
@@ -90,7 +92,8 @@
   "row": 9,
   "col": 6,
   "name": "Краска 9/59 Очень светлый блонд махагоновый сандрэ 60мл 9/59",
-  "price": 759
+  "price": 759,
+  "image": "/images/articles/2026-08-13-illumina-color/shades/9-59.webp?v=2"
  },
  {
   "code": "9/60",
@@ -100,7 +103,7 @@
   "col": 7,
   "name": "Краска 9/60 Очень светлый фиолетовый натуральный 60мл 9/60",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/9-60.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/9-60.webp?v=2"
  },
  {
   "code": "9/",
@@ -110,7 +113,7 @@
   "col": 0,
   "name": "Краска 9/ Очень светлый блонд 60мл 9/",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/9-.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/9-.webp?v=2"
  },
  {
   "code": "9/03",
@@ -120,7 +123,7 @@
   "col": 0,
   "name": "Краска 9/03 Очень светлый блонд натуральный золотистый 60мл 9/03",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/9-03.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/9-03.webp?v=2"
  },
  {
   "code": "9/37",
@@ -129,7 +132,8 @@
   "row": 9,
   "col": 4,
   "name": "Краска 9/37 Очень светлый блонд золотисто-коричневый 60мл NEW 9/37",
-  "price": 759
+  "price": 759,
+  "image": "/images/articles/2026-08-13-illumina-color/shades/9-37.webp?v=2"
  },
  {
   "code": "9/43",
@@ -139,7 +143,7 @@
   "col": 7,
   "name": "Краска 9/43 Очень светлый блонд красно-коричневый 60мл 9/43",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/9-43.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/9-43.webp?v=2"
  },
  {
   "code": "9/7",
@@ -149,7 +153,7 @@
   "col": 8,
   "name": "Краска 9/7 Очень светлый блонд коричневый 60мл 9/7",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/9-7.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/9-7.webp?v=2"
  },
  {
   "code": "8/05",
@@ -157,7 +161,7 @@
   "group": "cool",
   "row": 8,
   "col": 1,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/8-05.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-05.webp?v=2"
  },
  {
   "code": "8/1",
@@ -165,7 +169,7 @@
   "group": "cool",
   "row": 8,
   "col": 2,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/8-1.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-1.webp?v=2"
  },
  {
   "code": "8/13",
@@ -173,7 +177,7 @@
   "group": "cool",
   "row": 8,
   "col": 3,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/8-13.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-13.webp?v=2"
  },
  {
   "code": "8/69",
@@ -183,7 +187,7 @@
   "col": 8,
   "name": "Краска 8/69 Светлый блонд фиолетовый сандрэ 60мл 8/69",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/8-69.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-69.webp?v=2"
  },
  {
   "code": "8/93",
@@ -192,7 +196,8 @@
   "row": 8,
   "col": 10,
   "name": "Краска 8/93 Светлый блондин сандрэ золотистый 60мл 8/93",
-  "price": 759
+  "price": 759,
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-93.webp?v=2"
  },
  {
   "code": "8/",
@@ -202,7 +207,7 @@
   "col": 0,
   "name": "Краска 8/ Светлый блонд 60мл 8/",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/8-.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-.webp?v=2"
  },
  {
   "code": "8/36",
@@ -211,7 +216,8 @@
   "row": 8,
   "col": 3,
   "name": "Краска 8/36 Светлый блонд золотисто-фиолетовый 60мл NEW 8/36",
-  "price": 759
+  "price": 759,
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-36.webp?v=2"
  },
  {
   "code": "8/37",
@@ -219,7 +225,7 @@
   "group": "warm",
   "row": 8,
   "col": 4,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/8-37.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-37.webp?v=2"
  },
  {
   "code": "8/38",
@@ -229,7 +235,7 @@
   "col": 5,
   "name": "Краска 8/38 Светлый блонд золотисто-жемчужный 60мл 8/38",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/8-38.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-38.webp?v=2"
  },
  {
   "code": "7/81",
@@ -237,7 +243,7 @@
   "group": "cool",
   "row": 7,
   "col": 9,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/7-81.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/7-81.webp?v=2"
  },
  {
   "code": "7/",
@@ -247,7 +253,7 @@
   "col": 0,
   "name": "Краска 7/ Блонд 60мл 7/",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/7-.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/7-.webp?v=2"
  },
  {
   "code": "7/31",
@@ -257,7 +263,7 @@
   "col": 1,
   "name": "Краска 7/31 Блонд золотисто-пепельный 60мл 7/31",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/7-31.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/7-31.webp?v=2"
  },
  {
   "code": "7/35",
@@ -267,7 +273,7 @@
   "col": 2,
   "name": "Краска 7/35 Блонд золотисто-махагоновый 60мл 7/35",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/7-35.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/7-35.webp?v=2"
  },
  {
   "code": "7/42",
@@ -276,7 +282,8 @@
   "row": 7,
   "col": 6,
   "name": "Краска 7/42 Блонд красно-золотистый матовый 60мл NEW 7/42",
-  "price": 759
+  "price": 759,
+  "image": "/images/articles/2026-08-13-illumina-color/shades/7-42.webp?v=2"
  },
  {
   "code": "7/43",
@@ -284,7 +291,7 @@
   "group": "warm",
   "row": 7,
   "col": 7,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/7-43.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/7-43.webp?v=2"
  },
  {
   "code": "7/7",
@@ -294,14 +301,15 @@
   "col": 8,
   "name": "Краска 7/7 Блонд коричневый 60мл 7/7",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/7-7.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/7-7.webp?v=2"
  },
  {
   "code": "7/75",
   "hex": "#654329",
   "group": "warm",
   "row": 7,
-  "col": 9
+  "col": 9,
+  "image": "/images/articles/2026-08-13-illumina-color/shades/7-75.webp?v=2"
  },
  {
   "code": "6/16",
@@ -311,7 +319,7 @@
   "col": 4,
   "name": "Краска 6/16 Темный блонд пепельный фиолетовый 60мл 6/16",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/6-16.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/6-16.webp?v=2"
  },
  {
   "code": "6/19",
@@ -321,7 +329,7 @@
   "col": 5,
   "name": "Краска 6/19 Темный блонд пепельный сандрэ 60мл 6/19",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/6-19.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/6-19.webp?v=2"
  },
  {
   "code": "6/",
@@ -331,7 +339,7 @@
   "col": 0,
   "name": "Краска 6/ Темный блонд 60мл 6/",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/6-.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/6-.webp?v=2"
  },
  {
   "code": "6/37",
@@ -339,7 +347,7 @@
   "group": "warm",
   "row": 6,
   "col": 4,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/6-37.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/6-37.webp?v=2"
  },
  {
   "code": "6/76",
@@ -349,7 +357,7 @@
   "col": 10,
   "name": "Краска 6/76 Темный блонд коричнево-фиолетовый 60мл 6/76",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/6-76.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/6-76.webp?v=2"
  },
  {
   "code": "5/02",
@@ -359,7 +367,7 @@
   "col": 0,
   "name": "Краска 5/02 Светло-коричневый натуральный матовый 60мл 5/02",
   "price": 705.87,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/5-02.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/5-02.webp?v=2"
  },
  {
   "code": "5/81",
@@ -369,7 +377,7 @@
   "col": 9,
   "name": "Краска 5/81 Светло-коричневый жемчужно-пепельный 60мл 5/81",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/5-81.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/5-81.webp?v=2"
  },
  {
   "code": "5/",
@@ -379,7 +387,7 @@
   "col": 0,
   "name": "Краска 5/ Светло-коричневый 60мл 5/",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/5-.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/5-.webp?v=2"
  },
  {
   "code": "5/35",
@@ -389,7 +397,7 @@
   "col": 2,
   "name": "Краска 5/35 Светло-коричневый золотисто-махагоновый 60мл 5/35",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/5-35.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/5-35.webp?v=2"
  },
  {
   "code": "5/43",
@@ -397,7 +405,7 @@
   "group": "warm",
   "row": 5,
   "col": 7,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/5-43.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/5-43.webp?v=2"
  },
  {
   "code": "5/7",
@@ -407,7 +415,7 @@
   "col": 8,
   "name": "Краска 5/7 Светло-коричневый коричневый 60мл 5/7",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/5-7.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/5-7.webp?v=2"
  },
  {
   "code": "4/",
@@ -417,7 +425,7 @@
   "col": 0,
   "name": "Краска 4/ Коричневый 60мл 4/",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/4-.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/4-.webp?v=2"
  },
  {
   "code": "Silver Mauve",
@@ -428,7 +436,7 @@
   "label": "Silver Mauve",
   "name": "Illumina color Лиловое Серебро 71371",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/silver-mauve.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/silver-mauve.webp?v=2"
  },
  {
   "code": "Platinum Lily",
@@ -439,7 +447,7 @@
   "label": "Platinum Lily",
   "name": "Illumina color Платиновая лилия 71418",
   "price": 759,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/platinum-lily.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/platinum-lily.webp?v=2"
  },
  {
   "code": "Titanium Rose",
@@ -450,7 +458,7 @@
   "label": "Titanium Rose",
   "name": "Illumina color Титановый Розовый 08971",
   "price": 705.87,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/titanium-rose.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/titanium-rose.webp?v=2"
  },
  {
   "code": "Copper Peach",
@@ -459,6 +467,6 @@
   "row": 0,
   "col": 3,
   "label": "Copper Peach",
-  "image": "/images/articles/2026-08-13-illumina-color/shades/copper-peach.webp?v=1"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/copper-peach.webp?v=2"
  }
 ]

@@ -6,7 +6,8 @@
   "row": 0,
   "col": 0,
   "name": "SHINEFINITY 10/0 Светлый блондин натуральный 60мл 10/0",
-  "price": 715
+  "price": 715,
+  "image": "/images/articles/2026-08-13-shinefinity/shades/010-00.webp?v=2"
  },
  {
   "code": "010/6",
@@ -15,14 +16,16 @@
   "row": 0,
   "col": 1,
   "name": "SHINEFINITY 10/6 Светлый блондин лавандовый 60мл 10/6",
-  "price": 715
+  "price": 715,
+  "image": "/images/articles/2026-08-13-shinefinity/shades/010-6.webp?v=2"
  },
  {
   "code": "010/8",
   "hex": "#e4eae4",
   "group": "cool",
   "row": 0,
-  "col": 2
+  "col": 2,
+  "image": "/images/articles/2026-08-13-shinefinity/shades/010-8.webp?v=2"
  },
  {
   "code": "09/36",
@@ -32,7 +35,7 @@
   "col": 3,
   "name": "SHINEFINITY 09/36 Ванильная глазурь 60мл 9/36",
   "price": 664.95,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/09-36.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/09-36.webp?v=2"
  },
  {
   "code": "09/73",
@@ -42,7 +45,7 @@
   "col": 4,
   "name": "SHINEFINITY 09/73 Карамельное молоко 60мл 9/73",
   "price": 715,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/09-73.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/09-73.webp?v=2"
  },
  {
   "code": "09/02",
@@ -52,7 +55,7 @@
   "col": 5,
   "name": "SHINEFINITY 09/02 Пустынный шалфей 60мл 9/02",
   "price": 715,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/09-02.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/09-02.webp?v=2"
  },
  {
   "code": "09/05",
@@ -60,7 +63,7 @@
   "group": "neutral",
   "row": 0,
   "col": 6,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/09-05.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/09-05.webp?v=2"
  },
  {
   "code": "09/07",
@@ -68,7 +71,7 @@
   "group": "neutral",
   "row": 0,
   "col": 7,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/09-07.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/09-07.webp?v=2"
  },
  {
   "code": "09/13",
@@ -76,7 +79,7 @@
   "group": "cool",
   "row": 0,
   "col": 8,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/09-13.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/09-13.webp?v=2"
  },
  {
   "code": "09/61",
@@ -84,7 +87,7 @@
   "group": "cool",
   "row": 0,
   "col": 9,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/09-61.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/09-61.webp?v=2"
  },
  {
   "code": "09/65",
@@ -94,7 +97,7 @@
   "col": 10,
   "name": "SHINEFINITY 09/65 Розовое сияние 60мл 9/65",
   "price": 715,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/09-65.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/09-65.webp?v=2"
  },
  {
   "code": "09/81",
@@ -102,7 +105,7 @@
   "group": "cool",
   "row": 0,
   "col": 11,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/09-81.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/09-81.webp?v=2"
  },
  {
   "code": "08/34",
@@ -110,7 +113,7 @@
   "group": "warm",
   "row": 0,
   "col": 12,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/08-34.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/08-34.webp?v=2"
  },
  {
   "code": "08/38",
@@ -120,7 +123,7 @@
   "col": 13,
   "name": "SHINEFINITY 08/38 Медовое латте 60мл 8/38",
   "price": 715,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/08-38.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/08-38.webp?v=2"
  },
  {
   "code": "08/0",
@@ -129,7 +132,8 @@
   "row": 0,
   "col": 14,
   "name": "SHINEFINITY 08/0 Натуральный Latte 60мл 8/0",
-  "price": 715
+  "price": 715,
+  "image": "/images/articles/2026-08-13-shinefinity/shades/08-0.webp?v=2"
  },
  {
   "code": "08/8",
@@ -137,7 +141,7 @@
   "group": "cool",
   "row": 0,
   "col": 15,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/08-8.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/08-8.webp?v=2"
  },
  {
   "code": "08/98",
@@ -147,7 +151,7 @@
   "col": 16,
   "name": "SHINEFINITY 08/98 Серебряный жемчуг 60мл 8/98",
   "price": 715,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/08-98.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/08-98.webp?v=2"
  },
  {
   "code": "07/34",
@@ -155,7 +159,7 @@
   "group": "warm",
   "row": 0,
   "col": 17,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/07-34.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/07-34.webp?v=2"
  },
  {
   "code": "07/12",
@@ -164,7 +168,8 @@
   "row": 0,
   "col": 18,
   "name": "SHINEFINITY 07/12 Матовый блонд 60мл 7/12",
-  "price": 715
+  "price": 715,
+  "image": "/images/articles/2026-08-13-shinefinity/shades/07-12.webp?v=2"
  },
  {
   "code": "07/13",
@@ -174,7 +179,7 @@
   "col": 19,
   "name": "SHINEFINITY 07/13 Тоффи-крем 60мл 7/13",
   "price": 715,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/07-13.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/07-13.webp?v=2"
  },
  {
   "code": "07/59",
@@ -182,7 +187,7 @@
   "group": "cool",
   "row": 0,
   "col": 20,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/07-59.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/07-59.webp?v=2"
  },
  {
   "code": "07/75",
@@ -190,7 +195,7 @@
   "group": "cool",
   "row": 0,
   "col": 21,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/07-75.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/07-75.webp?v=2"
  },
  {
   "code": "07/81",
@@ -200,7 +205,7 @@
   "col": 22,
   "name": "SHINEFINITY 07/81 Дымчатый опал 60мл 7/81",
   "price": 715,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/07-81.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/07-81.webp?v=2"
  },
  {
   "code": "06/43",
@@ -208,7 +213,7 @@
   "group": "warm",
   "row": 0,
   "col": 23,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/06-43.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/06-43.webp?v=2"
  },
  {
   "code": "06/73",
@@ -216,7 +221,7 @@
   "group": "warm",
   "row": 0,
   "col": 24,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/06-73.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/06-73.webp?v=2"
  },
  {
   "code": "06/0",
@@ -225,7 +230,8 @@
   "row": 0,
   "col": 25,
   "name": "SHINEFINITY 06/0 Натуральный Brandy 60мл 6/0",
-  "price": 715
+  "price": 715,
+  "image": "/images/articles/2026-08-13-shinefinity/shades/06-0.webp?v=2"
  },
  {
   "code": "06/02",
@@ -235,7 +241,7 @@
   "col": 26,
   "name": "SHINEFINITY 06/02 Темный шалфей 60мл 6/02",
   "price": 715,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/06-02.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/06-02.webp?v=2"
  },
  {
   "code": "06/07",
@@ -245,7 +251,7 @@
   "col": 27,
   "name": "SHINEFINITY 06/07 Грецкий орех 60мл 6/07",
   "price": 715,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/06-07.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/06-07.webp?v=2"
  },
  {
   "code": "06/6",
@@ -253,7 +259,7 @@
   "group": "cool",
   "row": 0,
   "col": 28,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/06-6.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/06-6.webp?v=2"
  },
  {
   "code": "06/71",
@@ -263,7 +269,7 @@
   "col": 29,
   "name": "SHINEFINITY 06/71 Ледяной орех 60мл 6/71",
   "price": 664.95,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/06-71.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/06-71.webp?v=2"
  },
  {
   "code": "05/37",
@@ -271,7 +277,7 @@
   "group": "warm",
   "row": 0,
   "col": 30,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/05-37.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/05-37.webp?v=2"
  },
  {
   "code": "05/43",
@@ -279,7 +285,7 @@
   "group": "warm",
   "row": 0,
   "col": 31,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/05-43.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/05-43.webp?v=2"
  },
  {
   "code": "05/98",
@@ -287,7 +293,7 @@
   "group": "cool",
   "row": 0,
   "col": 32,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/05-98.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/05-98.webp?v=2"
  },
  {
   "code": "04/0",
@@ -296,7 +302,8 @@
   "row": 0,
   "col": 33,
   "name": "SHINEFINITY 04/0 Натуральный Espresso 60мл 4/0",
-  "price": 715
+  "price": 715,
+  "image": "/images/articles/2026-08-13-shinefinity/shades/04-0.webp?v=2"
  },
  {
   "code": "04/07",
@@ -306,14 +313,15 @@
   "col": 34,
   "name": "SHINEFINITY 04/07 Горький шоколад 60мл 4/07",
   "price": 664.95,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/04-07.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/04-07.webp?v=2"
  },
  {
   "code": "04/12",
   "hex": "#676869",
   "group": "cool",
   "row": 0,
-  "col": 35
+  "col": 35,
+  "image": "/images/articles/2026-08-13-shinefinity/shades/04-12.webp?v=2"
  },
  {
   "code": "04/65",
@@ -321,7 +329,7 @@
   "group": "cool",
   "row": 0,
   "col": 36,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/04-65.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/04-65.webp?v=2"
  },
  {
   "code": "00/00",
@@ -329,7 +337,7 @@
   "group": "booster",
   "row": 0,
   "col": 37,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/00-00.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/00-00.webp?v=2"
  },
  {
   "code": "00/89",
@@ -337,7 +345,7 @@
   "group": "booster",
   "row": 0,
   "col": 38,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/00-89.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/00-89.webp?v=2"
  },
  {
   "code": "00/66",
@@ -345,6 +353,6 @@
   "group": "booster",
   "row": 0,
   "col": 39,
-  "image": "/images/articles/2026-08-13-shinefinity/shades/00-66.webp?v=1"
+  "image": "/images/articles/2026-08-13-shinefinity/shades/00-66.webp?v=2"
  }
 ]
