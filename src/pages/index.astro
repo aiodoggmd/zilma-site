@@ -17,7 +17,11 @@ const articles = (await getCollection('articles')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
 const [newest, ...rest] = articles;
-const brands = [...new Set(articles.map((a) => a.data.brand))].sort((a, b) => a.localeCompare(b, 'ru'));
+// "Zilma" — служебное значение brand у статей базы знаний (не привязанных к бренду
+// поставщика), а не реальный бренд — в фильтре он дублировал бы категорию "база знаний".
+const brands = [...new Set(articles.map((a) => a.data.brand))]
+  .filter((b) => b !== 'Zilma')
+  .sort((a, b) => a.localeCompare(b, 'ru'));
 
 const promoItems = priceItems.filter((it) => it.promo);
 
