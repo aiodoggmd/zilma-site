@@ -114,6 +114,14 @@ const { Content } = await render(article);
 const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 const accent = categoryColor(article.data.tags);
 
+// «Ещё гиды по бренду» внизу статьи — чтобы из Koleston можно было сразу перейти в Color Touch,
+// Illumina или Blondor, не возвращаясь на главную и не пролистывая ленту, отсортированную по
+// дате публикации (у одного бренда гиды часто разбросаны по времени создания).
+const allArticles = await getCollection('articles');
+const sameBrandArticles = allArticles
+  .filter((a) => a.id !== article.id && a.data.brand === article.data.brand)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title, 'ru'));
+
 function truncateTitle(title: string, max = 70) {
   if (title.length <= max) return title;
   const cut = title.slice(0, max);
@@ -193,6 +201,16 @@ const articleLd = {
             cartBrand={article.data.brand.toUpperCase()}
             showPaletteNote={!PALETTE_NO_STATIC_IMAGE.has(article.id)}
           />
+        </div>
+      )}
+      {sameBrandArticles.length > 0 && (
+        <div class="prose related-articles">
+          <h2>Ещё гиды {article.data.brand}</h2>
+          <ul class="related-list">
+            {sameBrandArticles.map((a) => (
+              <li><a href={`/articles/${a.id}/`}>{a.data.title}</a></li>
+            ))}
+          </ul>
         </div>
       )}
       <a href="/" class="back back-bottom" aria-label="Все статьи">←</a>
@@ -412,6 +430,44 @@ const articleLd = {
   .back-bottom {
     margin-top: 32px;
     margin-bottom: 0;
+  }
+
+  .related-articles {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-panel-line);
+  }
+
+  .related-articles h2 {
+    font-size: 1.1rem;
+    margin: 0 0 12px;
+  }
+
+  .related-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .related-list a {
+    display: inline-block;
+    background: var(--color-panel);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 0.86rem;
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .related-list a:hover {
+    background: var(--color-blue-dark);
+    border-color: var(--color-blue-dark);
+    color: #fff;
   }
 
 
