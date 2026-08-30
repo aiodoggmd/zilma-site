@@ -962,6 +962,19 @@ const articleLd = {
     }
   }
 
+  /* Маленький кружок-свотч оттенка прямо в заголовке ("Пример: ... Money Piece <кружок>")
+     вместо текстового "(с /69)" — тот же реальный фото-свотч, что и в интерактивной палитре. */
+  .prose :global(h2 .heading-swatch) {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+    margin: 0 0 4px 6px;
+    border: 2px solid var(--color-panel-line);
+  }
+
   /* Сетка готовых формул-миксов (Color Tune) — маленькая иллюстративная миниатюра
      (текстура из официального гида) + название + формула, без привязки к наличию в прайсе
      (см. feedback_no-static-availability-text-in-articles — реальное наличие видно только
