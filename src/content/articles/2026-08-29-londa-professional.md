@@ -28,6 +28,23 @@ verifiedDate: 2026-08-29
 
 Каждый оттенок обозначается двумя числами: **глубина** — число перед «/», и **тон** — число после «/». Комплементарный (противоположный по цвету) тон находится напротив на цветовом круге — это база для нейтрализации нежелательного подтона.
 
+## Окислитель L-Color
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>L-Color окислительная эмульсия 1,9%, 1000 мл</td><td>914</td><td class="col-price-cell"><s class="kit-old-price">787,5 ₽</s><b class="kit-price-now">732,38 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 1,9% 1000 мл 914" data-price="732.38" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>L-Color окислительная эмульсия 3%, 1000 мл</td><td>916</td><td class="col-price-cell">787,5 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 3% 1000 мл 916" data-price="787.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>L-Color окислительная эмульсия 4%, 1000 мл</td><td>915</td><td class="col-price-cell"><s class="kit-old-price">787,5 ₽</s><b class="kit-price-now">732,38 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 4% 1000 мл. 915" data-price="732.38" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>L-Color окислительная эмульсия 6%, 1000 мл</td><td>917</td><td class="col-price-cell">787,5 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 6% 1000 мл 917" data-price="787.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>L-Color окислительная эмульсия 9%, 1000 мл</td><td>918</td><td class="col-price-cell">787,5 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 9% 1000 мл 918 NEW" data-price="787.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>L-Color окислительная эмульсия 12%, 1000 мл</td><td>919</td><td class="col-price-cell"><s class="kit-old-price">787,5 ₽</s><b class="kit-price-now">732,38 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="L-Color окислительная эмульсия 12% 1000 мл 919" data-price="732.38" data-brand="LONDA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
 ## Permanent Color — база
 
 <div class="mix-card">
@@ -186,15 +203,15 @@ verifiedDate: 2026-08-29
 <colgroup><col><col style="width:90px"><col style="width:110px"><col style="width:108px"></colgroup>
 <thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>Шампунь д/сохранения цвета и блеска, 1000 мл</td><td>4933/10557</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
-<tr><td>Шампунь д/сохранения цвета и блеска, 250 мл</td><td>4934/10558</td><td class="col-price-cell"><s class="kit-old-price">526,5 ₽</s><b class="kit-price-now">489,64 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Шампунь д/сохранения цвета и блеска 250 мл 4934/10558" data-price="489.64" data-brand="LONDA">+ В заявку</button></td></tr>
-<tr><td>Стабилизатор д/сохранения цвета, 1000 мл</td><td>4927/10562</td><td class="col-price-cell"><s class="kit-old-price">1714,5 ₽</s><b class="kit-price-now">1457,33 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Стабилизатор д/сохранения цвета 1000 мл 4927/10562" data-price="1457.33" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Шампунь д/сохранения цвета и блеска, 1000 мл</td><td>4933</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>Шампунь д/сохранения цвета и блеска, 250 мл</td><td>4934</td><td class="col-price-cell"><s class="kit-old-price">526,5 ₽</s><b class="kit-price-now">489,64 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Шампунь д/сохранения цвета и блеска 250 мл 4934/10558" data-price="489.64" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Стабилизатор д/сохранения цвета, 1000 мл</td><td>4927</td><td class="col-price-cell"><s class="kit-old-price">1714,5 ₽</s><b class="kit-price-now">1457,33 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Стабилизатор д/сохранения цвета 1000 мл 4927/10562" data-price="1457.33" data-brand="LONDA">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Палитра оттенков
 
-<div class="callout"><b>Нет под рукой Londa нужного оттенка?</b> Номерная система (глубина/тон) у Londa и Wella общая: Londa Professional (аммиачная) по коду соответствует Koleston Perfect, а Londa Demi-Permanent Ammonia Free — Color Touch. Один и тот же код у обоих брендов означает один и тот же результат — при необходимости мастер может ориентироваться на это. Подробный разбор соответствия будет отдельной статьёй.</div>
+<div class="callout"><b>Нет под рукой Londa нужного оттенка?</b> Номерная система (глубина/тон) у Londa и Wella общая: Londa Professional (аммиачная) по коду соответствует <a href="/articles/2026-08-13-koleston-perfect/#палитра-оттенков">Koleston Perfect</a>, а Londa Demi-Permanent Ammonia Free — <a href="/articles/2026-08-13-color-touch/#палитра-оттенков">Color Touch</a>. Один и тот же код у обоих брендов означает один и тот же результат — при необходимости мастер может ориентироваться на это. Подробный разбор соответствия будет отдельной статьёй.</div>
 
 <div class="callout"><b>Микс-тона — это концентраты, не самостоятельные оттенки.</b> Добавляются в небольшом количестве к базовому тону для корректировки — поэтому на палитре они выглядят гораздо ярче и насыщеннее, чем обычные оттенки для волос.</div>

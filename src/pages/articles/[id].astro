@@ -171,7 +171,7 @@ const articleLd = {
       </div>
       {PALETTE_SHADES[article.id] && (
         <div class="prose">
-          <h2>{PALETTE_TITLE[article.id] ?? 'Интерактивная палитра — с ценами по прайсу'}</h2>
+          <h2 id="permanent-line">{PALETTE_TITLE[article.id] ?? 'Интерактивная палитра — с ценами по прайсу'}</h2>
           <ShadeSwatchGrid
             shades={PALETTE_SHADES[article.id]}
             groupOrder={PALETTE_GROUP_CONFIG[article.id]?.order}
@@ -184,7 +184,7 @@ const articleLd = {
       )}
       {PALETTE_SHADES_SECONDARY[article.id] && (
         <div class="prose">
-          <h2>{PALETTE_TITLE_SECONDARY[article.id]}</h2>
+          <h2 id="demi-line">{PALETTE_TITLE_SECONDARY[article.id]}</h2>
           <ShadeSwatchGrid
             shades={PALETTE_SHADES_SECONDARY[article.id]}
             groupOrder={PALETTE_GROUP_CONFIG[article.id]?.order}
@@ -993,15 +993,27 @@ const articleLd = {
     text-align: center;
   }
 
+  /* Реальная авария (найдено 2026-08-30): при промо в ячейке одновременно старая цена, новая
+     цена и бейдж «Акция» — на одной строке (white-space:nowrap) это шире 130px и вылезает
+     в соседнюю колонку «Заказ», наезжая на кнопку. display:flex + flex-wrap переносит старую
+     цену на отдельную строку от новой+бейджа, если не помещаются — без wrap кнопка съедалась. */
+  /* min-height — иначе строки без акции (одна строка текста) заметно ниже соседних строк
+     с акцией (две строки — старая цена сверху, новая+бейдж снизу), и таблица выглядит
+     неровной, «дёрганой» по высоте от строки к строке (найдено 2026-08-30). */
   .prose :global(table.kit-table td.col-price-cell) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2px 6px;
     text-align: center;
-    white-space: nowrap;
     font-size: 0.86rem;
+    min-height: 71px;
+    box-sizing: border-box;
   }
 
   .prose :global(.kit-old-price) {
     display: inline-block;
-    margin-right: 6px;
     color: var(--color-meta);
     text-decoration: line-through;
   }
@@ -1013,7 +1025,6 @@ const articleLd = {
 
   .prose :global(.kit-promo-badge) {
     display: inline-block;
-    margin-left: 6px;
     padding: 1px 7px;
     background: var(--color-red);
     color: #fff;

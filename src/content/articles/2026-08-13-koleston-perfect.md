@@ -237,6 +237,6 @@ verifiedDate: 2026-08-23
 
 ## Палитра оттенков
 
-<div class="callout"><b>Нет под рукой Koleston Perfect нужного оттенка?</b> Номерная система (глубина/тон) у Wella и Londa общая — один и тот же код на постоянной аммиачной краске означает один и тот же результат. Например, Koleston 7/0 и Londa 7-0 — оба «блонд натуральный». При необходимости мастер может ориентироваться на этот код у Londa Professional — подробный разбор соответствия будет отдельной статьёй.</div>
+<div class="callout"><b>Нет под рукой Koleston Perfect нужного оттенка?</b> Номерная система (глубина/тон) у Wella и Londa общая — один и тот же код на постоянной аммиачной краске означает один и тот же результат. Например, Koleston 7/0 и Londa 7-0 — оба «блонд натуральный». При необходимости мастер может ориентироваться на этот код у <a href="/articles/2026-08-29-londa-professional/#permanent-line">Londa Professional</a> (аммиачная линия) — подробный разбор соответствия будет отдельной статьёй.</div>
 
 Палитра включает линейки **Pure Naturals**, **Rich Naturals**, **Special Blonde** (с подгруппами Natural/Warm/Cool, Resistant/Cover, Cool/Cover/Ultra/Pure), **Deep Browns**, **Vibrant Reds** и **Special Mix/Clear**.

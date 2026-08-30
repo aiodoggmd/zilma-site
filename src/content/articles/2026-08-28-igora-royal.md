@@ -84,7 +84,6 @@ TrueLift Complex усиливает осветление, нейтрализуя
 
 **Special Blonde (12-)**, база 6–8, до 5 уровней осветления. Самая сильная нейтрализация — 12-21, затем 12-2; самая мягкая — 12-1; для разбавления или чистого осветления — 12-0.
 
-<p class="zoom-hint">После обеих услуг рекомендуется завершать процедуру Fibreplex №2 — для формирования связей волоса и стойкой защиты цвета в салоне.</p>
 
 **Совет по нанесению.** Наносите обильно, небольшими прядями. С холодными оттенками первое нанесение не доводите на 2 см до линии роста волос — на этот участок нейтрализующий оттенок наносится последним, чтобы избежать перепигментации. Выдержка на длине — до 15 минут, затем нанесение на прикорневую зону ещё на 30 минут.
 
@@ -92,7 +91,6 @@ TrueLift Complex усиливает осветление, нейтрализуя
 
 Осветление и тонирование в один шаг для техник мелирования — яркость и контраст даже на тёмной или окрашенной базе, до 5 уровней осветления. База 6 и темнее, наносится **только вне кожи головы** (off-scalp).
 
-<p class="zoom-hint">Рекомендуется завершать процедуру Fibreplex №2 — для формирования связей волоса и стойкой защиты цвета в салоне.</p>
 
 ### Pastels
 
@@ -112,6 +110,19 @@ TrueLift Complex усиливает осветление, нейтрализуя
 | **12% (40 vol)** | Fashion Lights, осветление Ultra Blonde на 3–4 уровня, Special Blonde на 4–5 уровней* |
 
 <p class="zoom-hint">* 4–5 уровней осветления достижимы на натуральной базе 6 и светлее.</p>
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Оксигент на масляной основе 3%, 1000 мл</td><td>2184625</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">929,07 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 3% 1000 мл 2184625" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Оксигент на масляной основе 6%, 1000 мл</td><td>2184628</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">929,07 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 6% 1000 мл 2184628" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Оксигент на масляной основе 9%, 1000 мл</td><td>1847105</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">929,07 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 9% 1000 мл 1847105" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Оксигент на масляной основе 12%, 1000 мл</td><td>2184627</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">929,07 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 12% 1000 мл 2184627" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
 
 ## Дополнительные продукты
 
