@@ -12,7 +12,3 @@ export const currentPrice = {
   file: '/prices/price-current.xlsx',
   date: '2026-08-28',
 };
-
-// Карточки акционного товара — заполняются по мере появления акций.
-// { image: '/images/promo/xxx.jpg', name: 'Matrix SoColor 5N', price: '650 ₽' }
-export const promoItems: { image: string; name: string; price: string }[] = [];

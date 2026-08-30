@@ -27,6 +27,52 @@ const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
 const rateLimitHits = new Map<string, number[]>();
 
+// Клиентский accept=".pdf,.doc..." — чисто визуальная подсказка, обходится тривиально
+// (переименовать файл). Сервер сверяет реальные первые байты файла с ожидаемой сигнатурой
+// формата, а не только расширение из имени — расширение можно вписать любое.
+const ALLOWED_EXTENSIONS = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'pdf', 'doc', 'docx', 'xls', 'xlsx']);
+
+function getFileExtension(filename: string): string {
+  const match = /\.([a-z0-9]+)$/i.exec(filename);
+  return match ? match[1].toLowerCase() : '';
+}
+
+async function hasValidFileSignature(file: File, ext: string): Promise<boolean> {
+  const head = new Uint8Array(await file.slice(0, 12).arrayBuffer());
+  switch (ext) {
+    case 'jpg':
+    case 'jpeg':
+      return head[0] === 0xff && head[1] === 0xd8 && head[2] === 0xff;
+    case 'png':
+      return head[0] === 0x89 && head[1] === 0x50 && head[2] === 0x4e && head[3] === 0x47;
+    case 'gif':
+      return head[0] === 0x47 && head[1] === 0x49 && head[2] === 0x46;
+    case 'webp':
+      return (
+        head[0] === 0x52 &&
+        head[1] === 0x49 &&
+        head[2] === 0x46 &&
+        head[3] === 0x46 &&
+        head[8] === 0x57 &&
+        head[9] === 0x45 &&
+        head[10] === 0x42 &&
+        head[11] === 0x50
+      );
+    case 'pdf':
+      return head[0] === 0x25 && head[1] === 0x50 && head[2] === 0x44 && head[3] === 0x46; // %PDF
+    case 'doc':
+    case 'xls':
+      // Старый формат Office (OLE Compound File).
+      return head[0] === 0xd0 && head[1] === 0xcf && head[2] === 0x11 && head[3] === 0xe0;
+    case 'docx':
+    case 'xlsx':
+      // Новый формат Office — это ZIP-архив (PK\x03\x04).
+      return head[0] === 0x50 && head[1] === 0x4b;
+    default:
+      return false;
+  }
+}
+
 function getClientIp(request: Request): string {
   const fwd = request.headers.get('x-forwarded-for');
   if (fwd) return fwd.split(',')[0].trim();
@@ -257,6 +303,12 @@ export const POST: APIRoute = async ({ request }) => {
   }
   if (file && file.size > MAX_FILE_BYTES) {
     return new Response(JSON.stringify({ ok: false, error: 'file_too_large' }), { status: 400 });
+  }
+  if (file) {
+    const ext = getFileExtension(file.name);
+    if (!ALLOWED_EXTENSIONS.has(ext) || !(await hasValidFileSignature(file, ext))) {
+      return new Response(JSON.stringify({ ok: false, error: 'file_type_invalid' }), { status: 400 });
+    }
   }
 
   const token = import.meta.env.TELEGRAM_BOT_TOKEN;
