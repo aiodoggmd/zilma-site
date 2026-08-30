@@ -1137,6 +1137,17 @@ const articleLd = {
     background: var(--color-red-dark);
   }
 
+  /* Подсказка «прокрутите вправо» — вставляется в рантайме (см. initScrollHints ниже) только
+     когда таблица реально не помещается на экране, поэтому на десктопе её не видно вообще. */
+  .prose :global(.scroll-hint) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.78rem;
+    color: var(--color-meta);
+    margin: 0 0 6px;
+  }
+
   .prose :global(.order-unavailable) {
     font-size: 0.74rem;
     color: var(--color-meta);
@@ -1497,6 +1508,20 @@ const articleLd = {
     });
   }
   initTableScroll();
+
+  // Подсказка про горизонтальный скролл — только для таблиц, которые реально не помещаются
+  // в ширину экрана (на десктопе, где всё и так видно, подсказка не создаётся вообще).
+  // Общий шаблон, а не разметка статьи — правится в одном месте сразу для всех таблиц сайта.
+  function initScrollHints() {
+    document.querySelectorAll<HTMLElement>('.kit-table-wrap, .table-scroll-wrap').forEach((wrap) => {
+      if (wrap.scrollWidth <= wrap.clientWidth + 1) return;
+      const hint = document.createElement('p');
+      hint.className = 'scroll-hint';
+      hint.textContent = 'Прокрутите таблицу вправо, чтобы увидеть остальные колонки →';
+      wrap.parentNode?.insertBefore(hint, wrap);
+    });
+  }
+  initScrollHints();
 
   // Кнопки «В заявку» на статичных товарных таблицах/карточках (Lebel «Абсолютное счастье
   // для волос», 2026-08-28) — тот же window.zilmaCart, что и в интерактивной палитре оттенков
