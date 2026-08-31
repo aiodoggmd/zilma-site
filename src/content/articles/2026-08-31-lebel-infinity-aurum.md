@@ -1,5 +1,5 @@
 ---
-title: "Lebel «Infinity Aurum»: профилактика секущихся кончиков и укрепление волос по всей длине"
+title: "Lebel «Infinity Aurum»: восстановление и укрепление волос по всей длине"
 description: "Салонный SPA-набор линейки IAU Infinity Aurum для профилактики секущихся кончиков: состав, способ применения и порядок нанесения по шагам"
 brand: "Lebel"
 line: "Infinity Aurum"
