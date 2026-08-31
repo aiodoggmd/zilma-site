@@ -33,11 +33,11 @@ verifiedDate: 2026-08-31
 <colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
 <thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Мусс для волос и кожи головы очищающий PROEDIT HAIRSKIN FLOAT CLEANSING, 145 г</td><td>3761</td><td class="col-price-cell">1857 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 145 г. 3761" data-price="1857" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>2</td><td>Мусс PHFC, экономичная фасовка 250 г</td><td>4058</td><td class="col-price-cell">2616 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 250 г. 4058" data-price="2616" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>3</td><td>Сыворотка-активатор IAU Pure Booster, 50 мл</td><td>4140</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="4140" data-brand="LEBEL">Под заказ</span></td></tr>
-<tr><td>4</td><td>Аромамаска концентрированная IAU Mask, 170 г</td><td>5482</td><td class="col-price-cell">3846 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="АромаМаска д/сух., поврежд. волос IAU SERUM MASK, 170 гр. (белая) 5482" data-price="3846" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>5</td><td>Эссенция укрепляющая IAU Essence Forti, 100 мл</td><td>4683</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="4683" data-brand="LEBEL">Под заказ</span></td></tr>
+<tr><td>1</td><td>Мусс для волос и кожи головы очищающий PHFC, 145 г</td><td>3761</td><td class="col-price-cell">1857 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 145 г. 3761" data-price="1857" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Мусс для волос и кожи головы очищающий PHFC, 250 г</td><td>4058</td><td class="col-price-cell">2616 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 250 г. 4058" data-price="2616" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>3</td><td>Сыворотка-Активатор для волос усиливающий действие питательных компонентов IAU pure booster, 50 мл</td><td>4140</td><td class="col-price-cell">2041 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4140" data-brand="LEBEL">Под заказ</span></td></tr>
+<tr><td>4</td><td>АромаМаска д/сух., поврежд. волос IAU SERUM MASK, 170 гр. (белая)</td><td>5482</td><td class="col-price-cell">3846 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="АромаМаска д/сух., поврежд. волос IAU SERUM MASK, 170 гр. (белая) 5482" data-price="3846" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>5</td><td>Эссенция &quot;Forti&quot; укрепляющий гель, 100 мл</td><td>4683-3907</td><td class="col-price-cell">3401 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4683-3907" data-brand="LEBEL">Под заказ</span></td></tr>
 </tbody>
 </table>
 </div>
