@@ -1202,19 +1202,21 @@ const articleLd = {
      с акцией (две строки — старая цена сверху, новая+бейдж снизу), и таблица выглядит
      неровной, «дёрганой» по высоте от строки к строке (найдено 2026-08-30). */
   .prose :global(table.kit-table td.col-price-cell) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2px 6px;
     text-align: center;
+    vertical-align: middle;
     font-size: 0.86rem;
     min-height: 71px;
     box-sizing: border-box;
   }
 
+  /* display:block (не inline-block) — старая цена сама встаёт на отдельную строку от
+     новой цены+бейджа без display:flex на самой ячейке. flex на <td> раньше выбивал
+     ячейку из обычной табличной раскладки (перестаёт тянуться на высоту строки), и в
+     строках с длинным названием товара (третья колонка) граница ячейки цены повисала
+     прямо посреди строки — выглядело как лишняя линия под ценой (найдено 2026-08-31,
+     статья Infinity Aurum, где названия товаров непривычно длинные). */
   .prose :global(.kit-old-price) {
-    display: inline-block;
+    display: block;
     color: var(--color-meta);
     text-decoration: line-through;
   }
