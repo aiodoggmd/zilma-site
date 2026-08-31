@@ -208,7 +208,7 @@ verifiedDate: 2026-08-29
 <colgroup><col><col style="width:90px"><col style="width:110px"><col style="width:108px"></colgroup>
 <thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>Шампунь д/сохранения цвета и блеска, 1000 мл</td><td>4933</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Нет в наличии</span></td></tr>
+<tr><td>Шампунь д/сохранения цвета и блеска, 1000 мл</td><td>4933</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="4933" data-brand="LONDA">Нет в наличии</span></td></tr>
 <tr><td>Шампунь д/сохранения цвета и блеска, 250 мл</td><td>4934</td><td class="col-price-cell"><s class="kit-old-price">526,5 ₽</s><b class="kit-price-now">489,64 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Шампунь д/сохранения цвета и блеска 250 мл 4934/10558" data-price="489.64" data-brand="LONDA">+ В заявку</button></td></tr>
 <tr><td>Стабилизатор д/сохранения цвета, 1000 мл</td><td>4927</td><td class="col-price-cell"><s class="kit-old-price">1714,5 ₽</s><b class="kit-price-now">1457,33 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Стабилизатор д/сохранения цвета 1000 мл 4927/10562" data-price="1457.33" data-brand="LONDA">+ В заявку</button></td></tr>
 </tbody>

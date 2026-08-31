@@ -41,8 +41,8 @@ verifiedDate: 2026-08-28
 <tbody>
 <tr><td>1</td><td>Мусс для волос и кожи головы очищающий PROEDIT HAIRSKIN FLOAT CLEANSING, 145 г</td><td>3761</td><td class="col-price-cell">1857 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 145 г. 3761" data-price="1857" data-brand="LEBEL">+ В заявку</button></td></tr>
 <tr><td>2</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 500 мл</td><td>5185</td><td class="col-price-cell">5282 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс клеточный увлажняющий IAU CELL CARE (1) 500 мл. 5185" data-price="5282" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>3</td><td>Сыворотка PROEDIT CARE WORKS CMC (C), 150 мл</td><td>2849</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
-<tr><td>4</td><td>Сыворотка PROEDIT CARE WORKS NMF (N), 150 мл</td><td>2863</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>3</td><td>Сыворотка PROEDIT CARE WORKS CMC (C), 150 мл</td><td>2849</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="2849" data-brand="LEBEL">Под заказ</span></td></tr>
+<tr><td>4</td><td>Сыворотка PROEDIT CARE WORKS NMF (N), 150 мл</td><td>2863</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="2863" data-brand="LEBEL">Под заказ</span></td></tr>
 <tr><td>5</td><td>Сыворотка PROEDIT CARE WORKS PPT (P), 150 мл</td><td>2856</td><td class="col-price-cell">2368 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№3 Сыв-ка д/волос PROEDIT CARE WORKS PPT 150 мл. 2856" data-price="2368" data-brand="LEBEL">+ В заявку</button></td></tr>
 <tr><td>6</td><td>Сыворотка PROEDIT CARE WORKS ELEMENT FIX, 150 мл</td><td>2870</td><td class="col-price-cell">1986 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№4 Сыв-ка д/волос PROEDIT CARE WORKS ELEMENT FIX 150 мл. 2870" data-price="1986" data-brand="LEBEL">+ В заявку</button></td></tr>
 <tr><td>7</td><td>Сыворотка протеиновая IAU CELL CARE (2), 150 мл</td><td>5208</td><td class="col-price-cell">3625 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 150 мл 5208" data-price="3625" data-brand="LEBEL">+ В заявку</button></td></tr>
@@ -61,7 +61,7 @@ verifiedDate: 2026-08-28
 <thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
 <tr><td>1</td><td>Мусс очищающий PROEDIT HAIRSKIN FLOAT CLEANSING, 250 г</td><td>4058</td><td class="col-price-cell">2616 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 250 г. 4058" data-price="2616" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>2</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 1000 мл</td><td>5192</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>2</td><td>Мусс клеточный увлажняющий IAU CELL CARE (1), 1000 мл</td><td>5192</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="5192" data-brand="LEBEL">Под заказ</span></td></tr>
 <tr><td>3</td><td>Сыворотка CMC (C), 500 мл</td><td>3372</td><td class="col-price-cell">5176 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№1 Сыв-ка д/волос PROEDIT CARE WORKS CMC 500 мл. 3372" data-price="5176" data-brand="LEBEL">+ В заявку</button></td></tr>
 <tr><td>4</td><td>Сыворотка NMF (N), 500 мл</td><td>3389</td><td class="col-price-cell">4528 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№2 Сыв-ка д/волос PROEDIT CARE WORKS NMF 500 мл. 3389" data-price="4528" data-brand="LEBEL">+ В заявку</button></td></tr>
 <tr><td>5</td><td>Сыворотка PPT (P), 500 мл</td><td>3396</td><td class="col-price-cell">5176 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="№3 Сыв-ка д/волос PROEDIT CARE WORKS PPT 500мл 3396" data-price="5176" data-brand="LEBEL">+ В заявку</button></td></tr>
@@ -69,7 +69,7 @@ verifiedDate: 2026-08-28
 <tr><td>7</td><td>Сыворотка протеиновая IAU CELL CARE (2), 500 мл</td><td>5215</td><td class="col-price-cell">7844 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Сыворотка протеиновая IAU Cell Care 2, 500 мл 5215" data-price="7844" data-brand="LEBEL">+ В заявку</button></td></tr>
 <tr><td>8</td><td>Крем укрепляющий IAU CELL CARE (3S), 1000 мл</td><td>5239</td><td class="col-price-cell">8415 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенс. д/укр. волос IAU CELL CARE 3S 1000мл 5239" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
 <tr><td>9</td><td>Крем увлажняющий IAU CELL CARE (3M), 1000 мл</td><td>5253</td><td class="col-price-cell">8415 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Крем интенсивный для увлажнения волос IAU CELL CARE 3М 1000мл 5253" data-price="8415" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>10</td><td>Гель фиксирующий IAU CELL CARE (4), 1000 мл</td><td>5277</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable">Под заказ</span></td></tr>
+<tr><td>10</td><td>Гель фиксирующий IAU CELL CARE (4), 1000 мл</td><td>5277</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="5277" data-brand="LEBEL">Под заказ</span></td></tr>
 </tbody>
 </table>
 </div>
@@ -150,7 +150,7 @@ verifiedDate: 2026-08-28
     <li>Препятствует впитыванию неприятных внешних запахов</li>
   </ul>
   <p><b>Активные ингредиенты:</b> CMC-комплекс, масло жожоба, масло авокадо, масло ши.</p>
-  <div class="callout-order"><span class="order-unavailable">Под заказ</span></div>
+  <div class="callout-order"><span class="order-unavailable" data-article="4669" data-brand="LEBEL">Под заказ</span></div>
 </div>
 
 <div class="callout">
@@ -166,7 +166,7 @@ verifiedDate: 2026-08-28
     <li><b>SPF 30</b></li>
   </ul>
   <p><b>Активные ингредиенты:</b> CMC-комплекс, гидролизованный кератин, масло авокадо, глицерин, масло ши.</p>
-  <div class="callout-order"><span class="order-unavailable">Под заказ</span></div>
+  <div class="callout-order"><span class="order-unavailable" data-article="4683" data-brand="LEBEL">Под заказ</span></div>
 </div>
 
 <div class="service-card">

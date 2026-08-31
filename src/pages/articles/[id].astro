@@ -6,14 +6,28 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { categoryColor } from '../../lib/category-color';
 import ShadeSwatchGrid from '../../components/ShadeSwatchGrid.astro';
-import illuminaShades from '../../data/illumina-shades.json';
-import shinefinityShades from '../../data/shinefinity-shades.json';
-import kolestonShades from '../../data/koleston-shades.json';
-import colortouchShades from '../../data/colortouch-shades.json';
-import igoraRoyalShades from '../../data/igora-royal-shades.json';
-import londaShades from '../../data/londa-shades.json';
-import londaDemiShades from '../../data/londa-demi-shades.json';
-import colortuneShades from '../../data/colortune-shades.json';
+import { resolveLiveShades } from '../../lib/resolve-live-price';
+import illuminaShadesRaw from '../../data/illumina-shades.json';
+import shinefinityShadesRaw from '../../data/shinefinity-shades.json';
+import kolestonShadesRaw from '../../data/koleston-shades.json';
+import colortouchShadesRaw from '../../data/colortouch-shades.json';
+import igoraRoyalShadesRaw from '../../data/igora-royal-shades.json';
+import londaShadesRaw from '../../data/londa-shades.json';
+import londaDemiShadesRaw from '../../data/londa-demi-shades.json';
+import colortuneShadesRaw from '../../data/colortune-shades.json';
+import priceItems from '../../data/priceItems.json';
+
+// Цена/наличие каждого оттенка пересчитывается из актуального priceItems.json на каждой
+// сборке сайта (по артикулу — см. resolve-live-price.ts), а не берётся застывшей из
+// data-файла линии — тот же дрейф цены, что чинили для kit-table, был и здесь.
+const illuminaShades = resolveLiveShades(illuminaShadesRaw, 'WELLA');
+const shinefinityShades = resolveLiveShades(shinefinityShadesRaw, 'WELLA');
+const kolestonShades = resolveLiveShades(kolestonShadesRaw, 'WELLA');
+const colortouchShades = resolveLiveShades(colortouchShadesRaw, 'WELLA');
+const igoraRoyalShades = resolveLiveShades(igoraRoyalShadesRaw, 'SCHWARZKOPF');
+const londaShades = resolveLiveShades(londaShadesRaw, 'LONDA');
+const londaDemiShades = resolveLiveShades(londaDemiShadesRaw, 'LONDA');
+const colortuneShades = resolveLiveShades(colortuneShadesRaw, 'LONDA');
 
 const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-13-illumina-color': illuminaShades,
@@ -122,6 +136,21 @@ const { Content } = await render(article);
 const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 const accent = categoryColor(article.data.tags);
 
+// Таблицы "Что заказать" в markdown статей — сырой HTML с ценой/промо/наличием, вписанными
+// вручную на момент написания статьи (тот же дрейф, что и у интерактивной палитры выше,
+// только это обычный текст в markdown, а не JS-данные — резолвить на сборке сайта, как
+// resolve-live-price.ts делает для палитр, здесь не получится без переезда на MDX).
+// Вместо этого — тот же (бренд, артикул) поиск, но на клиенте: сервер только отдаёт
+// урезанный список товаров (без id/isNew/discountPct), клиентский initLivePrices() ниже
+// сверяет с ним каждую кнопку "+ В заявку"/"Нет в наличии" на странице при загрузке.
+const priceLookup = priceItems.map((it) => ({
+  name: it.name,
+  brand: it.brand,
+  price: it.price,
+  oldPrice: it.oldPrice ?? null,
+  promo: it.promo,
+}));
+
 // «Ещё гиды по бренду» внизу статьи — чтобы из Koleston можно было сразу перейти в Color Touch,
 // Illumina или Blondor, не возвращаясь на главную и не пролистывая ленту, отсортированную по
 // дате публикации (у одного бренда гиды часто разбросаны по времени создания).
@@ -182,6 +211,7 @@ const articleLd = {
       <a href="/" class="back" aria-label="Все статьи">←</a>
       <h1>{article.data.title}</h1>
       <p class="meta">Обновлено: {formattedDate}</p>
+      <script type="application/json" id="price-lookup-data" set:html={JSON.stringify(priceLookup)} />
       <div class="prose">
         <Content />
       </div>
@@ -1565,6 +1595,99 @@ const articleLd = {
     viewport.setAttribute('content', original + ', maximum-scale=1');
     requestAnimationFrame(() => viewport.setAttribute('content', original));
   }
+
+  // Живая сверка таблиц "Что заказать" с актуальным прайсом — сервер отдал урезанный
+  // список товаров в #price-lookup-data (см. priceLookup в frontmatter), здесь сверяем
+  // с ним каждую кнопку "+ В заявку"/"Нет в наличии" при загрузке страницы. Тот же
+  // (бренд, артикул)-поиск с защитой от неоднозначности, что и в resolve-live-price.ts
+  // для интерактивной палитры — короткие тоновые коды могут повторяться у разных линий
+  // одного бренда (найдено программно на реальных данных, 2026-08-31), поэтому при
+  // коллизии строку просто не трогаем, а не гадаем.
+  interface PriceLookupItem {
+    name: string;
+    brand: string;
+    price: number;
+    oldPrice: number | null;
+    promo: boolean;
+  }
+
+  function articleOfName(name: string): string {
+    const toks = name.trim().split(/\s+/);
+    return toks[toks.length - 1] ?? '';
+  }
+
+  function formatPriceRu(n: number): string {
+    const rounded = Math.round(n * 100) / 100;
+    const str = Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+    return str.replace('.', ',');
+  }
+
+  function priceCellHtml(item: PriceLookupItem): string {
+    if (item.promo && item.oldPrice != null) {
+      return `<s class="kit-old-price">${formatPriceRu(item.oldPrice)} ₽</s><b class="kit-price-now">${formatPriceRu(item.price)} ₽</b><span class="kit-promo-badge">Акция</span>`;
+    }
+    return `${formatPriceRu(item.price)} ₽`;
+  }
+
+  function initLivePrices() {
+    const dataEl = document.getElementById('price-lookup-data');
+    if (!dataEl) return;
+    let items: PriceLookupItem[];
+    try {
+      items = JSON.parse(dataEl.textContent || '[]');
+    } catch {
+      return;
+    }
+
+    const AMBIGUOUS = Symbol('ambiguous');
+    const byBrandArticle = new Map<string, Map<string, PriceLookupItem | typeof AMBIGUOUS>>();
+    for (const it of items) {
+      const brand = it.brand.toUpperCase();
+      if (!byBrandArticle.has(brand)) byBrandArticle.set(brand, new Map());
+      const m = byBrandArticle.get(brand)!;
+      const key = articleOfName(it.name);
+      m.set(key, m.has(key) ? AMBIGUOUS : it);
+    }
+
+    document.querySelectorAll<HTMLElement>('.cart-add-btn, .order-unavailable').forEach((el) => {
+      const brand = el.dataset.brand;
+      if (!brand) return;
+      const key = el.dataset.article || articleOfName(el.dataset.name || '');
+      if (!key) return;
+      const match = byBrandArticle.get(brand.toUpperCase())?.get(key);
+      if (match === AMBIGUOUS) return;
+
+      const row = el.closest('tr');
+      const priceCell = row?.querySelector<HTMLElement>('td.col-price-cell');
+      const isBtn = el.classList.contains('cart-add-btn');
+
+      if (match) {
+        if (priceCell) priceCell.innerHTML = priceCellHtml(match);
+        if (isBtn) {
+          (el as HTMLButtonElement).dataset.name = match.name;
+          (el as HTMLButtonElement).dataset.price = String(match.price);
+        } else {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'cart-add-btn';
+          btn.dataset.name = match.name;
+          btn.dataset.price = String(match.price);
+          btn.dataset.brand = brand;
+          btn.textContent = '+ В заявку';
+          el.replaceWith(btn);
+        }
+      } else if (isBtn) {
+        if (priceCell) priceCell.textContent = '—';
+        const span = document.createElement('span');
+        span.className = 'order-unavailable';
+        span.dataset.article = key;
+        span.dataset.brand = brand;
+        span.textContent = brand.toUpperCase() === 'LEBEL' ? 'Под заказ' : 'Нет в наличии';
+        el.replaceWith(span);
+      }
+    });
+  }
+  initLivePrices();
 
   function initLightbox() {
     document.querySelectorAll('.prose img').forEach((img) => {
