@@ -1,0 +1,68 @@
+---
+title: "Lebel «Infinity Aurum»: профилактика секущихся кончиков и укрепление волос по всей длине"
+description: "Салонный SPA-набор линейки IAU Infinity Aurum для профилактики секущихся кончиков: состав, способ применения и порядок нанесения по шагам"
+brand: "Lebel"
+line: "Infinity Aurum"
+tags: ["уход и восстановление"]
+coverImage: "/images/articles/2026-08-31-lebel-infinity-aurum/cover.webp"
+publishDate: 2026-08-31T18:00:00
+verifiedDate: 2026-08-31
+---
+
+**Lebel «Infinity Aurum»** — уникальная программа для профилактики и предотвращения образования секущихся кончиков: восстанавливает и укрепляет молекулярные связи в структуре волос по всей длине. Это отдельная линейка Lebel (не путать с «[Абсолютным счастьем для волос](/articles/2026-08-28-lebel-absolute-happiness/)» и «[Золотым обновлением](/articles/2026-08-31-lebel-zolotoe-obnovlenie/)» — те построены на линейке IAU CELL CARE / IAU Счастье для волос).
+
+<ul class="checklist">
+  <li><span class="check-icon">✓</span>Профилактика секущихся кончиков</li>
+  <li><span class="check-icon">✓</span>Ослабленные, ломкие волосы</li>
+  <li><span class="check-icon">✓</span>Волосы после окрашивания и термоукладки</li>
+  <li><span class="check-icon">✓</span>Волосы по всей длине</li>
+</ul>
+
+<div class="callout"><b>Периодичность.</b> 1 раз в неделю.</div>
+
+<div class="callout"><b>Мягкая формула.</b> Аромакремы линейки подходят даже для детских волос и содержат SPF 15 — дополнительная защита от солнца при регулярном уходе.</div>
+
+<div class="callout"><b>Если какого-то товара Lebel нет в наличии,</b> напишите в комментариях — возможно оформление под заказ.</div>
+
+## Состав набора
+
+![Набор «Infinity Aurum» — мусс PHFC, IAU cream MELT REPAIR, IAU cream SILKY REPAIR и IAU Mother Essence](/images/articles/2026-08-31-lebel-infinity-aurum/lineup.webp)
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
+<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Мусс для волос и кожи головы очищающий PROEDIT HAIRSKIN FLOAT CLEANSING, 145 г</td><td>3761</td><td class="col-price-cell">1857 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 145 г. 3761" data-price="1857" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Аромакрем тающей текстуры для увлажнения IAU cream MELT REPAIR, 200 мл</td><td>4126</td><td class="col-price-cell">1944 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="АромаКрем &quot;Melt Repair&quot; для увлажнения волос, 200 мл. 4126" data-price="1944" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>3</td><td>Аромакрем шелковистой текстуры для укрепления IAU cream SILKY REPAIR, 1000 мл</td><td>4300</td><td class="col-price-cell">5299 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="АромаКрем &quot;Silky Repair&quot; для укрепления волос, 1000 4300" data-price="5299" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>4</td><td>Витаминная эссенция базовая IAU Mother Essence, 25 мл</td><td>4652</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="4652" data-brand="LEBEL">Под заказ</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="zoom-hint">Официальный набор комплектуется SILKY REPAIR в фасовке 200 мл — в прайсе Zilma сейчас есть только экономичная фасовка 1000 мл (флакон с дозатором), она и указана выше.</p>
+
+## Способ применения
+
+### Шаг 1. Очищение
+
+Вымойте волосы шампунем линейки IAU.
+
+### Шаг 2. Глубокое очищение кожи головы
+
+Нанесите мусс PROEDIT HAIRSKIN FLOAT CLEANSING на кожу головы и волосы, добавляя тёплую воду до образования пены. Сделайте массаж, затем тщательно смойте водой.
+
+<div class="timer-chip"><span class="wheel sm" style="--split: 100%"></span><b>7–8 минут</b> массажа перед смыванием.</div>
+
+### Шаг 3. Аромакрем
+
+Нанесите IAU cream MELT REPAIR на влажные волосы, не втирая в кожу головы, и распределите гребнеобразными движениями. Оставьте на 3–7 минут, затем тщательно смойте водой.
+
+<div class="timer-chip"><span class="wheel sm" style="--split: 100%"></span><b>3–7 минут</b> выдержки, затем смыть.</div>
+
+<div class="callout"><b>Для сильно повреждённых волос</b> нанесите оба аромакрема сразу, последовательно друг за другом: сначала MELT REPAIR, затем поверх, не смывая, — SILKY REPAIR. Выдержите и тщательно смойте весь комплекс водой.</div>
+
+### Шаг 4. Завершающий уход
+
+Нанесите 1–3 капли IAU Mother Essence, распределите на влажных волосах и приступайте к укладке.
