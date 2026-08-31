@@ -41,7 +41,7 @@ verifiedDate: 2026-08-31
 <tr><td>6</td><td>АромаКрем &quot;Silky Repair&quot; для укрепления волос, 200 мл</td><td>4119</td><td class="col-price-cell">1944 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4119" data-brand="LEBEL">Под заказ</span></td></tr>
 <tr><td>7</td><td>АромаКрем &quot;Silky Repair&quot; для укрепления волос, 600 мл</td><td>4256</td><td class="col-price-cell">4852 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4256" data-brand="LEBEL">Под заказ</span></td></tr>
 <tr><td>8</td><td>АромаКрем &quot;Silky Repair&quot; для укрепления волос, 1000 мл</td><td>4300</td><td class="col-price-cell">5299 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="АромаКрем &quot;Silky Repair&quot; для укрепления волос, 1000 4300" data-price="5299" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>9</td><td>Эссенция для волос IAU Mother Essence, 25 мл</td><td>4652/714</td><td class="col-price-cell">3606 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4652/714" data-brand="LEBEL">Под заказ</span></td></tr>
+<tr><td>9</td><td>Эссенция для волос IAU Mother Essence, 25 мл</td><td>4652</td><td class="col-price-cell">3606 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4652" data-brand="LEBEL">Под заказ</span></td></tr>
 </tbody>
 </table>
 </div>
