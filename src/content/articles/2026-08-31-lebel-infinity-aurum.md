@@ -34,9 +34,9 @@ verifiedDate: 2026-08-31
 <thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
 <tr><td>1</td><td>Мусс для волос и кожи головы очищающий PROEDIT HAIRSKIN FLOAT CLEANSING, 145 г</td><td>3761</td><td class="col-price-cell">1857 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 145 г. 3761" data-price="1857" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>2</td><td>Мусс PHFC, экономичная фасовка 250 г</td><td>4058</td><td class="col-price-cell">2616 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 250 г. 4058" data-price="2616" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Мусс PHFC, 250 г</td><td>4058</td><td class="col-price-cell">2616 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Мусс для волос и кожи головы очищающий PHFC 250 г. 4058" data-price="2616" data-brand="LEBEL">+ В заявку</button></td></tr>
 <tr><td>3</td><td>Аромакрем тающей текстуры для увлажнения IAU cream MELT REPAIR, 200 мл</td><td>4126</td><td class="col-price-cell">1944 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="АромаКрем &quot;Melt Repair&quot; для увлажнения волос, 200 мл. 4126" data-price="1944" data-brand="LEBEL">+ В заявку</button></td></tr>
-<tr><td>4</td><td>IAU cream MELT REPAIR, экономичная фасовка 600 мл</td><td>4263</td><td class="col-price-cell">4852 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4263" data-brand="LEBEL">Под заказ</span></td></tr>
+<tr><td>4</td><td>IAU cream MELT REPAIR, 600 мл</td><td>4263</td><td class="col-price-cell">4852 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4263" data-brand="LEBEL">Под заказ</span></td></tr>
 <tr><td>5</td><td>IAU cream MELT REPAIR, экономичная фасовка 1000 мл</td><td>4317</td><td class="col-price-cell">5299 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4317" data-brand="LEBEL">Под заказ</span></td></tr>
 <tr><td>6</td><td>IAU cream SILKY REPAIR, 200 мл (объём официального набора)</td><td>4119</td><td class="col-price-cell">1944 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4119" data-brand="LEBEL">Под заказ</span></td></tr>
 <tr><td>7</td><td>IAU cream SILKY REPAIR, 600 мл</td><td>4256</td><td class="col-price-cell">4852 ₽</td><td class="col-order-cell"><span class="order-unavailable" data-article="4256" data-brand="LEBEL">Под заказ</span></td></tr>
@@ -69,3 +69,18 @@ verifiedDate: 2026-08-31
 ### Шаг 4. Завершающий уход
 
 Нанесите 1–3 капли IAU Mother Essence, распределите на влажных волосах и приступайте к укладке.
+
+## Важное примечание
+
+<div class="callout"><b>Дозаторы и каркасы для средств в мягкой упаковке не входят в комплект</b> и приобретаются отдельно. Это касается IAU cream SILKY REPAIR в экономичной фасовке 1000 мл.</div>
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col class="col-name"><col class="col-art"><col style="width:130px"><col class="col-order"></colgroup>
+<thead><tr><th>Дозатор</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Дозатор для мягких упаковок</td><td>3876</td><td class="col-price-cell"><s class="kit-old-price">150 ₽</s><b class="kit-price-now">127,5 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Дозатор (длинный) для шампуня/масок в мягких пакетах (33/410) 1000мл 3876лр" data-price="127.5" data-brand="LEBEL">+ В заявку</button></td></tr>
+<tr><td>Корпус для мягких упаковок</td><td>1725</td><td class="col-price-cell"><s class="kit-old-price">290 ₽</s><b class="kit-price-now">246,5 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Корпус пласт. для мягкой упаковки (уход) 1000мл Lebel ONE 1725лр" data-price="246.5" data-brand="LEBEL">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
