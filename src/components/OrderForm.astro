@@ -40,6 +40,7 @@ const { framed = false } = Astro.props;
           <span class="cart-label">Выбранные товары</span>
           <ul class="cart-list" id="cart-list"></ul>
           <div class="cart-total" id="cart-total"></div>
+          <p class="cart-warning" id="cart-warning" hidden></p>
         </div>
 
         <label class="file-drop" id="file-drop" for="attachment-input">
@@ -371,6 +372,12 @@ const { framed = false } = Astro.props;
     border-top: 1px solid var(--color-panel-line);
     padding-top: 8px;
   }
+
+  .cart-warning {
+    margin: 4px 0 0;
+    font-size: 0.82rem;
+    color: var(--color-red);
+  }
 </style>
 
 <!--
@@ -476,22 +483,44 @@ const { framed = false } = Astro.props;
 
 <script>
   const MAX_FILE_BYTES = 4 * 1024 * 1024;
+  // Условие «Минимальный заказ 5 000 ₽» и так было написано в .order-note, но сумма корзины
+  // реально не проверялась — можно было отправить заявку хоть пустой (реальный случай,
+  // 2026-08-31: заявка пришла с именем и телефоном, без единого товара). Порог здесь должен
+  // совпадать с текстом в .order-note ниже по файлу — если меняете число, меняйте оба места.
+  const MIN_ORDER_TOTAL = 5000;
 
   const form = document.getElementById('order-form-el') as HTMLFormElement | null;
   const statusEl = form?.querySelector('.status') as HTMLElement | null;
   const button = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
   const nameInput = form?.querySelector<HTMLInputElement>('input[name="name"]');
   const contactInput = form?.querySelector<HTMLInputElement>('input[name="contact"]');
+  const cartWarningEl = document.getElementById('cart-warning') as HTMLElement | null;
 
   // Метка времени рендера формы — сервер сверяет её с моментом отправки (см. api/order.ts):
   // отправка быстрее пары секунд после загрузки страницы человеку физически не под силу.
   const renderedAtInput = form?.querySelector<HTMLInputElement>('input[name="form_rendered_at"]');
   if (renderedAtInput) renderedAtInput.value = String(Date.now());
 
-  // Кнопка серая/неактивна, пока не заполнены обязательные поля — тот же приём, что у «Добавить в заявку» в прайсе.
+  // Кнопка серая/неактивна, пока не заполнены обязательные поля или сумма корзины меньше
+  // минимального заказа — тот же приём, что у «Добавить в заявку» в прайсе.
   function updateSubmitState() {
     if (!button) return;
-    button.disabled = !(nameInput?.value.trim() && contactInput?.value.trim());
+    const hasContact = !!(nameInput?.value.trim() && contactInput?.value.trim());
+    const total = readCartItems().reduce((s, it) => s + it.price * it.qty, 0);
+    const meetsMin = total >= MIN_ORDER_TOTAL;
+    button.disabled = !(hasContact && meetsMin);
+
+    if (cartWarningEl) {
+      if (meetsMin) {
+        cartWarningEl.hidden = true;
+      } else {
+        cartWarningEl.hidden = false;
+        cartWarningEl.textContent =
+          total > 0
+            ? `Минимальный заказ — 5 000 ₽. Добавьте товаров ещё на ${(MIN_ORDER_TOTAL - total).toFixed(2)} ₽.`
+            : 'Минимальный заказ — 5 000 ₽. Добавьте товары в заявку через Каталог или Акции.';
+      }
+    }
   }
 
   interface CartItem {
@@ -648,6 +677,7 @@ const { framed = false } = Astro.props;
   document.addEventListener('zilma:cart-updated', () => {
     syncHiddenInputFromStore();
     renderCart();
+    updateSubmitState();
   });
   // Хранилище могло быть заполнено ещё до загрузки этой страницы (напр. добавили товар
   // на странице статьи) — синхронизируем сразу при открытии, не дожидаясь события.
