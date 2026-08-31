@@ -888,6 +888,32 @@ if (groupBy === 'discount') {
     return s.toLowerCase().replace(/[.,]/g, '/');
   }
 
+  // Часть товаров в прайсе названа латиницей (бренды/линии/английские слова) — мастер,
+  // печатающий кириллицей ("иллюмина", "шварцкопф"), иначе ничего не найдёт. Побуквенная
+  // транслитерация не подходит — реальное произношение часто расходится с ней (Shinefinity
+  // читается "шайнфинити", а не "шинефинити"), поэтому вместо алгоритма — словарь реальных
+  // известных пар для всех значимых латинских слов из priceItems.json (бренды, линии,
+  // частые английские слова в названиях — не служебные аббревиатуры вроде CT/KP/LC, их
+  // никто не произносит по-русски). Значения — уже нормализованные (нижний регистр).
+  const CYRILLIC_ALIASES: Record<string, string> = {
+    матрикс: 'matrix', велла: 'wella', оллин: 'ollin', лонда: 'londa',
+    шварцкопф: 'schwarzkopf', лебель: 'lebel', лебел: 'lebel', капус: 'kapous',
+    концепт: 'concept', диксон: 'dikson', эстель: 'estel', карепрост: 'careprost',
+    левиссим: 'levissime', лореаль: "l'oreal", лореал: "l'oreal", искартес: 'iskartes',
+    игора: 'igora', блондми: 'blondme', иллюмина: 'illumina', шайнфинити: 'shinefinity',
+    эйми: 'eimi', инвиго: 'invigo', соколор: 'socolor', синк: 'sync', ладор: 'la`dor',
+    озис: 'osis', осис: 'osis', силуэт: 'silhouette',
+    тач: 'touch', колор: 'color', кэр: 'care', кеа: 'care', софт: 'soft', блонд: 'blond',
+    нью: 'new', тотал: 'total', силк: 'silk', ойл: 'oil', вельвет: 'velvet',
+    перфект: 'perfect', бриллианс: 'brilliance', профи: 'profy',
+  };
+
+  function matchToken(token: string, entry: { name: string; brand: string; line: string }): boolean {
+    if (entry.name.includes(token) || entry.brand.includes(token) || entry.line.includes(token)) return true;
+    const alias = CYRILLIC_ALIASES[token];
+    return !!alias && (entry.name.includes(alias) || entry.brand.includes(alias) || entry.line.includes(alias));
+  }
+
   document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((root) => {
     const search = root.querySelector<HTMLInputElement>('.pc-search');
     const items = [...root.querySelectorAll<HTMLLIElement>('.pc-item')];
@@ -974,10 +1000,7 @@ if (groupBy === 'discount') {
         let anyVisible = false;
         groupItems.forEach((li) => {
           const entry = searchIndex.get(li);
-          const match =
-            tokens.length === 0 ||
-            !entry ||
-            tokens.every((t) => entry.name.includes(t) || entry.brand.includes(t) || entry.line.includes(t));
+          const match = tokens.length === 0 || !entry || tokens.every((t) => matchToken(t, entry));
           li.hidden = !match;
           if (match) anyVisible = true;
         });
