@@ -125,19 +125,28 @@ function buildCsv(items: SelectedItem[]): string {
   const rows: string[] = [];
   rows.push(['№', 'Товар', 'Кол-во', 'Акция', 'Цена', 'Сумма'].map(cell).join(';'));
 
-  let total = 0;
-  let n = 0;
-  let lastBrand: string | null = null;
+  // Группировка по бренду — реальными группами (Map), а не "пока бренд не сменился между
+  // соседними строками": товары одного бренда, добавленные в корзину не подряд (напр. Каталог
+  // открывали дважды между покупками из другого бренда), раньше давали ДВА отдельных заголовка
+  // бренда в CSV вместо одного — найдено 2026-08-31 по реальной заявке клиента (Matrix Socolor
+  // оказался разорван на две группы).
+  const byBrand = new Map<string, SelectedItem[]>();
   for (const it of items) {
     const brand = it.brand || 'Без бренда';
-    if (brand !== lastBrand) {
-      rows.push(cell(brand));
-      lastBrand = brand;
+    if (!byBrand.has(brand)) byBrand.set(brand, []);
+    byBrand.get(brand)!.push(it);
+  }
+
+  let total = 0;
+  let n = 0;
+  for (const [brand, group] of byBrand) {
+    rows.push(cell(brand));
+    for (const it of group) {
+      n += 1;
+      const sum = Math.round(it.price * it.qty * 100) / 100;
+      total += sum;
+      rows.push([n, it.name, it.qty, it.promo ? 'Да' : '', it.price, sum].map(cell).join(';'));
     }
-    n += 1;
-    const sum = Math.round(it.price * it.qty * 100) / 100;
-    total += sum;
-    rows.push([n, it.name, it.qty, it.promo ? 'Да' : '', it.price, sum].map(cell).join(';'));
   }
   total = Math.round(total * 100) / 100;
   rows.push(['', '', '', '', 'Итого:', total].map(cell).join(';'));

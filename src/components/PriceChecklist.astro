@@ -743,8 +743,20 @@ if (groupBy === 'discount') {
 
     // Корзина — в общем хранилище (window.zilmaCart, localStorage, см. CartStore.astro),
     // не в скрытом поле формы напрямую — переживает переход между страницами.
+    // Мёрджим по названию, а не просто дописываем в конец — иначе повторное открытие
+    // Каталога/Акций и отметка уже добавленного товара создавала вторую отдельную строку
+    // с тем же названием вместо увеличения количества у первой (реальный случай, 2026-08-31,
+    // видно по присланному клиентом CSV заявки — "Socolor 505M" дважды разными строками).
     const existing: CommittedItem[] = (window as any).zilmaCart?.get() ?? [];
-    const combined = [...existing, ...selected];
+    const combined = [...existing];
+    for (const sel of selected) {
+      const match = combined.find((it) => it.name === sel.name);
+      if (match) {
+        match.qty += sel.qty;
+      } else {
+        combined.push(sel);
+      }
+    }
     (window as any).zilmaCart?.set(combined);
 
     checks.forEach((c) => {
