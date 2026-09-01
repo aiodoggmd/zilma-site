@@ -9,6 +9,6 @@ export interface SiteNews {
 
 export const currentNews: SiteNews | null = {
   text: 'Теперь заказывать стало проще: прямо в статьях можно увидеть цвет красителей и сразу заказать нужный товар.',
-  link: '/articles/2026-08-28-igora-royal/',
+  link: '/articles/2026-08-29-londa-professional/',
   linkLabel: 'Смотреть пример',
 };
