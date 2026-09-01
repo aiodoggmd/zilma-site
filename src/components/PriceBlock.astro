@@ -1,5 +1,6 @@
 ---
 import { contacts } from '../data/prices';
+import { currentNews } from '../data/news';
 
 interface Props {
   kind: 'current' | 'promo';
@@ -41,10 +42,34 @@ const links: Record<string, string> = {
 ---
 <article class:list={['price-card', kind]}>
   <div class="split">
-    <div class="stat-panel">
-      <p class="stat"><span class="stat-num">{day}</span> <span class="stat-unit">{month}</span></p>
-      <p class="meta-label">актуально на дату</p>
-      <img src={blockIcon} alt="" class="block-icon" />
+    <div class:list={['stat-panel', { 'has-news': kind === 'current' && currentNews }]}>
+      {kind === 'current' && currentNews ? (
+        <>
+          <div class="stat-compact">
+            <span class="stat-compact-date"><b>{day}</b> {month}</span>
+            <span class="stat-compact-label">актуально на дату</span>
+          </div>
+          <div class="news-block">
+            <svg class="news-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 11v2a2 2 0 0 0 2 2h1l3 5V4L6 9H5a2 2 0 0 0-2 2Z" />
+              <path d="M15 8a4 4 0 0 1 0 8" />
+              <path d="M18 5a8 8 0 0 1 0 14" />
+            </svg>
+            <div class="news-body">
+              <p class="news-text">{currentNews.text}</p>
+              {currentNews.link && (
+                <a class="news-link" href={currentNews.link}>{currentNews.linkLabel ?? 'Подробнее'} →</a>
+              )}
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <p class="stat"><span class="stat-num">{day}</span> <span class="stat-unit">{month}</span></p>
+          <p class="meta-label">актуально на дату</p>
+          <img src={blockIcon} alt="" class="block-icon" />
+        </>
+      )}
     </div>
     <div class="text-panel">
       <h2>{title}</h2>
@@ -224,6 +249,79 @@ const links: Record<string, string> = {
     width: 60px;
     height: 60px;
     opacity: 0.62;
+  }
+
+  /* Когда есть активная новость (src/data/news.ts) — панель делится на 2 части вместо того,
+     чтобы новость требовала отдельное место на странице: компактная дата сверху (не пропадает,
+     просто уступает площадь) + новость снизу, крупнее и на переднем плане. Без новости —
+     .has-news не навешивается, панель остаётся как была (дата на всю площадь). */
+  .stat-panel.has-news {
+    justify-content: flex-start;
+    align-items: stretch;
+    text-align: left;
+    gap: 14px;
+    padding: 18px 22px;
+  }
+
+  .stat-compact {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    opacity: 0.75;
+  }
+
+  .stat-compact-date {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--color-ink);
+  }
+
+  .stat-compact-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-meta);
+  }
+
+  .news-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .news-icon {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    color: var(--color-red);
+    margin-top: 2px;
+  }
+
+  .news-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .news-text {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--color-ink);
+  }
+
+  .news-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-blue-dark);
+    text-decoration: none;
+  }
+
+  .news-link:hover {
+    text-decoration: underline;
   }
 
   .text-panel {
