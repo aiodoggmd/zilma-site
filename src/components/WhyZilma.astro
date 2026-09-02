@@ -1,0 +1,66 @@
+---
+interface Reason {
+  title: string;
+  text: string;
+}
+
+const reasons: Reason[] = [
+  { title: 'Актуальный прайс', text: 'Цены обновляются по наличию и остаткам.' },
+  { title: 'Колористика под рукой', text: 'Оттенки, палитры, пропорции и формулы — в гидах по брендам.' },
+  { title: 'Быстрая доставка', text: 'По Москве — на следующий рабочий день после подтверждения заказа.' },
+  { title: 'Специальные цены на сайте', text: 'Скидки каталога и раздела «Акции» действуют только при заказе через сайт.' },
+];
+---
+<h2 class="section-title">Почему заказывают у Zilma</h2>
+<div class="why-grid">
+  {reasons.map((r) => (
+    <div class="why-card">
+      <p class="why-title">{r.title}</p>
+      <p class="why-text">{r.text}</p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  .why-card {
+    background: var(--color-panel);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 10px;
+    padding: 18px 18px 20px;
+    border-top: 3px solid var(--color-red);
+  }
+
+  .why-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.02rem;
+    color: var(--color-ink);
+    margin: 0 0 6px;
+  }
+
+  .why-text {
+    font-size: 0.88rem;
+    color: var(--color-meta);
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 900px) {
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

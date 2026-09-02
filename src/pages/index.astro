@@ -5,6 +5,7 @@ export const prerender = true;
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import WhyZilma from '../components/WhyZilma.astro';
 import PriceBlock from '../components/PriceBlock.astro';
 import FilterTabs from '../components/FilterTabs.astro';
 import ArticleCard from '../components/ArticleCard.astro';
@@ -49,6 +50,8 @@ const organizationLd = {
   <Hero />
 
   <div class="container">
+    <WhyZilma />
+
     <div class="price-grid">
       <PriceBlock
         kind="current"
