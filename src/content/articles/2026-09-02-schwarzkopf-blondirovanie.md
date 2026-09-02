@@ -75,7 +75,7 @@ Schwarzkopf предлагает две линейки осветляющих п
 
 ### Окислитель BlondMe Premium Developer
 
-Официально выпускается в 4 концентрациях (2/6/9/12%), у каждой своя задача: 2% — тонирование уже осветлённых волос и деликатное осветление, 6% — обычное осветление, 9% — максимальное осветление и сложные седые волосы, 12% — осветление натуральной базы 6-7 уровня. В прайсе Zilma сейчас есть 2% и 12%. Все товары линейки BlondMe — одной таблицей:
+Выпускается в 4 концентрациях (2/6/9/12%), у каждой своя задача: 2% — тонирование уже осветлённых волос и деликатное осветление, 6% — обычное осветление, 9% — максимальное осветление и сложные седые волосы, 12% — осветление натуральной базы 6-7 уровня. Все товары линейки BlondMe — одной таблицей:
 
 <div class="kit-table-wrap">
 <table class="kit-table">
@@ -85,8 +85,10 @@ Schwarzkopf предлагает две линейки осветляющих п
 <tr><td>1</td><td>BlondMe Premium Lightener 9+, 450 г</td><td>—</td><td class="col-price-cell">2175.27 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Обесцвечивающая пудра, premium lift 9+ 450г" data-price="2175.27" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
 <tr><td>2</td><td>BlondMe Премиум-окислитель 2%, 1000 мл</td><td>2140315</td><td class="col-price-cell">1209 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Премиум-окислитель 2% 1000мл 2140315" data-price="1209" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
 <tr><td>3</td><td>BlondMe Премиум-окислитель 12%, 1000 мл</td><td>2140321</td><td class="col-price-cell">1209 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Премиум-окислитель 12% 1000мл 2140321" data-price="1209" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>4</td><td>BlondMe Премиум-окислитель 6%, 1000 мл</td><td>2140316</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="2140316" data-brand="SCHWARZKOPF">Нет в наличии</span></td></tr>
+<tr><td>5</td><td>BlondMe Премиум-окислитель 9%, 1000 мл</td><td>2865484</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-article="2865484" data-brand="SCHWARZKOPF">Нет в наличии</span></td></tr>
 </tbody>
 </table>
 </div>
 
-<div class="callout"><b>Не путать окислители.</b> Igora Oil Developer — для Vario Blond. BlondMe Premium Developer — только для BlondMe. Один и тот же процент, но разные формулы под разные пудры.</div>
+<div class="callout"><b>Разные формулы окислителей.</b> Igora Oil Developer предназначен для Vario Blond, BlondMe Premium Developer — только для BlondMe. Проценты совпадают, но составы разные, взаимозаменять их нельзя.</div>
