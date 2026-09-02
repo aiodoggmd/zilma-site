@@ -109,11 +109,13 @@ const organizationLd = {
 
   <script>
     // На мобильном хиро занимает весь первый экран — сразу под ним самое полезное
-    // (почему заказывают у нас + новость). Пропускаем хиро сразу при заходе на
-    // главную, если это не переход по конкретному якорю (#info, #order и т.п.).
+    // (почему заказывают у нас + новость). Даём хиро показаться и доиграть анимацию
+    // логотипа, затем мягко доскролливаем до полезного блока. Не мешает переходам
+    // по конкретному якорю (#info, #order и т.п.) — там скроллим только напрямую.
     if (window.innerWidth <= 640 && !location.hash) {
-      const target = document.getElementById('why-zilma');
-      target?.scrollIntoView({ behavior: 'auto', block: 'start' });
+      setTimeout(() => {
+        document.getElementById('why-zilma')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 1600);
     }
   </script>
 </BaseLayout>
