@@ -48,7 +48,7 @@ verifiedDate: 2026-09-02
 </table>
 </div>
 
-<div class="callout"><b>О названиях окислителей.</b> Окислительная эмульсия L-Color на одинаковом проценте технически близка к фирменным окислителям Wella — <a href="/articles/2026-08-13-koleston-perfect/#схема-смешивания-с-welloxon-perfect">Welloxon Perfect</a> (для Koleston Perfect) и <a href="/articles/2026-08-13-color-touch/#color-touch">«Оксид Color Touch»</a>. Решение, придерживаться ли фирменной пары или заменить окислитель на равнозначный по проценту, остаётся на усмотрение мастера.</div>
+<div class="callout"><b>О названиях окислителей.</b> Окислительная эмульсия L-Color на одинаковом проценте технически близка к фирменным окислителям Wella — <a href="/articles/2026-08-13-koleston-perfect/#схема-смешивания-с-welloxon-perfect">Welloxon Perfect</a> (для Koleston Perfect) и <a href="/articles/2026-08-13-color-touch/#color-touch">«Оксид Color Touch»</a>. Равнозначная замена по проценту технически допустима.</div>
 
 ## Permanent Color — база
 

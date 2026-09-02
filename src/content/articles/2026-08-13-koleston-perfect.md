@@ -65,9 +65,9 @@ verifiedDate: 2026-09-02
 <div class="service-card">
   <span class="wheel" style="--split: 33%"></span>
   <div>
-    <p class="service-title">Pure Rebuild Balance <span class="ratio-tag">1:2 + Wellaplex</span></p>
-    <p>Услуга с Wellaplex для обновления цвета на средней длине и кончиках с одновременным укреплением связей волоса. Нанести 1 часть выбранного оттенка и 2 части 1,9% Welloxon Perfect Pastel Developer + 2 мл Wellaplex №1 Bond Maker на каждые 30 г краски.</p>
-    <p class="service-time">Время выдержки: <b>10–15 мин</b>, затем смыть и нанести Wellaplex №2 Bond Stabilizer на 10 мин</p>
+    <p class="service-title">Pure Rebuild Balance <span class="ratio-tag">1:2</span></p>
+    <p>Услуга для обновления цвета на средней длине и кончиках. Нанести 1 часть выбранного оттенка и 2 части 1,9% Welloxon Perfect Pastel Developer.</p>
+    <p class="service-time">Время выдержки: <b>10–15 мин</b>, затем смыть</p>
   </div>
 </div>
 
@@ -130,7 +130,7 @@ verifiedDate: 2026-09-02
 </table>
 </div>
 
-<div class="callout"><b>О названиях окислителей.</b> Официальная инструкция Wella привязывает каждый продукт линейки к своему фирменному окислителю (Welloxon Perfect, «Оксид Color Touch», окислитель Freelights). На одинаковом проценте они технически близки, как и <a href="/articles/2026-08-29-londa-professional/#окислитель-l-color">окислительная эмульсия Londa L-Color</a> — но решение, придерживаться ли фирменной пары или заменить окислитель на равнозначный по проценту, остаётся на усмотрение мастера.</div>
+<div class="callout"><b>О названиях окислителей.</b> Официальная инструкция Wella привязывает каждый продукт линейки к своему фирменному окислителю (Welloxon Perfect, «Оксид Color Touch», окислитель Freelights). На одинаковом проценте они технически близки, как и <a href="/articles/2026-08-29-londa-professional/#окислитель-l-color">окислительная эмульсия Londa L-Color</a> — равнозначная замена по проценту технически допустима.</div>
 
 ### Нанесение на всю длину — с осветлением
 
@@ -157,7 +157,26 @@ verifiedDate: 2026-09-02
   </div>
 </div>
 
-**После процедуры.** По окончании времени выдержки проэмульгировать состав небольшим количеством тёплой воды и тщательно смыть. Слегка вымыть волосы шампунем INVIGO Color Brilliance, ColorMotion+ или System Professional Color Save Shampoo C1. Чтобы нейтрализовать остатки окислителя и стабилизировать цвет, использовать INVIGO Post Color Treatment, ColorMotion+ Post Treatment или System Professional Color Lock Emulsion X4C.
+**После процедуры.** По окончании времени выдержки проэмульгировать состав небольшим количеством тёплой воды и тщательно смыть. Слегка вымыть волосы шампунем для окрашенных волос, затем нанести средство для нейтрализации остатков окислителя и стабилизации цвета.
+
+В прайсе Zilma для этих шагов доступны:
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
+<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Стабилизатор для сохранения цвета Londa, 1000 мл</td><td>4927</td><td class="col-price-cell">1457.33 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Стабилизатор д/сохранения цвета 1000 мл 4927/10562" data-price="1457.33" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Brilliance Бальзам-уход для нормальных и тонких волос, 1000 мл</td><td>339306</td><td class="col-price-cell">2824.55 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Бальзам-уход д/защиты цвета окр.норм.и тонких волос 1000мл 339306" data-price="2824.55" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>3</td><td>Brilliance Бальзам-уход для жёстких волос, 200 мл</td><td>339252</td><td class="col-price-cell">998.75 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Бальзам-уход д/защиты цвета окр.жестк.волос 200мл 339252" data-price="998.75" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>4</td><td>Brilliance Бальзам-уход для жёстких волос, 1000 мл</td><td>339313</td><td class="col-price-cell">2824.55 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Бальзам-уход д/защиты цвета окр.жестк.волос 1000мл 339313" data-price="2824.55" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>5</td><td>Brilliance Шампунь для нормальных и тонких волос, 300 мл</td><td>339221</td><td class="col-price-cell">919.7 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.норм. и тонких волос 300мл 339221" data-price="919.7" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>6</td><td>Brilliance Шампунь для нормальных и тонких волос, 1000 мл</td><td>339283</td><td class="col-price-cell">2047.48 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.норм. и тонких волос 1000мл 339283" data-price="2047.48" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>7</td><td>Brilliance Шампунь для жёстких волос, 300 мл</td><td>339238</td><td class="col-price-cell">919.7 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.жестк.волос 300мл 339238" data-price="919.7" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>8</td><td>Brilliance Шампунь для жёстких волос, 1000 мл</td><td>339290</td><td class="col-price-cell">2047.48 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.жестк.волос 1000мл 339290" data-price="2047.48" data-brand="WELLA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
 
 ## Special Mix — концентраты для усиления цвета
 
