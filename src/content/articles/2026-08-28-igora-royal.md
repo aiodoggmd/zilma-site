@@ -10,7 +10,7 @@ publishDate: 2026-08-28T10:00:00
 verifiedDate: 2026-09-02
 ---
 
-**Igora Royal** — перманентная крем-краска Schwarzkopf Professional. Ниже — гид по применению из официального технического мануала бренда: диагностика клиента, все продуктовые линейки (Naturals, Natural Extra, Fashion, Absolutes, Silver Whites, Highlifts, Fashion Lights, Pastels), таблица окислителя, дополнительные продукты, система нумерации оттенков и полная палитра.
+**Igora Royal** — перманентная крем-краска Schwarzkopf Professional. Руководство по применению: диагностика клиента, все продуктовые линейки (Naturals, Natural Extra, Fashion, Absolutes, Silver Whites, Highlifts, Fashion Lights, Pastels), таблица окислителя, дополнительные продукты, система нумерации оттенков и полная палитра.
 
 ![Igora Royal — линейки Highlifts, Absolutes и Silver Whites](/images/articles/2026-08-28-igora-royal/hero-product.webp)
 
