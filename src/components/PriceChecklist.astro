@@ -119,6 +119,14 @@ if (groupBy === 'discount') {
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
   <div class="pc-header">
     <h3>{heading}</h3>
+    <a href="/order/#order" class="pc-cart-link" data-cart-link aria-label="Перейти в заявку">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none" />
+        <circle cx="18" cy="20" r="1.4" fill="currentColor" stroke="none" />
+        <path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.5L21 8H6" />
+      </svg>
+      <span class="pc-cart-badge" data-cart-badge hidden>0</span>
+    </a>
   </div>
   <div class="pc-controls">
     <button type="button" class="pc-back" data-back-to-folders aria-label="Назад к списку папок">←</button>
@@ -144,6 +152,11 @@ if (groupBy === 'discount') {
             </button>
           ))}
         </div>
+        <a href="/#open-promo" class="pc-promo-banner" data-open-promo-from-catalog>
+          <span class="pc-promo-banner-title">Больше выгодных предложений</span>
+          <span class="pc-promo-banner-sub">Специальные скидки при заказе через сайт</span>
+          <span class="pc-promo-banner-arrow" aria-hidden="true">→</span>
+        </a>
         <p class="pc-all-title">Все бренды</p>
       </div>
     )}
@@ -298,22 +311,42 @@ if (groupBy === 'discount') {
     color: #fff;
   }
 
-  .pc-close {
-    background: var(--color-panel);
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 0.95rem;
-    font-weight: 600;
-    line-height: 1;
-    cursor: pointer;
-    color: var(--color-ink);
+  .pc-cart-link {
+    position: relative;
     flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
   }
 
-  .pc-close:hover {
-    color: var(--color-blue-dark);
+  .pc-cart-link:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .pc-cart-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--color-red);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    box-shadow: 0 0 0 2px var(--color-blue-dark);
+  }
+
+  .pc-cart-badge[hidden] {
+    display: none;
   }
 
   .pc-controls {
@@ -693,6 +726,44 @@ if (groupBy === 'discount') {
   .pc-popular-count {
     font-size: 0.78rem;
     color: #8a7f7a;
+  }
+
+  /* Баннер-приглашение в «Акции» прямо внутри каталога — по просьбе пользователя (2026-09-03),
+     не отдельная невидимая кнопка, а часть обычного просмотра каталога. Красный (не синий, как
+     на референсе) — на сайте красный уже устойчиво значит «акция/скидка» (бейдж «Акция»,
+     ступень 15% и т.п.), синий тут был бы не к месту. */
+  .pc-promo-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background: linear-gradient(135deg, var(--color-red-dark), var(--color-red));
+    color: #fff;
+    border-radius: 10px;
+    padding: 14px 40px 14px 16px;
+    margin-bottom: 18px;
+    position: relative;
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+  }
+
+  .pc-promo-banner-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .pc-promo-banner-sub {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .pc-promo-banner-arrow {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    font-weight: 700;
   }
 
   /* Пока идёт поиск или уже открыт конкретный бренд — блок «Популярные»/«Все бренды» лишний. */
@@ -1229,6 +1300,22 @@ if (groupBy === 'discount') {
         });
       });
     }
+
+    // Корзинка-счётчик в шапке — тот же приём, что у пункта «Заявка» нижней плашки
+    // (MobileNavBar.astro): на главной ведёт мгновенным якорем, с других страниц — на
+    // отдельную лёгкую страницу /order/ (без херо), бейдж читает общее хранилище корзины.
+    const cartLink = root.querySelector<HTMLAnchorElement>('[data-cart-link]');
+    if (cartLink && location.pathname === '/') cartLink.href = '/#order';
+    const cartBadge = root.querySelector<HTMLElement>('[data-cart-badge]');
+    function updateCartBadge() {
+      if (!cartBadge) return;
+      const cart = (window as any).zilmaCart?.get() ?? [];
+      const count = Array.isArray(cart) ? cart.length : 0;
+      cartBadge.textContent = String(count);
+      cartBadge.hidden = count === 0;
+    }
+    document.addEventListener('zilma:cart-updated', updateCartBadge);
+    updateCartBadge();
 
     // Карточка «Популярные» — ярлык на нужный бренд в общем алфавитном списке ниже,
     // не отдельный дублирующий рендер товаров.
