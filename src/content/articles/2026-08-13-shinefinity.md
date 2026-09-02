@@ -106,7 +106,7 @@ verifiedDate: 2026-09-02
   <span class="wheel" style="--split: 50%"></span>
   <div>
     <p class="service-title">Balancing Glaze <span class="ratio-tag">1:1</span></p>
-    <p>Завершающий шаг вместе с Koleston Perfect или Illumina Color на прикорневой зоне — выравнивает тон по длине и на кончиках. Краску на корни нанести как обычно, выдержать 10 минут, затем нанести Shinefinity на длину и кончики.</p>
+    <p>Завершающий шаг вместе с <a href="/articles/2026-08-13-koleston-perfect/">Koleston Perfect</a> или <a href="/articles/2026-08-13-illumina-color/">Illumina Color</a> на прикорневой зоне — выравнивает тон по длине и на кончиках. Краску на корни нанести как обычно, выдержать 10 минут, затем нанести Shinefinity на длину и кончики.</p>
     <p class="service-time">Время выдержки: <b>20 мин</b></p>
   </div>
 </div>
