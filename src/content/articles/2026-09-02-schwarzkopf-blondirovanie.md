@@ -20,7 +20,7 @@ Schwarzkopf предлагает две линейки осветляющих п
 
 ## Igora Vario Blond («Супра»)
 
-![Igora Vario Blond Plus и Super Plus](/images/articles/2026-09-02-schwarzkopf-blondirovanie/vario-blond-pair.webp)
+![Осветляющие пудры Schwarzkopf в актуальной упаковке](/images/articles/2026-09-02-schwarzkopf-blondirovanie/vario-blond-pair.webp)
 
 Голубая пудра, не образует пыли при работе. Две формулы отличаются силой осветления — PLUS до 7 уровней, SUPER PLUS до 8 уровней.
 
