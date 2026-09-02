@@ -103,6 +103,28 @@ verifiedDate: 2026-09-02
   </div>
 </div>
 
+## После процедуры
+
+По окончании времени выдержки проэмульгировать состав небольшим количеством тёплой воды и тщательно смыть. Слегка вымыть волосы шампунем для окрашенных волос (шампунь Brilliance — в таблице ниже), затем нанести средство для нейтрализации остатков окислителя и стабилизации цвета.
+
+В прайсе Zilma для этих шагов доступны:
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
+<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Brilliance Бальзам-уход для нормальных и тонких волос, 1000 мл</td><td>339306</td><td class="col-price-cell">2824.55 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Бальзам-уход д/защиты цвета окр.норм.и тонких волос 1000мл 339306" data-price="2824.55" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Brilliance Бальзам-уход для жёстких волос, 200 мл</td><td>339252</td><td class="col-price-cell">998.75 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Бальзам-уход д/защиты цвета окр.жестк.волос 200мл 339252" data-price="998.75" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>3</td><td>Brilliance Бальзам-уход для жёстких волос, 1000 мл</td><td>339313</td><td class="col-price-cell">2824.55 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Бальзам-уход д/защиты цвета окр.жестк.волос 1000мл 339313" data-price="2824.55" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>4</td><td>Brilliance Шампунь для нормальных и тонких волос, 300 мл</td><td>339221</td><td class="col-price-cell">919.7 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.норм. и тонких волос 300мл 339221" data-price="919.7" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>5</td><td>Brilliance Шампунь для нормальных и тонких волос, 1000 мл</td><td>339283</td><td class="col-price-cell">2047.48 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.норм. и тонких волос 1000мл 339283" data-price="2047.48" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>6</td><td>Brilliance Шампунь для жёстких волос, 300 мл</td><td>339238</td><td class="col-price-cell">919.7 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.жестк.волос 300мл 339238" data-price="919.7" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>7</td><td>Brilliance Шампунь для жёстких волос, 1000 мл</td><td>339290</td><td class="col-price-cell">2047.48 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.жестк.волос 1000мл 339290" data-price="2047.48" data-brand="WELLA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
 ## Палитра оттенков
 
 <div class="callout"><b>Соответствие кодов между брендами.</b> Номерная система (глубина/тон) у Wella и Londa общая для деми-перманентных безаммиачных линеек — один и тот же код на Color Touch и на <a href="/articles/2026-08-29-londa-professional/#demi-line">Londa Demi-Permanent Ammonia Free</a> означает один и тот же результат. При отсутствии нужного оттенка код можно использовать у обоих брендов.</div>
