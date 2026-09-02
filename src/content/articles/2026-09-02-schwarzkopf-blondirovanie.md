@@ -22,18 +22,7 @@ Schwarzkopf предлагает две линейки осветляющих п
 
 ![Igora Vario Blond Plus и Super Plus](/images/articles/2026-09-02-schwarzkopf-blondirovanie/vario-blond-pair.webp)
 
-Голубая пудра, не образует пыли при работе. Две формулы отличаются силой осветления:
-
-<div class="kit-table-wrap">
-<table class="kit-table">
-<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
-<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
-<tbody>
-<tr><td>1</td><td>Igora Vario Blond PLUS (белая банка) — до 7 уровней, 450 г</td><td>2242113</td><td class="col-price-cell">1650 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Игора Варио Блонд PLUS (БЕЛАЯ БАНКА 7+) 450гр 2242113" data-price="1650" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>2</td><td>Igora Vario Blond SUPER PLUS (синяя банка) — до 8 уровней, 450 г</td><td>2242115</td><td class="col-price-cell">1650 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Игора Варио Блонд SUPER PLUS (СИНЯЯ БАНКА 8+) 450 (НОВЫЙ ДИЗАЙН!) 2242115new" data-price="1650" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-</tbody>
-</table>
-</div>
+Голубая пудра, не образует пыли при работе. Две формулы отличаются силой осветления — PLUS до 7 уровней, SUPER PLUS до 8 уровней.
 
 <div class="mix-card">
   <div class="wheel-badge">
@@ -46,7 +35,7 @@ Schwarzkopf предлагает две линейки осветляющих п
   </div>
 </div>
 
-<div class="timer-chip"><span class="wheel sm" style="--split: 100%"></span>Выдержка <b>20–45 минут</b> — зависит от желаемой степени осветления, процента окислителя и состояния волос.</div>
+<div class="timer-chip"><span class="wheel sm" style="--split: 100%"></span><span>Выдержка <b>20–45 минут</b> — зависит от желаемой степени осветления, процента окислителя и состояния волос.</span></div>
 
 <div class="callout"><b>Технологии.</b> Fibre Bond Technology защищает связи внутри волоса при осветлении; Anti-Metal Technology связывает ионы металла, чтобы осветление шло ровнее.</div>
 
@@ -71,16 +60,6 @@ Schwarzkopf предлагает две линейки осветляющих п
 
 Более сильная формула — до 9 уровней осветления, подходит для самых тёмных баз. Совместима только с окислителем BlondMe Premium Developer; Igora Oil Developer с этой пудрой не используется.
 
-<div class="kit-table-wrap">
-<table class="kit-table">
-<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
-<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
-<tbody>
-<tr><td>1</td><td>BlondMe Premium Lightener 9+, 450 г</td><td>—</td><td class="col-price-cell">2175.27 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Обесцвечивающая пудра, premium lift 9+ 450г" data-price="2175.27" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-</tbody>
-</table>
-</div>
-
 <div class="mix-card">
   <div class="wheel-badge">
     <span class="wheel" style="--split: 40%"></span>
@@ -96,37 +75,18 @@ Schwarzkopf предлагает две линейки осветляющих п
 
 ### Окислитель BlondMe Premium Developer
 
-Официально выпускается в 4 концентрациях (2/6/9/12%), у каждой своя задача: 2% — тонирование уже осветлённых волос и деликатное осветление, 6% — обычное осветление, 9% — максимальное осветление и сложные седые волосы, 12% — осветление натуральной базы 6-7 уровня. В прайсе Zilma сейчас есть 2% и 12%:
-
-<div class="kit-table-wrap">
-<table class="kit-table">
-<colgroup><col class="col-name"><col class="col-art"><col style="width:130px"><col class="col-order"></colgroup>
-<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
-<tbody>
-<tr><td>BlondMe Премиум-окислитель 2%, 1000 мл</td><td>2140315</td><td class="col-price-cell">1209 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Премиум-окислитель 2% 1000мл 2140315" data-price="1209" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>BlondMe Премиум-окислитель 12%, 1000 мл</td><td>2140321</td><td class="col-price-cell">1209 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Премиум-окислитель 12% 1000мл 2140321" data-price="1209" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-</tbody>
-</table>
-</div>
-
-<div class="callout"><b>Не путать окислители.</b> Igora Oil Developer — для Vario Blond. BlondMe Premium Developer — только для BlondMe. Один и тот же процент, но разные формулы под разные пудры.</div>
-
-## Все товары одним списком
+Официально выпускается в 4 концентрациях (2/6/9/12%), у каждой своя задача: 2% — тонирование уже осветлённых волос и деликатное осветление, 6% — обычное осветление, 9% — максимальное осветление и сложные седые волосы, 12% — осветление натуральной базы 6-7 уровня. В прайсе Zilma сейчас есть 2% и 12%. Все товары линейки BlondMe — одной таблицей:
 
 <div class="kit-table-wrap">
 <table class="kit-table">
 <colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
 <thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Igora Vario Blond PLUS (белая банка) — до 7 уровней, 450 г</td><td>2242113</td><td class="col-price-cell">1650 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Игора Варио Блонд PLUS (БЕЛАЯ БАНКА 7+) 450гр 2242113" data-price="1650" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>2</td><td>Igora Vario Blond SUPER PLUS (синяя банка) — до 8 уровней, 450 г</td><td>2242115</td><td class="col-price-cell">1650 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Игора Варио Блонд SUPER PLUS (СИНЯЯ БАНКА 8+) 450 (НОВЫЙ ДИЗАЙН!) 2242115new" data-price="1650" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>3</td><td>Igora Oil Developer 3%, 1000 мл</td><td>2184625</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 3% 1000 мл 2184625" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>4</td><td>Igora Oil Developer 6%, 1000 мл</td><td>2184628</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 6% 1000 мл 2184628" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>5</td><td>Igora Oil Developer 9%, 1000 мл</td><td>1847105</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 9% 1000 мл 1847105" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>6</td><td>Igora Oil Developer 12%, 1000 мл</td><td>2184627</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 12% 1000 мл 2184627" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>7</td><td>BlondMe Premium Lightener 9+, 450 г</td><td>—</td><td class="col-price-cell">2175.27 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Обесцвечивающая пудра, premium lift 9+ 450г" data-price="2175.27" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>8</td><td>BlondMe Премиум-окислитель 2%, 1000 мл</td><td>2140315</td><td class="col-price-cell">1209 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Премиум-окислитель 2% 1000мл 2140315" data-price="1209" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>9</td><td>BlondMe Премиум-окислитель 12%, 1000 мл</td><td>2140321</td><td class="col-price-cell">1209 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Премиум-окислитель 12% 1000мл 2140321" data-price="1209" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>1</td><td>BlondMe Premium Lightener 9+, 450 г</td><td>—</td><td class="col-price-cell">2175.27 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Обесцвечивающая пудра, premium lift 9+ 450г" data-price="2175.27" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>2</td><td>BlondMe Премиум-окислитель 2%, 1000 мл</td><td>2140315</td><td class="col-price-cell">1209 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Премиум-окислитель 2% 1000мл 2140315" data-price="1209" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>3</td><td>BlondMe Премиум-окислитель 12%, 1000 мл</td><td>2140321</td><td class="col-price-cell">1209 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Премиум-окислитель 12% 1000мл 2140321" data-price="1209" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>
+
+<div class="callout"><b>Не путать окислители.</b> Igora Oil Developer — для Vario Blond. BlondMe Premium Developer — только для BlondMe. Один и тот же процент, но разные формулы под разные пудры.</div>
