@@ -63,6 +63,23 @@ const brandEntries = [...brandMap.entries()]
     return { brand, total, flat, lineEntries };
   });
 
+function pluralItems(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod100 >= 11 && mod100 <= 14) return 'товаров';
+  if (mod10 === 1) return 'товар';
+  if (mod10 >= 2 && mod10 <= 4) return 'товара';
+  return 'товаров';
+}
+
+// «Популярные бренды» — верхние по объёму позиций, отдельным блоком над полным алфавитным
+// списком (только для обычного каталога, не для группировки по скидке в «Акциях» — там своя
+// структура по ступеням). Показываем, только если брендов реально много (иначе блок «топ-4
+// из 5» бессмысленен).
+const popularBrands = groupBy === 'brand' && brandEntries.length > 5
+  ? [...brandEntries].sort((a, b) => b.total - a.total).slice(0, 4)
+  : [];
+
 // Группировка по ступени скидки (15%/7%) -> бренд -> товары — только для окна «Акции».
 // Ступени идут в фиксированном порядке (большая скидка первой), а не по алфавиту.
 const DISCOUNT_TIER_ORDER = [15, 7];
@@ -107,10 +124,25 @@ if (groupBy === 'discount') {
     <input type="search" class="pc-search" placeholder="Поиск по товару, бренду или линейке…" aria-label="Поиск по прайсу" />
     <span class="pc-count" data-count></span>
   </div>
+  <p class="pc-search-hint">Например: Koleston 7/0, Londa, шампунь…</p>
   <div class="pc-groups">
+    {popularBrands.length > 0 && (
+      <div class="pc-popular">
+        <p class="pc-popular-title">Популярные</p>
+        <div class="pc-popular-grid">
+          {popularBrands.map(({ brand, total }) => (
+            <button type="button" class="pc-popular-card" data-jump-to-brand={brand}>
+              <span class="pc-popular-name">{brand}</span>
+              <span class="pc-popular-count">{total} {pluralItems(total)}</span>
+            </button>
+          ))}
+        </div>
+        <p class="pc-all-title">Все бренды</p>
+      </div>
+    )}
     {groupBy === 'brand' && brandEntries.map(({ brand, total, flat, lineEntries }) => (
-      <details class="pc-group pc-group-brand">
-        <summary>{brand} <span class="pc-group-count">({total})</span></summary>
+      <details class="pc-group pc-group-brand" data-brand={brand}>
+        <summary>{brand} <span class="pc-group-count">{total} {pluralItems(total)}</span></summary>
         <div class="pc-group-body">
           {flat.length > 0 && (
             <ul>
@@ -141,7 +173,7 @@ if (groupBy === 'discount') {
           )}
           {lineEntries.map(([line, list]) => (
             <details class="pc-group pc-group-line">
-              <summary>{line} <span class="pc-group-count">({list.length})</span></summary>
+              <summary>{line} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
               <ul>
                 {list.map((it) => (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()}>
@@ -174,11 +206,11 @@ if (groupBy === 'discount') {
     ))}
     {groupBy === 'discount' && discountEntries.map(({ tier, total, brandEntries: tierBrandEntries }) => (
       <details class:list={['pc-group', 'pc-group-brand', { 'pc-tier-15': tier === 'Скидка 15%', 'pc-tier-7': tier === 'Скидка 7%' }]}>
-        <summary>{tier} <span class="pc-group-count">({total})</span></summary>
+        <summary>{tier} <span class="pc-group-count">{total} {pluralItems(total)}</span></summary>
         <div class="pc-group-body">
           {tierBrandEntries.map(([brand, list]) => (
             <details class="pc-group pc-group-line">
-              <summary>{brand} <span class="pc-group-count">({list.length})</span></summary>
+              <summary>{brand} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
               <ul>
                 {list.map((it) => (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="">
@@ -338,6 +370,20 @@ if (groupBy === 'discount') {
     font-size: 0.85rem;
     color: #5c5049;
     white-space: nowrap;
+  }
+
+  .pc-search-hint {
+    margin: 0;
+    padding: 0 18px 10px;
+    font-size: 0.76rem;
+    color: #8a7f7a;
+    flex: none;
+    background: var(--color-paper);
+  }
+
+  /* Во время поиска подсказка-пример становится лишней (сама строка ввода уже занята). */
+  .price-checklist:has(.pc-search:not(:placeholder-shown)) .pc-search-hint {
+    display: none;
   }
 
   .pc-groups {
@@ -511,6 +557,100 @@ if (groupBy === 'discount') {
     border-radius: 6px;
     margin: 0 10px 10px;
     padding: 4px 12px;
+  }
+
+  /* Список брендов каталога («Полный прайс») — компактные строки-списки, не крупные закрашенные
+     плитки: у Dikson 2 товара, у Londa 170 — плиткой одинакового размера оба выглядели одинаково
+     «тяжело», строкой разница видна сразу по подписи. «Акции» (data-group-by="discount") эта
+     правка не касается — там ступени скидки остаются акцентными цветными карточками, как были. */
+  .price-checklist[data-group-by='brand'] .pc-groups {
+    display: block;
+  }
+
+  .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) {
+    background: var(--color-paper);
+    border: none;
+    border-bottom: 1px solid var(--color-panel-line);
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  .price-checklist[data-group-by='brand'] .pc-group-brand:first-child:not([open]) {
+    border-top: 1px solid var(--color-panel-line);
+  }
+
+  .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) > summary {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 4px;
+    font-size: 0.92rem;
+    color: var(--color-ink);
+  }
+
+  .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) > summary .pc-group-count {
+    color: #8a7f7a;
+  }
+
+  .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) > summary .pc-group-count::after {
+    content: ' \203A';
+    color: var(--color-blue-dark);
+    font-weight: 700;
+  }
+
+  /* «Популярные» — топ-4 бренда по объёму, отдельным блоком карточек над алфавитным списком. */
+  .pc-popular-title,
+  .pc-all-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-ink);
+    margin: 2px 4px 8px;
+  }
+
+  .pc-popular-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .pc-popular-card {
+    font: inherit;
+    text-align: left;
+    background: var(--color-paper);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .pc-popular-card:hover {
+    border-color: var(--color-blue-dark);
+  }
+
+  .pc-popular-name {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--color-ink);
+  }
+
+  .pc-popular-count {
+    font-size: 0.78rem;
+    color: #8a7f7a;
+  }
+
+  /* Пока идёт поиск или уже открыт конкретный бренд — блок «Популярные»/«Все бренды» лишний. */
+  .price-checklist:has(.pc-search:not(:placeholder-shown)) .pc-popular {
+    display: none;
+  }
+
+  .pc-groups:has(.pc-group-brand[open]) .pc-popular {
+    display: none;
   }
 
   .pc-item[hidden] {
@@ -1084,6 +1224,22 @@ if (groupBy === 'discount') {
 
     root.querySelector('[data-close-modal]')?.addEventListener('click', () => closeDialog(root));
     root.querySelector('[data-back-to-folders]')?.addEventListener('click', () => collapseToFolderList(root));
+
+    // Карточка «Популярные» — ярлык на нужный бренд в общем алфавитном списке ниже,
+    // не отдельный дублирующий рендер товаров.
+    root.querySelectorAll<HTMLButtonElement>('[data-jump-to-brand]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const name = btn.dataset.jumpToBrand ?? '';
+        groups.forEach((g) => {
+          if (g.classList.contains('pc-group-brand')) g.open = false;
+        });
+        const target = root.querySelector<HTMLDetailsElement>(`.pc-group-brand[data-brand="${CSS.escape(name)}"]`);
+        if (target) {
+          target.open = true;
+          target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }
+      });
+    });
     // Клик по подложке (::backdrop) — событие всплывает с target === сам dialog, а не его содержимое.
     root.addEventListener('click', (e) => {
       if (e.target === root) closeDialog(root);
