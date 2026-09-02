@@ -42,10 +42,10 @@ export function resolveLiveShade<T extends { name?: string; price?: number }>(sh
   const live = priceByBrandArticle.get(brand.toUpperCase())?.get(articleOf(shade.name));
   if (live === AMBIGUOUS) return shade; // не трогаем — не гадаем, какой из нескольких это
   if (!live) {
-    const { name, price, ...rest } = shade as Record<string, unknown>;
+    const { name, price, promo, oldPrice, ...rest } = shade as Record<string, unknown>;
     return rest as T;
   }
-  return { ...shade, name: live.name, price: live.price };
+  return { ...shade, name: live.name, price: live.price, promo: live.promo, oldPrice: live.oldPrice ?? null };
 }
 
 export function resolveLiveShades<T extends { name?: string; price?: number }>(shades: T[], brand: string): T[] {

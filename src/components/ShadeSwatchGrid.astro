@@ -11,6 +11,8 @@ interface Shade {
   col: number;
   name?: string;
   price?: number;
+  promo?: boolean;
+  oldPrice?: number | null;
   label?: string;
   // реальное фото свотча (вырезанное из официального PDF-каталога, круглый кроп без фона) —
   // пока только у Londa (2026-08-29); линейки без этого поля показывают заливку hex как раньше.
@@ -85,6 +87,7 @@ function textVarsFor(hex: string): string {
             data-image={s.image ?? ''}
             data-name={s.name ?? ''}
             data-price={s.price ?? ''}
+            data-promo={s.promo ? '1' : ''}
             data-label={s.label ?? ''}
             aria-label={`${s.label ?? s.code}${s.price != null ? `, ${s.price} ₽` : ', нет в прайсе'}`}
           >
@@ -125,14 +128,14 @@ function textVarsFor(hex: string): string {
     return items.filter((it) => it.name === name).reduce((s, it) => s + it.qty, 0);
   }
 
-  function addToCart(wrap: HTMLElement, name: string, price: number) {
+  function addToCart(wrap: HTMLElement, name: string, price: number, promo: boolean) {
     const items: CartItem[] = (window as any).zilmaCart?.get() ?? [];
     const existing = items.find((it) => it.name === name);
     if (existing) {
       existing.qty += 1;
     } else {
       const brand = wrap.getAttribute('data-cart-brand') || 'WELLA';
-      items.push({ name, price, qty: 1, brand, promo: false });
+      items.push({ name, price, qty: 1, brand, promo });
     }
     (window as any).zilmaCart?.set(items);
   }
@@ -191,8 +194,9 @@ function textVarsFor(hex: string): string {
       const activeBtn = wrap.querySelector<HTMLButtonElement>('.shade-swatch.is-active');
       const name = activeBtn?.dataset.name;
       const price = parseFloat(activeBtn?.dataset.price ?? '');
+      const promo = activeBtn?.dataset.promo === '1';
       if (!name || !Number.isFinite(price)) return;
-      addToCart(wrap, name, price);
+      addToCart(wrap, name, price, promo);
       refreshCtaLabel();
     });
 
