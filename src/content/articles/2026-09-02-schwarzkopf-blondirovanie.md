@@ -52,8 +52,6 @@ Schwarzkopf предлагает две линейки осветляющих п
 
 ### Окислитель Igora Oil Developer
 
-![Igora Oil Developer 3%, 6%, 9%, 12%](/images/articles/2026-09-02-schwarzkopf-blondirovanie/igora-oil-developer.webp)
-
 Все 4 концентрации есть в прайсе:
 
 <div class="kit-table-wrap">
@@ -70,8 +68,6 @@ Schwarzkopf предлагает две линейки осветляющих п
 </div>
 
 ## BlondMe Premium Lightener 9+
-
-![BlondMe Premium Lightener 9+](/images/articles/2026-09-02-schwarzkopf-blondirovanie/blondme-lightener.webp)
 
 Более сильная формула — до 9 уровней осветления, подходит для самых тёмных баз. Совместима только с окислителем BlondMe Premium Developer; Igora Oil Developer с этой пудрой не используется.
 
@@ -99,8 +95,6 @@ Schwarzkopf предлагает две линейки осветляющих п
 <div class="timer-chip"><span class="wheel sm" style="--split: 100%"></span>Выдержка <b>20–45 минут</b>.</div>
 
 ### Окислитель BlondMe Premium Developer
-
-![BlondMe Premium Developer](/images/articles/2026-09-02-schwarzkopf-blondirovanie/blondme-developer.webp)
 
 Официально выпускается в 4 концентрациях (2/6/9/12%), у каждой своя задача: 2% — тонирование уже осветлённых волос и деликатное осветление, 6% — обычное осветление, 9% — максимальное осветление и сложные седые волосы, 12% — осветление натуральной базы 6-7 уровня. В прайсе Zilma сейчас есть 2% и 12%:
 
