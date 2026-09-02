@@ -106,6 +106,16 @@ const organizationLd = {
       <p>Zilma — профессиональная косметика для салонов красоты. © {new Date().getFullYear()}</p>
     </div>
   </footer>
+
+  <script>
+    // На мобильном хиро занимает весь первый экран — сразу под ним самое полезное
+    // (почему заказывают у нас + новость). Пропускаем хиро сразу при заходе на
+    // главную, если это не переход по конкретному якорю (#info, #order и т.п.).
+    if (window.innerWidth <= 640 && !location.hash) {
+      const target = document.getElementById('why-zilma');
+      target?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
+  </script>
 </BaseLayout>
 
 <style>
