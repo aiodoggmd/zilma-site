@@ -41,17 +41,19 @@ Schwarzkopf предлагает две линейки осветляющих п
 
 ### Окислитель Igora Oil Developer
 
-Все 4 концентрации есть в прайсе:
+Все товары линейки Igora Vario Blond — одной таблицей:
 
 <div class="kit-table-wrap">
 <table class="kit-table">
-<colgroup><col class="col-name"><col class="col-art"><col style="width:130px"><col class="col-order"></colgroup>
-<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
+<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
-<tr><td>Igora Oil Developer 3%, 1000 мл</td><td>2184625</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 3% 1000 мл 2184625" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>Igora Oil Developer 6%, 1000 мл</td><td>2184628</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 6% 1000 мл 2184628" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>Igora Oil Developer 9%, 1000 мл</td><td>1847105</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 9% 1000 мл 1847105" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
-<tr><td>Igora Oil Developer 12%, 1000 мл</td><td>2184627</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 12% 1000 мл 2184627" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>1</td><td>Igora Vario Blond PLUS (белая банка) — до 7 уровней, 450 г</td><td>2242113</td><td class="col-price-cell">1650 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Игора Варио Блонд PLUS (БЕЛАЯ БАНКА 7+) 450гр 2242113" data-price="1650" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Igora Vario Blond SUPER PLUS (синяя банка) — до 8 уровней, 450 г</td><td>2242115</td><td class="col-price-cell">1650 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Игора Варио Блонд SUPER PLUS (СИНЯЯ БАНКА 8+) 450 (НОВЫЙ ДИЗАЙН!) 2242115new" data-price="1650" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>3</td><td>Igora Oil Developer 3%, 1000 мл</td><td>2184625</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 3% 1000 мл 2184625" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>4</td><td>Igora Oil Developer 6%, 1000 мл</td><td>2184628</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 6% 1000 мл 2184628" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>5</td><td>Igora Oil Developer 9%, 1000 мл</td><td>1847105</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 9% 1000 мл 1847105" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>6</td><td>Igora Oil Developer 12%, 1000 мл</td><td>2184627</td><td class="col-price-cell">929.07 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 12% 1000 мл 2184627" data-price="929.07" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>
