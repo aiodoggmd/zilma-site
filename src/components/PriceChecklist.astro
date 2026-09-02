@@ -97,7 +97,7 @@ if (groupBy === 'discount') {
     });
 }
 ---
-<dialog class="price-checklist" data-checklist id={dialogId}>
+<dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
   <div class="pc-header">
     <h3>{heading}</h3>
     <button type="button" class="pc-close" data-close-modal aria-label="Закрыть">✕</button>
@@ -348,10 +348,16 @@ if (groupBy === 'discount') {
   }
 
   .pc-group-brand {
-    background: var(--color-panel);
-    border: 1px solid var(--color-panel-line);
+    background: var(--color-blue-dark);
+    border: 1px solid var(--color-blue-dark);
     border-radius: 10px;
-    border-top: 3px solid var(--color-red);
+  }
+
+  /* Плоский список товаров прямо в открытой карточке бренда (без вложенных линеек) —
+     свой белый "лист", иначе тёмный текст товаров потеряется на синем/красном фоне карточки. */
+  .pc-group-brand > .pc-group-body > ul {
+    background: var(--color-paper);
+    border-radius: 8px;
   }
 
   .price-checklist:has(.pc-search:not(:placeholder-shown)) .pc-group-brand {
@@ -397,6 +403,15 @@ if (groupBy === 'discount') {
     gap: 3px;
   }
 
+  /* Карточки брендов/ступеней — сплошная синяя/красная заливка, тексту нужен светлый цвет. */
+  .pc-group-brand > summary {
+    color: #fff;
+  }
+
+  .pc-group-brand > summary .pc-group-count {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
   .pc-group-line > summary {
     font-size: 0.9rem;
   }
@@ -410,18 +425,21 @@ if (groupBy === 'discount') {
     font-size: 0.8rem;
   }
 
-  /* Подкатегории «Акции» по ступени скидки — цветная полоса сверху карточки вместо
-     раскраски текста, чтобы 15%/7% различались с первого взгляда. */
+  /* Подкатегории «Акции» по ступени скидки — своя сплошная заливка карточки
+     (не просто полоса), чтобы 15%/7% различались с первого взгляда, в тон
+     блоку "Почему заказывают у Zilma" на главной (красный) и каталогу (синий). */
   .pc-tier-15 {
-    border-top-color: var(--color-red);
+    background: var(--color-red);
+    border-color: var(--color-red);
   }
 
   .pc-tier-15 > summary .pc-group-count {
-    color: var(--color-red);
+    color: rgba(255, 255, 255, 0.72);
   }
 
   .pc-tier-7 {
-    border-top-color: var(--color-blue-dark);
+    background: var(--color-blue-dark);
+    border-color: var(--color-blue-dark);
   }
 
   .pc-group-body {
@@ -437,15 +455,13 @@ if (groupBy === 'discount') {
 
   .pc-group-brand > .pc-group-body > ul {
     grid-column: 1 / -1;
-  }
-
-  .pc-group-brand > .pc-group-body > ul {
-    padding: 0;
+    padding: 4px 14px;
   }
 
   .pc-group-line {
     background: var(--color-paper);
-    border-top-color: var(--color-panel-line);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 8px;
   }
 
   .pc-group-line[open] {
