@@ -34,6 +34,24 @@ verifiedDate: 2026-09-02
 
 <p class="callout">В прайсе Zilma сейчас только формат Brush (для кисти) — формата Bottle в наличии нет.</p>
 
+В прайсе Zilma для мытья и ухода после процедуры доступны:
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col class="col-num"><col class="col-name"><col class="col-art"><col class="col-price"><col class="col-order"></colgroup>
+<thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Brilliance Бальзам-уход для нормальных и тонких волос, 1000 мл</td><td>339306</td><td class="col-price-cell">2824.55 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Бальзам-уход д/защиты цвета окр.норм.и тонких волос 1000мл 339306" data-price="2824.55" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>2</td><td>Brilliance Бальзам-уход для жёстких волос, 200 мл</td><td>339252</td><td class="col-price-cell">998.75 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Бальзам-уход д/защиты цвета окр.жестк.волос 200мл 339252" data-price="998.75" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>3</td><td>Brilliance Бальзам-уход для жёстких волос, 1000 мл</td><td>339313</td><td class="col-price-cell">2824.55 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Бальзам-уход д/защиты цвета окр.жестк.волос 1000мл 339313" data-price="2824.55" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>4</td><td>Brilliance Шампунь для нормальных и тонких волос, 300 мл</td><td>339221</td><td class="col-price-cell">919.7 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.норм. и тонких волос 300мл 339221" data-price="919.7" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>5</td><td>Brilliance Шампунь для нормальных и тонких волос, 1000 мл</td><td>339283</td><td class="col-price-cell">2047.48 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.норм. и тонких волос 1000мл 339283" data-price="2047.48" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>6</td><td>Brilliance Шампунь для жёстких волос, 300 мл</td><td>339238</td><td class="col-price-cell">919.7 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.жестк.волос 300мл 339238" data-price="919.7" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>7</td><td>Brilliance Шампунь для жёстких волос, 1000 мл</td><td>339290</td><td class="col-price-cell">2047.48 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Brilliance Шампунь д/защиты цвета окр.жестк.волос 1000мл 339290" data-price="2047.48" data-brand="WELLA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
 ## Гибкая формула — результат под задачу
 
 Результат Shinefinity можно регулировать самим способом нанесения — без потери качества цвета.
