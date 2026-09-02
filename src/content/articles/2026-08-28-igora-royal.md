@@ -219,7 +219,7 @@ TrueLift Complex усиливает осветление, нейтрализуя
 
 ## После процедуры
 
-Слегка вымыть волосы шампунем для окрашенных волос (шампунь и бальзам Brilliance — <a href="/articles/2026-08-13-koleston-perfect/#глянцевание--pure-glossing-mix-111">таблица в статье Koleston Perfect</a>), затем нанести стабилизатор для сохранения цвета — <a href="/articles/2026-08-29-londa-professional/#завершение-процедуры">стабилизатор Londa</a>.
+Слегка вымыть волосы шампунем для окрашенных волос, затем нанести стабилизатор для сохранения цвета. В прайсе Zilma для этих шагов: шампунь и бальзам Brilliance (Wella) — <a href="/articles/2026-08-13-koleston-perfect/#глянцевание--pure-glossing-mix-111">таблица в статье Koleston Perfect</a>; шампунь и стабилизатор для сохранения цвета (Londa) — <a href="/articles/2026-08-29-londa-professional/#завершение-процедуры">таблица в статье Londa Professional</a>.
 
 ## Палитра оттенков
 
