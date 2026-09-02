@@ -14,8 +14,9 @@ const { framed = false } = Astro.props;
       <form id="order-form-el" novalidate>
         <div class="row">
           <input type="text" name="name" placeholder="Имя" required maxlength="200" autocomplete="name" />
-          <input type="text" name="contact" placeholder="Телефон" required maxlength="200" autocomplete="tel" />
+          <input type="text" name="contact" placeholder="Телефон, например +7 999 123-45-67" required maxlength="200" autocomplete="tel" inputmode="tel" />
         </div>
+        <p class="contact-warning" id="contact-warning" hidden>Похоже, это не номер телефона — укажите номер, по которому можно связаться.</p>
         <div class="messenger-group">
           <span class="messenger-label">Удобный мессенджер</span>
           <div class="messenger-chips" id="messenger-chips">
@@ -378,6 +379,12 @@ const { framed = false } = Astro.props;
     font-size: 0.82rem;
     color: var(--color-red);
   }
+
+  .contact-warning {
+    margin: -6px 0 0;
+    font-size: 0.82rem;
+    color: var(--color-red);
+  }
 </style>
 
 <!--
@@ -495,6 +502,15 @@ const { framed = false } = Astro.props;
   const nameInput = form?.querySelector<HTMLInputElement>('input[name="name"]');
   const contactInput = form?.querySelector<HTMLInputElement>('input[name="contact"]');
   const cartWarningEl = document.getElementById('cart-warning') as HTMLElement | null;
+  const contactWarningEl = document.getElementById('contact-warning') as HTMLElement | null;
+
+  // Реальный случай (2026-09-02): в поле «Телефон» пришло «Трубина» (фамилия) — заявку
+  // физически не с кем связаться. Поле само по себе принимало любой текст без проверки.
+  // Считаем цифры, а не парсим формат целиком — так проходит любой реальный номер
+  // (с +7/8, пробелами, скобками, дефисами), но не проходит текст без единой цифры.
+  function looksLikePhone(value: string): boolean {
+    return (value.match(/\d/g) ?? []).length >= 10;
+  }
 
   // Метка времени рендера формы — сервер сверяет её с моментом отправки (см. api/order.ts):
   // отправка быстрее пары секунд после загрузки страницы человеку физически не под силу.
@@ -505,10 +521,16 @@ const { framed = false } = Astro.props;
   // минимального заказа — тот же приём, что у «Добавить в заявку» в прайсе.
   function updateSubmitState() {
     if (!button) return;
-    const hasContact = !!(nameInput?.value.trim() && contactInput?.value.trim());
+    const contactValue = contactInput?.value.trim() ?? '';
+    const hasName = !!nameInput?.value.trim();
+    const contactValid = !!contactValue && looksLikePhone(contactValue);
     const total = readCartItems().reduce((s, it) => s + it.price * it.qty, 0);
     const meetsMin = total >= MIN_ORDER_TOTAL;
-    button.disabled = !(hasContact && meetsMin);
+    button.disabled = !(hasName && contactValid && meetsMin);
+
+    if (contactWarningEl) {
+      contactWarningEl.hidden = !contactValue || contactValid;
+    }
 
     if (cartWarningEl) {
       if (meetsMin) {

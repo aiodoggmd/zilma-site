@@ -307,6 +307,12 @@ export const POST: APIRoute = async ({ request }) => {
   if (!name || !contact) {
     return new Response(JSON.stringify({ ok: false, error: 'missing_fields' }), { status: 400 });
   }
+  // Дублирует клиентскую проверку (OrderForm.astro, looksLikePhone) на случай прямого POST
+  // в обход формы/JS. Реальный случай (2026-09-02): контакт «Трубина» — заявку не с кем
+  // было связать. Считаем цифры, а не формат — так проходит любой реальный номер.
+  if ((contact.match(/\d/g) ?? []).length < 10) {
+    return new Response(JSON.stringify({ ok: false, error: 'contact_not_phone' }), { status: 400 });
+  }
   if (name.length > 200 || contact.length > 200) {
     return new Response(JSON.stringify({ ok: false, error: 'too_long' }), { status: 400 });
   }
