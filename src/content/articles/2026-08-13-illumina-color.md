@@ -34,7 +34,7 @@ verifiedDate: 2026-09-02
     <span class="wheel-caption">Illumina · Welloxon</span>
   </div>
   <div class="mix-body">
-    <p><b>Базовое окрашивание.</b> Пример: 60 мл Illumina Color + 60 мл Welloxon Perfect.</p>
+    <p><b>Базовое окрашивание.</b> Пример: 60 мл Illumina Color + 60 мл Welloxon Perfect. Процент окислителя — по задаче: <b>4%</b> — более глубокий результат на натуральных волосах без осветления, <b>6%</b> — тот же тон или на 1 уровень темнее, закрашивание седины, <b>9%</b> — осветление на 2 уровня, <b>12%</b> — осветление на 3 уровня (максимум для линии).</p>
     <p>Не рекомендуется смешивать с Koleston Perfect.</p>
   </div>
   <div class="timer">
