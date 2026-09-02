@@ -98,3 +98,7 @@ Schwarzkopf предлагает две линейки осветляющих п
 </tbody>
 </table>
 </div>
+
+## После процедуры
+
+Слегка вымыть волосы шампунем для окрашенных волос (шампунь и бальзам Brilliance — <a href="/articles/2026-08-13-koleston-perfect/#глянцевание--pure-glossing-mix-111">таблица в статье Koleston Perfect</a>), затем нанести стабилизатор для сохранения цвета — <a href="/articles/2026-08-29-londa-professional/#завершение-процедуры">стабилизатор Londa</a>.
