@@ -1225,6 +1225,29 @@ if (groupBy === 'discount') {
     root.querySelector('[data-close-modal]')?.addEventListener('click', () => closeDialog(root));
     root.querySelector('[data-back-to-folders]')?.addEventListener('click', () => collapseToFolderList(root));
 
+    // Открытая карточка бренда ведёт себя как отдельный «экран»: заголовок и подсказка
+    // поиска меняются на имя бренда, пока эта карточка открыта — визуально не просто
+    // раскрытый аккордеон в общем списке, а переход внутрь бренда. Только для обычного
+    // каталога (data-group-by="brand") — в «Акциях» группировка другая (по ступени скидки),
+    // там имя бренда как заголовок экрана было бы не к месту.
+    const headerTitle = root.querySelector<HTMLElement>('.pc-header h3');
+    const originalHeading = headerTitle?.textContent ?? '';
+    const defaultSearchPlaceholder = search?.placeholder ?? '';
+    if (root.dataset.groupBy === 'brand') {
+      root.querySelectorAll<HTMLDetailsElement>('.pc-group-brand').forEach((brandEl) => {
+        brandEl.addEventListener('toggle', () => {
+          const brandName = brandEl.dataset.brand;
+          if (brandEl.open && brandName) {
+            if (headerTitle) headerTitle.textContent = brandName;
+            if (search) search.placeholder = `Поиск по ${brandName}…`;
+          } else if (!brandEl.open) {
+            if (headerTitle) headerTitle.textContent = originalHeading;
+            if (search) search.placeholder = defaultSearchPlaceholder;
+          }
+        });
+      });
+    }
+
     // Карточка «Популярные» — ярлык на нужный бренд в общем алфавитном списке ниже,
     // не отдельный дублирующий рендер товаров.
     root.querySelectorAll<HTMLButtonElement>('[data-jump-to-brand]').forEach((btn) => {
@@ -1298,8 +1321,20 @@ if (groupBy === 'discount') {
       // находит товар, у которого "wella" в бренде, а "1/9" (точка = слэш) — в названии,
       // даже если это не идёт подряд как в запросе.
       const tokens = normalizeSearch(search.value.trim()).split(/\s+/).filter(Boolean);
+      // Если уже открыт конкретный бренд («экран бренда») — поиск ищет только внутри него,
+      // не по всему прайсу: набирая "7/0" внутри LONDA, не хочется внезапно улететь в WELLA.
+      // Сам заголовок открытого бренда не трогаем (не прячем, не сворачиваем) — это текущий
+      // экран, а не результат поиска среди прочих.
+      const openBrand = groups.find((g) => g.classList.contains('pc-group-brand') && g.open);
       let anyVisibleTotal = false;
       groups.forEach((g) => {
+        // Другой (не текущий) бренд верхнего уровня, пока мы внутри «экрана» одного бренда —
+        // всегда прячем, не полагаясь на CSS-трюк для пустого поиска (он работает только
+        // пока :placeholder-shown, а тут уже что-то введено).
+        if (openBrand && g.classList.contains('pc-group-brand') && g !== openBrand) {
+          g.hidden = true;
+          return;
+        }
         const groupItems = [...g.querySelectorAll<HTMLLIElement>('.pc-item')];
         let anyVisible = false;
         groupItems.forEach((li) => {
@@ -1308,8 +1343,12 @@ if (groupBy === 'discount') {
           li.hidden = !match;
           if (match) anyVisible = true;
         });
-        g.hidden = !anyVisible;
-        g.open = tokens.length > 0 && anyVisible;
+        if (g === openBrand) {
+          g.hidden = false; // текущий экран бренда всегда виден, поиск лишь фильтрует товары внутри
+        } else {
+          g.hidden = !anyVisible;
+          g.open = tokens.length > 0 && anyVisible;
+        }
         if (anyVisible) anyVisibleTotal = true;
       });
       if (noResults) noResults.hidden = anyVisibleTotal || items.length === 0;
