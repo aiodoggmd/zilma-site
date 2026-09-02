@@ -322,11 +322,42 @@ if (groupBy === 'discount') {
     flex: 1;
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding: 6px 0;
+    padding: 12px 14px 14px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    align-content: start;
+  }
+
+  /* Пока идёт поиск — обычный список в один столбец (могут совпасть сразу
+     несколько папок/линеек, карточная сетка с "прячем не открытое" сюда не подходит). */
+  .price-checklist:has(.pc-search:not(:placeholder-shown)) .pc-groups {
+    display: block;
   }
 
   .pc-group-brand {
-    border-bottom: 1px solid var(--color-panel-line);
+    background: var(--color-panel);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 10px;
+    border-top: 3px solid var(--color-blue-dark);
+  }
+
+  .price-checklist:has(.pc-search:not(:placeholder-shown)) .pc-group-brand {
+    margin-bottom: 8px;
+  }
+
+  .pc-group-brand[open] {
+    grid-column: 1 / -1;
+  }
+
+  /* Пока список папок листается (не идёт поиск) — открытая папка/линейка разворачивается
+     во всю ширину, а остальные закрытые карточки на этом уровне прячутся, чтобы не мешать. */
+  .price-checklist:has(.pc-search:placeholder-shown) .pc-groups:has(.pc-group-brand[open]) .pc-group-brand:not([open]) {
+    display: none;
+  }
+
+  .price-checklist:has(.pc-search:placeholder-shown) .pc-group-body:has(.pc-group-line[open]) .pc-group-line:not([open]) {
+    display: none;
   }
 
   .pc-group[hidden] {
@@ -334,71 +365,85 @@ if (groupBy === 'discount') {
   }
 
   .pc-group-brand > summary {
-    padding: 12px 18px;
+    padding: 14px 16px;
   }
 
   .pc-group-line > summary {
-    padding: 9px 18px 9px 30px;
-    font-weight: 500;
-    font-size: 0.88rem;
+    padding: 12px 14px;
   }
 
   .pc-group summary {
     cursor: pointer;
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 0.98rem;
     color: var(--color-ink);
     list-style: none;
     display: flex;
-    align-items: baseline;
-    gap: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .pc-group-line > summary {
+    font-size: 0.9rem;
   }
 
   .pc-group summary::-webkit-details-marker { display: none; }
 
-  .pc-group summary::before {
-    content: '▸';
-    color: var(--color-blue-dark);
-    transition: transform 0.15s ease;
-  }
-
-  .pc-group[open] > summary::before {
-    transform: rotate(90deg);
-  }
-
   .pc-group-count {
+    font-family: var(--font-sans);
     font-weight: 400;
     color: #8a7f7a;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
-  /* Подкатегории «Акции» по ступени скидки — усилены цветом, чтобы 15%/7% различались с первого взгляда. */
-  .pc-tier-15 > summary,
+  /* Подкатегории «Акции» по ступени скидки — цветная полоса сверху карточки вместо
+     раскраски текста, чтобы 15%/7% различались с первого взгляда. */
+  .pc-tier-15 {
+    border-top-color: var(--color-red);
+  }
+
   .pc-tier-15 > summary .pc-group-count {
     color: var(--color-red);
   }
 
-  .pc-tier-15 > summary::before {
-    color: var(--color-red);
-  }
-
-  .pc-tier-7 > summary,
-  .pc-tier-7 > summary .pc-group-count {
-    color: var(--color-blue-dark);
+  .pc-tier-7 {
+    border-top-color: var(--color-blue-dark);
   }
 
   .pc-group-body {
     padding-bottom: 4px;
   }
 
+  .pc-group-brand > .pc-group-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0 14px 14px;
+  }
+
   .pc-group-brand > .pc-group-body > ul {
-    padding: 0 18px 8px;
+    grid-column: 1 / -1;
+  }
+
+  .pc-group-brand > .pc-group-body > ul {
+    padding: 0;
+  }
+
+  .pc-group-line {
+    background: var(--color-paper);
+    border-top-color: var(--color-panel-line);
+  }
+
+  .pc-group-line[open] {
+    grid-column: 1 / -1;
   }
 
   .pc-group-line ul {
     list-style: none;
     margin: 0;
-    padding: 0 18px 8px 30px;
+    padding: 0 14px 10px;
   }
 
   .pc-item[hidden] {
