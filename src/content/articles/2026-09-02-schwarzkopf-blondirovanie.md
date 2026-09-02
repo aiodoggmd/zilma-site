@@ -60,7 +60,7 @@ Schwarzkopf предлагает две линейки осветляющих п
 
 ## BlondMe Premium Lightener 9+
 
-Более сильная формула — до 9 уровней осветления, подходит для самых тёмных баз. Совместима только с окислителем BlondMe Premium Developer.
+Более сильная формула — до 9 уровней осветления, подходит для самых тёмных баз. Совместима с окислителем BlondMe Premium Developer.
 
 <div class="mix-card">
   <div class="wheel-badge">
