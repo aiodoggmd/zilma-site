@@ -72,12 +72,14 @@ function pluralItems(n: number): string {
   return 'товаров';
 }
 
-// «Популярные бренды» — верхние по объёму позиций, отдельным блоком над полным алфавитным
-// списком (только для обычного каталога, не для группировки по скидке в «Акциях» — там своя
-// структура по ступеням). Показываем, только если брендов реально много (иначе блок «топ-4
-// из 5» бессмысленен).
+// «Популярные бренды» — не топ-4 по количеству позиций (так туда попадал бы, например, OLLIN
+// просто за счёт объёма прайса), а флагманские бренды Zilma — те же, что в подзаголовке хиро
+// на главной («Wella · Londa · Schwarzkopf · Matrix · Lebel»). Показываем, только если брендов
+// реально много (иначе блок-ярлык на 4 из 5 бессмысленен).
+const PREFERRED_POPULAR_BRANDS = ['WELLA', 'LONDA', 'SCHWARZKOPF', 'MATRIX'];
+const brandByName = new Map(brandEntries.map((b) => [b.brand, b]));
 const popularBrands = groupBy === 'brand' && brandEntries.length > 5
-  ? [...brandEntries].sort((a, b) => b.total - a.total).slice(0, 4)
+  ? PREFERRED_POPULAR_BRANDS.map((name) => brandByName.get(name)).filter((b): b is (typeof brandEntries)[number] => Boolean(b))
   : [];
 
 // Группировка по ступени скидки (15%/7%) -> бренд -> товары — только для окна «Акции».
