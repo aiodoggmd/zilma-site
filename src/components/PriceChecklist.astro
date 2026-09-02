@@ -367,6 +367,7 @@ if (groupBy === 'discount') {
      свой белый "лист", иначе тёмный текст товаров потеряется на синем/красном фоне карточки. */
   .pc-group-brand > .pc-group-body > ul {
     background: var(--color-paper);
+    border: 1px solid var(--color-panel-line);
     border-radius: 8px;
   }
 
@@ -376,6 +377,16 @@ if (groupBy === 'discount') {
 
   .pc-group-brand[open] {
     grid-column: 1 / -1;
+    background: var(--color-paper);
+    border-color: var(--color-paper);
+  }
+
+  .pc-group-brand[open] > summary {
+    color: var(--color-ink);
+  }
+
+  .pc-group-brand[open] > summary .pc-group-count {
+    color: var(--color-blue-dark);
   }
 
   /* Пока список папок листается (не идёт поиск) — открытая папка/линейка разворачивается
@@ -474,11 +485,11 @@ if (groupBy === 'discount') {
   }
 
   .pc-group-line > summary {
-    color: #fff;
+    color: var(--color-ink);
   }
 
   .pc-group-line > summary .pc-group-count {
-    color: rgba(255, 255, 255, 0.72);
+    color: var(--color-blue-dark);
   }
 
   .pc-group-line[open] {
