@@ -338,6 +338,7 @@ if (groupBy === 'discount') {
     color: var(--color-ink);
     background: var(--color-mist);
     border: 1px solid rgba(43, 32, 28, 0.06);
+    box-shadow: var(--shadow-sm);
     border-radius: 50%;
     width: 38px;
     height: 38px;
@@ -345,7 +346,6 @@ if (groupBy === 'discount') {
     align-items: center;
     justify-content: center;
     padding: 0;
-    box-shadow: none;
     white-space: nowrap;
   }
 
@@ -376,6 +376,7 @@ if (groupBy === 'discount') {
     border-radius: 999px;
     background: var(--color-mist);
     color: var(--color-ink);
+    box-shadow: var(--shadow-sm);
   }
 
   .pc-search::placeholder {
@@ -648,10 +649,13 @@ if (groupBy === 'discount') {
     display: flex;
     flex-direction: column;
     gap: 3px;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
   }
 
   .pc-popular-card:hover {
     border-color: var(--color-blue-dark);
+    box-shadow: var(--shadow-card-hover);
   }
 
   .pc-popular-name {
