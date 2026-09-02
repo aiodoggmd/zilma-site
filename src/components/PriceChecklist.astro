@@ -118,7 +118,7 @@ if (groupBy === 'discount') {
 ---
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
   <div class="pc-header">
-    <h3>{heading}</h3>
+    <h3 class="pc-header-logo">{heading}</h3>
     <a href="/order/#order" class="pc-cart-link" data-cart-link aria-label="Перейти в заявку">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M9 8V6a3 3 0 0 1 6 0v2" />
@@ -309,6 +309,19 @@ if (groupBy === 'discount') {
     font-size: 1.15rem;
     margin: 0;
     color: var(--color-ink);
+  }
+
+  /* Заголовок-заглушка по умолчанию — логотип-надпись «ZILMA» по центру шапки (тот же дух,
+     что настоящий лого-файл, но текстом и в красном под белый фон каталога). Как только
+     открыт конкретный бренд, JS убирает этот класс и подставляет обычное тёмное имя бренда. */
+  .pc-header h3.pc-header-logo {
+    flex: 1;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    color: var(--color-red);
   }
 
   .pc-cart-link {
@@ -1291,10 +1304,16 @@ if (groupBy === 'discount') {
         brandEl.addEventListener('toggle', () => {
           const brandName = brandEl.dataset.brand;
           if (brandEl.open && brandName) {
-            if (headerTitle) headerTitle.textContent = brandName;
+            if (headerTitle) {
+              headerTitle.textContent = brandName;
+              headerTitle.classList.remove('pc-header-logo');
+            }
             if (search) search.placeholder = `Поиск по ${brandName}…`;
           } else if (!brandEl.open) {
-            if (headerTitle) headerTitle.textContent = originalHeading;
+            if (headerTitle) {
+              headerTitle.textContent = originalHeading;
+              headerTitle.classList.add('pc-header-logo');
+            }
             if (search) search.placeholder = defaultSearchPlaceholder;
           }
         });
