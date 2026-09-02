@@ -544,22 +544,38 @@ if (groupBy === 'discount') {
     padding-bottom: 4px;
   }
 
+  /* Имя бренда уже показано в заголовке диалога (см. JS toggle-обработчик ниже) — дублирующая
+     плашка-заголовок открытой карточки в самом списке лишняя, прячем её визуально. Сам <summary>
+     остаётся в DOM (нужен для нативного открытия/закрытия <details>), сворачивание уже есть
+     через кнопку «Назад» и повторный тап по «Каталогу»/«Акциям». */
+  .pc-group-brand[open] > summary {
+    display: none;
+  }
+
   .pc-group-brand > .pc-group-body {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    padding: 0 14px 14px;
+    display: block;
+    padding: 14px 4px 8px;
   }
 
   .pc-group-brand > .pc-group-body > ul {
-    grid-column: 1 / -1;
-    padding: 4px 14px;
+    padding: 4px 10px;
+    margin: 4px 0;
   }
 
-  .pc-group-line {
-    background: var(--color-pastel-blue);
-    border: 1px solid var(--color-pastel-blue);
-    border-radius: 8px;
+  /* Линейки внутри бренда — те же тонкие строки-списки, что и сами бренды в общем
+     каталоге (см. .pc-group-brand:not([open]) выше), а не закрашенные синие плитки. */
+  .pc-group-line:not([open]) {
+    background: var(--color-paper);
+    border: none;
+    border-bottom: 1px solid var(--color-panel-line);
+    border-radius: 0;
+  }
+
+  .pc-group-line:not([open]) > summary {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 4px;
   }
 
   .pc-group-line > summary {
@@ -570,16 +586,18 @@ if (groupBy === 'discount') {
     color: #8a7f7a;
   }
 
-  .pc-group-line[open] {
-    grid-column: 1 / -1;
+  .pc-group-line:not([open]) > summary .pc-group-count::after {
+    content: ' \203A';
+    color: var(--color-blue-dark);
+    font-weight: 700;
   }
 
   .pc-group-line ul {
     list-style: none;
     background: var(--color-paper);
     border-radius: 6px;
-    margin: 0 10px 10px;
-    padding: 4px 12px;
+    margin: 0 0 10px;
+    padding: 4px 8px;
   }
 
   /* Список брендов каталога («Полный прайс») — компактные строки-списки, не крупные закрашенные
