@@ -6,10 +6,10 @@ line: "Londa Professional (Permanent Color)"
 tags: ["колористика"]
 coverImage: "/images/articles/2026-08-29-londa-professional/cover.webp"
 publishDate: 2026-08-29T15:00:00
-verifiedDate: 2026-08-29
+verifiedDate: 2026-09-02
 ---
 
-**Londa** — так этот бренд знают в России. Международное название той же линии — **Kadus Professional**.
+**Londa** — линия перманентного окрашивания для профессионального использования. Международное название той же линии — **Kadus Professional**.
 
 ![Londa Professional: Demi-Permanent Ammonia Free и Permanent Color Extra Rich](/images/articles/2026-08-29-londa-professional/hero-product.webp)
 
@@ -91,7 +91,7 @@ verifiedDate: 2026-08-29
 
 Оттенки **/0, /03, /07, /7, /77** не требуют подмеса натурального оттенка даже для 100% закрашивания седины.
 
-<div class="callout"><b>Совет.</b> Начинайте нанесение с зон с наибольшим процентом седины.</div>
+<div class="callout"><b>Порядок нанесения.</b> Начинается с зон с наибольшим процентом седины.</div>
 
 ### Время выдержки — база и Micro Reds
 
@@ -108,7 +108,7 @@ verifiedDate: 2026-08-29
 </table>
 </div>
 
-<div class="callout"><b>Совет.</b> Лёгкое дополнительное тепло на отросших корнях может сократить время выдержки почти вдвое.</div>
+<div class="callout"><b>Дополнительное тепло.</b> Лёгкое дополнительное тепло на отросших корнях сокращает время выдержки почти вдвое.</div>
 
 <div class="callout"><b>Выравнивание цвета.</b> После выдержки проэмульгируйте состав по всей длине и кончикам либо нанесите свежую порцию краски на длину и кончики — оставьте на 5 минут без тепла.</div>
 

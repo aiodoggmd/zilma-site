@@ -7,7 +7,7 @@ tags: ["колористика"]
 coverImage: "/images/articles/2026-08-13-koleston-perfect/cover.webp"
 paletteImage: "/images/articles/2026-08-13-koleston-perfect/palette.webp"
 publishDate: 2026-08-13T06:00:00
-verifiedDate: 2026-08-23
+verifiedDate: 2026-09-02
 ---
 
 **Koleston Perfect** — перманентная крем-краска Wella Professionals. Ниже — полный перевод официального руководства по применению из шейд-чарта Wella: закрашивание седины, схемы смешивания с Welloxon Perfect, уходовые техники между окрашиваниями, глянцевание, Special Mix, пастельное тонирование, система нумерации оттенков и обязательный аллерготест.
@@ -41,7 +41,7 @@ verifiedDate: 2026-08-23
 <div class="timer-chip"><span class="wheel sm" style="--split: 65%"></span><span>Pure Naturals / Vibrant Reds / Deep Browns — без тепла <b>30–40 мин</b> / с теплом <b>15–20 мин</b></span></div>
 <div class="timer-chip"><span class="wheel sm" style="--split: 70%"></span><span>Special Blonde — без тепла <b>50–60 мин</b> / с теплом <b>25–35 мин</b></span></div>
 
-**Совет!** При осветлении наносите больше продукта, чем при обычном окрашивании.
+При осветлении наносить больше продукта, чем при обычном окрашивании.
 
 ### Уходовые техники между окрашиваниями
 
@@ -144,7 +144,7 @@ verifiedDate: 2026-08-23
 <div class="timer-chip"><span class="wheel sm" style="--split: 65%"></span><span>Pure Naturals / Rich Naturals / Vibrant Reds / Deep Browns — без тепла <b>30–40 мин</b> / с теплом <b>15–20 мин</b></span></div>
 <div class="timer-chip"><span class="wheel sm" style="--split: 70%"></span><span>Special Blonde — без тепла <b>50–60 мин</b> / с теплом <b>25–35 мин</b></span></div>
 
-**Совет!** Чтобы усилить насыщенность цвета на средней длине и кончиках, используйте Welloxon Perfect на одну ступень сильнее, чем на корнях.
+Для усиления насыщенности цвета на средней длине и кончиках — Welloxon Perfect на одну ступень сильнее, чем на корнях.
 
 ## Глянцевание — Pure Glossing Mix 1:1:1
 
@@ -193,7 +193,7 @@ verifiedDate: 2026-08-23
   </div>
 </div>
 
-**Важно!** Для равномерного результата цвета прочёсывайте волосы каждые 5 минут в течение времени выдержки, пока не будет достигнут желаемый оттенок.
+Для равномерного результата цвета прочёсывать волосы каждые 5 минут в течение времени выдержки, пока не будет достигнут желаемый оттенок.
 
 ## Система нумерации оттенков
 
