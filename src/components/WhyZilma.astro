@@ -53,14 +53,27 @@ const reasons: Reason[] = [
   }
 
   @media (max-width: 900px) {
+    .section-title {
+      margin: 32px 0 14px;
+    }
+
     .why-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
     }
-  }
 
-  @media (max-width: 480px) {
-    .why-grid {
-      grid-template-columns: 1fr;
+    .why-card {
+      padding: 12px 12px 14px;
+    }
+
+    .why-title {
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .why-text {
+      font-size: 0.78rem;
+      line-height: 1.35;
     }
   }
 </style>
