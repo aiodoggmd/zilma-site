@@ -382,11 +382,20 @@ if (groupBy === 'discount') {
   }
 
   .pc-group-brand[open] > summary {
-    color: var(--color-ink);
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    background: var(--color-blue-dark);
+    border-radius: 999px;
+    padding: 8px 16px;
+    margin: 14px 0 0 16px;
+    box-shadow: var(--shadow-sm);
   }
 
   .pc-group-brand[open] > summary .pc-group-count {
-    color: var(--color-blue-dark);
+    color: rgba(255, 255, 255, 0.75);
   }
 
   /* Пока список папок листается (не идёт поиск) — открытая папка/линейка разворачивается
