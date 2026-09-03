@@ -238,8 +238,8 @@ const bestDeal = groupBy === 'discount'
                     <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                     <span class="pc-item-name">{it.name}</span>
                     <span class="pc-item-price">
-                      {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                       <b class="pc-price-now">{it.price} ₽</b>
+                      {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                       {(it.promo || it.isNew) && (
                         <span class="pc-badges">
                           {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
@@ -267,8 +267,8 @@ const bestDeal = groupBy === 'discount'
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                       <span class="pc-item-name">{it.name}</span>
                       <span class="pc-item-price">
-                        {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                         <b class="pc-price-now">{it.price} ₽</b>
+                        {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                         {(it.promo || it.isNew) && (
                           <span class="pc-badges">
                             {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
@@ -299,8 +299,8 @@ const bestDeal = groupBy === 'discount'
               <input type="checkbox" class="pc-check" data-name={bestDeal.name} data-price={bestDeal.price} data-brand-label={bestDeal.brand ?? ''} data-promo={bestDeal.promo ? '1' : ''} />
               <span class="pc-item-name">{bestDeal.name}</span>
               <span class="pc-item-price">
-                {bestDeal.oldPrice != null && <span class="pc-old-price">{bestDeal.oldPrice} ₽</span>}
                 <b class="pc-price-now">{bestDeal.price} ₽</b>
+                {bestDeal.oldPrice != null && <span class="pc-old-price">{bestDeal.oldPrice} ₽</span>}
                 <span class="pc-badges">
                   <span class="pc-badge">{bestDeal.discountPct ? `-${bestDeal.discountPct}%` : 'Акция'}</span>
                 </span>
@@ -329,8 +329,8 @@ const bestDeal = groupBy === 'discount'
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                       <span class="pc-item-name">{it.name}</span>
                       <span class="pc-item-price">
-                        {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                         <b class="pc-price-now">{it.price} ₽</b>
+                        {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
                         {(it.promo || it.isNew) && (
                           <span class="pc-badges">
                             {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
