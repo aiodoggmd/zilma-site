@@ -9,6 +9,7 @@ interface Item {
   oldPrice?: number;
   discountPct?: number;
   isNew?: boolean;
+  stock?: number;
 }
 
 interface Props {
@@ -153,24 +154,27 @@ if (groupBy === 'discount') {
 }
 
 // «Лучшая скидка» — честная витрина без придуманного таймера/дедлайна (в прайсе нет реальных
-// time-limited кампаний, скидка — постоянный флаг до следующего обновления прайса). По одному
-// лучшему товару (максимальная РЕАЛЬНАЯ разница в рублях) ОТ КАЖДОГО БРЕНДА, а не топ-3 общих —
-// иначе, если у одного бренда просто самые крупные скидки на этот момент, все 3 позиции
-// оказывались бы им же (реальный случай, 2026-09-04 — все три были Londa).
+// time-limited кампаний, скидка — постоянный флаг до следующего обновления прайса).
+// Критерий отбора — ПО ПРЯМОЙ ПРОСЬБЕ ПОЛЬЗОВАЛЬНОГО (2026-09-04): не самая большая скидка
+// в рублях (её и так видно по бейджу — рекламировать очевидное бессмысленно), а наибольший
+// реальный остаток на складе (src/data/priceItems.json, поле stock — из Price/Остатки_*.xlsx,
+// см. scripts/xlsx-to-price-items.py). Смысл — не украшательство, а реальная бизнес-задача:
+// быстрее продать то, чего скопилось больше всего. Товары без известного остатка (поле stock
+// отсутствует — артикул оказался неоднозначным при сопоставлении) в отбор не попадают, не
+// придумываем цифру. По одному лучшему (по остатку) товару от каждого бренда — топ-5.
 const bestDeals = groupBy === 'discount'
   ? (() => {
       const bestPerBrand = new Map<string, Item>();
       for (const it of items) {
-        if (!it.promo || it.oldPrice == null) continue;
+        if (!it.promo || it.oldPrice == null || it.stock == null) continue;
         const brand = it.brand ?? 'Другое';
-        const diff = it.oldPrice - it.price;
         const current = bestPerBrand.get(brand);
-        if (!current || diff > current.oldPrice! - current.price) {
+        if (!current || it.stock > (current.stock ?? 0)) {
           bestPerBrand.set(brand, it);
         }
       }
       return [...bestPerBrand.values()]
-        .sort((a, b) => (b.oldPrice! - b.price) - (a.oldPrice! - a.price))
+        .sort((a, b) => (b.stock ?? 0) - (a.stock ?? 0))
         .slice(0, 5);
     })()
   : [];

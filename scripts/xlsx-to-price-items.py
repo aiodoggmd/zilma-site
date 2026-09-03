@@ -34,6 +34,12 @@ PROMO_META_PATH = ROOT / "Price" / "promo-meta.json"
 FIRST_SEEN_PATH = ROOT / "src" / "data" / "price-first-seen.json"
 NEW_WINDOW_DAYS = 14
 
+# Остатки на складе (Price/Остатки_*.xlsx, выгрузка 1С) — для честного "Лучшая скидка" в
+# каталоге (сортировка по количеству на складе, а не только по проценту скидки). Полностью
+# автоматически: сам находит самый свежий файл по дате в имени, отдельно запускать ничего
+# не нужно. Если файлов ещё нет — просто не добавляем поле stock, ничего не ломается.
+STOCK_DATE_RE = re.compile(r"Остатки_(\d{2}),(\d{2}),(\d{4})")
+
 BRAND_FILL_INDEX = 8
 LINE_FILL_INDEX = 22
 
@@ -83,6 +89,71 @@ def header_level(cell) -> str:
         if fg.indexed == LINE_FILL_INDEX:
             return "line"
     return "unknown"
+
+
+def load_stock_levels(items: list) -> dict:
+    """{артикул: количество} из самого свежего Price/Остатки_*.xlsx — только для АРТИКУЛОВ,
+    однозначных сразу в ДВУХ местах:
+    1) в самом priceItems.json — этот артикул встречается только у ОДНОГО бренда (короткие
+       коды оттенков вида "0/11" реально совпадают у разных товаров разных брендов);
+    2) в самом файле остатков — этот артикул встречается только под ОДНИМ заголовком секции.
+
+    Почему не просто "бренд+артикул": иерархия заголовков в файле остатков НЕ совпадает 1:1
+    со структурой бренд/линейка прайса (реальный случай 2026-09-04 — линейка "Total Results
+    New" у Matrix идёт в остатках отдельной секцией верхнего уровня, без родителя "MATRIX",
+    из-за чего сопоставление по (бренд-из-остатков, артикул) давало только ~53% совпадений
+    вместо реальных ~94%). Двойная проверка неоднозначности проще и безопаснее, чем пытаться
+    воспроизвести чужую иерархию заголовков: если код используется больше одного раза в
+    любом из двух источников — просто не трогаем его, не гадаем.
+    """
+    candidates = []
+    for p in (ROOT / "Price").glob("Остатки_*.xlsx"):
+        m = STOCK_DATE_RE.search(p.name)
+        if not m:
+            continue
+        d = date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+        candidates.append((d, p.stat().st_mtime, p))
+    if not candidates:
+        print("ВНИМАНИЕ: Price/Остатки_*.xlsx не найден - товары останутся без поля stock (не влияет на цены/каталог).")
+        return {}
+    candidates.sort(key=lambda t: (t[0], t[1]))
+    src = candidates[-1][2]
+
+    brands_by_article: dict = {}
+    for it in items:
+        a = article(it["name"])
+        brands_by_article.setdefault(a, set()).add(it["brand"])
+    price_unambiguous = {a for a, brands in brands_by_article.items() if len(brands) == 1}
+
+    wb = openpyxl.load_workbook(src, data_only=True)
+    ws = wb["Sheet1"]
+    qty_by_article: dict = {}
+    headers_by_article: dict = {}
+    header = None
+    for row in ws.iter_rows(min_row=9, values_only=True):
+        if not row or len(row) < 6:
+            continue
+        name, _, _unit, _cost, qty, _total = row[:6]
+        if not name:
+            continue
+        # Заголовок секции — у товарной строки количество всегда число, у заголовка это
+        # пусто/строка-заполнитель (не полагаемся на колонку единиц измерения — у части
+        # реальных товаров она оказалась битой, см. историю правки этой функции).
+        if not isinstance(qty, (int, float)):
+            header = str(name).strip()
+            continue
+        art = article(str(name))
+        if not art:
+            continue
+        qty_by_article[art] = qty_by_article.get(art, 0) + int(qty)
+        headers_by_article.setdefault(art, set()).add(header)
+
+    stock_unambiguous = {a for a, hs in headers_by_article.items() if len(hs) == 1}
+    safe_articles = price_unambiguous & stock_unambiguous
+    stock = {a: qty_by_article[a] for a in safe_articles if a in qty_by_article}
+    print(f"Остатки: источник {src.name}, {len(qty_by_article)} артикулов в файле, "
+          f"{len(stock)} однозначных (безопасно сопоставлено).")
+    return stock
 
 
 def main() -> None:
@@ -179,13 +250,23 @@ def main() -> None:
 
         items.append(item)
 
+    # Остатки на складе — отдельным проходом ПОСЛЕ сборки items (проверка на неоднозначность
+    # артикула нужна против уже готового списка товаров, см. load_stock_levels).
+    stock_levels = load_stock_levels(items)
+    for it in items:
+        qty = stock_levels.get(article(it["name"]))
+        if qty is not None:
+            it["stock"] = qty
+
     FIRST_SEEN_PATH.write_text(json.dumps(first_seen, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
 
     OUT_JSON.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
     promo_count = sum(1 for i in items if i["promo"])
     with_old_price = sum(1 for i in items if i.get("oldPrice") is not None)
     new_count = sum(1 for i in items if i.get("isNew"))
-    print(f"Сохранено {len(items)} товаров ({promo_count} акционных, из них {with_old_price} со старой ценой; {new_count} новинок за последние {NEW_WINDOW_DAYS} дн.) -> {OUT_JSON}")
+    with_stock = sum(1 for i in items if i.get("stock") is not None)
+    print(f"Сохранено {len(items)} товаров ({promo_count} акционных, из них {with_old_price} со старой ценой; "
+          f"{new_count} новинок за последние {NEW_WINDOW_DAYS} дн.; {with_stock} с известным остатком на складе) -> {OUT_JSON}")
     if promo_count and with_old_price < promo_count:
         print(f"ВНИМАНИЕ: {promo_count - with_old_price} акционных товаров не нашлись в сайдкаре по имени - проверить.")
     if unknown_headers:
