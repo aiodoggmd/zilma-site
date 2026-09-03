@@ -176,7 +176,7 @@ const bestDeals = groupBy === 'discount'
       }
       return [...bestPerBrand.values()]
         .sort((a, b) => (b.stock ?? 0) - (a.stock ?? 0))
-        .slice(0, 5);
+        .slice(0, 3);
     })()
   : [];
 ---
