@@ -203,7 +203,7 @@ const bestDeals = groupBy === 'discount'
       </div>
     )}
     <div class="pc-header-brand">
-      <h3 class="pc-header-logo">{heading}</h3>
+      <h3 class:list={[groupBy === 'discount' ? 'pc-header-tier' : 'pc-header-logo']}>{heading}</h3>
       {heading === 'ZILMA' && <p class="pc-header-tagline">Профессиональная косметика</p>}
     </div>
     <a href="/order/#order" class="pc-cart-link" data-cart-link aria-label="Перейти в заявку">
@@ -1711,8 +1711,8 @@ const bestDeals = groupBy === 'discount'
           } else if (!brandEl.open) {
             if (headerTitle) {
               headerTitle.textContent = originalHeading;
-              headerTitle.classList.add('pc-header-logo');
-              headerTitle.classList.remove('pc-header-tier');
+              headerTitle.classList.toggle('pc-header-logo', !isTier);
+              headerTitle.classList.toggle('pc-header-tier', isTier);
             }
             if (search) search.placeholder = defaultSearchPlaceholder;
           }
