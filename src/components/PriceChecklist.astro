@@ -1226,6 +1226,19 @@ const bestDeals = groupBy === 'discount'
   // сразу после showModal() не успевает это перебить. Поэтому используем стандартный приём scroll-lock:
   // body переводится в position:fixed на время открытой модалки — тогда фон физически не может сдвинуться
   // ни от фокуса, ни от колеса/тача внутри диалога, а при закрытии позиция скролла восстанавливается.
+  // Переход по баннеру «Больше выгодных предложений» из Каталога в Акции закрывает Каталог
+  // (см. openDialog ниже — при открытии одного диалога любой другой открытый закрывается) —
+  // без этого флага «Назад» из Акций на верхнем уровне просто закрывал бы всё, высаживая
+  // человека на голой странице (реальная жалоба пользователя, 2026-09-04: "ведёт на херо, а
+  // не обратно в каталог"). Флаг ставится кликом по баннеру и потребляется/сбрасывается ровно
+  // один раз — в обработчике «←» диалога Акций, либо при любом ином закрытии Акций (см. ниже).
+  let cameFromCatalogToPromo = false;
+  document.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('[data-open-promo-from-catalog]')) {
+      cameFromCatalogToPromo = true;
+    }
+  });
+
   let lockedScrollY = 0;
   // Токен для отмены "reassert"-цикла ниже — когда после закрытия диалога нужно уйти к другому
   // месту страницы (напр. к #info по клику на плашке), а не вернуться туда, где было до открытия.
@@ -1464,6 +1477,14 @@ const bestDeals = groupBy === 'discount'
   document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((dialog) => {
     dialog.addEventListener('close', unlockPageScroll);
     dialog.addEventListener('close', () => document.dispatchEvent(new CustomEvent('zilma:nav-show')));
+    // Флаг «пришли из Каталога» нужен ровно на один следующий клик «←» в Акциях (см. выше) —
+    // если Акции закрылись любым ДРУГИМ способом (клик по подложке, повторный тап по «Акции»
+    // на плашке), флаг сбрасываем, чтобы он не «выстрелил» ошибочно в другой раз.
+    if (dialog.id === 'checklist-promo-dialog') {
+      dialog.addEventListener('close', () => {
+        cameFromCatalogToPromo = false;
+      });
+    }
 
     // Автоскрытие MobileNavBar при скролле списка внутри диалога: листаем дальше вниз по списку —
     // плашка уезжает, чтобы не мешать; возвращаемся к началу — плашка появляется снова.
@@ -1599,6 +1620,15 @@ const bestDeals = groupBy === 'discount'
       const openBrand = root.querySelector<HTMLDetailsElement>('.pc-group-brand[open]');
       if (openBrand) {
         openBrand.open = false;
+        return;
+      }
+      // На самом верхнем уровне Акций, если сюда попали именно из Каталога (баннер) — «Назад»
+      // должен вернуть в Каталог, а не просто закрыть всё на голую страницу.
+      if (root.id === 'checklist-promo-dialog' && cameFromCatalogToPromo) {
+        cameFromCatalogToPromo = false;
+        closeDialog(root);
+        const catalogDialog = document.getElementById('checklist-current-dialog');
+        if (catalogDialog instanceof HTMLDialogElement) openDialog(catalogDialog);
         return;
       }
       closeDialog(root);
