@@ -1849,6 +1849,25 @@ const bestDeals = groupBy === 'discount'
     const items = [...root.querySelectorAll<HTMLLIElement>('.pc-item')];
     const groups = [...root.querySelectorAll<HTMLDetailsElement>('.pc-group')];
     const checks = [...root.querySelectorAll<HTMLInputElement>('.pc-check')];
+    // Схлопывание открытой линии/бренда резко меняет высоту списка - без явного восстановления
+    // scrollTop браузер обрезает его под новую (меньшую) высоту, отбрасывая пользователя наверх
+    // списка вместо того места, где он был. Общая функция (не только для кнопки "Назад" - см.
+    // её использование там же, но и для НАТИВНОГО закрытия кликом по самой строке/шеврону,
+    // см. toggle-слушатели ниже) - реальная жалоба пользователя 2026-09-04: "кнопка назад
+    // работает хорошо..., а стрелка нет" - кнопка "Назад" явно вызывала восстановление, а клик
+    // по строке/шеврону просто закрывал <details> нативно, без какого-либо восстановления.
+    // Восстанавливаем именно ТУ позицию, что была в момент клика по строке (см. data-entry-
+    // scroll-y, ставится при открытии), а не текущую - если пользователь успел долистать список
+    // товаров внутри, откат должен быть к строке в общем списке, а не к месту чтения товаров.
+    const scrollEl = root.querySelector<HTMLElement>('.pc-groups');
+    const restoreEntryScroll = (groupEl: HTMLDetailsElement) => {
+      const y = groupEl.dataset.entryScrollY;
+      if (y === undefined || !scrollEl) return;
+      const target = Number(y);
+      requestAnimationFrame(() => {
+        scrollEl.scrollTop = target;
+      });
+    };
     // Индекс на каждый товар — считаем один раз, не при каждом нажатии клавиши.
     const searchIndex = new Map<HTMLLIElement, { name: string; brand: string; line: string }>(
       items.map((li) => [
@@ -1889,23 +1908,9 @@ const bestDeals = groupBy === 'discount'
         collapseToFolderList(root);
         return;
       }
-      // Схлопывание открытой линии/бренда резко меняет высоту списка - без явного восстановления
-      // scrollTop браузер обрезает его под новую (меньшую) высоту, отбрасывая пользователя
-      // наверх списка вместо того места, где он был (реальная жалоба пользователя 2026-09-04:
-      // "Назад" из бренда внизу списка возвращал на самый верх, а не туда, откуда заходили -
-      // "выходит не знаю куда"). Восстанавливаем именно ТУ позицию, что была в момент клика по
-      // строке (см. data-entry-scroll-y, ставится на click summary ниже) - а не текущую (если
-      // пользователь успел долистать список товаров внутри, откат должен быть к строке в общем
-      // списке, а не к месту, где он остановился читать товары).
-      const scrollEl = root.querySelector<HTMLElement>('.pc-groups');
-      const restoreEntryScroll = (groupEl: HTMLDetailsElement) => {
-        const y = groupEl.dataset.entryScrollY;
-        if (y === undefined || !scrollEl) return;
-        const target = Number(y);
-        requestAnimationFrame(() => {
-          scrollEl.scrollTop = target;
-        });
-      };
+      // Восстановление позиции - см. restoreEntryScroll(), объявлена выше вместе с groups (там
+      // же общий комментарий) - используется и здесь, и в toggle-слушателях ниже (нативное
+      // закрытие кликом по строке/шеврону, а не только кнопкой "Назад").
       const openLine = root.querySelector<HTMLDetailsElement>('.pc-group-line[open]');
       if (openLine) {
         restoreEntryScroll(openLine);
@@ -1981,13 +1986,19 @@ const bestDeals = groupBy === 'discount'
         brandEl.querySelector('summary')?.addEventListener('click', () => {
           delete brandEl.dataset.openedBySearch;
           // Запоминаем прокрутку списка РОВНО в момент захода (клик по ещё закрытой строке) -
-          // "Назад" (см. [data-back-to-folders] выше) восстановит именно её, а не текущую на
-          // момент выхода (которая может быть глубоко внутри списка товаров, если пользователь
-          // успел долистать). Реальная жалоба пользователя 2026-09-04.
+          // восстановится и по кнопке "Назад" (см. [data-back-to-folders] выше), и при обычном
+          // закрытии кликом по самой строке/шеврону (см. toggle ниже) - а не текущую на момент
+          // выхода (которая может быть глубоко внутри списка товаров, если пользователь успел
+          // долистать). Реальная жалоба пользователя 2026-09-04.
           if (!brandEl.open) {
             const scrollEl = root.querySelector<HTMLElement>('.pc-groups');
             if (scrollEl) brandEl.dataset.entryScrollY = String(scrollEl.scrollTop);
           }
+          // Помечаем, что СЛЕДУЮЩИЙ toggle этого элемента вызван настоящим кликом пользователя,
+          // а не поиском/категорией (те тоже программно меняют .open, но НЕ через клик по этой
+          // summary) - только для настоящего клика нужно восстанавливать скролл при закрытии,
+          // иначе случайное закрытие поиском откатывало бы прокрутку туда, где её не ждут.
+          brandEl.dataset.userToggled = '1';
         });
         brandEl.addEventListener('toggle', () => {
           // Фильтр по категории открывает СРАЗУ много брендов — без этой проверки каждый
@@ -1995,6 +2006,15 @@ const bestDeals = groupBy === 'discount'
           // категории) по очереди перезаписывал бы шапку СВОИМ именем бренда вместо
           // названия категории, последний открытый просто побеждал бы гонку.
           if (root.dataset.categoryMode === '1') return;
+          // "Кнопка назад работает хорошо..., а стрелка нет" - реальная жалоба пользователя
+          // 2026-09-04: клик по строке/шеврону просто закрывал <details> нативно, браузер сам
+          // обрезал scrollTop под новую высоту без всякого восстановления (кнопка "Назад" уже
+          // явно вызывала restoreEntryScroll, а это - нет). Только для НАСТОЯЩЕГО клика
+          // (userToggled, см. summary click выше) - не для программных toggle от поиска/категорий.
+          if (brandEl.dataset.userToggled === '1') {
+            delete brandEl.dataset.userToggled;
+            if (!brandEl.open) restoreEntryScroll(brandEl);
+          }
           const brandName = brandEl.dataset.brand;
           // Ступень скидки (Акции) — тот же шрифт/размер, что у обычного имени бренда, но
           // красным и прописными (по прямой просьбе пользователя) — свой отдельный класс,
@@ -2018,12 +2038,21 @@ const bestDeals = groupBy === 'discount'
         });
       });
       // Та же запись точки входа для линеек внутри бренда - "Назад" из открытой линии тоже
-      // должен вернуть туда, где она была в списке, а не на верх списка линий.
+      // должен вернуть туда, где она была в списке, а не на верх списка линий. Плюс то же
+      // различение "настоящий клик / программный toggle" (userToggled), что и у брендов выше -
+      // иначе закрытие линии поиском тоже откатывало бы прокрутку.
       root.querySelectorAll<HTMLDetailsElement>('.pc-group-line').forEach((lineEl) => {
         lineEl.querySelector('summary')?.addEventListener('click', () => {
           if (!lineEl.open) {
             const scrollEl = root.querySelector<HTMLElement>('.pc-groups');
             if (scrollEl) lineEl.dataset.entryScrollY = String(scrollEl.scrollTop);
+          }
+          lineEl.dataset.userToggled = '1';
+        });
+        lineEl.addEventListener('toggle', () => {
+          if (lineEl.dataset.userToggled === '1') {
+            delete lineEl.dataset.userToggled;
+            if (!lineEl.open) restoreEntryScroll(lineEl);
           }
         });
       });
