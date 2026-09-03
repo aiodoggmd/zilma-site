@@ -232,7 +232,7 @@ const bestDeals = groupBy === 'discount'
       </div>
     )}
     {groupBy === 'brand' && brandEntries.map(({ brand, total, flat, lineEntries }) => (
-      <details class="pc-group pc-group-brand" data-brand={brand}>
+      <details class="pc-group pc-group-brand" data-brand={brand} data-has-lines={lineEntries.length > 0 ? '1' : '0'}>
         <summary>
           <svg class="pc-row-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
           <span class="pc-row-name">{brand}</span>
@@ -820,8 +820,13 @@ const bestDeals = groupBy === 'discount'
      открывается сразу МНОГО брендов одновременно, а заголовок диалога показывает название
      категории, не бренда - тут плашку-пилюлю наоборот нужно оставить видимой, иначе список
      превращается в товары одной портянкой без подписи бренда (реальная жалоба пользователя,
-     2026-09-03: "не могу разобраться какого бренда товар"). */
-  .price-checklist:not([data-category-mode="1"]) .pc-group-brand[open] > summary {
+     2026-09-03: "не могу разобраться какого бренда товар").
+     ТОЛЬКО для брендов С линейками (data-has-lines="1") - у них открытые линии сами дают
+     видимую навигацию (свой шеврон+лупа на каждой). У брендов БЕЗ линеек (плоский список
+     товаров сразу) прятать нечем заменить - весь шеврон+лупа полностью исчезали бы у ЛЮБОГО
+     такого бренда после открытия (реальная жалоба пользователя, 2026-09-04: "в брендах что
+     без подпапках нет стрелки и лупы") - для них summary остаётся видимой и открытой. */
+  .price-checklist:not([data-category-mode="1"]) .pc-group-brand[data-has-lines="1"][open] > summary {
     display: none;
   }
 
@@ -1841,8 +1846,26 @@ const bestDeals = groupBy === 'discount'
         collapseToFolderList(root);
         return;
       }
+      // Схлопывание открытой линии/бренда резко меняет высоту списка - без явного восстановления
+      // scrollTop браузер обрезает его под новую (меньшую) высоту, отбрасывая пользователя
+      // наверх списка вместо того места, где он был (реальная жалоба пользователя 2026-09-04:
+      // "Назад" из бренда внизу списка возвращал на самый верх, а не туда, откуда заходили -
+      // "выходит не знаю куда"). Восстанавливаем именно ТУ позицию, что была в момент клика по
+      // строке (см. data-entry-scroll-y, ставится на click summary ниже) - а не текущую (если
+      // пользователь успел долистать список товаров внутри, откат должен быть к строке в общем
+      // списке, а не к месту, где он остановился читать товары).
+      const scrollEl = root.querySelector<HTMLElement>('.pc-groups');
+      const restoreEntryScroll = (groupEl: HTMLDetailsElement) => {
+        const y = groupEl.dataset.entryScrollY;
+        if (y === undefined || !scrollEl) return;
+        const target = Number(y);
+        requestAnimationFrame(() => {
+          scrollEl.scrollTop = target;
+        });
+      };
       const openLine = root.querySelector<HTMLDetailsElement>('.pc-group-line[open]');
       if (openLine) {
+        restoreEntryScroll(openLine);
         openLine.open = false;
         return;
       }
@@ -1853,6 +1876,7 @@ const bestDeals = groupBy === 'discount'
       }
       const openBrand = root.querySelector<HTMLDetailsElement>('.pc-group-brand[open]');
       if (openBrand) {
+        restoreEntryScroll(openBrand);
         openBrand.open = false;
         return;
       }
@@ -1913,6 +1937,14 @@ const bestDeals = groupBy === 'discount'
         // единственное совпадение, следующий поиск "шварцкоф" из-за этого вернул 0 вместо 106).
         brandEl.querySelector('summary')?.addEventListener('click', () => {
           delete brandEl.dataset.openedBySearch;
+          // Запоминаем прокрутку списка РОВНО в момент захода (клик по ещё закрытой строке) -
+          // "Назад" (см. [data-back-to-folders] выше) восстановит именно её, а не текущую на
+          // момент выхода (которая может быть глубоко внутри списка товаров, если пользователь
+          // успел долистать). Реальная жалоба пользователя 2026-09-04.
+          if (!brandEl.open) {
+            const scrollEl = root.querySelector<HTMLElement>('.pc-groups');
+            if (scrollEl) brandEl.dataset.entryScrollY = String(scrollEl.scrollTop);
+          }
         });
         brandEl.addEventListener('toggle', () => {
           // Фильтр по категории открывает СРАЗУ много брендов — без этой проверки каждый
@@ -1939,6 +1971,16 @@ const bestDeals = groupBy === 'discount'
               headerTitle.classList.toggle('pc-header-tier', isTier);
             }
             if (search) search.placeholder = defaultSearchPlaceholder;
+          }
+        });
+      });
+      // Та же запись точки входа для линеек внутри бренда - "Назад" из открытой линии тоже
+      // должен вернуть туда, где она была в списке, а не на верх списка линий.
+      root.querySelectorAll<HTMLDetailsElement>('.pc-group-line').forEach((lineEl) => {
+        lineEl.querySelector('summary')?.addEventListener('click', () => {
+          if (!lineEl.open) {
+            const scrollEl = root.querySelector<HTMLElement>('.pc-groups');
+            if (scrollEl) lineEl.dataset.entryScrollY = String(scrollEl.scrollTop);
           }
         });
       });
