@@ -200,9 +200,9 @@ const bestDeals = groupBy === 'discount'
   </div>
   {categoryCounts.length > 0 && (
     <div class="pc-mode-tabs">
-      <button type="button" class="pc-mode-tab" data-mode-tab="task" disabled title="Скоро">По задаче</button>
-      <button type="button" class="pc-mode-tab" data-mode-tab="category">По категории</button>
       <button type="button" class="pc-mode-tab" data-mode-tab="brand">По бренду</button>
+      <button type="button" class="pc-mode-tab" data-mode-tab="category">По категории</button>
+      <button type="button" class="pc-mode-tab" data-mode-tab="task" disabled title="Скоро">По задаче</button>
     </div>
   )}
   <div class="pc-controls">
@@ -1681,10 +1681,13 @@ const bestDeals = groupBy === 'discount'
     root.dataset.originalHeading = originalHeading;
     const defaultSearchPlaceholder = search?.placeholder ?? '';
 
-    // Три вкладки-режима («По задаче»/«По категории»/«По бренду») — «По категории» активна
-    // по умолчанию, «По бренду» — по клику или автоматически при поиске (см. ниже). «По
-    // задаче» пока просто disabled (нет данных для честной реализации, см. память проекта).
-    setActiveTab(root, 'category');
+    // Три вкладки-режима («По бренду»/«По категории»/«По задаче») — «По бренду» активна
+    // по умолчанию (реальная жалоба-поправка пользователя, 2026-09-04: клиенты Zilma —
+    // мастера, которые уже точно знают нужный бренд и щепетильны к замене между брендами
+    // даже при технической взаимозаменяемости товара, см. оксиды/гид-статьи; категория/
+    // задача — для новых клиентов, которые ещё не определились, не для основной аудитории).
+    // «По задаче» пока просто disabled (нет данных для честной реализации, см. память проекта).
+    setActiveTab(root, 'brand');
     root.querySelectorAll<HTMLButtonElement>('[data-mode-tab]').forEach((btn) => {
       if (btn.disabled) return;
       btn.addEventListener('click', () => {
