@@ -135,10 +135,12 @@ const tabs = [
   }
 
   .tab.база-знаний.active {
-    background-image: none;
-    background-color: var(--color-ink);
+    background: linear-gradient(90deg, var(--color-red), var(--color-blue-dark));
+    background-clip: border-box;
+    -webkit-background-clip: border-box;
     -webkit-text-fill-color: #fff;
-    border-color: var(--color-ink);
+    color: #fff;
+    border-color: transparent;
   }
 
   .tab:hover {
