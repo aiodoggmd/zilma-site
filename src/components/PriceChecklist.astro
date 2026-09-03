@@ -1590,6 +1590,7 @@ const bestDeals = groupBy === 'discount'
     концепт: 'concept', диксон: 'dikson', эстель: 'estel', карепрост: 'careprost',
     левиссим: 'levissime', лореаль: "l'oreal", лореал: "l'oreal", искартес: 'iskartes',
     игора: 'igora', блондми: 'blondme', иллюмина: 'illumina', шайнфинити: 'shinefinity',
+    колестон: 'koleston',
     эйми: 'eimi', инвиго: 'invigo', соколор: 'socolor', синк: 'sync', ладор: 'la`dor',
     озис: 'osis', осис: 'osis', силуэт: 'silhouette',
     тач: 'touch', колор: 'color', кэр: 'care', кеа: 'care', софт: 'soft', блонд: 'blond',
@@ -1612,6 +1613,15 @@ const bestDeals = groupBy === 'discount'
     if (entry.name.includes(token) || entry.brand.includes(token) || entry.line.includes(token)) return true;
     const alias = CYRILLIC_ALIASES[token];
     if (alias && (entry.name.includes(alias) || entry.brand.includes(alias) || entry.line.includes(alias))) return true;
+    // Обратное направление: товар назван ТОЛЬКО кириллицей ("колестон" в прайсе, латинского
+    // "Koleston" нигде нет) - словарь выше расcчитан на "запрос кириллицей → данные латиницей"
+    // (напр. "иллюмина" → "illumina"), для обратного случая ищем ключ, чьё значение совпало
+    // с самим латинским запросом. Найдено 2026-09-03: запрос "koleston" не находил ничего.
+    for (const cyr in CYRILLIC_ALIASES) {
+      if (CYRILLIC_ALIASES[cyr] === token && (entry.name.includes(cyr) || entry.brand.includes(cyr) || entry.line.includes(cyr))) {
+        return true;
+      }
+    }
     const group = SYNONYM_GROUPS.find((g) => g.some((w) => token.includes(w) || w.includes(token)));
     return !!group && group.some((w) => entry.name.includes(w) || entry.brand.includes(w) || entry.line.includes(w));
   }
