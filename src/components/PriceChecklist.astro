@@ -153,13 +153,26 @@ if (groupBy === 'discount') {
 }
 
 // «Лучшая скидка» — честная витрина без придуманного таймера/дедлайна (в прайсе нет реальных
-// time-limited кампаний, скидка — постоянный флаг до следующего обновления прайса). Топ-5
-// товаров с максимальной РЕАЛЬНОЙ разницей в рублях между старой и новой ценой.
+// time-limited кампаний, скидка — постоянный флаг до следующего обновления прайса). По одному
+// лучшему товару (максимальная РЕАЛЬНАЯ разница в рублях) ОТ КАЖДОГО БРЕНДА, а не топ-3 общих —
+// иначе, если у одного бренда просто самые крупные скидки на этот момент, все 3 позиции
+// оказывались бы им же (реальный случай, 2026-09-04 — все три были Londa).
 const bestDeals = groupBy === 'discount'
-  ? [...items]
-      .filter((it) => it.promo && it.oldPrice != null)
-      .sort((a, b) => (b.oldPrice! - b.price) - (a.oldPrice! - a.price))
-      .slice(0, 3)
+  ? (() => {
+      const bestPerBrand = new Map<string, Item>();
+      for (const it of items) {
+        if (!it.promo || it.oldPrice == null) continue;
+        const brand = it.brand ?? 'Другое';
+        const diff = it.oldPrice - it.price;
+        const current = bestPerBrand.get(brand);
+        if (!current || diff > current.oldPrice! - current.price) {
+          bestPerBrand.set(brand, it);
+        }
+      }
+      return [...bestPerBrand.values()]
+        .sort((a, b) => (b.oldPrice! - b.price) - (a.oldPrice! - a.price))
+        .slice(0, 3);
+    })()
   : [];
 ---
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
