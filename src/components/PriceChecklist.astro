@@ -243,14 +243,14 @@ const bestDeal = groupBy === 'discount'
                       {(it.promo || it.isNew) && (
                         <span class="pc-badges">
                           {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
-                          {it.isNew && <span class="pc-badge pc-badge-new">Нов</span>}
+                          {it.isNew && <span class="pc-badge pc-badge-new">Н</span>}
                         </span>
                       )}
                     </span>
                   </label>
                   <div class="pc-qty">
                     <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
-                    <input type="number" class="pc-qty-input" value="1" min="1" max="999" inputmode="numeric" aria-label="Количество" />
+                    <input type="number" class="pc-qty-input" value="0" min="0" max="999" inputmode="numeric" aria-label="Количество" />
                     <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
                   </div>
                 </li>
@@ -272,14 +272,14 @@ const bestDeal = groupBy === 'discount'
                         {(it.promo || it.isNew) && (
                           <span class="pc-badges">
                             {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
-                            {it.isNew && <span class="pc-badge pc-badge-new">Нов</span>}
+                            {it.isNew && <span class="pc-badge pc-badge-new">Н</span>}
                           </span>
                         )}
                       </span>
                     </label>
                     <div class="pc-qty">
                       <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
-                      <input type="number" class="pc-qty-input" value="1" min="1" max="999" inputmode="numeric" aria-label="Количество" />
+                      <input type="number" class="pc-qty-input" value="0" min="0" max="999" inputmode="numeric" aria-label="Количество" />
                       <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
                     </div>
                   </li>
@@ -334,14 +334,14 @@ const bestDeal = groupBy === 'discount'
                         {(it.promo || it.isNew) && (
                           <span class="pc-badges">
                             {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
-                            {it.isNew && <span class="pc-badge pc-badge-new">Нов</span>}
+                            {it.isNew && <span class="pc-badge pc-badge-new">Н</span>}
                           </span>
                         )}
                       </span>
                     </label>
                     <div class="pc-qty">
                       <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
-                      <input type="number" class="pc-qty-input" value="1" min="1" max="999" inputmode="numeric" aria-label="Количество" />
+                      <input type="number" class="pc-qty-input" value="0" min="0" max="999" inputmode="numeric" aria-label="Количество" />
                       <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
                     </div>
                   </li>
@@ -1020,8 +1020,10 @@ const bestDeal = groupBy === 'discount'
     font-weight: 700;
   }
 
-  /* Без явного чекбокса — активность решает количество (0 = не в заявке), см. степпер. */
-  .pc-best-deal-list .pc-check {
+  /* Без явного чекбокса везде по каталогу (по просьбе пользователя, 2026-09-04) — активность
+     решает количество: 0 = товара нет в заявке, степпер «+» переводит на 1 и сразу добавляет.
+     Чекбокс остаётся в DOM (источник состояния для syncItemToCart/поиска), просто скрыт. */
+  .pc-check {
     display: none;
   }
 
@@ -1751,7 +1753,14 @@ const bestDeal = groupBy === 'discount'
       });
 
       check.addEventListener('change', () => {
-        if (!check.checked) qtyInput.value = qtyInput.min || '1';
+        if (check.checked) {
+          // Чекбокс скрыт, но по-прежнему переключается кликом по названию/цене (нативное
+          // поведение <label>) — если это произошло при количестве 0, показываем честную
+          // единицу (в корзину в любом случае уйдёт минимум 1, см. syncItemToCart).
+          if ((parseInt(qtyInput.value, 10) || 0) < 1) qtyInput.value = '1';
+        } else {
+          qtyInput.value = qtyInput.min || '1';
+        }
         syncItemToCart(check, qtyInput);
       });
     });
