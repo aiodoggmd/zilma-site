@@ -159,7 +159,7 @@ const bestDeals = groupBy === 'discount'
   ? [...items]
       .filter((it) => it.promo && it.oldPrice != null)
       .sort((a, b) => (b.oldPrice! - b.price) - (a.oldPrice! - a.price))
-      .slice(0, 5)
+      .slice(0, 3)
   : [];
 ---
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
@@ -299,7 +299,10 @@ const bestDeals = groupBy === 'discount'
             <li class:list={['pc-item', { 'pc-promo': deal.promo }]} data-name={deal.name.toLowerCase()} data-brand={(deal.brand ?? '').toLowerCase()} data-line="" data-category={categorize(deal.name) ?? ''}>
               <label>
                 <input type="checkbox" class="pc-check" data-name={deal.name} data-price={deal.price} data-brand-label={deal.brand ?? ''} data-promo={deal.promo ? '1' : ''} />
-                <span class="pc-item-name">{deal.name}</span>
+                <span class="pc-item-name">
+                  <span class="pc-best-deal-brand">{deal.brand}</span>
+                  {deal.name}
+                </span>
                 <span class="pc-item-price">
                   <b class="pc-price-now">{deal.price} ₽</b>
                   {deal.oldPrice != null && <span class="pc-old-price">{deal.oldPrice} ₽</span>}
@@ -1023,6 +1026,17 @@ const bestDeals = groupBy === 'discount'
 
   .pc-best-deal-list .pc-item-name {
     font-weight: 700;
+  }
+
+  .pc-best-deal-brand {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-blue-dark);
+    margin-bottom: 1px;
   }
 
   /* Без явного чекбокса везде по каталогу (по просьбе пользователя, 2026-09-04) — активность
