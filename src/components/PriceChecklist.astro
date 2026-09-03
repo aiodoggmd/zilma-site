@@ -233,7 +233,15 @@ const bestDeals = groupBy === 'discount'
     )}
     {groupBy === 'brand' && brandEntries.map(({ brand, total, flat, lineEntries }) => (
       <details class="pc-group pc-group-brand" data-brand={brand}>
-        <summary>{brand} <span class="pc-group-count">{total} {pluralItems(total)}</span></summary>
+        <summary>
+          {brand}
+          <span class="pc-row-actions">
+            <button type="button" class="pc-row-search-btn" data-focus-search aria-label={`Искать в ${brand}`}>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+            </button>
+            <span class="pc-group-count">{total} {pluralItems(total)}</span>
+          </span>
+        </summary>
         <div class="pc-group-body">
           {flat.length > 0 && (
             <ul>
@@ -264,7 +272,15 @@ const bestDeals = groupBy === 'discount'
           )}
           {lineEntries.map(([line, list]) => (
             <details class="pc-group pc-group-line">
-              <summary>{line} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
+              <summary>
+                {line}
+                <span class="pc-row-actions">
+                  <button type="button" class="pc-row-search-btn" data-focus-search aria-label={`Искать в ${line}`}>
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                  </button>
+                  <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span>
+                </span>
+              </summary>
               <ul>
                 {list.map((it) => (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it) ?? ''}>
@@ -841,6 +857,50 @@ const bestDeals = groupBy === 'discount'
     color: #8a7f7a;
   }
 
+  /* Лупа + счётчик идут одним флекс-блоком справа от названия папки - клик по лупе не должен
+     переключать саму папку (см. JS: preventDefault+stopPropagation), поэтому это НАСТОЯЩАЯ
+     кнопка, а не просто иконка. По прямой просьбе пользователя (2026-09-04): рядом с каждой
+     папкой (бренд/линейка) должна быть подсказка "тут можно искать" - клик по лупе открывает
+     папку и переводит фокус в общий поиск (см. data-focus-search в скрипте ниже). */
+  .pc-row-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: none;
+  }
+
+  .pc-row-search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 50%;
+    background: var(--color-paper);
+    color: var(--color-meta);
+    cursor: pointer;
+    box-shadow: none;
+    flex: none;
+  }
+
+  .pc-row-search-btn:hover {
+    border-color: var(--color-blue-dark);
+    color: var(--color-blue-dark);
+    filter: none;
+  }
+
+  .pc-group-brand[open] > summary .pc-row-search-btn {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    background: transparent;
+  }
+
+  .pc-group-brand[open] > summary .pc-row-search-btn:hover {
+    border-color: #fff;
+  }
+
   /* Счётчик линейки (`.pc-group-line`) — это total ПО ВСЕМУ прайсу, посчитан один раз при
      сборке страницы, никогда не учитывает текущий фильтр. В обычном пролистывании по бренду
      это правильное число ("сколько всего в этой линейке"). В режиме "По категории" список под
@@ -853,10 +913,23 @@ const bestDeals = groupBy === 'discount'
     display: none;
   }
 
-  .pc-group-line:not([open]) > summary .pc-group-count::after {
-    content: ' \203A';
+  /* Треугольник вниз (закрыто) / вверх (открыто) — чтобы было видно, что папка вообще
+     раскрывается и в каком она сейчас состоянии, а не одна стрелка "куда-то дальше" только
+     в закрытом виде (было раньше). По прямой просьбе пользователя, 2026-09-04. */
+  .pc-group-line > summary .pc-group-count::after {
+    margin-left: 4px;
     color: var(--color-blue-dark);
     font-weight: 700;
+    font-size: 0.7em;
+    vertical-align: middle;
+  }
+
+  .pc-group-line:not([open]) > summary .pc-group-count::after {
+    content: '\25BE';
+  }
+
+  .pc-group-line[open] > summary .pc-group-count::after {
+    content: '\25B4';
   }
 
   .pc-group-line ul {
@@ -901,10 +974,28 @@ const bestDeals = groupBy === 'discount'
     color: #8a7f7a;
   }
 
-  .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) > summary .pc-group-count::after {
-    content: ' \203A';
+  .price-checklist[data-group-by='brand'] .pc-group-brand > summary .pc-group-count::after {
+    margin-left: 4px;
     color: var(--color-blue-dark);
     font-weight: 700;
+    font-size: 0.7em;
+    vertical-align: middle;
+  }
+
+  .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) > summary .pc-group-count::after {
+    content: '\25BE';
+  }
+
+  /* Открытая карточка-«пилюля» бренда (см. .pc-group-brand[open] > summary ниже) видна только
+     в режиме категорий (в обычном пролистывании summary целиком прячется - имя уже в шапке) -
+     треугольник вверх тут белый, под цвет текста пилюли, не синий как в закрытом состоянии. */
+  .pc-group-brand[open] > summary .pc-group-count::after {
+    content: '\25B4';
+    margin-left: 4px;
+    font-weight: 700;
+    font-size: 0.7em;
+    vertical-align: middle;
+    color: inherit; /* белый (см. .pc-group-brand[open] > summary .pc-group-count), не синий как в закрытом виде */
   }
 
   /* «Популярные» — топ-4 бренда по объёму, отдельным блоком карточек над алфавитным списком. */
@@ -1875,6 +1966,26 @@ const bestDeals = groupBy === 'discount'
     document.addEventListener('zilma:cart-updated', updateCartBadge);
     updateCartBadge();
 
+    // Лупа рядом с названием папки (бренд/линейка) - подсказка "тут можно искать" + быстрый
+    // переход в общий поиск. Кнопка лежит ВНУТРИ <summary> - обычный клик по ней сначала бы
+    // сработал как нативный тоггл самой папки (клик по любому потомку summary всплывает и
+    // запускает встроенное открытие/закрытие <details>), preventDefault останавливает именно
+    // это, дальше папка открывается ЯВНО (а не переключается - двойного эффекта не будет,
+    // даже если она уже была открыта), а фокус уходит в input.
+    root.querySelectorAll<HTMLButtonElement>('.pc-row-search-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const details = btn.closest<HTMLDetailsElement>('details.pc-group');
+        if (details) {
+          details.open = true;
+          delete details.dataset.openedBySearch; // клик по лупе - осознанное действие, не побочный эффект поиска
+        }
+        search?.focus();
+        search?.scrollIntoView({ block: 'nearest' });
+      });
+    });
+
     // Карточка «Популярные» — ярлык на нужный бренд в общем алфавитном списке ниже,
     // не отдельный дублирующий рендер товаров.
     root.querySelectorAll<HTMLButtonElement>('[data-jump-to-brand]').forEach((btn) => {
@@ -1924,7 +2035,13 @@ const bestDeals = groupBy === 'discount'
             if (match) anyVisible = true;
           });
           g.hidden = !anyVisible;
-          g.open = anyVisible;
+          // НЕ разворачиваем автоматически (было g.open = anyVisible) - по прямой просьбе
+          // пользователя 2026-09-04: выбор категории раньше сразу открывал ВСЕ подходящие
+          // бренды разом, список товаров превращался в одну длинную портянку без структуры.
+          // Теперь показываем только список папок (бренд/линейка) со счётчиком и треугольником
+          // ▾ - пользователь сам решает, какую открыть (та же логика, что в обычном «По
+          // бренду», просто список короче за счёт фильтра по категории).
+          g.open = false;
           if (anyVisible) anyVisibleTotal = true;
         });
         if (noResults) noResults.hidden = anyVisibleTotal;
