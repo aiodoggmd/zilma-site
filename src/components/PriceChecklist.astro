@@ -171,7 +171,7 @@ const bestDeals = groupBy === 'discount'
       }
       return [...bestPerBrand.values()]
         .sort((a, b) => (b.oldPrice! - b.price) - (a.oldPrice! - a.price))
-        .slice(0, 3);
+        .slice(0, 5);
     })()
   : [];
 ---
@@ -1048,7 +1048,7 @@ const bestDeals = groupBy === 'discount'
     font-size: 0.72rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--color-blue-dark);
+    color: var(--color-ink);
     margin-bottom: 1px;
   }
 
