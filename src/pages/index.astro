@@ -114,6 +114,13 @@ const organizationLd = {
     // по конкретному якорю (#info, #order и т.п.) — там скроллим только напрямую.
     if (window.innerWidth <= 640 && !location.hash) {
       setTimeout(() => {
+        // Реальный баг, найден пользователем 2026-09-04 ("мега авария"): если открыть Каталог/
+        // Акции быстро после загрузки (страница в это время залочена через position:fixed, см.
+        // lockPageScroll в PriceChecklist.astro), этот таймер всё равно срабатывал вслепую -
+        // scrollIntoView попадал на залоченную страницу, и после закрытия диалога пользователя
+        // отбрасывало на блок "Почему заказывают", а не туда, где он реально был. Пропускаем
+        // автоскролл целиком, если в этот момент открыт любой диалог каталога/акций.
+        if (document.querySelector('dialog[open]')) return;
         document.getElementById('why-zilma')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 1600);
     }
