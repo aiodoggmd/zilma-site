@@ -340,7 +340,7 @@ const bestDeals = groupBy === 'discount'
       </div>
     )}
     {groupBy === 'discount' && discountEntries.map(({ tier, total, brandEntries: tierBrandEntries }) => (
-      <details class:list={['pc-group', 'pc-group-brand', { 'pc-tier-15': tier === 'Скидка 15%', 'pc-tier-7': tier === 'Скидка 7%' }]}>
+      <details class:list={['pc-group', 'pc-group-brand', { 'pc-tier-15': tier === 'Скидка 15%', 'pc-tier-7': tier === 'Скидка 7%' }]} data-brand={tier}>
         <summary>{tier} <span class="pc-group-count">{total} {pluralItems(total)}</span></summary>
         <div class="pc-group-body">
           {tierBrandEntries.map(([brand, list]) => (
@@ -1077,6 +1077,12 @@ const bestDeals = groupBy === 'discount'
     display: none;
   }
 
+  /* Открыта конкретная ступень скидки — «Лучшая скидка» вверху списка Акций лишняя, это
+     свой отдельный «экран», а не аккордеон рядом с общей витриной. */
+  .pc-groups:has(.pc-group-brand[open]) .pc-best-deal {
+    display: none;
+  }
+
   .pc-item[hidden] {
     display: none;
   }
@@ -1666,15 +1672,15 @@ const bestDeals = groupBy === 'discount'
       closeDialog(root);
     });
 
-    // Открытая карточка бренда ведёт себя как отдельный «экран»: заголовок и подсказка
-    // поиска меняются на имя бренда, пока эта карточка открыта — визуально не просто
-    // раскрытый аккордеон в общем списке, а переход внутрь бренда. Только для обычного
-    // каталога (data-group-by="brand") — в «Акциях» группировка другая (по ступени скидки),
-    // там имя бренда как заголовок экрана было бы не к месту.
+    // Открытая карточка верхнего уровня (бренд в Каталоге, ступень скидки в Акциях) ведёт
+    // себя как отдельный «экран»: заголовок и подсказка поиска меняются на её имя, пока она
+    // открыта — визуально не просто раскрытый аккордеон в общем списке, а переход внутрь.
+    // Работает для ОБОИХ groupBy — и .pc-group-brand[data-brand], и ступени скидки в Акциях
+    // используют тот же атрибут data-brand (там это имя ступени "Скидка 15%"/"Скидка 7%").
     const headerTitle = root.querySelector<HTMLElement>('.pc-header h3');
     const originalHeading = headerTitle?.textContent ?? '';
     const defaultSearchPlaceholder = search?.placeholder ?? '';
-    if (root.dataset.groupBy === 'brand') {
+    {
       root.querySelectorAll<HTMLDetailsElement>('.pc-group-brand').forEach((brandEl) => {
         brandEl.addEventListener('toggle', () => {
           // Фильтр по категории открывает СРАЗУ много брендов — без этой проверки каждый
