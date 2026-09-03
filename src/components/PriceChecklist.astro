@@ -167,6 +167,7 @@ const bestDeals = groupBy === 'discount'
       const bestPerBrand = new Map<string, Item>();
       for (const it of items) {
         if (!it.promo || it.oldPrice == null || it.stock == null) continue;
+        if (it.name.toLowerCase().includes('дозатор')) continue; // расходник/аксессуар, не полноценный товар
         const brand = it.brand ?? 'Другое';
         const current = bestPerBrand.get(brand);
         if (!current || it.stock > (current.stock ?? 0)) {
