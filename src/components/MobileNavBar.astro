@@ -73,14 +73,11 @@
       z-index: 150;
       justify-content: space-around;
       align-items: center;
-      /* Градиент пастельный-красный → пастельный-синий, 2026-08-29 — пользователю понравился
-         этот же градиент на вкладке «База знаний» (FilterTabs.astro), попросил перенести
-         сюда. Те же цвета, что var(--color-pastel-red)/var(--color-pastel-blue), просто в rgba
-         с той же альфой 0.58, что была у исходного сплошного цвета — сохраняет стеклянный эффект. */
-      background: linear-gradient(90deg, rgba(243, 193, 201, 0.58), rgba(188, 216, 242, 0.58));
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      /* Сплошной белый вместо прежнего пастельного градиента с блюром (2026-09-04, по прямой
+         просьбе пользователя — градиент перекрывал контент под собой и читался как визуальный
+         мусор). Простой чистый фон + тонкая рамка, иконки/подписи контрастнее без полупрозрачности. */
+      background: var(--color-paper);
+      border: 1px solid var(--color-panel-line);
       border-radius: 24px;
       box-shadow: var(--shadow-card-hover);
       padding: 9px 6px;
