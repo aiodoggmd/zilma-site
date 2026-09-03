@@ -841,6 +841,18 @@ const bestDeals = groupBy === 'discount'
     color: #8a7f7a;
   }
 
+  /* Счётчик линейки (`.pc-group-line`) — это total ПО ВСЕМУ прайсу, посчитан один раз при
+     сборке страницы, никогда не учитывает текущий фильтр. В обычном пролистывании по бренду
+     это правильное число ("сколько всего в этой линейке"). В режиме "По категории" список под
+     линейкой уже отфильтрован по конкретной категории и показывает МЕНЬШЕ товаров, чем этот
+     total - цифра рядом с названием линейки становится враньём (реальная жалоба пользователя
+     2026-09-03, скриншот: "Total Results New 14 товаров" рядом со списком из 5 отфильтрованных
+     шампуней). Пересчитывать её на лету не с чем (JS не хранит категорию каждого товара в
+     отдельном учёте по линейкам) - проще и честнее просто скрыть цифру в этом режиме. */
+  .price-checklist[data-category-mode='1'] .pc-group-line > summary .pc-group-count {
+    display: none;
+  }
+
   .pc-group-line:not([open]) > summary .pc-group-count::after {
     content: ' \203A';
     color: var(--color-blue-dark);
@@ -1443,10 +1455,17 @@ const bestDeals = groupBy === 'discount'
     // даёт пролистать список до конца (застревает на середине). Помогает: ждать кадр отрисовки
     // (браузер успевает переразметить укороченный список) и сбрасывать позицию простым свойством
     // scrollTop, а не новым scrollTo() API — так надёжнее на этом классе устройств.
+    // При выходе ИМЕННО из фильтра по категории возвращаем скролл туда, где стояла карточка
+    // категории до перехода (см. её сохранение в обработчике [data-filter-category] выше) -
+    // иначе пользователь тапнувший категорию ближе к концу списка карточек попадал бы каждый
+    // раз обратно на самый верх. Обычное сворачивание бренда (без категории) по-прежнему
+    // сбрасывает наверх - там это ожидаемо, список брендов и так короткий и открывается заново.
+    const savedScrollY = wasCategoryMode ? Number(dialog.dataset.categoryScrollY ?? 0) : 0;
+    delete dialog.dataset.categoryScrollY;
     const scrollEl = dialog.querySelector<HTMLElement>('.pc-groups');
     if (scrollEl) {
       requestAnimationFrame(() => {
-        scrollEl.scrollTop = 0;
+        scrollEl.scrollTop = savedScrollY;
       });
     }
   }
@@ -1760,6 +1779,13 @@ const bestDeals = groupBy === 'discount'
     root.querySelectorAll<HTMLButtonElement>('[data-filter-category]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const cat = btn.dataset.filterCategory ?? '';
+        // Запоминаем, где именно в сетке карточек категорий (см. .pc-category-screen) стоял
+        // скролл ДО перехода к отфильтрованному списку - collapseToFolderList() восстановит
+        // именно эту позицию при выходе, а не всегда сбрасывает наверх (см. её же коммент).
+        // Реальная жалоба пользователя 2026-09-03: тапнул категорию ближе к концу списка
+        // карточек, а "Назад" возвращал на самый верх, а не туда, откуда заходил.
+        const groupsEl = root.querySelector<HTMLElement>('.pc-groups');
+        if (groupsEl) root.dataset.categoryScrollY = String(groupsEl.scrollTop);
         setActiveTab(root, 'brand');
         root.dataset.categoryMode = '1';
         let anyVisibleTotal = false;
