@@ -1463,6 +1463,7 @@ const bestDeals = groupBy === 'discount'
     const savedScrollY = wasCategoryMode ? Number(dialog.dataset.categoryScrollY ?? 0) : 0;
     delete dialog.dataset.categoryScrollY;
     delete dialog.dataset.preSearchTab;
+    delete dialog.dataset.categoryFilter;
     const scrollEl = dialog.querySelector<HTMLElement>('.pc-groups');
     if (scrollEl) {
       requestAnimationFrame(() => {
@@ -1568,7 +1569,12 @@ const bestDeals = groupBy === 'discount'
   // Точку/запятую в номере оттенка приравниваем к слэшу — "wella 1.9" должно находить
   // товар с "1/9" в названии, люди печатают код оттенка кто как привык.
   function normalizeSearch(s: string): string {
-    return s.toLowerCase().replace(/[.,]/g, '/');
+    // Код оттенка разные бренды/люди пишут через точку/запятую/дефис - все приравниваем к
+    // слэшу (применяется и к запросу, и к индексируемым названиям товаров одинаково, см.
+    // searchIndex ниже - поэтому симметрично работает в обе стороны). Добавлен дефис
+    // 2026-09-03: WELLA пишет код через дефис ("CT 10-81"), Londa через слэш ("10/81") -
+    // без этого поиск "10/81" находил Londa, но не Color Touch, хотя это один и тот же код.
+    return s.toLowerCase().replace(/[.,-]/g, '/');
   }
 
   // Часть товаров в прайсе названа латиницей (бренды/линии/английские слова) — мастер,
@@ -1794,6 +1800,10 @@ const bestDeals = groupBy === 'discount'
         if (groupsEl) root.dataset.categoryScrollY = String(groupsEl.scrollTop);
         setActiveTab(root, 'brand');
         root.dataset.categoryMode = '1';
+        // Запоминаем САМУ категорию (не только факт "режим категорий активен") - обработчик
+        // поиска ниже использует это, чтобы искать ТОЛЬКО внутри выбранной категории, а не
+        // сбрасывать фильтр при вводе текста (см. коммент у search input listener).
+        root.dataset.categoryFilter = cat;
         let anyVisibleTotal = false;
         groups.forEach((g) => {
           const groupItems = [...g.querySelectorAll<HTMLLIElement>('.pc-item')];
@@ -1928,11 +1938,20 @@ const bestDeals = groupBy === 'discount'
         delete root.dataset.preSearchTab;
         setActiveTab(root, 'category');
       }
-      // Если уже открыт конкретный бренд («экран бренда») — поиск ищет только внутри него,
-      // не по всему прайсу: набирая "7/0" внутри LONDA, не хочется внезапно улететь в WELLA.
-      // Сам заголовок открытого бренда не трогаем (не прячем, не сворачиваем) — это текущий
-      // экран, а не результат поиска среди прочих.
-      const openBrand = groups.find((g) => g.classList.contains('pc-group-brand') && g.open);
+      // В режиме "По категории" уже открыты МНОГО брендов одновременно (по всем совпадениям
+      // фильтра) - "экран одного бренда" тут не действует, иначе поиск хватал бы первый
+      // попавшийся открытый бренд и прятал все остальные (реальный баг, найден пользователем
+      // 2026-09-03: искал Color Touch внутри категории "Безаммиачные красители", поиск
+      // застрял на L'OREAL - первом открытом бренде по алфавиту - и WELLA/Color Touch вместе
+      // со всеми остальными брендами просто исчезли из результатов).
+      const activeCategory = root.dataset.categoryMode === '1' ? root.dataset.categoryFilter ?? '' : null;
+      // Если уже открыт конкретный бренд («экран бренда», обычное пролистывание вне категорий) —
+      // поиск ищет только внутри него, не по всему прайсу: набирая "7/0" внутри LONDA, не
+      // хочется внезапно улететь в WELLA. Сам заголовок открытого бренда не трогаем (не прячем,
+      // не сворачиваем) — это текущий экран, а не результат поиска среди прочих.
+      const openBrand = activeCategory === null
+        ? groups.find((g) => g.classList.contains('pc-group-brand') && g.open)
+        : undefined;
       let anyVisibleTotal = false;
       groups.forEach((g) => {
         // Другой (не текущий) бренд верхнего уровня, пока мы внутри «экрана» одного бренда —
@@ -1945,8 +1964,12 @@ const bestDeals = groupBy === 'discount'
         const groupItems = [...g.querySelectorAll<HTMLLIElement>('.pc-item')];
         let anyVisible = false;
         groupItems.forEach((li) => {
+          // В режиме категории товар обязан совпадать И с категорией, И с текстом поиска -
+          // иначе ввод текста молча снимал бы фильтр категории и показывал вообще весь прайс.
+          const categoryOk = activeCategory === null || li.dataset.category === activeCategory;
           const entry = searchIndex.get(li);
-          const match = tokens.length === 0 || !entry || tokens.every((t) => matchToken(t, entry));
+          const tokensOk = tokens.length === 0 || !entry || tokens.every((t) => matchToken(t, entry));
+          const match = categoryOk && tokensOk;
           li.hidden = !match;
           if (match) anyVisible = true;
         });
@@ -1954,7 +1977,7 @@ const bestDeals = groupBy === 'discount'
           g.hidden = false; // текущий экран бренда всегда виден, поиск лишь фильтрует товары внутри
         } else {
           g.hidden = !anyVisible;
-          g.open = tokens.length > 0 && anyVisible;
+          g.open = anyVisible && (tokens.length > 0 || activeCategory !== null);
         }
         if (anyVisible) anyVisibleTotal = true;
       });
