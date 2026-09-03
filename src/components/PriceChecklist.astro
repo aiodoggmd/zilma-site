@@ -151,6 +151,15 @@ if (groupBy === 'discount') {
       return { tier, total, brandEntries: brandEntriesForTier };
     });
 }
+
+// «Лучшая скидка» — честная витрина без придуманного таймера/дедлайна (в прайсе нет реальных
+// time-limited кампаний, скидка — постоянный флаг до следующего обновления прайса). Просто
+// товар с максимальной РЕАЛЬНОЙ разницей в рублях между старой и новой ценой.
+const bestDeal = groupBy === 'discount'
+  ? [...items]
+      .filter((it) => it.promo && it.oldPrice != null)
+      .sort((a, b) => (b.oldPrice! - b.price) - (a.oldPrice! - a.price))[0]
+  : null;
 ---
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
   <div class="pc-header">
@@ -233,7 +242,7 @@ if (groupBy === 'discount') {
                       <b class="pc-price-now">{it.price} ₽</b>
                       {(it.promo || it.isNew) && (
                         <span class="pc-badges">
-                          {it.promo && <span class="pc-badge">Акция</span>}
+                          {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
                           {it.isNew && <span class="pc-badge pc-badge-new">Нов</span>}
                         </span>
                       )}
@@ -262,7 +271,7 @@ if (groupBy === 'discount') {
                         <b class="pc-price-now">{it.price} ₽</b>
                         {(it.promo || it.isNew) && (
                           <span class="pc-badges">
-                            {it.promo && <span class="pc-badge">Акция</span>}
+                            {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
                             {it.isNew && <span class="pc-badge pc-badge-new">Нов</span>}
                           </span>
                         )}
@@ -281,6 +290,31 @@ if (groupBy === 'discount') {
         </div>
       </details>
     ))}
+    {bestDeal && (
+      <div class="pc-best-deal">
+        <p class="pc-best-deal-label">Лучшая скидка</p>
+        <ul class="pc-best-deal-list">
+          <li class:list={['pc-item', { 'pc-promo': bestDeal.promo }]} data-name={bestDeal.name.toLowerCase()} data-brand={(bestDeal.brand ?? '').toLowerCase()} data-line="" data-category={categorize(bestDeal.name) ?? ''}>
+            <label>
+              <input type="checkbox" class="pc-check" data-name={bestDeal.name} data-price={bestDeal.price} data-brand-label={bestDeal.brand ?? ''} data-promo={bestDeal.promo ? '1' : ''} />
+              <span class="pc-item-name">{bestDeal.name}</span>
+              <span class="pc-item-price">
+                {bestDeal.oldPrice != null && <span class="pc-old-price">{bestDeal.oldPrice} ₽</span>}
+                <b class="pc-price-now">{bestDeal.price} ₽</b>
+                <span class="pc-badges">
+                  <span class="pc-badge">{bestDeal.discountPct ? `-${bestDeal.discountPct}%` : 'Акция'}</span>
+                </span>
+              </span>
+            </label>
+            <div class="pc-qty">
+              <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
+              <input type="number" class="pc-qty-input" value="1" min="1" max="999" inputmode="numeric" aria-label="Количество" />
+              <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    )}
     {groupBy === 'discount' && discountEntries.map(({ tier, total, brandEntries: tierBrandEntries }) => (
       <details class:list={['pc-group', 'pc-group-brand', { 'pc-tier-15': tier === 'Скидка 15%', 'pc-tier-7': tier === 'Скидка 7%' }]}>
         <summary>{tier} <span class="pc-group-count">{total} {pluralItems(total)}</span></summary>
@@ -299,7 +333,7 @@ if (groupBy === 'discount') {
                         <b class="pc-price-now">{it.price} ₽</b>
                         {(it.promo || it.isNew) && (
                           <span class="pc-badges">
-                            {it.promo && <span class="pc-badge">Акция</span>}
+                            {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
                             {it.isNew && <span class="pc-badge pc-badge-new">Нов</span>}
                           </span>
                         )}
@@ -722,21 +756,42 @@ if (groupBy === 'discount') {
     font-size: 0.8rem;
   }
 
-  /* Подкатегории «Акции» по ступени скидки — своя сплошная заливка карточки
-     (не просто полоса), чтобы 15%/7% различались с первого взгляда, в тон
-     блоку "Почему заказывают у Zilma" на главной (красный) и каталогу (синий). */
+  /* Подкатегории «Акции» по ступени скидки — раньше были сплошной цветной заливкой
+     («сухие плашки», по отзыву пользователя 2026-09-04) — теперь белая карточка
+     с акцентной полосой слева и цветным текстом, 15%/7% всё ещё различимы с
+     первого взгляда, но не выглядят голым цветным блоком. */
+  .pc-tier-15,
+  .pc-tier-7 {
+    background: var(--color-paper);
+    border: none;
+    border-left: 4px solid var(--color-panel-line);
+    box-shadow: var(--shadow-card);
+  }
+
   .pc-tier-15 {
-    background: var(--color-red);
-    border-color: var(--color-red);
+    border-left-color: var(--color-red);
+  }
+
+  .pc-tier-15 > summary {
+    color: var(--color-red);
   }
 
   .pc-tier-15 > summary .pc-group-count {
-    color: rgba(255, 255, 255, 0.72);
+    color: var(--color-red);
+    opacity: 0.75;
   }
 
   .pc-tier-7 {
-    background: var(--color-blue-dark);
-    border-color: var(--color-blue-dark);
+    border-left-color: var(--color-blue-dark);
+  }
+
+  .pc-tier-7 > summary {
+    color: var(--color-blue-dark);
+  }
+
+  .pc-tier-7 > summary .pc-group-count {
+    color: var(--color-blue-dark);
+    opacity: 0.75;
   }
 
   .pc-group-body {
@@ -936,6 +991,36 @@ if (groupBy === 'discount') {
     transform: translateY(-50%);
     font-size: 1.2rem;
     font-weight: 700;
+  }
+
+  /* «Лучшая скидка» в «Акциях» — честная витрина (реально самая большая разница в рублях
+     среди акционных товаров), без придуманного таймера/дедлайна. */
+  .pc-best-deal {
+    margin-bottom: 18px;
+  }
+
+  .pc-best-deal-label {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-red);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 2px 4px 8px;
+  }
+
+  .pc-best-deal-list {
+    list-style: none;
+    margin: 0;
+    padding: 4px 14px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-red);
+    border-radius: 10px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .price-checklist:has(.pc-search:not(:placeholder-shown)) .pc-best-deal {
+    display: none;
   }
 
   /* Пока идёт поиск или уже открыт конкретный бренд — блок «Популярные»/«Все бренды» лишний. */
