@@ -184,24 +184,14 @@ const bestDeals = groupBy === 'discount'
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
   <div class="pc-header">
     {categoryCounts.length > 0 && (
-      <div class="pc-menu-wrap">
-        <button type="button" class="pc-menu-btn" data-menu-toggle aria-expanded="false">
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-          <span class="pc-menu-btn-label">Категории</span>
-        </button>
-        <div class="pc-menu-dropdown" data-menu-dropdown hidden>
-          {categoryCounts.map(({ cat, total }) => (
-            <button type="button" class="pc-menu-item" data-filter-category={cat}>
-              <span>{cat}</span>
-              <span class="pc-menu-item-count">{total}</span>
-            </button>
-          ))}
-        </div>
-      </div>
+      <button type="button" class="pc-menu-btn" data-menu-toggle aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+        <span class="pc-menu-btn-label">Категории</span>
+      </button>
     )}
     <div class="pc-header-brand">
       <h3 class:list={[groupBy === 'discount' ? 'pc-header-tier' : 'pc-header-logo']}>{heading}</h3>
@@ -230,6 +220,18 @@ const bestDeals = groupBy === 'discount'
   </div>
   <p class="pc-search-hint">Например: Koleston 7/0, Londa, шампунь…</p>
   <div class="pc-groups">
+    {categoryCounts.length > 0 && (
+      <div class="pc-category-screen" data-category-screen hidden>
+        <div class="pc-popular-grid">
+          {categoryCounts.map(({ cat, total }) => (
+            <button type="button" class="pc-popular-card" data-filter-category={cat}>
+              <span class="pc-popular-name">{cat}</span>
+              <span class="pc-popular-count">{total} {pluralItems(total)}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
     {popularBrands.length > 0 && (
       <div class="pc-popular">
         <p class="pc-popular-title">Популярные</p>
@@ -440,58 +442,17 @@ const bestDeals = groupBy === 'discount'
     min-width: 0;
   }
 
-  .pc-menu-wrap {
-    position: relative;
-    flex: none;
-  }
-
-  .pc-menu-dropdown {
-    position: absolute;
-    top: calc(100% + 10px);
-    left: 0;
-    z-index: 5;
-    min-width: 280px;
-    background: var(--color-paper);
-    border: 1px solid var(--color-panel-line);
-    border-radius: 14px;
-    box-shadow: var(--shadow-card-hover);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .pc-menu-dropdown[hidden] {
+  /* «Категории» — полноценный экран внутри .pc-groups (реюз карточек .pc-popular-card/
+     .pc-popular-grid, тот же вид, что «Популярные»), а не всплывающее окошко у гамбургера —
+     по прямой просьбе пользователя, окошко "не годилось". Открыт этот экран — прячем
+     обычное содержимое верхнего уровня (Популярные/баннер/Все бренды и сам список брендов). */
+  .pc-category-screen[hidden] {
     display: none;
   }
 
-  .pc-menu-item {
-    font: inherit;
-    text-align: left;
-    background: none;
-    border: none;
-    border-radius: 8px;
-    padding: 16px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    cursor: pointer;
-    color: var(--color-ink);
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 1.05rem;
-  }
-
-  .pc-menu-item:hover {
-    background: var(--color-mist);
-  }
-
-  .pc-menu-item-count {
-    font-family: var(--font-sans);
-    font-weight: 400;
-    font-size: 0.85rem;
-    color: #8a7f7a;
+  .price-checklist[data-showing-categories='1'] .pc-popular,
+  .price-checklist[data-showing-categories='1'] .pc-group-brand {
+    display: none;
   }
 
   .pc-menu-btn {
@@ -1448,6 +1409,16 @@ const bestDeals = groupBy === 'discount'
   // чтобы не листать наверх вручную. Отмеченные чекбоксы не трогает — только .open у <details> и скролл.
   function collapseToFolderList(dialog: HTMLDialogElement) {
     delete dialog.dataset.categoryMode;
+    delete dialog.dataset.showingCategories;
+    const categoryScreen = dialog.querySelector<HTMLElement>('[data-category-screen]');
+    if (categoryScreen) categoryScreen.hidden = true;
+    const headerTitle = dialog.querySelector<HTMLElement>('.pc-header h3');
+    if (headerTitle && dialog.dataset.originalHeading != null) {
+      headerTitle.textContent = dialog.dataset.originalHeading;
+      const isTierDialog = dialog.dataset.groupBy === 'discount';
+      headerTitle.classList.toggle('pc-header-logo', !isTierDialog);
+      headerTitle.classList.toggle('pc-header-tier', isTierDialog);
+    }
     dialog.querySelectorAll<HTMLDetailsElement>('.pc-group').forEach((d) => {
       d.open = false;
     });
@@ -1637,23 +1608,6 @@ const bestDeals = groupBy === 'discount'
     // и всегда доступной нижней плашкой навигации она лишняя). Стрелка «←» теперь «умная»:
     // внутри открытого бренда — сворачивает к списку папок (как раньше), а на самом верхнем
     // уровне (папки уже свёрнуты) — закрывает диалог целиком, как обычная кнопка «Назад».
-    // Гамбургер — выпадающее меню с категориями (не отдельный экран, просто список поверх).
-    const menuBtn = root.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-    const menuDropdown = root.querySelector<HTMLElement>('[data-menu-dropdown]');
-    function closeMenuDropdown() {
-      if (menuDropdown) menuDropdown.hidden = true;
-      menuBtn?.setAttribute('aria-expanded', 'false');
-    }
-    menuBtn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const willOpen = !!menuDropdown?.hidden;
-      if (menuDropdown) menuDropdown.hidden = !willOpen;
-      menuBtn.setAttribute('aria-expanded', String(willOpen));
-    });
-    document.addEventListener('click', (e) => {
-      if (!menuDropdown || menuDropdown.hidden) return;
-      if (!menuDropdown.contains(e.target as Node) && e.target !== menuBtn) closeMenuDropdown();
-    });
 
     // «←» — назад РОВНО на один экран, не сразу в самый верх (реальная жалоба пользователя:
     // из открытой линии внутри бренда один клик улетал сразу к списку папок, минуя список
@@ -1671,6 +1625,10 @@ const bestDeals = groupBy === 'discount'
     root.querySelector('[data-back-to-folders]')?.addEventListener('click', () => {
       if (root.dataset.categoryMode === '1') {
         collapseToFolderList(root);
+        return;
+      }
+      if (root.dataset.showingCategories === '1') {
+        closeCategoryScreen();
         return;
       }
       const openLine = root.querySelector<HTMLDetailsElement>('.pc-group-line[open]');
@@ -1707,7 +1665,41 @@ const bestDeals = groupBy === 'discount'
     // используют тот же атрибут data-brand (там это имя ступени "Скидка 15%"/"Скидка 7%").
     const headerTitle = root.querySelector<HTMLElement>('.pc-header h3');
     const originalHeading = headerTitle?.textContent ?? '';
+    root.dataset.originalHeading = originalHeading;
     const defaultSearchPlaceholder = search?.placeholder ?? '';
+
+    // Гамбургер — полноценный «экран» на весь список (реюз .pc-groups), не всплывающее
+    // окошко: по прямой просьбе пользователя (2026-09-04, «окно не годится»). Прячет обычное
+    // содержимое верхнего уровня через [data-showing-categories] (см. CSS), заголовок и
+    // подсказка поиска меняются, как у бренда/ступени.
+    const menuBtn = root.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    const categoryScreen = root.querySelector<HTMLElement>('[data-category-screen]');
+    function closeCategoryScreen() {
+      if (categoryScreen) categoryScreen.hidden = true;
+      root.dataset.showingCategories = '0';
+      menuBtn?.setAttribute('aria-expanded', 'false');
+      if (headerTitle) {
+        headerTitle.textContent = originalHeading;
+        headerTitle.classList.add('pc-header-logo');
+      }
+      if (search) search.placeholder = defaultSearchPlaceholder;
+    }
+    menuBtn?.addEventListener('click', () => {
+      const willOpen = !!categoryScreen?.hidden;
+      if (willOpen) {
+        if (categoryScreen) categoryScreen.hidden = false;
+        root.dataset.showingCategories = '1';
+        menuBtn.setAttribute('aria-expanded', 'true');
+        if (headerTitle) {
+          headerTitle.textContent = 'Категории';
+          headerTitle.classList.remove('pc-header-logo');
+        }
+        if (search) search.placeholder = 'Поиск по товару, бренду или линейке…';
+      } else {
+        closeCategoryScreen();
+      }
+    });
+
     {
       root.querySelectorAll<HTMLDetailsElement>('.pc-group-brand').forEach((brandEl) => {
         brandEl.addEventListener('toggle', () => {
@@ -1781,7 +1773,7 @@ const bestDeals = groupBy === 'discount'
     root.querySelectorAll<HTMLButtonElement>('[data-filter-category]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const cat = btn.dataset.filterCategory ?? '';
-        closeMenuDropdown();
+        closeCategoryScreen();
         root.dataset.categoryMode = '1';
         let anyVisibleTotal = false;
         groups.forEach((g) => {
