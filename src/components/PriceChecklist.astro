@@ -1010,14 +1010,16 @@ const bestDeal = groupBy === 'discount'
     margin: 2px 4px 8px;
   }
 
+  /* Строка в том же стиле, что и список брендов (тонкая линия-разделитель, без рамки/фона-
+     карточки) — не отдельный визуально «тяжёлый» блок. */
   .pc-best-deal-list {
     list-style: none;
     margin: 0;
-    padding: 4px 14px;
-    background: var(--color-paper);
-    border: 1px solid var(--color-panel-line);
-    border-radius: 10px;
-    box-shadow: var(--shadow-card);
+    padding: 0 4px;
+  }
+
+  .pc-best-deal-list .pc-item-name {
+    font-weight: 700;
   }
 
   /* Без явного чекбокса — активность решает количество (0 = не в заявке), см. степпер. */
