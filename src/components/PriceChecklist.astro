@@ -237,9 +237,10 @@ const bestDeals = groupBy === 'discount'
           {brand}
           <span class="pc-row-actions">
             <button type="button" class="pc-row-search-btn" data-focus-search aria-label={`Искать в ${brand}`}>
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
             </button>
             <span class="pc-group-count">{total} {pluralItems(total)}</span>
+            <svg class="pc-row-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
           </span>
         </summary>
         <div class="pc-group-body">
@@ -276,9 +277,10 @@ const bestDeals = groupBy === 'discount'
                 {line}
                 <span class="pc-row-actions">
                   <button type="button" class="pc-row-search-btn" data-focus-search aria-label={`Искать в ${line}`}>
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
                   </button>
                   <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span>
+                  <svg class="pc-row-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
                 </span>
               </summary>
               <ul>
@@ -834,10 +836,15 @@ const bestDeals = groupBy === 'discount'
 
   .pc-group-line:not([open]) > summary {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 12px 4px;
+    /* Правый паддинг больше левого - компенсирует то, что линейка вложена в .pc-group-body
+       (у него своё меньшее правое поле) - без этого лупа/шеврон линейки сидели на 10px ближе
+       к краю экрана, чем те же элементы у бренда, и сетка "не собиралась" (реальная жалоба
+       пользователя 2026-09-04: "выравни лупы по сетке"). Значение подобрано по фактическому
+       замеру getBoundingClientRect, не на глаз. */
+    padding: 12px 24px 12px 14px;
   }
 
   /* Длинное название линейки переносится на 2+ строки — счётчик не должен переноситься следом
@@ -865,18 +872,22 @@ const bestDeals = groupBy === 'discount'
   .pc-row-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     flex: none;
   }
 
+  /* Кнопка увеличена с первой версии (26px, реальная жалоба пользователя 2026-09-04: слишком
+     мелкая — промах пальцем по ней срабатывал как нажатие и уводил фокус в поиск, ощущалось
+     как случайный переход "куда-то в бренды"). 34px — уже приличная площадь попадания на
+     телефоне, ещё не раздувает компактную строку списка. */
   .pc-row-search-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 34px;
+    height: 34px;
     padding: 0;
-    border: 1px solid var(--color-panel-line);
+    border: 1.5px solid var(--color-panel-line);
     border-radius: 50%;
     background: var(--color-paper);
     color: var(--color-meta);
@@ -901,6 +912,22 @@ const bestDeals = groupBy === 'discount'
     border-color: #fff;
   }
 
+  /* Шеврон — настоящий SVG, не ::after на мелком тексте счётчика (был еле виден, реальная
+     жалоба пользователя). Поворот на 180° при [open] - тот же элемент, не смена символа. */
+  .pc-row-chevron {
+    flex: none;
+    color: var(--color-blue-dark);
+    transition: transform 0.2s ease;
+  }
+
+  details[open] > summary .pc-row-chevron {
+    transform: rotate(180deg);
+  }
+
+  .pc-group-brand[open] > summary .pc-row-chevron {
+    color: #fff;
+  }
+
   /* Счётчик линейки (`.pc-group-line`) — это total ПО ВСЕМУ прайсу, посчитан один раз при
      сборке страницы, никогда не учитывает текущий фильтр. В обычном пролистывании по бренду
      это правильное число ("сколько всего в этой линейке"). В режиме "По категории" список под
@@ -911,25 +938,6 @@ const bestDeals = groupBy === 'discount'
      отдельном учёте по линейкам) - проще и честнее просто скрыть цифру в этом режиме. */
   .price-checklist[data-category-mode='1'] .pc-group-line > summary .pc-group-count {
     display: none;
-  }
-
-  /* Треугольник вниз (закрыто) / вверх (открыто) — чтобы было видно, что папка вообще
-     раскрывается и в каком она сейчас состоянии, а не одна стрелка "куда-то дальше" только
-     в закрытом виде (было раньше). По прямой просьбе пользователя, 2026-09-04. */
-  .pc-group-line > summary .pc-group-count::after {
-    margin-left: 4px;
-    color: var(--color-blue-dark);
-    font-weight: 700;
-    font-size: 0.7em;
-    vertical-align: middle;
-  }
-
-  .pc-group-line:not([open]) > summary .pc-group-count::after {
-    content: '\25BE';
-  }
-
-  .pc-group-line[open] > summary .pc-group-count::after {
-    content: '\25B4';
   }
 
   .pc-group-line ul {
@@ -962,40 +970,16 @@ const bestDeals = groupBy === 'discount'
 
   .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) > summary {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 12px 4px;
+    padding: 12px 14px;
     font-size: 0.92rem;
     color: var(--color-ink);
   }
 
   .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) > summary .pc-group-count {
     color: #8a7f7a;
-  }
-
-  .price-checklist[data-group-by='brand'] .pc-group-brand > summary .pc-group-count::after {
-    margin-left: 4px;
-    color: var(--color-blue-dark);
-    font-weight: 700;
-    font-size: 0.7em;
-    vertical-align: middle;
-  }
-
-  .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) > summary .pc-group-count::after {
-    content: '\25BE';
-  }
-
-  /* Открытая карточка-«пилюля» бренда (см. .pc-group-brand[open] > summary ниже) видна только
-     в режиме категорий (в обычном пролистывании summary целиком прячется - имя уже в шапке) -
-     треугольник вверх тут белый, под цвет текста пилюли, не синий как в закрытом состоянии. */
-  .pc-group-brand[open] > summary .pc-group-count::after {
-    content: '\25B4';
-    margin-left: 4px;
-    font-weight: 700;
-    font-size: 0.7em;
-    vertical-align: middle;
-    color: inherit; /* белый (см. .pc-group-brand[open] > summary .pc-group-count), не синий как в закрытом виде */
   }
 
   /* «Популярные» — топ-4 бренда по объёму, отдельным блоком карточек над алфавитным списком. */
