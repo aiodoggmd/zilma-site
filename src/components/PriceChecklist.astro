@@ -731,8 +731,8 @@ if (groupBy === 'discount') {
   .pc-popular-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin-bottom: 18px;
+    gap: 10px;
+    margin-bottom: 20px;
   }
 
   .pc-popular-card {
@@ -741,11 +741,13 @@ if (groupBy === 'discount') {
     background: var(--color-paper);
     border: 1px solid var(--color-panel-line);
     border-radius: 10px;
-    padding: 12px 14px;
+    padding: 20px 16px;
+    min-height: 84px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    justify-content: center;
+    gap: 5px;
     box-shadow: var(--shadow-card);
     transition: box-shadow 0.15s ease, border-color 0.15s ease;
   }
@@ -758,12 +760,12 @@ if (groupBy === 'discount') {
   .pc-popular-name {
     font-family: var(--font-serif);
     font-weight: 700;
-    font-size: 0.92rem;
+    font-size: 1.05rem;
     color: var(--color-ink);
   }
 
   .pc-popular-count {
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     color: #8a7f7a;
   }
 
