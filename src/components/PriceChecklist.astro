@@ -175,7 +175,6 @@ if (groupBy === 'discount') {
       </svg>
       <input type="search" class="pc-search" placeholder="Поиск по товару, бренду или линейке…" aria-label="Поиск по прайсу" />
     </div>
-    <span class="pc-count" data-count></span>
   </div>
   <p class="pc-search-hint">Например: Koleston 7/0, Londa, шампунь…</p>
   <div class="pc-groups">
@@ -506,11 +505,6 @@ if (groupBy === 'discount') {
     outline-offset: 1px;
   }
 
-  .pc-count {
-    font-size: 0.85rem;
-    color: #5c5049;
-    white-space: nowrap;
-  }
 
   .pc-search-hint {
     margin: 0;
@@ -1359,7 +1353,6 @@ if (groupBy === 'discount') {
         },
       ])
     );
-    const countEl = root.querySelector<HTMLElement>('[data-count]');
     const noResults = root.querySelector<HTMLElement>('.pc-no-results');
 
     // Отдельной кнопки «✕ Закрыть» больше нет (пользователь справедливо заметил: рядом с «←»
@@ -1477,11 +1470,6 @@ if (groupBy === 'discount') {
       if (e.target === root) closeDialog(root);
     });
 
-    function updateCount() {
-      const n = checks.filter((c) => c.checked).length;
-      if (countEl) countEl.textContent = n ? `${n} в заявке` : '';
-    }
-
     // Отмеченное здесь может измениться СНАРУЖИ (товар убрали в корзине на странице заявки,
     // истёк TTL и т.п.) — держим чекбоксы синхронными с реальным содержимым корзины, а не
     // только со своими собственными кликами.
@@ -1494,7 +1482,6 @@ if (groupBy === 'discount') {
         c.checked = !!entry;
         if (qtyInput) qtyInput.value = entry ? String(entry.qty) : '1';
       });
-      updateCount();
     }
     syncCheckedFromCart();
     document.addEventListener('zilma:cart-updated', syncCheckedFromCart);
@@ -1542,7 +1529,6 @@ if (groupBy === 'discount') {
 
       check.addEventListener('change', () => {
         if (!check.checked) qtyInput.value = '1';
-        updateCount();
         syncItemToCart(check, qtyInput);
       });
     });
