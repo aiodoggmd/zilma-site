@@ -153,13 +153,13 @@ if (groupBy === 'discount') {
 }
 
 // «Лучшая скидка» — честная витрина без придуманного таймера/дедлайна (в прайсе нет реальных
-// time-limited кампаний, скидка — постоянный флаг до следующего обновления прайса). Топ-7
+// time-limited кампаний, скидка — постоянный флаг до следующего обновления прайса). Топ-5
 // товаров с максимальной РЕАЛЬНОЙ разницей в рублях между старой и новой ценой.
 const bestDeals = groupBy === 'discount'
   ? [...items]
       .filter((it) => it.promo && it.oldPrice != null)
       .sort((a, b) => (b.oldPrice! - b.price) - (a.oldPrice! - a.price))
-      .slice(0, 7)
+      .slice(0, 5)
   : [];
 ---
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
