@@ -6,6 +6,7 @@
     "name": "Ср-во д/быстрого роста ресниц 3 мл. 0604",
     "price": 530,
     "promo": false,
+    "category": "Брови и ресницы",
     "stock": 84
   },
   {
@@ -24,6 +25,7 @@
     "name": "Бальзам оттеночный Эффект пепл.блонд 300мл.ANTI-yellow 92015/39127",
     "price": 574,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 30
   },
   {
@@ -33,6 +35,7 @@
     "name": "Дозатор д/флакона 1000мл 23997",
     "price": 137,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 3
   },
   {
@@ -42,6 +45,7 @@
     "name": "ST Soft Care Кондиционер д/бережного ухода за повр.волосами 300мл 91766",
     "price": 430,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 2
   },
   {
@@ -51,6 +55,7 @@
     "name": "BEAUTY curls Кондиционер д/вьющихся волос 300мл 31091/94873",
     "price": 285,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -60,6 +65,7 @@
     "name": "Кондиционер с пептидным комплексом для нейт.желтизны ПЛАТИНА ,Next Level Blond,1000мл 99625",
     "price": 1345,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 8
   },
   {
@@ -69,6 +75,7 @@
     "name": "BEAUTY cursl Крем д/укладки вьющихся волос 100мл 90318/38281",
     "price": 227,
     "promo": false,
+    "category": "Крема и гели для укладки",
     "stock": 93
   },
   {
@@ -80,6 +87,7 @@
     "promo": true,
     "oldPrice": 204,
     "discountPct": 15.0,
+    "category": "Брови и ресницы",
     "stock": 1
   },
   {
@@ -89,6 +97,7 @@
     "name": "PT Крем-краска д/бровей и ресн.черный 30/20мл 90103/20330",
     "price": 256,
     "promo": false,
+    "category": "Брови и ресницы",
     "stock": 15
   },
   {
@@ -98,6 +107,7 @@
     "name": "ST Color Маска д/окрашенных волос 500мл 90714",
     "price": 616,
     "promo": false,
+    "category": "Маски",
     "stock": 1
   },
   {
@@ -107,6 +117,7 @@
     "name": "BIO CURL Набор д/хол.перман.завивки, прикорн.объем 100/100 91292",
     "price": 449,
     "promo": false,
+    "category": "Химия волос",
     "stock": 2
   },
   {
@@ -116,6 +127,7 @@
     "name": "Оксид-крем PROFY TOUCH 1,5% 1000мл 92367",
     "price": 349,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 1
   },
   {
@@ -125,6 +137,7 @@
     "name": "Оксид-крем PROFY TOUCH 12% 100мл 57198,100МЛ",
     "price": 119,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 80
   },
   {
@@ -134,6 +147,7 @@
     "name": "Оксид-крем PROFY TOUCH 3% 1000мл 92374",
     "price": 349,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 4
   },
   {
@@ -143,6 +157,7 @@
     "name": "Оксид-крем PROFY TOUCH 3% 100мл 57235,100МЛ",
     "price": 119,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 106
   },
   {
@@ -152,6 +167,7 @@
     "name": "Оксид-крем PROFY TOUCH 6% 100мл 57204,100МЛ",
     "price": 119,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 200
   },
   {
@@ -161,6 +177,7 @@
     "name": "Оксид-крем PROFY TOUCH 9% 1000мл 92350",
     "price": 349,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 1
   },
   {
@@ -170,6 +187,7 @@
     "name": "Порошок для Деликат. осветления волос,SOFT BLUE.500гр 91322",
     "price": 1978,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 19
   },
   {
@@ -179,6 +197,7 @@
     "name": "Спрей двухфазный 10 в 1 д/тонких и норм.волос 240мл,Basik 90608",
     "price": 331,
     "promo": false,
+    "category": "Несмываемый уход",
     "stock": 1
   },
   {
@@ -188,6 +207,7 @@
     "name": "ST Hydro Спрей увлажняющий с термозащитой 240мл 2021 90615",
     "price": 465,
     "promo": false,
+    "category": "Термозащита",
     "stock": 1
   },
   {
@@ -199,6 +219,7 @@
     "promo": true,
     "oldPrice": 389,
     "discountPct": 7.0,
+    "category": "Технические средства",
     "stock": 1
   },
   {
@@ -208,6 +229,7 @@
     "name": "ST Soft Care Шампунь бессульфатный д/деликатного очищения 1000мл не заказывать! 91247",
     "price": 674,
     "promo": false,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -217,6 +239,7 @@
     "name": "ST Soft Care Шампунь бессульфатный д/деликатного очищения 300мл 91254",
     "price": 407,
     "promo": false,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -226,6 +249,7 @@
     "name": "Шампунь серебристый д/св.оттенков 300мл,ANTI-yellow 91988/12359",
     "price": 511,
     "promo": false,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -235,6 +259,7 @@
     "name": "RISTRUTTURANTE Комплекс реструктурирующий в ампулах 12х12 мл. 1127",
     "price": 911,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 362
   },
   {
@@ -244,6 +269,7 @@
     "name": "Ср-во д/волос и кожи головы, защитный и тонизирующий эффект пчелиного молочка 10х10 мл. 0100 PAPPA REALE 1135",
     "price": 641,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 179
   },
   {
@@ -253,6 +279,7 @@
     "name": "Лосьон д/удаления краски с кожи головы 200млголовы c/sl",
     "price": 478,
     "promo": false,
+    "category": "Технические средства",
     "stock": 3
   },
   {
@@ -263,6 +290,7 @@
     "price": 798,
     "promo": false,
     "isNew": true,
+    "category": "Технические средства",
     "stock": 13
   },
   {
@@ -274,6 +302,7 @@
     "promo": true,
     "oldPrice": 320,
     "discountPct": 15.0,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -285,6 +314,7 @@
     "promo": true,
     "oldPrice": 50,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 28
   },
   {
@@ -296,6 +326,7 @@
     "promo": true,
     "oldPrice": 300,
     "discountPct": 15.0,
+    "category": "Маски",
     "stock": 2
   },
   {
@@ -307,6 +338,7 @@
     "promo": true,
     "oldPrice": 300,
     "discountPct": 15.0,
+    "category": "Маски",
     "stock": 10
   },
   {
@@ -316,6 +348,7 @@
     "name": "2-х фазная для волос с антижелтым эффектом «Blond Bar» 200 мл 2559",
     "price": 661,
     "promo": false,
+    "category": "Несмываемый уход",
     "stock": 12
   },
   {
@@ -325,6 +358,7 @@
     "name": "2-х фазная увлажняющая сыворотка с маслами авокадо 200мл 1673",
     "price": 515,
     "promo": false,
+    "category": "Несмываемый уход",
     "stock": 2
   },
   {
@@ -334,6 +368,7 @@
     "name": "бальзам д/всех типов волос \"Банан и Дыня\" 1000 мл 1194/55154",
     "price": 638,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -343,6 +378,7 @@
     "name": "бальзам д/всех типов\" Молочко миндального ореха\" 1000 мл 1198",
     "price": 638,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 3
   },
   {
@@ -352,6 +388,7 @@
     "name": "Бальзам с маслом ореха макадамии 300 мл 2790",
     "price": 481,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -361,6 +398,7 @@
     "name": "Бальзам с маслом ореха макадамии 750 мл 2791",
     "price": 840,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -370,6 +408,7 @@
     "name": "Бальзам увлажняющий с с маслами Авокадо и Оливы 350 мл STUDIO 2638",
     "price": 223,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 2
   },
   {
@@ -379,6 +418,7 @@
     "name": "бальзам-маска для всех типов волос волос 1050 мл 3026/18",
     "price": 974,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -388,6 +428,7 @@
     "name": "Бальзам-Сатин с протеинами шелка и маслом хлопка серии \"Luxe Care\" линии Studio Professional, 1000мл 2596",
     "price": 705,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -397,6 +438,7 @@
     "name": "Бальзам-Шелк с протеинами шелка серии \"Luxe Care\" линии Studio Professional, 1000 мл 2598",
     "price": 705,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 12
   },
   {
@@ -433,6 +475,7 @@
     "name": "кератин бальзам \"Magic Keratin\" 1000 мл. 1256",
     "price": 794,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -442,6 +485,7 @@
     "name": "Лак Kapous STUDIO сильной фиксации, 500 мл 582",
     "price": 616,
     "promo": false,
+    "category": "Лаки",
     "stock": 8
   },
   {
@@ -451,6 +495,7 @@
     "name": "Лак Kapous STUDIO НФ, 500 мл 583",
     "price": 582,
     "promo": false,
+    "category": "Лаки",
     "stock": 11
   },
   {
@@ -460,6 +505,7 @@
     "name": "Маска для волос с глиоксиловой кислотой из серии Glyoxy Sleek Hair,1000 мл 1478",
     "price": 773,
     "promo": false,
+    "category": "Маски",
     "stock": 3
   },
   {
@@ -469,6 +515,7 @@
     "name": "Маска для волос с маслом ореха макадамии,750 мл 2775",
     "price": 862,
     "promo": false,
+    "category": "Маски",
     "stock": 5
   },
   {
@@ -478,6 +525,7 @@
     "name": "Маска пит. для волос Kapous Studio Professional «Oliva & Avocado»,750 мл 2773",
     "price": 492,
     "promo": false,
+    "category": "Маски",
     "stock": 4
   },
   {
@@ -487,6 +535,7 @@
     "name": "Маска с антижелтым эффектом \"Antiyellow\" 250 мл. 2715",
     "price": 358,
     "promo": false,
+    "category": "Маски",
     "stock": 8
   },
   {
@@ -496,6 +545,7 @@
     "name": "маска с бамбуком и пшеницей, питательная восстанавливающая \"Professional\" 750 мл 3189",
     "price": 650,
     "promo": false,
+    "category": "Маски",
     "stock": 4
   },
   {
@@ -505,6 +555,7 @@
     "name": "Окислительная эмульсия «Hyaluronic Cremoxon» с Гиалуроновой кислотой 6%,1050 мл 3022/6%",
     "price": 459,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 10
   },
   {
@@ -514,6 +565,7 @@
     "name": "оксид ВВ с экстрактом жемчуга 12% 200мл 2473,200МЛ",
     "price": 156,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 56
   },
   {
@@ -532,6 +584,7 @@
     "name": "Сыв-ка с пшеничными протеинами 500 мл. 1219",
     "price": 896,
     "promo": false,
+    "category": "Несмываемый уход",
     "stock": 1
   },
   {
@@ -541,6 +594,7 @@
     "name": "Флюид д/секущ. кончиков с маслами Авокадо и Оливы,80мл 1672",
     "price": 369,
     "promo": false,
+    "category": "Несмываемый уход",
     "stock": 12
   },
   {
@@ -550,6 +604,7 @@
     "name": "Шампунь анти-желтый STUDIO.250мл 2736",
     "price": 405,
     "promo": false,
+    "category": "Шампуни",
     "stock": 12
   },
   {
@@ -559,6 +614,7 @@
     "name": "Шампунь д/выпрямления \"GlyoxySleek Hair\" 1000мл 1479",
     "price": 728,
     "promo": false,
+    "category": "Шампуни",
     "stock": 4
   },
   {
@@ -568,6 +624,7 @@
     "name": "Шампунь д/жирных волос 300 мл. 3134",
     "price": 426,
     "promo": false,
+    "category": "Шампуни",
     "stock": 12
   },
   {
@@ -577,6 +634,7 @@
     "name": "Шампунь мицеллярный для волос 300 мл 2917",
     "price": 369,
     "promo": false,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -586,6 +644,7 @@
     "name": "Шампунь мужской с ментолом GENTLEMEN 250мл 3018",
     "price": 325,
     "promo": false,
+    "category": "Шампуни",
     "stock": 10
   },
   {
@@ -595,6 +654,7 @@
     "name": "Шампунь мужской тонизирующий 3 в 1 \"Gentelmen\" 250 мл 868",
     "price": 392,
     "promo": false,
+    "category": "Шампуни",
     "stock": 4
   },
   {
@@ -604,6 +664,7 @@
     "name": "Шампунь оттеночный блонд,Стальной, 200 мл “Blond Bar”, 200мл 2696",
     "price": 540,
     "promo": false,
+    "category": "Шампуни",
     "stock": 12
   },
   {
@@ -613,6 +674,7 @@
     "name": "Шампунь с маслом ореха макадамии 750 мл 2789",
     "price": 794,
     "promo": false,
+    "category": "Шампуни",
     "stock": 3
   },
   {
@@ -622,6 +684,7 @@
     "name": "Шампунь сухой для волос «Fresh&Up», 150 мл 2553",
     "price": 403,
     "promo": false,
+    "category": "Шампуни",
     "stock": 9
   },
   {
@@ -631,6 +694,7 @@
     "name": "Dia Light Крем-краска 8-23 DL8-23",
     "price": 774.01,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -640,6 +704,7 @@
     "name": "Dia Light Крем-краска 9-13 DL9-13",
     "price": 958,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -651,6 +716,7 @@
     "promo": true,
     "oldPrice": 1039,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -662,6 +728,7 @@
     "promo": true,
     "oldPrice": 1476,
     "discountPct": 15.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 1
   },
   {
@@ -671,6 +738,7 @@
     "name": "INOA ODS2 Tehnologia 8-1 08-1",
     "price": 1268,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -680,6 +748,7 @@
     "name": "Majirel 6-13 6-13",
     "price": 986,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -688,7 +757,8 @@
     "line": null,
     "name": "Majirel 7-43 7-43",
     "price": 986,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 76,
@@ -696,7 +766,8 @@
     "line": null,
     "name": "Majirel 8-3 8-3",
     "price": 986,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 77,
@@ -705,6 +776,7 @@
     "name": "№1 Сыв-ка д/волос PROEDIT CARE WORKS CMC 500 мл. 3372",
     "price": 5176,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 2
   },
   {
@@ -714,6 +786,7 @@
     "name": "№2 Сыв-ка д/волос PROEDIT CARE WORKS NMF 500 мл. 3389",
     "price": 4528,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 2
   },
   {
@@ -723,6 +796,7 @@
     "name": "№3 Сыв-ка д/волос PROEDIT CARE WORKS PPT 500мл 3396",
     "price": 5176,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 3
   },
   {
@@ -732,6 +806,7 @@
     "name": "№4 Сыв-ка д/волос PROEDIT CARE WORKS ELEMENT FIX 500 мл. 3402",
     "price": 4528,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 3
   },
   {
@@ -741,6 +816,7 @@
     "name": "АромаКрем \"Melt Repair\" для увлажнения волос, 200 мл. 4126",
     "price": 1944,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -751,6 +827,7 @@
     "price": 5299,
     "promo": false,
     "isNew": true,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -760,6 +837,7 @@
     "name": "АромаМаска д/сух., поврежд. волос IAU SERUM MASK, 170 гр. (белая) 5482",
     "price": 3846,
     "promo": false,
+    "category": "Маски",
     "stock": 2
   },
   {
@@ -769,6 +847,7 @@
     "name": "АромаМаска \"Deep\" д/восст. непослуш волос, 170 гр. (сиреневая) 4492",
     "price": 3657,
     "promo": false,
+    "category": "Маски",
     "stock": 2
   },
   {
@@ -778,6 +857,7 @@
     "name": "АромаШампунь \"Cleаrment\" очищ. д/всех типов волос, 200 мл. 4096",
     "price": 1944,
     "promo": false,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -787,6 +867,7 @@
     "name": "Гель фиксирующий IAU CELL CARE (4)500ml 5260",
     "price": 5282,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 3
   },
   {
@@ -798,6 +879,7 @@
     "promo": true,
     "oldPrice": 100,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 33
   },
   {
@@ -809,6 +891,7 @@
     "promo": true,
     "oldPrice": 100,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 81
   },
   {
@@ -820,6 +903,7 @@
     "promo": true,
     "oldPrice": 150,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 2
   },
   {
@@ -831,6 +915,7 @@
     "promo": true,
     "oldPrice": 89,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 6
   },
   {
@@ -842,6 +927,7 @@
     "promo": true,
     "oldPrice": 350,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 1
   },
   {
@@ -853,6 +939,7 @@
     "promo": true,
     "oldPrice": 290,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 1
   },
   {
@@ -864,6 +951,7 @@
     "promo": true,
     "oldPrice": 290,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 1
   },
   {
@@ -875,6 +963,7 @@
     "promo": true,
     "oldPrice": 290,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 2
   },
   {
@@ -884,6 +973,7 @@
     "name": "Краска д/волос NEW G A-6 0092",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -892,7 +982,8 @@
     "line": null,
     "name": "Краска д/волос NEW G A-8 0108",
     "price": 1503.6,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 97,
@@ -901,6 +992,7 @@
     "name": "Краска д/волос NEW G B-5 9559",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -910,6 +1002,7 @@
     "name": "Краска д/волос NEW G Be-8 9818/Be-8",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -920,6 +1013,7 @@
     "price": 1503.6,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -929,6 +1023,7 @@
     "name": "Краска д/волос NEW G CB-3 9474",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -938,6 +1033,7 @@
     "name": "Краска д/волос NEW G CB-6 120гр 9504",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -947,6 +1043,7 @@
     "name": "Краска д/волос NEW G G-8 0047",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -957,6 +1054,7 @@
     "price": 1503.6,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -966,6 +1064,7 @@
     "name": "Краска д/волос NEW G M-10 120гр 0085",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -975,6 +1074,7 @@
     "name": "Краска д/волос NEW G M-6 120 г 0061лп",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -986,6 +1086,7 @@
     "promo": true,
     "oldPrice": 1503.6,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -996,6 +1097,7 @@
     "price": 1503.6,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1005,6 +1107,7 @@
     "name": "Краска д/волос NEW G OBe-8 120 г 9764лп",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -1016,6 +1119,7 @@
     "promo": true,
     "oldPrice": 1503.6,
     "discountPct": 15.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1025,6 +1129,7 @@
     "name": "Краска д/волос NEW G PBe-8 9719",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1034,6 +1139,7 @@
     "name": "Краска д/волос NEW G V-10 0177",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1043,6 +1149,7 @@
     "name": "Краска д/волос NEW G WB-7 9658",
     "price": 1503.6,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1052,6 +1159,7 @@
     "name": "Краска д/волос СТОЙКАЯ A-6 8538",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1061,6 +1169,7 @@
     "name": "Краска д/волос СТОЙКАЯ BB MIX 8521",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -1070,6 +1179,7 @@
     "name": "Краска д/волос СТОЙКАЯ CA-6 8576",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1079,6 +1189,7 @@
     "name": "Краска д/волос СТОЙКАЯ CA-8 8583",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1088,6 +1199,7 @@
     "name": "Краска д/волос СТОЙКАЯ CB-14 7920/0-CB-14",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -1097,6 +1209,7 @@
     "name": "Краска д/волос СТОЙКАЯ CB-5 7852",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1108,6 +1221,7 @@
     "promo": true,
     "oldPrice": 1156.05,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1117,6 +1231,7 @@
     "name": "Краска д/волос СТОЙКАЯ GR-12 0726",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1127,6 +1242,7 @@
     "price": 1156.05,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1136,6 +1252,7 @@
     "name": "Краска д/волос СТОЙКАЯ MA-10 0672",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1146,6 +1263,7 @@
     "price": 1156.05,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1155,6 +1273,7 @@
     "name": "Краска д/волос СТОЙКАЯ MT-8 8262/0-MT-8",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1165,6 +1284,7 @@
     "price": 1156.05,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1174,6 +1294,7 @@
     "name": "Краска д/волос СТОЙКАЯ P-12 8682",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1184,6 +1305,7 @@
     "price": 1156.05,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1195,6 +1317,7 @@
     "promo": true,
     "oldPrice": 1156.05,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1204,6 +1327,7 @@
     "name": "Краска д/волос СТОЙКАЯ WB-10 8057/0-WB-10",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -1213,6 +1337,7 @@
     "name": "Краска д/волос СТОЙКАЯ WB-6 8019",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1222,6 +1347,7 @@
     "name": "Краска д/волос СТОЙКАЯ WB-7 8026",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1233,6 +1359,7 @@
     "promo": true,
     "oldPrice": 1156.05,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -1242,6 +1369,7 @@
     "name": "Краска д/волос СТОЙКАЯ WB-9 8040/0-WB-9",
     "price": 1156.05,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -1252,6 +1380,7 @@
     "price": 1290.45,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1263,6 +1392,7 @@
     "promo": true,
     "oldPrice": 1290.45,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1273,6 +1403,7 @@
     "price": 1290.45,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1282,6 +1413,7 @@
     "name": "Краска д/волос тон µ Be-10 9023/mB-10",
     "price": 1290.45,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1292,6 +1424,7 @@
     "price": 1290.45,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1303,6 +1436,7 @@
     "promo": true,
     "oldPrice": 1290.45,
     "discountPct": 15.0,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1312,6 +1446,7 @@
     "name": "Краска д/волос тон µ MT-6 9085/mMT-6",
     "price": 1290.45,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -1321,6 +1456,7 @@
     "name": "Краска д/волос тон µ P-10 9382",
     "price": 1290.45,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1332,6 +1468,7 @@
     "promo": true,
     "oldPrice": 1290.45,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -1342,6 +1479,7 @@
     "price": 1290.45,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1353,6 +1491,7 @@
     "promo": true,
     "oldPrice": 1290.45,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1364,6 +1503,7 @@
     "promo": true,
     "oldPrice": 1290.45,
     "discountPct": 15.0,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -1373,6 +1513,7 @@
     "name": "Краска д/волос тон µ WB-8 8910",
     "price": 1290.45,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -1382,6 +1523,7 @@
     "name": "Крем д/волос IAUSERUM CREAM 200мл 5420",
     "price": 2191,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 2
   },
   {
@@ -1391,6 +1533,7 @@
     "name": "Крем д/укладки волос TRIE TUNER CREAM O 95мл. 1391",
     "price": 2186,
     "promo": false,
+    "category": "Крема и гели для укладки",
     "stock": 1
   },
   {
@@ -1400,6 +1543,7 @@
     "name": "Крем интенсивный для увлажнения волос IAU CELL CARE 3М 500мл 5246",
     "price": 5283,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 4
   },
   {
@@ -1409,6 +1553,7 @@
     "name": "Крем интенс. д/укр. волос IAU CELL CARE 3S 1000мл 5239",
     "price": 8415,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 3
   },
   {
@@ -1418,6 +1563,7 @@
     "name": "Крем интенс. д/укр. волос IAU CELL CARE 3S 500мл 5222",
     "price": 5282,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 2
   },
   {
@@ -1427,6 +1573,7 @@
     "name": "Крем фиксирующий для выпрямления. Шаг2 Rufor 2-800g 2827",
     "price": 5343,
     "promo": false,
+    "category": "Химия волос",
     "stock": 1
   },
   {
@@ -1436,6 +1583,7 @@
     "name": "Крем-фиксатор Rufor Chemical shower 800g 2834",
     "price": 2171,
     "promo": false,
+    "category": "Химия волос",
     "stock": 1
   },
   {
@@ -1446,6 +1594,7 @@
     "price": 5303,
     "promo": false,
     "isNew": true,
+    "category": "Маски",
     "stock": 2
   },
   {
@@ -1455,6 +1604,7 @@
     "name": "Маска \"Proedit Bounce Fit +\" восстанавливающая+объем для тонких и сухих, 250 мл. 3174",
     "price": 2331,
     "promo": false,
+    "category": "Маски",
     "stock": 4
   },
   {
@@ -1464,6 +1614,7 @@
     "name": "Маска \"PBF\" восст. д/тонких и сухих, 1000 мл. 3471",
     "price": 5303,
     "promo": false,
+    "category": "Маски",
     "stock": 1
   },
   {
@@ -1473,6 +1624,7 @@
     "name": "Маска \"Wheat Protein\" рисовый протейн, восстанавливающая для тонких, 140 гр.!! 4959-1422",
     "price": 1554,
     "promo": false,
+    "category": "Маски",
     "stock": 1
   },
   {
@@ -1483,6 +1635,7 @@
     "price": 3057,
     "promo": false,
     "isNew": true,
+    "category": "Несмываемый уход",
     "stock": 2
   },
   {
@@ -1492,6 +1645,7 @@
     "name": "Мусс для волос и кожи головы очищающий PHFC 145 г. 3761",
     "price": 1857,
     "promo": false,
+    "category": "Технические средства",
     "stock": 3
   },
   {
@@ -1501,6 +1655,7 @@
     "name": "Мусс для волос и кожи головы очищающий PHFC 250 г. 4058",
     "price": 2616,
     "promo": false,
+    "category": "Технические средства",
     "stock": 2
   },
   {
@@ -1510,6 +1665,7 @@
     "name": "Мусс клеточный увлажняющий IAU CELL CARE (1) 500 мл. 5185",
     "price": 5282,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 2
   },
   {
@@ -1519,6 +1675,7 @@
     "name": "Оксидант MATERIA 3% 1л 9412",
     "price": 2151,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 5
   },
   {
@@ -1528,6 +1685,7 @@
     "name": "Оксидант MATERIA 6% 1л 9405",
     "price": 2151,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 4
   },
   {
@@ -1537,6 +1695,7 @@
     "name": "Сыворотка протеиновая IAU Cell Care 2, 150 мл 5208",
     "price": 3625,
     "promo": false,
+    "category": "Технические средства",
     "stock": 1
   },
   {
@@ -1546,6 +1705,7 @@
     "name": "Сыворотка протеиновая IAU Cell Care 2, 500 мл 5215",
     "price": 7844,
     "promo": false,
+    "category": "Технические средства",
     "stock": 4
   },
   {
@@ -1555,6 +1715,7 @@
     "name": "Шампунь \"Proedit Bounce Fit\" восстанавливающий для тонких и сухих волос, 1000 мл. 3433",
     "price": 5303,
     "promo": false,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -1565,6 +1726,7 @@
     "price": 2331,
     "promo": false,
     "isNew": true,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -1574,6 +1736,7 @@
     "name": "Шампунь увл. IAU SERUM Cleansing 200 мл. 5383",
     "price": 2191,
     "promo": false,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -1584,6 +1747,7 @@
     "price": 3401,
     "promo": false,
     "isNew": true,
+    "category": "Несмываемый уход",
     "stock": 1
   },
   {
@@ -1593,6 +1757,7 @@
     "name": "Эссенция д/волос SERUM OIL 100 мл. 5468",
     "price": 3394,
     "promo": false,
+    "category": "Несмываемый уход",
     "stock": 1
   },
   {
@@ -1601,7 +1766,8 @@
     "line": null,
     "name": "Краска для бровей и ресниц 1 черный 15 мл 1",
     "price": 255,
-    "promo": false
+    "promo": false,
+    "category": "Брови и ресницы"
   },
   {
     "id": 172,
@@ -1610,6 +1776,7 @@
     "name": "Краска для бровей и ресниц 3/7 коричневый 15 мл 3-7",
     "price": 255,
     "promo": false,
+    "category": "Брови и ресницы",
     "stock": 1475
   },
   {
@@ -1621,6 +1788,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 267
   },
   {
@@ -1630,6 +1798,7 @@
     "name": "LC крем-краска 10-1яркий блонд пепел 0101",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 36
   },
   {
@@ -1638,7 +1807,8 @@
     "line": null,
     "name": "LC крем-краска 10-8 яркий блонд жемчужный 0108",
     "price": 357.5,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 176,
@@ -1649,6 +1819,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 101
   },
   {
@@ -1660,6 +1831,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 78
   },
   {
@@ -1671,6 +1843,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 33
   },
   {
@@ -1680,6 +1853,7 @@
     "name": "LC крем-краска 12-16 спец блонд пепельно-фиолетовый 01216",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 98
   },
   {
@@ -1689,6 +1863,7 @@
     "name": "LC крем-краска 12-61 спец блонд фиол-пепел 01261",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 34
   },
   {
@@ -1698,6 +1873,7 @@
     "name": "LC крем-краска 12-81 спец блонд жемч-пепел 01281",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 88
   },
   {
@@ -1709,6 +1885,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 192
   },
   {
@@ -1720,6 +1897,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 65
   },
   {
@@ -1729,6 +1907,7 @@
     "name": "LC крем-краска 2-0 чёрный 020",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 138
   },
   {
@@ -1738,6 +1917,7 @@
     "name": "LC крем-краска 2-8 иссине-чёрный 028",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -1747,6 +1927,7 @@
     "name": "LC крем-краска 3-0 тёмный шатен 030",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 186
   },
   {
@@ -1756,6 +1937,7 @@
     "name": "LC крем-краска 3-5 тём шатен красный 035",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -1765,6 +1947,7 @@
     "name": "LC крем-краска 3-6 тём шатен фиолетовый 036",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 46
   },
   {
@@ -1775,6 +1958,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 187
   },
   {
@@ -1786,6 +1970,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 15.0,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -1797,6 +1982,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 10
   },
   {
@@ -1806,6 +1992,7 @@
     "name": "LC крем-краска 4-71 0471",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 15
   },
   {
@@ -1815,6 +2002,7 @@
     "name": "LC крем-краска 4-75 шатен корич-красный 0475",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -1824,6 +2012,7 @@
     "name": "LC крем-краска 5-0 светлый шатен 050",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 233
   },
   {
@@ -1835,6 +2024,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 127
   },
   {
@@ -1844,6 +2034,7 @@
     "name": "LC крем-краска 5-1 шатен пепельный 051",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 73
   },
   {
@@ -1853,6 +2044,7 @@
     "name": "LC крем-краска 5-37 св. шатен золот-коричнев 0537",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 25
   },
   {
@@ -1864,6 +2056,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 51
   },
   {
@@ -1873,6 +2066,7 @@
     "name": "LC крем-краска 5-71 светл шатен кор-пепельн 0571",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 110
   },
   {
@@ -1884,6 +2078,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 19
   },
   {
@@ -1894,6 +2089,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 490
   },
   {
@@ -1903,6 +2099,7 @@
     "name": "LC крем-краска 6-06 призматический фиолетовый 0606",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 14
   },
   {
@@ -1912,6 +2109,7 @@
     "name": "LC крем-краска 6-1 тёмный блонд-пепельный 061",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 79
   },
   {
@@ -1921,6 +2119,7 @@
     "name": "LC крем-краска 6-16 пепельно-фиолетовый 0616",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 115
   },
   {
@@ -1930,6 +2129,7 @@
     "name": "LC крем-краска 6-3 темн. блонд. золот 063",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 8
   },
   {
@@ -1939,6 +2139,7 @@
     "name": "LC крем-краска 6-41 тёмн блонд медно-пепельный 0641",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -1948,6 +2149,7 @@
     "name": "LC крем-краска 6-45 тёмн блонд медно-красный 0645",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -1957,6 +2159,7 @@
     "name": "LC крем-краска 6-46 тёмн блонд мед-фио 0646",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 14
   },
   {
@@ -1966,6 +2169,7 @@
     "name": "LC крем-краска 6-56 темный блонд красно-фиолетовый 0656",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -1976,6 +2180,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 34
   },
   {
@@ -1986,6 +2191,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 148
   },
   {
@@ -1995,6 +2201,7 @@
     "name": "LC крем-краска 6-73 тёмн блонд корич-золотист 0673",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -2005,6 +2212,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 29
   },
   {
@@ -2014,6 +2222,7 @@
     "name": "LC крем-краска 6-77 тёмн блонд интенс-коричневый 0677",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 88
   },
   {
@@ -2024,6 +2233,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 89
   },
   {
@@ -2034,6 +2244,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 57
   },
   {
@@ -2044,6 +2255,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 150
   },
   {
@@ -2053,6 +2265,7 @@
     "name": "LC крем-краска 7-1 блонд пепельный 071",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 93
   },
   {
@@ -2062,6 +2275,7 @@
     "name": "LC крем-краска 7-16 пудровый фиолетовый 0716",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 96
   },
   {
@@ -2071,6 +2285,7 @@
     "name": "LC крем-краска 7-17 блонд пепельно-коричневый 0717",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 48
   },
   {
@@ -2082,6 +2297,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -2091,6 +2307,7 @@
     "name": "LC крем-краска 7-3 блонд золотистый 073",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 15
   },
   {
@@ -2102,6 +2319,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 43
   },
   {
@@ -2111,6 +2329,7 @@
     "name": "LC крем-краска 7-43 блонд медно-золотистый 0743",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 25
   },
   {
@@ -2120,6 +2339,7 @@
     "name": "LC крем-краска 7-46 блонд мед-фиол 0746",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -2129,6 +2349,7 @@
     "name": "LC крем-краска 7-61 Мягкий тайп 0761",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 46
   },
   {
@@ -2138,6 +2359,7 @@
     "name": "LC крем-краска 7-7 блонд коричневый 077",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 51
   },
   {
@@ -2147,6 +2369,7 @@
     "name": "LC крем-краска 7-73 блонд коричн-золотистый 0773",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 37
   },
   {
@@ -2156,6 +2379,7 @@
     "name": "LC крем-краска 7-74 блонд коричнево-медный 0774",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -2167,6 +2391,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 49
   },
   {
@@ -2178,6 +2403,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 101
   },
   {
@@ -2189,6 +2415,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 22
   },
   {
@@ -2198,6 +2425,7 @@
     "name": "LC крем-краска 7/ интенсивный блонд (теплый) 0/7",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 48
   },
   {
@@ -2208,6 +2436,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 130
   },
   {
@@ -2217,6 +2446,7 @@
     "name": "LC крем-краска 8-07 св. блонд натурально-коричневый 0807",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 40
   },
   {
@@ -2226,6 +2456,7 @@
     "name": "LC крем-краска 8-38 св. блонд золот-жемчужный 0838",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 78
   },
   {
@@ -2235,6 +2466,7 @@
     "name": "LC крем-краска 8-41 светл блонд медно-пепельный 0841",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -2245,6 +2477,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 56
   },
   {
@@ -2254,6 +2487,7 @@
     "name": "LC крем-краска 8-45 светлый блонд медно-красный 0845",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 18
   },
   {
@@ -2263,6 +2497,7 @@
     "name": "LC крем-краска 8-65 холодный розовый 0865",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 18
   },
   {
@@ -2272,6 +2507,7 @@
     "name": "LC крем-краска 8-69 светлый блонд фиолетовый сандрэ 0869",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 26
   },
   {
@@ -2283,6 +2519,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 20
   },
   {
@@ -2292,6 +2529,7 @@
     "name": "LC крем-краска 8-73 светл блонд корич-золотистый 0873",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 49
   },
   {
@@ -2303,6 +2541,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 165
   },
   {
@@ -2314,6 +2553,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 76
   },
   {
@@ -2325,6 +2565,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 39
   },
   {
@@ -2334,6 +2575,7 @@
     "name": "LC крем-краска 9-0 оч. светл. блонд 090",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 207
   },
   {
@@ -2343,6 +2585,7 @@
     "name": "LC крем-краска 9-1 оч. светл. блонд пепельный 091",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -2352,6 +2595,7 @@
     "name": "LC крем-краска 9-16 светл блонд пепельно-фиолетов 0916",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 96
   },
   {
@@ -2361,6 +2605,7 @@
     "name": "LC крем-краска 9-17 ванильный мусс 0917",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 43
   },
   {
@@ -2370,6 +2615,7 @@
     "name": "LC крем-краска 9-36 искристое шампанское 0936",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 25
   },
   {
@@ -2379,6 +2625,7 @@
     "name": "LC крем-краска 9-38 оч. св. блонд золот-перламут 0938",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 140
   },
   {
@@ -2388,6 +2635,7 @@
     "name": "LC крем-краска 9-65 оч.светлый блондин фиол.-красный 0965",
     "price": 357.5,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 24
   },
   {
@@ -2399,6 +2647,7 @@
     "promo": true,
     "oldPrice": 357.5,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -2409,6 +2658,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 93
   },
   {
@@ -2419,6 +2669,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 8
   },
   {
@@ -2429,6 +2680,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -2439,6 +2691,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 27
   },
   {
@@ -2449,6 +2702,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 8
   },
   {
@@ -2459,6 +2713,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -2469,6 +2724,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 12
   },
   {
@@ -2478,7 +2734,8 @@
     "name": "LC тонер /1 60 мл. 1",
     "price": 357.5,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Безаммиачные красители"
   },
   {
     "id": 263,
@@ -2488,6 +2745,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 25
   },
   {
@@ -2498,6 +2756,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 24
   },
   {
@@ -2508,6 +2767,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 126
   },
   {
@@ -2520,6 +2780,7 @@
     "oldPrice": 357.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 298
   },
   {
@@ -2529,7 +2790,8 @@
     "name": "LC тонирование 10/73 ярк блонд корич-золотист 0-1073",
     "price": 357.5,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Безаммиачные красители"
   },
   {
     "id": 268,
@@ -2539,6 +2801,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 55
   },
   {
@@ -2548,7 +2811,8 @@
     "name": "LC тонирование 3/0 тёмный шатен 0-30",
     "price": 357,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Безаммиачные красители"
   },
   {
     "id": 270,
@@ -2558,6 +2822,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 113
   },
   {
@@ -2570,6 +2835,7 @@
     "oldPrice": 357.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 16
   },
   {
@@ -2582,6 +2848,7 @@
     "oldPrice": 357.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 19
   },
   {
@@ -2592,6 +2859,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -2602,6 +2870,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 31
   },
   {
@@ -2612,6 +2881,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 70
   },
   {
@@ -2622,6 +2892,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 18
   },
   {
@@ -2632,6 +2903,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 9
   },
   {
@@ -2642,6 +2914,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 119
   },
   {
@@ -2652,6 +2925,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 9
   },
   {
@@ -2661,7 +2935,8 @@
     "name": "LC тонирование 6/77 тёмн блонд интенсив коричнев 0-677",
     "price": 357.5,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Безаммиачные красители"
   },
   {
     "id": 281,
@@ -2671,6 +2946,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 23
   },
   {
@@ -2681,6 +2957,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 8
   },
   {
@@ -2690,7 +2967,8 @@
     "name": "LC тонирование 8/0 светлый блонд 0-80",
     "price": 357.5,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Безаммиачные красители"
   },
   {
     "id": 284,
@@ -2699,7 +2977,8 @@
     "name": "LC тонирование 8/71 св. блонд корич-пепельный 0-871",
     "price": 357.5,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Безаммиачные красители"
   },
   {
     "id": 285,
@@ -2711,6 +2990,7 @@
     "oldPrice": 357.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 43
   },
   {
@@ -2723,6 +3003,7 @@
     "oldPrice": 357.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 116
   },
   {
@@ -2735,6 +3016,7 @@
     "oldPrice": 357.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 78
   },
   {
@@ -2747,6 +3029,7 @@
     "oldPrice": 357.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 79
   },
   {
@@ -2757,6 +3040,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 68
   },
   {
@@ -2769,6 +3053,7 @@
     "oldPrice": 357.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 24
   },
   {
@@ -2779,6 +3064,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 59
   },
   {
@@ -2789,6 +3075,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 105
   },
   {
@@ -2799,6 +3086,7 @@
     "price": 357.5,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 47
   },
   {
@@ -2809,6 +3097,7 @@
     "price": 2999,
     "promo": false,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 160
   },
   {
@@ -2821,6 +3110,7 @@
     "oldPrice": 2450,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 102
   },
   {
@@ -2830,6 +3120,7 @@
     "name": "Блондоран препар. д/интенс. освет. волос 500г 642",
     "price": 2103,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 9
   },
   {
@@ -2842,6 +3133,7 @@
     "oldPrice": 917.1,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Кондиционеры",
     "stock": 7
   },
   {
@@ -2854,6 +3146,7 @@
     "oldPrice": 1734.3,
     "discountPct": 15.0,
     "isNew": true,
+    "category": "Кондиционеры",
     "stock": 10
   },
   {
@@ -2866,6 +3159,7 @@
     "oldPrice": 778.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Кондиционеры",
     "stock": 4
   },
   {
@@ -2878,6 +3172,7 @@
     "oldPrice": 1734.3,
     "discountPct": 15.0,
     "isNew": true,
+    "category": "Кондиционеры",
     "stock": 28
   },
   {
@@ -2890,6 +3185,7 @@
     "oldPrice": 778.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Кондиционеры",
     "stock": 14
   },
   {
@@ -2902,6 +3198,7 @@
     "oldPrice": 778.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Кондиционеры",
     "stock": 43
   },
   {
@@ -2914,6 +3211,7 @@
     "oldPrice": 778.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Несмываемый уход",
     "stock": 56
   },
   {
@@ -2925,6 +3223,7 @@
     "promo": true,
     "oldPrice": 985.5,
     "discountPct": 15.0,
+    "category": "Лаки",
     "stock": 23
   },
   {
@@ -2937,6 +3236,7 @@
     "oldPrice": 764.1,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Лаки",
     "stock": 6
   },
   {
@@ -2948,6 +3248,7 @@
     "promo": true,
     "oldPrice": 985.5,
     "discountPct": 7.0,
+    "category": "Лаки",
     "stock": 2
   },
   {
@@ -2959,6 +3260,7 @@
     "promo": true,
     "oldPrice": 878.4,
     "discountPct": 7.0,
+    "category": "Лаки",
     "stock": 8
   },
   {
@@ -2970,6 +3272,7 @@
     "promo": true,
     "oldPrice": 764.1,
     "discountPct": 7.0,
+    "category": "Лаки",
     "stock": 4
   },
   {
@@ -2981,6 +3284,7 @@
     "promo": true,
     "oldPrice": 985.5,
     "discountPct": 7.0,
+    "category": "Лаки",
     "stock": 50
   },
   {
@@ -2992,6 +3296,7 @@
     "promo": true,
     "oldPrice": 765.9,
     "discountPct": 15.0,
+    "category": "Термозащита",
     "stock": 20
   },
   {
@@ -3001,6 +3306,7 @@
     "name": "маска интенс. д/поврежденных волос 200 мл 4953/10570",
     "price": 792,
     "promo": false,
+    "category": "Маски",
     "stock": 36
   },
   {
@@ -3010,6 +3316,7 @@
     "name": "маска интенс. д/сохр. цвета и блеска 200 мл. 4928/10563",
     "price": 792,
     "promo": false,
+    "category": "Маски",
     "stock": 23
   },
   {
@@ -3019,6 +3326,7 @@
     "name": "маска интенс. увлажняющая волос 200 мл 4939/10587",
     "price": 792,
     "promo": false,
+    "category": "Маски",
     "stock": 20
   },
   {
@@ -3030,6 +3338,7 @@
     "promo": true,
     "oldPrice": 896.4,
     "discountPct": 7.0,
+    "category": "Несмываемый уход",
     "stock": 182
   },
   {
@@ -3039,6 +3348,7 @@
     "name": "Мусс д/создания прикорневого объема СФ 200 мл LIFT IT 5301-10459",
     "price": 742.5,
     "promo": false,
+    "category": "Пенки",
     "stock": 8
   },
   {
@@ -3051,6 +3361,7 @@
     "oldPrice": 787.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 482
   },
   {
@@ -3062,6 +3373,7 @@
     "promo": true,
     "oldPrice": 173,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 431
   },
   {
@@ -3074,6 +3386,7 @@
     "oldPrice": 787.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 99
   },
   {
@@ -3084,6 +3397,7 @@
     "price": 787.5,
     "promo": false,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 278
   },
   {
@@ -3096,6 +3410,7 @@
     "oldPrice": 787.5,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 288
   },
   {
@@ -3106,6 +3421,7 @@
     "price": 787.5,
     "promo": false,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 392
   },
   {
@@ -3117,6 +3433,7 @@
     "promo": true,
     "oldPrice": 173,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 743
   },
   {
@@ -3126,6 +3443,7 @@
     "name": "L-Color окислительная эмульсия 9% 1000 мл 918 NEW",
     "price": 787.5,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 201
   },
   {
@@ -3137,6 +3455,7 @@
     "promo": true,
     "oldPrice": 173,
     "discountPct": 15.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 41
   },
   {
@@ -3148,6 +3467,7 @@
     "promo": true,
     "oldPrice": 880.2,
     "discountPct": 15.0,
+    "category": "Пенки",
     "stock": 3
   },
   {
@@ -3159,6 +3479,7 @@
     "promo": true,
     "oldPrice": 717.3,
     "discountPct": 7.0,
+    "category": "Пенки",
     "stock": 38
   },
   {
@@ -3170,6 +3491,7 @@
     "promo": true,
     "oldPrice": 762.3,
     "discountPct": 7.0,
+    "category": "Спреи",
     "stock": 5
   },
   {
@@ -3181,6 +3503,7 @@
     "promo": true,
     "oldPrice": 1245.6,
     "discountPct": 15.0,
+    "category": "Маски",
     "stock": 43
   },
   {
@@ -3190,6 +3513,7 @@
     "name": "Ср-во VELVET OIL с аргановым маслом 200мл 1251",
     "price": 937.8,
     "promo": false,
+    "category": "Маски",
     "stock": 26
   },
   {
@@ -3201,6 +3525,7 @@
     "promo": true,
     "oldPrice": 2047.5,
     "discountPct": 7.0,
+    "category": "Маски",
     "stock": 7
   },
   {
@@ -3212,6 +3537,7 @@
     "promo": true,
     "oldPrice": 1757.7,
     "discountPct": 7.0,
+    "category": "Маски",
     "stock": 82
   },
   {
@@ -3223,6 +3549,7 @@
     "promo": true,
     "oldPrice": 1714.5,
     "discountPct": 15.0,
+    "category": "Технические средства",
     "stock": 163
   },
   {
@@ -3234,6 +3561,7 @@
     "promo": true,
     "oldPrice": 1692.9,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -3245,6 +3573,7 @@
     "promo": true,
     "oldPrice": 629.1,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -3256,6 +3585,7 @@
     "promo": true,
     "oldPrice": 1692.9,
     "discountPct": 15.0,
+    "category": "Шампуни",
     "stock": 5
   },
   {
@@ -3267,6 +3597,7 @@
     "promo": true,
     "oldPrice": 551.7,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 3
   },
   {
@@ -3278,6 +3609,7 @@
     "promo": true,
     "oldPrice": 1415.7,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -3289,6 +3621,7 @@
     "promo": true,
     "oldPrice": 1415.7,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 10
   },
   {
@@ -3300,6 +3633,7 @@
     "promo": true,
     "oldPrice": 526.5,
     "discountPct": 15.0,
+    "category": "Шампуни",
     "stock": 20
   },
   {
@@ -3311,6 +3645,7 @@
     "promo": true,
     "oldPrice": 526.5,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 22
   },
   {
@@ -3322,6 +3657,7 @@
     "promo": true,
     "oldPrice": 526.5,
     "discountPct": 15.0,
+    "category": "Шампуни",
     "stock": 4
   },
   {
@@ -3333,6 +3669,7 @@
     "promo": true,
     "oldPrice": 1415.7,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 62
   },
   {
@@ -3344,6 +3681,7 @@
     "promo": true,
     "oldPrice": 123,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 22
   },
   {
@@ -3355,6 +3693,7 @@
     "promo": true,
     "oldPrice": 1949,
     "discountPct": 7.0,
+    "category": "Кондиционеры",
     "stock": 3
   },
   {
@@ -3364,6 +3703,7 @@
     "name": "Кондиционер Brass Off 300 ml. (нейтрализует желтые подтона на волосах 5-8 уровней) 2235400",
     "price": 819,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -3373,6 +3713,7 @@
     "name": "Кондиционер Color Obsessed So Silver 1000 ml. (нейтрализует желтые подтона на волосах 8-11 уровней) 307010/2990300",
     "price": 2508,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 2
   },
   {
@@ -3382,6 +3723,7 @@
     "name": "Кондиционер Color Obsessed для окрашенных волос 1000 ml. 302703",
     "price": 2508,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 3
   },
   {
@@ -3391,6 +3733,7 @@
     "name": "Кондиционер Food For Soft увлажнение с авокадо и гиалур. 1000 ml. 305815/4013700",
     "price": 3000,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -3400,6 +3743,7 @@
     "name": "Кондиционер High Amplify для объема 1000 ml. 304144/1574600",
     "price": 2508,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 3
   },
   {
@@ -3409,6 +3753,7 @@
     "name": "Кондиционер High Amplify для объема 300 ml. 311656",
     "price": 842.45,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -3418,6 +3763,7 @@
     "name": "Кондиционер Instacure Бонд Anti-Breakage против ломкости 300 ml. 308093/3824300",
     "price": 1008.77,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 1
   },
   {
@@ -3427,6 +3773,7 @@
     "name": "Шамп. Brass Off 300 ml. (нейтрализует желтые подтона на волосах 5-8 уровней) 313760/2236000",
     "price": 854.26,
     "promo": false,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -3436,6 +3783,7 @@
     "name": "Шамп. Color Obsessed So Silver 300 ml. (нейтрализует желтые подтона на волосах 8-11 уровней) 312459/1577700",
     "price": 854.26,
     "promo": false,
+    "category": "Шампуни",
     "stock": 4
   },
   {
@@ -3445,6 +3793,7 @@
     "name": "Шамп. Food For Soft увлажнение с авокадо и гиалур. 300 ml. 305811",
     "price": 854.26,
     "promo": false,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -3454,6 +3803,7 @@
     "name": "Шамп. Instacure Anti-Breakage против ломкости 300 ml. 308092/3824800",
     "price": 854.26,
     "promo": false,
+    "category": "Шампуни",
     "stock": 5
   },
   {
@@ -3463,6 +3813,7 @@
     "name": "Шамп. Instacure Бонд Anti-Breakage против ломкости 1000 ml. 308096",
     "price": 1942.75,
     "promo": false,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -3472,6 +3823,7 @@
     "name": "Color Sync 10G 90 мл. 010G",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 24
   },
   {
@@ -3481,6 +3833,7 @@
     "name": "Color Sync 10N 90 мл. 010N",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -3490,6 +3843,7 @@
     "name": "Color Sync 10NV 90 мл. NEW 010NV",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -3499,6 +3853,7 @@
     "name": "Color Sync 10P оч-оч. св. блонд. жемчуж. 90 мл. 010P",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 51
   },
   {
@@ -3508,6 +3863,7 @@
     "name": "Color Sync 11A 90 мл. 011A",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 8
   },
   {
@@ -3517,6 +3873,7 @@
     "name": "Color Sync 11P 90 мл. 011P",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -3526,6 +3883,7 @@
     "name": "Color Sync 1A 90 мл. 01A",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 11
   },
   {
@@ -3535,6 +3893,7 @@
     "name": "Color Sync 3N 90 мл. 03N",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 19
   },
   {
@@ -3544,6 +3903,7 @@
     "name": "Color Sync 3NN 90ml NEW 03NN",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 8
   },
   {
@@ -3553,6 +3913,7 @@
     "name": "Color Sync 4A 90 мл. 04A",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 27
   },
   {
@@ -3562,6 +3923,7 @@
     "name": "Color Sync 4BR шатен коричневый красный 90 мл NEW 04BR",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -3571,6 +3933,7 @@
     "name": "Color Sync 4P 90мл NEW 04P",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 9
   },
   {
@@ -3580,6 +3943,7 @@
     "name": "Color Sync 4T шатен титановый 90 мл. NEW 04T",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 8
   },
   {
@@ -3589,6 +3953,7 @@
     "name": "Color Sync 5M 90 мл. 05M",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 7
   },
   {
@@ -3598,6 +3963,7 @@
     "name": "Color Sync 5N св. шатен 90 мл. 05N",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -3607,6 +3973,7 @@
     "name": "Color Sync 5NN св. шатен глубокий 90 мл. NEW 05NN",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 8
   },
   {
@@ -3616,6 +3983,7 @@
     "name": "Color Sync 5WN 90 мл. 05WN",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -3625,6 +3993,7 @@
     "name": "Color Sync 6A 90 мл. 06A",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 39
   },
   {
@@ -3634,6 +4003,7 @@
     "name": "Color Sync 6BC 90 мл. 06BC",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -3643,6 +4013,7 @@
     "name": "Color Sync 6BR 90 мл. 06BR",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -3652,6 +4023,7 @@
     "name": "Color Sync 6CG 90 мл. NEW 06CG",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -3661,6 +4033,7 @@
     "name": "Color Sync 6M 90 мл. 06M",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -3670,6 +4043,7 @@
     "name": "Color Sync 6N блонд. темный 90 мл. 06N",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 7
   },
   {
@@ -3679,6 +4053,7 @@
     "name": "Color Sync 6NN блонд. темный глубокий 90 мл. NEW 06NN",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -3688,6 +4063,7 @@
     "name": "Color Sync 6P 90 мл. NEW 06P",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 7
   },
   {
@@ -3697,6 +4073,7 @@
     "name": "Color Sync 6RB 90 мл. NEW 06RB",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 8
   },
   {
@@ -3706,6 +4083,7 @@
     "name": "Color Sync 6RC+ 90 мл. NEW 06RC+",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -3715,6 +4093,7 @@
     "name": "Color Sync 6RV+ темный блонд. красно-перлпмутр. 90 мл NEW 06RV+",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -3724,6 +4103,7 @@
     "name": "Color Sync 6T темный блонд титановый 90 мл. NEW 06T",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -3733,6 +4113,7 @@
     "name": "Color Sync 6WN 90 мл. 06WN",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -3742,6 +4123,7 @@
     "name": "Color Sync 7NA Pre-Bonded блондин натуральный пепельный 90 мл 07NA",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 7
   },
   {
@@ -3751,6 +4133,7 @@
     "name": "Color Sync 7RR+ глубокий красный 90 мл. NEW 07RR+",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -3760,6 +4143,7 @@
     "name": "Color Sync 8A 90 мл. 08A",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 19
   },
   {
@@ -3769,6 +4153,7 @@
     "name": "Color Sync 8BC 90 мл. 08BC",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -3778,6 +4163,7 @@
     "name": "Color Sync 8G 90 мл. 08G",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 8
   },
   {
@@ -3787,6 +4173,7 @@
     "name": "Color Sync 8NN блондин светлый глубокий 90 мл. NEW 08NN",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -3796,6 +4183,7 @@
     "name": "Color Sync 8RC+ 08RC+",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -3805,6 +4193,7 @@
     "name": "Color Sync 8WN 90 мл. 08WN",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -3814,6 +4203,7 @@
     "name": "Color Sync 9GV 09GV",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 64
   },
   {
@@ -3823,6 +4213,7 @@
     "name": "Color Sync 9MM 09MM",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 23
   },
   {
@@ -3832,6 +4223,7 @@
     "name": "Color Sync 9NA Pre-Bonded очень светлый блондин натуральный пепельный 90 мл 09NA",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 15
   },
   {
@@ -3841,6 +4233,7 @@
     "name": "Color Sync CLEAR ПРОЗРАЧНЫЙ оттенок 90 мл. CLEAR/99989414493",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 56
   },
   {
@@ -3850,6 +4243,7 @@
     "name": "Color Sync HD-RR глубокий красный 90 мл. NEW HD-RR",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -3859,6 +4253,7 @@
     "name": "Color Sync HD-RV красно-перламутровый 90 мл. NEW HD-RV",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -3868,6 +4263,7 @@
     "name": "Color Sync SPM пастельный мокка SPM",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 22
   },
   {
@@ -3877,6 +4273,7 @@
     "name": "Color Sync SPP SPP",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 15
   },
   {
@@ -3886,6 +4283,7 @@
     "name": "Color Sync SPV пастельный перламутровый SPV",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 95
   },
   {
@@ -3895,6 +4293,7 @@
     "name": "Color Sync Тонер с Кислым Ph 10AG 90 мл 0-10AG",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -3904,6 +4303,7 @@
     "name": "Color Sync Тонер с Кислым Ph 10GB 90 мл 0-10GB",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -3913,6 +4313,7 @@
     "name": "Color Sync Тонер с Кислым Ph 10N 90 мл 0-10N",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 12
   },
   {
@@ -3922,6 +4323,7 @@
     "name": "Color Sync Тонер с Кислым Ph 10P 90 мл 0-10P",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -3931,6 +4333,7 @@
     "name": "Color Sync Тонер с Кислым Ph 10PA 90 мл 0-10PA",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -3940,6 +4343,7 @@
     "name": "Color Sync Тонер с Кислым Ph 10PR 90 мл 0-10PR",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -3949,6 +4353,7 @@
     "name": "Color Sync Тонер с Кислым Ph 10T 90 мл 0-10T",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 10
   },
   {
@@ -3958,6 +4363,7 @@
     "name": "Color Sync Тонер с Кислым Ph 11N 90 мл 0-11N",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -3967,6 +4373,7 @@
     "name": "Color Sync Тонер с Кислым Ph 11NA 90 мл 0-11NA",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -3976,6 +4383,7 @@
     "name": "Color Sync Тонер с Кислым Ph 11NV 90 мл 0-11NV",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -3985,6 +4393,7 @@
     "name": "Color Sync Тонер с Кислым Ph 11PA 90 мл 0-11PA",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -3994,6 +4403,7 @@
     "name": "Color Sync Тонер с Кислым Ph 7GM 90 мл 0-7GM",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 17
   },
   {
@@ -4003,6 +4413,7 @@
     "name": "Color Sync Тонер с Кислым Ph 8C 90 мл 0-8C",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -4012,6 +4423,7 @@
     "name": "Color Sync Тонер с Кислым Ph 8CR 90 мл 0-8CR",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -4021,6 +4433,7 @@
     "name": "Color Sync Тонер с Кислым Ph 8GB 90 мл 0-8GB",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 18
   },
   {
@@ -4030,6 +4443,7 @@
     "name": "Color Sync Тонер с Кислым Ph 8P 90 мл 0-8P",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -4039,6 +4453,7 @@
     "name": "Color Sync Тонер с Кислым Ph 8T 90 мл 0-8T",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 7
   },
   {
@@ -4048,6 +4463,7 @@
     "name": "Color Sync Тонер с Кислым Ph 8VG 90 мл 0-8VG",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 14
   },
   {
@@ -4057,6 +4473,7 @@
     "name": "Color Sync Тонер с Кислым Ph 8VR 90 мл 0-8VR",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 9
   },
   {
@@ -4066,6 +4483,7 @@
     "name": "Color Sync Тонер с Кислым Ph 9AA 90 мл 0-9AA",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -4075,6 +4493,7 @@
     "name": "Color Sync Тонер с Кислым Ph 9G 90 мл 0-9G",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -4084,6 +4503,7 @@
     "name": "Color Sync Тонер с Кислым Ph 9GV 90 мл 0-9GV",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 14
   },
   {
@@ -4093,6 +4513,7 @@
     "name": "Color Sync Тонер с Кислым Ph 9NCV 90 мл 0-9NCV",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 12
   },
   {
@@ -4102,6 +4523,7 @@
     "name": "Color Sync Тонер с Кислым Ph 9NW 90 мл 0-9NW",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 11
   },
   {
@@ -4111,6 +4533,7 @@
     "name": "Color Sync Тонер с Кислым Ph 9RG 90 м 0-9RG",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -4120,6 +4543,7 @@
     "name": "Color Sync Тонер с Кислым Ph 9V 90 мл 0-9V",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 5
   },
   {
@@ -4129,6 +4553,7 @@
     "name": "Color Sync Тонер с Кислым Ph 9W 90 мл 0-9W",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -4138,6 +4563,7 @@
     "name": "Color Sync Тонер с Кислым Ph CLEAR 90 мл 0-CLEAR",
     "price": 750,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 13
   },
   {
@@ -4147,6 +4573,7 @@
     "name": "Socolor 10MM 10MM",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -4156,6 +4583,7 @@
     "name": "Socolor 10N 10N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4165,6 +4593,7 @@
     "name": "Socolor 10NW 10NW",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4174,6 +4603,7 @@
     "name": "Socolor 10P 10P",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 23
   },
   {
@@ -4183,6 +4613,7 @@
     "name": "Socolor 10SP 10SP",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -4192,6 +4623,7 @@
     "name": "Socolor 11A 11A",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 12
   },
   {
@@ -4201,6 +4633,7 @@
     "name": "Socolor 11N 11N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -4210,6 +4643,7 @@
     "name": "Socolor 1A 1A",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4219,6 +4653,7 @@
     "name": "Socolor 2N 2N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 12
   },
   {
@@ -4228,6 +4663,7 @@
     "name": "Socolor 4AA 90 мл. 4AA",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4237,6 +4673,7 @@
     "name": "Socolor 4M 4M",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4246,6 +4683,7 @@
     "name": "Socolor 4N 4N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 21
   },
   {
@@ -4255,6 +4693,7 @@
     "name": "Socolor 4NW 4NW",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4264,6 +4703,7 @@
     "name": "Socolor 504N 504N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 26
   },
   {
@@ -4273,6 +4713,7 @@
     "name": "Socolor 505M 505M",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 11
   },
   {
@@ -4282,6 +4723,7 @@
     "name": "Socolor 505N 505N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -4291,6 +4733,7 @@
     "name": "Socolor 506BC 506BC",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -4300,6 +4743,7 @@
     "name": "Socolor 506N 506N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4309,6 +4753,7 @@
     "name": "Socolor 506NV 506NV",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -4318,6 +4763,7 @@
     "name": "Socolor 506NW 506NW",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 8
   },
   {
@@ -4327,6 +4773,7 @@
     "name": "Socolor 507AV 507AV",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 24
   },
   {
@@ -4336,6 +4783,7 @@
     "name": "Socolor 507G 507G",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4345,6 +4793,7 @@
     "name": "Socolor 507N 507N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 23
   },
   {
@@ -4354,6 +4803,7 @@
     "name": "Socolor 508BC 508BC",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -4363,6 +4813,7 @@
     "name": "Socolor 508M 508M",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -4372,6 +4823,7 @@
     "name": "Socolor 508N 508N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 19
   },
   {
@@ -4381,6 +4833,7 @@
     "name": "Socolor 508NA 508NA",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -4390,6 +4843,7 @@
     "name": "Socolor 508NW 508NW",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -4399,6 +4853,7 @@
     "name": "Socolor 509AV 509AV",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -4408,6 +4863,7 @@
     "name": "Socolor 509G 509G",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 17
   },
   {
@@ -4417,6 +4873,7 @@
     "name": "Socolor 509N 509N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 8
   },
   {
@@ -4426,6 +4883,7 @@
     "name": "Socolor 509NA 509NA",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 15
   },
   {
@@ -4435,6 +4893,7 @@
     "name": "Socolor 510G 510G",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -4444,6 +4903,7 @@
     "name": "Socolor 510NA 510NA",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 16
   },
   {
@@ -4455,6 +4915,7 @@
     "promo": true,
     "oldPrice": 610,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 10
   },
   {
@@ -4464,6 +4925,7 @@
     "name": "Socolor 5N 5N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -4473,6 +4935,7 @@
     "name": "Socolor 5RR+ 5RR+",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -4482,6 +4945,7 @@
     "name": "Socolor 5RV+ 5RV+",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4491,6 +4955,7 @@
     "name": "Socolor 6AA 90мл 6AA",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 14
   },
   {
@@ -4500,6 +4965,7 @@
     "name": "Socolor 6BC 6BC",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -4509,6 +4975,7 @@
     "name": "Socolor 6C 6C",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4518,6 +4985,7 @@
     "name": "Socolor 6M 6M",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 15
   },
   {
@@ -4527,6 +4995,7 @@
     "name": "Socolor 6MC 90мл 6MC",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4536,6 +5005,7 @@
     "name": "Socolor 6MG 6MG",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4545,6 +5015,7 @@
     "name": "Socolor 6MM 6MM",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 15
   },
   {
@@ -4554,6 +5025,7 @@
     "name": "Socolor 6N 6N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 10
   },
   {
@@ -4563,6 +5035,7 @@
     "name": "Socolor 6NV 6NV",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4572,6 +5045,7 @@
     "name": "Socolor 6NW 6NW",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -4581,6 +5055,7 @@
     "name": "Socolor 6P 6P",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -4590,6 +5065,7 @@
     "name": "Socolor 6SP 6SP",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4599,6 +5075,7 @@
     "name": "Socolor 6VA 90мл 6VA",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -4608,6 +5085,7 @@
     "name": "Socolor 7C 7C",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 8
   },
   {
@@ -4617,6 +5095,7 @@
     "name": "Socolor 7CG 7CG",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4626,6 +5105,7 @@
     "name": "Socolor 7M 7M",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 16
   },
   {
@@ -4635,6 +5115,7 @@
     "name": "Socolor 7MG 7MG",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -4644,6 +5125,7 @@
     "name": "Socolor 7N 7N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4653,6 +5135,7 @@
     "name": "Socolor 7RR+ 7RR+",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -4662,6 +5145,7 @@
     "name": "Socolor 8C 8C",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4671,6 +5155,7 @@
     "name": "Socolor 8CC 8CC",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 18
   },
   {
@@ -4680,6 +5165,7 @@
     "name": "Socolor 8G 8G",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -4689,6 +5175,7 @@
     "name": "Socolor 8MA 8MA",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -4698,6 +5185,7 @@
     "name": "Socolor 8NA 8NA",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4707,6 +5195,7 @@
     "name": "Socolor 8P 8P",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -4718,6 +5207,7 @@
     "promo": true,
     "oldPrice": 610,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -4727,6 +5217,7 @@
     "name": "Socolor 9A 9A",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 11
   },
   {
@@ -4736,6 +5227,7 @@
     "name": "Socolor 9AV 9AV",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -4745,6 +5237,7 @@
     "name": "Socolor 9G 9G",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -4754,6 +5247,7 @@
     "name": "Socolor 9M 9M",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -4763,6 +5257,7 @@
     "name": "Socolor 9N 9N",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 20
   },
   {
@@ -4772,6 +5267,7 @@
     "name": "Socolor CLEAR.90 мл s-clear/3709400",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -4781,6 +5277,7 @@
     "name": "Socolor UL-A+ UL-A+",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 11
   },
   {
@@ -4790,6 +5287,7 @@
     "name": "Socolor UL-M Мокка UL-M",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4799,6 +5297,7 @@
     "name": "Socolor UL-N+ натуральный+ UL-N+",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 23
   },
   {
@@ -4808,6 +5307,7 @@
     "name": "Socolor UL-NV+ натур. перламутр.+ UL-NV+",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 10
   },
   {
@@ -4817,6 +5317,7 @@
     "name": "Socolor UL-V+ перламутровый UL-V+",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -4826,6 +5327,7 @@
     "name": "Socolor UL-VV глубокий перламутровый UL-VV",
     "price": 610,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -4837,6 +5339,7 @@
     "promo": true,
     "oldPrice": 94.38,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 1
   },
   {
@@ -4848,6 +5351,7 @@
     "promo": true,
     "oldPrice": 1085,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 9
   },
   {
@@ -4859,6 +5363,7 @@
     "promo": true,
     "oldPrice": 1085,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 15
   },
   {
@@ -4868,6 +5373,7 @@
     "name": "Оксид Socolor/ Color Sync 3% 60 мл. 290876",
     "price": 110,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 313
   },
   {
@@ -4877,6 +5383,7 @@
     "name": "Супра, фиолетовый пакет Light Master с Бондером 8 уровней 500 г. 3779500/3453600",
     "price": 1968,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 3
   },
   {
@@ -4886,6 +5393,7 @@
     "name": "Color 0/0 нейтральный 60мл 0-0",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4895,7 +5403,8 @@
     "name": "Color 0/11 пепельный 60мл 0-11",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 515,
@@ -4906,6 +5415,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -4914,7 +5424,8 @@
     "line": null,
     "name": "Color 0/33 желтый 60мл 0-33",
     "price": 167,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 517,
@@ -4923,6 +5434,7 @@
     "name": "Color 0/88 синий 60мл 0-88",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -4934,6 +5446,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4942,7 +5455,8 @@
     "line": null,
     "name": "Color 10/0 10-0",
     "price": 167,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 520,
@@ -4950,7 +5464,8 @@
     "line": null,
     "name": "Color 10/1, 60 мл. св. блондин пепел. 10-1",
     "price": 167,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 521,
@@ -4961,6 +5476,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4970,6 +5486,7 @@
     "name": "Color 10/26 10-26",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4979,6 +5496,7 @@
     "name": "Color 10/43 10-43",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -4989,7 +5507,8 @@
     "price": 155.31,
     "promo": true,
     "oldPrice": 167,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 525,
@@ -5000,6 +5519,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 15.0,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -5009,6 +5529,7 @@
     "name": "Color 11/1 11-1",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5018,6 +5539,7 @@
     "name": "Color 11/21 11-21",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5027,6 +5549,7 @@
     "name": "Color 11/22 11-22",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5036,6 +5559,7 @@
     "name": "Color 11/31 11-31",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -5045,6 +5569,7 @@
     "name": "Color 11/7 11-7",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5054,6 +5579,7 @@
     "name": "Color 11/81 11-81",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5062,7 +5588,8 @@
     "line": null,
     "name": "Color 2/0 2-0",
     "price": 167,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 533,
@@ -5073,6 +5600,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5082,6 +5610,7 @@
     "name": "Color 4/1 4-1",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5093,6 +5622,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5104,6 +5634,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -5115,6 +5646,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 15.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5125,6 +5657,7 @@
     "price": 167,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5134,7 +5667,8 @@
     "name": "Color 5/0 5-0",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 540,
@@ -5143,7 +5677,8 @@
     "name": "Color 5/1 5-1",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 541,
@@ -5152,6 +5687,7 @@
     "name": "Color 5/22 5-22",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5160,7 +5696,8 @@
     "line": null,
     "name": "Color 5/3 5-3",
     "price": 109.56,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 543,
@@ -5171,6 +5708,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5182,6 +5720,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5192,6 +5731,7 @@
     "price": 167,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5201,7 +5741,8 @@
     "name": "Color 5/71 5-71",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 547,
@@ -5210,7 +5751,8 @@
     "name": "Color 6/0 6-0",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 548,
@@ -5219,7 +5761,8 @@
     "name": "Color 6/00 6-00",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 549,
@@ -5228,7 +5771,8 @@
     "name": "Color 6/1 6-1",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 550,
@@ -5237,6 +5781,7 @@
     "name": "Color 6/22 6-22",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5246,6 +5791,7 @@
     "name": "Color 6/3 6-3",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5255,6 +5801,7 @@
     "name": "Color 6/4 6-4",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5266,6 +5813,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5275,6 +5823,7 @@
     "name": "Color 6/71 6-71",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5286,6 +5835,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5296,7 +5846,8 @@
     "price": 141.95,
     "promo": true,
     "oldPrice": 167,
-    "discountPct": 15.0
+    "discountPct": 15.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 557,
@@ -5304,7 +5855,8 @@
     "line": null,
     "name": "Color 7/00 7-00",
     "price": 167,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 558,
@@ -5313,7 +5865,8 @@
     "name": "Color 7/1,60 мл 7-1",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 559,
@@ -5324,6 +5877,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -5333,7 +5887,8 @@
     "name": "Color 7/31 7-31",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 561,
@@ -5342,6 +5897,7 @@
     "name": "Color 7/4, 60 мл. русый медный 7-4",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5350,7 +5906,8 @@
     "line": null,
     "name": "Color 7/43, 60 мл. русый медно-золотистый 7-43",
     "price": 167,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 563,
@@ -5361,6 +5918,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5372,6 +5930,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5381,6 +5940,7 @@
     "name": "Color 7/7 7-7",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5392,6 +5952,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5401,6 +5962,7 @@
     "name": "Color 8/00 8-00",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5410,7 +5972,8 @@
     "name": "Color 8/1 8-1",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 569,
@@ -5419,6 +5982,7 @@
     "name": "Color 8/21 8-21",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5429,7 +5993,8 @@
     "price": 155.31,
     "promo": true,
     "oldPrice": 167,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 571,
@@ -5440,6 +6005,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5451,6 +6017,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5462,6 +6029,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5471,7 +6039,8 @@
     "name": "Color 8/7 8-7",
     "price": 167,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 575,
@@ -5482,6 +6051,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5490,7 +6060,8 @@
     "line": null,
     "name": "Color 9/0 9-0",
     "price": 132.49,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 577,
@@ -5500,7 +6071,8 @@
     "price": 155.31,
     "promo": true,
     "oldPrice": 167,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 578,
@@ -5508,7 +6080,8 @@
     "line": null,
     "name": "Color 9/1 9-1",
     "price": 167,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 579,
@@ -5519,6 +6092,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5528,6 +6102,7 @@
     "name": "Color 9/3 9-3",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5539,6 +6114,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5550,6 +6126,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5561,6 +6138,7 @@
     "promo": true,
     "oldPrice": 167,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5569,7 +6147,8 @@
     "line": null,
     "name": "Color 9/7 9-7",
     "price": 167,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 585,
@@ -5578,6 +6157,7 @@
     "name": "Color 9/73 9-73",
     "price": 167,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5586,7 +6166,8 @@
     "line": null,
     "name": "Color 9/81 9-81",
     "price": 167,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 587,
@@ -5597,6 +6178,7 @@
     "promo": true,
     "oldPrice": 186,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5606,6 +6188,7 @@
     "name": "MATISSE COLOR маска Аметист 300мл 396031",
     "price": 441,
     "promo": false,
+    "category": "Маски",
     "stock": 16
   },
   {
@@ -5615,6 +6198,7 @@
     "name": "MATISSE COLOR маска Сандрэ 300мл 396024",
     "price": 441,
     "promo": false,
+    "category": "Маски",
     "stock": 3
   },
   {
@@ -5624,6 +6208,7 @@
     "name": "MATISSE COLOR пигмент серый 100мл 723368",
     "price": 267,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -5634,6 +6219,7 @@
     "price": 267,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -5643,6 +6229,7 @@
     "name": "MATISSE COLOR пигмент фуксия 100мл 728899",
     "price": 267,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -5654,6 +6241,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5665,6 +6253,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5676,6 +6265,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5687,6 +6277,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5698,6 +6289,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5709,6 +6301,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -5718,6 +6311,7 @@
     "name": "Performanse 10-43 60ml 0-1043",
     "price": 249,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5729,6 +6323,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5740,6 +6335,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -5750,7 +6346,8 @@
     "price": 231.57,
     "promo": true,
     "oldPrice": 249,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 603,
@@ -5761,6 +6358,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -5770,6 +6368,7 @@
     "name": "Performanse 11-12 60ml 0-1112",
     "price": 249,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5781,6 +6380,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5790,6 +6390,7 @@
     "name": "Performanse 11-31 60ml 0-1131",
     "price": 249,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5801,6 +6402,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5812,6 +6414,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -5823,6 +6426,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5833,7 +6437,8 @@
     "price": 231.57,
     "promo": true,
     "oldPrice": 249,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 611,
@@ -5842,6 +6447,7 @@
     "name": "Performanse 4-5 60ml 0-45",
     "price": 249,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5853,6 +6459,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5864,6 +6471,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -5873,6 +6481,7 @@
     "name": "Performanse 5-22 60ml 0-522",
     "price": 249,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5884,6 +6493,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5895,6 +6505,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5906,6 +6517,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5917,6 +6529,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -5928,6 +6541,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5939,6 +6553,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -5950,6 +6565,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5958,7 +6574,8 @@
     "line": null,
     "name": "Performanse 6-77 60ml 0-677",
     "price": 249,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 623,
@@ -5969,6 +6586,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -5980,6 +6598,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -5989,6 +6608,7 @@
     "name": "Performanse 7-12 60ml 0-712",
     "price": 249,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6000,6 +6620,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6011,6 +6632,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6020,6 +6642,7 @@
     "name": "Performanse 7-6 60ml 0-76",
     "price": 249,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6031,6 +6654,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -6042,6 +6666,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6050,7 +6675,8 @@
     "line": null,
     "name": "Performanse 8-0 60ml 0-80",
     "price": 249,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 632,
@@ -6061,6 +6687,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6072,6 +6699,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6083,6 +6711,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6094,6 +6723,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6105,6 +6735,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6115,7 +6746,8 @@
     "price": 231.57,
     "promo": true,
     "oldPrice": 249,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 638,
@@ -6126,6 +6758,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -6137,6 +6770,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6148,6 +6782,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -6159,6 +6794,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6170,6 +6806,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -6181,6 +6818,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6192,6 +6830,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -6203,6 +6842,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6214,6 +6854,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -6225,6 +6866,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6236,6 +6878,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -6247,6 +6890,7 @@
     "promo": true,
     "oldPrice": 249,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -6256,6 +6900,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 0/01 60 мл 00-01",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6265,6 +6910,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 0/02 60 мл 00-02",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6274,6 +6920,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 10/0 60 мл 010-0",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6283,6 +6930,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 10/31 60 мл 010-31",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6292,6 +6940,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 10/7 60 мл 010-7",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6301,6 +6950,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 10/73 60 мл 010-73",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6310,6 +6960,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 6/0 60 мл 06-0",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6319,6 +6970,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 7/0 60 мл 07-0",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6328,6 +6980,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 8/0 60 мл 08-0",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6339,6 +6992,7 @@
     "promo": true,
     "oldPrice": 256,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -6350,6 +7004,7 @@
     "promo": true,
     "oldPrice": 256,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6359,6 +7014,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 9/25 60 мл 09-25",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -6368,6 +7024,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 9/26 60 мл 09-26",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6377,6 +7034,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 9/31 60 мл 09-31",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6386,6 +7044,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 9/43 60 мл 09-43",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6395,6 +7054,7 @@
     "name": "Silk Touch Безаммиачный стойкая краска 9/72 60 мл 09-72",
     "price": 256,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -6404,6 +7064,7 @@
     "name": "Бальзам SB питание и восст. для волос с маслом семян льна 1000мл 773205",
     "price": 563,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 4
   },
   {
@@ -6413,6 +7074,7 @@
     "name": "Бальзам SL д/увлажнения волос 1000 мл. 726796",
     "price": 591,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 5
   },
   {
@@ -6422,6 +7084,7 @@
     "name": "Бальзам SL д/увлажнения волос 5000 мл. 726857",
     "price": 2225,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 9
   },
   {
@@ -6431,6 +7094,7 @@
     "name": "Конд. CARE 2-е увл. 1000 мл. 395478",
     "price": 609,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 7
   },
   {
@@ -6440,6 +7104,7 @@
     "name": "Конд. CARE ULTIMATE д/восст. структуры волос 1000 мл. 772338",
     "price": 984,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 10
   },
   {
@@ -6449,6 +7114,7 @@
     "name": "Конд. CARE ULTIMATE д/окрашенных волос 1000 мл. 772369",
     "price": 984,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 8
   },
   {
@@ -6458,6 +7124,7 @@
     "name": "Конд. CARE д/восст. структуры волос 1000 мл. 395195",
     "price": 609,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 6
   },
   {
@@ -6467,6 +7134,7 @@
     "name": "Конд. CARE д/ежедневного применения 1000 мл. 772277",
     "price": 609,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 3
   },
   {
@@ -6476,6 +7144,7 @@
     "name": "Конд. CARE д/окрашенных волос 1000 мл. 395072",
     "price": 609,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 6
   },
   {
@@ -6485,6 +7154,7 @@
     "name": "Кондиционер SALON BEAUTY для волос с коллагеном 1000 мл 775155",
     "price": 600,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 2
   },
   {
@@ -6494,6 +7164,7 @@
     "name": "Конд. SB для окр.волос с маслом виноградной косточки 1000мл 773151",
     "price": 563,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 6
   },
   {
@@ -6503,6 +7174,7 @@
     "name": "Конд. SB увл. и гладкость для волос с экстрактом ламинарии 1000мл 773175",
     "price": 563,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 7
   },
   {
@@ -6512,6 +7184,7 @@
     "name": "Конд. SL д/ежедневного прим. PH 5.5 1000 мл. 726833",
     "price": 591,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 12
   },
   {
@@ -6521,6 +7194,7 @@
     "name": "Конд.-стабилиз. SL цв. рн 3,5, 1000 мл. 726789",
     "price": 623,
     "promo": false,
+    "category": "Технические средства",
     "stock": 3
   },
   {
@@ -6530,6 +7204,7 @@
     "name": "Конд.-стабилиз. SL цв. рн 3,5, 5000 мл. 393528",
     "price": 2397,
     "promo": false,
+    "category": "Технические средства",
     "stock": 4
   },
   {
@@ -6539,6 +7214,7 @@
     "name": "краска д/бровей графит (НАБОР) 772529",
     "price": 357,
     "promo": false,
+    "category": "Брови и ресницы",
     "stock": 12
   },
   {
@@ -6550,6 +7226,7 @@
     "promo": true,
     "oldPrice": 357,
     "discountPct": 15.0,
+    "category": "Брови и ресницы",
     "stock": 5
   },
   {
@@ -6559,6 +7236,7 @@
     "name": "краска д/бровей коричневая 20 мл 772444",
     "price": 219,
     "promo": false,
+    "category": "Брови и ресницы",
     "stock": 2
   },
   {
@@ -6570,6 +7248,7 @@
     "promo": true,
     "oldPrice": 219,
     "discountPct": 15.0,
+    "category": "Брови и ресницы",
     "stock": 1
   },
   {
@@ -6579,6 +7258,7 @@
     "name": "краска д/бровей черная (НАБОР) 772505",
     "price": 357,
     "promo": false,
+    "category": "Брови и ресницы",
     "stock": 2
   },
   {
@@ -6588,6 +7268,7 @@
     "name": "Крем - спрей PH несмываемый 15 в 1 250мл 395973",
     "price": 404,
     "promo": false,
+    "category": "Несмываемый уход",
     "stock": 44
   },
   {
@@ -6598,6 +7279,7 @@
     "price": 330,
     "promo": false,
     "isNew": true,
+    "category": "Несмываемый уход",
     "stock": 24
   },
   {
@@ -6607,6 +7289,7 @@
     "name": "Лак для волос ультрасильной фиксации Hairlaс Extra Strong 500мл 731076/393160",
     "price": 552,
     "promo": false,
+    "category": "Лаки",
     "stock": 2
   },
   {
@@ -6618,6 +7301,7 @@
     "promo": true,
     "oldPrice": 324,
     "discountPct": 15.0,
+    "category": "Маски",
     "stock": 3
   },
   {
@@ -6627,6 +7311,7 @@
     "name": "Маска SB для волос с коллагеном 500 мл 775162",
     "price": 478,
     "promo": false,
+    "category": "Маски",
     "stock": 1
   },
   {
@@ -6637,6 +7322,7 @@
     "price": 450,
     "promo": false,
     "isNew": true,
+    "category": "Маски",
     "stock": 4
   },
   {
@@ -6647,6 +7333,7 @@
     "price": 368,
     "promo": false,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 113
   },
   {
@@ -6659,6 +7346,7 @@
     "oldPrice": 65,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 2
   },
   {
@@ -6669,6 +7357,7 @@
     "price": 368,
     "promo": false,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 21
   },
   {
@@ -6679,6 +7368,7 @@
     "price": 368,
     "promo": false,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 86
   },
   {
@@ -6689,6 +7379,7 @@
     "price": 368,
     "promo": false,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 124
   },
   {
@@ -6699,6 +7390,7 @@
     "price": 368,
     "promo": false,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 61
   },
   {
@@ -6708,6 +7400,7 @@
     "name": "Оксид Silk Touch 6% 1000 мл. 729049",
     "price": 368,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 21
   },
   {
@@ -6718,6 +7411,7 @@
     "price": 389,
     "promo": false,
     "isNew": true,
+    "category": "Спреи",
     "stock": 6
   },
   {
@@ -6729,6 +7423,7 @@
     "promo": true,
     "oldPrice": 93,
     "discountPct": 15.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 1
   },
   {
@@ -6738,6 +7433,7 @@
     "name": "Супра Blond Powder NO Aroma (голубой порошок) 500 г. 728998",
     "price": 839,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 11
   },
   {
@@ -6747,6 +7443,7 @@
     "name": "Супра Performanse (белый порошок) 500 г 729971",
     "price": 862,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 65
   },
   {
@@ -6756,6 +7453,7 @@
     "name": "Супра Performanse Open Tech д/открытых техник 500г 771959",
     "price": 1052,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 26
   },
   {
@@ -6765,6 +7463,7 @@
     "name": "Супра с аром. лаванды, саше 30 г. Blond Powder 721531",
     "price": 63.71,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 2
   },
   {
@@ -6774,6 +7473,7 @@
     "name": "Флюид BIONIKA реконструктор 100 мл. 397229",
     "price": 525,
     "promo": false,
+    "category": "Несмываемый уход",
     "stock": 42
   },
   {
@@ -6783,6 +7483,7 @@
     "name": "Шампунь CARE ULTIMATE увл. 1000 мл. 772291",
     "price": 1014,
     "promo": false,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -6792,6 +7493,7 @@
     "name": "Шампунь CARE д/восст. структуры волос 1000 мл. 395157",
     "price": 597,
     "promo": false,
+    "category": "Шампуни",
     "stock": 8
   },
   {
@@ -6803,6 +7505,7 @@
     "promo": true,
     "oldPrice": 324,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -6813,6 +7516,7 @@
     "price": 597,
     "promo": false,
     "isNew": true,
+    "category": "Шампуни",
     "stock": 7
   },
   {
@@ -6822,6 +7526,7 @@
     "name": "Шампунь CARE д/объема волос 1000 мл. 395355",
     "price": 597,
     "promo": false,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -6833,6 +7538,7 @@
     "promo": true,
     "oldPrice": 324,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -6842,6 +7548,7 @@
     "name": "Шампунь CARE д/окрашенных волос 1000 мл. 395034",
     "price": 597,
     "promo": false,
+    "category": "Шампуни",
     "stock": 15
   },
   {
@@ -6853,6 +7560,7 @@
     "promo": true,
     "oldPrice": 756,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 4
   },
   {
@@ -6862,6 +7570,7 @@
     "name": "Шампунь CARE увлажняющий 1000 мл. 395416",
     "price": 597,
     "promo": false,
+    "category": "Шампуни",
     "stock": 6
   },
   {
@@ -6873,6 +7582,7 @@
     "promo": true,
     "oldPrice": 324,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 7
   },
   {
@@ -6882,6 +7592,7 @@
     "name": "Шампунь MEN д/волос и тела освежающий 1000мл 729759",
     "price": 862,
     "promo": false,
+    "category": "Шампуни",
     "stock": 4
   },
   {
@@ -6893,6 +7604,7 @@
     "promo": true,
     "oldPrice": 419,
     "discountPct": 7.0,
+    "category": "Шампуни",
     "stock": 1
   },
   {
@@ -6902,6 +7614,7 @@
     "name": "Шампунь MP на основе черного риса 1000 мл. 774103",
     "price": 1498,
     "promo": false,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -6911,6 +7624,7 @@
     "name": "Шампунь SB для волос с коллагеном 1000 мл 775148",
     "price": 600,
     "promo": false,
+    "category": "Шампуни",
     "stock": 6
   },
   {
@@ -6920,6 +7634,7 @@
     "name": "Шампунь SB для окр. волос с экстрактом винограда 1000мл 773144",
     "price": 563,
     "promo": false,
+    "category": "Шампуни",
     "stock": 5
   },
   {
@@ -6929,6 +7644,7 @@
     "name": "Шампунь SB питат. для волос с экстрактом семян льна 1000мл 773199",
     "price": 563,
     "promo": false,
+    "category": "Шампуни",
     "stock": 7
   },
   {
@@ -6938,6 +7654,7 @@
     "name": "Шампунь SB увл. для волос с экстрактом ламинарии 1000мл 773168",
     "price": 563,
     "promo": false,
+    "category": "Шампуни",
     "stock": 5
   },
   {
@@ -6947,6 +7664,7 @@
     "name": "Шампунь SL д/ежедневного прим. PH 5.5 1000 мл. 726802/721999",
     "price": 579,
     "promo": false,
+    "category": "Шампуни",
     "stock": 4
   },
   {
@@ -6956,6 +7674,7 @@
     "name": "Шампунь SL д/ежедневного прим. PH 5.5 5000 мл. 726864",
     "price": 2225,
     "promo": false,
+    "category": "Шампуни",
     "stock": 4
   },
   {
@@ -6965,6 +7684,7 @@
     "name": "Шампунь SL д/холодных оттенков 1000 мл. 728912",
     "price": 579,
     "promo": false,
+    "category": "Шампуни",
     "stock": 5
   },
   {
@@ -6974,6 +7694,7 @@
     "name": "Шампунь-пилинг SL РН 7.0, 1000 мл. 726819",
     "price": 581,
     "promo": false,
+    "category": "Технические средства",
     "stock": 9
   },
   {
@@ -6983,6 +7704,7 @@
     "name": "Шампунь-стабилиз. SL цв. рн 3,5, 1000 мл. 726826",
     "price": 606,
     "promo": false,
+    "category": "Технические средства",
     "stock": 6
   },
   {
@@ -6992,6 +7714,7 @@
     "name": "Шампунь-стабилиз. SL цв. рн 3,5, 5000 мл. 393481",
     "price": 2397,
     "promo": false,
+    "category": "Технические средства",
     "stock": 8
   },
   {
@@ -7004,6 +7727,7 @@
     "oldPrice": 2339,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 120
   },
   {
@@ -7015,6 +7739,7 @@
     "promo": true,
     "oldPrice": 1300,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 2
   },
   {
@@ -7027,6 +7752,7 @@
     "oldPrice": 1300,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 10
   },
   {
@@ -7039,6 +7765,7 @@
     "oldPrice": 2103.75,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Химия волос",
     "stock": 1
   },
   {
@@ -7050,6 +7777,7 @@
     "promo": true,
     "oldPrice": 2103.75,
     "discountPct": 7.0,
+    "category": "Химия волос",
     "stock": 2
   },
   {
@@ -7061,6 +7789,7 @@
     "promo": true,
     "oldPrice": 2103.75,
     "discountPct": 7.0,
+    "category": "Химия волос",
     "stock": 4
   },
   {
@@ -7073,6 +7802,7 @@
     "oldPrice": 2103.75,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Химия волос",
     "stock": 10
   },
   {
@@ -7082,6 +7812,7 @@
     "name": "Игора Варио Блонд PLUS (БЕЛАЯ БАНКА 7+) 450гр 2242113",
     "price": 1650,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 118
   },
   {
@@ -7091,6 +7822,7 @@
     "name": "Игора Варио Блонд SUPER PLUS (СИНЯЯ БАНКА 8+) 450 (НОВЫЙ ДИЗАЙН!) 2242115new",
     "price": 1650,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 10
   },
   {
@@ -7101,6 +7833,7 @@
     "price": 455,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -7110,6 +7843,7 @@
     "name": "Краска IR 0-33 Анти-красный микстон 60мл и033",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -7119,6 +7853,7 @@
     "name": "Краска IR 0-77 Медный микстон 60мл и077",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -7129,6 +7864,7 @@
     "price": 455,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -7139,6 +7875,7 @@
     "price": 455,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -7148,6 +7885,7 @@
     "name": "Краска IR 1-0 Черный натуральный 60мл и1",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 17
   },
   {
@@ -7157,6 +7895,7 @@
     "name": "Краска IR 1-1 Черный сандрэ 60мл и11",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 14
   },
   {
@@ -7166,6 +7905,7 @@
     "name": "Краска IR 3-0 Темный коричневый натуральный 60мл и30",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 19
   },
   {
@@ -7175,6 +7915,7 @@
     "name": "Краска IR 3-65 Темный коричневый шоколадный золотистый 60мл и365",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -7184,6 +7925,7 @@
     "name": "Краска IR 3-68 Темный коричневый шоколадный красный 60мл и368",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 50
   },
   {
@@ -7193,6 +7935,7 @@
     "name": "Краска IR 4-0 Средний коричневый натуральный 60мл и40",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 25
   },
   {
@@ -7202,6 +7945,7 @@
     "name": "Краска IR 4-6 Средний коричневый шоколадный 60мл и46",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 69
   },
   {
@@ -7211,6 +7955,7 @@
     "name": "Краска IR 4-63 Средний коричневый шоколадный матовый 60мл и463",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 97
   },
   {
@@ -7220,6 +7965,7 @@
     "name": "Краска IR 4-68 Средний коричневый шокол.красный 60мл и468",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 83
   },
   {
@@ -7229,6 +7975,7 @@
     "name": "Краска IR 4-88 Средний коричневый красный экстра 60мл и488",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 14
   },
   {
@@ -7238,6 +7985,7 @@
     "name": "Краска IR 5-0 Светлый коричневый натуральный 60мл и50",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 136
   },
   {
@@ -7247,6 +7995,7 @@
     "name": "Краска IR 5-00 Светлый коричневый натуральный экстра 60мл и500",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 145
   },
   {
@@ -7256,6 +8005,7 @@
     "name": "Краска IR 5-1 Светлый коричневый сандрэ 60мл и51",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 27
   },
   {
@@ -7265,6 +8015,7 @@
     "name": "Краска IR 5-16 Светлый коричневый сандрэ шоколадный 60мл и516",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 36
   },
   {
@@ -7274,6 +8025,7 @@
     "name": "Краска IR 5-4 Светлый коричневый бежевый 60мл и54",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 17
   },
   {
@@ -7283,6 +8035,7 @@
     "name": "Краска IR 5-6 Светлый коричневы й шоколадный 60мл и56",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 54
   },
   {
@@ -7292,6 +8045,7 @@
     "name": "Краска IR 5-65 Светлый коричневы шоколадный золотистый 60мл и565",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 42
   },
   {
@@ -7301,6 +8055,7 @@
     "name": "Краска IR 5-7 Светлый коричневый медный 60мл и57",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 32
   },
   {
@@ -7310,6 +8065,7 @@
     "name": "Краска IR 5-88 Светлый коричневый красный экстра 60мл и588",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 47
   },
   {
@@ -7319,6 +8075,7 @@
     "name": "Краска IR 6-0 Темный русый натуральный 60мл и60",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 88
   },
   {
@@ -7328,6 +8085,7 @@
     "name": "Краска IR 6-00 Темный русый натуральный экстра 60мл и600",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 150
   },
   {
@@ -7337,6 +8095,7 @@
     "name": "Краска IR 6-12 Темный русый сандрэ пепельный 60мл и612",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -7346,6 +8105,7 @@
     "name": "Краска IR 6-16 Темный русый сандрэ шоколадный 60мл и616",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 36
   },
   {
@@ -7355,6 +8115,7 @@
     "name": "Краска IR 6-29 Темный русый пепельный фиолетовый 60мл и629",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -7364,6 +8125,7 @@
     "name": "Краска IR 6-4 Темный русый бежевый 60мл и64",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 32
   },
   {
@@ -7373,6 +8135,7 @@
     "name": "Краска IR 6-46 Темный русый бежевый шоколадный 60мл и646",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 36
   },
   {
@@ -7382,6 +8145,7 @@
     "name": "Краска IR 6-6 Темный русый шоколадный 60мл и66",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 49
   },
   {
@@ -7391,6 +8155,7 @@
     "name": "Краска IR 6-65 Темный русый шоколадный золотистый 60мл и665",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -7400,6 +8165,7 @@
     "name": "Краска IR 6-68 Темный русый шоколадный красный 60мл и668",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 64
   },
   {
@@ -7409,6 +8175,7 @@
     "name": "Краска IR 6-77 Темный русый медный экстра 60мл и677",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 24
   },
   {
@@ -7418,6 +8185,7 @@
     "name": "Краска IR 6-88 Темный русый красный экстра 60мл и688",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 14
   },
   {
@@ -7427,6 +8195,7 @@
     "name": "Краска IR 6-99 Темный русый фиолетовый экстра 60мл и699",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 15
   },
   {
@@ -7436,6 +8205,7 @@
     "name": "Краска IR 7-0 Средний русый натуральный 60мл и70",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 126
   },
   {
@@ -7445,6 +8215,7 @@
     "name": "Краска IR 7-4 Средний русый бежевый 60мл и74",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 22
   },
   {
@@ -7454,6 +8225,7 @@
     "name": "Краска IR 7-42 Средний русый бежевый пепельный 60мл и742",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 8
   },
   {
@@ -7463,6 +8235,7 @@
     "name": "Краска IR 7-55 Средний русый золотистый экстра 60мл и755",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -7472,6 +8245,7 @@
     "name": "Краска IR 7-77 Средний русый медный экстра 60мл и777",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 11
   },
   {
@@ -7481,6 +8255,7 @@
     "name": "Краска IR 8-0 Светлый русый натуральный 60мл и80",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 209
   },
   {
@@ -7490,6 +8265,7 @@
     "name": "Краска IR 8-00 Светлый русый натуральный экстра 60мл и800",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 65
   },
   {
@@ -7499,6 +8275,7 @@
     "name": "Краска IR 8-1 Светлый русый сандрэ 60мл и81",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 41
   },
   {
@@ -7508,6 +8285,7 @@
     "name": "Краска IR 8-11 Светлый русый сандрэ экстра 60мл и811",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 19
   },
   {
@@ -7517,6 +8295,7 @@
     "name": "Краска IR 8-19 Светлый русый сандрэ фиолетовый 60мл и819",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 14
   },
   {
@@ -7526,6 +8305,7 @@
     "name": "Краска IR 8-21 Светлый русый пепельный сандрэ 60мл и821",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -7535,6 +8315,7 @@
     "name": "Краска IR 8-4 Светлый русый бежевый 60мл и84",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 17
   },
   {
@@ -7544,6 +8325,7 @@
     "name": "Краска IR 9-0 Блондин натуральный 60мл и90",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 198
   },
   {
@@ -7553,6 +8335,7 @@
     "name": "Краска IR 9-00 Блондин натуральный экстра 60мл и900",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 136
   },
   {
@@ -7562,6 +8345,7 @@
     "name": "Краска IR 9-4 Блондин бежевый 60мл и94",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 24
   },
   {
@@ -7571,6 +8355,7 @@
     "name": "Краска IR 9-55 Блондин золотистый экстра 60мл и955",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -7580,6 +8365,7 @@
     "name": "Краска IR 9-7 Блондин медный 60мл и97",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -7589,6 +8375,7 @@
     "name": "Краска IR 9-98 Блондин фиолетовый красный 60мл и998",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -7598,6 +8385,7 @@
     "name": "Краска IR 9,5-1 Светлый блондин пастельный сандрэ 60мл и951",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 256
   },
   {
@@ -7607,6 +8395,7 @@
     "name": "Краска IR 9,5-4 Светлый блондин пастельный сандрэ 60мл и954",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 28
   },
   {
@@ -7616,6 +8405,7 @@
     "name": "Краска IR 9,5-49 Светлый блондин пастельный перламутровый 60мл и9549",
     "price": 455,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1426
   },
   {
@@ -7625,6 +8415,7 @@
     "name": "Краска IR AB 4-60 Средний коричневый шоколадный натурал. 60мл и460",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 347
   },
   {
@@ -7634,6 +8425,7 @@
     "name": "Краска IR AB 5-50 Светлый коричн.золотистый натуральный 60мл и550",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 34
   },
   {
@@ -7643,6 +8435,7 @@
     "name": "Краска IR AB 5-60 Светлый коричн.шоколадный натуральный 60мл и560",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 280
   },
   {
@@ -7652,6 +8445,7 @@
     "name": "Краска IR AB 5-80 Светлый коричн.красный натуральный 60мл и580",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 39
   },
   {
@@ -7661,6 +8455,7 @@
     "name": "Краска IR AB 6-50 Темный русый золотистый натуральный 60мл и650",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 68
   },
   {
@@ -7670,6 +8465,7 @@
     "name": "Краска IR AB 6-60 Темный русый шоколадный натуральный 60мл и660",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 223
   },
   {
@@ -7679,6 +8475,7 @@
     "name": "Краска IR AB 6-70 Темный русый медный натуральный 60мл и670",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -7688,6 +8485,7 @@
     "name": "Краска IR AB 6-80 Темный русый красный натуральный 60мл и680",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 52
   },
   {
@@ -7697,6 +8495,7 @@
     "name": "Краска IR AB 7-10 Средний русый натуральный сандрэ 60мл и710",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 17
   },
   {
@@ -7706,6 +8505,7 @@
     "name": "Краска IR AB 7-50 Средний русый золотистый натуральный 60мл и750",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 27
   },
   {
@@ -7715,6 +8515,7 @@
     "name": "Краска IR AB 7-70 Средний русый медный натуральный 60мл и770",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 34
   },
   {
@@ -7724,6 +8525,7 @@
     "name": "Краска IR AB 8-01 60мл и801",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 60
   },
   {
@@ -7733,6 +8535,7 @@
     "name": "Краска IR AB 8-50 Светлый русый золотистый натуральный 60мл и850",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 37
   },
   {
@@ -7742,6 +8545,7 @@
     "name": "Краска IR AB 8-60 Светлый русый шоколадный натуральный 60мл и860",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 193
   },
   {
@@ -7751,6 +8555,7 @@
     "name": "Краска IR AB 9-40 Блондин бежевый натуральный 60мл и940",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 20
   },
   {
@@ -7760,6 +8565,7 @@
     "name": "Краска IR AB 9-50 Блондин золотистый натуральный 60мл и950",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -7769,6 +8575,7 @@
     "name": "Краска IR AB 9-60 Блондин шоколадный натуральный 60мл и960",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 96
   },
   {
@@ -7778,6 +8585,7 @@
     "name": "Краска IR HL 10-0 Экстрасветлый блондин натуральный 60мл и100",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 26
   },
   {
@@ -7787,6 +8595,7 @@
     "name": "Краска IR HL 10-1 Экстрасветлый блондин сандрэ 60мл и101",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 40
   },
   {
@@ -7796,6 +8605,7 @@
     "name": "Краска IR HL 10-19 Экстрасветлый блондин сандрэ фиолетовый 60мл и1019",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 53
   },
   {
@@ -7805,6 +8615,7 @@
     "name": "Краска IR HL 10-21 Экстрасветлый блондин пепельн. сандрэ 60мл и1021",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 64
   },
   {
@@ -7814,6 +8625,7 @@
     "name": "Краска IR HL 10-4 Экстрасветлый блондин бежевый 60мл и104",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 79
   },
   {
@@ -7823,6 +8635,7 @@
     "name": "Краска IR HL 12-0 Спец. блондин натуральный 60мл и120",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 175
   },
   {
@@ -7832,6 +8645,7 @@
     "name": "Краска IR HL 12-19 Спец. блондин фиолетовый сандрэ 60мл и1219",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 229
   },
   {
@@ -7841,6 +8655,7 @@
     "name": "Краска IR HL 12-2 Спец. блондин пепельный 60мл и122",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 69
   },
   {
@@ -7850,6 +8665,7 @@
     "name": "Краска IR HL 12-21 Спец. блондин пепельный сандрэ 60мл и1221",
     "price": 475,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 74
   },
   {
@@ -7862,6 +8678,7 @@
     "oldPrice": 999,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 16
   },
   {
@@ -7873,6 +8690,7 @@
     "promo": true,
     "oldPrice": 999,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 31
   },
   {
@@ -7884,6 +8702,7 @@
     "promo": true,
     "oldPrice": 999,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 66
   },
   {
@@ -7896,6 +8715,7 @@
     "oldPrice": 999,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Окислители и осветляющие средства",
     "stock": 12
   },
   {
@@ -7907,6 +8727,7 @@
     "promo": true,
     "oldPrice": 807.5,
     "discountPct": 7.0,
+    "category": "Лаки",
     "stock": 31
   },
   {
@@ -7918,6 +8739,7 @@
     "promo": true,
     "oldPrice": 977.5,
     "discountPct": 7.0,
+    "category": "Лаки",
     "stock": 13
   },
   {
@@ -7927,6 +8749,7 @@
     "name": "Лак д/волос №3 фикс. 4+ ЭСФ SESSION 300 мл. 1970645",
     "price": 807.5,
     "promo": false,
+    "category": "Лаки",
     "stock": 8
   },
   {
@@ -7936,6 +8759,7 @@
     "name": "Спрей с бриллиантовым блеском Sparkler 300 мл. 1970641",
     "price": 988.55,
     "promo": false,
+    "category": "Спреи",
     "stock": 13
   },
   {
@@ -7945,6 +8769,7 @@
     "name": "Спрей термозащитный Super Shield 300мл 4045787936612",
     "price": 708.05,
     "promo": false,
+    "category": "Термозащита",
     "stock": 3
   },
   {
@@ -7954,6 +8779,7 @@
     "name": "Professionnelle Лак СФ (Венгрия) 500 мл. 8701",
     "price": 830,
     "promo": false,
+    "category": "Лаки",
     "stock": 1630
   },
   {
@@ -7963,6 +8789,7 @@
     "name": "Безупречный спрей ультрасильной фиксации 200 мл 2646468",
     "price": 767,
     "promo": false,
+    "category": "Лаки",
     "stock": 6
   },
   {
@@ -7972,6 +8799,7 @@
     "name": "Гель д/волос сверхсильной фиксации 250мл 2147236",
     "price": 660,
     "promo": false,
+    "category": "Крема и гели для укладки",
     "stock": 1
   },
   {
@@ -7981,6 +8809,7 @@
     "name": "Лак для волос ультрасильной фиксации 500мл 1937472/1581304",
     "price": 820,
     "promo": false,
+    "category": "Лаки",
     "stock": 838
   },
   {
@@ -7992,6 +8821,7 @@
     "promo": true,
     "oldPrice": 1009.8,
     "discountPct": 7.0,
+    "category": "Лаки",
     "stock": 11
   },
   {
@@ -8003,6 +8833,7 @@
     "promo": true,
     "oldPrice": 984.3,
     "discountPct": 7.0,
+    "category": "Пенки",
     "stock": 13
   },
   {
@@ -8014,6 +8845,7 @@
     "promo": true,
     "oldPrice": 1390.26,
     "discountPct": 7.0,
+    "category": "Пенки",
     "stock": 9
   },
   {
@@ -8025,6 +8857,7 @@
     "promo": true,
     "oldPrice": 984.3,
     "discountPct": 7.0,
+    "category": "Спреи",
     "stock": 3
   },
   {
@@ -8036,6 +8869,7 @@
     "promo": true,
     "oldPrice": 984.3,
     "discountPct": 7.0,
+    "category": "Спреи",
     "stock": 12
   },
   {
@@ -8047,6 +8881,7 @@
     "promo": true,
     "oldPrice": 984.3,
     "discountPct": 7.0,
+    "category": "Спреи",
     "stock": 21
   },
   {
@@ -8058,6 +8893,7 @@
     "promo": true,
     "oldPrice": 984.3,
     "discountPct": 7.0,
+    "category": "Термозащита",
     "stock": 101
   },
   {
@@ -8069,6 +8905,7 @@
     "promo": true,
     "oldPrice": 987.36,
     "discountPct": 7.0,
+    "category": "Пенки",
     "stock": 4
   },
   {
@@ -8078,6 +8915,7 @@
     "name": "Illumina color Лиловое Серебро 71371",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -8087,6 +8925,7 @@
     "name": "Illumina color Платиновая лилия 71418",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 31
   },
   {
@@ -8098,6 +8937,7 @@
     "promo": true,
     "oldPrice": 759,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -8108,6 +8948,7 @@
     "price": 759,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 67
   },
   {
@@ -8117,6 +8958,7 @@
     "name": "Краска 10/05 Яркий блонд натуральный махагоновый 60мл 10/05",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 147
   },
   {
@@ -8126,6 +8968,7 @@
     "name": "Краска 10/1 Яркий блонд пепельный 60мл 10/1",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 72
   },
   {
@@ -8135,6 +8978,7 @@
     "name": "Краска 10/34 Яркий блонд золотистый красный 60мл 10/34",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -8144,6 +8988,7 @@
     "name": "Краска 10/36 Яркий блонд золотисто-фиолетовый 60мл 10/36",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 320
   },
   {
@@ -8153,6 +8998,7 @@
     "name": "Краска 10/38 Яркий блонд золотисто-жемчужный 60мл 10/38",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 364
   },
   {
@@ -8163,6 +9009,7 @@
     "price": 759,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 132
   },
   {
@@ -8172,6 +9019,7 @@
     "name": "Краска 10/81 Яркий блондин жемчужно-пепельный 60мл 10/81",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 86
   },
   {
@@ -8181,6 +9029,7 @@
     "name": "Краска 10/93 Яркий блонд золотистый сандрэ 60мл 10/93",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 94
   },
   {
@@ -8190,6 +9039,7 @@
     "name": "Краска 4/ Коричневый 60мл 4/",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 47
   },
   {
@@ -8199,6 +9049,7 @@
     "name": "Краска 5/ Светло-коричневый 60мл 5/",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 145
   },
   {
@@ -8210,6 +9061,7 @@
     "promo": true,
     "oldPrice": 759,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 21
   },
   {
@@ -8219,6 +9071,7 @@
     "name": "Краска 5/35 Светло-коричневый золотисто-махагоновый 60мл 5/35",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 11
   },
   {
@@ -8228,6 +9081,7 @@
     "name": "Краска 5/7 Светло-коричневый коричневый 60мл 5/7",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -8237,6 +9091,7 @@
     "name": "Краска 5/81 Светло-коричневый жемчужно-пепельный 60мл 5/81",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 382
   },
   {
@@ -8246,6 +9101,7 @@
     "name": "Краска 6/ Темный блонд 60мл 6/",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 350
   },
   {
@@ -8255,6 +9111,7 @@
     "name": "Краска 6/16 Темный блонд пепельный фиолетовый 60мл 6/16",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 444
   },
   {
@@ -8264,6 +9121,7 @@
     "name": "Краска 6/19 Темный блонд пепельный сандрэ 60мл 6/19",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 103
   },
   {
@@ -8273,6 +9131,7 @@
     "name": "Краска 6/76 Темный блонд коричнево-фиолетовый 60мл 6/76",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 137
   },
   {
@@ -8282,6 +9141,7 @@
     "name": "Краска 7/ Блонд 60мл 7/",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 69
   },
   {
@@ -8291,6 +9151,7 @@
     "name": "Краска 7/31 Блонд золотисто-пепельный 60мл 7/31",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -8300,6 +9161,7 @@
     "name": "Краска 7/42 Блонд красно-золотистый матовый 60мл NEW 7/42",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 37
   },
   {
@@ -8309,6 +9171,7 @@
     "name": "Краска 7/7 Блонд коричневый 60мл 7/7",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 31
   },
   {
@@ -8318,6 +9181,7 @@
     "name": "Краска 8/ Светлый блонд 60мл 8/",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 373
   },
   {
@@ -8327,6 +9191,7 @@
     "name": "Краска 8/36 Светлый блонд золотисто-фиолетовый 60мл NEW 8/36",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 217
   },
   {
@@ -8335,7 +9200,8 @@
     "line": "Illumina - Красители",
     "name": "Краска 8/38 Светлый блонд золотисто-жемчужный 60мл 8/38",
     "price": 759,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 872,
@@ -8344,6 +9210,7 @@
     "name": "Краска 8/69 Светлый блонд фиолетовый сандрэ 60мл 8/69",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 197
   },
   {
@@ -8353,6 +9220,7 @@
     "name": "Краска 8/93 Светлый блондин сандрэ золотистый 60мл 8/93",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 396
   },
   {
@@ -8362,6 +9230,7 @@
     "name": "Краска 9/ Очень светлый блонд 60мл 9/",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 371
   },
   {
@@ -8371,6 +9240,7 @@
     "name": "Краска 9/03 Очень светлый блонд натуральный золотистый 60мл 9/03",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 71
   },
   {
@@ -8380,6 +9250,7 @@
     "name": "Краска 9/19 Очень светлый блонд пепельный сандрэ 60мл 9/19",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 27
   },
   {
@@ -8389,6 +9260,7 @@
     "name": "Краска 9/37 Очень светлый блонд золотисто-коричневый 60мл NEW 9/37",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 8
   },
   {
@@ -8398,6 +9270,7 @@
     "name": "Краска 9/43 Очень светлый блонд красно-коричневый 60мл 9/43",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 72
   },
   {
@@ -8407,6 +9280,7 @@
     "name": "Краска 9/59 Очень светлый блонд махагоновый сандрэ 60мл 9/59",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 60
   },
   {
@@ -8416,6 +9290,7 @@
     "name": "Краска 9/60 Очень светлый фиолетовый натуральный 60мл 9/60",
     "price": 759,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 46
   },
   {
@@ -8426,6 +9301,7 @@
     "price": 2824.55,
     "promo": false,
     "isNew": true,
+    "category": "Кондиционеры",
     "stock": 10
   },
   {
@@ -8435,6 +9311,7 @@
     "name": "Brilliance Бальзам-уход д/защиты цвета окр.жестк.волос 200мл 339252",
     "price": 998.75,
     "promo": false,
+    "category": "Кондиционеры",
     "stock": 10
   },
   {
@@ -8445,6 +9322,7 @@
     "price": 2824.55,
     "promo": false,
     "isNew": true,
+    "category": "Кондиционеры",
     "stock": 6
   },
   {
@@ -8455,6 +9333,7 @@
     "price": 2047.48,
     "promo": false,
     "isNew": true,
+    "category": "Шампуни",
     "stock": 11
   },
   {
@@ -8464,6 +9343,7 @@
     "name": "Brilliance Шампунь д/защиты цвета окр.жестк.волос 300мл 339238",
     "price": 919.7,
     "promo": false,
+    "category": "Шампуни",
     "stock": 41
   },
   {
@@ -8474,6 +9354,7 @@
     "price": 2047.48,
     "promo": false,
     "isNew": true,
+    "category": "Шампуни",
     "stock": 2
   },
   {
@@ -8483,6 +9364,7 @@
     "name": "Brilliance Шампунь д/защиты цвета окр.норм. и тонких волос 300мл 339221",
     "price": 919.7,
     "promo": false,
+    "category": "Шампуни",
     "stock": 27
   },
   {
@@ -8493,6 +9375,7 @@
     "price": 1194.25,
     "promo": false,
     "isNew": true,
+    "category": "Несмываемый уход",
     "stock": 12
   },
   {
@@ -8503,6 +9386,7 @@
     "price": 897.6,
     "promo": false,
     "isNew": true,
+    "category": "Шампуни",
     "stock": 10
   },
   {
@@ -8514,6 +9398,7 @@
     "promo": true,
     "oldPrice": 250,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 2
   },
   {
@@ -8525,6 +9410,7 @@
     "promo": true,
     "oldPrice": 250,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 1
   },
   {
@@ -8536,6 +9422,7 @@
     "promo": true,
     "oldPrice": 250,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 14
   },
   {
@@ -8547,6 +9434,7 @@
     "promo": true,
     "oldPrice": 250,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 32
   },
   {
@@ -8558,6 +9446,7 @@
     "promo": true,
     "oldPrice": 250,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 24
   },
   {
@@ -8569,6 +9458,7 @@
     "promo": true,
     "oldPrice": 1335.6,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 442
   },
   {
@@ -8578,6 +9468,7 @@
     "name": "Блондор \"BLONDORPLEX\" 9+ без образования пыли 800г 99350057291",
     "price": 3231,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 393
   },
   {
@@ -8587,6 +9478,7 @@
     "name": "Блондор \"FREELIGHTS\" пудра 400г 6445/2108/9805",
     "price": 2283,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 235
   },
   {
@@ -8598,6 +9490,7 @@
     "promo": true,
     "oldPrice": 2473.5,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 455
   },
   {
@@ -8607,6 +9500,7 @@
     "name": "Краска CT 10-05 блонд натуральный махагоновый ct10-05",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 31
   },
   {
@@ -8616,6 +9510,7 @@
     "name": "Краска CT 10-1 яркий блондин пепельный ct10-1",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -8627,6 +9522,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 186
   },
   {
@@ -8638,6 +9534,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 54
   },
   {
@@ -8649,6 +9546,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 20
   },
   {
@@ -8660,6 +9558,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 50
   },
   {
@@ -8669,6 +9568,7 @@
     "name": "Краска CT 4-71 коричнево-пепельный ct4-71",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 26
   },
   {
@@ -8678,6 +9578,7 @@
     "name": "Краска CT 4-77 горячий шоколад ct4-77",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -8689,6 +9590,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 81
   },
   {
@@ -8698,6 +9600,7 @@
     "name": "Краска CT 5-3 светло-коричневый золотистый ct5-3",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -8707,6 +9610,7 @@
     "name": "Краска CT 5-71 грильяж ct5-71",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 13
   },
   {
@@ -8716,6 +9620,7 @@
     "name": "Краска CT 5-75** светло-коричневый махагон ct5-75",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 10
   },
   {
@@ -8727,6 +9632,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -8736,6 +9642,7 @@
     "name": "краска CT 6-45 глубокий темно-русый красно-махагоновый CT6-45",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 17
   },
   {
@@ -8745,6 +9652,7 @@
     "name": "Краска CT 6-7 темный блонд коричневый ct6-7",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 19
   },
   {
@@ -8754,6 +9662,7 @@
     "name": "Краска CT 6-73 темный блондин коричнево-золотистый ct6-73",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 17
   },
   {
@@ -8765,6 +9674,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 13
   },
   {
@@ -8776,6 +9686,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 46
   },
   {
@@ -8785,6 +9696,7 @@
     "name": "Краска CT 7-1 средне-русый пепельный ct7-1",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -8795,6 +9707,7 @@
     "price": 715,
     "promo": false,
     "isNew": true,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -8806,6 +9719,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 35
   },
   {
@@ -8815,6 +9729,7 @@
     "name": "Краска CT 7-71 янтарная куница ct7-71",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -8826,6 +9741,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 26
   },
   {
@@ -8837,6 +9753,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 12
   },
   {
@@ -8848,6 +9765,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 16
   },
   {
@@ -8857,6 +9775,7 @@
     "name": "Краска CT7-89 серый жемчуг ct7-89",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -8868,6 +9787,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 24
   },
   {
@@ -8879,6 +9799,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 11
   },
   {
@@ -8888,6 +9809,7 @@
     "name": "Краска CT 8-38 светлый блонд золотой жемчуг ct8-38",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 10
   },
   {
@@ -8897,6 +9819,7 @@
     "name": "Краска CT 8-41 светлый блонд красно-пепельный ct8-41",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 11
   },
   {
@@ -8908,6 +9831,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 34
   },
   {
@@ -8919,6 +9843,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 6
   },
   {
@@ -8930,6 +9855,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 42
   },
   {
@@ -8939,6 +9865,7 @@
     "name": "Краска CT 9-0 очень светлый блондин ct9-0",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 88
   },
   {
@@ -8950,6 +9877,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 24
   },
   {
@@ -8961,6 +9889,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 102
   },
   {
@@ -8972,6 +9901,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 17
   },
   {
@@ -8981,6 +9911,7 @@
     "name": "Краска CT 9-73 блондин яркий табак ct9-73",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 16
   },
   {
@@ -8990,6 +9921,7 @@
     "name": "Краска CT 9-75 очень светлый блонд коричнево-махагоновый ct9-75",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 7
   },
   {
@@ -9001,6 +9933,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 15
   },
   {
@@ -9010,6 +9943,7 @@
     "name": "Краска CT 9-96 очень светлый блонд сандрэ фиолетовый ct9-96",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -9021,6 +9955,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 349
   },
   {
@@ -9032,6 +9967,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 124
   },
   {
@@ -9043,6 +9979,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 212
   },
   {
@@ -9054,6 +9991,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 267
   },
   {
@@ -9065,6 +10003,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 193
   },
   {
@@ -9073,7 +10012,8 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 0/11 Пепельный интенс. 60 мл 0-11",
     "price": 699,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 946,
@@ -9081,7 +10021,8 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 0/30 Золотистый натуральный 60мл 0-30",
     "price": 699,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 947,
@@ -9089,7 +10030,8 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 0/33 Золотистый интенсивный 60мл 0-33",
     "price": 699,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 948,
@@ -9097,7 +10039,8 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 0/43 Красный золотистый 60мл 0-43",
     "price": 699,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 949,
@@ -9106,6 +10049,7 @@
     "name": "Краска колестон 0/44 Красный интенсивный 60мл 0-44",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 8
   },
   {
@@ -9117,6 +10061,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 10
   },
   {
@@ -9127,7 +10072,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 952,
@@ -9136,6 +10082,7 @@
     "name": "Краска колестон 10/00 Яркий блонд интенсивный 60мл 10-00",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -9147,6 +10094,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -9157,6 +10105,7 @@
     "price": 699,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -9167,7 +10116,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 956,
@@ -9178,6 +10128,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 31
   },
   {
@@ -9187,6 +10138,7 @@
     "name": "Краска колестон 10/3 Шампанское 60мл 10-3",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -9198,6 +10150,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 41
   },
   {
@@ -9208,7 +10161,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 960,
@@ -9219,6 +10173,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 25
   },
   {
@@ -9230,6 +10185,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 21
   },
   {
@@ -9241,6 +10197,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 20
   },
   {
@@ -9252,6 +10209,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 12
   },
   {
@@ -9263,6 +10221,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 150
   },
   {
@@ -9274,6 +10233,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 22
   },
   {
@@ -9283,6 +10243,7 @@
     "name": "Краска колестон 12/11 Ракушка 60мл 12-11",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 97
   },
   {
@@ -9294,6 +10255,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 111
   },
   {
@@ -9305,6 +10267,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 97
   },
   {
@@ -9316,6 +10279,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 53
   },
   {
@@ -9327,6 +10291,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 152
   },
   {
@@ -9337,7 +10302,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 972,
@@ -9346,6 +10312,7 @@
     "name": "Краска колестон 3/00 Темно-коричневый интенс. натуральный 60мл 3-00",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -9357,6 +10324,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 90
   },
   {
@@ -9368,6 +10336,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 24
   },
   {
@@ -9380,6 +10349,7 @@
     "oldPrice": 699,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 12
   },
   {
@@ -9392,6 +10362,7 @@
     "oldPrice": 699,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -9403,6 +10374,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 18
   },
   {
@@ -9414,6 +10386,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 9
   },
   {
@@ -9424,7 +10397,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 980,
@@ -9435,6 +10409,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 59
   },
   {
@@ -9444,6 +10419,7 @@
     "name": "Краска колестон 5/07 Кедр 60мл 5-07",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 46
   },
   {
@@ -9453,7 +10429,8 @@
     "name": "Краска колестон 5/1 Светло-коричневый пепельный Шоколадное джелатто 60мл 5-1",
     "price": 699,
     "promo": false,
-    "isNew": true
+    "isNew": true,
+    "category": "Аммиачные красители"
   },
   {
     "id": 983,
@@ -9462,6 +10439,7 @@
     "name": "Краска колестон 5/2 Светло-коричневый матовый Итальянская сосна 60мл 5-2",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -9470,7 +10448,8 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 5/3 корич. золотистый 60мл 5-3",
     "price": 699,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 985,
@@ -9480,7 +10459,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 986,
@@ -9490,6 +10470,7 @@
     "price": 699,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -9501,6 +10482,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -9512,6 +10494,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 56
   },
   {
@@ -9522,7 +10505,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 990,
@@ -9532,7 +10516,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 991,
@@ -9542,6 +10527,7 @@
     "price": 699,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -9552,7 +10538,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 993,
@@ -9561,6 +10548,7 @@
     "name": "Краска колестон 6/34 Медовый пунш 60 мл. 6-34",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 36
   },
   {
@@ -9570,6 +10558,7 @@
     "name": "Краска колестон 6/41 Мехико 60мл 6-41",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 45
   },
   {
@@ -9579,6 +10568,7 @@
     "name": "Краска колестон 6/43 Дикая орхидея 60мл 6-43",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 11
   },
   {
@@ -9590,6 +10580,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 33
   },
   {
@@ -9601,6 +10592,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -9612,6 +10604,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 14
   },
   {
@@ -9622,7 +10615,8 @@
     "price": 594.15,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 15.0
+    "discountPct": 15.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1000,
@@ -9632,7 +10626,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1001,
@@ -9641,6 +10636,7 @@
     "name": "Краска колестон 7/01 Фундук 60мл 7-01",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 17
   },
   {
@@ -9650,6 +10646,7 @@
     "name": "Краска колестон 7/07 Олива 60мл 7-07",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -9660,7 +10657,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1004,
@@ -9669,6 +10667,7 @@
     "name": "Краска колестон 7/17 Кедровый мистраль 60мл 7-17",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -9677,7 +10676,8 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 7/31 Комо 60мл 7-31",
     "price": 699,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1006,
@@ -9689,6 +10689,7 @@
     "oldPrice": 699,
     "discountPct": 7.0,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -9698,6 +10699,7 @@
     "name": "Краска колестон 7/38 Пряный бисквит 60мл 7-38",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -9708,7 +10710,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1009,
@@ -9717,6 +10720,7 @@
     "name": "Краска колестон 7/47 60мл 7-47",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 30
   },
   {
@@ -9726,6 +10730,7 @@
     "name": "Краска колестон 7/77 Блонд коричневый интенсивный 60мл 7-77",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 3
   },
   {
@@ -9737,6 +10742,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 19
   },
   {
@@ -9748,6 +10754,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 40
   },
   {
@@ -9757,6 +10764,7 @@
     "name": "Краска колестон 8/03 Янтарь 60мл 8-03",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 4
   },
   {
@@ -9766,6 +10774,7 @@
     "name": "Краска колестон 8/04 Яркий закат 60мл 8-04",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 16
   },
   {
@@ -9776,7 +10785,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1016,
@@ -9787,6 +10797,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 6
   },
   {
@@ -9798,6 +10809,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 27
   },
   {
@@ -9807,6 +10819,7 @@
     "name": "Краска колестон 8/41 Марракеш 60мл 8-41",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 19
   },
   {
@@ -9816,6 +10829,7 @@
     "name": "Краска колестон 8/43 Боярышник 60мл 8-43",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 55
   },
   {
@@ -9824,7 +10838,8 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 8/7 Шоколадный трюфель 60мл 8-7",
     "price": 699,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1021,
@@ -9834,6 +10849,7 @@
     "price": 699,
     "promo": false,
     "isNew": true,
+    "category": "Аммиачные красители",
     "stock": 1
   },
   {
@@ -9845,6 +10861,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 100
   },
   {
@@ -9854,6 +10871,7 @@
     "name": "Краска колестон 8/97 Молочный шоколад 60мл 8-97",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 30
   },
   {
@@ -9865,6 +10883,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 52
   },
   {
@@ -9874,6 +10893,7 @@
     "name": "Краска колестон 88/43 Ирландское лето 60мл 88-43",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 35
   },
   {
@@ -9884,7 +10904,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1027,
@@ -9893,6 +10914,7 @@
     "name": "Краска колестон 9/00 Очень светлый блонд натуральный интенс. 60мл 9-00",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 7
   },
   {
@@ -9904,6 +10926,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 5
   },
   {
@@ -9914,7 +10937,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1030,
@@ -9924,7 +10948,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1031,
@@ -9933,6 +10958,7 @@
     "name": "Краска колестон 9/16 Горный хрусталь 60мл 9-16",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 146
   },
   {
@@ -9942,6 +10968,7 @@
     "name": "Краска колестон 9/17 Шелковый ристретто 60мл 9-17",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 34
   },
   {
@@ -9950,7 +10977,8 @@
     "line": "KP Me+/CT - Красители и специальные продукты",
     "name": "Краска колестон 9/7 Мускатный орех 60мл 9-7",
     "price": 699,
-    "promo": false
+    "promo": false,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1034,
@@ -9961,6 +10989,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 7.0,
+    "category": "Аммиачные красители",
     "stock": 13
   },
   {
@@ -9971,7 +11000,8 @@
     "price": 650.07,
     "promo": true,
     "oldPrice": 699,
-    "discountPct": 7.0
+    "discountPct": 7.0,
+    "category": "Аммиачные красители"
   },
   {
     "id": 1036,
@@ -9980,6 +11010,7 @@
     "name": "Краска колестон 9/97 Айриш крем 60мл 9-97",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -9989,6 +11020,7 @@
     "name": "Краска колестон 99/0 Очень светлый блонд натуральный 60мл 99-0",
     "price": 699,
     "promo": false,
+    "category": "Аммиачные красители",
     "stock": 2
   },
   {
@@ -10000,6 +11032,7 @@
     "promo": true,
     "oldPrice": 998.58,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 146
   },
   {
@@ -10011,6 +11044,7 @@
     "promo": true,
     "oldPrice": 998.58,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 102
   },
   {
@@ -10022,6 +11056,7 @@
     "promo": true,
     "oldPrice": 194,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 1
   },
   {
@@ -10033,6 +11068,7 @@
     "promo": true,
     "oldPrice": 998.58,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 107
   },
   {
@@ -10044,6 +11080,7 @@
     "promo": true,
     "oldPrice": 998.58,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 839
   },
   {
@@ -10055,6 +11092,7 @@
     "promo": true,
     "oldPrice": 998.58,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 147
   },
   {
@@ -10064,6 +11102,7 @@
     "name": "Оксид Color Touch 1,9 % 1000 мл. 6021/6298",
     "price": 998.58,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 619
   },
   {
@@ -10075,6 +11114,7 @@
     "promo": true,
     "oldPrice": 998.58,
     "discountPct": 7.0,
+    "category": "Окислители и осветляющие средства",
     "stock": 122
   },
   {
@@ -10086,6 +11126,7 @@
     "promo": true,
     "oldPrice": 500,
     "discountPct": 15.0,
+    "category": "Расходные материалы",
     "stock": 84
   },
   {
@@ -10095,6 +11136,7 @@
     "name": "SHINEFINITY 04/0 Натуральный Espresso 60мл 4/0",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -10106,6 +11148,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 4
   },
   {
@@ -10115,6 +11158,7 @@
     "name": "SHINEFINITY 06/0 Натуральный Brandy 60мл 6/0",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 42
   },
   {
@@ -10124,6 +11168,7 @@
     "name": "SHINEFINITY 06/02 Темный шалфей 60мл 6/02",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 21
   },
   {
@@ -10133,6 +11178,7 @@
     "name": "SHINEFINITY 06/07 Грецкий орех 60мл 6/07",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 11
   },
   {
@@ -10144,6 +11190,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 9
   },
   {
@@ -10153,6 +11200,7 @@
     "name": "SHINEFINITY 07/12 Матовый блонд 60мл 7/12",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 25
   },
   {
@@ -10162,6 +11210,7 @@
     "name": "SHINEFINITY 07/13 Тоффи-крем 60мл 7/13",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 20
   },
   {
@@ -10171,6 +11220,7 @@
     "name": "SHINEFINITY 07/81 Дымчатый опал 60мл 7/81",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 29
   },
   {
@@ -10180,6 +11230,7 @@
     "name": "SHINEFINITY 08/0 Натуральный Latte 60мл 8/0",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -10188,7 +11239,8 @@
     "line": "SHINEFINITY - Гель-крем краска, цветное глазирование",
     "name": "SHINEFINITY 08/38 Медовое латте 60мл 8/38",
     "price": 715,
-    "promo": false
+    "promo": false,
+    "category": "Безаммиачные красители"
   },
   {
     "id": 1058,
@@ -10197,6 +11249,7 @@
     "name": "SHINEFINITY 08/98 Серебряный жемчуг 60мл 8/98",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 3
   },
   {
@@ -10206,6 +11259,7 @@
     "name": "SHINEFINITY 09/02 Пустынный шалфей 60мл 9/02",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -10217,6 +11271,7 @@
     "promo": true,
     "oldPrice": 715,
     "discountPct": 7.0,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -10226,6 +11281,7 @@
     "name": "SHINEFINITY 09/65 Розовое сияние 60мл 9/65",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 2
   },
   {
@@ -10235,6 +11291,7 @@
     "name": "SHINEFINITY 09/73 Карамельное молоко 60мл 9/73",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 11
   },
   {
@@ -10244,6 +11301,7 @@
     "name": "SHINEFINITY 10/0 Светлый блондин натуральный 60мл 10/0",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 1
   },
   {
@@ -10253,6 +11311,7 @@
     "name": "SHINEFINITY 10/6 Светлый блондин лавандовый 60мл 10/6",
     "price": 715,
     "promo": false,
+    "category": "Безаммиачные красители",
     "stock": 7
   },
   {
@@ -10262,6 +11321,7 @@
     "name": "SHINEFINITY Активатор для нанесения кисточкой 60мл",
     "price": 235,
     "promo": false,
+    "category": "Окислители и осветляющие средства",
     "stock": 15
   },
   {
@@ -10271,6 +11331,7 @@
     "name": "Филлер для восстановления волос Perfect Hair Fill-Up 13 мл 845623/лд2",
     "price": 120,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 147
   },
   {
@@ -10280,6 +11341,7 @@
     "name": "Бахилы ПЭ 100шт. 01-606",
     "price": 101.6,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 8
   },
   {
@@ -10289,6 +11351,7 @@
     "name": "Воротнички бумажные 500шт 01-331",
     "price": 387.23,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 19
   },
   {
@@ -10298,6 +11361,7 @@
     "name": "Воротнички мягкие 7х40 100шт 00-662",
     "price": 87.5,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 98
   },
   {
@@ -10307,6 +11371,7 @@
     "name": "Крафт-пакет с индикатором 100х250мм 03-142",
     "price": 354.09,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 6
   },
   {
@@ -10316,6 +11381,7 @@
     "name": "Пелерина п/э 25шт 01-681/10-654",
     "price": 97.75,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 36
   },
   {
@@ -10326,6 +11392,7 @@
     "price": 690,
     "promo": false,
     "isNew": true,
+    "category": "Расходные материалы",
     "stock": 20
   },
   {
@@ -10335,6 +11402,7 @@
     "name": "Пеньюары одноразовые СТАНДАРТ 100*140см 50шт/уп 01-882",
     "price": 387,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 11
   },
   {
@@ -10344,6 +11412,7 @@
     "name": "Пеньюары одноразовые СТАНДАРТ 100*160 см 50шт/уп 01-879",
     "price": 420,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 15
   },
   {
@@ -10354,6 +11423,7 @@
     "price": 525,
     "promo": false,
     "isNew": true,
+    "category": "Расходные материалы",
     "stock": 112
   },
   {
@@ -10363,6 +11433,7 @@
     "name": "перчатки виниловые,смотр.н/о \"L\" 100шт 01-943",
     "price": 901.25,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 16
   },
   {
@@ -10372,6 +11443,7 @@
     "name": "Перчатки нитриловые голубые \"L\" 200шт (100пар) 0200-233",
     "price": 1625,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 21
   },
   {
@@ -10381,6 +11453,7 @@
     "name": "перчатки нитриловые голубые \"M\" 200 шт. (100 пар) 0200-234",
     "price": 750,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 113
   },
   {
@@ -10390,6 +11463,7 @@
     "name": "перчатки нитриловые розовые \"XS\" 03-183",
     "price": 1105,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 1
   },
   {
@@ -10399,6 +11473,7 @@
     "name": "перчатки нитриловые фиолетовые \"S\" 100 пар (200 шт.) 0200-235",
     "price": 1394.44,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 74
   },
   {
@@ -10408,6 +11483,7 @@
     "name": "Перчатки нитриловые черные \"L\" 100шт 11-675",
     "price": 376.05,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 96
   },
   {
@@ -10417,6 +11493,7 @@
     "name": "Перчатки нитриловые черные \"M\" 100шт 11-676/50549",
     "price": 376,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 39
   },
   {
@@ -10427,6 +11504,7 @@
     "price": 376,
     "promo": false,
     "isNew": true,
+    "category": "Расходные материалы",
     "stock": 19
   },
   {
@@ -10436,6 +11514,7 @@
     "name": "Перчатки нитриловые черные \"XS\" 100шт 11-462",
     "price": 376,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 20
   },
   {
@@ -10445,6 +11524,7 @@
     "name": "Полотенце COTTO 35x70 см. №50 шт. 601-066",
     "price": 489.55,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 20
   },
   {
@@ -10454,6 +11534,7 @@
     "name": "Полотенце Стандарт 35x70 см. №100 шт. 01-359/SL-S35-100",
     "price": 701.99,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 12
   },
   {
@@ -10463,6 +11544,7 @@
     "name": "Полотенце Стандарт 45x90 см. №50 шт. 01-349/EL-S45-50",
     "price": 599,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 69
   },
   {
@@ -10472,6 +11554,7 @@
     "name": "Полотонца Ван тач Soft Хлопок\\сетка ЛЮКС белый 35*70 100шт\\уп пластом 07-657-100",
     "price": 865,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 9
   },
   {
@@ -10481,6 +11564,7 @@
     "name": "Полотонца Ван тач Soft Хлопок\\сетка ЛЮКС белый 35*70 50шт\\уп пластом 07-656-50",
     "price": 435,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 24
   },
   {
@@ -10490,6 +11574,7 @@
     "name": "Полотонца Ван тач Soft Хлопок\\сетка ЛЮКС белый 45*90 50шт\\уп пластом 07-662-50",
     "price": 725,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 55
   },
   {
@@ -10501,6 +11586,7 @@
     "promo": true,
     "oldPrice": 255,
     "discountPct": 7.0,
+    "category": "Расходные материалы",
     "stock": 16
   },
   {
@@ -10510,6 +11596,7 @@
     "name": "Салфетки 30х40 100шт. 00-147",
     "price": 358.75,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 10
   },
   {
@@ -10519,6 +11606,7 @@
     "name": "Фартук п/э 70х120 50шт. 01-626",
     "price": 247.04,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 27
   },
   {
@@ -10528,6 +11616,7 @@
     "name": "фольга 12см*100м*16мкр тисненая 006996",
     "price": 470,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 49
   },
   {
@@ -10537,6 +11626,7 @@
     "name": "фольга 12см*100м*18мкр 001838",
     "price": 390,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 170
   },
   {
@@ -10546,6 +11636,7 @@
     "name": "фольга 12см*100м*18мкр тисненая 006997",
     "price": 490,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 135
   },
   {
@@ -10555,6 +11646,7 @@
     "name": "фольга 12см*25м*16мкр фа25",
     "price": 86.34,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 161
   },
   {
@@ -10564,6 +11656,7 @@
     "name": "фольга 12см*25м*18мкр 03-449/ф25",
     "price": 95,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 253
   },
   {
@@ -10573,6 +11666,7 @@
     "name": "фольга 12см*50м*18мкр 03-450/ф50",
     "price": 203.44,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 189
   },
   {
@@ -10582,6 +11676,7 @@
     "name": "Шапочки \"Шарлотка\" 50 шт ,ЧЕРНЫЕ 603-208",
     "price": 110.94,
     "promo": false,
+    "category": "Расходные материалы",
     "stock": 26
   },
   {
@@ -10592,6 +11687,7 @@
     "price": 99,
     "promo": false,
     "isNew": true,
+    "category": "Расходные материалы",
     "stock": 3
   }
 ]

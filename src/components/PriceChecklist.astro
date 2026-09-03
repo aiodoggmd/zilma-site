@@ -10,6 +10,7 @@ interface Item {
   discountPct?: number;
   isNew?: boolean;
   stock?: number;
+  category?: string;
 }
 
 interface Props {
@@ -83,40 +84,22 @@ const popularBrands = groupBy === 'brand' && brandEntries.length > 5
   ? PREFERRED_POPULAR_BRANDS.map((name) => brandByName.get(name)).filter((b): b is (typeof brandEntries)[number] => Boolean(b))
   : [];
 
-// «Категории» — в прайсе нет отдельного поля типа товара, поэтому категория определяется
-// эвристикой по ключевым словам в названии. Неидеально (пограничные случаи возможны), но
-// достаточно для навигации по каталогу — точная ручная разметка ~1150 позиций не нужна.
-const CATEGORY_ORDER = ['Окрашивание', 'Уход', 'Стайлинг', 'Инструменты'] as const;
-type Category = (typeof CATEGORY_ORDER)[number];
-const CATEGORY_KEYWORDS: Record<Category, string[]> = {
-  Окрашивание: [
-    'краска', 'краситель', 'оттенок', 'оксид', 'окисл', 'welloxon', 'блондор',
-    'блондоран', 'блонд', 'супра', 'осветл', 'осветя', 'тонир', 'мелиран',
-    'пигмент', 'корректор цвета',
-  ],
-  Уход: [
-    'шампунь', 'бальзам', 'маска', 'кондиционер', 'сыворотка', 'эссенция',
-    'филлер', 'уход', 'крем для волос', 'флюид для волос',
-  ],
-  Стайлинг: [
-    'лак для волос', 'лак ', 'мусс', 'гель', 'пенка', 'спрей', 'воск',
-    'текстур', 'стайлинг', 'моделирующ',
-  ],
-  Инструменты: [
-    'ножниц', 'расчёск', 'расческ', 'фен', 'зажим', 'фольга', 'перчатк',
-    'кисть', 'пеньюар', 'полотенце', 'диффузор', 'утюжок', 'плойка',
-    'накидк', 'пелерин', 'шапочк', 'одноразов',
-  ],
-};
-function categorize(name: string): Category | null {
-  const n = name.toLowerCase();
-  for (const cat of CATEGORY_ORDER) {
-    if (CATEGORY_KEYWORDS[cat].some((kw) => n.includes(kw))) return cat;
-  }
-  return null;
+// «Категории» — реальные, проставлены пользователем вручную в прайсе (колонка F,
+// price-current.xlsx, номер 1-17), см. src/data/price-categories.json и
+// scripts/xlsx-to-price-items.py. Порядок — как в списке пользователя, не алфавитный.
+// Товары без категории (единичные нехайрушные позиции вроде бальзама для губ) просто не
+// попадают ни в одну группу — не нужны в категориях, остаются доступны через «По бренду».
+const CATEGORY_ORDER = [
+  'Аммиачные красители', 'Безаммиачные красители', 'Окислители и осветляющие средства',
+  'Технические средства', 'Химия волос', 'Ампулы/концентраты', 'Брови и ресницы',
+  'Шампуни', 'Кондиционеры', 'Маски', 'Несмываемый уход', 'Термозащита', 'Лаки',
+  'Спреи', 'Пенки', 'Крема и гели для укладки', 'Расходные материалы',
+] as const;
+function categorize(it: Item): string | null {
+  return it.category ?? null;
 }
 const categoryCounts = groupBy === 'brand'
-  ? CATEGORY_ORDER.map((cat) => ({ cat, total: items.filter((it) => categorize(it.name) === cat).length })).filter((c) => c.total > 0)
+  ? CATEGORY_ORDER.map((cat) => ({ cat, total: items.filter((it) => categorize(it) === cat).length })).filter((c) => c.total > 0)
   : [];
 
 // Группировка по ступени скидки (15%/7%) -> бренд -> товары — только для окна «Акции».
@@ -255,7 +238,7 @@ const bestDeals = groupBy === 'discount'
           {flat.length > 0 && (
             <ul>
               {flat.map((it) => (
-                <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it.name) ?? ''}>
+                <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
                   <label>
                     <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                     <span class="pc-item-name">{it.name}</span>
@@ -284,7 +267,7 @@ const bestDeals = groupBy === 'discount'
               <summary>{line} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
               <ul>
                 {list.map((it) => (
-                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it.name) ?? ''}>
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                       <span class="pc-item-name">{it.name}</span>
@@ -318,7 +301,7 @@ const bestDeals = groupBy === 'discount'
         <p class="pc-best-deal-label">Лучшая скидка</p>
         <ul class="pc-best-deal-list">
           {bestDeals.map((deal) => (
-            <li class:list={['pc-item', { 'pc-promo': deal.promo }]} data-name={deal.name.toLowerCase()} data-brand={(deal.brand ?? '').toLowerCase()} data-line="" data-category={categorize(deal.name) ?? ''}>
+            <li class:list={['pc-item', { 'pc-promo': deal.promo }]} data-name={deal.name.toLowerCase()} data-brand={(deal.brand ?? '').toLowerCase()} data-line="" data-category={categorize(deal) ?? ''}>
               <label>
                 <input type="checkbox" class="pc-check" data-name={deal.name} data-price={deal.price} data-brand-label={deal.brand ?? ''} data-promo={deal.promo ? '1' : ''} />
                 <span class="pc-item-name">
@@ -352,7 +335,7 @@ const bestDeals = groupBy === 'discount'
               <summary>{brand} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
               <ul>
                 {list.map((it) => (
-                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it.name) ?? ''}>
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                       <span class="pc-item-name">{it.name}</span>

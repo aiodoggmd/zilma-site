@@ -34,6 +34,36 @@ PROMO_META_PATH = ROOT / "Price" / "promo-meta.json"
 FIRST_SEEN_PATH = ROOT / "src" / "data" / "price-first-seen.json"
 NEW_WINDOW_DAYS = 14
 
+# Категории — журнал "название товара -> номер категории" В РЕПОЗИТОРИИ (не в Price/),
+# заведён 2026-09-03 по прямой просьбе пользователя: он вручную проставляет категории
+# прямо в колонке F price-current.xlsx, но build_price_current.py регенерирует этот файл
+# из свежих 1С-исходников и ничего не знает о ручной разметке - без этого журнала она бы
+# терялась при каждом обновлении прайса. Источник истины при каждом запуске - сама
+# колонка F текущего price-current.xlsx (пользователь мог поменять категорию), журнал
+# только переживает пересборки. build_price_current.py читает этот же файл, чтобы
+# заранее проставить уже известные категории в новый прайс и подсветить синим то, чего
+# в журнале ещё нет (см. Price/build_price_current.py, add_category_column).
+CATEGORIES_PATH = ROOT / "src" / "data" / "price-categories.json"
+CATEGORY_NAMES = {
+    1: "Аммиачные красители",
+    2: "Безаммиачные красители",
+    3: "Окислители и осветляющие средства",
+    4: "Технические средства",
+    5: "Химия волос",
+    6: "Ампулы/концентраты",
+    7: "Брови и ресницы",
+    8: "Шампуни",
+    9: "Кондиционеры",
+    10: "Маски",
+    11: "Несмываемый уход",
+    12: "Термозащита",
+    13: "Лаки",
+    14: "Спреи",
+    15: "Пенки",
+    16: "Крема и гели для укладки",
+    17: "Расходные материалы",
+}
+
 # Остатки на складе (Price/Остатки_*.xlsx, выгрузка 1С) — для честного "Лучшая скидка" в
 # каталоге (сортировка по количеству на складе, а не только по проценту скидки). Полностью
 # автоматически: сам находит самый свежий файл по дате в имени, отдельно запускать ничего
@@ -163,6 +193,10 @@ def main() -> None:
     else:
         print(f"ВНИМАНИЕ: сайдкар {PROMO_META_PATH} не найден - акционные товары останутся без oldPrice/discountPct.")
 
+    categories = {}
+    if CATEGORIES_PATH.exists():
+        categories = json.loads(CATEGORIES_PATH.read_text(encoding="utf-8"))
+
     today = date.today()
     is_bootstrap = not FIRST_SEEN_PATH.exists()
     first_seen = {} if is_bootstrap else json.loads(FIRST_SEEN_PATH.read_text(encoding="utf-8"))
@@ -186,6 +220,7 @@ def main() -> None:
         name_cell = row[1] if len(row) > 1 else None
         price_cell = row[2] if len(row) > 2 else None
         unit_cell = row[3] if len(row) > 3 else None
+        category_cell = row[5] if len(row) > 5 else None
         if name_cell is None or name_cell.value is None:
             continue
         name = str(name_cell.value).strip()
@@ -248,6 +283,21 @@ def main() -> None:
         if (today - date.fromisoformat(seen_date)).days <= NEW_WINDOW_DAYS:
             item["isNew"] = True
 
+        # Категория (см. CATEGORY_NAMES выше) - источник истины при каждом запуске это сама
+        # колонка F текущего price-current.xlsx (пользователь мог поправить категорию вручную),
+        # журнал categories обновляется отсюда же и просто переживает следующую пересборку
+        # прайса. Если в колонке пусто - подстраховка журналом (на случай, если кто-то прогнал
+        # build_price_current.py без add_category_column и разметка временно потерялась).
+        cat_value = category_cell.value if category_cell else None
+        cat_num = None
+        if isinstance(cat_value, (int, float)) and int(cat_value) in CATEGORY_NAMES:
+            cat_num = int(cat_value)
+            categories[clean_name] = cat_num
+        else:
+            cat_num = categories.get(clean_name)
+        if cat_num is not None and cat_num in CATEGORY_NAMES:
+            item["category"] = CATEGORY_NAMES[cat_num]
+
         items.append(item)
 
     # Остатки на складе — отдельным проходом ПОСЛЕ сборки items (проверка на неоднозначность
@@ -259,14 +309,20 @@ def main() -> None:
             it["stock"] = qty
 
     FIRST_SEEN_PATH.write_text(json.dumps(first_seen, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
+    CATEGORIES_PATH.write_text(json.dumps(categories, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
 
     OUT_JSON.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
     promo_count = sum(1 for i in items if i["promo"])
     with_old_price = sum(1 for i in items if i.get("oldPrice") is not None)
     new_count = sum(1 for i in items if i.get("isNew"))
     with_stock = sum(1 for i in items if i.get("stock") is not None)
+    with_category = sum(1 for i in items if i.get("category"))
+    without_category = [i["name"] for i in items if not i.get("category")]
     print(f"Сохранено {len(items)} товаров ({promo_count} акционных, из них {with_old_price} со старой ценой; "
-          f"{new_count} новинок за последние {NEW_WINDOW_DAYS} дн.; {with_stock} с известным остатком на складе) -> {OUT_JSON}")
+          f"{new_count} новинок за последние {NEW_WINDOW_DAYS} дн.; {with_stock} с известным остатком на складе; "
+          f"{with_category} с категорией) -> {OUT_JSON}")
+    if without_category:
+        print(f"Без категории (не попадут ни в одну категорию каталога, только в бренд): {without_category}")
     if promo_count and with_old_price < promo_count:
         print(f"ВНИМАНИЕ: {promo_count - with_old_price} акционных товаров не нашлись в сайдкаре по имени - проверить.")
     if unknown_headers:
