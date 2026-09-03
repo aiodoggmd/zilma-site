@@ -700,6 +700,46 @@ const bestDeals = groupBy === 'discount'
     box-shadow: var(--shadow-sm);
   }
 
+  /* Плоский бренд (без линеек, data-has-lines="0") в открытом виде - не синяя "пилюля", а
+     обычная белая строка: имя убрано целиком (оно и так уже в заголовке диалога, см. JS
+     toggle-обработчик), остаются только шеврон/счётчик/лупа - по прямой просьбе пользователя
+     2026-09-04 ("делай на белом фоне без названия... убери синеву"). У брендов С линейками эта
+     синяя пилюля остаётся как была - там summary видна ТОЛЬКО в режиме категорий (см. правило
+     выше), где название реально нужно (одновременно открыто много брендов, не один). */
+  .pc-group-brand[data-has-lines="0"][open] > summary {
+    display: flex;
+    color: var(--color-ink);
+    background: var(--color-paper);
+    border: none;
+    border-bottom: 1px solid var(--color-panel-line);
+    padding: 12px 14px;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .pc-group-brand[data-has-lines="0"][open] > summary .pc-row-name {
+    display: none;
+  }
+
+  .pc-group-brand[data-has-lines="0"][open] > summary .pc-group-count {
+    color: #8a7f7a;
+  }
+
+  .pc-group-brand[data-has-lines="0"][open] > summary .pc-row-chevron {
+    color: var(--color-blue-dark);
+  }
+
+  .pc-group-brand[data-has-lines="0"][open] > summary .pc-row-search-btn {
+    border-color: var(--color-panel-line);
+    color: var(--color-meta);
+    background: var(--color-paper);
+  }
+
+  .pc-group-brand[data-has-lines="0"][open] > summary .pc-row-search-btn:hover {
+    border-color: var(--color-blue-dark);
+    color: var(--color-blue-dark);
+  }
+
   .pc-group-brand[open] > summary .pc-group-count {
     color: rgba(255, 255, 255, 0.75);
   }
@@ -2014,6 +2054,15 @@ const bestDeals = groupBy === 'discount'
         e.stopPropagation();
         const details = btn.closest<HTMLDetailsElement>('details.pc-group');
         if (details) {
+          // Клик по лупе гасится stopPropagation() выше - обработчик клика на самой summary
+          // (см. ниже, записывает data-entry-scroll-y) до неё не долетает, точку входа нужно
+          // сохранить прямо тут же, иначе "Назад" после открытия ЧЕРЕЗ ЛУПУ восстанавливать
+          // нечего (реальный баг, найден пользователем 2026-09-04, скриншот "LONDA возвращается
+          // сюда" - позиция была случайной, а не той, откуда реально заходили через лупу).
+          if (!details.open) {
+            const scrollEl = root.querySelector<HTMLElement>('.pc-groups');
+            if (scrollEl) details.dataset.entryScrollY = String(scrollEl.scrollTop);
+          }
           details.open = true;
           delete details.dataset.openedBySearch; // клик по лупе - осознанное действие, не побочный эффект поиска
         }
