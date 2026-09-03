@@ -64,7 +64,7 @@ const tabs = [
   }
 
   .tab.brand {
-    background: var(--color-panel);
+    background: var(--color-paper);
     border-color: var(--color-panel-line);
     color: var(--color-ink);
     font-size: 0.82rem;
@@ -78,9 +78,10 @@ const tabs = [
   }
 
   .tab {
-    border: 1px solid transparent;
+    background: var(--color-paper);
+    border: 1.5px solid var(--color-panel-line);
     padding: 9px 18px;
-    border-radius: 999px;
+    border-radius: 8px;
     font-size: 0.88rem;
     font-family: var(--font-sans);
     font-weight: 600;
@@ -91,8 +92,7 @@ const tabs = [
 
   /* «Все» — нейтральный, вне цветовой схемы категорий */
   .tab.all {
-    background: var(--color-panel);
-    border-color: var(--color-panel-line);
+    border-color: var(--color-ink);
     color: var(--color-ink);
   }
 
@@ -104,7 +104,7 @@ const tabs = [
 
   /* Колористика — синий */
   .tab.колористика {
-    background: var(--color-pastel-blue);
+    border-color: var(--color-blue-dark);
     color: var(--color-blue-dark);
   }
 
@@ -115,7 +115,7 @@ const tabs = [
 
   /* Уход и восстановление — красный */
   .tab.уход-и-восстановление {
-    background: var(--color-pastel-red);
+    border-color: var(--color-red);
     color: var(--color-red-dark);
   }
 
@@ -126,13 +126,19 @@ const tabs = [
 
   /* База знаний — градиент красный→синий (пересекает обе темы) */
   .tab.база-знаний {
-    background: linear-gradient(90deg, var(--color-pastel-red), var(--color-pastel-blue));
-    color: var(--color-ink);
+    border-color: var(--color-panel-line);
+    background: var(--color-paper);
+    background-image: linear-gradient(90deg, var(--color-red), var(--color-blue-dark));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .tab.база-знаний.active {
-    background: linear-gradient(90deg, var(--color-red), var(--color-blue-dark));
-    color: #fff;
+    background-image: none;
+    background-color: var(--color-ink);
+    -webkit-text-fill-color: #fff;
+    border-color: var(--color-ink);
   }
 
   .tab:hover {
@@ -145,7 +151,7 @@ const tabs = [
     gap: 8px;
     background: var(--color-paper);
     border: 1px solid var(--color-panel-line);
-    border-radius: 999px;
+    border-radius: 8px;
     padding: 9px 16px;
     color: var(--color-meta);
     box-shadow: var(--shadow-sm);
