@@ -154,6 +154,15 @@ if (groupBy === 'discount') {
 ---
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
   <div class="pc-header">
+    {categoryCounts.length > 0 && (
+      <button type="button" class="pc-menu-btn" data-scroll-to-categories aria-label="Категории">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="17" x2="20" y2="17" />
+        </svg>
+      </button>
+    )}
     <div class="pc-header-brand">
       <h3 class="pc-header-logo">{heading}</h3>
       {heading === 'ZILMA' && <p class="pc-header-tagline">Профессиональная косметика</p>}
@@ -191,7 +200,7 @@ if (groupBy === 'discount') {
         </div>
         {categoryCounts.length > 0 && (
           <>
-            <p class="pc-popular-title">Категории</p>
+            <p class="pc-popular-title" id="pc-categories-title">Категории</p>
             <div class="pc-popular-grid">
               {categoryCounts.map(({ cat, total }) => (
                 <button type="button" class="pc-popular-card" data-filter-category={cat}>
@@ -366,9 +375,27 @@ if (groupBy === 'discount') {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 2px;
     min-width: 0;
+  }
+
+  .pc-menu-btn {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-ink);
+    border: none;
+    cursor: pointer;
+  }
+
+  .pc-menu-btn:hover {
+    color: var(--color-blue-dark);
   }
 
   /* Заголовок-заглушка по умолчанию — логотип-надпись «ZILMA» по центру шапки (тот же дух,
@@ -1359,6 +1386,10 @@ if (groupBy === 'discount') {
     // и всегда доступной нижней плашкой навигации она лишняя). Стрелка «←» теперь «умная»:
     // внутри открытого бренда — сворачивает к списку папок (как раньше), а на самом верхнем
     // уровне (папки уже свёрнуты) — закрывает диалог целиком, как обычная кнопка «Назад».
+    root.querySelector('[data-scroll-to-categories]')?.addEventListener('click', () => {
+      root.querySelector('#pc-categories-title')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+
     root.querySelector('[data-back-to-folders]')?.addEventListener('click', () => {
       const anyOpen = groups.some((g) => g.open);
       if (anyOpen) {
