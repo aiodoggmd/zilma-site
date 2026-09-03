@@ -153,13 +153,14 @@ if (groupBy === 'discount') {
 }
 
 // «Лучшая скидка» — честная витрина без придуманного таймера/дедлайна (в прайсе нет реальных
-// time-limited кампаний, скидка — постоянный флаг до следующего обновления прайса). Просто
-// товар с максимальной РЕАЛЬНОЙ разницей в рублях между старой и новой ценой.
-const bestDeal = groupBy === 'discount'
+// time-limited кампаний, скидка — постоянный флаг до следующего обновления прайса). Топ-7
+// товаров с максимальной РЕАЛЬНОЙ разницей в рублях между старой и новой ценой.
+const bestDeals = groupBy === 'discount'
   ? [...items]
       .filter((it) => it.promo && it.oldPrice != null)
-      .sort((a, b) => (b.oldPrice! - b.price) - (a.oldPrice! - a.price))[0]
-  : null;
+      .sort((a, b) => (b.oldPrice! - b.price) - (a.oldPrice! - a.price))
+      .slice(0, 7)
+  : [];
 ---
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
   <div class="pc-header">
@@ -290,28 +291,30 @@ const bestDeal = groupBy === 'discount'
         </div>
       </details>
     ))}
-    {bestDeal && (
+    {bestDeals.length > 0 && (
       <div class="pc-best-deal">
         <p class="pc-best-deal-label">Лучшая скидка</p>
         <ul class="pc-best-deal-list">
-          <li class:list={['pc-item', { 'pc-promo': bestDeal.promo }]} data-name={bestDeal.name.toLowerCase()} data-brand={(bestDeal.brand ?? '').toLowerCase()} data-line="" data-category={categorize(bestDeal.name) ?? ''}>
-            <label>
-              <input type="checkbox" class="pc-check" data-name={bestDeal.name} data-price={bestDeal.price} data-brand-label={bestDeal.brand ?? ''} data-promo={bestDeal.promo ? '1' : ''} />
-              <span class="pc-item-name">{bestDeal.name}</span>
-              <span class="pc-item-price">
-                <b class="pc-price-now">{bestDeal.price} ₽</b>
-                {bestDeal.oldPrice != null && <span class="pc-old-price">{bestDeal.oldPrice} ₽</span>}
-                <span class="pc-badges">
-                  <span class="pc-badge">{bestDeal.discountPct ? `-${bestDeal.discountPct}%` : 'Акция'}</span>
+          {bestDeals.map((deal) => (
+            <li class:list={['pc-item', { 'pc-promo': deal.promo }]} data-name={deal.name.toLowerCase()} data-brand={(deal.brand ?? '').toLowerCase()} data-line="" data-category={categorize(deal.name) ?? ''}>
+              <label>
+                <input type="checkbox" class="pc-check" data-name={deal.name} data-price={deal.price} data-brand-label={deal.brand ?? ''} data-promo={deal.promo ? '1' : ''} />
+                <span class="pc-item-name">{deal.name}</span>
+                <span class="pc-item-price">
+                  <b class="pc-price-now">{deal.price} ₽</b>
+                  {deal.oldPrice != null && <span class="pc-old-price">{deal.oldPrice} ₽</span>}
+                  <span class="pc-badges">
+                    <span class="pc-badge">{deal.discountPct ? `-${deal.discountPct}%` : 'Акция'}</span>
+                  </span>
                 </span>
-              </span>
-            </label>
-            <div class="pc-qty">
-              <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
-              <input type="number" class="pc-qty-input" value="0" min="0" max="999" inputmode="numeric" aria-label="Количество" />
-              <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
-            </div>
-          </li>
+              </label>
+              <div class="pc-qty">
+                <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
+                <input type="number" class="pc-qty-input" value="0" min="0" max="999" inputmode="numeric" aria-label="Количество" />
+                <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
     )}
