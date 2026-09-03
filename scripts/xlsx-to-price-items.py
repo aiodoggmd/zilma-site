@@ -317,7 +317,7 @@ def main() -> None:
     new_count = sum(1 for i in items if i.get("isNew"))
     with_stock = sum(1 for i in items if i.get("stock") is not None)
     with_category = sum(1 for i in items if i.get("category"))
-    without_category = [i["name"] for i in items if not i.get("category")]
+    without_category = [f'{i["brand"]} / {i["name"]}' for i in items if not i.get("category")]
     print(f"Сохранено {len(items)} товаров ({promo_count} акционных, из них {with_old_price} со старой ценой; "
           f"{new_count} новинок за последние {NEW_WINDOW_DAYS} дн.; {with_stock} с известным остатком на складе; "
           f"{with_category} с категорией) -> {OUT_JSON}")
