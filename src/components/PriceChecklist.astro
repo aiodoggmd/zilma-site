@@ -1462,6 +1462,7 @@ const bestDeals = groupBy === 'discount'
     // сбрасывает наверх - там это ожидаемо, список брендов и так короткий и открывается заново.
     const savedScrollY = wasCategoryMode ? Number(dialog.dataset.categoryScrollY ?? 0) : 0;
     delete dialog.dataset.categoryScrollY;
+    delete dialog.dataset.preSearchTab;
     const scrollEl = dialog.querySelector<HTMLElement>('.pc-groups');
     if (scrollEl) {
       requestAnimationFrame(() => {
@@ -1702,6 +1703,11 @@ const bestDeals = groupBy === 'discount'
       if (btn.disabled) return;
       btn.addEventListener('click', () => {
         const tab = btn.dataset.modeTab as 'category' | 'brand';
+        // Явный ручной выбор вкладки отменяет любое отложенное "вернуть на категорию после
+        // очистки поиска" (см. preSearchTab в обработчике .pc-search input) - иначе стартовав
+        // новый поиск уже с вкладки «По бренду», можно было случайно улететь обратно в
+        // категории при очистке поля, хотя пользователь сюда пришёл сам, не через поиск.
+        delete root.dataset.preSearchTab;
         setActiveTab(root, tab);
       });
     });
@@ -1911,8 +1917,16 @@ const bestDeals = groupBy === 'discount'
       const tokens = normalizeSearch(search.value.trim()).split(/\s+/).filter(Boolean);
       // Поиск ищет по товарам/брендам, а не по категориям — если ввели что-то, пока была
       // активна вкладка «По категории», переключаем на «По бренду», чтобы результат было видно.
+      // Запоминаем, откуда переключили (`preSearchTab`) — реальная жалоба пользователя
+      // 2026-09-03: стёр текст поиска и остался на «По бренду» плоским списком закрытых папок,
+      // хотя начинал с экрана категорий; «Назад» после этого не возвращал на исходный экран,
+      // просто чистил уже пустое поле. При очистке поиска возвращаем вкладку обратно.
       if (tokens.length > 0 && root.dataset.activeTab === 'category') {
+        root.dataset.preSearchTab = 'category';
         setActiveTab(root, 'brand');
+      } else if (tokens.length === 0 && root.dataset.preSearchTab === 'category') {
+        delete root.dataset.preSearchTab;
+        setActiveTab(root, 'category');
       }
       // Если уже открыт конкретный бренд («экран бренда») — поиск ищет только внутри него,
       // не по всему прайсу: набирая "7/0" внутри LONDA, не хочется внезапно улететь в WELLA.
