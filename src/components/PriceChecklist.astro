@@ -504,10 +504,9 @@ const bestDeals = groupBy === 'discount'
     display: none;
   }
 
-  /* Три режима навигации — «По задаче» (заглушка, скоро) / «По категории» / «По бренду».
-     По прямой просьбе пользователя (2026-09-04): бренд перестаёт быть точкой входа по
-     умолчанию, категория и бренд — равноправные вкладки. Стиль — точно как в согласованном
-     макете (pill-таб, активная красная заливка, неактивные — бежево-панельные). */
+  /* Две вкладки навигации — «По категории» / «По бренду», равноправные (2026-09-04).
+     Стиль сверен с FilterTabs.astro (фильтры под статьями): белый фон, острые углы,
+     заливка цветом только в активном состоянии - не бежевая панель, как было раньше. */
   .pc-mode-tabs {
     flex: none;
     display: flex;
@@ -524,15 +523,16 @@ const bestDeals = groupBy === 'discount'
     font-size: 0.72rem;
     font-weight: 700;
     padding: 9px 4px;
-    border-radius: 999px;
-    background: var(--color-panel);
-    color: var(--color-meta);
-    border: none;
+    border-radius: 8px;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    border: 1.5px solid var(--color-panel-line);
     cursor: pointer;
   }
 
   .pc-mode-tab.active {
     background: var(--color-red);
+    border-color: var(--color-red);
     color: #fff;
   }
 
