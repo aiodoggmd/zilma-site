@@ -82,6 +82,42 @@ const popularBrands = groupBy === 'brand' && brandEntries.length > 5
   ? PREFERRED_POPULAR_BRANDS.map((name) => brandByName.get(name)).filter((b): b is (typeof brandEntries)[number] => Boolean(b))
   : [];
 
+// «Категории» — в прайсе нет отдельного поля типа товара, поэтому категория определяется
+// эвристикой по ключевым словам в названии. Неидеально (пограничные случаи возможны), но
+// достаточно для навигации по каталогу — точная ручная разметка ~1150 позиций не нужна.
+const CATEGORY_ORDER = ['Окрашивание', 'Уход', 'Стайлинг', 'Инструменты'] as const;
+type Category = (typeof CATEGORY_ORDER)[number];
+const CATEGORY_KEYWORDS: Record<Category, string[]> = {
+  Окрашивание: [
+    'краска', 'краситель', 'оттенок', 'оксид', 'окисл', 'welloxon', 'блондор',
+    'блондоран', 'блонд', 'супра', 'осветл', 'осветя', 'тонир', 'мелиран',
+    'пигмент', 'корректор цвета',
+  ],
+  Уход: [
+    'шампунь', 'бальзам', 'маска', 'кондиционер', 'сыворотка', 'эссенция',
+    'филлер', 'уход', 'крем для волос', 'флюид для волос',
+  ],
+  Стайлинг: [
+    'лак для волос', 'лак ', 'мусс', 'гель', 'пенка', 'спрей', 'воск',
+    'текстур', 'стайлинг', 'моделирующ',
+  ],
+  Инструменты: [
+    'ножниц', 'расчёск', 'расческ', 'фен', 'зажим', 'фольга', 'перчатк',
+    'кисть', 'пеньюар', 'полотенце', 'диффузор', 'утюжок', 'плойка',
+    'накидк', 'пелерин', 'шапочк', 'одноразов',
+  ],
+};
+function categorize(name: string): Category | null {
+  const n = name.toLowerCase();
+  for (const cat of CATEGORY_ORDER) {
+    if (CATEGORY_KEYWORDS[cat].some((kw) => n.includes(kw))) return cat;
+  }
+  return null;
+}
+const categoryCounts = groupBy === 'brand'
+  ? CATEGORY_ORDER.map((cat) => ({ cat, total: items.filter((it) => categorize(it.name) === cat).length })).filter((c) => c.total > 0)
+  : [];
+
 // Группировка по ступени скидки (15%/7%) -> бренд -> товары — только для окна «Акции».
 // Ступени идут в фиксированном порядке (большая скидка первой), а не по алфавиту.
 const DISCOUNT_TIER_ORDER = [15, 7];
@@ -154,6 +190,19 @@ if (groupBy === 'discount') {
             </button>
           ))}
         </div>
+        {categoryCounts.length > 0 && (
+          <>
+            <p class="pc-popular-title">Категории</p>
+            <div class="pc-popular-grid">
+              {categoryCounts.map(({ cat, total }) => (
+                <button type="button" class="pc-popular-card" data-filter-category={cat}>
+                  <span class="pc-popular-name">{cat}</span>
+                  <span class="pc-popular-count">{total} {pluralItems(total)}</span>
+                </button>
+              ))}
+            </div>
+          </>
+        )}
         <a href="/#open-promo" class="pc-promo-banner" data-open-promo-from-catalog>
           <span class="pc-promo-banner-title">Больше выгодных предложений</span>
           <span class="pc-promo-banner-sub">Специальные скидки при заказе через сайт</span>
@@ -169,7 +218,7 @@ if (groupBy === 'discount') {
           {flat.length > 0 && (
             <ul>
               {flat.map((it) => (
-                <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="">
+                <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it.name) ?? ''}>
                   <label>
                     <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                     <span class="pc-item-name">{it.name}</span>
@@ -198,7 +247,7 @@ if (groupBy === 'discount') {
               <summary>{line} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
               <ul>
                 {list.map((it) => (
-                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()}>
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it.name) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                       <span class="pc-item-name">{it.name}</span>
@@ -235,7 +284,7 @@ if (groupBy === 'discount') {
               <summary>{brand} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
               <ul>
                 {list.map((it) => (
-                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="">
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it.name) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                       <span class="pc-item-name">{it.name}</span>
@@ -1134,8 +1183,15 @@ if (groupBy === 'discount') {
   // раскрытой папки (бренд/линейка с длинным списком товаров) — сворачивает обратно к списку папок,
   // чтобы не листать наверх вручную. Отмеченные чекбоксы не трогает — только .open у <details> и скролл.
   function collapseToFolderList(dialog: HTMLDialogElement) {
+    delete dialog.dataset.categoryMode;
     dialog.querySelectorAll<HTMLDetailsElement>('.pc-group').forEach((d) => {
       d.open = false;
+    });
+    // Фильтр по категории (см. [data-filter-category]) прячет несовпавшие товары через
+    // li.hidden напрямую, в обход обычного поиска — сбрасываем здесь же, иначе после выхода
+    // из категории и захода в обычный бренд там могли остаться "залипшие" скрытые строки.
+    dialog.querySelectorAll<HTMLLIElement>('.pc-item[hidden]').forEach((li) => {
+      li.hidden = false;
     });
     const search = dialog.querySelector<HTMLInputElement>('.pc-search');
     if (search && search.value) {
@@ -1330,6 +1386,11 @@ if (groupBy === 'discount') {
     if (root.dataset.groupBy === 'brand') {
       root.querySelectorAll<HTMLDetailsElement>('.pc-group-brand').forEach((brandEl) => {
         brandEl.addEventListener('toggle', () => {
+          // Фильтр по категории открывает СРАЗУ много брендов — без этой проверки каждый
+          // такой toggle (событие асинхронное, см. requestAnimationFrame в обработчике
+          // категории) по очереди перезаписывал бы шапку СВОИМ именем бренда вместо
+          // названия категории, последний открытый просто побеждал бы гонку.
+          if (root.dataset.categoryMode === '1') return;
           const brandName = brandEl.dataset.brand;
           if (brandEl.open && brandName) {
             if (headerTitle) {
@@ -1377,6 +1438,38 @@ if (groupBy === 'discount') {
           target.open = true;
           target.scrollIntoView({ block: 'start', behavior: 'smooth' });
         }
+      });
+    });
+
+    // Карточка «Категории» — фильтр по типу товара (эвристика по названию, см. frontmatter
+    // компонента). В отличие от «Популярные» (ярлык на ОДИН бренд), категория обычно
+    // встречается сразу во многих брендах — открываем ВСЕ бренды/линейки, где нашлось
+    // совпадение, прячем остальные. Работает поверх той же CSS-логики "прячь неоткрытых
+    // соседей" (:has(.pc-search:placeholder-shown) ...) — она уже реагирует на .open, ничего
+    // отдельно для категорий дорабатывать не пришлось.
+    root.querySelectorAll<HTMLButtonElement>('[data-filter-category]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.filterCategory ?? '';
+        root.dataset.categoryMode = '1';
+        let anyVisibleTotal = false;
+        groups.forEach((g) => {
+          const groupItems = [...g.querySelectorAll<HTMLLIElement>('.pc-item')];
+          let anyVisible = false;
+          groupItems.forEach((li) => {
+            const match = li.dataset.category === cat;
+            li.hidden = !match;
+            if (match) anyVisible = true;
+          });
+          g.hidden = !anyVisible;
+          g.open = anyVisible;
+          if (anyVisible) anyVisibleTotal = true;
+        });
+        if (noResults) noResults.hidden = anyVisibleTotal;
+        if (headerTitle) {
+          headerTitle.textContent = cat;
+          headerTitle.classList.remove('pc-header-logo');
+        }
+        root.querySelector('.pc-groups')?.scrollTo({ top: 0 });
       });
     });
     // Клик по подложке (::backdrop) — событие всплывает с target === сам dialog, а не его содержимое.
