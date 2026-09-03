@@ -168,6 +168,7 @@ const bestDeals = groupBy === 'discount'
       for (const it of items) {
         if (!it.promo || it.oldPrice == null || it.stock == null) continue;
         if (it.name.toLowerCase().includes('дозатор')) continue; // расходник/аксессуар, не полноценный товар
+        if (it.brand === 'ОДНОРАЗОВАЯ ПРОДУКЦИЯ') continue; // тоже расходник, не товар для рекламы акции
         const brand = it.brand ?? 'Другое';
         const current = bestPerBrand.get(brand);
         if (!current || it.stock > (current.stock ?? 0)) {
@@ -176,7 +177,7 @@ const bestDeals = groupBy === 'discount'
       }
       return [...bestPerBrand.values()]
         .sort((a, b) => (b.stock ?? 0) - (a.stock ?? 0))
-        .slice(0, 3);
+        .slice(0, 5);
     })()
   : [];
 ---
@@ -1074,6 +1075,14 @@ const bestDeals = groupBy === 'discount'
     text-transform: uppercase;
     color: var(--color-ink);
     margin-bottom: 1px;
+  }
+
+  /* Топ-5 рендерится всегда (сервер не знает ширину экрана) — на мобильном показываем
+     только первые 3, чтобы блок не занимал слишком много места над ступенями скидки. */
+  @media (max-width: 640px) {
+    .pc-best-deal-list .pc-item:nth-child(n + 4) {
+      display: none;
+    }
   }
 
   /* Без явного чекбокса везде по каталогу (по просьбе пользователя, 2026-09-04) — активность
