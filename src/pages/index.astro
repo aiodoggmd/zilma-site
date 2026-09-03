@@ -121,6 +121,12 @@ const organizationLd = {
 </BaseLayout>
 
 <style>
+  /* Белый фон вместо тёплого беж-крема (--color-page-bg) — только на главной, глобальный
+     токен не трогаем (используется на страницах статей, там оставляем как было). */
+  :global(body) {
+    background: var(--color-paper);
+  }
+
   .price-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

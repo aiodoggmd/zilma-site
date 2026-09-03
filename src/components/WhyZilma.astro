@@ -30,11 +30,17 @@ const reasons: Reason[] = [
   }
 
   .why-card {
-    background: var(--color-panel);
+    background: var(--color-paper);
     border: 1px solid var(--color-panel-line);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 18px 18px 20px;
     border-top: 3px solid var(--color-red);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Чередуем акцент красный/синий вместо сплошного красного на всех четырёх карточках. */
+  .why-card:nth-child(2n) {
+    border-top-color: var(--color-blue-dark);
   }
 
   .why-title {
