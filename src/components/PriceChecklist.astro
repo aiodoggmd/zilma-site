@@ -308,7 +308,7 @@ const bestDeal = groupBy === 'discount'
             </label>
             <div class="pc-qty">
               <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
-              <input type="number" class="pc-qty-input" value="1" min="1" max="999" inputmode="numeric" aria-label="Количество" />
+              <input type="number" class="pc-qty-input" value="0" min="0" max="999" inputmode="numeric" aria-label="Количество" />
               <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
             </div>
           </li>
@@ -1015,9 +1015,14 @@ const bestDeal = groupBy === 'discount'
     margin: 0;
     padding: 4px 14px;
     background: var(--color-paper);
-    border: 1px solid var(--color-red);
+    border: 1px solid var(--color-panel-line);
     border-radius: 10px;
     box-shadow: var(--shadow-card);
+  }
+
+  /* Без явного чекбокса — активность решает количество (0 = не в заявке), см. степпер. */
+  .pc-best-deal-list .pc-check {
+    display: none;
   }
 
   .price-checklist:has(.pc-search:not(:placeholder-shown)) .pc-best-deal {
@@ -1678,7 +1683,7 @@ const bestDeal = groupBy === 'discount'
         const entry = byName.get(c.dataset.name ?? '');
         const qtyInput = c.closest('.pc-item')?.querySelector<HTMLInputElement>('.pc-qty-input');
         c.checked = !!entry;
-        if (qtyInput) qtyInput.value = entry ? String(entry.qty) : '1';
+        if (qtyInput) qtyInput.value = entry ? String(entry.qty) : qtyInput.min || '1';
       });
     }
     syncCheckedFromCart();
@@ -1692,8 +1697,14 @@ const bestDeal = groupBy === 'discount'
       const qtyInput = li.querySelector<HTMLInputElement>('.pc-qty-input');
       if (!check || !qtyInput) return;
 
+      // Минимум количества берём из атрибута min самого поля (обычные товары — "1", у карточки
+      // «Лучшая скидка» без видимого чекбокса — "0": количество 0 само по себе значит "не в
+      // заявке", "+" от 0 до 1 добавляет, "−" обратно до 0 убирает — чекбокс скрыт, но остаётся
+      // источником состояния для syncItemToCart/поиска, просто управляется только степпером).
+      const floor = Number(qtyInput.min) || 0;
+
       function clamp() {
-        const n = Math.max(1, Math.min(999, parseInt(qtyInput!.value, 10) || 1));
+        const n = Math.max(floor, Math.min(999, parseInt(qtyInput!.value, 10) || floor));
         qtyInput!.value = String(n);
         return n;
       }
@@ -1701,9 +1712,14 @@ const bestDeal = groupBy === 'discount'
       li.querySelectorAll<HTMLButtonElement>('.pc-qty-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
           const dir = Number(btn.dataset.qtyDir) || 0;
-          const n = Math.max(1, Math.min(999, (parseInt(qtyInput.value, 10) || 1) + dir));
+          const n = Math.max(floor, Math.min(999, (parseInt(qtyInput.value, 10) || floor) + dir));
           qtyInput.value = String(n);
-          if (!check.checked) {
+          if (n === 0) {
+            if (check.checked) {
+              check.checked = false;
+              syncItemToCart(check, qtyInput);
+            }
+          } else if (!check.checked) {
             check.checked = true;
             check.dispatchEvent(new Event('change'));
           } else {
@@ -1713,20 +1729,29 @@ const bestDeal = groupBy === 'discount'
       });
 
       qtyInput.addEventListener('change', () => {
-        clamp();
-        if (check.checked) syncItemToCart(check, qtyInput);
+        const n = clamp();
+        if (n === 0 && check.checked) {
+          check.checked = false;
+          syncItemToCart(check, qtyInput);
+        } else if (check.checked) {
+          syncItemToCart(check, qtyInput);
+        }
       });
       qtyInput.addEventListener('input', () => {
-        if (qtyInput.value && !check.checked) {
+        const n = parseInt(qtyInput.value, 10) || 0;
+        if (n > 0 && !check.checked) {
           check.checked = true;
           check.dispatchEvent(new Event('change'));
+        } else if (n === 0 && check.checked) {
+          check.checked = false;
+          syncItemToCart(check, qtyInput);
         } else if (check.checked) {
           syncItemToCart(check, qtyInput);
         }
       });
 
       check.addEventListener('change', () => {
-        if (!check.checked) qtyInput.value = '1';
+        if (!check.checked) qtyInput.value = qtyInput.min || '1';
         syncItemToCart(check, qtyInput);
       });
     });
