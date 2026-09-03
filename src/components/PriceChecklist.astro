@@ -530,13 +530,6 @@ const bestDeals = groupBy === 'discount'
     text-transform: uppercase;
   }
 
-  /* Заголовок ступени скидки («Скидка 15%/7%») при заходе внутрь — тот же шрифт/размер,
-     что у обычного имени бренда (.pc-header h3 без модификаторов), но красным и прописными. */
-  .pc-header h3.pc-header-tier {
-    color: var(--color-red);
-    text-transform: uppercase;
-  }
-
   .pc-header-tagline {
     display: none;
     margin: 0;
@@ -1697,22 +1690,20 @@ const bestDeals = groupBy === 'discount'
           // названия категории, последний открытый просто побеждал бы гонку.
           if (root.dataset.categoryMode === '1') return;
           const brandName = brandEl.dataset.brand;
-          // Ступень скидки (Акции) — тот же шрифт/размер, что у обычного имени бренда, но
-          // красным и прописными (по прямой просьбе пользователя) — свой отдельный класс,
-          // не .pc-header-logo (у него другой шрифт/размер, это именно логотип).
+          // Ступень скидки (Акции) — полностью в стиле лого (.pc-header-logo: серифный,
+          // красный, крупный, прописными), тот же класс, что у «ZILMA»/«Акции». Обычный
+          // бренд в Каталоге — как раньше, простым тёмным sans-serif текстом.
           const isTier = root.dataset.groupBy === 'discount';
           if (brandEl.open && brandName) {
             if (headerTitle) {
               headerTitle.textContent = brandName;
-              headerTitle.classList.remove('pc-header-logo');
-              headerTitle.classList.toggle('pc-header-tier', isTier);
+              headerTitle.classList.toggle('pc-header-logo', isTier);
             }
             if (search) search.placeholder = `Поиск по ${brandName}…`;
           } else if (!brandEl.open) {
             if (headerTitle) {
               headerTitle.textContent = originalHeading;
               headerTitle.classList.add('pc-header-logo');
-              headerTitle.classList.remove('pc-header-tier');
             }
             if (search) search.placeholder = defaultSearchPlaceholder;
           }
