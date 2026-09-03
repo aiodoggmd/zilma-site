@@ -183,16 +183,6 @@ const bestDeals = groupBy === 'discount'
 ---
 <dialog class="price-checklist" data-checklist data-group-by={groupBy} id={dialogId}>
   <div class="pc-header">
-    {categoryCounts.length > 0 && (
-      <button type="button" class="pc-menu-btn" data-menu-toggle aria-expanded="false">
-        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-        <span class="pc-menu-btn-label">Категории</span>
-      </button>
-    )}
     <div class="pc-header-brand">
       <h3 class:list={[groupBy === 'discount' ? 'pc-header-tier' : 'pc-header-logo']}>{heading}</h3>
       {heading === 'ZILMA' && <p class="pc-header-tagline">Профессиональная косметика</p>}
@@ -208,6 +198,13 @@ const bestDeals = groupBy === 'discount'
       <span class="pc-cart-badge" data-cart-badge hidden>0</span>
     </a>
   </div>
+  {categoryCounts.length > 0 && (
+    <div class="pc-mode-tabs">
+      <button type="button" class="pc-mode-tab" data-mode-tab="task" disabled title="Скоро">По задаче</button>
+      <button type="button" class="pc-mode-tab" data-mode-tab="category">По категории</button>
+      <button type="button" class="pc-mode-tab" data-mode-tab="brand">По бренду</button>
+    </div>
+  )}
   <div class="pc-controls">
     <button type="button" class="pc-back" data-back-to-folders aria-label="Назад к списку папок">←</button>
     <div class="pc-search-wrap">
@@ -221,7 +218,7 @@ const bestDeals = groupBy === 'discount'
   <p class="pc-search-hint">Например: Koleston 7/0, Londa, шампунь…</p>
   <div class="pc-groups">
     {categoryCounts.length > 0 && (
-      <div class="pc-category-screen" data-category-screen hidden>
+      <div class="pc-category-screen" data-category-screen>
         <div class="pc-popular-grid">
           {categoryCounts.map(({ cat, total }) => (
             <button type="button" class="pc-popular-card" data-filter-category={cat}>
@@ -232,6 +229,7 @@ const bestDeals = groupBy === 'discount'
         </div>
       </div>
     )}
+    <div class="pc-brand-panel" data-brand-panel hidden>
     {popularBrands.length > 0 && (
       <div class="pc-popular">
         <p class="pc-popular-title">Популярные</p>
@@ -315,6 +313,7 @@ const bestDeals = groupBy === 'discount'
         </div>
       </details>
     ))}
+    </div>
     {bestDeals.length > 0 && (
       <div class="pc-best-deal">
         <p class="pc-best-deal-label">Лучшая скидка</p>
@@ -442,46 +441,6 @@ const bestDeals = groupBy === 'discount'
     min-width: 0;
   }
 
-  /* «Категории» — полноценный экран внутри .pc-groups (реюз карточек .pc-popular-card/
-     .pc-popular-grid, тот же вид, что «Популярные»), а не всплывающее окошко у гамбургера —
-     по прямой просьбе пользователя, окошко "не годилось". Открыт этот экран — прячем
-     обычное содержимое верхнего уровня (Популярные/баннер/Все бренды и сам список брендов). */
-  .pc-category-screen[hidden] {
-    display: none;
-  }
-
-  .price-checklist[data-showing-categories='1'] .pc-popular,
-  .price-checklist[data-showing-categories='1'] .pc-group-brand {
-    display: none;
-  }
-
-  .pc-menu-btn {
-    flex: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    width: auto;
-    padding: 2px 4px;
-    background: transparent;
-    color: var(--color-ink);
-    border: none;
-    cursor: pointer;
-  }
-
-  .pc-menu-btn-label {
-    font-family: var(--font-sans);
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-
-  .pc-menu-btn:hover {
-    color: var(--color-blue-dark);
-  }
-
   /* Заголовок-заглушка по умолчанию — логотип-надпись «ZILMA» по центру шапки (тот же дух,
      что настоящий лого-файл: серифный, красный), плюс подпись бренда под ней. Как только
      открыт конкретный бренд, JS убирает этот класс и подставляет обычное тёмное имя бренда —
@@ -560,6 +519,48 @@ const bestDeals = groupBy === 'discount'
   }
 
   .pc-cart-badge[hidden] {
+    display: none;
+  }
+
+  /* Три режима навигации — «По задаче» (заглушка, скоро) / «По категории» / «По бренду».
+     По прямой просьбе пользователя (2026-09-04): бренд перестаёт быть точкой входа по
+     умолчанию, категория и бренд — равноправные вкладки. Стиль — точно как в согласованном
+     макете (pill-таб, активная красная заливка, неактивные — бежево-панельные). */
+  .pc-mode-tabs {
+    flex: none;
+    display: flex;
+    gap: 6px;
+    padding: 12px 14px 0;
+    background: var(--color-paper);
+  }
+
+  .pc-mode-tab {
+    flex: 1;
+    font: inherit;
+    font-family: var(--font-sans);
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 9px 4px;
+    border-radius: 999px;
+    background: var(--color-panel);
+    color: var(--color-meta);
+    border: none;
+    cursor: pointer;
+  }
+
+  .pc-mode-tab.active {
+    background: var(--color-red);
+    color: #fff;
+  }
+
+  .pc-mode-tab:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .pc-brand-panel[hidden],
+  .pc-category-screen[hidden] {
     display: none;
   }
 
@@ -1407,11 +1408,27 @@ const bestDeals = groupBy === 'discount'
   // Повторный клик по той же кнопке ("Каталог"), пока список уже открыт и клиент залистался внутрь
   // раскрытой папки (бренд/линейка с длинным списком товаров) — сворачивает обратно к списку папок,
   // чтобы не листать наверх вручную. Отмеченные чекбоксы не трогает — только .open у <details> и скролл.
-  function collapseToFolderList(dialog: HTMLDialogElement) {
-    delete dialog.dataset.categoryMode;
-    delete dialog.dataset.showingCategories;
+  // Переключает активную вкладку каталога («По категории» / «По бренду») — общая функция,
+  // нужна и из обработчиков кликов по вкладкам, и из collapseToFolderList (см. ниже), и из
+  // выбора конкретной категории (переключает на «По бренду», чтобы показать результат).
+  function setActiveTab(dialog: HTMLDialogElement, tab: 'category' | 'brand') {
+    dialog.dataset.activeTab = tab;
     const categoryScreen = dialog.querySelector<HTMLElement>('[data-category-screen]');
-    if (categoryScreen) categoryScreen.hidden = true;
+    const brandPanel = dialog.querySelector<HTMLElement>('[data-brand-panel]');
+    if (categoryScreen) categoryScreen.hidden = tab !== 'category';
+    if (brandPanel) brandPanel.hidden = tab !== 'brand';
+    dialog.querySelectorAll<HTMLButtonElement>('[data-mode-tab]').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.modeTab === tab);
+    });
+  }
+
+  function collapseToFolderList(dialog: HTMLDialogElement) {
+    // Если сворачиваем из фильтра по категории — возвращаемся именно на вкладку «По
+    // категории» (туда, откуда пришли), а не оставляем «По бренду» с уже неактуальным
+    // фильтром. Обычное сворачивание бренда (без категории) вкладку не трогает.
+    const wasCategoryMode = dialog.dataset.categoryMode === '1';
+    delete dialog.dataset.categoryMode;
+    if (wasCategoryMode) setActiveTab(dialog, 'category');
     const headerTitle = dialog.querySelector<HTMLElement>('.pc-header h3');
     if (headerTitle && dialog.dataset.originalHeading != null) {
       headerTitle.textContent = dialog.dataset.originalHeading;
@@ -1627,10 +1644,6 @@ const bestDeals = groupBy === 'discount'
         collapseToFolderList(root);
         return;
       }
-      if (root.dataset.showingCategories === '1') {
-        closeCategoryScreen();
-        return;
-      }
       const openLine = root.querySelector<HTMLDetailsElement>('.pc-group-line[open]');
       if (openLine) {
         openLine.open = false;
@@ -1668,36 +1681,16 @@ const bestDeals = groupBy === 'discount'
     root.dataset.originalHeading = originalHeading;
     const defaultSearchPlaceholder = search?.placeholder ?? '';
 
-    // Гамбургер — полноценный «экран» на весь список (реюз .pc-groups), не всплывающее
-    // окошко: по прямой просьбе пользователя (2026-09-04, «окно не годится»). Прячет обычное
-    // содержимое верхнего уровня через [data-showing-categories] (см. CSS), заголовок и
-    // подсказка поиска меняются, как у бренда/ступени.
-    const menuBtn = root.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-    const categoryScreen = root.querySelector<HTMLElement>('[data-category-screen]');
-    function closeCategoryScreen() {
-      if (categoryScreen) categoryScreen.hidden = true;
-      root.dataset.showingCategories = '0';
-      menuBtn?.setAttribute('aria-expanded', 'false');
-      if (headerTitle) {
-        headerTitle.textContent = originalHeading;
-        headerTitle.classList.add('pc-header-logo');
-      }
-      if (search) search.placeholder = defaultSearchPlaceholder;
-    }
-    menuBtn?.addEventListener('click', () => {
-      const willOpen = !!categoryScreen?.hidden;
-      if (willOpen) {
-        if (categoryScreen) categoryScreen.hidden = false;
-        root.dataset.showingCategories = '1';
-        menuBtn.setAttribute('aria-expanded', 'true');
-        if (headerTitle) {
-          headerTitle.textContent = 'Категории';
-          headerTitle.classList.remove('pc-header-logo');
-        }
-        if (search) search.placeholder = 'Поиск по товару, бренду или линейке…';
-      } else {
-        closeCategoryScreen();
-      }
+    // Три вкладки-режима («По задаче»/«По категории»/«По бренду») — «По категории» активна
+    // по умолчанию, «По бренду» — по клику или автоматически при поиске (см. ниже). «По
+    // задаче» пока просто disabled (нет данных для честной реализации, см. память проекта).
+    setActiveTab(root, 'category');
+    root.querySelectorAll<HTMLButtonElement>('[data-mode-tab]').forEach((btn) => {
+      if (btn.disabled) return;
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.modeTab as 'category' | 'brand';
+        setActiveTab(root, tab);
+      });
     });
 
     {
@@ -1773,7 +1766,7 @@ const bestDeals = groupBy === 'discount'
     root.querySelectorAll<HTMLButtonElement>('[data-filter-category]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const cat = btn.dataset.filterCategory ?? '';
-        closeCategoryScreen();
+        setActiveTab(root, 'brand');
         root.dataset.categoryMode = '1';
         let anyVisibleTotal = false;
         groups.forEach((g) => {
@@ -1896,6 +1889,11 @@ const bestDeals = groupBy === 'discount'
       // находит товар, у которого "wella" в бренде, а "1/9" (точка = слэш) — в названии,
       // даже если это не идёт подряд как в запросе.
       const tokens = normalizeSearch(search.value.trim()).split(/\s+/).filter(Boolean);
+      // Поиск ищет по товарам/брендам, а не по категориям — если ввели что-то, пока была
+      // активна вкладка «По категории», переключаем на «По бренду», чтобы результат было видно.
+      if (tokens.length > 0 && root.dataset.activeTab === 'category') {
+        setActiveTab(root, 'brand');
+      }
       // Если уже открыт конкретный бренд («экран бренда») — поиск ищет только внутри него,
       // не по всему прайсу: набирая "7/0" внутри LONDA, не хочется внезапно улететь в WELLA.
       // Сам заголовок открытого бренда не трогаем (не прячем, не сворачиваем) — это текущий
