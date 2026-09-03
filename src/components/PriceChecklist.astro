@@ -1568,13 +1568,36 @@ const bestDeals = groupBy === 'discount'
       if (!menuDropdown.contains(e.target as Node) && e.target !== menuBtn) closeMenuDropdown();
     });
 
+    // «←» — назад РОВНО на один экран, не сразу в самый верх (реальная жалоба пользователя:
+    // из открытой линии внутри бренда один клик улетал сразу к списку папок, минуя список
+    // линий этого бренда). Порядок шагов от самого глубокого к самому верхнему:
+    // 1) открыта линия внутри бренда → закрыть только её;
+    // 2) активен фильтр категории (гамбургер) → снять фильтр целиком (это не цепочка вложенных
+    //    экранов, а один оверлей поверх списка папок, снимается одним шагом);
+    // 3) идёт поиск → просто очистить поле;
+    // 4) открыт бренд → закрыть его;
+    // 5) ничего не открыто и не активно → закрыть диалог целиком.
     root.querySelector('[data-back-to-folders]')?.addEventListener('click', () => {
-      const anyOpen = groups.some((g) => g.open);
-      if (anyOpen) {
-        collapseToFolderList(root);
-      } else {
-        closeDialog(root);
+      const openLine = root.querySelector<HTMLDetailsElement>('.pc-group-line[open]');
+      if (openLine) {
+        openLine.open = false;
+        return;
       }
+      if (root.dataset.categoryMode === '1') {
+        collapseToFolderList(root);
+        return;
+      }
+      if (search && search.value) {
+        search.value = '';
+        search.dispatchEvent(new Event('input', { bubbles: true }));
+        return;
+      }
+      const openBrand = root.querySelector<HTMLDetailsElement>('.pc-group-brand[open]');
+      if (openBrand) {
+        openBrand.open = false;
+        return;
+      }
+      closeDialog(root);
     });
 
     // Открытая карточка бренда ведёт себя как отдельный «экран»: заголовок и подсказка
