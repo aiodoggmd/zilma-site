@@ -1609,22 +1609,107 @@ const bestDeals = groupBy === 'discount'
     ['супра', 'блондор', 'блондоран', 'порошок', 'пудра', 'освет'],
   ];
 
-  function matchToken(token: string, entry: { name: string; brand: string; line: string }): boolean {
-    if (entry.name.includes(token) || entry.brand.includes(token) || entry.line.includes(token)) return true;
-    const alias = CYRILLIC_ALIASES[token];
-    if (alias && (entry.name.includes(alias) || entry.brand.includes(alias) || entry.line.includes(alias))) return true;
-    // Обратное направление: товар назван ТОЛЬКО кириллицей ("колестон" в прайсе, латинского
-    // "Koleston" нигде нет) - словарь выше расcчитан на "запрос кириллицей → данные латиницей"
-    // (напр. "иллюмина" → "illumina"), для обратного случая ищем ключ, чьё значение совпало
-    // с самим латинским запросом. Найдено 2026-09-03: запрос "koleston" не находил ничего.
+  // Расстояние Левенштейна (число правок буква→буква, чтобы получить одно слово из другого) —
+  // основа терпимости к опечаткам ниже. Стандартная DP-реализация, ничего специфичного для
+  // сайта. Слова тут короткие (до ~20 символов), полная матрица O(n*m) не создаёт проблем
+  // даже при пересчёте на каждое нажатие клавиши.
+  function levenshtein(a: string, b: string): number {
+    const m = a.length;
+    const n = b.length;
+    if (m === 0) return n;
+    if (n === 0) return m;
+    let prev = Array.from({ length: n + 1 }, (_, j) => j);
+    for (let i = 1; i <= m; i++) {
+      const cur = [i];
+      for (let j = 1; j <= n; j++) {
+        cur[j] = a[i - 1] === b[j - 1]
+          ? prev[j - 1]
+          : 1 + Math.min(prev[j - 1], prev[j], cur[j - 1]);
+      }
+      prev = cur;
+    }
+    return prev[n];
+  }
+
+  // Сколько правок ещё считаем "опечаткой", а не другим словом — чем короче слово, тем
+  // строже порог (иначе короткие слова/коды типа "лак" превращались бы друг в друга).
+  function fuzzyThreshold(len: number): number {
+    if (len <= 5) return 1;
+    if (len <= 9) return 2;
+    return 3;
+  }
+
+  // Для одного токена запроса собираем ВСЕ подстроки, которые считаем совпадением: сам токен,
+  // алиас кириллица↔латиница (в обе стороны), синонимы (см. SYNONYM_GROUPS), и, если ничего
+  // из этого не нашло точного слова в словаре каталога, ближайшее по опечатке настоящее слово
+  // (напр. "калистон"/"kaliston"/"kolesto" → "колестон", т.к. в прайсе только эта кириллица).
+  // Считается ОДИН РАЗ на токен перед проходом по всем товарам, не на каждый товар отдельно -
+  // иначе Левенштейн против всего словаря на каждой строке списка (~1100 раз) был бы заметно
+  // медленнее. Короткие токены (<4 симв., в т.ч. служебные коды CT/LC/KP) фаззи не трогает -
+  // на таких словах опечатка неотличима от другого реального кода.
+  function expandAliases(word: string, terms: Set<string>): void {
+    const alias = CYRILLIC_ALIASES[word];
+    if (alias) terms.add(alias);
     for (const cyr in CYRILLIC_ALIASES) {
-      if (CYRILLIC_ALIASES[cyr] === token && (entry.name.includes(cyr) || entry.brand.includes(cyr) || entry.line.includes(cyr))) {
-        return true;
+      if (CYRILLIC_ALIASES[cyr] === word) terms.add(cyr);
+    }
+  }
+
+  function resolveSearchTerms(token: string, vocabulary: Set<string>, fuzzyPool: Set<string>): string[] {
+    const terms = new Set<string>([token]);
+    expandAliases(token, terms);
+    const group = SYNONYM_GROUPS.find((g) => g.some((w) => token.includes(w) || w.includes(token)));
+    if (group) group.forEach((w) => terms.add(w));
+    // Фаззи-сравнение идёт против ПОЛНОГО пула (словарь каталога + сами ключи/значения
+    // CYRILLIC_ALIASES) — иначе опечатка в коротком алиасном слове ("иллюмина"/"колестон",
+    // которых буквально НЕТ в тексте прайса как отдельное кириллическое слово, только как
+    // ключ словаря) не находила бы вообще ничего для сравнения. Найденное исправление
+    // дополнительно прогоняется через expandAliases - "kolesto" → "koleston" (фаззи) →
+    // "колестон" (алиас), а не просто "koleston" сам по себе, которого в данных нет.
+    if (token.length >= 4 && !vocabulary.has(token) && !fuzzyPool.has(token)) {
+      const maxDist = fuzzyThreshold(token.length);
+      let best: string | null = null;
+      let bestDist = Infinity;
+      for (const word of fuzzyPool) {
+        if (Math.abs(word.length - token.length) > maxDist) continue; // дешёвая отсечка перед Левенштейном
+        const d = levenshtein(token, word);
+        if (d <= maxDist && d < bestDist) {
+          bestDist = d;
+          best = word;
+        }
+      }
+      if (best) {
+        terms.add(best);
+        expandAliases(best, terms);
       }
     }
-    const group = SYNONYM_GROUPS.find((g) => g.some((w) => token.includes(w) || w.includes(token)));
-    return !!group && group.some((w) => entry.name.includes(w) || entry.brand.includes(w) || entry.line.includes(w));
+    return [...terms];
   }
+
+  // Словарь реальных слов каталога для fuzzy-сравнения — берём из уже нормализованных
+  // name/brand/line (не из сырых данных, чтобы регистр/разделители совпадали с тем, с чем
+  // сравнивает Левенштейн). Разбивка по границам "не буква" (цифры, слэши, кавычки и т.п.) -
+  // код оттенка вроде "10/81" никогда не попадёт в словарь как единое "слово", только текст.
+  const WORD_SPLIT_RE = /[^a-zа-яё']+/i;
+  function buildVocabulary(entries: Iterable<{ name: string; brand: string; line: string }>): Set<string> {
+    const vocab = new Set<string>();
+    for (const entry of entries) {
+      for (const field of [entry.name, entry.brand, entry.line]) {
+        for (const w of field.split(WORD_SPLIT_RE)) {
+          if (w.length >= 4) vocab.add(w);
+        }
+      }
+    }
+    return vocab;
+  }
+
+  // Пул для фаззи-сравнения = словарь каталога + все ключи/значения CYRILLIC_ALIASES - иначе
+  // опечатка в самом алиасном слове ("иллюмина", "колестон") не находила бы что исправлять,
+  // ведь этих слов буквально нет в тексте прайса как отдельное слово (см. resolveSearchTerms).
+  const FUZZY_POOL = new Set<string>([
+    ...Object.keys(CYRILLIC_ALIASES),
+    ...Object.values(CYRILLIC_ALIASES),
+  ]);
 
   document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((root) => {
     const search = root.querySelector<HTMLInputElement>('.pc-search');
@@ -1642,6 +1727,10 @@ const bestDeals = groupBy === 'discount'
         },
       ])
     );
+    // Тот же однократный расчёт, что и searchIndex выше - словарь для fuzzy-сравнения строится
+    // из уже нормализованных полей, не пересчитывается на каждое нажатие клавиши.
+    const vocabulary = buildVocabulary(searchIndex.values());
+    const fuzzyPool = new Set<string>([...vocabulary, ...FUZZY_POOL]);
     const noResults = root.querySelector<HTMLElement>('.pc-no-results');
 
     // Отдельной кнопки «✕ Закрыть» больше нет (пользователь справедливо заметил: рядом с «←»
@@ -1730,6 +1819,16 @@ const bestDeals = groupBy === 'discount'
 
     {
       root.querySelectorAll<HTMLDetailsElement>('.pc-group-brand').forEach((brandEl) => {
+        // Настоящий клик по названию бренда - это ОСОЗНАННАЯ навигация ("зашёл в этот бренд
+        // листать"), а не побочный эффект поиска (который тоже открывает подходящие бренды,
+        // просто чтобы показать результат). Снимаем маркер openedBySearch (см. ниже, в
+        // обработчике .pc-search input) - иначе следующий не связанный запрос ошибочно решил
+        // бы, что мы "внутри экрана" этого бренда, и обрезал бы результаты только по нему
+        // (реальный баг, найден 2026-09-03: поиск "wela" случайно открыл WELLA как
+        // единственное совпадение, следующий поиск "шварцкоф" из-за этого вернул 0 вместо 106).
+        brandEl.querySelector('summary')?.addEventListener('click', () => {
+          delete brandEl.dataset.openedBySearch;
+        });
         brandEl.addEventListener('toggle', () => {
           // Фильтр по категории открывает СРАЗУ много брендов — без этой проверки каждый
           // такой toggle (событие асинхронное, см. requestAnimationFrame в обработчике
@@ -1786,6 +1885,7 @@ const bestDeals = groupBy === 'discount'
         });
         const target = root.querySelector<HTMLDetailsElement>(`.pc-group-brand[data-brand="${CSS.escape(name)}"]`);
         if (target) {
+          delete target.dataset.openedBySearch; // осознанный переход, не побочный эффект поиска
           target.open = true;
           target.scrollIntoView({ block: 'start', behavior: 'smooth' });
         }
@@ -1935,6 +2035,12 @@ const bestDeals = groupBy === 'discount'
       // находит товар, у которого "wella" в бренде, а "1/9" (точка = слэш) — в названии,
       // даже если это не идёт подряд как в запросе.
       const tokens = normalizeSearch(search.value.trim()).split(/\s+/).filter(Boolean);
+      // Термины на каждый токен считаем ОДИН раз здесь (алиасы + fuzzy-опечатка), не на каждый
+      // товар в цикле ниже - Левенштейн против всего словаря один раз на нажатие клавиши, а не
+      // ~1100 раз (см. resolveSearchTerms). Опечатки вроде "калистон"/"kaliston"/"ilumina"
+      // резолвятся здесь в реальное слово каталога ("колестон"/"illumina"), дальше обычная
+      // проверка "содержит подстроку" против уже найденного термина.
+      const tokenTerms = tokens.map((t) => resolveSearchTerms(t, vocabulary, fuzzyPool));
       // Поиск ищет по товарам/брендам, а не по категориям — если ввели что-то, пока была
       // активна вкладка «По категории», переключаем на «По бренду», чтобы результат было видно.
       // Запоминаем, откуда переключили (`preSearchTab`) — реальная жалоба пользователя
@@ -1959,8 +2065,13 @@ const bestDeals = groupBy === 'discount'
       // поиск ищет только внутри него, не по всему прайсу: набирая "7/0" внутри LONDA, не
       // хочется внезапно улететь в WELLA. Сам заголовок открытого бренда не трогаем (не прячем,
       // не сворачиваем) — это текущий экран, а не результат поиска среди прочих.
+      // data-opened-by-search исключает бренды, открытые ПРЕДЫДУЩИМ поиском как побочный
+      // эффект (см. summary click listener выше) - иначе следующий несвязанный запрос считал
+      // бы, что мы всё ещё "внутри" случайно совпавшего бренда, и резал бы результаты только
+      // по нему (реальный баг 2026-09-03: "wela" → открыл WELLA единственным совпадением →
+      // следующий поиск "шварцкоф" вернул 0 вместо 106).
       const openBrand = activeCategory === null
-        ? groups.find((g) => g.classList.contains('pc-group-brand') && g.open)
+        ? groups.find((g) => g.classList.contains('pc-group-brand') && g.open && g.dataset.openedBySearch !== '1')
         : undefined;
       let anyVisibleTotal = false;
       groups.forEach((g) => {
@@ -1978,7 +2089,9 @@ const bestDeals = groupBy === 'discount'
           // иначе ввод текста молча снимал бы фильтр категории и показывал вообще весь прайс.
           const categoryOk = activeCategory === null || li.dataset.category === activeCategory;
           const entry = searchIndex.get(li);
-          const tokensOk = tokens.length === 0 || !entry || tokens.every((t) => matchToken(t, entry));
+          const tokensOk = tokens.length === 0 || !entry || tokenTerms.every((terms) =>
+            terms.some((term) => entry.name.includes(term) || entry.brand.includes(term) || entry.line.includes(term))
+          );
           const match = categoryOk && tokensOk;
           li.hidden = !match;
           if (match) anyVisible = true;
@@ -1987,7 +2100,15 @@ const bestDeals = groupBy === 'discount'
           g.hidden = false; // текущий экран бренда всегда виден, поиск лишь фильтрует товары внутри
         } else {
           g.hidden = !anyVisible;
-          g.open = anyVisible && (tokens.length > 0 || activeCategory !== null);
+          const shouldOpen = anyVisible && (tokens.length > 0 || activeCategory !== null);
+          g.open = shouldOpen;
+          // Помечаем ТОЛЬКО бренды верхнего уровня (не линейки внутри) - именно их состояние
+          // читает openBrand-детекция выше. Маркер снимается кликом по summary (см. выше) -
+          // это и есть граница между "открыто поиском" и "открыто пользователем вручную".
+          if (g.classList.contains('pc-group-brand')) {
+            if (shouldOpen) g.dataset.openedBySearch = '1';
+            else delete g.dataset.openedBySearch;
+          }
         }
         if (anyVisible) anyVisibleTotal = true;
       });
