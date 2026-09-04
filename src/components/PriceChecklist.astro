@@ -291,7 +291,9 @@ if (groupBy === 'discount') {
       if (b[0] === ALL_DISCOUNTS_TIER) return 1;
       const pa = parseInt(a[0].replace(/\D/g, ''), 10);
       const pb = parseInt(b[0].replace(/\D/g, ''), 10);
-      if (Number.isFinite(pa) && Number.isFinite(pb) && pa !== pb) return pb - pa;
+      // По ВОЗРАСТАНИЮ скидки (5 -> 10 -> 15), по просьбе пользователя 2026-09-05:
+      // список читается как нарастание выгоды, самая крупная скидка — в конце.
+      if (Number.isFinite(pa) && Number.isFinite(pb) && pa !== pb) return pa - pb;
       return alphaCompare(a[0], b[0]);
     })
     .map(([tier, bMap]) => {
@@ -1061,7 +1063,7 @@ const bestDeals = groupBy === 'discount'
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 62px;
+    min-width: 78px;
     line-height: 1;
   }
 
@@ -1077,10 +1079,10 @@ const bestDeals = groupBy === 'discount'
 
   .pc-tier-val {
     font-family: var(--font-serif);
-    font-size: 1.32rem;
+    font-size: 1.95rem;
     font-weight: 700;
     color: var(--color-red);
-    margin-top: 3px;
+    margin-top: 4px;
   }
 
   .pc-tier > summary .pc-group-count {
