@@ -1,0 +1,626 @@
+<title>Органайзер Zilma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap">
+<style>
+:root {
+  --ground: #fbfaf8;
+  --surface: #ffffff;
+  --line: #e7e0d4;
+  --line-soft: #f0ebe2;
+  --ink: #2b201c;
+  --muted: #7d7168;
+  --urgent: #c8000f;
+  --urgent-soft: #fdf0f1;
+  --plan: #38628c;
+  --plan-soft: #eef3f8;
+  --ok: #3d7a4f;
+  --ok-soft: #eef5ef;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #17120f;
+    --surface: #201a16;
+    --line: #3a2e27;
+    --line-soft: #2b231e;
+    --ink: #f2e9e1;
+    --muted: #ab9d92;
+    --urgent: #ff6470;
+    --urgent-soft: #2e1a1a;
+    --plan: #8fb8dc;
+    --plan-soft: #1a232c;
+    --ok: #74c286;
+    --ok-soft: #17241a;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #17120f;
+  --surface: #201a16;
+  --line: #3a2e27;
+  --line-soft: #2b231e;
+  --ink: #f2e9e1;
+  --muted: #ab9d92;
+  --urgent: #ff6470;
+  --urgent-soft: #2e1a1a;
+  --plan: #8fb8dc;
+  --plan-soft: #1a232c;
+  --ok: #74c286;
+  --ok-soft: #17241a;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 22px 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+@media (max-width: 640px) { .wrap { padding: 26px 14px 70px; gap: 32px; } }
+
+/* ---------- шапка ---------- */
+.masthead { display: flex; flex-direction: column; gap: 8px; }
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--urgent);
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4.4vw, 2.3rem);
+  font-weight: 700;
+  margin: 0;
+  text-wrap: balance;
+}
+.standfirst { color: var(--muted); font-size: 0.95rem; margin: 0; max-width: 60ch; }
+
+/* ---------- заголовки разделов ---------- */
+.block { display: flex; flex-direction: column; gap: 14px; }
+.block-head { display: flex; align-items: baseline; gap: 12px; }
+.block-head h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.22rem;
+  margin: 0;
+  flex: none;
+}
+.block-head .rule { flex: 1; height: 1px; background: var(--line); }
+.block-head .count {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+  flex: none;
+}
+.block-note { color: var(--muted); font-size: 0.87rem; margin: -4px 0 0; }
+
+/* ---------- «сейчас»: единственное место с акцентом ---------- */
+.alert {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--urgent);
+  padding: 15px 17px;
+}
+.alert.soon { border-left-color: var(--plan); }
+.alert .chip {
+  grid-row: 1 / 3;
+  align-self: start;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  color: var(--urgent);
+  background: var(--urgent-soft);
+  white-space: nowrap;
+}
+.alert.soon .chip { color: var(--plan); background: var(--plan-soft); }
+.alert h3 { margin: 0; font-size: 1rem; font-weight: 600; }
+.alert p { margin: 4px 0 0; font-size: 0.9rem; color: var(--muted); }
+.alert a { color: var(--plan); }
+@media (max-width: 520px) {
+  .alert { grid-template-columns: 1fr; }
+  .alert .chip { grid-row: auto; justify-self: start; margin-bottom: 4px; }
+}
+
+/* ---------- «ждёт тебя»: плоский список, без карточек ---------- */
+.waits { display: flex; flex-direction: column; }
+.waits li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 16px;
+  align-items: baseline;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--line-soft);
+  list-style: none;
+}
+.waits { margin: 0; padding: 0; }
+.waits li:last-child { border-bottom: none; }
+.waits b { font-weight: 600; font-size: 0.95rem; }
+.waits .why { grid-column: 1 / -1; color: var(--muted); font-size: 0.85rem; }
+.waits .who {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---------- регулярные проверки ---------- */
+.checks { display: flex; flex-direction: column; gap: 0; }
+.check {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 4px 14px;
+  padding: 14px 2px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.check:last-child { border-bottom: none; }
+.check .name { font-weight: 600; font-size: 0.95rem; }
+.check .how { grid-column: 1 / -1; color: var(--muted); font-size: 0.85rem; }
+.check .how a { color: var(--plan); }
+.check .when {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.check .when .state { display: block; font-weight: 600; }
+.check .when .state.due { color: var(--urgent); }
+.check .when .state.ok { color: var(--ok); }
+.mark {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.mark:hover { border-color: var(--plan); color: var(--plan); }
+.mark:focus-visible { outline: 2px solid var(--plan); outline-offset: 2px; }
+.mark[data-done="1"] { color: var(--ok); border-color: var(--ok); background: var(--ok-soft); }
+@media (max-width: 560px) {
+  .check { grid-template-columns: 1fr auto; }
+  .check .mark { grid-column: 2; grid-row: 3; justify-self: end; }
+  .check .how { grid-row: 2; }
+}
+
+/* ---------- инструкции: настоящие последовательности ---------- */
+.play { border: 1px solid var(--line); background: var(--surface); }
+.play + .play { margin-top: 12px; }
+.play > summary {
+  cursor: pointer;
+  padding: 14px 17px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+}
+.play > summary::-webkit-details-marker { display: none; }
+.play > summary::before {
+  content: "+";
+  font-family: var(--font-mono);
+  color: var(--urgent);
+  font-weight: 600;
+  flex: none;
+}
+.play[open] > summary::before { content: "−"; }
+.play > summary:focus-visible { outline: 2px solid var(--plan); outline-offset: -2px; }
+.play .body { padding: 0 17px 16px; border-top: 1px solid var(--line-soft); }
+.play ol { margin: 14px 0 0; padding-left: 0; counter-reset: step; list-style: none; }
+.play ol li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 11px;
+  font-size: 0.92rem;
+}
+.play ol li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--urgent);
+  border: 1px solid var(--line);
+  width: 21px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play ol li:last-child { margin-bottom: 0; }
+.play code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--ground);
+  border: 1px solid var(--line-soft);
+  padding: 1px 5px;
+}
+.play .aside {
+  margin: 14px 0 0;
+  padding: 11px 14px;
+  background: var(--ground);
+  border-left: 2px solid var(--plan);
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+.play .aside b { color: var(--ink); }
+
+footer {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+footer code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  padding: 1px 5px;
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">Zilma · рабочий пульт</div>
+  <h1>Что нужно сделать и как это делается</h1>
+  <p class="standfirst">Место, где лежат дела, которые легко забыть: что проверить, где это лежит и в каком порядке делается. Открывай отсюда — не держи в голове.</p>
+</header>
+
+<!-- ==================== СЕЙЧАС ==================== -->
+<section class="block">
+  <div class="block-head">
+    <h2>Требует внимания</h2>
+    <span class="rule"></span>
+    <span class="count">5 дел</span>
+  </div>
+
+  <div class="alert">
+    <span class="chip">отстаём</span>
+    <h3>Канал: очередь встала на два дня</h3>
+    <p>Договаривались публиковать по одной теме в день. Последняя ушла 2 сентября — «Блеск и Сила». Следующая по очереди: <b>Lebel «Золотое обновление»</b>, дальше «Золотое увлажнение», Infinity Aurum, Wella Blondor, Londa Blondoran и статья про неравномерное выцветание. Всего осталось 6 из 8. Скажи — соберу пост и пришлю на проверку.</p>
+  </div>
+
+  <div class="alert">
+    <span class="chip">прайс</span>
+    <h3>На сайте цены от 2 сентября</h3>
+    <p>Ты говоришь, что новые остатки уже есть, но ещё не отправлены. Пока файлы не пришли, клиент видит позавчерашние цены и наличие. Порядок действий — в инструкции «Обновить прайс» ниже, от тебя нужны только два файла из 1С.</p>
+  </div>
+
+  <div class="alert">
+    <span class="chip">просрочено</span>
+    <h3>Проверить регион «Москва» в Яндекс.Вебмастере</h3>
+    <p>Заявку отправили 26 августа, Яндекс обещал рассмотреть за 7 дней — срок вышел. Зайти на <a href="https://webmaster.yandex.ru" target="_blank" rel="noopener">webmaster.yandex.ru</a> → «Представление в поиске» → «Региональность» и посмотреть, применился регион или заявку отклонили. Без региона сайт хуже показывается по московским запросам.</p>
+  </div>
+
+  <div class="alert">
+    <span class="chip">блокирует</span>
+    <h3>Завести Яндекс.Метрику и прислать номер счётчика</h3>
+    <p>Договорились ещё 23 августа. Пока её нет, не видно, сколько человек открыли каталог и сколько дошли до заявки — а значит, любой выбор «что делать дальше» держится на догадках, а не на цифрах. Нужен только номер счётчика, дальше я всё настрою: цели на каталог, скачивание прайса и отправленную заявку.</p>
+  </div>
+
+  <div class="alert soon">
+    <span class="chip">когда будет время</span>
+    <h3>Написать поставщикам про фото товаров</h3>
+    <p>У брендов для партнёров обычно есть готовые наборы фото на белом фоне. Одно письмо может закрыть Schwarzkopf, Estel и L'Oreal — их в старом архиве нет вообще. Скажи — набросаю текст письма.</p>
+  </div>
+</section>
+
+<!-- ==================== ЖДЁТ ТЕБЯ ==================== -->
+<section class="block">
+  <div class="block-head">
+    <h2>Могу сделать только ты</h2>
+    <span class="rule"></span>
+    <span class="count">6 пунктов</span>
+  </div>
+  <p class="block-note">Здесь то, где нужен твой доступ, твой товар или твоё решение — я это сделать не могу, даже если очень захочу.</p>
+
+  <ul class="waits">
+    <li>
+      <b>Номер счётчика Яндекс.Метрики</b>
+      <span class="who">нужен твой логин</span>
+      <span class="why">Создаётся в личном кабинете Яндекса, я туда не попаду.</span>
+    </li>
+    <li>
+      <b>Вход в Google для Search Console</b>
+      <span class="who">нужен твой логин</span>
+      <span class="why">Второй поисковик после Яндекса. Подтверждение — тем же способом, что делали с Вебмастером.</span>
+    </li>
+    <li>
+      <b>Письмо поставщикам про фото-контент</b>
+      <span class="who">от твоего имени</span>
+      <span class="why">Черновик напишу, отправляешь ты — переписку с поставщиками я не веду.</span>
+    </li>
+    <li>
+      <b>Снять недостающие фото товаров</b>
+      <span class="who">товар у тебя</span>
+      <span class="why">Осталось 254 товара. Телефон, белый лист, свет из окна — обработку беру на себя.</span>
+    </li>
+    <li>
+      <b>Официальные PDF по Matrix и Lebel MATERIA</b>
+      <span class="who">нужен исходник</span>
+      <span class="why">Без официального каталога бренда статью и палитру честно не собрать.</span>
+    </li>
+    <li>
+      <b>Спросить юриста про согласие на обработку данных</b>
+      <span class="who">не моя зона</span>
+      <span class="why">Форма собирает имя и телефон. Нужен ли по закону чекбокс и политика — решает юрист, не я.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ==================== РЕГУЛЯРНО ==================== -->
+<section class="block">
+  <div class="block-head">
+    <h2>Проверять время от времени</h2>
+    <span class="rule"></span>
+    <span class="count">7 проверок</span>
+  </div>
+  <p class="block-note">Нажми «Проверил» — дата обновится, и пункт перестанет гореть до следующего раза. Отметки хранятся в этом браузере: на телефоне и на компьютере они будут свои.</p>
+
+  <div class="checks" id="checks">
+    <div class="check" data-key="webmaster" data-every="14" data-last="2026-08-26">
+      <span class="name">Яндекс.Вебмастер</span>
+      <span class="when"></span>
+      <button type="button" class="mark">Проверил</button>
+      <span class="how">Раз в две недели: <a href="https://webmaster.yandex.ru" target="_blank" rel="noopener">webmaster.yandex.ru</a> → сколько страниц в поиске (должно расти), нет ли ошибок обхода, применился ли регион «Москва».</span>
+    </div>
+
+    <div class="check" data-key="analytics" data-every="30" data-last="2026-08-23">
+      <span class="name">Посещаемость сайта</span>
+      <span class="when"></span>
+      <button type="button" class="mark">Проверил</button>
+      <span class="how">Раз в месяц: <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a> → проект zilma-site → вкладка Analytics. Смотри число визитов, откуда люди и с чего заходят. Доля России должна расти — если нет, скажи, разберёмся.</span>
+    </div>
+
+    <div class="check" data-key="speed" data-every="60" data-last="2026-08-27">
+      <span class="name">Скорость загрузки</span>
+      <span class="when"></span>
+      <button type="button" class="mark">Проверил</button>
+      <span class="how">Раз в два месяца: там же в Vercel → Speed Insights. Это реальная скорость у живых посетителей, а не тест. Если оценка поехала вниз — пришли скриншот.</span>
+    </div>
+
+    <div class="check" data-key="price-date" data-every="14" data-last="2026-09-02">
+      <span class="name">Свежесть прайса на сайте</span>
+      <span class="when"></span>
+      <button type="button" class="mark">Проверил</button>
+      <span class="how">Раз в две недели: открой <a href="https://www.zilma.pro" target="_blank" rel="noopener">zilma.pro</a> и глянь дату под прайсом. Если цены с тех пор менялись — присылай новые остатки, обновим (инструкция ниже).</span>
+    </div>
+
+    <div class="check" data-key="order-test" data-every="30" data-last="2026-08-30">
+      <span class="name">Заявка реально доходит</span>
+      <span class="when"></span>
+      <button type="button" class="mark">Проверил</button>
+      <span class="how">Раз в месяц: отправь сам себе тестовую заявку с сайта и проверь, пришла ли она в Telegram. Форма — единственный канал, который ломается молча: на экране «отправлено», а до тебя не дошло.</span>
+    </div>
+
+    <div class="check" data-key="mobile" data-every="30" data-last="2026-09-04">
+      <span class="name">Сайт на телефоне</span>
+      <span class="when"></span>
+      <button type="button" class="mark">Проверил</button>
+      <span class="how">Раз в месяц: пройди с телефона путь клиента — каталог, выбрать пару товаров, корзина, форма. Почти все реальные баги нашлись именно так, а не на компьютере.</span>
+    </div>
+
+    <div class="check" data-key="channel" data-every="1" data-last="2026-09-02">
+      <span class="name">Пост в Telegram-канал</span>
+      <span class="when"></span>
+      <button type="button" class="mark">Проверил</button>
+      <span class="how">Каждый день, пока не закроется очередь из 8 тем (осталось 6). Скажи мне тему — соберу пост и пришлю; публикуешь ты. Когда очередь кончится, перейдём на общий режим: статья выходит на сайте и в канале одновременно.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== КАК ЭТО ДЕЛАЕТСЯ ==================== -->
+<section class="block">
+  <div class="block-head">
+    <h2>Как это делается</h2>
+    <span class="rule"></span>
+    <span class="count">7 инструкций</span>
+  </div>
+  <p class="block-note">Порядок шагов, чтобы не вспоминать каждый раз. Всё, что не помечено «ты» — делаю я, тебе достаточно сказать.</p>
+
+  <details class="play">
+    <summary>Обновить прайс новыми ценами и остатками</summary>
+    <div class="body">
+      <ol>
+        <li><b>Ты:</b> выгружаешь из 1С два файла — продажные цены и остатки с себестоимостью — и кладёшь их в папку <code>Site\Price\</code>.</li>
+        <li><b>Я:</b> считаю акции по марже (маржа от 45% → скидка 15%, 30–45% → 7%, ниже 30% → без скидки) и собираю новый <code>price-current.xlsx</code>.</li>
+        <li><b>Я:</b> показываю список товаров, которых раньше не было — они подсвечены синим прямо в Excel, вместе с их бренд-папкой.</li>
+        <li><b>Ты:</b> проставляешь этим новым товарам номер категории в подсвеченных ячейках и возвращаешь файл.</li>
+        <li><b>Я:</b> пересобираю каталог сайта из этого файла — цены, акции, новинки и категории обновляются разом.</li>
+        <li><b>Ты:</b> открываешь готовый Excel и проверяешь глазами, что цены верные.</li>
+        <li><b>Ты:</b> говоришь «публикуй» — и только тогда прайс уходит на сайт.</li>
+      </ol>
+      <p class="aside"><b>Почему шаг 4 нельзя пропустить:</b> без категории товар не попадёт ни в один раздел «По категории» — он будет доступен только через «По бренду». Ничего не сломается, но найти его будет труднее.</p>
+    </div>
+  </details>
+
+  <details class="play">
+    <summary>Добавить фото товаров</summary>
+    <div class="body">
+      <ol>
+        <li><b>Ты:</b> собираешь фото в папку. Имя файла — номерной артикул товара, тот же, что стоит в его названии в прайсе (например <code>5084.jpg</code>). Так я пойму, что к чему, без сверки вручную.</li>
+        <li><b>Ты:</b> говоришь, где папка лежит.</li>
+        <li><b>Я:</b> прогоняю их скриптом — обрезка по товару, белый фон, сжатие — и связываю с прайсом.</li>
+        <li><b>Ты:</b> смотришь общий лист со всеми фото и подписями и говоришь, где фото не тот товар.</li>
+      </ol>
+      <p class="aside"><b>Съёмка:</b> телефон, белый лист бумаги, свет из окна, без вспышки. Товар целиком, ровно, по центру. Обработку не делай — это моя часть.<br><br><b>Один снимок на все объёмы:</b> если у товара есть 250 мл и 1000 мл — достаточно одного фото, я сам подставлю его обеим позициям.</p>
+    </div>
+  </details>
+
+  <details class="play">
+    <summary>Опубликовать новый гид по линейке</summary>
+    <div class="body">
+      <ol>
+        <li><b>Ты:</b> присылаешь официальный PDF-каталог бренда по этой линейке.</li>
+        <li><b>Я:</b> сверяю коды оттенков с текущим прайсом — что снято с производства, что просто закончилось.</li>
+        <li><b>Я:</b> собираю статью, вытаскиваю фото и палитру из PDF, делаю интерактивную палитру с ценами.</li>
+        <li><b>Ты:</b> читаешь и говоришь, что поправить.</li>
+        <li><b>Ты:</b> говоришь «публикуй».</li>
+      </ol>
+      <p class="aside"><b>Правило, которое стоило нам ошибки:</b> прайс надёжнее поиска в интернете. У Igora Royal поиск подтвердил девять оттенков как актуальные, а их не было в прайсе ни одного — и оказалось, что они сняты с производства. Сверяем с прайсом в первую очередь.</p>
+    </div>
+  </details>
+
+  <details class="play">
+    <summary>Опубликовать тему в Telegram-канале</summary>
+    <div class="body">
+      <ol>
+        <li><b>Ты:</b> называешь тему — или просто говоришь «следующая», я возьму первую незакрытую из очереди.</li>
+        <li><b>Я:</b> собираю пост из уже готовой статьи сайта: текст в формате канала, картинки, без интерактивных виджетов — вместо палитры ссылка на сайт, где она кликабельная.</li>
+        <li><b>Ты:</b> читаешь и говоришь, публиковать или поправить.</li>
+        <li><b>Я:</b> отмечаю тему выполненной в очереди, чтобы завтра не предложить её снова.</li>
+      </ol>
+      <p class="aside"><b>Что осталось в очереди:</b> Lebel «Золотое обновление», Lebel «Золотое увлажнение», Lebel «Infinity Aurum», Wella Blondor, Londa Blondoran, «Неравномерное выцветание цвета». Порядок продуман сериями — сначала SPA-программы Lebel подряд, затем два осветляющих порошка рядом для сравнения, в конце статья базы знаний.</p>
+    </div>
+  </details>
+
+  <details class="play">
+    <summary>Какие статьи ждут своей очереди на сайт</summary>
+    <div class="body">
+      <ol>
+        <li><b>Из канала на сайт.</b> В канале уже разобраны, а на сайте статьи ещё нет: Matrix SoColor, Matrix Color Sync, Matrix Tonal Control, Lebel MATERIA, MATERIA G, MATERIA μ. Материал по ним частично собран, нужен официальный PDF бренда для сверки.</li>
+        <li><b>Только в идеях.</b> Спа-процедура с ампулами Dikson и маской Londa; FAQ по заказу; страница «Как заказать». Тем нет ни на сайте, ни в канале — начинать с нуля.</li>
+        <li><b>Что нужно от тебя,</b> чтобы взять любую из них: официальный PDF-каталог бренда по линейке. Без него честно собрать пропорции, время выдержки и палитру нельзя.</li>
+      </ol>
+      <p class="aside"><b>Одна тема — два места.</b> Когда очередь в канал закроется, новая статья будет выходить сразу и на сайте, и в канале, а не догоняться потом.</p>
+    </div>
+  </details>
+
+  <details class="play">
+    <summary>Проверить, что правка дошла до сайта</summary>
+    <div class="body">
+      <ol>
+        <li>Подожди минуту после публикации — сайт пересобирается сам, обычно 15–40 секунд.</li>
+        <li>Открой <a href="https://www.zilma.pro" target="_blank" rel="noopener">zilma.pro</a> и обнови страницу.</li>
+        <li>Если видишь старую версию — открой в режиме инкогнито. Браузер любит показывать сохранённую копию.</li>
+      </ol>
+      <p class="aside"><b>На телефоне отдельная засада:</b> если сайт установлен как приложение, он может держать свою копию. Помогает закрыть его из списка приложений и открыть заново. Значок приложения при смене дизайна сам не обновится — только переустановка ярлыка.</p>
+    </div>
+  </details>
+
+  <details class="play">
+    <summary>Если на сайте что-то сломалось</summary>
+    <div class="body">
+      <ol>
+        <li>Сфотографируй экран целиком — вместе с адресной строкой, там видно, какая это страница.</li>
+        <li>Напиши, с чего именно ты начал и что нажал перед тем, как сломалось.</li>
+        <li>Скажи, где это было: телефон или компьютер. Половина багов живёт только на телефоне.</li>
+      </ol>
+      <p class="aside"><b>Не жди «удобного момента»:</b> откат делается за минуту — предыдущая рабочая версия сайта всегда сохранена, вернуть её быстрее, чем чинить на живом.</p>
+    </div>
+  </details>
+</section>
+
+<footer>
+  Обновляется вместе с рабочими файлами проекта — актуальная версия всегда по этой же ссылке. Планы и история проекта живут отдельно, в <code>журнале разработки</code>.
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var DAY = 86400000;
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  function readStore() {
+    try {
+      var raw = localStorage.getItem('zilma-organizer');
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+
+  function writeStore(data) {
+    try { localStorage.setItem('zilma-organizer', JSON.stringify(data)); } catch (e) {}
+  }
+
+  function parseDate(s) {
+    var p = String(s).split('-');
+    return new Date(+p[0], +p[1] - 1, +p[2]);
+  }
+
+  function formatRu(d) {
+    var m = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+    return d.getDate() + ' ' + m[d.getMonth()];
+  }
+
+  function plural(n, one, few, many) {
+    var n10 = n % 10, n100 = n % 100;
+    if (n10 === 1 && n100 !== 11) return one;
+    if (n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14)) return few;
+    return many;
+  }
+
+  var store = readStore();
+
+  function render(row) {
+    var key = row.getAttribute('data-key');
+    var every = parseInt(row.getAttribute('data-every'), 10);
+    var last = parseDate(store[key] || row.getAttribute('data-last'));
+    var days = Math.round((today - last) / DAY);
+    var left = every - days;
+    var when = row.querySelector('.when');
+    var btn = row.querySelector('.mark');
+
+    var state = left <= 0
+      ? '<span class="state due">пора проверить</span>'
+      : '<span class="state ok">через ' + left + ' ' + plural(left, 'день', 'дня', 'дней') + '</span>';
+
+    when.innerHTML = state + 'смотрели ' + formatRu(last);
+    btn.setAttribute('data-done', days === 0 ? '1' : '0');
+    btn.textContent = days === 0 ? 'Отмечено' : 'Проверил';
+  }
+
+  var rows = document.querySelectorAll('#checks .check');
+  Array.prototype.forEach.call(rows, function (row) {
+    render(row);
+    row.querySelector('.mark').addEventListener('click', function () {
+      var d = new Date();
+      var iso = d.getFullYear() + '-' +
+        String(d.getMonth() + 1).padStart(2, '0') + '-' +
+        String(d.getDate()).padStart(2, '0');
+      store[row.getAttribute('data-key')] = iso;
+      writeStore(store);
+      render(row);
+    });
+  });
+})();
+</script>
