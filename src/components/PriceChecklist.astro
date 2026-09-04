@@ -25,6 +25,36 @@ interface Props {
 const { items, instanceId, heading, groupBy = 'brand' } = Astro.props;
 const dialogId = `${instanceId}-dialog`;
 
+// Кружок-образец цвета рядом с товаром в каталоге. Источник — те же файлы палитр, что питают
+// интерактивные палитры в статьях (src/data/*-shades.json): у каждого оттенка там есть реальное
+// фото-вырезка (image) и ТОЧНОЕ имя товара из прайса (name) — связь установлена ещё на этапе
+// сборки палитры, сверкой с priceItems.json.
+//
+// Почему связываем именно по полному имени, а не по коду оттенка: коды повторяются между
+// линейками одного бренда (у Koleston и Color Touch общая линейка «KP Me+/CT», оба зовутся
+// «Краска ...», у обоих есть 10/0), и попытка развести их по началу названия ломается на
+// реальных данных — в прайсе встречается и «краска CT 7-89», и слитное «краска CT7-75».
+// Показать колористу ЧУЖОЙ цвет хуже, чем не показать никакого, поэтому берём только
+// стопроцентные совпадения. Обновление прайса это переживает: имена товаров в 1С стабильны,
+// меняются цены и наличие, а они и так читаются из priceItems.json на каждой сборке.
+const shadeModules = import.meta.glob<{ default: { name?: string; image?: string; hex?: string; code: string }[] }>(
+  '../data/*-shades.json',
+  { eager: true }
+);
+const swatchByName = new Map<string, { image?: string; hex?: string; code: string }>();
+for (const mod of Object.values(shadeModules)) {
+  for (const shade of mod.default) {
+    if (!shade.name) continue;
+    const key = shade.name.trim().toLowerCase().replace(/\s+/g, ' ');
+    if (!swatchByName.has(key)) {
+      swatchByName.set(key, { image: shade.image, hex: shade.hex, code: shade.code });
+    }
+  }
+}
+function swatchFor(name: string) {
+  return swatchByName.get(name.trim().toLowerCase().replace(/\s+/g, ' '));
+}
+
 // Сортировка: сначала латиница (A-Z), потом кириллица (А-Я), внутри каждой — по алфавиту.
 function scriptRank(s: string): number {
   const ch = s.trim().charAt(0);
@@ -246,10 +276,17 @@ const bestDeals = groupBy === 'discount'
         <div class="pc-group-body">
           {flat.length > 0 && (
             <ul>
-              {flat.map((it) => (
+              {flat.map((it) => {
+                const sw = swatchFor(it.name);
+                return (
                 <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
                   <label>
                     <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                    {sw && (
+                      <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
+                        {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
+                      </span>
+                    )}
                     <span class="pc-item-name">{it.name}</span>
                     <span class="pc-item-price">
                       <b class="pc-price-now">{it.price} ₽</b>
@@ -268,7 +305,8 @@ const bestDeals = groupBy === 'discount'
                     <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
                   </div>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           )}
           {lineEntries.map(([line, list]) => (
@@ -284,10 +322,17 @@ const bestDeals = groupBy === 'discount'
                 </span>
               </summary>
               <ul>
-                {list.map((it) => (
+                {list.map((it) => {
+                  const sw = swatchFor(it.name);
+                  return (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                      {sw && (
+                        <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
+                          {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
+                        </span>
+                      )}
                       <span class="pc-item-name">{it.name}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
@@ -306,7 +351,8 @@ const bestDeals = groupBy === 'discount'
                       <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
                     </div>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
             </details>
           ))}
@@ -318,10 +364,17 @@ const bestDeals = groupBy === 'discount'
       <div class="pc-best-deal">
         <p class="pc-best-deal-label">Лучшая скидка</p>
         <ul class="pc-best-deal-list">
-          {bestDeals.map((deal) => (
+          {bestDeals.map((deal) => {
+            const sw = swatchFor(deal.name);
+            return (
             <li class:list={['pc-item', { 'pc-promo': deal.promo }]} data-name={deal.name.toLowerCase()} data-brand={(deal.brand ?? '').toLowerCase()} data-line="" data-category={categorize(deal) ?? ''}>
               <label>
                 <input type="checkbox" class="pc-check" data-name={deal.name} data-price={deal.price} data-brand-label={deal.brand ?? ''} data-promo={deal.promo ? '1' : ''} />
+                {sw && (
+                  <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
+                    {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
+                  </span>
+                )}
                 <span class="pc-item-name">
                   <span class="pc-best-deal-brand">{deal.brand}</span>
                   {deal.name}
@@ -340,7 +393,8 @@ const bestDeals = groupBy === 'discount'
                 <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
               </div>
             </li>
-          ))}
+            );
+          })}
         </ul>
       </div>
     )}
@@ -352,10 +406,17 @@ const bestDeals = groupBy === 'discount'
             <details class="pc-group pc-group-line">
               <summary>{brand} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
               <ul>
-                {list.map((it) => (
+                {list.map((it) => {
+                  const sw = swatchFor(it.name);
+                  return (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                      {sw && (
+                        <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
+                          {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
+                        </span>
+                      )}
                       <span class="pc-item-name">{it.name}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
@@ -374,7 +435,8 @@ const bestDeals = groupBy === 'discount'
                       <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
                     </div>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
             </details>
           ))}
@@ -1287,6 +1349,28 @@ const bestDeals = groupBy === 'discount'
 
   .pc-item:not(:has(.pc-check:checked)) .pc-qty {
     opacity: 0.4;
+  }
+
+  /* Кружок-образец цвета оттенка. Фото — та же вырезка, что в интерактивной палитре статьи
+     (см. swatchFor во frontmatter). Фон кружка красится извлечённым hex — он виден, пока
+     грузится картинка, и остаётся, если файла нет; поэтому даже без фото строка не «мигает»
+     пустым местом. flex:none — иначе в узкой строке кружок сплющивался бы в овал. */
+  .pc-swatch {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    align-self: center;
+  }
+
+  .pc-swatch img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .pc-item-name {
