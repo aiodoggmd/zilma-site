@@ -1,4 +1,6 @@
 ---
+import productPhotos from '../data/product-photos.json';
+
 interface Item {
   id: number;
   brand: string | null;
@@ -155,6 +157,14 @@ function ownPaletteFor(brand: string | null, line: string | null, name: string):
   }
   return null;
 }
+// Товарные фото (см. scripts/extract-archive-photos.py и src/data/product-photos.json).
+// Ключ журнала — имя товара из прайса ровно как в priceItems.json, поэтому сопоставление
+// прямое, без нормализации. Фото есть далеко не у всех позиций, и это нормально: у
+// красителей вместо него кружок реального цвета, у остальных строка выглядит как раньше.
+function photoFor(it: { name: string }): string | undefined {
+  return (productPhotos as Record<string, string>)[it.name];
+}
+
 function swatchFor(it: { name: string; brand?: string | null; line?: string | null; category?: string }): Swatch | undefined {
   const exact = swatchByName.get(normName(it.name));
   if (exact) return exact;
@@ -392,6 +402,7 @@ const bestDeals = groupBy === 'discount'
             <ul>
               {flat.map((it) => {
                 const sw = swatchFor(it);
+                const ph = sw ? undefined : photoFor(it);
                 return (
                 <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
                   <label>
@@ -399,6 +410,11 @@ const bestDeals = groupBy === 'discount'
                     {sw && (
                       <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
                         {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
+                      </span>
+                    )}
+{ph && (
+                      <span class="pc-photo">
+                        <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
                       </span>
                     )}
                     <span class="pc-item-name">{it.name}</span>
@@ -438,6 +454,7 @@ const bestDeals = groupBy === 'discount'
               <ul>
                 {list.map((it) => {
                   const sw = swatchFor(it);
+                const ph = sw ? undefined : photoFor(it);
                   return (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it) ?? ''}>
                     <label>
@@ -447,6 +464,11 @@ const bestDeals = groupBy === 'discount'
                           {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
                         </span>
                       )}
+{ph && (
+                      <span class="pc-photo">
+                        <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
+                      </span>
+                    )}
                       <span class="pc-item-name">{it.name}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
@@ -480,6 +502,7 @@ const bestDeals = groupBy === 'discount'
         <ul class="pc-best-deal-list">
           {bestDeals.map((deal) => {
             const sw = swatchFor(deal);
+              const ph = sw ? undefined : photoFor(deal);
             return (
             <li class:list={['pc-item', { 'pc-promo': deal.promo }]} data-name={deal.name.toLowerCase()} data-brand={(deal.brand ?? '').toLowerCase()} data-line="" data-category={categorize(deal) ?? ''}>
               <label>
@@ -489,6 +512,11 @@ const bestDeals = groupBy === 'discount'
                     {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
                   </span>
                 )}
+{ph && (
+                      <span class="pc-photo">
+                        <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
+                      </span>
+                    )}
                 <span class="pc-item-name">
                   <span class="pc-best-deal-brand">{deal.brand}</span>
                   {deal.name}
@@ -522,6 +550,7 @@ const bestDeals = groupBy === 'discount'
               <ul>
                 {list.map((it) => {
                   const sw = swatchFor(it);
+                const ph = sw ? undefined : photoFor(it);
                   return (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
                     <label>
@@ -531,6 +560,11 @@ const bestDeals = groupBy === 'discount'
                           {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
                         </span>
                       )}
+{ph && (
+                      <span class="pc-photo">
+                        <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
+                      </span>
+                    )}
                       <span class="pc-item-name">{it.name}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
@@ -1468,6 +1502,29 @@ const bestDeals = groupBy === 'discount'
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+  }
+
+  /* Фото товара — та же позиция в строке, что и кружок цвета, но у него другая роль,
+     поэтому и форма другая: у красителя кружок показывает ЦВЕТ (круг читается как
+     образец), у остального товара — упаковку, и её нельзя обрезать по кругу. Квадрат
+     со скруглением 4px, как вся мелочь в новом дизайне. object-fit:contain, потому что
+     фото уже лежит на белом квадрате — обрезать его нельзя, флакон уйдёт за край. */
+  .pc-photo {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-control);
+    overflow: hidden;
+    background: var(--color-paper);
+    border: 1px solid var(--color-panel-line);
+    align-self: center;
+  }
+
+  .pc-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     display: block;
   }
 
