@@ -1510,6 +1510,10 @@ const bestDeals = groupBy === 'discount'
      образец), у остального товара — упаковку, и её нельзя обрезать по кругу. Квадрат
      со скруглением 4px, как вся мелочь в новом дизайне. object-fit:contain, потому что
      фото уже лежит на белом квадрате — обрезать его нельзя, флакон уйдёт за край. */
+  /* Без рамки, но с тенью (по просьбе пользователя 2026-09-05). Рамка спорила с самим
+     товаром: фото уже на белом, и линия читалась как вторая, лишняя граница вокруг
+     упаковки. Тень вместо неё отделяет фото от белой строки мягче и как бы приподнимает
+     товар — на 30px это работает заметно лучше. */
   .pc-photo {
     flex: none;
     width: 30px;
@@ -1517,7 +1521,7 @@ const bestDeals = groupBy === 'discount'
     border-radius: var(--radius-control);
     overflow: hidden;
     background: var(--color-paper);
-    border: 1px solid var(--color-panel-line);
+    box-shadow: var(--shadow-sm);
     align-self: center;
   }
 
