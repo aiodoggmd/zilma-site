@@ -146,7 +146,10 @@ function ownPaletteFor(brand: string | null, line: string | null, name: string):
   }
   if (brand === 'MATRIX') {
     const n = normName(name);
-    if (n.startsWith('color sync тонер')) return 'matrix-sync-acid';
+    // Тонеры с кислым pH — это линейка Tonal Control, у неё своя официальная карта.
+    // Раньше сюда подставлялась «кислотная» страница из карты SoColor Sync, но там всего
+    // 12 кодов из нужных 28; полная карта Tonal Control закрывает все.
+    if (n.startsWith('color sync тонер')) return 'matrix-tonal-control';
     if (n.startsWith('color sync ')) return 'matrix-sync';
     if (n.startsWith('socolor ')) return 'matrix-socolor';
   }

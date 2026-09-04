@@ -1,0 +1,362 @@
+[
+  {
+    "code": "11PV",
+    "hex": "#957e73",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 0,
+    "image": "/images/shades/matrix-tonal-control/11pv.webp"
+  },
+  {
+    "code": "9V",
+    "hex": "#927971",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 1,
+    "image": "/images/shades/matrix-tonal-control/9v.webp",
+    "name": "Color Sync Тонер с Кислым Ph 9V 90 мл 0-9V",
+    "price": 750
+  },
+  {
+    "code": "8VG",
+    "hex": "#7f655b",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 2,
+    "image": "/images/shades/matrix-tonal-control/8vg.webp",
+    "name": "Color Sync Тонер с Кислым Ph 8VG 90 мл 0-8VG",
+    "price": 750
+  },
+  {
+    "code": "8P",
+    "hex": "#796e6a",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 3,
+    "image": "/images/shades/matrix-tonal-control/8p.webp",
+    "name": "Color Sync Тонер с Кислым Ph 8P 90 мл 0-8P",
+    "price": 750
+  },
+  {
+    "code": "10P",
+    "hex": "#8b817b",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 4,
+    "image": "/images/shades/matrix-tonal-control/10p.webp",
+    "name": "Color Sync Тонер с Кислым Ph 10P 90 мл 0-10P",
+    "price": 750
+  },
+  {
+    "code": "8VR",
+    "hex": "#c17a74",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 5,
+    "image": "/images/shades/matrix-tonal-control/8vr.webp",
+    "name": "Color Sync Тонер с Кислым Ph 8VR 90 мл 0-8VR",
+    "price": 750
+  },
+  {
+    "code": "10VA",
+    "hex": "#9f9191",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 6,
+    "image": "/images/shades/matrix-tonal-control/10va.webp"
+  },
+  {
+    "code": "11NV",
+    "hex": "#ae9e9e",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 7,
+    "image": "/images/shades/matrix-tonal-control/11nv.webp",
+    "name": "Color Sync Тонер с Кислым Ph 11NV 90 мл 0-11NV",
+    "price": 750
+  },
+  {
+    "code": "10PA",
+    "hex": "#9d958f",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 8,
+    "image": "/images/shades/matrix-tonal-control/10pa.webp",
+    "name": "Color Sync Тонер с Кислым Ph 10PA 90 мл 0-10PA",
+    "price": 750
+  },
+  {
+    "code": "11PA",
+    "hex": "#afa6a7",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 9,
+    "image": "/images/shades/matrix-tonal-control/11pa.webp",
+    "name": "Color Sync Тонер с Кислым Ph 11PA 90 мл 0-11PA",
+    "price": 750
+  },
+  {
+    "code": "5NGA",
+    "hex": "#5b452f",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 10,
+    "image": "/images/shades/matrix-tonal-control/5nga.webp"
+  },
+  {
+    "code": "6NGA",
+    "hex": "#6a5336",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 11,
+    "image": "/images/shades/matrix-tonal-control/6nga.webp"
+  },
+  {
+    "code": "9NGA",
+    "hex": "#9b7e4d",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 12,
+    "image": "/images/shades/matrix-tonal-control/9nga.webp"
+  },
+  {
+    "code": "11N",
+    "hex": "#c7b29c",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 13,
+    "image": "/images/shades/matrix-tonal-control/11n.webp",
+    "name": "Color Sync Тонер с Кислым Ph 11N 90 мл 0-11N",
+    "price": 750
+  },
+  {
+    "code": "10AG",
+    "hex": "#a89485",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 14,
+    "image": "/images/shades/matrix-tonal-control/10ag.webp",
+    "name": "Color Sync Тонер с Кислым Ph 10AG 90 мл 0-10AG",
+    "price": 750
+  },
+  {
+    "code": "10N",
+    "hex": "#bba590",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 15,
+    "image": "/images/shades/matrix-tonal-control/10n.webp",
+    "name": "Color Sync Тонер с Кислым Ph 10N 90 мл 0-10N",
+    "price": 750
+  },
+  {
+    "code": "9AA",
+    "hex": "#877963",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 16,
+    "image": "/images/shades/matrix-tonal-control/9aa.webp",
+    "name": "Color Sync Тонер с Кислым Ph 9AA 90 мл 0-9AA",
+    "price": 750
+  },
+  {
+    "code": "7NA",
+    "hex": "#6a584b",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 17,
+    "image": "/images/shades/matrix-tonal-control/7na.webp"
+  },
+  {
+    "code": "6A",
+    "hex": "#5e5141",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 18,
+    "image": "/images/shades/matrix-tonal-control/6a.webp"
+  },
+  {
+    "code": "4AA",
+    "hex": "#2a2124",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 19,
+    "image": "/images/shades/matrix-tonal-control/4aa.webp"
+  },
+  {
+    "code": "8T",
+    "hex": "#756c6d",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 20,
+    "image": "/images/shades/matrix-tonal-control/8t.webp",
+    "name": "Color Sync Тонер с Кислым Ph 8T 90 мл 0-8T",
+    "price": 750
+  },
+  {
+    "code": "10T",
+    "hex": "#8b8381",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 21,
+    "image": "/images/shades/matrix-tonal-control/10t.webp",
+    "name": "Color Sync Тонер с Кислым Ph 10T 90 мл 0-10T",
+    "price": 750
+  },
+  {
+    "code": "11NA",
+    "hex": "#aaa29b",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 22,
+    "image": "/images/shades/matrix-tonal-control/11na.webp",
+    "name": "Color Sync Тонер с Кислым Ph 11NA 90 мл 0-11NA",
+    "price": 750
+  },
+  {
+    "code": "10PR",
+    "hex": "#946f5c",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 23,
+    "image": "/images/shades/matrix-tonal-control/10pr.webp",
+    "name": "Color Sync Тонер с Кислым Ph 10PR 90 мл 0-10PR",
+    "price": 750
+  },
+  {
+    "code": "9RG",
+    "hex": "#9d7155",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 24,
+    "image": "/images/shades/matrix-tonal-control/9rg.webp",
+    "name": "Color Sync Тонер с Кислым Ph 9RG 90 м 0-9RG",
+    "price": 750
+  },
+  {
+    "code": "8CR",
+    "hex": "#d87056",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 25,
+    "image": "/images/shades/matrix-tonal-control/8cr.webp",
+    "name": "Color Sync Тонер с Кислым Ph 8CR 90 мл 0-8CR",
+    "price": 750
+  },
+  {
+    "code": "8C",
+    "hex": "#b76a4e",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 26,
+    "image": "/images/shades/matrix-tonal-control/8c.webp",
+    "name": "Color Sync Тонер с Кислым Ph 8C 90 мл 0-8C",
+    "price": 750
+  },
+  {
+    "code": "9NCV",
+    "hex": "#c49b78",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 27,
+    "image": "/images/shades/matrix-tonal-control/9ncv.webp",
+    "name": "Color Sync Тонер с Кислым Ph 9NCV 90 мл 0-9NCV",
+    "price": 750
+  },
+  {
+    "code": "5NJ",
+    "hex": "#554634",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 28,
+    "image": "/images/shades/matrix-tonal-control/5nj.webp"
+  },
+  {
+    "code": "7GM",
+    "hex": "#785a4b",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 29,
+    "image": "/images/shades/matrix-tonal-control/7gm.webp",
+    "name": "Color Sync Тонер с Кислым Ph 7GM 90 мл 0-7GM",
+    "price": 750
+  },
+  {
+    "code": "5NW",
+    "hex": "#5c442f",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 30,
+    "image": "/images/shades/matrix-tonal-control/5nw.webp"
+  },
+  {
+    "code": "8GB",
+    "hex": "#a48a71",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 31,
+    "image": "/images/shades/matrix-tonal-control/8gb.webp",
+    "name": "Color Sync Тонер с Кислым Ph 8GB 90 мл 0-8GB",
+    "price": 750
+  },
+  {
+    "code": "9W",
+    "hex": "#c19167",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 32,
+    "image": "/images/shades/matrix-tonal-control/9w.webp",
+    "name": "Color Sync Тонер с Кислым Ph 9W 90 мл 0-9W",
+    "price": 750
+  },
+  {
+    "code": "9GV",
+    "hex": "#bea47f",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 33,
+    "image": "/images/shades/matrix-tonal-control/9gv.webp",
+    "name": "Color Sync Тонер с Кислым Ph 9GV 90 мл 0-9GV",
+    "price": 750
+  },
+  {
+    "code": "9G",
+    "hex": "#bea77c",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 34,
+    "image": "/images/shades/matrix-tonal-control/9g.webp",
+    "name": "Color Sync Тонер с Кислым Ph 9G 90 мл 0-9G",
+    "price": 750
+  },
+  {
+    "code": "9NW",
+    "hex": "#c5b18e",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 35,
+    "image": "/images/shades/matrix-tonal-control/9nw.webp",
+    "name": "Color Sync Тонер с Кислым Ph 9NW 90 мл 0-9NW",
+    "price": 750
+  },
+  {
+    "code": "10GB",
+    "hex": "#bd9f82",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 36,
+    "image": "/images/shades/matrix-tonal-control/10gb.webp",
+    "name": "Color Sync Тонер с Кислым Ph 10GB 90 мл 0-10GB",
+    "price": 750
+  },
+  {
+    "code": "CLEAR",
+    "hex": "#ffffff",
+    "group": "tonal-control",
+    "row": 0,
+    "col": 37,
+    "image": "/images/shades/matrix-tonal-control/clear.webp",
+    "name": "Color Sync Тонер с Кислым Ph CLEAR 90 мл 0-CLEAR",
+    "price": 750
+  }
+]
