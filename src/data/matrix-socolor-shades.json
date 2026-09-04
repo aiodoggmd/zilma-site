@@ -1,0 +1,896 @@
+[
+  {
+    "code": "10AV",
+    "hex": "#a29885",
+    "group": "socolor",
+    "row": 0,
+    "col": 0,
+    "image": "/images/shades/matrix-socolor/10av.webp"
+  },
+  {
+    "code": "10N",
+    "hex": "#9f7a54",
+    "group": "socolor",
+    "row": 0,
+    "col": 1,
+    "image": "/images/shades/matrix-socolor/10n.webp",
+    "name": "Socolor 10N 10N",
+    "price": 610
+  },
+  {
+    "code": "11A",
+    "hex": "#c3b59a",
+    "group": "socolor",
+    "row": 0,
+    "col": 2,
+    "image": "/images/shades/matrix-socolor/11a.webp",
+    "name": "Socolor 11A 11A",
+    "price": 610
+  },
+  {
+    "code": "11N",
+    "hex": "#c6af9a",
+    "group": "socolor",
+    "row": 0,
+    "col": 3,
+    "image": "/images/shades/matrix-socolor/11n.webp",
+    "name": "Socolor 11N 11N",
+    "price": 610
+  },
+  {
+    "code": "11P",
+    "hex": "#bbada4",
+    "group": "socolor",
+    "row": 0,
+    "col": 4,
+    "image": "/images/shades/matrix-socolor/11p.webp"
+  },
+  {
+    "code": "1N",
+    "hex": "#231d17",
+    "group": "socolor",
+    "row": 0,
+    "col": 5,
+    "image": "/images/shades/matrix-socolor/1n.webp"
+  },
+  {
+    "code": "2N",
+    "hex": "#332a22",
+    "group": "socolor",
+    "row": 0,
+    "col": 6,
+    "image": "/images/shades/matrix-socolor/2n.webp",
+    "name": "Socolor 2N 2N",
+    "price": 610
+  },
+  {
+    "code": "3BR",
+    "hex": "#260e19",
+    "group": "socolor",
+    "row": 0,
+    "col": 7,
+    "image": "/images/shades/matrix-socolor/3br.webp"
+  },
+  {
+    "code": "3N",
+    "hex": "#43362e",
+    "group": "socolor",
+    "row": 0,
+    "col": 8,
+    "image": "/images/shades/matrix-socolor/3n.webp"
+  },
+  {
+    "code": "3VR",
+    "hex": "#260f21",
+    "group": "socolor",
+    "row": 0,
+    "col": 9,
+    "image": "/images/shades/matrix-socolor/3vr.webp"
+  },
+  {
+    "code": "4A",
+    "hex": "#392a12",
+    "group": "socolor",
+    "row": 0,
+    "col": 10,
+    "image": "/images/shades/matrix-socolor/4a.webp"
+  },
+  {
+    "code": "4AA",
+    "hex": "#3a2811",
+    "group": "socolor",
+    "row": 0,
+    "col": 11,
+    "image": "/images/shades/matrix-socolor/4aa.webp",
+    "name": "Socolor 4AA 90 мл. 4AA",
+    "price": 610
+  },
+  {
+    "code": "4M",
+    "hex": "#5f3f30",
+    "group": "socolor",
+    "row": 0,
+    "col": 12,
+    "image": "/images/shades/matrix-socolor/4m.webp",
+    "name": "Socolor 4M 4M",
+    "price": 610
+  },
+  {
+    "code": "4N",
+    "hex": "#52423a",
+    "group": "socolor",
+    "row": 0,
+    "col": 13,
+    "image": "/images/shades/matrix-socolor/4n.webp",
+    "name": "Socolor 4N 4N",
+    "price": 610
+  },
+  {
+    "code": "4NJ",
+    "hex": "#43392f",
+    "group": "socolor",
+    "row": 0,
+    "col": 14,
+    "image": "/images/shades/matrix-socolor/4nj.webp"
+  },
+  {
+    "code": "4RB",
+    "hex": "#27110b",
+    "group": "socolor",
+    "row": 0,
+    "col": 15,
+    "image": "/images/shades/matrix-socolor/4rb.webp"
+  },
+  {
+    "code": "4RV+",
+    "hex": "#3d1024",
+    "group": "socolor",
+    "row": 0,
+    "col": 16,
+    "image": "/images/shades/matrix-socolor/4rvplus.webp"
+  },
+  {
+    "code": "4VA",
+    "hex": "#260f1c",
+    "group": "socolor",
+    "row": 0,
+    "col": 17,
+    "image": "/images/shades/matrix-socolor/4va.webp"
+  },
+  {
+    "code": "504N",
+    "hex": "#3c2d1c",
+    "group": "socolor",
+    "row": 0,
+    "col": 18,
+    "image": "/images/shades/matrix-socolor/504n.webp",
+    "name": "Socolor 504N 504N",
+    "price": 610
+  },
+  {
+    "code": "504NA",
+    "hex": "#453830",
+    "group": "socolor",
+    "row": 0,
+    "col": 19,
+    "image": "/images/shades/matrix-socolor/504na.webp"
+  },
+  {
+    "code": "504NJ",
+    "hex": "#342c23",
+    "group": "socolor",
+    "row": 0,
+    "col": 20,
+    "image": "/images/shades/matrix-socolor/504nj.webp"
+  },
+  {
+    "code": "504W",
+    "hex": "#3c2310",
+    "group": "socolor",
+    "row": 0,
+    "col": 21,
+    "image": "/images/shades/matrix-socolor/504w.webp"
+  },
+  {
+    "code": "505M",
+    "hex": "#522c27",
+    "group": "socolor",
+    "row": 0,
+    "col": 22,
+    "image": "/images/shades/matrix-socolor/505m.webp",
+    "name": "Socolor 505M 505M",
+    "price": 610
+  },
+  {
+    "code": "505N",
+    "hex": "#4e3b26",
+    "group": "socolor",
+    "row": 0,
+    "col": 23,
+    "image": "/images/shades/matrix-socolor/505n.webp",
+    "name": "Socolor 505N 505N",
+    "price": 610
+  },
+  {
+    "code": "505R",
+    "hex": "#3d120f",
+    "group": "socolor",
+    "row": 0,
+    "col": 24,
+    "image": "/images/shades/matrix-socolor/505r.webp"
+  },
+  {
+    "code": "506BC",
+    "hex": "#581e0e",
+    "group": "socolor",
+    "row": 0,
+    "col": 25,
+    "image": "/images/shades/matrix-socolor/506bc.webp",
+    "name": "Socolor 506BC 506BC",
+    "price": 610
+  },
+  {
+    "code": "506M",
+    "hex": "#633631",
+    "group": "socolor",
+    "row": 0,
+    "col": 26,
+    "image": "/images/shades/matrix-socolor/506m.webp"
+  },
+  {
+    "code": "506N",
+    "hex": "#5f4930",
+    "group": "socolor",
+    "row": 0,
+    "col": 27,
+    "image": "/images/shades/matrix-socolor/506n.webp",
+    "name": "Socolor 506N 506N",
+    "price": 610
+  },
+  {
+    "code": "506NA",
+    "hex": "#645247",
+    "group": "socolor",
+    "row": 0,
+    "col": 28,
+    "image": "/images/shades/matrix-socolor/506na.webp"
+  },
+  {
+    "code": "506NJ",
+    "hex": "#625547",
+    "group": "socolor",
+    "row": 0,
+    "col": 29,
+    "image": "/images/shades/matrix-socolor/506nj.webp"
+  },
+  {
+    "code": "506NV",
+    "hex": "#645347",
+    "group": "socolor",
+    "row": 0,
+    "col": 30,
+    "image": "/images/shades/matrix-socolor/506nv.webp",
+    "name": "Socolor 506NV 506NV",
+    "price": 610
+  },
+  {
+    "code": "506W",
+    "hex": "#6b3f18",
+    "group": "socolor",
+    "row": 0,
+    "col": 31,
+    "image": "/images/shades/matrix-socolor/506w.webp"
+  },
+  {
+    "code": "507M",
+    "hex": "#845245",
+    "group": "socolor",
+    "row": 0,
+    "col": 32,
+    "image": "/images/shades/matrix-socolor/507m.webp"
+  },
+  {
+    "code": "507N",
+    "hex": "#6f563a",
+    "group": "socolor",
+    "row": 0,
+    "col": 33,
+    "image": "/images/shades/matrix-socolor/507n.webp",
+    "name": "Socolor 507N 507N",
+    "price": 610
+  },
+  {
+    "code": "507NG",
+    "hex": "#86684c",
+    "group": "socolor",
+    "row": 0,
+    "col": 34,
+    "image": "/images/shades/matrix-socolor/507ng.webp"
+  },
+  {
+    "code": "507NW",
+    "hex": "#71583b",
+    "group": "socolor",
+    "row": 0,
+    "col": 35,
+    "image": "/images/shades/matrix-socolor/507nw.webp"
+  },
+  {
+    "code": "507R",
+    "hex": "#701913",
+    "group": "socolor",
+    "row": 0,
+    "col": 36,
+    "image": "/images/shades/matrix-socolor/507r.webp"
+  },
+  {
+    "code": "508M",
+    "hex": "#864b45",
+    "group": "socolor",
+    "row": 0,
+    "col": 37,
+    "image": "/images/shades/matrix-socolor/508m.webp",
+    "name": "Socolor 508M 508M",
+    "price": 610
+  },
+  {
+    "code": "508N",
+    "hex": "#806343",
+    "group": "socolor",
+    "row": 0,
+    "col": 38,
+    "image": "/images/shades/matrix-socolor/508n.webp",
+    "name": "Socolor 508N 508N",
+    "price": 610
+  },
+  {
+    "code": "508NA",
+    "hex": "#726152",
+    "group": "socolor",
+    "row": 0,
+    "col": 39,
+    "image": "/images/shades/matrix-socolor/508na.webp",
+    "name": "Socolor 508NA 508NA",
+    "price": 610
+  },
+  {
+    "code": "508W",
+    "hex": "#985a25",
+    "group": "socolor",
+    "row": 0,
+    "col": 40,
+    "image": "/images/shades/matrix-socolor/508w.webp"
+  },
+  {
+    "code": "509N",
+    "hex": "#90704c",
+    "group": "socolor",
+    "row": 0,
+    "col": 41,
+    "image": "/images/shades/matrix-socolor/509n.webp",
+    "name": "Socolor 509N 509N",
+    "price": 610
+  },
+  {
+    "code": "509NG",
+    "hex": "#a48463",
+    "group": "socolor",
+    "row": 0,
+    "col": 42,
+    "image": "/images/shades/matrix-socolor/509ng.webp"
+  },
+  {
+    "code": "510N",
+    "hex": "#a07c55",
+    "group": "socolor",
+    "row": 0,
+    "col": 43,
+    "image": "/images/shades/matrix-socolor/510n.webp"
+  },
+  {
+    "code": "510NA",
+    "hex": "#8e7967",
+    "group": "socolor",
+    "row": 0,
+    "col": 44,
+    "image": "/images/shades/matrix-socolor/510na.webp",
+    "name": "Socolor 510NA 510NA",
+    "price": 610
+  },
+  {
+    "code": "5A",
+    "hex": "#3a2912",
+    "group": "socolor",
+    "row": 0,
+    "col": 45,
+    "image": "/images/shades/matrix-socolor/5a.webp"
+  },
+  {
+    "code": "5BC",
+    "hex": "#3c200f",
+    "group": "socolor",
+    "row": 0,
+    "col": 46,
+    "image": "/images/shades/matrix-socolor/5bc.webp",
+    "name": "Socolor 5BC 5BC",
+    "price": 567.3
+  },
+  {
+    "code": "5BR",
+    "hex": "#3d1b0e",
+    "group": "socolor",
+    "row": 0,
+    "col": 47,
+    "image": "/images/shades/matrix-socolor/5br.webp"
+  },
+  {
+    "code": "5CG",
+    "hex": "#56210e",
+    "group": "socolor",
+    "row": 0,
+    "col": 48,
+    "image": "/images/shades/matrix-socolor/5cg.webp"
+  },
+  {
+    "code": "5G",
+    "hex": "#3a2711",
+    "group": "socolor",
+    "row": 0,
+    "col": 49,
+    "image": "/images/shades/matrix-socolor/5g.webp"
+  },
+  {
+    "code": "5M",
+    "hex": "#714b3a",
+    "group": "socolor",
+    "row": 0,
+    "col": 50,
+    "image": "/images/shades/matrix-socolor/5m.webp"
+  },
+  {
+    "code": "5N",
+    "hex": "#6f5239",
+    "group": "socolor",
+    "row": 0,
+    "col": 51,
+    "image": "/images/shades/matrix-socolor/5n.webp",
+    "name": "Socolor 5N 5N",
+    "price": 610
+  },
+  {
+    "code": "5NA",
+    "hex": "#43382f",
+    "group": "socolor",
+    "row": 0,
+    "col": 52,
+    "image": "/images/shades/matrix-socolor/5na.webp"
+  },
+  {
+    "code": "5RC",
+    "hex": "#571b0e",
+    "group": "socolor",
+    "row": 0,
+    "col": 53,
+    "image": "/images/shades/matrix-socolor/5rc.webp"
+  },
+  {
+    "code": "5RR+",
+    "hex": "#3c1112",
+    "group": "socolor",
+    "row": 0,
+    "col": 54,
+    "image": "/images/shades/matrix-socolor/5rrplus.webp",
+    "name": "Socolor 5RR+ 5RR+",
+    "price": 610
+  },
+  {
+    "code": "5VR",
+    "hex": "#3c1119",
+    "group": "socolor",
+    "row": 0,
+    "col": 55,
+    "image": "/images/shades/matrix-socolor/5vr.webp"
+  },
+  {
+    "code": "5W",
+    "hex": "#533012",
+    "group": "socolor",
+    "row": 0,
+    "col": 56,
+    "image": "/images/shades/matrix-socolor/5w.webp"
+  },
+  {
+    "code": "6A",
+    "hex": "#3a2711",
+    "group": "socolor",
+    "row": 0,
+    "col": 57,
+    "image": "/images/shades/matrix-socolor/6a.webp"
+  },
+  {
+    "code": "6AA",
+    "hex": "#43372f",
+    "group": "socolor",
+    "row": 0,
+    "col": 58,
+    "image": "/images/shades/matrix-socolor/6aa.webp",
+    "name": "Socolor 6AA 90мл 6AA",
+    "price": 610
+  },
+  {
+    "code": "6BR",
+    "hex": "#3d1a0d",
+    "group": "socolor",
+    "row": 0,
+    "col": 59,
+    "image": "/images/shades/matrix-socolor/6br.webp"
+  },
+  {
+    "code": "6M",
+    "hex": "#815642",
+    "group": "socolor",
+    "row": 0,
+    "col": 60,
+    "image": "/images/shades/matrix-socolor/6m.webp",
+    "name": "Socolor 6M 6M",
+    "price": 610
+  },
+  {
+    "code": "6N",
+    "hex": "#7f5e42",
+    "group": "socolor",
+    "row": 0,
+    "col": 61,
+    "image": "/images/shades/matrix-socolor/6n.webp",
+    "name": "Socolor 6N 6N",
+    "price": 610
+  },
+  {
+    "code": "6NA",
+    "hex": "#52453a",
+    "group": "socolor",
+    "row": 0,
+    "col": 62,
+    "image": "/images/shades/matrix-socolor/6na.webp"
+  },
+  {
+    "code": "6NJ",
+    "hex": "#615345",
+    "group": "socolor",
+    "row": 0,
+    "col": 63,
+    "image": "/images/shades/matrix-socolor/6nj.webp"
+  },
+  {
+    "code": "6NV",
+    "hex": "#724a3a",
+    "group": "socolor",
+    "row": 0,
+    "col": 64,
+    "image": "/images/shades/matrix-socolor/6nv.webp",
+    "name": "Socolor 6NV 6NV",
+    "price": 610
+  },
+  {
+    "code": "6NW",
+    "hex": "#6c3c18",
+    "group": "socolor",
+    "row": 0,
+    "col": 65,
+    "image": "/images/shades/matrix-socolor/6nw.webp",
+    "name": "Socolor 6NW 6NW",
+    "price": 610
+  },
+  {
+    "code": "6RB",
+    "hex": "#3d190d",
+    "group": "socolor",
+    "row": 0,
+    "col": 66,
+    "image": "/images/shades/matrix-socolor/6rb.webp"
+  },
+  {
+    "code": "6RC",
+    "hex": "#6f2314",
+    "group": "socolor",
+    "row": 0,
+    "col": 67,
+    "image": "/images/shades/matrix-socolor/6rc.webp"
+  },
+  {
+    "code": "6RR+",
+    "hex": "#581111",
+    "group": "socolor",
+    "row": 0,
+    "col": 68,
+    "image": "/images/shades/matrix-socolor/6rrplus.webp"
+  },
+  {
+    "code": "6RV+",
+    "hex": "#3d120f",
+    "group": "socolor",
+    "row": 0,
+    "col": 69,
+    "image": "/images/shades/matrix-socolor/6rvplus.webp"
+  },
+  {
+    "code": "6VA",
+    "hex": "#423a2f",
+    "group": "socolor",
+    "row": 0,
+    "col": 70,
+    "image": "/images/shades/matrix-socolor/6va.webp",
+    "name": "Socolor 6VA 90мл 6VA",
+    "price": 610
+  },
+  {
+    "code": "6W",
+    "hex": "#6a3e18",
+    "group": "socolor",
+    "row": 0,
+    "col": 71,
+    "image": "/images/shades/matrix-socolor/6w.webp"
+  },
+  {
+    "code": "7A",
+    "hex": "#3a2611",
+    "group": "socolor",
+    "row": 0,
+    "col": 72,
+    "image": "/images/shades/matrix-socolor/7a.webp"
+  },
+  {
+    "code": "7BC",
+    "hex": "#542d11",
+    "group": "socolor",
+    "row": 0,
+    "col": 73,
+    "image": "/images/shades/matrix-socolor/7bc.webp"
+  },
+  {
+    "code": "7CC",
+    "hex": "#9b4422",
+    "group": "socolor",
+    "row": 0,
+    "col": 74,
+    "image": "/images/shades/matrix-socolor/7cc.webp"
+  },
+  {
+    "code": "7CG",
+    "hex": "#6e2a14",
+    "group": "socolor",
+    "row": 0,
+    "col": 75,
+    "image": "/images/shades/matrix-socolor/7cg.webp",
+    "name": "Socolor 7CG 7CG",
+    "price": 610
+  },
+  {
+    "code": "7G",
+    "hex": "#523513",
+    "group": "socolor",
+    "row": 0,
+    "col": 76,
+    "image": "/images/shades/matrix-socolor/7g.webp"
+  },
+  {
+    "code": "7M",
+    "hex": "#92624c",
+    "group": "socolor",
+    "row": 0,
+    "col": 77,
+    "image": "/images/shades/matrix-socolor/7m.webp",
+    "name": "Socolor 7M 7M",
+    "price": 610
+  },
+  {
+    "code": "7N",
+    "hex": "#8f6b4b",
+    "group": "socolor",
+    "row": 0,
+    "col": 78,
+    "image": "/images/shades/matrix-socolor/7n.webp",
+    "name": "Socolor 7N 7N",
+    "price": 610
+  },
+  {
+    "code": "7NA",
+    "hex": "#615246",
+    "group": "socolor",
+    "row": 0,
+    "col": 79,
+    "image": "/images/shades/matrix-socolor/7na.webp"
+  },
+  {
+    "code": "7P",
+    "hex": "#605445",
+    "group": "socolor",
+    "row": 0,
+    "col": 80,
+    "image": "/images/shades/matrix-socolor/7p.webp"
+  },
+  {
+    "code": "7RB",
+    "hex": "#56230f",
+    "group": "socolor",
+    "row": 0,
+    "col": 81,
+    "image": "/images/shades/matrix-socolor/7rb.webp"
+  },
+  {
+    "code": "7W",
+    "hex": "#814b1f",
+    "group": "socolor",
+    "row": 0,
+    "col": 82,
+    "image": "/images/shades/matrix-socolor/7w.webp"
+  },
+  {
+    "code": "8A",
+    "hex": "#523413",
+    "group": "socolor",
+    "row": 0,
+    "col": 83,
+    "image": "/images/shades/matrix-socolor/8a.webp"
+  },
+  {
+    "code": "8AA",
+    "hex": "#5f4630",
+    "group": "socolor",
+    "row": 0,
+    "col": 84,
+    "image": "/images/shades/matrix-socolor/8aa.webp"
+  },
+  {
+    "code": "8AV",
+    "hex": "#73473a",
+    "group": "socolor",
+    "row": 0,
+    "col": 85,
+    "image": "/images/shades/matrix-socolor/8av.webp"
+  },
+  {
+    "code": "8CC",
+    "hex": "#9c3e22",
+    "group": "socolor",
+    "row": 0,
+    "col": 86,
+    "image": "/images/shades/matrix-socolor/8cc.webp",
+    "name": "Socolor 8CC 8CC",
+    "price": 610
+  },
+  {
+    "code": "8M",
+    "hex": "#a26e55",
+    "group": "socolor",
+    "row": 0,
+    "col": 87,
+    "image": "/images/shades/matrix-socolor/8m.webp"
+  },
+  {
+    "code": "8N",
+    "hex": "#9f7754",
+    "group": "socolor",
+    "row": 0,
+    "col": 88,
+    "image": "/images/shades/matrix-socolor/8n.webp"
+  },
+  {
+    "code": "8NA",
+    "hex": "#7f6b5c",
+    "group": "socolor",
+    "row": 0,
+    "col": 89,
+    "image": "/images/shades/matrix-socolor/8na.webp",
+    "name": "Socolor 8NA 8NA",
+    "price": 610
+  },
+  {
+    "code": "8W",
+    "hex": "#975825",
+    "group": "socolor",
+    "row": 0,
+    "col": 90,
+    "image": "/images/shades/matrix-socolor/8w.webp"
+  },
+  {
+    "code": "9A",
+    "hex": "#68461b",
+    "group": "socolor",
+    "row": 0,
+    "col": 91,
+    "image": "/images/shades/matrix-socolor/9a.webp",
+    "name": "Socolor 9A 9A",
+    "price": 610
+  },
+  {
+    "code": "9CG",
+    "hex": "#b37a43",
+    "group": "socolor",
+    "row": 0,
+    "col": 92,
+    "image": "/images/shades/matrix-socolor/9cg.webp"
+  },
+  {
+    "code": "9G",
+    "hex": "#9f7a54",
+    "group": "socolor",
+    "row": 0,
+    "col": 93,
+    "image": "/images/shades/matrix-socolor/9g.webp",
+    "name": "Socolor 9G 9G",
+    "price": 610
+  },
+  {
+    "code": "9N",
+    "hex": "#a98465",
+    "group": "socolor",
+    "row": 0,
+    "col": 94,
+    "image": "/images/shades/matrix-socolor/9n.webp",
+    "name": "Socolor 9N 9N",
+    "price": 610
+  },
+  {
+    "code": "9P",
+    "hex": "#8b7965",
+    "group": "socolor",
+    "row": 0,
+    "col": 95,
+    "image": "/images/shades/matrix-socolor/9p.webp"
+  },
+  {
+    "code": "UL-N",
+    "hex": "#dccaab",
+    "group": "socolor",
+    "row": 0,
+    "col": 96,
+    "image": "/images/shades/matrix-socolor/ul-n.webp"
+  },
+  {
+    "code": "UL-P",
+    "hex": "#d7cdba",
+    "group": "socolor",
+    "row": 0,
+    "col": 97,
+    "image": "/images/shades/matrix-socolor/ul-p.webp"
+  },
+  {
+    "code": "UL-V+",
+    "hex": "#dfd1c2",
+    "group": "socolor",
+    "row": 0,
+    "col": 98,
+    "image": "/images/shades/matrix-socolor/ul-vplus.webp",
+    "name": "Socolor UL-V+ перламутровый UL-V+",
+    "price": 610
+  },
+  {
+    "code": "UL-A+",
+    "hex": "#c6c9c3",
+    "group": "socolor",
+    "row": 0,
+    "col": 99,
+    "image": "/images/shades/matrix-socolor/ul-aplus.webp",
+    "name": "Socolor UL-A+ UL-A+",
+    "price": 610
+  },
+  {
+    "code": "UL-AA",
+    "hex": "#b4adaa",
+    "group": "socolor",
+    "row": 0,
+    "col": 100,
+    "image": "/images/shades/matrix-socolor/ul-aa.webp"
+  },
+  {
+    "code": "UL-N+",
+    "hex": "#eee3c7",
+    "group": "socolor",
+    "row": 0,
+    "col": 101,
+    "image": "/images/shades/matrix-socolor/ul-nplus.webp",
+    "name": "Socolor UL-N+ натуральный+ UL-N+",
+    "price": 610
+  }
+]
