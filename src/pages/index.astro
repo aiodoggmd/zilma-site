@@ -118,9 +118,24 @@ const organizationLd = {
         // отбрасывало на блок "Почему заказывают", а не туда, где он реально был. Пропускаем
         // автоскролл целиком, если в этот момент открыт любой диалог каталога/акций.
         if (document.querySelector('dialog[open]')) return;
-        // Блок причин переехал внутрь херо (2026-09-05), поэтому доскролливаем
-        // до первого блока ПОД херо — прайса, иначе автоскролл стал бы пустым действием.
-        document.querySelector('.price-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Куда именно останавливаться (уточнено пользователем 2026-09-05 на реальном
+        // телефоне): в кадре должны поместиться логотип, причины «Почему заказывают
+        // у Zilma» и панель с новостью — целиком, не обрезанные нижней плашкой.
+        //
+        // Прокручивать до фиксированного блока нельзя: содержимое плавающее. Новость
+        // бывает разной высоты, а бывает её нет вовсе — тогда на её месте остаётся дата
+        // обновления прайса, и она тоже должна попасть в кадр. Поэтому берём НИЖНИЙ край
+        // .stat-panel (в неё входит и дата, и новость) и прокручиваем ровно настолько,
+        // чтобы этот край встал над плашкой навигации. Если всё и так помещается —
+        // Math.max(0, ...) даёт 0, и страница не дёргается вовсе.
+        const anchor = document.querySelector('.price-card.current .stat-panel');
+        if (!anchor) return;
+        const nav = document.querySelector('nav[aria-label="Быстрая навигация"]');
+        const navH = nav ? nav.getBoundingClientRect().height + 16 : 96;
+        const bottom = anchor.getBoundingClientRect().bottom;
+        const target = Math.max(0, window.scrollY + bottom - (window.innerHeight - navH));
+        window.scrollTo({ top: target, behavior: 'smooth' });
       }, 1600);
     }
   </script>
