@@ -1599,48 +1599,6 @@ const bestDeals = groupBy === 'discount'
 </style>
 
 <script>
-  // ВРЕМЕННАЯ ДИАГНОСТИКА (включается только адресом вида /?debug=1). Нужна, потому что баг
-  // воспроизводится на реальном телефоне пользователя, а не в headless-браузере: показывает
-  // прямо на экране, какой элемент реально принял тап и какие обработчики сработали следом.
-  // Убрать после того, как причина найдена.
-  const DBG = new URLSearchParams(location.search).has('debug');
-  let dbgBox: HTMLElement | null = null;
-  const dbgLines: string[] = [];
-  function dbg(msg: string) {
-    if (!DBG) return;
-    if (!dbgBox) {
-      dbgBox = document.createElement('div');
-      dbgBox.setAttribute('style', [
-        'position:fixed', 'left:4px', 'right:4px', 'top:4px', 'z-index:99999',
-        'background:rgba(0,0,0,.88)', 'color:#0f0', 'font:11px/1.35 monospace',
-        'padding:6px 8px', 'border-radius:6px', 'max-height:42vh', 'overflow:auto',
-        'white-space:pre-wrap', 'pointer-events:none',
-      ].join(';'));
-      document.body.appendChild(dbgBox);
-    }
-    const t = new Date().toISOString().slice(14, 23);
-    dbgLines.push(`${t} ${msg}`);
-    while (dbgLines.length > 16) dbgLines.shift();
-    dbgBox.textContent = dbgLines.join('\n');
-  }
-  if (DBG) {
-    // Capture-фаза: видим ЛЮБОЙ тап раньше всех прикладных обработчиков, включая тот элемент,
-    // который реально принял событие (а не тот, по которому пользователь целился).
-    document.addEventListener(
-      'click',
-      (e) => {
-        const el = e.target as HTMLElement;
-        const path = (e.composedPath?.() ?? []).slice(0, 3).map((n) => {
-          const x = n as HTMLElement;
-          return x?.tagName ? x.tagName + (x.className && typeof x.className === 'string' ? '.' + x.className.split(' ')[0] : '') : '?';
-        });
-        dbg(`TAP ${el?.tagName}.${(typeof el?.className === 'string' ? el.className : '').split(' ')[0]} «${(el?.textContent ?? '').trim().slice(0, 18)}» path=${path.join('>')}`);
-      },
-      true
-    );
-    window.addEventListener('hashchange', () => dbg(`HASHCHANGE → ${location.hash || '(пусто)'}`));
-  }
-
   // Открытие модалок по клику на любую кнопку с data-open-modal="<id диалога>" (см. PriceBlock.astro).
   // Простой overflow:hidden не спасает: showModal() сам фокусирует кнопку закрытия и браузер асинхронно
   // (уже после нашего кода) скроллит страницу, чтобы она попала в область видимости — window.scrollTo()
@@ -1831,7 +1789,6 @@ const bestDeals = groupBy === 'discount'
   // содержимое показывало другое. collapseToFolderList для этого не подходит: он возвращает
   // именно на вкладку «По категории» (туда, откуда пришли), а здесь пользователь просит обратное.
   function clearCategoryFilter(dialog: HTMLElement) {
-    dbg('clearCategoryFilter');
     delete dialog.dataset.categoryMode;
     delete dialog.dataset.categoryFilter;
     delete dialog.dataset.categoryScrollY;
@@ -1865,7 +1822,6 @@ const bestDeals = groupBy === 'discount'
   // нужна и из обработчиков кликов по вкладкам, и из collapseToFolderList (см. ниже), и из
   // выбора конкретной категории (переключает на «По бренду», чтобы показать результат).
   function setActiveTab(dialog: HTMLDialogElement, tab: 'category' | 'brand') {
-    dbg(`setActiveTab(${tab})`);
     dialog.dataset.activeTab = tab;
     const categoryScreen = dialog.querySelector<HTMLElement>('[data-category-screen]');
     const brandPanel = dialog.querySelector<HTMLElement>('[data-brand-panel]');
@@ -1877,7 +1833,6 @@ const bestDeals = groupBy === 'discount'
   }
 
   function collapseToFolderList(dialog: HTMLDialogElement) {
-    dbg(`collapseToFolderList (categoryMode=${dialog.dataset.categoryMode ?? '-'})`);
     // Если сворачиваем из фильтра по категории — возвращаемся именно на вкладку «По
     // категории» (туда, откуда пришли), а не оставляем «По бренду» с уже неактуальным
     // фильтром. Обычное сворачивание бренда (без категории) вкладку не трогает.
@@ -1972,7 +1927,6 @@ const bestDeals = groupBy === 'discount'
   };
   function openFromHash() {
     const hash = location.hash;
-    if (hash) dbg(`openFromHash(${hash})`);
     const targetId = HASH_TO_DIALOG[hash];
     if (targetId) {
       const dialog = document.getElementById(targetId);
@@ -2538,7 +2492,6 @@ const bestDeals = groupBy === 'discount'
     root.querySelectorAll<HTMLButtonElement>('[data-filter-category]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const cat = btn.dataset.filterCategory ?? '';
-        dbg(`>>> ФИЛЬТР КАТЕГОРИИ: «${cat}»`);
         // Запоминаем, где именно в сетке карточек категорий (см. .pc-category-screen) стоял
         // скролл ДО перехода к отфильтрованному списку - collapseToFolderList() восстановит
         // именно эту позицию при выходе, а не всегда сбрасывает наверх (см. её же коммент).
