@@ -256,16 +256,24 @@ const categoryCounts = groupBy === 'brand'
   ? CATEGORY_ORDER.map((cat) => ({ cat, total: items.filter((it) => categorize(it) === cat).length })).filter((c) => c.total > 0)
   : [];
 
-// Группировка по ступени скидки (15%/7%) -> бренд -> товары — только для окна «Акции».
-// Ступени идут в фиксированном порядке (большая скидка первой), а не по алфавиту.
-const DISCOUNT_TIER_ORDER = [15, 7];
+// Группировка по ступени скидки -> бренд -> товары — только для окна «Акции».
+// Ступени сортируются по РАЗМЕРУ скидки (большая первой), а не по фиксированному списку:
+// схема ступеней меняется (была 7/15, с 2026-09-05 стала 5/10/15), и жёсткий список
+// молча ломал бы порядок при следующей смене.
 function discountTierLabel(pct: number | undefined): string {
   return pct != null ? `Скидка ${pct}%` : 'Акция';
 }
 
+// Первым блоком идёт «Все скидки» — весь акционный ассортимент разом, по просьбе
+// пользователя (2026-09-05): со ступенями по 5/10/15 блоков стало три, и нужен вход
+// «показать всё», не выбирая ступень. Название параллельно остальным заголовкам
+// («Скидка 15%» / «Все скидки»), поэтому строка заголовков смотрится одинаково.
+const ALL_DISCOUNTS_TIER = 'Все скидки';
+
 let discountEntries: { tier: string; total: number; brandEntries: [string, Item[]][] }[] = [];
 if (groupBy === 'discount') {
   const tierMap = new Map<string, Map<string, Item[]>>();
+  const allMap = new Map<string, Item[]>();
   for (const it of items) {
     const tier = discountTierLabel(it.discountPct);
     const b = it.brand ?? 'Другое';
@@ -273,12 +281,17 @@ if (groupBy === 'discount') {
     const bMap = tierMap.get(tier)!;
     if (!bMap.has(b)) bMap.set(b, []);
     bMap.get(b)!.push(it);
+    if (!allMap.has(b)) allMap.set(b, []);
+    allMap.get(b)!.push(it);
   }
+  if (allMap.size > 0) tierMap.set(ALL_DISCOUNTS_TIER, allMap);
   discountEntries = [...tierMap.entries()]
     .sort((a, b) => {
-      const ia = DISCOUNT_TIER_ORDER.indexOf(parseInt(a[0].replace(/\D/g, ''), 10));
-      const ib = DISCOUNT_TIER_ORDER.indexOf(parseInt(b[0].replace(/\D/g, ''), 10));
-      if (ia !== -1 || ib !== -1) return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+      if (a[0] === ALL_DISCOUNTS_TIER) return -1;
+      if (b[0] === ALL_DISCOUNTS_TIER) return 1;
+      const pa = parseInt(a[0].replace(/\D/g, ''), 10);
+      const pb = parseInt(b[0].replace(/\D/g, ''), 10);
+      if (Number.isFinite(pa) && Number.isFinite(pb) && pa !== pb) return pb - pa;
       return alphaCompare(a[0], b[0]);
     })
     .map(([tier, bMap]) => {
@@ -540,8 +553,13 @@ const bestDeals = groupBy === 'discount'
         </ul>
       </div>
     )}
-    {groupBy === 'discount' && discountEntries.map(({ tier, total, brandEntries: tierBrandEntries }) => (
-      <details class:list={['pc-group', 'pc-group-brand', { 'pc-tier-15': tier === 'Скидка 15%', 'pc-tier-7': tier === 'Скидка 7%' }]} data-brand={tier} data-has-lines={tierBrandEntries.length > 0 ? '1' : '0'}>
+    {groupBy === 'discount' && discountEntries.map(({ tier, total, brandEntries: tierBrandEntries }, tierIndex) => (
+      <details
+        class:list={['pc-group', 'pc-group-brand', 'pc-tier']}
+        data-tier={tier === ALL_DISCOUNTS_TIER ? 'all' : String(tierIndex)}
+        data-brand={tier}
+        data-has-lines={tierBrandEntries.length > 0 ? '1' : '0'}
+      >
         <summary>{tier} <span class="pc-group-count">{total} {pluralItems(total)}</span></summary>
         <div class="pc-group-body">
           {tierBrandEntries.map(([brand, list]) => (
@@ -1005,44 +1023,56 @@ const bestDeals = groupBy === 'discount'
     font-size: 0.8rem;
   }
 
-  /* Подкатегории «Акции» по ступени скидки — раньше были сплошной цветной заливкой
-     («сухие плашки», по отзыву пользователя 2026-09-04) — теперь белая карточка
-     с акцентной полосой слева и цветным текстом, 15%/7% всё ещё различимы с
-     первого взгляда, но не выглядят голым цветным блоком. */
-  .pc-tier-15,
-  .pc-tier-7 {
+  /* Ступени «Акций» — белая карточка с акцентной полосой слева и цветным заголовком,
+     а не сплошная цветная заливка («сухие плашки», отзыв пользователя 2026-09-04).
+
+     Цвет привязан к РАНГУ ступени (data-tier="0/1/2"), а не к конкретному проценту:
+     схема меняется (была 7/15, стала 5/10/15), и селекторы вида .pc-tier-7 при
+     следующей смене молча перестали бы совпадать, оставив блок бесцветным.
+     data-tier="all" — блок «Все скидки», он намеренно нейтральный: это вход
+     «показать весь ассортимент», а не отдельная величина скидки. */
+  .pc-tier {
     background: var(--color-paper);
     border: none;
     border-left: 4px solid var(--color-panel-line);
     border-bottom: 1px solid var(--color-panel-line);
   }
 
-  .pc-tier-15 {
+  .pc-tier[data-tier='all'] {
+    border-left-color: var(--color-ink);
+  }
+
+  .pc-tier[data-tier='all'] > summary {
+    color: var(--color-ink);
+  }
+
+  .pc-tier[data-tier='1'] {
     border-left-color: var(--color-red);
   }
 
-  .pc-tier-15 > summary {
+  .pc-tier[data-tier='1'] > summary {
     color: var(--color-red);
   }
 
-  .pc-tier-15 > summary .pc-group-count {
-    color: var(--color-red);
-    opacity: 0.75;
-  }
-
-  /* 7% — синяя, 15% — красная: обе ступени были одинаково красными и не различались
-     с первого взгляда, ради чего цвет и вводился. Возвращено 2026-09-04. */
-  .pc-tier-7 {
+  .pc-tier[data-tier='2'] {
     border-left-color: var(--color-blue-dark);
   }
 
-  .pc-tier-7 > summary {
+  .pc-tier[data-tier='2'] > summary {
     color: var(--color-blue-dark);
   }
 
-  .pc-tier-7 > summary .pc-group-count {
-    color: var(--color-blue-dark);
-    opacity: 0.75;
+  .pc-tier[data-tier='3'] {
+    border-left-color: var(--color-blue);
+  }
+
+  .pc-tier[data-tier='3'] > summary {
+    color: var(--color-blue);
+  }
+
+  .pc-tier > summary .pc-group-count {
+    color: inherit;
+    opacity: 0.7;
   }
 
   .pc-group-body {
@@ -1207,7 +1237,7 @@ const bestDeals = groupBy === 'discount'
      плитки: у Dikson 2 товара, у Londa 170 — плиткой одинакового размера оба выглядели одинаково
      «тяжело», строкой разница видна сразу по подписи. «Акции» (data-group-by="discount") эта
      правка не касается — там ступени скидки различаются акцентной полосой слева и цветом
-     текста (.pc-tier-15/.pc-tier-7), а не сплошной заливкой. */
+     текста (.pc-tier[data-tier]), а не сплошной заливкой. */
   .price-checklist[data-group-by='brand'] .pc-groups {
     display: block;
   }
@@ -1787,7 +1817,28 @@ const bestDeals = groupBy === 'discount'
   // как в обычном интернет-магазине отметка = товар уже в корзине. Мёрджим/убираем по названию,
   // не плодим дублирующие строки (тот же принцип, что раньше был в commitSelection — реальный
   // случай 2026-08-31, "Socolor 505M" дважды разными строками при повторном открытии).
+  // Один и тот же товар теперь встречается в окне «Акции» ДВАЖДЫ: в блоке «Все скидки»
+  // и в своей ступени (добавлено 2026-09-05). В корзину он от этого не задваивается —
+  // syncItemToCart мёрджит по имени, — но вторая строка осталась бы с несовпадающим
+  // состоянием: отметил в одной, в другой галочка пустая, снял там — товар исчез из
+  // корзины, а первая строка всё ещё выглядит отмеченной. Поэтому после каждой правки
+  // состояние зеркалим на все строки с тем же товаром. События при этом НЕ шлём —
+  // иначе обработчики вызвали бы syncItemToCart по кругу.
+  function mirrorRowState(check: HTMLInputElement, qtyInput: HTMLInputElement | null) {
+    const root = check.closest('[data-checklist]');
+    const name = check.dataset.name ?? '';
+    if (!root || !name) return;
+    const qty = qtyInput?.value ?? '';
+    root.querySelectorAll<HTMLInputElement>('.pc-check').forEach((other) => {
+      if (other === check || other.dataset.name !== name) return;
+      other.checked = check.checked;
+      const otherQty = other.closest('.pc-item')?.querySelector<HTMLInputElement>('.pc-qty-input');
+      if (otherQty && qty !== '') otherQty.value = qty;
+    });
+  }
+
   function syncItemToCart(check: HTMLInputElement, qtyInput: HTMLInputElement | null) {
+    mirrorRowState(check, qtyInput);
     const cart: CommittedItem[] = (window as any).zilmaCart?.get() ?? [];
     const name = check.dataset.name ?? '';
     const idx = cart.findIndex((it) => it.name === name);
