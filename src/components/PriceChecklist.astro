@@ -270,19 +270,27 @@ function discountTierLabel(pct: number | undefined): string {
 // («Скидка 15%» / «Все скидки»), поэтому строка заголовков смотрится одинаково.
 const ALL_DISCOUNTS_TIER = 'Все скидки';
 
-let discountEntries: { tier: string; total: number; brandEntries: [string, Item[]][] }[] = [];
+// Внутри ступени: бренд -> линейка -> товары, ровно как в основном каталоге
+// (выбор пользователя 2026-09-05). Товары без линейки идут плоским списком прямо под
+// брендом — у Ollin и Londa линеек нет вовсе, и лишний уровень там был бы пустым кликом.
+type TierBrand = { brand: string; total: number; flat: Item[]; lineEntries: [string, Item[]][] };
+let discountEntries: { tier: string; total: number; brandEntries: TierBrand[] }[] = [];
 if (groupBy === 'discount') {
-  const tierMap = new Map<string, Map<string, Item[]>>();
-  const allMap = new Map<string, Item[]>();
+  const tierMap = new Map<string, Map<string, Map<string, Item[]>>>();
+  const allMap = new Map<string, Map<string, Item[]>>();
+  const put = (target: Map<string, Map<string, Item[]>>, it: Item) => {
+    const b = it.brand ?? 'Другое';
+    const l = it.line ?? '';
+    if (!target.has(b)) target.set(b, new Map());
+    const lineMap = target.get(b)!;
+    if (!lineMap.has(l)) lineMap.set(l, []);
+    lineMap.get(l)!.push(it);
+  };
   for (const it of items) {
     const tier = discountTierLabel(it.discountPct);
-    const b = it.brand ?? 'Другое';
     if (!tierMap.has(tier)) tierMap.set(tier, new Map());
-    const bMap = tierMap.get(tier)!;
-    if (!bMap.has(b)) bMap.set(b, []);
-    bMap.get(b)!.push(it);
-    if (!allMap.has(b)) allMap.set(b, []);
-    allMap.get(b)!.push(it);
+    put(tierMap.get(tier)!, it);
+    put(allMap, it);
   }
   if (allMap.size > 0) tierMap.set(ALL_DISCOUNTS_TIER, allMap);
   discountEntries = [...tierMap.entries()]
@@ -297,10 +305,18 @@ if (groupBy === 'discount') {
       return alphaCompare(a[0], b[0]);
     })
     .map(([tier, bMap]) => {
-      const total = [...bMap.values()].reduce((s, arr) => s + arr.length, 0);
-      const brandEntriesForTier = [...bMap.entries()]
+      const brandEntriesForTier: TierBrand[] = [...bMap.entries()]
         .sort((a, b) => alphaCompare(a[0], b[0]))
-        .map(([brand, list]) => [brand, [...list].sort(byName)] as [string, Item[]]);
+        .map(([brand, lineMap]) => ({
+          brand,
+          total: [...lineMap.values()].reduce((s, arr) => s + arr.length, 0),
+          flat: [...(lineMap.get('') ?? [])].sort(byName),
+          lineEntries: [...lineMap.entries()]
+            .filter(([l]) => l !== '')
+            .sort((a, b) => alphaCompare(a[0], b[0]))
+            .map(([line, list]) => [line, [...list].sort(byName)] as [string, Item[]]),
+        }));
+      const total = brandEntriesForTier.reduce((s, b) => s + b.total, 0);
       return { tier, total, brandEntries: brandEntriesForTier };
     });
 }
@@ -570,15 +586,17 @@ const bestDeals = groupBy === 'discount'
           <span class="pc-group-count">{total} {pluralItems(total)}</span>
         </summary>
         <div class="pc-group-body">
-          {tierBrandEntries.map(([brand, list]) => (
+          {tierBrandEntries.map(({ brand, total: brandTotal, flat: brandFlat, lineEntries: brandLines }) => (
             <details class="pc-group pc-group-line">
-              <summary>{brand} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
-              <ul>
-                {list.map((it) => {
+              <summary>{brand} <span class="pc-group-count">{brandTotal} {pluralItems(brandTotal)}</span></summary>
+              {brandFlat.length > 0 && (
+                <ul>
+                  {brandFlat.map((it) => {
+                    const line = '';
                   const sw = swatchFor(it);
-                const ph = sw ? undefined : photoFor(it);
+                  const ph = sw ? undefined : photoFor(it);
                   return (
-                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line} data-category={categorize(it) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
                       {sw && (
@@ -586,11 +604,11 @@ const bestDeals = groupBy === 'discount'
                           {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
                         </span>
                       )}
-{ph && (
-                      <span class="pc-photo">
-                        <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
-                      </span>
-                    )}
+                      {ph && (
+                        <span class="pc-photo">
+                          <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
+                        </span>
+                      )}
                       <span class="pc-item-name">{it.name}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
@@ -610,8 +628,53 @@ const bestDeals = groupBy === 'discount'
                     </div>
                   </li>
                   );
-                })}
-              </ul>
+                  })}
+                </ul>
+              )}
+              {brandLines.map(([line, list]) => (
+                <details class="pc-group pc-group-line">
+                  <summary>{line} <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span></summary>
+                  <ul>
+                    {list.map((it) => {
+                  const sw = swatchFor(it);
+                  const ph = sw ? undefined : photoFor(it);
+                  return (
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line} data-category={categorize(it) ?? ''}>
+                    <label>
+                      <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                      {sw && (
+                        <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
+                          {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
+                        </span>
+                      )}
+                      {ph && (
+                        <span class="pc-photo">
+                          <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
+                        </span>
+                      )}
+                      <span class="pc-item-name">{it.name}</span>
+                      <span class="pc-item-price">
+                        <b class="pc-price-now">{it.price} ₽</b>
+                        {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
+                        {(it.promo || it.isNew) && (
+                          <span class="pc-badges">
+                            {it.promo && <span class="pc-badge">{it.discountPct ? `-${it.discountPct}%` : 'Акция'}</span>}
+                            {it.isNew && <span class="pc-badge pc-badge-new">Н</span>}
+                          </span>
+                        )}
+                      </span>
+                    </label>
+                    <div class="pc-qty">
+                      <button type="button" class="pc-qty-btn" data-qty-dir="-1" aria-label="Меньше">−</button>
+                      <input type="number" class="pc-qty-input" value="0" min="0" max="999" inputmode="numeric" aria-label="Количество" />
+                      <button type="button" class="pc-qty-btn" data-qty-dir="1" aria-label="Больше">+</button>
+                    </div>
+                  </li>
+                  );
+                    })}
+                  </ul>
+                </details>
+              ))}
             </details>
           ))}
         </div>
