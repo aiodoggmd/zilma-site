@@ -134,8 +134,20 @@ const organizationLd = {
         const nav = document.querySelector('nav[aria-label="Быстрая навигация"]');
         const navH = nav ? nav.getBoundingClientRect().height + 16 : 96;
         const bottom = anchor.getBoundingClientRect().bottom;
-        const target = Math.max(0, window.scrollY + bottom - (window.innerHeight - navH));
-        window.scrollTo({ top: target, behavior: 'smooth' });
+        const wanted = Math.max(0, window.scrollY + bottom - (window.innerHeight - navH));
+
+        // Потолок прокрутки: верх логотипа не должен уйти за край экрана.
+        // На реальном телефоне видимая высота меньше, чем кажется (адресная строка),
+        // и логотип + причины + новость вместе могут не поместиться. Тогда первый
+        // расчёт «дотянуть нижний край» срезал логотип сверху — пользователь прислал
+        // скриншот (2026-09-05). Логотип режем в последнюю очередь: он и есть точка,
+        // с которой начинается нужный кадр, а новость внизу пусть обрежется.
+        const art = document.querySelector('.hero-art');
+        const ceiling = art
+          ? Math.max(0, window.scrollY + art.getBoundingClientRect().top - 2)
+          : wanted;
+
+        window.scrollTo({ top: Math.min(wanted, ceiling), behavior: 'smooth' });
       }, 1600);
     }
   </script>
@@ -193,7 +205,9 @@ const organizationLd = {
   @media (max-width: 860px) {
     .price-grid {
       grid-template-columns: 1fr;
-      margin-top: 28px;
+      /* 14px вместо 28px: этот зазор — последнее, что мешало логотипу, причинам и
+         новости уместиться в один кадр после автоскролла на коротком экране. */
+      margin-top: 14px;
     }
   }
 
