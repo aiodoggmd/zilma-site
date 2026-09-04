@@ -645,7 +645,7 @@ const bestDeals = groupBy === 'discount'
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #8a7f7a;
+    color: var(--color-meta);
   }
 
   .pc-header-logo + .pc-header-tagline {
@@ -717,17 +717,22 @@ const bestDeals = groupBy === 'discount'
     font-size: 0.72rem;
     font-weight: 700;
     padding: 9px 4px;
-    border-radius: 8px;
+    border-radius: 0;
     background: var(--color-paper);
-    color: var(--color-ink);
-    border: 1.5px solid var(--color-panel-line);
+    color: var(--color-meta);
+    /* Прозрачная линия той же толщины, что у активной вкладки — иначе при переключении
+       строка вкладок дёргалась бы по высоте на 2px. */
+    border: none;
+    border-bottom: 2px solid transparent;
     cursor: pointer;
   }
 
+  /* Активная вкладка — красный текст и подчёркивание, а не сплошная красная заливка
+     с белым текстом (старый дизайн). Тот же принцип, что у ступеней скидки в «Акциях»:
+     цвет работает акцентом, а не закрашенным блоком. */
   .pc-mode-tab.active {
-    background: var(--color-red);
-    border-color: var(--color-red);
-    color: #fff;
+    color: var(--color-red);
+    border-bottom-color: var(--color-red);
   }
 
   .pc-mode-tab:disabled {
@@ -757,8 +762,7 @@ const bestDeals = groupBy === 'discount'
     font-weight: 700;
     color: var(--color-ink);
     background: var(--color-paper);
-    border: 1px solid #d7d5de;
-    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-panel-line);
     border-radius: 50%;
     width: 38px;
     height: 38px;
@@ -792,11 +796,10 @@ const bestDeals = groupBy === 'discount'
     font: inherit;
     font-size: 0.85rem;
     padding: 10px 14px 10px 38px;
-    border: 1px solid #d7d5de;
-    border-radius: 999px;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 8px;
     background: var(--color-paper);
     color: var(--color-ink);
-    box-shadow: var(--shadow-sm);
   }
 
   .pc-search::placeholder {
@@ -814,7 +817,7 @@ const bestDeals = groupBy === 'discount'
     margin: 0;
     padding: 10px 18px 14px;
     font-size: 0.76rem;
-    color: #8a7f7a;
+    color: var(--color-meta);
     flex: none;
     background: var(--color-paper);
   }
@@ -841,14 +844,17 @@ const bestDeals = groupBy === 'discount'
     display: block;
   }
 
+  /* База карточки бренда. Раньше здесь была сплошная синяя заливка со скруглением 10px
+     («плитка» старого дизайна) — её перекрывали более поздние правила, так что видно её
+     уже не было, но мёртвый код сбивал с толку. Теперь база сразу в новом стиле:
+     белая поверхность, острые углы, разделение тонкой линией. */
   .pc-group-brand {
-    background: var(--color-blue-dark);
-    border: 1px solid var(--color-blue-dark);
-    border-radius: 10px;
+    background: var(--color-paper);
+    border: none;
+    border-bottom: 1px solid var(--color-panel-line);
+    border-radius: 0;
   }
 
-  /* Плоский список товаров прямо в открытой карточке бренда (без вложенных линеек) —
-     свой белый "лист", иначе тёмный текст товаров потеряется на синем/красном фоне карточки. */
   .pc-group-brand > .pc-group-body > ul {
     background: var(--color-paper);
   }
@@ -863,64 +869,34 @@ const bestDeals = groupBy === 'discount'
     border-color: var(--color-paper);
   }
 
+  /* Открытый бренд — обычная белая строка, без синей заливки и рамки (прямая просьба
+     пользователя 2026-09-04, скриншот синей «пилюли» WELLA). Раньше так выглядели только
+     плоские бренды (data-has-lines="0"), теперь одинаково для всех. Название остаётся —
+     скрывается оно по-прежнему только у плоских брендов, см. правило ниже. */
   .pc-group-brand[open] > summary {
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     gap: 6px;
-    color: #fff;
-    background: var(--color-blue-dark);
-    border-radius: 999px;
-    padding: 8px 16px;
-    margin: 14px 0 0 16px;
-    box-shadow: var(--shadow-sm);
-  }
-
-  /* Плоский бренд (без линеек, data-has-lines="0") в открытом виде - не синяя "пилюля", а
-     обычная белая строка: имя убрано целиком (оно и так уже в заголовке диалога, см. JS
-     toggle-обработчик), остаются только шеврон/счётчик/лупа - по прямой просьбе пользователя
-     2026-09-04 ("делай на белом фоне без названия... убери синеву"). У брендов С линейками эта
-     синяя пилюля остаётся как была - там summary видна ТОЛЬКО в режиме категорий (см. правило
-     выше), где название реально нужно (одновременно открыто много брендов, не один). */
-  .pc-group-brand[data-has-lines="0"][open] > summary {
-    display: flex;
     color: var(--color-ink);
     background: var(--color-paper);
     border: none;
     border-bottom: 1px solid var(--color-panel-line);
-    border-radius: 0; /* иначе наследуется 999px от синей пилюли (.pc-group-brand[open] > summary
-                          выше) - нижняя линия закруглялась по краям вместо прямой, реальная
-                          жалоба пользователя, скриншот "линия-тень изогнутая" */
+    border-radius: 0; /* иначе нижняя линия закруглялась бы по краям вместо прямой */
     padding: 12px 14px;
     margin: 0;
     box-shadow: none;
   }
 
+  /* У плоского бренда (без линеек) имя в открытом виде убрано целиком — оно и так уже
+     в заголовке диалога (см. JS toggle-обработчик). У брендов С линейками имя остаётся:
+     там summary видна и в режиме категорий, где открыто сразу много брендов. */
   .pc-group-brand[data-has-lines="0"][open] > summary .pc-row-name {
     display: none;
   }
 
-  .pc-group-brand[data-has-lines="0"][open] > summary .pc-group-count {
-    color: #8a7f7a;
-  }
-
-  .pc-group-brand[data-has-lines="0"][open] > summary .pc-row-chevron {
-    color: var(--color-blue-dark);
-  }
-
-  .pc-group-brand[data-has-lines="0"][open] > summary .pc-row-search-btn {
-    border-color: var(--color-panel-line);
-    color: var(--color-meta);
-    background: var(--color-paper);
-  }
-
-  .pc-group-brand[data-has-lines="0"][open] > summary .pc-row-search-btn:hover {
-    border-color: var(--color-blue-dark);
-    color: var(--color-blue-dark);
-  }
-
   .pc-group-brand[open] > summary .pc-group-count {
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--color-meta);
   }
 
   /* Пока список папок листается (не идёт поиск) — открытая папка/линейка разворачивается
@@ -968,12 +944,13 @@ const bestDeals = groupBy === 'discount'
     min-width: 0;
   }
 
+  /* Тёмный текст на белом — раньше был белый «по синей плитке» (старый дизайн). */
   .pc-group-brand > summary {
-    color: #fff;
+    color: var(--color-ink);
   }
 
   .pc-group-brand > summary .pc-group-count {
-    color: var(--color-panel);
+    color: var(--color-meta);
   }
 
   .pc-group-line > summary {
@@ -985,7 +962,7 @@ const bestDeals = groupBy === 'discount'
   .pc-group-count {
     font-family: var(--font-sans);
     font-weight: 400;
-    color: #8a7f7a;
+    color: var(--color-meta);
     font-size: 0.8rem;
   }
 
@@ -998,7 +975,7 @@ const bestDeals = groupBy === 'discount'
     background: var(--color-paper);
     border: none;
     border-left: 4px solid var(--color-panel-line);
-    box-shadow: var(--shadow-card);
+    border-bottom: 1px solid var(--color-panel-line);
   }
 
   .pc-tier-15 {
@@ -1014,16 +991,18 @@ const bestDeals = groupBy === 'discount'
     opacity: 0.75;
   }
 
+  /* 7% — синяя, 15% — красная: обе ступени были одинаково красными и не различались
+     с первого взгляда, ради чего цвет и вводился. Возвращено 2026-09-04. */
   .pc-tier-7 {
-    border-left-color: var(--color-red);
+    border-left-color: var(--color-blue-dark);
   }
 
   .pc-tier-7 > summary {
-    color: var(--color-red);
+    color: var(--color-blue-dark);
   }
 
   .pc-tier-7 > summary .pc-group-count {
-    color: var(--color-red);
+    color: var(--color-blue-dark);
     opacity: 0.75;
   }
 
@@ -1095,7 +1074,7 @@ const bestDeals = groupBy === 'discount'
   }
 
   .pc-group-line > summary .pc-group-count {
-    color: #8a7f7a;
+    color: var(--color-meta);
   }
 
   /* Лупа + счётчик идут одним флекс-блоком справа от названия папки - клик по лупе не должен
@@ -1136,14 +1115,17 @@ const bestDeals = groupBy === 'discount'
     filter: none;
   }
 
+  /* Открытый бренд — белая строка (см. .pc-group-brand[open] > summary выше), поэтому лупа
+     здесь обычная тёмная, а не белая «по синему», как было до 2026-09-04. */
   .pc-group-brand[open] > summary .pc-row-search-btn {
-    border-color: rgba(255, 255, 255, 0.5);
-    color: #fff;
-    background: transparent;
+    border-color: var(--color-panel-line);
+    color: var(--color-meta);
+    background: var(--color-paper);
   }
 
   .pc-group-brand[open] > summary .pc-row-search-btn:hover {
-    border-color: #fff;
+    border-color: var(--color-blue-dark);
+    color: var(--color-blue-dark);
   }
 
   /* Шеврон — настоящий SVG, не ::after на мелком тексте счётчика (был еле виден, реальная
@@ -1159,7 +1141,7 @@ const bestDeals = groupBy === 'discount'
   }
 
   .pc-group-brand[open] > summary .pc-row-chevron {
-    color: #fff;
+    color: var(--color-blue-dark);
   }
 
   /* Счётчик линейки (`.pc-group-line`) — это total ПО ВСЕМУ прайсу, посчитан один раз при
@@ -1185,7 +1167,8 @@ const bestDeals = groupBy === 'discount'
   /* Список брендов каталога («Полный прайс») — компактные строки-списки, не крупные закрашенные
      плитки: у Dikson 2 товара, у Londa 170 — плиткой одинакового размера оба выглядели одинаково
      «тяжело», строкой разница видна сразу по подписи. «Акции» (data-group-by="discount") эта
-     правка не касается — там ступени скидки остаются акцентными цветными карточками, как были. */
+     правка не касается — там ступени скидки различаются акцентной полосой слева и цветом
+     текста (.pc-tier-15/.pc-tier-7), а не сплошной заливкой. */
   .price-checklist[data-group-by='brand'] .pc-groups {
     display: block;
   }
@@ -1213,7 +1196,7 @@ const bestDeals = groupBy === 'discount'
   }
 
   .price-checklist[data-group-by='brand'] .pc-group-brand:not([open]) > summary .pc-group-count {
-    color: #8a7f7a;
+    color: var(--color-meta);
   }
 
   /* «Популярные» — топ-4 бренда по объёму, отдельным блоком карточек над алфавитным списком. */
@@ -1246,13 +1229,11 @@ const bestDeals = groupBy === 'discount'
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    box-shadow: var(--shadow-card);
-    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    transition: border-color 0.15s ease;
   }
 
   .pc-popular-card:hover {
     border-color: var(--color-blue-dark);
-    box-shadow: var(--shadow-card-hover);
   }
 
   .pc-popular-name {
@@ -1264,7 +1245,7 @@ const bestDeals = groupBy === 'discount'
 
   .pc-popular-count {
     font-size: 0.82rem;
-    color: #8a7f7a;
+    color: var(--color-meta);
   }
 
   /* Баннер-приглашение в «Акции» прямо внутри каталога — по просьбе пользователя (2026-09-03),
@@ -1275,13 +1256,15 @@ const bestDeals = groupBy === 'discount'
     display: flex;
     flex-direction: column;
     gap: 3px;
-    background: linear-gradient(135deg, var(--color-red-dark), var(--color-red));
-    color: #fff;
-    border-radius: 10px;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    border: none;
+    border-left: 4px solid var(--color-red);
+    border-bottom: 1px solid var(--color-panel-line);
+    border-radius: 0;
     padding: 14px 40px 14px 16px;
     margin-bottom: 18px;
     position: relative;
-    box-shadow: var(--shadow-card);
     text-decoration: none;
   }
 
@@ -1289,11 +1272,12 @@ const bestDeals = groupBy === 'discount'
     font-family: var(--font-sans);
     font-weight: 700;
     font-size: 0.95rem;
+    color: var(--color-red);
   }
 
   .pc-promo-banner-sub {
     font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--color-meta);
   }
 
   .pc-promo-banner-arrow {
@@ -1303,6 +1287,7 @@ const bestDeals = groupBy === 'discount'
     transform: translateY(-50%);
     font-size: 1.2rem;
     font-weight: 700;
+    color: var(--color-red);
   }
 
   /* «Лучшая скидка» в «Акциях» — честная витрина (реально самая большая разница в рублях
@@ -1520,7 +1505,7 @@ const bestDeals = groupBy === 'discount'
     display: block;
     font-size: 0.78rem;
     font-weight: 400;
-    color: #8a7f7a;
+    color: var(--color-meta);
     text-decoration: line-through;
   }
 
@@ -1546,7 +1531,7 @@ const bestDeals = groupBy === 'discount'
   .pc-no-results {
     padding: 24px 18px;
     text-align: center;
-    color: #8a7f7a;
+    color: var(--color-meta);
     font-size: 0.9rem;
   }
 
