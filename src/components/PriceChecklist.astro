@@ -1944,13 +1944,30 @@ const bestDeals = groupBy === 'discount'
     // scroll-y, ставится при открытии), а не текущую - если пользователь успел долистать список
     // товаров внутри, откат должен быть к строке в общем списке, а не к месту чтения товаров.
     const scrollEl = root.querySelector<HTMLElement>('.pc-groups');
+    // Одного requestAnimationFrame НЕ хватает - реальный баг, найден 2026-09-04: заход в бренд
+    // с позиции 500, прокрутка в самый низ его товаров (13765), «Назад» → закрылась линейка
+    // (вернулось 500, ок), второй «Назад» → закрылся бренд и выбросило в 0 вместо 500. Причина:
+    // при закрытии бренда обратно ПОКАЗЫВАЮТСЯ все остальные бренды (CSS :has(...) прячет
+    // закрытых соседей, пока открыт один) - список из короткого снова становится длинным, но
+    // не в том же кадре. Мы успевали выставить scrollTop=500, когда список был ещё короткий,
+    // браузер обрезал его до максимума короткого списка (то есть до 0), а следующий кадр уже
+    // ничего не поправлял. Тот же приём, что в unlockPageScroll выше: держим нужную позицию
+    // несколько кадров подряд, пока раскладка не устоится, и прекращаем раньше, если
+    // пользователь сам начал листать (иначе перебивали бы его прокрутку).
+    let restoreToken = 0;
     const restoreEntryScroll = (groupEl: HTMLDetailsElement) => {
       const y = groupEl.dataset.entryScrollY;
       if (y === undefined || !scrollEl) return;
       const target = Number(y);
-      requestAnimationFrame(() => {
-        scrollEl.scrollTop = target;
-      });
+      const myToken = ++restoreToken;
+      let ticks = 0;
+      const reassert = () => {
+        if (myToken !== restoreToken) return;
+        if (scrollEl.scrollTop !== target) scrollEl.scrollTop = target;
+        ticks += 1;
+        if (ticks < 12) requestAnimationFrame(reassert);
+      };
+      requestAnimationFrame(reassert);
     };
     // Индекс на каждый товар — считаем один раз, не при каждом нажатии клавиши.
     const searchIndex = new Map<HTMLLIElement, { name: string; brand: string; line: string }>(
@@ -2221,6 +2238,12 @@ const bestDeals = groupBy === 'discount'
         const target = root.querySelector<HTMLDetailsElement>(`.pc-group-brand[data-brand="${CSS.escape(name)}"]`);
         if (target) {
           delete target.dataset.openedBySearch; // осознанный переход, не побочный эффект поиска
+          // Точку входа записываем и здесь: у карточек «Популярные» своя кнопка, клик по
+          // summary бренда не происходит вовсе, поэтому обработчик, который обычно ставит
+          // data-entry-scroll-y, до неё не долетал — «Назад» из такого бренда возвращался
+          // куда попало, а не туда, откуда нажали карточку.
+          const groupsEl = root.querySelector<HTMLElement>('.pc-groups');
+          if (!target.open && groupsEl) target.dataset.entryScrollY = String(groupsEl.scrollTop);
           target.open = true;
           target.scrollIntoView({ block: 'start', behavior: 'smooth' });
         }
