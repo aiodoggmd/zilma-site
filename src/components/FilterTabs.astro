@@ -1,10 +1,9 @@
 ---
-// Цвета по категориям — установлено 2026-08-29 по прямой просьбе пользователя (раньше все
-// вкладки были одного цвета, синим подсвечивалась только активная/наведённая — см. историю в
-// Site/CLAUDE.md). Каждая категория теперь имеет свой цвет ВСЕГДА (не только в активном
-// состоянии): колористика — синий, уход и восстановление — красный, база знаний (новый раздел
-// с FAQ-статьями, пересекает обе темы) — градиент красный→синий. Только переменные из
-// global.css, ничего нового не придумано.
+// Единый синий акцент на весь раздел «Инфо» — установлено 2026-09-04 по прямой просьбе
+// пользователя: «в прайсе акцент красный, в разделе инфо — синий». Отменяет прежнюю схему
+// 2026-08-29, где каждая категория имела свой цвет (колористика синяя, уход красный, база
+// знаний градиентом), а активная вкладка заливалась чёрным (--color-ink) — чёрного в палитре
+// сайта нет, и разноцветные вкладки читались как разные сущности, а не как один фильтр.
 interface Props {
   brands?: string[];
 }
@@ -20,7 +19,7 @@ const tabs = [
 <div class="filter-bar">
   <div class="filter-tabs" id="filter-tabs">
     {tabs.map((t, i) => (
-      <button type="button" class:list={['tab', t.key.replace(/\s+/g, '-'), { active: i === 0 }]} data-tag={t.key}>{t.label}</button>
+      <button type="button" class:list={['tab', { active: i === 0 }]} data-tag={t.key}>{t.label}</button>
     ))}
   </div>
   {brands.length > 1 && (
@@ -63,88 +62,36 @@ const tabs = [
     flex-basis: 100%;
   }
 
-  .tab.brand {
-    background: var(--color-paper);
-    border-color: var(--color-panel-line);
-    color: var(--color-ink);
-    font-size: 0.82rem;
-    padding: 7px 14px;
-  }
-
-  .tab.brand.active {
-    background: var(--color-ink);
-    border-color: var(--color-ink);
-    color: #fff;
-  }
-
+  /* Все вкладки раздела «Инфо» — один синий акцент: неактивная белая с приглушённым
+     текстом, активная — мягкая пастельно-синяя подложка с синим текстом и рамкой.
+     Заливок «в лоб» (чёрной/красной/синей с белым текстом) и градиентов больше нет. */
   .tab {
     background: var(--color-paper);
     border: 1.5px solid var(--color-panel-line);
+    color: var(--color-meta);
     padding: 9px 18px;
     border-radius: 8px;
     font-size: 0.88rem;
     font-family: var(--font-sans);
     font-weight: 600;
     cursor: pointer;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
   }
 
-  /* «Все» — нейтральный, вне цветовой схемы категорий */
-  .tab.all {
-    border-color: var(--color-ink);
-    color: var(--color-ink);
-  }
-
-  .tab.all.active {
-    background: var(--color-ink);
-    border-color: var(--color-ink);
-    color: #fff;
-  }
-
-  /* Колористика — синий */
-  .tab.колористика {
+  .tab.active {
+    background: var(--color-pastel-blue);
     border-color: var(--color-blue-dark);
     color: var(--color-blue-dark);
   }
 
-  .tab.колористика.active {
-    background: var(--color-blue-dark);
-    color: #fff;
+  .tab:hover:not(.active) {
+    border-color: var(--color-blue);
+    color: var(--color-blue-dark);
   }
 
-  /* Уход и восстановление — красный */
-  .tab.уход-и-восстановление {
-    border-color: var(--color-red);
-    color: var(--color-red-dark);
-  }
-
-  .tab.уход-и-восстановление.active {
-    background: var(--color-red);
-    color: #fff;
-  }
-
-  /* База знаний — градиент красный→синий (пересекает обе темы) */
-  .tab.база-знаний {
-    border-color: var(--color-panel-line);
-    background: var(--color-paper);
-    background-image: linear-gradient(90deg, var(--color-red), var(--color-blue-dark));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .tab.база-знаний.active {
-    background: linear-gradient(90deg, var(--color-red), var(--color-blue-dark));
-    background-clip: border-box;
-    -webkit-background-clip: border-box;
-    -webkit-text-fill-color: #fff;
-    color: #fff;
-    border-color: transparent;
-  }
-
-  .tab:hover {
-    filter: brightness(0.97);
+  .tab.brand {
+    font-size: 0.82rem;
+    padding: 7px 14px;
   }
 
   .search-box {
@@ -156,7 +103,6 @@ const tabs = [
     border-radius: 8px;
     padding: 9px 16px;
     color: var(--color-meta);
-    box-shadow: var(--shadow-sm);
     flex: 1 1 220px;
     max-width: 280px;
   }

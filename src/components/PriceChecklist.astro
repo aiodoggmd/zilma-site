@@ -674,7 +674,7 @@ const bestDeals = groupBy === 'discount'
   }
 
   .pc-cart-link:hover {
-    color: var(--color-blue-dark);
+    color: var(--color-red);
   }
 
   .pc-cart-badge {
@@ -774,7 +774,7 @@ const bestDeals = groupBy === 'discount'
   }
 
   .pc-back:hover {
-    color: var(--color-blue-dark);
+    color: var(--color-red);
   }
 
   .pc-search-wrap {
@@ -808,7 +808,7 @@ const bestDeals = groupBy === 'discount'
   }
 
   .pc-search:focus {
-    outline: 2px solid var(--color-blue-dark);
+    outline: 2px solid var(--color-red);
     outline-offset: 1px;
   }
 
@@ -1110,8 +1110,8 @@ const bestDeals = groupBy === 'discount'
   }
 
   .pc-row-search-btn:hover {
-    border-color: var(--color-blue-dark);
-    color: var(--color-blue-dark);
+    border-color: var(--color-red);
+    color: var(--color-red);
     filter: none;
   }
 
@@ -1124,15 +1124,15 @@ const bestDeals = groupBy === 'discount'
   }
 
   .pc-group-brand[open] > summary .pc-row-search-btn:hover {
-    border-color: var(--color-blue-dark);
-    color: var(--color-blue-dark);
+    border-color: var(--color-red);
+    color: var(--color-red);
   }
 
   /* Шеврон — настоящий SVG, не ::after на мелком тексте счётчика (был еле виден, реальная
      жалоба пользователя). Поворот на 180° при [open] - тот же элемент, не смена символа. */
   .pc-row-chevron {
     flex: none;
-    color: var(--color-blue-dark);
+    color: var(--color-red);
     transition: transform 0.2s ease;
   }
 
@@ -1141,7 +1141,7 @@ const bestDeals = groupBy === 'discount'
   }
 
   .pc-group-brand[open] > summary .pc-row-chevron {
-    color: var(--color-blue-dark);
+    color: var(--color-red);
   }
 
   /* Счётчик линейки (`.pc-group-line`) — это total ПО ВСЕМУ прайсу, посчитан один раз при
@@ -1252,19 +1252,20 @@ const bestDeals = groupBy === 'discount'
      не отдельная невидимая кнопка, а часть обычного просмотра каталога. Красный (не синий, как
      на референсе) — на сайте красный уже устойчиво значит «акция/скидка» (бейдж «Акция»,
      ступень 15% и т.п.), синий тут был бы не к месту. */
+  /* Единственная намеренно залитая цветом плашка в каталоге — это фишка-акцент, а НЕ остаток
+     старого дизайна (пробовал 2026-09-04 привести её к белой карточке с полосой слева —
+     пользователь вернул как было). Не «выравнивать» её под остальной каталог. */
   .pc-promo-banner {
     display: flex;
     flex-direction: column;
     gap: 3px;
-    background: var(--color-paper);
-    color: var(--color-ink);
-    border: none;
-    border-left: 4px solid var(--color-red);
-    border-bottom: 1px solid var(--color-panel-line);
-    border-radius: 0;
+    background: linear-gradient(135deg, var(--color-red-dark), var(--color-red));
+    color: #fff;
+    border-radius: 10px;
     padding: 14px 40px 14px 16px;
     margin-bottom: 18px;
     position: relative;
+    box-shadow: var(--shadow-card);
     text-decoration: none;
   }
 
@@ -1272,12 +1273,11 @@ const bestDeals = groupBy === 'discount'
     font-family: var(--font-sans);
     font-weight: 700;
     font-size: 0.95rem;
-    color: var(--color-red);
   }
 
   .pc-promo-banner-sub {
     font-size: 0.78rem;
-    color: var(--color-meta);
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .pc-promo-banner-arrow {
@@ -1287,7 +1287,6 @@ const bestDeals = groupBy === 'discount'
     transform: translateY(-50%);
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--color-red);
   }
 
   /* «Лучшая скидка» в «Акциях» — честная витрина (реально самая большая разница в рублях
