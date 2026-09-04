@@ -345,7 +345,7 @@ const bestDeals = groupBy === 'discount'
       </div>
     )}
     {groupBy === 'discount' && discountEntries.map(({ tier, total, brandEntries: tierBrandEntries }) => (
-      <details class:list={['pc-group', 'pc-group-brand', { 'pc-tier-15': tier === 'Скидка 15%', 'pc-tier-7': tier === 'Скидка 7%' }]} data-brand={tier}>
+      <details class:list={['pc-group', 'pc-group-brand', { 'pc-tier-15': tier === 'Скидка 15%', 'pc-tier-7': tier === 'Скидка 7%' }]} data-brand={tier} data-has-lines={tierBrandEntries.length > 0 ? '1' : '0'}>
         <summary>{tier} <span class="pc-group-count">{total} {pluralItems(total)}</span></summary>
         <div class="pc-group-body">
           {tierBrandEntries.map(([brand, list]) => (
@@ -2015,19 +2015,28 @@ const bestDeals = groupBy === 'discount'
             delete brandEl.dataset.userToggled;
             if (!brandEl.open) restoreEntryScroll(brandEl);
           }
-          const brandName = brandEl.dataset.brand;
           // Ступень скидки (Акции) — тот же шрифт/размер, что у обычного имени бренда, но
           // красным и прописными (по прямой просьбе пользователя) — свой отдельный класс,
           // не .pc-header-logo (у него другой шрифт/размер, это именно логотип).
           const isTier = root.dataset.groupBy === 'discount';
-          if (brandEl.open && brandName) {
-            if (headerTitle) {
-              headerTitle.textContent = brandName;
+          // Реальный баг, найден 2026-09-04: широкий поисковый запрос (например "шампунь" - он
+          // же подсказка над полем поиска!) совпадает сразу с товарами НЕСКОЛЬКИХ брендов/ступеней -
+          // toggle срабатывает у каждого открывшегося, и раньше просто ставил ЕГО имя в заголовок,
+          // без учёта остальных - побеждал последний сработавший ("WELLA" из шести открытых
+          // брендов, хотя на экране результаты сразу всех шести). К моменту срабатывания ЛЮБОГО
+          // toggle из этой пачки все .open уже выставлены синхронно (см. forEach в обработчике
+          // поиска выше) - можно надёжно посчитать, сколько брендов верхнего уровня сейчас
+          // реально открыто, не полагаясь на порядок срабатывания событий.
+          const openTopLevel = groups.filter((g) => g.classList.contains('pc-group-brand') && g.open);
+          if (openTopLevel.length === 1) {
+            const name = openTopLevel[0].dataset.brand;
+            if (headerTitle && name) {
+              headerTitle.textContent = name;
               headerTitle.classList.remove('pc-header-logo');
               headerTitle.classList.toggle('pc-header-tier', isTier);
             }
-            if (search) search.placeholder = `Поиск по ${brandName}…`;
-          } else if (!brandEl.open) {
+            if (search && name) search.placeholder = `Поиск по ${name}…`;
+          } else {
             if (headerTitle) {
               headerTitle.textContent = originalHeading;
               headerTitle.classList.toggle('pc-header-logo', !isTier);
@@ -2355,6 +2364,9 @@ const bestDeals = groupBy === 'discount'
         if (anyVisible) anyVisibleTotal = true;
       });
       if (noResults) noResults.hidden = anyVisibleTotal || items.length === 0;
+      // Заголовок/подсказка поиска при множественных совпадениях - см. фикс в toggle-слушателе
+      // бренда выше (там же и разбор бага): каждый toggle сам умеет пересчитать, сколько брендов
+      // сейчас реально открыто, и не полагается на порядок срабатывания.
     });
   });
 </script>
