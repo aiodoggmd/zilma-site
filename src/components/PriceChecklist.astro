@@ -109,11 +109,16 @@ function inWellaFamily(brand: string | null, line: string | null): boolean {
   return brand === 'WELLA' && (line ?? '').startsWith('KP Me+/CT');
 }
 // Линейка → её собственная палитра, для тех, кто в общий пул не входит.
-function ownPaletteFor(brand: string | null, line: string | null): string | null {
+// У OLLIN в прайсе линейки не проставлены вовсе (line=null у всех 216 позиций), поэтому
+// линейка определяется по началу названия: «Color 9/43 ...» — это OLLIN COLOR, а
+// «Performanse ...», «Silk Touch ...», «Matisse ...» — другие линейки со своими палитрами,
+// которых у нас пока нет. Префикс «color » достаточно характерный, чтобы не задеть их.
+function ownPaletteFor(brand: string | null, line: string | null, name: string): string | null {
   const l = line ?? '';
   if (brand === 'WELLA' && l.startsWith('Illumina')) return 'illumina';
   if (brand === 'WELLA' && l.startsWith('SHINEFINITY')) return 'shinefinity';
   if (brand === 'SCHWARZKOPF' && l.startsWith('IGORA/BLONDME')) return 'igora-royal';
+  if (brand === 'OLLIN' && normName(name).startsWith('color ')) return 'ollin';
   return null;
 }
 function swatchFor(it: { name: string; brand?: string | null; line?: string | null; category?: string }): Swatch | undefined {
@@ -126,7 +131,7 @@ function swatchFor(it: { name: string; brand?: string | null; line?: string | nu
   const brand = it.brand ?? null;
   const line = it.line ?? null;
   if (inWellaFamily(brand, line)) return familyByCode.get(key);
-  const own = ownPaletteFor(brand, line);
+  const own = ownPaletteFor(brand, line, it.name);
   return own ? byPaletteCode.get(own)?.get(key) : undefined;
 }
 

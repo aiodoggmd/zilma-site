@@ -1,0 +1,900 @@
+[
+  {
+    "code": "11/0",
+    "hex": "#f5e0c7",
+    "group": "natural",
+    "row": 11,
+    "col": 0,
+    "image": "/images/shades/ollin-color/11-0.webp",
+    "name": "Color 11/0 11-0",
+    "price": 141.95
+  },
+  {
+    "code": "10/0",
+    "hex": "#e3be9c",
+    "group": "natural",
+    "row": 10,
+    "col": 1,
+    "image": "/images/shades/ollin-color/10-0.webp",
+    "name": "Color 10/0 10-0",
+    "price": 167
+  },
+  {
+    "code": "9/0",
+    "hex": "#d5ae8e",
+    "group": "natural",
+    "row": 9,
+    "col": 2,
+    "image": "/images/shades/ollin-color/9-0.webp",
+    "name": "Color 9/0 9-0",
+    "price": 132.49
+  },
+  {
+    "code": "8/0",
+    "hex": "#a37d66",
+    "group": "natural",
+    "row": 8,
+    "col": 3,
+    "image": "/images/shades/ollin-color/8-0.webp",
+    "name": "Color 8/0 8-0",
+    "price": 155.31
+  },
+  {
+    "code": "7/0",
+    "hex": "#725546",
+    "group": "natural",
+    "row": 7,
+    "col": 4,
+    "image": "/images/shades/ollin-color/7-0.webp",
+    "name": "Color 7/0 7-0",
+    "price": 141.95
+  },
+  {
+    "code": "6/0",
+    "hex": "#644a40",
+    "group": "natural",
+    "row": 6,
+    "col": 5,
+    "image": "/images/shades/ollin-color/6-0.webp",
+    "name": "Color 6/0 6-0",
+    "price": 167
+  },
+  {
+    "code": "5/0",
+    "hex": "#4f3932",
+    "group": "natural",
+    "row": 5,
+    "col": 6,
+    "image": "/images/shades/ollin-color/5-0.webp",
+    "name": "Color 5/0 5-0",
+    "price": 167
+  },
+  {
+    "code": "4/0",
+    "hex": "#382c2b",
+    "group": "natural",
+    "row": 4,
+    "col": 7,
+    "image": "/images/shades/ollin-color/4-0.webp"
+  },
+  {
+    "code": "3/0",
+    "hex": "#1d1719",
+    "group": "natural",
+    "row": 3,
+    "col": 8,
+    "image": "/images/shades/ollin-color/3-0.webp"
+  },
+  {
+    "code": "2/0",
+    "hex": "#0f0e13",
+    "group": "natural",
+    "row": 2,
+    "col": 9,
+    "image": "/images/shades/ollin-color/2-0.webp",
+    "name": "Color 2/0 2-0",
+    "price": 167
+  },
+  {
+    "code": "1/0",
+    "hex": "#0f0e17",
+    "group": "natural",
+    "row": 1,
+    "col": 10,
+    "image": "/images/shades/ollin-color/1-0.webp",
+    "name": "Color 1/0 1-0",
+    "price": 155.31
+  },
+  {
+    "code": "9/00",
+    "hex": "#deb994",
+    "group": "natural",
+    "row": 9,
+    "col": 11,
+    "image": "/images/shades/ollin-color/9-00.webp"
+  },
+  {
+    "code": "8/00",
+    "hex": "#bd9074",
+    "group": "natural",
+    "row": 8,
+    "col": 12,
+    "image": "/images/shades/ollin-color/8-00.webp",
+    "name": "Color 8/00 8-00",
+    "price": 167
+  },
+  {
+    "code": "7/00",
+    "hex": "#87604c",
+    "group": "natural",
+    "row": 7,
+    "col": 13,
+    "image": "/images/shades/ollin-color/7-00.webp",
+    "name": "Color 7/00 7-00",
+    "price": 167
+  },
+  {
+    "code": "6/00",
+    "hex": "#402f2b",
+    "group": "natural",
+    "row": 6,
+    "col": 14,
+    "image": "/images/shades/ollin-color/6-00.webp",
+    "name": "Color 6/00 6-00",
+    "price": 167
+  },
+  {
+    "code": "11/1",
+    "hex": "#ebd4c1",
+    "group": "ash",
+    "row": 11,
+    "col": 0,
+    "image": "/images/shades/ollin-color/11-1.webp",
+    "name": "Color 11/1 11-1",
+    "price": 167
+  },
+  {
+    "code": "10/1",
+    "hex": "#d2c3ba",
+    "group": "ash",
+    "row": 10,
+    "col": 1,
+    "image": "/images/shades/ollin-color/10-1.webp"
+  },
+  {
+    "code": "9/1",
+    "hex": "#ceb9a9",
+    "group": "ash",
+    "row": 9,
+    "col": 2,
+    "image": "/images/shades/ollin-color/9-1.webp",
+    "name": "Color 9/1 9-1",
+    "price": 167
+  },
+  {
+    "code": "8/1",
+    "hex": "#b08f78",
+    "group": "ash",
+    "row": 8,
+    "col": 3,
+    "image": "/images/shades/ollin-color/8-1.webp",
+    "name": "Color 8/1 8-1",
+    "price": 167
+  },
+  {
+    "code": "7/1",
+    "hex": "#8c7062",
+    "group": "ash",
+    "row": 7,
+    "col": 4,
+    "image": "/images/shades/ollin-color/7-1.webp"
+  },
+  {
+    "code": "6/1",
+    "hex": "#7f665d",
+    "group": "ash",
+    "row": 6,
+    "col": 5,
+    "image": "/images/shades/ollin-color/6-1.webp",
+    "name": "Color 6/1 6-1",
+    "price": 167
+  },
+  {
+    "code": "5/1",
+    "hex": "#403838",
+    "group": "ash",
+    "row": 5,
+    "col": 6,
+    "image": "/images/shades/ollin-color/5-1.webp",
+    "name": "Color 5/1 5-1",
+    "price": 167
+  },
+  {
+    "code": "4/1",
+    "hex": "#31282a",
+    "group": "ash",
+    "row": 4,
+    "col": 7,
+    "image": "/images/shades/ollin-color/4-1.webp",
+    "name": "Color 4/1 4-1",
+    "price": 167
+  },
+  {
+    "code": "11/22",
+    "hex": "#c9bbc4",
+    "group": "violet",
+    "row": 11,
+    "col": 0,
+    "image": "/images/shades/ollin-color/11-22.webp",
+    "name": "Color 11/22 11-22",
+    "price": 167
+  },
+  {
+    "code": "10/22",
+    "hex": "#f6ddd7",
+    "group": "violet",
+    "row": 10,
+    "col": 1,
+    "image": "/images/shades/ollin-color/10-22.webp",
+    "name": "Color 10/22 10-22",
+    "price": 155.31
+  },
+  {
+    "code": "9/22",
+    "hex": "#e7d1ca",
+    "group": "violet",
+    "row": 9,
+    "col": 2,
+    "image": "/images/shades/ollin-color/9-22.webp",
+    "name": "Color 9/22 9-22",
+    "price": 155.31
+  },
+  {
+    "code": "6/22",
+    "hex": "#644356",
+    "group": "violet",
+    "row": 6,
+    "col": 3,
+    "image": "/images/shades/ollin-color/6-22.webp",
+    "name": "Color 6/22 6-22",
+    "price": 167
+  },
+  {
+    "code": "5/22",
+    "hex": "#523848",
+    "group": "violet",
+    "row": 5,
+    "col": 4,
+    "image": "/images/shades/ollin-color/5-22.webp",
+    "name": "Color 5/22 5-22",
+    "price": 167
+  },
+  {
+    "code": "2/22",
+    "hex": "#1f1822",
+    "group": "violet",
+    "row": 2,
+    "col": 5,
+    "image": "/images/shades/ollin-color/2-22.webp",
+    "name": "Color 2/22 2-22",
+    "price": 155.31
+  },
+  {
+    "code": "11/21",
+    "hex": "#a7938c",
+    "group": "violet",
+    "row": 11,
+    "col": 6,
+    "image": "/images/shades/ollin-color/11-21.webp",
+    "name": "Color 11/21 11-21",
+    "price": 167
+  },
+  {
+    "code": "9/21",
+    "hex": "#e0c2b1",
+    "group": "violet",
+    "row": 9,
+    "col": 7,
+    "image": "/images/shades/ollin-color/9-21.webp"
+  },
+  {
+    "code": "8/21",
+    "hex": "#97766b",
+    "group": "violet",
+    "row": 8,
+    "col": 8,
+    "image": "/images/shades/ollin-color/8-21.webp",
+    "name": "Color 8/21 8-21",
+    "price": 167
+  },
+  {
+    "code": "11/26",
+    "hex": "#e3b8a0",
+    "group": "pink",
+    "row": 11,
+    "col": 0,
+    "image": "/images/shades/ollin-color/11-26.webp"
+  },
+  {
+    "code": "10/26",
+    "hex": "#f2d8ce",
+    "group": "pink",
+    "row": 10,
+    "col": 1,
+    "image": "/images/shades/ollin-color/10-26.webp",
+    "name": "Color 10/26 10-26",
+    "price": 167
+  },
+  {
+    "code": "9/26",
+    "hex": "#cfbab8",
+    "group": "pink",
+    "row": 9,
+    "col": 2,
+    "image": "/images/shades/ollin-color/9-26.webp"
+  },
+  {
+    "code": "11/3",
+    "hex": "#e7be96",
+    "group": "gold",
+    "row": 11,
+    "col": 0,
+    "image": "/images/shades/ollin-color/11-3.webp"
+  },
+  {
+    "code": "10/3",
+    "hex": "#d1a27b",
+    "group": "gold",
+    "row": 10,
+    "col": 1,
+    "image": "/images/shades/ollin-color/10-3.webp"
+  },
+  {
+    "code": "9/3",
+    "hex": "#cd8d5c",
+    "group": "gold",
+    "row": 9,
+    "col": 2,
+    "image": "/images/shades/ollin-color/9-3.webp",
+    "name": "Color 9/3 9-3",
+    "price": 167
+  },
+  {
+    "code": "8/3",
+    "hex": "#c89471",
+    "group": "gold",
+    "row": 8,
+    "col": 3,
+    "image": "/images/shades/ollin-color/8-3.webp",
+    "name": "Color 8/3 8-3",
+    "price": 155.31
+  },
+  {
+    "code": "7/3",
+    "hex": "#b67f66",
+    "group": "gold",
+    "row": 7,
+    "col": 4,
+    "image": "/images/shades/ollin-color/7-3.webp",
+    "name": "Color 7/3 7-3",
+    "price": 155.31
+  },
+  {
+    "code": "6/3",
+    "hex": "#7c5443",
+    "group": "gold",
+    "row": 6,
+    "col": 5,
+    "image": "/images/shades/ollin-color/6-3.webp",
+    "name": "Color 6/3 6-3",
+    "price": 167
+  },
+  {
+    "code": "5/3",
+    "hex": "#61453c",
+    "group": "gold",
+    "row": 5,
+    "col": 6,
+    "image": "/images/shades/ollin-color/5-3.webp",
+    "name": "Color 5/3 5-3",
+    "price": 109.56
+  },
+  {
+    "code": "4/3",
+    "hex": "#4e3632",
+    "group": "gold",
+    "row": 4,
+    "col": 7,
+    "image": "/images/shades/ollin-color/4-3.webp",
+    "name": "Color 4/3 4-3",
+    "price": 155.31
+  },
+  {
+    "code": "10/03",
+    "hex": "#dbb492",
+    "group": "gold",
+    "row": 10,
+    "col": 8,
+    "image": "/images/shades/ollin-color/10-03.webp"
+  },
+  {
+    "code": "9/03",
+    "hex": "#c89a71",
+    "group": "gold",
+    "row": 9,
+    "col": 9,
+    "image": "/images/shades/ollin-color/9-03.webp",
+    "name": "Color 9/03 9-03",
+    "price": 155.31
+  },
+  {
+    "code": "8/03",
+    "hex": "#89614e",
+    "group": "gold",
+    "row": 8,
+    "col": 10,
+    "image": "/images/shades/ollin-color/8-03.webp"
+  },
+  {
+    "code": "11/31",
+    "hex": "#b38f77",
+    "group": "gold",
+    "row": 11,
+    "col": 11,
+    "image": "/images/shades/ollin-color/11-31.webp",
+    "name": "Color 11/31 11-31",
+    "price": 167
+  },
+  {
+    "code": "10/31",
+    "hex": "#a58470",
+    "group": "gold",
+    "row": 10,
+    "col": 12,
+    "image": "/images/shades/ollin-color/10-31.webp"
+  },
+  {
+    "code": "9/31",
+    "hex": "#a27e6b",
+    "group": "gold",
+    "row": 9,
+    "col": 13,
+    "image": "/images/shades/ollin-color/9-31.webp",
+    "name": "Color 9/31 9-31",
+    "price": 155.31
+  },
+  {
+    "code": "8/31",
+    "hex": "#9a7363",
+    "group": "gold",
+    "row": 8,
+    "col": 14,
+    "image": "/images/shades/ollin-color/8-31.webp",
+    "name": "Color 8/31 8-31",
+    "price": 155.31
+  },
+  {
+    "code": "7/31",
+    "hex": "#755d55",
+    "group": "gold",
+    "row": 7,
+    "col": 15,
+    "image": "/images/shades/ollin-color/7-31.webp",
+    "name": "Color 7/31 7-31",
+    "price": 167
+  },
+  {
+    "code": "8/4",
+    "hex": "#c16447",
+    "group": "copper",
+    "row": 8,
+    "col": 0,
+    "image": "/images/shades/ollin-color/8-4.webp",
+    "name": "Color 8/4 8-4",
+    "price": 155.31
+  },
+  {
+    "code": "7/4",
+    "hex": "#ae5f4a",
+    "group": "copper",
+    "row": 7,
+    "col": 1,
+    "image": "/images/shades/ollin-color/7-4.webp"
+  },
+  {
+    "code": "6/4",
+    "hex": "#994f41",
+    "group": "copper",
+    "row": 6,
+    "col": 2,
+    "image": "/images/shades/ollin-color/6-4.webp",
+    "name": "Color 6/4 6-4",
+    "price": 167
+  },
+  {
+    "code": "5/4",
+    "hex": "#6a3734",
+    "group": "copper",
+    "row": 5,
+    "col": 3,
+    "image": "/images/shades/ollin-color/5-4.webp",
+    "name": "Color 5/4 5-4",
+    "price": 155.31
+  },
+  {
+    "code": "4/4",
+    "hex": "#41272b",
+    "group": "copper",
+    "row": 4,
+    "col": 4,
+    "image": "/images/shades/ollin-color/4-4.webp",
+    "name": "Color 4/4 4-4",
+    "price": 155.31
+  },
+  {
+    "code": "11/43",
+    "hex": "#d39368",
+    "group": "copper",
+    "row": 11,
+    "col": 5,
+    "image": "/images/shades/ollin-color/11-43.webp"
+  },
+  {
+    "code": "10/43",
+    "hex": "#f7ab6e",
+    "group": "copper",
+    "row": 10,
+    "col": 6,
+    "image": "/images/shades/ollin-color/10-43.webp",
+    "name": "Color 10/43 10-43",
+    "price": 167
+  },
+  {
+    "code": "9/43",
+    "hex": "#e47c37",
+    "group": "copper",
+    "row": 9,
+    "col": 7,
+    "image": "/images/shades/ollin-color/9-43.webp",
+    "name": "Color 9/43 9-43",
+    "price": 155.31
+  },
+  {
+    "code": "8/43",
+    "hex": "#ee9053",
+    "group": "copper",
+    "row": 8,
+    "col": 8,
+    "image": "/images/shades/ollin-color/8-43.webp"
+  },
+  {
+    "code": "7/43",
+    "hex": "#a76042",
+    "group": "copper",
+    "row": 7,
+    "col": 9,
+    "image": "/images/shades/ollin-color/7-43.webp"
+  },
+  {
+    "code": "7/46",
+    "hex": "#b84c43",
+    "group": "copper",
+    "row": 7,
+    "col": 10,
+    "image": "/images/shades/ollin-color/7-46.webp",
+    "name": "Color 7/46 7-46",
+    "price": 155.31
+  },
+  {
+    "code": "10/5",
+    "hex": "#f4cebe",
+    "group": "mahogany",
+    "row": 10,
+    "col": 0,
+    "image": "/images/shades/ollin-color/10-5.webp"
+  },
+  {
+    "code": "9/5",
+    "hex": "#f2c5b2",
+    "group": "mahogany",
+    "row": 9,
+    "col": 1,
+    "image": "/images/shades/ollin-color/9-5.webp",
+    "name": "Color 9/5 9-5",
+    "price": 155.31
+  },
+  {
+    "code": "7/5",
+    "hex": "#a24642",
+    "group": "mahogany",
+    "row": 7,
+    "col": 2,
+    "image": "/images/shades/ollin-color/7-5.webp"
+  },
+  {
+    "code": "6/5",
+    "hex": "#7c3f42",
+    "group": "mahogany",
+    "row": 6,
+    "col": 3,
+    "image": "/images/shades/ollin-color/6-5.webp",
+    "name": "Color 6/5 6-5",
+    "price": 155.31
+  },
+  {
+    "code": "5/5",
+    "hex": "#65383a",
+    "group": "mahogany",
+    "row": 5,
+    "col": 4,
+    "image": "/images/shades/ollin-color/5-5.webp"
+  },
+  {
+    "code": "4/5",
+    "hex": "#422025",
+    "group": "mahogany",
+    "row": 4,
+    "col": 5,
+    "image": "/images/shades/ollin-color/4-5.webp",
+    "name": "Color 4/5 4-5",
+    "price": 141.95
+  },
+  {
+    "code": "8/6",
+    "hex": "#e63f4a",
+    "group": "red",
+    "row": 8,
+    "col": 0,
+    "image": "/images/shades/ollin-color/8-6.webp",
+    "name": "Color 8/6 8-6",
+    "price": 155.31
+  },
+  {
+    "code": "7/6",
+    "hex": "#b23c42",
+    "group": "red",
+    "row": 7,
+    "col": 1,
+    "image": "/images/shades/ollin-color/7-6.webp",
+    "name": "Color 7/6 7-6",
+    "price": 155.31
+  },
+  {
+    "code": "6/6",
+    "hex": "#6e3136",
+    "group": "red",
+    "row": 6,
+    "col": 2,
+    "image": "/images/shades/ollin-color/6-6.webp"
+  },
+  {
+    "code": "5/6",
+    "hex": "#643235",
+    "group": "red",
+    "row": 5,
+    "col": 3,
+    "image": "/images/shades/ollin-color/5-6.webp",
+    "name": "Color 5/6 5-6",
+    "price": 155.31
+  },
+  {
+    "code": "11/7",
+    "hex": "#d9bba4",
+    "group": "brown",
+    "row": 11,
+    "col": 0,
+    "image": "/images/shades/ollin-color/11-7.webp",
+    "name": "Color 11/7 11-7",
+    "price": 167
+  },
+  {
+    "code": "10/7",
+    "hex": "#d6b7a3",
+    "group": "brown",
+    "row": 10,
+    "col": 1,
+    "image": "/images/shades/ollin-color/10-7.webp"
+  },
+  {
+    "code": "9/7",
+    "hex": "#bfa18d",
+    "group": "brown",
+    "row": 9,
+    "col": 2,
+    "image": "/images/shades/ollin-color/9-7.webp",
+    "name": "Color 9/7 9-7",
+    "price": 167
+  },
+  {
+    "code": "8/7",
+    "hex": "#a17766",
+    "group": "brown",
+    "row": 8,
+    "col": 3,
+    "image": "/images/shades/ollin-color/8-7.webp",
+    "name": "Color 8/7 8-7",
+    "price": 167
+  },
+  {
+    "code": "7/7",
+    "hex": "#906b59",
+    "group": "brown",
+    "row": 7,
+    "col": 4,
+    "image": "/images/shades/ollin-color/7-7.webp",
+    "name": "Color 7/7 7-7",
+    "price": 167
+  },
+  {
+    "code": "6/7",
+    "hex": "#794d40",
+    "group": "brown",
+    "row": 6,
+    "col": 5,
+    "image": "/images/shades/ollin-color/6-7.webp"
+  },
+  {
+    "code": "5/7",
+    "hex": "#533834",
+    "group": "brown",
+    "row": 5,
+    "col": 6,
+    "image": "/images/shades/ollin-color/5-7.webp",
+    "name": "Color 5/7 5-7",
+    "price": 167
+  },
+  {
+    "code": "6/71",
+    "hex": "#664d41",
+    "group": "brown",
+    "row": 6,
+    "col": 7,
+    "image": "/images/shades/ollin-color/6-71.webp",
+    "name": "Color 6/71 6-71",
+    "price": 167
+  },
+  {
+    "code": "5/71",
+    "hex": "#563e3a",
+    "group": "brown",
+    "row": 5,
+    "col": 8,
+    "image": "/images/shades/ollin-color/5-71.webp",
+    "name": "Color 5/71 5-71",
+    "price": 167
+  },
+  {
+    "code": "4/71",
+    "hex": "#413132",
+    "group": "brown",
+    "row": 4,
+    "col": 9,
+    "image": "/images/shades/ollin-color/4-71.webp",
+    "name": "Color 4/71 4-71",
+    "price": 167
+  },
+  {
+    "code": "10/73",
+    "hex": "#cba490",
+    "group": "brown",
+    "row": 10,
+    "col": 10,
+    "image": "/images/shades/ollin-color/10-73.webp"
+  },
+  {
+    "code": "9/73",
+    "hex": "#f1cbb4",
+    "group": "brown",
+    "row": 9,
+    "col": 11,
+    "image": "/images/shades/ollin-color/9-73.webp",
+    "name": "Color 9/73 9-73",
+    "price": 167
+  },
+  {
+    "code": "8/73",
+    "hex": "#a97c6c",
+    "group": "brown",
+    "row": 8,
+    "col": 12,
+    "image": "/images/shades/ollin-color/8-73.webp",
+    "name": "Color 8/73 8-73",
+    "price": 155.31
+  },
+  {
+    "code": "7/75",
+    "hex": "#a26958",
+    "group": "brown",
+    "row": 7,
+    "col": 13,
+    "image": "/images/shades/ollin-color/7-75.webp"
+  },
+  {
+    "code": "6/75",
+    "hex": "#78534c",
+    "group": "brown",
+    "row": 6,
+    "col": 14,
+    "image": "/images/shades/ollin-color/6-75.webp",
+    "name": "Color 6/75 6-75",
+    "price": 155.31
+  },
+  {
+    "code": "11/81",
+    "hex": "#e2d7d5",
+    "group": "pearl",
+    "row": 11,
+    "col": 0,
+    "image": "/images/shades/ollin-color/11-81.webp",
+    "name": "Color 11/81 11-81",
+    "price": 167
+  },
+  {
+    "code": "10/8",
+    "hex": "#dfd5df",
+    "group": "pearl",
+    "row": 10,
+    "col": 1,
+    "image": "/images/shades/ollin-color/10-8.webp",
+    "name": "Color 10/8 10-8",
+    "price": 155.31
+  },
+  {
+    "code": "9/81",
+    "hex": "#aea2a0",
+    "group": "pearl",
+    "row": 9,
+    "col": 2,
+    "image": "/images/shades/ollin-color/9-81.webp",
+    "name": "Color 9/81 9-81",
+    "price": 167
+  },
+  {
+    "code": "0/11",
+    "hex": "#2d2628",
+    "group": "other",
+    "row": 0,
+    "col": 0,
+    "image": "/images/shades/ollin-color/0-11.webp",
+    "name": "Color 0/11 пепельный 60мл 0-11",
+    "price": 167
+  },
+  {
+    "code": "0/22",
+    "hex": "#100107",
+    "group": "violet",
+    "row": 0,
+    "col": 9,
+    "image": "/images/shades/ollin-color/0-22.webp",
+    "name": "Color 0/22 фиолетовый 60мл 0-22",
+    "price": 155.31
+  },
+  {
+    "code": "0/33",
+    "hex": "#f1b911",
+    "group": "other",
+    "row": 0,
+    "col": 1,
+    "image": "/images/shades/ollin-color/0-33.webp",
+    "name": "Color 0/33 желтый 60мл 0-33",
+    "price": 167
+  },
+  {
+    "code": "0/66",
+    "hex": "#df1028",
+    "group": "other",
+    "row": 0,
+    "col": 2,
+    "image": "/images/shades/ollin-color/0-66.webp"
+  },
+  {
+    "code": "0/88",
+    "hex": "#243c59",
+    "group": "other",
+    "row": 0,
+    "col": 3,
+    "image": "/images/shades/ollin-color/0-88.webp",
+    "name": "Color 0/88 синий 60мл 0-88",
+    "price": 167
+  }
+]
