@@ -1312,5 +1312,83 @@
     "image": "/images/shades/matrix-socolor/10p.webp",
     "name": "Socolor 10P 10P",
     "price": 610
+  },
+  {
+    "code": "5C",
+    "hex": "#4b271b",
+    "group": "socolor",
+    "row": 0,
+    "col": 148,
+    "image": "/images/shades/matrix-socolor/5c.webp"
+  },
+  {
+    "code": "5RV+",
+    "hex": "#450918",
+    "group": "socolor",
+    "row": 0,
+    "col": 149,
+    "image": "/images/shades/matrix-socolor/5rvplus.webp",
+    "name": "Socolor 5RV+ 5RV+",
+    "price": 610
+  },
+  {
+    "code": "6C",
+    "hex": "#6f3215",
+    "group": "socolor",
+    "row": 0,
+    "col": 150,
+    "image": "/images/shades/matrix-socolor/6c.webp",
+    "name": "Socolor 6C 6C",
+    "price": 610
+  },
+  {
+    "code": "7C",
+    "hex": "#6f3d20",
+    "group": "socolor",
+    "row": 0,
+    "col": 151,
+    "image": "/images/shades/matrix-socolor/7c.webp",
+    "name": "Socolor 7C 7C",
+    "price": 610
+  },
+  {
+    "code": "8C",
+    "hex": "#965623",
+    "group": "socolor",
+    "row": 0,
+    "col": 152,
+    "image": "/images/shades/matrix-socolor/8c.webp",
+    "name": "Socolor 8C 8C",
+    "price": 610
+  },
+  {
+    "code": "UL-M",
+    "hex": "#e9d5c6",
+    "group": "socolor",
+    "row": 0,
+    "col": 153,
+    "image": "/images/shades/matrix-socolor/ulm.webp",
+    "name": "Socolor UL-M Мокка UL-M",
+    "price": 610
+  },
+  {
+    "code": "UL-NV+",
+    "hex": "#ecdac7",
+    "group": "socolor",
+    "row": 0,
+    "col": 154,
+    "image": "/images/shades/matrix-socolor/ulnvplus.webp",
+    "name": "Socolor UL-NV+ натур. перламутр.+ UL-NV+",
+    "price": 610
+  },
+  {
+    "code": "UL-VV",
+    "hex": "#c4bbb4",
+    "group": "socolor",
+    "row": 0,
+    "col": 155,
+    "image": "/images/shades/matrix-socolor/ulvv.webp",
+    "name": "Socolor UL-VV глубокий перламутровый UL-VV",
+    "price": 610
   }
 ]
