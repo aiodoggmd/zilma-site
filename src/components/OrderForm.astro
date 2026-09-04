@@ -100,7 +100,7 @@ const { framed = false } = Astro.props;
     flex-direction: column;
     height: 100%;
     background: var(--color-paper);
-    border: 1px solid var(--color-panel-line);
+    border: 1px solid var(--color-card-line);
     border-top: 4px solid var(--color-red);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
@@ -365,6 +365,17 @@ const { framed = false } = Astro.props;
     gap: 6px;
     max-height: 180px;
     overflow-y: auto;
+  }
+
+  /* На телефоне внутренний скролл списка обрезал последнюю строку посередине —
+     выглядело как оборванная корзина (скриншот пользователя 2026-09-05). Внутренний
+     скролл внутри скролла страницы там и без того неудобен, поэтому на узких экранах
+     список просто разворачивается целиком: страница прокрутится сама. */
+  @media (max-width: 640px) {
+    .cart-list {
+      max-height: none;
+      overflow-y: visible;
+    }
   }
 
   .cart-total {
