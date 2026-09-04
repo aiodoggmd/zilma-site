@@ -1028,7 +1028,13 @@ const bestDeals = groupBy === 'discount'
     display: none;
   }
 
-  .price-checklist:has(.pc-search:placeholder-shown) .pc-group-body:has(.pc-group-line[open]) .pc-group-line:not([open]) {
+  /* Только ПРЯМЫЕ потомки (> вместо потомка вообще). Реальная авария 2026-09-05,
+     найдена пользователем сразу после появления третьего уровня в «Акциях»
+     (ступень -> бренд -> линейка): без «>» правило читало открытый БРЕНД как
+     «открытую линейку» и прятало все неоткрытые .pc-group-line глубже по дереву —
+     то есть сами линейки внутри этого бренда. Папка раскрывалась в пустоту, тап
+     выглядел как «ничего не происходит». Пока уровней было два, разницы не было. */
+  .price-checklist:has(.pc-search:placeholder-shown) .pc-group-body:has(> .pc-group-line[open]) > .pc-group-line:not([open]) {
     display: none;
   }
 
