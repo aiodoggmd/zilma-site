@@ -1,0 +1,506 @@
+[
+  {
+    "code": "1A",
+    "hex": "#1f2429",
+    "group": "sync",
+    "row": 0,
+    "col": 0,
+    "image": "/images/shades/matrix-sync/1a.webp",
+    "name": "Color Sync 1A 90 мл. 01A",
+    "price": 750
+  },
+  {
+    "code": "SPA",
+    "hex": "#c2c1ba",
+    "group": "sync",
+    "row": 0,
+    "col": 1,
+    "image": "/images/shades/matrix-sync/spa.webp"
+  },
+  {
+    "code": "11A",
+    "hex": "#c5c1b7",
+    "group": "sync",
+    "row": 0,
+    "col": 2,
+    "image": "/images/shades/matrix-sync/11a.webp",
+    "name": "Color Sync 11A 90 мл. 011A",
+    "price": 750
+  },
+  {
+    "code": "11V",
+    "hex": "#dad1c3",
+    "group": "sync",
+    "row": 0,
+    "col": 3,
+    "image": "/images/shades/matrix-sync/11v.webp"
+  },
+  {
+    "code": "11P",
+    "hex": "#cec3c0",
+    "group": "sync",
+    "row": 0,
+    "col": 4,
+    "image": "/images/shades/matrix-sync/11p.webp",
+    "name": "Color Sync 11P 90 мл. 011P",
+    "price": 750
+  },
+  {
+    "code": "8P",
+    "hex": "#aaa3a9",
+    "group": "sync",
+    "row": 0,
+    "col": 5,
+    "image": "/images/shades/matrix-sync/8p.webp"
+  },
+  {
+    "code": "5VV",
+    "hex": "#68425c",
+    "group": "sync",
+    "row": 0,
+    "col": 6,
+    "image": "/images/shades/matrix-sync/5vv.webp"
+  },
+  {
+    "code": "7NA",
+    "hex": "#6e5634",
+    "group": "sync",
+    "row": 0,
+    "col": 7,
+    "image": "/images/shades/matrix-sync/7na.webp",
+    "name": "Color Sync 7NA Pre-Bonded блондин натуральный пепельный 90 мл 07NA",
+    "price": 750
+  },
+  {
+    "code": "6N",
+    "hex": "#745b44",
+    "group": "sync",
+    "row": 0,
+    "col": 8,
+    "image": "/images/shades/matrix-sync/6n.webp",
+    "name": "Color Sync 6N блонд. темный 90 мл. 06N",
+    "price": 750
+  },
+  {
+    "code": "8N",
+    "hex": "#b8a081",
+    "group": "sync",
+    "row": 0,
+    "col": 9,
+    "image": "/images/shades/matrix-sync/8n.webp"
+  },
+  {
+    "code": "10N",
+    "hex": "#e5c79e",
+    "group": "sync",
+    "row": 0,
+    "col": 10,
+    "image": "/images/shades/matrix-sync/10n.webp",
+    "name": "Color Sync 10N 90 мл. 010N",
+    "price": 750
+  },
+  {
+    "code": "4A",
+    "hex": "#39322b",
+    "group": "sync",
+    "row": 0,
+    "col": 11,
+    "image": "/images/shades/matrix-sync/4a.webp",
+    "name": "Color Sync 4A 90 мл. 04A",
+    "price": 750
+  },
+  {
+    "code": "11N",
+    "hex": "#d5c9b1",
+    "group": "sync",
+    "row": 0,
+    "col": 12,
+    "image": "/images/shades/matrix-sync/11n.webp"
+  },
+  {
+    "code": "9NA",
+    "hex": "#957a54",
+    "group": "sync",
+    "row": 0,
+    "col": 13,
+    "image": "/images/shades/matrix-sync/9na.webp",
+    "name": "Color Sync 9NA Pre-Bonded очень светлый блондин натуральный пепельный 90 мл 09NA",
+    "price": 750
+  },
+  {
+    "code": "7NV",
+    "hex": "#725c4d",
+    "group": "sync",
+    "row": 0,
+    "col": 14,
+    "image": "/images/shades/matrix-sync/7nv.webp"
+  },
+  {
+    "code": "3N",
+    "hex": "#2d251f",
+    "group": "sync",
+    "row": 0,
+    "col": 15,
+    "image": "/images/shades/matrix-sync/3n.webp",
+    "name": "Color Sync 3N 90 мл. 03N",
+    "price": 750
+  },
+  {
+    "code": "5N",
+    "hex": "#451a0a",
+    "group": "sync",
+    "row": 0,
+    "col": 16,
+    "image": "/images/shades/matrix-sync/5n.webp",
+    "name": "Color Sync 5N св. шатен 90 мл. 05N",
+    "price": 750
+  },
+  {
+    "code": "SPN",
+    "hex": "#dbcbaa",
+    "group": "sync",
+    "row": 0,
+    "col": 17,
+    "image": "/images/shades/matrix-sync/spn.webp"
+  },
+  {
+    "code": "SPV",
+    "hex": "#c1bab3",
+    "group": "sync",
+    "row": 0,
+    "col": 18,
+    "image": "/images/shades/matrix-sync/spv.webp",
+    "name": "Color Sync SPV пастельный перламутровый SPV",
+    "price": 750
+  },
+  {
+    "code": "SPP",
+    "hex": "#b4aeaf",
+    "group": "sync",
+    "row": 0,
+    "col": 19,
+    "image": "/images/shades/matrix-sync/spp.webp",
+    "name": "Color Sync SPP SPP",
+    "price": 750
+  },
+  {
+    "code": "8A",
+    "hex": "#baae9c",
+    "group": "sync",
+    "row": 0,
+    "col": 20,
+    "image": "/images/shades/matrix-sync/8a.webp",
+    "name": "Color Sync 8A 90 мл. 08A",
+    "price": 750
+  },
+  {
+    "code": "8V",
+    "hex": "#afa29d",
+    "group": "sync",
+    "row": 0,
+    "col": 21,
+    "image": "/images/shades/matrix-sync/8v.webp"
+  },
+  {
+    "code": "10A",
+    "hex": "#b7b3a8",
+    "group": "sync",
+    "row": 0,
+    "col": 22,
+    "image": "/images/shades/matrix-sync/10a.webp"
+  },
+  {
+    "code": "10V",
+    "hex": "#ccbfb3",
+    "group": "sync",
+    "row": 0,
+    "col": 23,
+    "image": "/images/shades/matrix-sync/10v.webp"
+  },
+  {
+    "code": "10P",
+    "hex": "#e9dbd9",
+    "group": "sync",
+    "row": 0,
+    "col": 24,
+    "image": "/images/shades/matrix-sync/10p.webp",
+    "name": "Color Sync 10P оч-оч. св. блонд. жемчуж. 90 мл. 010P",
+    "price": 750
+  },
+  {
+    "code": "7WM",
+    "hex": "#7e4f3b",
+    "group": "sync",
+    "row": 0,
+    "col": 25,
+    "image": "/images/shades/matrix-sync/7wm.webp"
+  },
+  {
+    "code": "7MV",
+    "hex": "#694939",
+    "group": "sync",
+    "row": 0,
+    "col": 26,
+    "image": "/images/shades/matrix-sync/7mv.webp"
+  },
+  {
+    "code": "10MM",
+    "hex": "#b59682",
+    "group": "sync",
+    "row": 0,
+    "col": 27,
+    "image": "/images/shades/matrix-sync/10mm.webp"
+  },
+  {
+    "code": "5M",
+    "hex": "#4d251c",
+    "group": "sync",
+    "row": 0,
+    "col": 28,
+    "image": "/images/shades/matrix-sync/5m.webp",
+    "name": "Color Sync 5M 90 мл. 05M",
+    "price": 750
+  },
+  {
+    "code": "6M",
+    "hex": "#825f48",
+    "group": "sync",
+    "row": 0,
+    "col": 29,
+    "image": "/images/shades/matrix-sync/6m.webp",
+    "name": "Color Sync 6M 90 мл. 06M",
+    "price": 750
+  },
+  {
+    "code": "7M",
+    "hex": "#9b7551",
+    "group": "sync",
+    "row": 0,
+    "col": 30,
+    "image": "/images/shades/matrix-sync/7m.webp"
+  },
+  {
+    "code": "8M",
+    "hex": "#ac8157",
+    "group": "sync",
+    "row": 0,
+    "col": 31,
+    "image": "/images/shades/matrix-sync/8m.webp"
+  },
+  {
+    "code": "10M",
+    "hex": "#dcb78a",
+    "group": "sync",
+    "row": 0,
+    "col": 32,
+    "image": "/images/shades/matrix-sync/10m.webp"
+  },
+  {
+    "code": "SPM",
+    "hex": "#dcb78a",
+    "group": "sync",
+    "row": 0,
+    "col": 33,
+    "image": "/images/shades/matrix-sync/spm.webp",
+    "name": "Color Sync SPM пастельный мокка SPM",
+    "price": 750
+  },
+  {
+    "code": "7VM",
+    "hex": "#5c3d2a",
+    "group": "sync",
+    "row": 0,
+    "col": 34,
+    "image": "/images/shades/matrix-sync/7vm.webp"
+  },
+  {
+    "code": "6WN",
+    "hex": "#946849",
+    "group": "sync",
+    "row": 0,
+    "col": 35,
+    "image": "/images/shades/matrix-sync/6wn.webp",
+    "name": "Color Sync 6WN 90 мл. 06WN",
+    "price": 750
+  },
+  {
+    "code": "8WN",
+    "hex": "#c38f5e",
+    "group": "sync",
+    "row": 0,
+    "col": 36,
+    "image": "/images/shades/matrix-sync/8wn.webp",
+    "name": "Color Sync 8WN 90 мл. 08WN",
+    "price": 750
+  },
+  {
+    "code": "3WN",
+    "hex": "#451a0a",
+    "group": "sync",
+    "row": 0,
+    "col": 37,
+    "image": "/images/shades/matrix-sync/3wn.webp"
+  },
+  {
+    "code": "5WN",
+    "hex": "#4e2324",
+    "group": "sync",
+    "row": 0,
+    "col": 38,
+    "image": "/images/shades/matrix-sync/5wn.webp",
+    "name": "Color Sync 5WN 90 мл. 05WN",
+    "price": 750
+  },
+  {
+    "code": "7AM",
+    "hex": "#614327",
+    "group": "sync",
+    "row": 0,
+    "col": 39,
+    "image": "/images/shades/matrix-sync/7am.webp"
+  },
+  {
+    "code": "9MM",
+    "hex": "#ad8b76",
+    "group": "sync",
+    "row": 0,
+    "col": 40,
+    "image": "/images/shades/matrix-sync/9mm.webp",
+    "name": "Color Sync 9MM 09MM",
+    "price": 750
+  },
+  {
+    "code": "5MM",
+    "hex": "#522717",
+    "group": "sync",
+    "row": 0,
+    "col": 41,
+    "image": "/images/shades/matrix-sync/5mm.webp"
+  },
+  {
+    "code": "7MM",
+    "hex": "#9c755f",
+    "group": "sync",
+    "row": 0,
+    "col": 42,
+    "image": "/images/shades/matrix-sync/7mm.webp"
+  },
+  {
+    "code": "6BC",
+    "hex": "#693c26",
+    "group": "sync",
+    "row": 0,
+    "col": 43,
+    "image": "/images/shades/matrix-sync/6bc.webp",
+    "name": "Color Sync 6BC 90 мл. 06BC",
+    "price": 750
+  },
+  {
+    "code": "8BC",
+    "hex": "#a0725a",
+    "group": "sync",
+    "row": 0,
+    "col": 44,
+    "image": "/images/shades/matrix-sync/8bc.webp",
+    "name": "Color Sync 8BC 90 мл. 08BC",
+    "price": 750
+  },
+  {
+    "code": "9GV",
+    "hex": "#e3c6ae",
+    "group": "sync",
+    "row": 0,
+    "col": 45,
+    "image": "/images/shades/matrix-sync/9gv.webp",
+    "name": "Color Sync 9GV 09GV",
+    "price": 750
+  },
+  {
+    "code": "8G",
+    "hex": "#e2bb87",
+    "group": "sync",
+    "row": 0,
+    "col": 46,
+    "image": "/images/shades/matrix-sync/8g.webp",
+    "name": "Color Sync 8G 90 мл. 08G",
+    "price": 750
+  },
+  {
+    "code": "10G",
+    "hex": "#f7deb5",
+    "group": "sync",
+    "row": 0,
+    "col": 47,
+    "image": "/images/shades/matrix-sync/10g.webp",
+    "name": "Color Sync 10G 90 мл. 010G",
+    "price": 750
+  },
+  {
+    "code": "5VA",
+    "hex": "#38292c",
+    "group": "sync",
+    "row": 0,
+    "col": 48,
+    "image": "/images/shades/matrix-sync/5va.webp"
+  },
+  {
+    "code": "5AA",
+    "hex": "#3b302e",
+    "group": "sync",
+    "row": 0,
+    "col": 49,
+    "image": "/images/shades/matrix-sync/5aa.webp"
+  },
+  {
+    "code": "7AA",
+    "hex": "#514744",
+    "group": "sync",
+    "row": 0,
+    "col": 50,
+    "image": "/images/shades/matrix-sync/7aa.webp"
+  },
+  {
+    "code": "7VA",
+    "hex": "#443235",
+    "group": "sync",
+    "row": 0,
+    "col": 51,
+    "image": "/images/shades/matrix-sync/7va.webp"
+  },
+  {
+    "code": "4RV+",
+    "hex": "#61202d",
+    "group": "sync",
+    "row": 0,
+    "col": 52,
+    "image": "/images/shades/matrix-sync/4rvplus.webp"
+  },
+  {
+    "code": "7CC+",
+    "hex": "#c05d29",
+    "group": "sync",
+    "row": 0,
+    "col": 53,
+    "image": "/images/shades/matrix-sync/7ccplus.webp"
+  },
+  {
+    "code": "6RV+",
+    "hex": "#872a39",
+    "group": "sync",
+    "row": 0,
+    "col": 54,
+    "image": "/images/shades/matrix-sync/6rvplus.webp",
+    "name": "Color Sync 6RV+ темный блонд. красно-перлпмутр. 90 мл NEW 06RV+",
+    "price": 750
+  },
+  {
+    "code": "8RC+",
+    "hex": "#d9692d",
+    "group": "sync",
+    "row": 0,
+    "col": 55,
+    "image": "/images/shades/matrix-sync/8rcplus.webp",
+    "name": "Color Sync 8RC+ 08RC+",
+    "price": 750
+  }
+]

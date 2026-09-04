@@ -119,6 +119,14 @@ function ownPaletteFor(brand: string | null, line: string | null, name: string):
   if (brand === 'WELLA' && l.startsWith('SHINEFINITY')) return 'shinefinity';
   if (brand === 'SCHWARZKOPF' && l.startsWith('IGORA/BLONDME')) return 'igora-royal';
   if (brand === 'OLLIN' && normName(name).startsWith('color ')) return 'ollin';
+  // У MATRIX линейки в прайсе тоже не проставлены. Кислотные тонеры проверяем ПЕРВЫМИ:
+  // их названия начинаются с того же «color sync », и без этой проверки они забрали бы
+  // цвет из щелочной палитры, где те же буквенные коды означают другой оттенок.
+  if (brand === 'MATRIX') {
+    const n = normName(name);
+    if (n.startsWith('color sync тонер')) return 'matrix-sync-acid';
+    if (n.startsWith('color sync ')) return 'matrix-sync';
+  }
   return null;
 }
 function swatchFor(it: { name: string; brand?: string | null; line?: string | null; category?: string }): Swatch | undefined {

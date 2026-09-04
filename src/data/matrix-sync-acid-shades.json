@@ -1,0 +1,102 @@
+[
+  {
+    "code": "5M",
+    "hex": "#382720",
+    "group": "sync",
+    "row": 0,
+    "col": 0,
+    "image": "/images/shades/matrix-sync-acid/5m.webp"
+  },
+  {
+    "code": "8AA",
+    "hex": "#c9c7c8",
+    "group": "sync",
+    "row": 0,
+    "col": 1,
+    "image": "/images/shades/matrix-sync-acid/8aa.webp"
+  },
+  {
+    "code": "10PA",
+    "hex": "#bebebe",
+    "group": "sync",
+    "row": 0,
+    "col": 2,
+    "image": "/images/shades/matrix-sync-acid/10pa.webp",
+    "name": "Color Sync Тонер с Кислым Ph 10PA 90 мл 0-10PA",
+    "price": 750
+  },
+  {
+    "code": "2J",
+    "hex": "#342721",
+    "group": "sync",
+    "row": 0,
+    "col": 3,
+    "image": "/images/shades/matrix-sync-acid/2j.webp"
+  },
+  {
+    "code": "8A",
+    "hex": "#cfc9bf",
+    "group": "sync",
+    "row": 0,
+    "col": 4,
+    "image": "/images/shades/matrix-sync-acid/8a.webp"
+  },
+  {
+    "code": "10PV",
+    "hex": "#b9adc6",
+    "group": "sync",
+    "row": 0,
+    "col": 5,
+    "image": "/images/shades/matrix-sync-acid/10pv.webp"
+  },
+  {
+    "code": "5A",
+    "hex": "#2f2525",
+    "group": "sync",
+    "row": 0,
+    "col": 6,
+    "image": "/images/shades/matrix-sync-acid/5a.webp"
+  },
+  {
+    "code": "8V",
+    "hex": "#b9b3bc",
+    "group": "sync",
+    "row": 0,
+    "col": 7,
+    "image": "/images/shades/matrix-sync-acid/8v.webp"
+  },
+  {
+    "code": "10PR",
+    "hex": "#dca19d",
+    "group": "sync",
+    "row": 0,
+    "col": 8,
+    "image": "/images/shades/matrix-sync-acid/10pr.webp",
+    "name": "Color Sync Тонер с Кислым Ph 10PR 90 мл 0-10PR",
+    "price": 750
+  },
+  {
+    "code": "5N",
+    "hex": "#3c2720",
+    "group": "sync",
+    "row": 0,
+    "col": 9,
+    "image": "/images/shades/matrix-sync-acid/5n.webp"
+  },
+  {
+    "code": "8AG",
+    "hex": "#d5c9b6",
+    "group": "sync",
+    "row": 0,
+    "col": 10,
+    "image": "/images/shades/matrix-sync-acid/8ag.webp"
+  },
+  {
+    "code": "10PG",
+    "hex": "#e9cfbb",
+    "group": "sync",
+    "row": 0,
+    "col": 11,
+    "image": "/images/shades/matrix-sync-acid/10pg.webp"
+  }
+]
