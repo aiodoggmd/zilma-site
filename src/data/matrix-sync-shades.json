@@ -502,5 +502,175 @@
     "image": "/images/shades/matrix-sync/8rcplus.webp",
     "name": "Color Sync 8RC+ 08RC+",
     "price": 750
+  },
+  {
+    "code": "6A",
+    "hex": "#3e1c02",
+    "group": "sync",
+    "row": 0,
+    "col": 56,
+    "image": "/images/shades/matrix-sync/6a.webp",
+    "name": "Color Sync 6A 90 мл. 06A",
+    "price": 750
+  },
+  {
+    "code": "3NN",
+    "hex": "#2d1f17",
+    "group": "sync",
+    "row": 0,
+    "col": 57,
+    "image": "/images/shades/matrix-sync/3nn.webp",
+    "name": "Color Sync 3NN 90ml NEW 03NN",
+    "price": 750
+  },
+  {
+    "code": "5NN",
+    "hex": "#372315",
+    "group": "sync",
+    "row": 0,
+    "col": 58,
+    "image": "/images/shades/matrix-sync/5nn.webp",
+    "name": "Color Sync 5NN св. шатен глубокий 90 мл. NEW 05NN",
+    "price": 750
+  },
+  {
+    "code": "6NN",
+    "hex": "#472d20",
+    "group": "sync",
+    "row": 0,
+    "col": 59,
+    "image": "/images/shades/matrix-sync/6nn.webp",
+    "name": "Color Sync 6NN блонд. темный глубокий 90 мл. NEW 06NN",
+    "price": 750
+  },
+  {
+    "code": "8NN",
+    "hex": "#785545",
+    "group": "sync",
+    "row": 0,
+    "col": 60,
+    "image": "/images/shades/matrix-sync/8nn.webp",
+    "name": "Color Sync 8NN блондин светлый глубокий 90 мл. NEW 08NN",
+    "price": 750
+  },
+  {
+    "code": "6RB",
+    "hex": "#3f1707",
+    "group": "sync",
+    "row": 0,
+    "col": 61,
+    "image": "/images/shades/matrix-sync/6rb.webp",
+    "name": "Color Sync 6RB 90 мл. NEW 06RB",
+    "price": 750
+  },
+  {
+    "code": "6BR",
+    "hex": "#4e150c",
+    "group": "sync",
+    "row": 0,
+    "col": 62,
+    "image": "/images/shades/matrix-sync/6br.webp",
+    "name": "Color Sync 6BR 90 мл. 06BR",
+    "price": 750
+  },
+  {
+    "code": "4BR",
+    "hex": "#3a201f",
+    "group": "sync",
+    "row": 0,
+    "col": 63,
+    "image": "/images/shades/matrix-sync/4br.webp",
+    "name": "Color Sync 4BR шатен коричневый красный 90 мл NEW 04BR",
+    "price": 750
+  },
+  {
+    "code": "6CG",
+    "hex": "#75290a",
+    "group": "sync",
+    "row": 0,
+    "col": 64,
+    "image": "/images/shades/matrix-sync/6cg.webp",
+    "name": "Color Sync 6CG 90 мл. NEW 06CG",
+    "price": 750
+  },
+  {
+    "code": "6RC+",
+    "hex": "#ae3d26",
+    "group": "sync",
+    "row": 0,
+    "col": 65,
+    "image": "/images/shades/matrix-sync/6rcplus.webp",
+    "name": "Color Sync 6RC+ 90 мл. NEW 06RC+",
+    "price": 750
+  },
+  {
+    "code": "CLEAR",
+    "hex": "#ededef",
+    "group": "sync",
+    "row": 0,
+    "col": 66,
+    "image": "/images/shades/matrix-sync/clear.webp",
+    "name": "Color Sync CLEAR ПРОЗРАЧНЫЙ оттенок 90 мл. CLEAR/99989414493",
+    "price": 750
+  },
+  {
+    "code": "6T",
+    "hex": "#504946",
+    "group": "sync",
+    "row": 0,
+    "col": 67,
+    "image": "/images/shades/matrix-sync/6t.webp",
+    "name": "Color Sync 6T темный блонд титановый 90 мл. NEW 06T",
+    "price": 750
+  },
+  {
+    "code": "6P",
+    "hex": "#4d4341",
+    "group": "sync",
+    "row": 0,
+    "col": 68,
+    "image": "/images/shades/matrix-sync/6p.webp",
+    "name": "Color Sync 6P 90 мл. NEW 06P",
+    "price": 750
+  },
+  {
+    "code": "10NV",
+    "hex": "#aca299",
+    "group": "sync",
+    "row": 0,
+    "col": 69,
+    "image": "/images/shades/matrix-sync/10nv.webp",
+    "name": "Color Sync 10NV 90 мл. NEW 010NV",
+    "price": 750
+  },
+  {
+    "code": "7RR+",
+    "hex": "#9f0807",
+    "group": "sync",
+    "row": 0,
+    "col": 70,
+    "image": "/images/shades/matrix-sync/7rrplus.webp",
+    "name": "Color Sync 7RR+ глубокий красный 90 мл. NEW 07RR+",
+    "price": 750
+  },
+  {
+    "code": "HD-RR",
+    "hex": "#712a2d",
+    "group": "sync",
+    "row": 0,
+    "col": 71,
+    "image": "/images/shades/matrix-sync/hdrr.webp",
+    "name": "Color Sync HD-RR глубокий красный 90 мл. NEW HD-RR",
+    "price": 750
+  },
+  {
+    "code": "HD-RV",
+    "hex": "#4a242b",
+    "group": "sync",
+    "row": 0,
+    "col": 72,
+    "image": "/images/shades/matrix-sync/hdrv.webp",
+    "name": "Color Sync HD-RV красно-перламутровый 90 мл. NEW HD-RV",
+    "price": 750
   }
 ]
