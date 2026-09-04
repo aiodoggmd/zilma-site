@@ -175,7 +175,7 @@ const links: Record<string, string> = {
     color: #fff;
     font-size: 0.9rem;
     padding: 12px 20px;
-    border-radius: 999px;
+    border-radius: var(--radius-control);
     box-shadow: var(--shadow-card-hover);
     opacity: 0;
     pointer-events: none;
@@ -196,7 +196,7 @@ const links: Record<string, string> = {
     flex-direction: column;
     height: 100%;
     background: var(--color-paper);
-    border-radius: 8px;
+    border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
     border: 1px solid var(--color-panel-line);
     overflow: hidden;
@@ -226,11 +226,11 @@ const links: Record<string, string> = {
   }
 
   .price-card.current .stat-panel {
-    background: #bcd8f2;
+    background: var(--color-surface-blue);
   }
 
   .price-card.promo .stat-panel {
-    background: #f3c1c9;
+    background: var(--color-surface-pink);
   }
 
   .stat {
@@ -293,7 +293,7 @@ const links: Record<string, string> = {
     gap: 12px;
     background: #fff;
     border-left: 4px solid var(--color-red);
-    border-radius: 10px;
+    border-radius: var(--radius-card);
     padding: 14px 16px;
     box-shadow: 0 6px 16px rgba(43, 32, 28, 0.14);
   }
@@ -325,7 +325,7 @@ const links: Record<string, string> = {
     background: var(--color-red);
     color: #fff;
     padding: 2px 8px;
-    border-radius: 999px;
+    border-radius: var(--radius-control);
     margin-bottom: 5px;
   }
 
@@ -415,7 +415,7 @@ const links: Record<string, string> = {
     font-size: 0.9rem;
     padding: 10px 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-card);
     white-space: nowrap;
     box-shadow: var(--shadow-sm);
     cursor: pointer;

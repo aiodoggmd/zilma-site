@@ -10,6 +10,13 @@
   --color-sky-deep: #69a6fa;
   --color-pastel-blue: #bcd8f2;
   --color-pastel-red: #f3c1c9;
+
+  /* Пастель нового дизайна (2026-09-04): сняты пипеткой с образцов, присланных
+     пользователем. Мягче, чем --color-pastel-* выше, и предназначены именно для
+     БОЛЬШИХ поверхностей — фон херо, панели карточек, блоки. Старые два остаются
+     для мелких элементов (колёса пропорций, значки), там нужна насыщенность. */
+  --color-surface-blue: #cbe3fb;
+  --color-surface-pink: #fae6ea;
   --color-cream: #faf3ea;
   --color-ink: #2b201c;
 
@@ -23,7 +30,10 @@
   --shadow-card: 0 2px 8px rgba(43, 32, 28, 0.07);
   --shadow-card-hover: 0 10px 28px rgba(43, 32, 28, 0.1);
   --shadow-sm: 0 2px 6px rgba(43, 32, 28, 0.14);
-  --radius-card: 18px;
+  /* Прямоугольная геометрия нового дизайна: 6px у карточек и панелей, 4px у кнопок
+     и мелких элементов. Было 18px — по просьбе пользователя «более прямоугольный». */
+  --radius-card: 6px;
+  --radius-control: 4px;
   --container-w: 1180px;
 
   --font-serif: "Playfair Display", Georgia, serif;

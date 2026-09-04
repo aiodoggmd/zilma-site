@@ -92,7 +92,7 @@ const formattedVerifiedDate = verifiedDate.toLocaleDateString('ru-RU', { day: 'n
     letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: 5px 12px;
-    border-radius: 999px;
+    border-radius: var(--radius-control);
     box-shadow: var(--shadow-sm);
   }
 
@@ -129,15 +129,15 @@ const formattedVerifiedDate = verifiedDate.toLocaleDateString('ru-RU', { day: 'n
   }
 
   .text-panel.blue {
-    background: var(--color-pastel-blue);
+    background: var(--color-surface-blue);
   }
 
   .text-panel.red {
-    background: var(--color-pastel-red);
+    background: var(--color-surface-pink);
   }
 
   .text-panel.gradient {
-    background: linear-gradient(90deg, var(--color-pastel-red), var(--color-pastel-blue));
+    background: linear-gradient(90deg, var(--color-surface-pink), var(--color-surface-blue));
   }
 
   .card.lg .text-panel {

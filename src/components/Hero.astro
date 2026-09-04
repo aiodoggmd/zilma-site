@@ -18,9 +18,14 @@
 </section>
 
 <style>
+  /* Пастель нового дизайна (2026-09-04, пользователь снял запрет «херо не трогать»):
+     та же хореография, что была — фон открывается одним цветом и перетекает во второй,
+     пока крутится и проявляется лого, — но вместо насыщенных красного и синего теперь
+     два пастельных тона из присланных образцов. Текст стал тёмным: на светлом фоне
+     кремовый нечитаем. */
   .hero {
     position: relative;
-    background: var(--color-red);
+    background: var(--color-surface-pink);
     padding: 44px 0;
     overflow: hidden;
   }
@@ -28,7 +33,7 @@
   .bg-blue {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, var(--color-blue-dark), var(--color-blue));
+    background: var(--color-surface-blue);
     opacity: 0;
     animation: bg-fade-in 1.1s ease-in-out 1.3s forwards;
     z-index: 0;
@@ -46,7 +51,7 @@
 
   .hero-text {
     max-width: 560px;
-    color: var(--color-cream);
+    color: var(--color-ink);
   }
 
   .hero-text h1 {
@@ -62,15 +67,15 @@
     font-size: 1.02rem;
     font-weight: 600;
     letter-spacing: 0.02em;
-    color: var(--color-cream);
+    color: var(--color-blue-dark);
   }
 
   .subtitle {
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.5;
-    color: var(--color-cream);
-    opacity: 0.88;
+    color: var(--color-ink);
+    opacity: 0.75;
   }
 
   .hero-art {
@@ -98,7 +103,7 @@
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 0 0 6px rgba(250, 243, 234, 0.32), 0 20px 40px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.75), 0 14px 30px rgba(43, 32, 28, 0.16);
     animation: coin-flip 1.2s cubic-bezier(0.4, 0.2, 0.2, 1) forwards;
   }
 
