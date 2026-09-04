@@ -210,7 +210,7 @@ const articleLd = {
         </div>
       </div>
     </div>
-    <article class="container article">
+    <article class={`container article accent-${accent}`}>
       <a href="/" class="back" aria-label="Все статьи">←</a>
       <h1>{article.data.title}</h1>
       <p class="meta">Обновлено: {formattedDate}</p>
@@ -266,6 +266,33 @@ const articleLd = {
      страницы его больше не используют. */
   :global(body) {
     background: var(--color-paper);
+  }
+
+  /* Пастель внутри статьи следует КАТЕГОРИИ, а не всегда голубая (замечание
+     пользователя 2026-09-05): колористика — голубая, уход и восстановление —
+     розовая, база знаний — градиент из обеих. Тот же categoryColor, что уже красил
+     шапку статьи и карточку в ленте, теперь задаёт и фон виджетов внутри.
+
+     Через переменные, а не через дубли правил на каждый акцент: правил с фоном
+     внутри .prose полтора десятка, и трижды их копировать — гарантированный
+     источник расхождений при следующей правке.
+
+     --surface-card — для крупных виджетов, --surface-flat — для строчной мелочи
+     (шапка таблицы, чипы): на высоте в 20px градиент не читается, кроме случая
+     «база знаний», где сам градиент и есть смысл. */
+  .article {
+    --surface-card: var(--gradient-surface-blue);
+    --surface-flat: var(--color-surface-blue);
+  }
+
+  .article.accent-red {
+    --surface-card: var(--gradient-surface-pink);
+    --surface-flat: var(--color-surface-pink);
+  }
+
+  .article.accent-gradient {
+    --surface-card: linear-gradient(160deg, #fdf3f6 0%, #fae6ea 45%, #cbe3fb 100%);
+    --surface-flat: linear-gradient(120deg, #fae6ea 0%, #cbe3fb 100%);
   }
 
   .cover-wrap {
@@ -503,7 +530,7 @@ const articleLd = {
 
   .related-list a {
     display: inline-block;
-    background: var(--color-surface-blue);
+    background: var(--surface-flat);
     border: 1px solid var(--color-panel-line);
     border-radius: 4px;
     padding: 8px 16px;
@@ -618,7 +645,7 @@ const articleLd = {
     grid-template-columns: auto 1fr;
     row-gap: 14px;
     column-gap: 24px;
-    background: var(--gradient-surface-blue);
+    background: var(--surface-card);
     border: 1px solid var(--color-panel-line);
     border-radius: 6px;
     padding: 22px clamp(16px, 4vw, 28px);
@@ -767,7 +794,7 @@ const articleLd = {
     display: flex;
     gap: 18px;
     align-items: flex-start;
-    background: var(--gradient-surface-blue);
+    background: var(--surface-card);
     border: 1px solid var(--color-panel-line);
     border-radius: 6px;
     padding: 18px clamp(16px, 4vw, 22px);
@@ -838,7 +865,7 @@ const articleLd = {
     display: flex;
     align-items: center;
     gap: 14px;
-    background: var(--color-surface-blue);
+    background: var(--surface-flat);
     border: 1px solid var(--color-panel-line);
     border-radius: 6px;
     padding: 12px 16px;
@@ -868,7 +895,7 @@ const articleLd = {
     display: flex;
     align-items: center;
     gap: 14px;
-    background: var(--color-surface-blue);
+    background: var(--surface-flat);
     border: 1px solid var(--color-panel-line);
     border-radius: 6px;
     padding: 12px 16px;
@@ -905,7 +932,7 @@ const articleLd = {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: var(--color-surface-blue);
+    background: var(--surface-flat);
     border: 1px solid var(--color-panel-line);
     border-radius: 6px;
     padding: 10px 16px;
@@ -956,7 +983,7 @@ const articleLd = {
     width: 100%;
     aspect-ratio: 1;
     box-sizing: border-box;
-    background: var(--color-surface-blue);
+    background: var(--surface-flat);
     border-top: 2px solid var(--color-panel-line);
     border-bottom: 2px solid var(--color-panel-line);
     border-left: none;
@@ -1319,7 +1346,7 @@ const articleLd = {
   }
 
   .prose :global(table th) {
-    background: var(--color-surface-blue);
+    background: var(--surface-flat);
     color: var(--color-ink);
     text-align: left;
     padding: 10px 14px;
@@ -1367,7 +1394,7 @@ const articleLd = {
 
   /* текстовая врезка */
   .prose :global(.callout) {
-    background: var(--gradient-surface-blue);
+    background: var(--surface-card);
     border-left: 3px solid var(--color-blue-dark);
     border-radius: 0 6px 6px 0;
     padding: 14px 18px;
@@ -1438,7 +1465,7 @@ const articleLd = {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--gradient-surface-blue);
+    background: var(--surface-card);
     border: 1px solid var(--color-panel-line);
     border-radius: 4px;
     padding: 8px 14px 8px 10px;
@@ -1480,7 +1507,7 @@ const articleLd = {
      фактический id в браузере (document.querySelectorAll('h2,h3')) перед тем как проставлять
      ссылки в новой статье — не гадать по шаблону. */
   .prose :global(.toc-box) {
-    background: var(--gradient-surface-blue);
+    background: var(--surface-card);
     border: 1px solid var(--color-panel-line);
     border-radius: 6px;
     padding: 20px 24px;
@@ -1512,7 +1539,7 @@ const articleLd = {
 
   /* вопрос-ответ (FAQ) */
   .prose :global(.faq-item) {
-    background: var(--gradient-surface-blue);
+    background: var(--surface-card);
     border: 1px solid var(--color-panel-line);
     border-radius: 6px;
     padding: 16px 20px;
@@ -1548,7 +1575,7 @@ const articleLd = {
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    background: var(--gradient-surface-blue);
+    background: var(--surface-card);
     border: 1px solid var(--color-panel-line);
     border-radius: 6px;
     padding: 14px 18px;
