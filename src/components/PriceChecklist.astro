@@ -1199,6 +1199,16 @@ const bestDeals = groupBy === 'discount'
     display: none;
   }
 
+  /* Выбрана категория — блок «Популярные», баннер акций и подпись «Все бренды» тоже лишние:
+     это уже не главный экран каталога, а отфильтрованный список. Без этого правила экран
+     выбранной категории визуально ничем не отличался от главной «По бренду» (одни и те же
+     карточки популярных брендов, тот же баннер, та же надпись «Все бренды») — реальная
+     авария, найденная пользователем 2026-09-04: «тапаю по категории — перекидывает на
+     главную По бренду». Менялся только заголовок в шапке, это легко не заметить. */
+  .price-checklist[data-category-mode='1'] .pc-popular {
+    display: none;
+  }
+
   /* Открыта конкретная ступень скидки — «Лучшая скидка» вверху списка Акций лишняя, это
      свой отдельный «экран», а не аккордеон рядом с общей витриной. */
   .pc-groups:has(.pc-group-brand[open]) .pc-best-deal {
@@ -1544,6 +1554,65 @@ const bestDeals = groupBy === 'discount'
     (window as any).zilmaCart?.set(cart);
   }
 
+  // Тот же плюрализатор, что и в разметке (см. pluralItems во frontmatter) — счётчик папки
+  // приходится пересчитывать уже в браузере, когда включён фильтр по категории.
+  function pluralItemsClient(n: number): string {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    if (mod100 >= 11 && mod100 <= 14) return 'товаров';
+    if (mod10 === 1) return 'товар';
+    if (mod10 >= 2 && mod10 <= 4) return 'товара';
+    return 'товаров';
+  }
+
+  // Подменить счётчик у папки (бренд/линейка) на число товаров, реально попавших в фильтр.
+  // Исходную подпись сохраняем прямо на элементе — restoreGroupCounts вернёт её при выходе
+  // из категории, чтобы обычный режим «По бренду» снова показывал полные числа.
+  function setGroupCount(group: HTMLElement, n: number) {
+    const el = group.querySelector<HTMLElement>(':scope > summary .pc-group-count');
+    if (!el) return;
+    if (group.dataset.originalCount == null) group.dataset.originalCount = el.textContent ?? '';
+    el.textContent = `${n} ${pluralItemsClient(n)}`;
+  }
+
+  function restoreGroupCounts(dialog: HTMLElement) {
+    dialog.querySelectorAll<HTMLElement>('.pc-group').forEach((group) => {
+      const original = group.dataset.originalCount;
+      if (original == null) return;
+      const el = group.querySelector<HTMLElement>(':scope > summary .pc-group-count');
+      if (el) el.textContent = original;
+      delete group.dataset.originalCount;
+    });
+  }
+
+  // Полностью снять фильтр по категории, НЕ трогая активную вкладку — нужно, когда пользователь
+  // сам жмёт вкладку «По бренду», пока висит фильтр категории: раньше вкладка переключалась, а
+  // список оставался отфильтрованным (и с урезанными счётчиками) — подпись вкладки обещала одно,
+  // содержимое показывало другое. collapseToFolderList для этого не подходит: он возвращает
+  // именно на вкладку «По категории» (туда, откуда пришли), а здесь пользователь просит обратное.
+  function clearCategoryFilter(dialog: HTMLElement) {
+    delete dialog.dataset.categoryMode;
+    delete dialog.dataset.categoryFilter;
+    delete dialog.dataset.categoryScrollY;
+    restoreGroupCounts(dialog);
+    dialog.querySelectorAll<HTMLElement>('.pc-item[hidden]').forEach((li) => {
+      li.hidden = false;
+    });
+    dialog.querySelectorAll<HTMLElement>('.pc-group[hidden]').forEach((g) => {
+      g.hidden = false;
+    });
+    dialog.querySelectorAll<HTMLDetailsElement>('.pc-group').forEach((g) => {
+      g.open = false;
+    });
+    const headerTitle = dialog.querySelector<HTMLElement>('.pc-header h3');
+    if (headerTitle && dialog.dataset.originalHeading != null) {
+      headerTitle.textContent = dialog.dataset.originalHeading;
+      const isTierDialog = dialog.dataset.groupBy === 'discount';
+      headerTitle.classList.toggle('pc-header-logo', !isTierDialog);
+      headerTitle.classList.toggle('pc-header-tier', isTierDialog);
+    }
+  }
+
   // На мобильном открываем через .show() (не .showModal()): нативный modal-режим делает ВЕСЬ остальной
   // документ inert (невзаимодействуемым) — это выключило бы MobileNavBar.astro даже в зазоре снизу, где
   // диалог её физически не перекрывает (см. mobile-медиа-запрос выше). На десктопе плашки нет — там
@@ -1572,6 +1641,10 @@ const bestDeals = groupBy === 'discount'
     const wasCategoryMode = dialog.dataset.categoryMode === '1';
     delete dialog.dataset.categoryMode;
     if (wasCategoryMode) setActiveTab(dialog, 'category');
+    // Счётчики папок в режиме категории подменены на «сколько товаров этой категории»
+    // (см. setGroupCount в обработчике [data-filter-category]) — возвращаем полные числа,
+    // иначе обычный режим «По бренду» остался бы с урезанными подписями.
+    restoreGroupCounts(dialog);
     const headerTitle = dialog.querySelector<HTMLElement>('.pc-header h3');
     if (headerTitle && dialog.dataset.originalHeading != null) {
       headerTitle.textContent = dialog.dataset.originalHeading;
@@ -1981,6 +2054,10 @@ const bestDeals = groupBy === 'discount'
         // новый поиск уже с вкладки «По бренду», можно было случайно улететь обратно в
         // категории при очистке поля, хотя пользователь сюда пришёл сам, не через поиск.
         delete root.dataset.preSearchTab;
+        // Ручной уход на «По бренду» при активном фильтре категории — снимаем фильтр целиком
+        // (см. clearCategoryFilter): вкладка «По бренду» обязана показывать полный список
+        // брендов с полными счётчиками, а не остатки предыдущей категории.
+        if (tab === 'brand' && root.dataset.categoryMode === '1') clearCategoryFilter(root);
         setActiveTab(root, tab);
       });
     });
@@ -2166,11 +2243,23 @@ const bestDeals = groupBy === 'discount'
         groups.forEach((g) => {
           const groupItems = [...g.querySelectorAll<HTMLLIElement>('.pc-item')];
           let anyVisible = false;
+          let matchCount = 0;
           groupItems.forEach((li) => {
             const match = li.dataset.category === cat;
             li.hidden = !match;
-            if (match) anyVisible = true;
+            if (match) {
+              anyVisible = true;
+              matchCount += 1;
+            }
           });
+          // Счётчик у папки должен показывать, сколько товаров ЭТОЙ категории внутри, а не
+          // сколько всего у бренда. Реальная авария, найденная пользователем 2026-09-04: в
+          // категории «Безаммиачные красители» LEBEL по-прежнему подписан «94 товара» (реально
+          // подходящих 13), LONDA — «170 товаров» (реально 35). Вместе с невыключенным блоком
+          // «Популярные» (см. CSS выше) это делало экран категории неотличимым от главной
+          // «По бренду» — пользователь читал это как «фильтр не сработал, меня выкинуло назад».
+          // Оригинал сохраняем на самом элементе, чтобы collapseToFolderList вернул его при выходе.
+          setGroupCount(g, matchCount);
           g.hidden = !anyVisible;
           // НЕ разворачиваем автоматически (было g.open = anyVisible) - по прямой просьбе
           // пользователя 2026-09-04: выбор категории раньше сразу открывал ВСЕ подходящие
