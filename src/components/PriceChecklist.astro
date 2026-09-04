@@ -560,7 +560,13 @@ const bestDeals = groupBy === 'discount'
         data-brand={tier}
         data-has-lines={tierBrandEntries.length > 0 ? '1' : '0'}
       >
-        <summary>{tier} <span class="pc-group-count">{total} {pluralItems(total)}</span></summary>
+        <summary>
+          <span class="pc-tier-badge">
+            <span class="pc-tier-cap">{tier === ALL_DISCOUNTS_TIER ? 'Скидки' : 'Скидка'}</span>
+            <span class="pc-tier-val">{tier === ALL_DISCOUNTS_TIER ? 'Все' : tier.replace('Скидка ', '')}</span>
+          </span>
+          <span class="pc-group-count">{total} {pluralItems(total)}</span>
+        </summary>
         <div class="pc-group-body">
           {tierBrandEntries.map(([brand, list]) => (
             <details class="pc-group pc-group-line">
@@ -1023,55 +1029,62 @@ const bestDeals = groupBy === 'discount'
     font-size: 0.8rem;
   }
 
-  /* Ступени «Акций» — белая карточка с акцентной полосой слева и цветным заголовком,
-     а не сплошная цветная заливка («сухие плашки», отзыв пользователя 2026-09-04).
+  /* Ступени «Акций». Всё красное — синего и чёрного здесь быть не должно: в прайсе
+     и акциях фирменный акцент один, красный (правило пользователя 2026-09-05).
+     Различает ступени не цвет, а само число — 15 / 10 / 5 и «Все».
 
-     Цвет привязан к РАНГУ ступени (data-tier="0/1/2"), а не к конкретному проценту:
-     схема меняется (была 7/15, стала 5/10/15), и селекторы вида .pc-tier-7 при
-     следующей смене молча перестали бы совпадать, оставив блок бесцветным.
-     data-tier="all" — блок «Все скидки», он намеренно нейтральный: это вход
-     «показать весь ассортимент», а не отдельная величина скидки. */
+     Заголовок — компактный бейдж: мелкая надпись «Скидка» сверху и крупное значение
+     под ней серифом, тем же шрифтом, что и логотип. Так блок читается с одного
+     взгляда, а четыре заголовка выстраиваются в ровную строку одинаковой формы:
+     «Скидка/15%», «Скидка/10%», «Скидка/5%», «Скидки/Все». */
   .pc-tier {
     background: var(--color-paper);
     border: none;
-    border-left: 4px solid var(--color-panel-line);
+    border-left: 4px solid var(--color-red);
     border-bottom: 1px solid var(--color-panel-line);
   }
 
-  .pc-tier[data-tier='all'] {
-    border-left-color: var(--color-ink);
-  }
-
-  .pc-tier[data-tier='all'] > summary {
-    color: var(--color-ink);
-  }
-
-  .pc-tier[data-tier='1'] {
-    border-left-color: var(--color-red);
-  }
-
-  .pc-tier[data-tier='1'] > summary {
+  .pc-tier > summary {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     color: var(--color-red);
   }
 
-  .pc-tier[data-tier='2'] {
-    border-left-color: var(--color-blue-dark);
+  /* Без рамки вокруг бейджа (пользователь 2026-09-05): обводка спорила с акцентной
+     полосой слева — получалось две границы вокруг одного и того же. Держится на
+     типографике: мелкая разрядка сверху и крупный сериф под ней. */
+  .pc-tier-badge {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 62px;
+    line-height: 1;
   }
 
-  .pc-tier[data-tier='2'] > summary {
-    color: var(--color-blue-dark);
+  .pc-tier-cap {
+    font-family: var(--font-sans);
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-red);
+    opacity: 0.75;
   }
 
-  .pc-tier[data-tier='3'] {
-    border-left-color: var(--color-blue);
-  }
-
-  .pc-tier[data-tier='3'] > summary {
-    color: var(--color-blue);
+  .pc-tier-val {
+    font-family: var(--font-serif);
+    font-size: 1.32rem;
+    font-weight: 700;
+    color: var(--color-red);
+    margin-top: 3px;
   }
 
   .pc-tier > summary .pc-group-count {
-    color: inherit;
+    color: var(--color-red);
     opacity: 0.7;
   }
 
