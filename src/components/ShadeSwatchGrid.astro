@@ -13,6 +13,10 @@ interface Shade {
   price?: number;
   promo?: boolean;
   oldPrice?: number | null;
+  // размер скидки и признак новинки — те же данные, что в каталоге (проставляются
+  // resolveLiveShades на каждой сборке, вручную в data-файлах их держать не нужно)
+  discountPct?: number | null;
+  isNew?: boolean;
   label?: string;
   // реальное фото свотча (вырезанное из официального PDF-каталога, круглый кроп без фона) —
   // пока только у Londa (2026-08-29); линейки без этого поля показывают заливку hex как раньше.
@@ -88,6 +92,9 @@ function textVarsFor(hex: string): string {
             data-name={s.name ?? ''}
             data-price={s.price ?? ''}
             data-promo={s.promo ? '1' : ''}
+            data-old-price={s.oldPrice ?? ''}
+            data-discount={s.discountPct ?? ''}
+            data-is-new={s.isNew ? '1' : ''}
             data-label={s.label ?? ''}
             aria-label={`${s.label ?? s.code}${s.price != null ? `, ${s.price} ₽` : ', нет в прайсе'}`}
           >
@@ -121,6 +128,14 @@ function textVarsFor(hex: string): string {
     qty: number;
     brand: string;
     promo: boolean;
+  }
+
+  // Тот же формат цены, что в таблицах статей и в каталоге (запятая как разделитель,
+  // без хвостовых нулей) — иначе рядом на одной странице «332.47 ₽» и «732,38 ₽».
+  function formatPriceRu(n: number): string {
+    const rounded = Math.round(n * 100) / 100;
+    const str = Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+    return str.replace('.', ',');
   }
 
   function cartQtyFor(name: string): number {
@@ -177,7 +192,37 @@ function textVarsFor(hex: string): string {
         }
         detailName.textContent = name || (label ? `${label} (${code})` : code);
         if (price && name) {
-          detailSub.textContent = `Код ${code} · ${price} ₽`;
+          // Цена показывается так же, как в каталоге: у акционного оттенка — зачёркнутая
+          // старая цена и размер скидки, у новинки — синий бейдж «Нов». Раньше здесь была
+          // просто цифра, и оттенок со скидкой ничем не отличался от обычного.
+          const oldPrice = btn.dataset.oldPrice;
+          const discount = btn.dataset.discount;
+          const isNew = btn.dataset.isNew === '1';
+          const parts = [`Код ${code}`];
+          detailSub.innerHTML = '';
+          detailSub.append(document.createTextNode(parts.join('') + ' · '));
+          if (oldPrice) {
+            const s = document.createElement('s');
+            s.className = 'shade-old-price';
+            s.textContent = `${formatPriceRu(parseFloat(oldPrice))} ₽`;
+            detailSub.append(s, ' ');
+          }
+          const now = document.createElement('b');
+          now.className = oldPrice ? 'shade-price-now' : 'shade-price-plain';
+          now.textContent = `${formatPriceRu(parseFloat(price))} ₽`;
+          detailSub.append(now);
+          if (discount) {
+            const b = document.createElement('span');
+            b.className = 'shade-badge shade-badge-promo';
+            b.textContent = `-${Math.round(parseFloat(discount))}%`;
+            detailSub.append(' ', b);
+          }
+          if (isNew) {
+            const b = document.createElement('span');
+            b.className = 'shade-badge shade-badge-new';
+            b.textContent = 'Нов';
+            detailSub.append(' ', b);
+          }
           activeName = name;
           if (detailCta) detailCta.hidden = false;
           refreshCtaLabel();
@@ -418,5 +463,43 @@ function textVarsFor(hex: string): string {
       width: 100%;
       text-align: center;
     }
+  }
+</style>
+
+<!-- Цена и бейджи в панели оттенка собираются через document.createElement в скрипте выше,
+     поэтому Astro не проставляет им data-astro-cid-* и обычный scoped <style> на них НЕ
+     действует (та же грабля, что уже ловили со строками корзины в OrderForm.astro).
+     Цвета — те же, что у каталога: красный = скидка, синий = новинка. -->
+<style is:global>
+  .shade-detail-sub .shade-old-price {
+    color: var(--color-meta);
+    text-decoration: line-through;
+  }
+
+  .shade-detail-sub .shade-price-now {
+    color: var(--color-red);
+    font-weight: 700;
+  }
+
+  .shade-detail-sub .shade-price-plain {
+    font-weight: 700;
+  }
+
+  .shade-detail-sub .shade-badge {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #fff;
+    vertical-align: middle;
+  }
+
+  .shade-detail-sub .shade-badge-promo {
+    background: var(--color-red);
+  }
+
+  .shade-detail-sub .shade-badge-new {
+    background: var(--color-blue-dark);
   }
 </style>

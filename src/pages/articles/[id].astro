@@ -149,6 +149,9 @@ const priceLookup = priceItems.map((it) => ({
   price: it.price,
   oldPrice: it.oldPrice ?? null,
   promo: it.promo,
+  // размер скидки и признак новинки — чтобы таблицы статей показывали то же, что каталог
+  discountPct: 'discountPct' in it ? (it as { discountPct?: number }).discountPct ?? null : null,
+  isNew: 'isNew' in it ? (it as { isNew?: boolean }).isNew ?? false : false,
 }));
 
 // «Ещё гиды по бренду» внизу статьи — чтобы из Koleston можно было сразу перейти в Color Touch,
@@ -1242,15 +1245,24 @@ const articleLd = {
     font-weight: 700;
   }
 
-  .prose :global(.kit-promo-badge) {
+  /* Красный = скидка, синий = новинка — та же пара, что в каталоге. */
+  .prose :global(.kit-promo-badge),
+  .prose :global(.kit-new-badge) {
     display: inline-block;
     padding: 1px 7px;
-    background: var(--color-red);
     color: #fff;
     border-radius: 999px;
     font-size: 0.68rem;
     font-weight: 700;
     vertical-align: middle;
+  }
+
+  .prose :global(.kit-promo-badge) {
+    background: var(--color-red);
+  }
+
+  .prose :global(.kit-new-badge) {
+    background: var(--color-blue-dark);
   }
 
   /* кнопка «В заявку» на статичных товарных таблицах/карточках — см. initCartButtons() в script
@@ -1627,6 +1639,8 @@ const articleLd = {
     price: number;
     oldPrice: number | null;
     promo: boolean;
+    discountPct: number | null;
+    isNew: boolean;
   }
 
   function articleOfName(name: string): string {
@@ -1640,11 +1654,25 @@ const articleLd = {
     return str.replace('.', ',');
   }
 
-  function priceCellHtml(item: PriceLookupItem): string {
-    if (item.promo && item.oldPrice != null) {
-      return `<s class="kit-old-price">${formatPriceRu(item.oldPrice)} ₽</s><b class="kit-price-now">${formatPriceRu(item.price)} ₽</b><span class="kit-promo-badge">Акция</span>`;
+  // Цена в таблице статьи — ровно как в каталоге: зачёркнутая старая цена, красная новая,
+  // бейдж с РАЗМЕРОМ скидки (а не общее слово «Акция» — по нему не видно, насколько дешевле),
+  // и синий бейдж «Нов» у новинок. Новинка может быть и без скидки, поэтому бейдж
+  // приклеивается к обеим веткам, а не только к акционной.
+  function badgesHtml(item: PriceLookupItem): string {
+    const badges: string[] = [];
+    if (item.promo) {
+      badges.push(`<span class="kit-promo-badge">${item.discountPct ? `-${Math.round(item.discountPct)}%` : 'Акция'}</span>`);
     }
-    return `${formatPriceRu(item.price)} ₽`;
+    if (item.isNew) badges.push('<span class="kit-new-badge">Нов</span>');
+    return badges.join(' ');
+  }
+
+  function priceCellHtml(item: PriceLookupItem): string {
+    const badges = badgesHtml(item);
+    if (item.promo && item.oldPrice != null) {
+      return `<s class="kit-old-price">${formatPriceRu(item.oldPrice)} ₽</s><b class="kit-price-now">${formatPriceRu(item.price)} ₽</b>${badges ? ' ' + badges : ''}`;
+    }
+    return `${formatPriceRu(item.price)} ₽${badges ? ' ' + badges : ''}`;
   }
 
   function initLivePrices() {

@@ -42,10 +42,20 @@ export function resolveLiveShade<T extends { name?: string; price?: number }>(sh
   const live = priceByBrandArticle.get(brand.toUpperCase())?.get(articleOf(shade.name));
   if (live === AMBIGUOUS) return shade; // не трогаем — не гадаем, какой из нескольких это
   if (!live) {
-    const { name, price, promo, oldPrice, ...rest } = shade as Record<string, unknown>;
+    const { name, price, promo, oldPrice, discountPct, isNew, ...rest } = shade as Record<string, unknown>;
     return rest as T;
   }
-  return { ...shade, name: live.name, price: live.price, promo: live.promo, oldPrice: live.oldPrice ?? null };
+  return {
+    ...shade,
+    name: live.name,
+    price: live.price,
+    promo: live.promo,
+    oldPrice: live.oldPrice ?? null,
+    // Размер скидки и признак новинки — те же данные, что показывает каталог; без них
+    // в статьях у акционного оттенка было бы видно «дешевле», но не видно насколько.
+    discountPct: 'discountPct' in live ? (live as { discountPct?: number }).discountPct ?? null : null,
+    isNew: 'isNew' in live ? (live as { isNew?: boolean }).isNew ?? false : false,
+  };
 }
 
 export function resolveLiveShades<T extends { name?: string; price?: number }>(shades: T[], brand: string): T[] {
