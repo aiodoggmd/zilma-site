@@ -1216,5 +1216,101 @@
     "image": "/images/shades/matrix-socolor/510g.webp",
     "name": "Socolor 510G 510G",
     "price": 610
+  },
+  {
+    "code": "1A",
+    "hex": "#232323",
+    "group": "socolor",
+    "row": 0,
+    "col": 138,
+    "image": "/images/shades/matrix-socolor/1a.webp",
+    "name": "Socolor 1A 1A",
+    "price": 610
+  },
+  {
+    "code": "5AV",
+    "hex": "#544342",
+    "group": "socolor",
+    "row": 0,
+    "col": 139,
+    "image": "/images/shades/matrix-socolor/5av.webp"
+  },
+  {
+    "code": "6SP",
+    "hex": "#5b5054",
+    "group": "socolor",
+    "row": 0,
+    "col": 140,
+    "image": "/images/shades/matrix-socolor/6sp.webp",
+    "name": "Socolor 6SP 6SP",
+    "price": 610
+  },
+  {
+    "code": "6P",
+    "hex": "#5e473e",
+    "group": "socolor",
+    "row": 0,
+    "col": 141,
+    "image": "/images/shades/matrix-socolor/6p.webp",
+    "name": "Socolor 6P 6P",
+    "price": 610
+  },
+  {
+    "code": "7AV",
+    "hex": "#72574e",
+    "group": "socolor",
+    "row": 0,
+    "col": 142,
+    "image": "/images/shades/matrix-socolor/7av.webp"
+  },
+  {
+    "code": "8SP",
+    "hex": "#8b7a70",
+    "group": "socolor",
+    "row": 0,
+    "col": 143,
+    "image": "/images/shades/matrix-socolor/8sp.webp",
+    "name": "Socolor 8SP 8SP",
+    "price": 567.3
+  },
+  {
+    "code": "8P",
+    "hex": "#69493a",
+    "group": "socolor",
+    "row": 0,
+    "col": 144,
+    "image": "/images/shades/matrix-socolor/8p.webp",
+    "name": "Socolor 8P 8P",
+    "price": 610
+  },
+  {
+    "code": "9AV",
+    "hex": "#95775f",
+    "group": "socolor",
+    "row": 0,
+    "col": 145,
+    "image": "/images/shades/matrix-socolor/9av.webp",
+    "name": "Socolor 9AV 9AV",
+    "price": 610
+  },
+  {
+    "code": "10SP",
+    "hex": "#baaba6",
+    "group": "socolor",
+    "row": 0,
+    "col": 146,
+    "image": "/images/shades/matrix-socolor/10sp.webp",
+    "name": "Socolor 10SP 10SP",
+    "price": 610
+  },
+  {
+    "code": "10P",
+    "hex": "#a9998c",
+    "group": "socolor",
+    "row": 0,
+    "col": 147,
+    "image": "/images/shades/matrix-socolor/10p.webp",
+    "name": "Socolor 10P 10P",
+    "price": 610
   }
 ]
