@@ -76,9 +76,13 @@ const SLASH_ONLY = /(?:^|\s)(\/\d{1,3})(?![0-9])/;
 // «UL-A+», «SPA», «CLEAR». Латиница здесь принципиальна — она отсекает русские хвосты вроде
 // «90мл» и «60мл», которые иначе выглядели бы как код.
 const LETTER_CODE = /(?:^|\s)(ul-[a-z]{1,2}\+?|sp[a-z]{1,2}|clear|\d{1,3}[a-z]{1,3}\+?)(?=\s|$|\.)/;
+// Lebel MATERIA пишет код наоборот — буквы, потом уровень: «A-6», «CB-14», «PBe-10».
+// Проверяется ПЕРВЫМ: у этих товаров в конце названия стоит артикул вида «7920/0-cb-14»,
+// и цифровой шаблон выше поймал бы из него мусор («920/0») вместо настоящего кода.
+const LEVEL_CODE = /(?:^|\s)([a-z]{1,3}-\d{1,2})(?=\s|$)/;
 function codeFromName(name: string): string | null {
   const n = ' ' + normName(name);
-  return (CODE_TOKEN.exec(n)?.[1] ?? SLASH_ONLY.exec(n)?.[1] ?? LETTER_CODE.exec(n)?.[1]) ?? null;
+  return (LEVEL_CODE.exec(n)?.[1] ?? CODE_TOKEN.exec(n)?.[1] ?? SLASH_ONLY.exec(n)?.[1] ?? LETTER_CODE.exec(n)?.[1]) ?? null;
 }
 
 const swatchByName = new Map<string, Swatch>();
@@ -135,7 +139,11 @@ function ownPaletteFor(brand: string | null, line: string | null, name: string):
   // «краска д/волос new g …» (MATERIA G, для седины), «краска д/волос тон µ …» (MATERIA μ)
   // и «краска д/волос стойкая …» (обычная MATERIA). Коды у них общие по написанию (A-6, CB-5),
   // но это РАЗНЫЕ красители, поэтому палитры не смешиваем.
-  if (brand === 'LEBEL' && normName(name).startsWith('краска д/волос new g ')) return 'lebel-materia-g';
+  if (brand === 'LEBEL') {
+    const n = normName(name);
+    if (n.startsWith('краска д/волос new g ')) return 'lebel-materia-g';
+    if (n.startsWith('краска д/волос стойкая ')) return 'lebel-materia';
+  }
   if (brand === 'MATRIX') {
     const n = normName(name);
     if (n.startsWith('color sync тонер')) return 'matrix-sync-acid';

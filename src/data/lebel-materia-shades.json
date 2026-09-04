@@ -1,0 +1,760 @@
+[
+  {
+    "code": "CB-14",
+    "hex": "#e5e2ce",
+    "group": "materia",
+    "row": 14,
+    "col": 0,
+    "image": "/images/shades/lebel-materia/cb-14.webp",
+    "name": "Краска д/волос СТОЙКАЯ CB-14 7920/0-CB-14",
+    "price": 1156.05
+  },
+  {
+    "code": "CB-12",
+    "hex": "#d5d0b0",
+    "group": "materia",
+    "row": 12,
+    "col": 0,
+    "image": "/images/shades/lebel-materia/cb-12.webp"
+  },
+  {
+    "code": "PBe-12",
+    "hex": "#f7d3d3",
+    "group": "materia",
+    "row": 12,
+    "col": 3,
+    "image": "/images/shades/lebel-materia/pbe-12.webp"
+  },
+  {
+    "code": "OBe-12",
+    "hex": "#f9d6b7",
+    "group": "materia",
+    "row": 12,
+    "col": 4,
+    "image": "/images/shades/lebel-materia/obe-12.webp"
+  },
+  {
+    "code": "Be-12",
+    "hex": "#e4d4bb",
+    "group": "materia",
+    "row": 12,
+    "col": 5,
+    "image": "/images/shades/lebel-materia/be-12.webp"
+  },
+  {
+    "code": "ABe-12",
+    "hex": "#cfc4cf",
+    "group": "materia",
+    "row": 12,
+    "col": 6,
+    "image": "/images/shades/lebel-materia/abe-12.webp"
+  },
+  {
+    "code": "Gr-12",
+    "hex": "#cac6b4",
+    "group": "materia",
+    "row": 12,
+    "col": 7,
+    "image": "/images/shades/lebel-materia/gr-12.webp",
+    "name": "Краска д/волос СТОЙКАЯ GR-12 0726",
+    "price": 1156.05
+  },
+  {
+    "code": "Ma-12",
+    "hex": "#d8bfd0",
+    "group": "materia",
+    "row": 12,
+    "col": 8,
+    "image": "/images/shades/lebel-materia/ma-12.webp"
+  },
+  {
+    "code": "Pe-12",
+    "hex": "#e4dcd9",
+    "group": "materia",
+    "row": 12,
+    "col": 9,
+    "image": "/images/shades/lebel-materia/pe-12.webp"
+  },
+  {
+    "code": "O-12",
+    "hex": "#eb9f51",
+    "group": "materia",
+    "row": 12,
+    "col": 13,
+    "image": "/images/shades/lebel-materia/o-12.webp"
+  },
+  {
+    "code": "G-12",
+    "hex": "#d8b867",
+    "group": "materia",
+    "row": 12,
+    "col": 14,
+    "image": "/images/shades/lebel-materia/g-12.webp"
+  },
+  {
+    "code": "M-12",
+    "hex": "#b4c89f",
+    "group": "materia",
+    "row": 12,
+    "col": 15,
+    "image": "/images/shades/lebel-materia/m-12.webp"
+  },
+  {
+    "code": "L-12",
+    "hex": "#a8c3ac",
+    "group": "materia",
+    "row": 12,
+    "col": 16,
+    "image": "/images/shades/lebel-materia/l-12.webp"
+  },
+  {
+    "code": "A-12",
+    "hex": "#c8c5d3",
+    "group": "materia",
+    "row": 12,
+    "col": 17,
+    "image": "/images/shades/lebel-materia/a-12.webp"
+  },
+  {
+    "code": "CA-12",
+    "hex": "#b6c3da",
+    "group": "materia",
+    "row": 12,
+    "col": 18,
+    "image": "/images/shades/lebel-materia/ca-12.webp"
+  },
+  {
+    "code": "P-12",
+    "hex": "#bc6e6d",
+    "group": "materia",
+    "row": 12,
+    "col": 20,
+    "image": "/images/shades/lebel-materia/p-12.webp",
+    "name": "Краска д/волос СТОЙКАЯ P-12 8682",
+    "price": 1156.05
+  },
+  {
+    "code": "CB-10",
+    "hex": "#d0c8a4",
+    "group": "materia",
+    "row": 10,
+    "col": 0,
+    "image": "/images/shades/lebel-materia/cb-10.webp"
+  },
+  {
+    "code": "B-10",
+    "hex": "#d4c295",
+    "group": "materia",
+    "row": 10,
+    "col": 1,
+    "image": "/images/shades/lebel-materia/b-10.webp"
+  },
+  {
+    "code": "WB-10",
+    "hex": "#f0d3ac",
+    "group": "materia",
+    "row": 10,
+    "col": 2,
+    "image": "/images/shades/lebel-materia/wb-10.webp",
+    "name": "Краска д/волос СТОЙКАЯ WB-10 8057/0-WB-10",
+    "price": 1156.05
+  },
+  {
+    "code": "PBe-10",
+    "hex": "#da9898",
+    "group": "materia",
+    "row": 10,
+    "col": 3,
+    "image": "/images/shades/lebel-materia/pbe-10.webp"
+  },
+  {
+    "code": "OBe-10",
+    "hex": "#e6b084",
+    "group": "materia",
+    "row": 10,
+    "col": 4,
+    "image": "/images/shades/lebel-materia/obe-10.webp"
+  },
+  {
+    "code": "Be-10",
+    "hex": "#c8af8b",
+    "group": "materia",
+    "row": 10,
+    "col": 5,
+    "image": "/images/shades/lebel-materia/be-10.webp"
+  },
+  {
+    "code": "ABe-10",
+    "hex": "#a79cad",
+    "group": "materia",
+    "row": 10,
+    "col": 6,
+    "image": "/images/shades/lebel-materia/abe-10.webp"
+  },
+  {
+    "code": "Gr-10",
+    "hex": "#a5a28d",
+    "group": "materia",
+    "row": 10,
+    "col": 7,
+    "image": "/images/shades/lebel-materia/gr-10.webp"
+  },
+  {
+    "code": "Ma-10",
+    "hex": "#b494ab",
+    "group": "materia",
+    "row": 10,
+    "col": 8,
+    "image": "/images/shades/lebel-materia/ma-10.webp",
+    "name": "Краска д/волос СТОЙКАЯ MA-10 0672",
+    "price": 1156.05
+  },
+  {
+    "code": "Pe-10",
+    "hex": "#c2b0ab",
+    "group": "materia",
+    "row": 10,
+    "col": 9,
+    "image": "/images/shades/lebel-materia/pe-10.webp"
+  },
+  {
+    "code": "MT-10",
+    "hex": "#b3aca5",
+    "group": "materia",
+    "row": 10,
+    "col": 10,
+    "image": "/images/shades/lebel-materia/mt-10.webp",
+    "name": "Краска д/волос СТОЙКАЯ MT-10 8279",
+    "price": 1156.05
+  },
+  {
+    "code": "R-10",
+    "hex": "#c04b4e",
+    "group": "materia",
+    "row": 10,
+    "col": 11,
+    "image": "/images/shades/lebel-materia/r-10.webp"
+  },
+  {
+    "code": "K-10",
+    "hex": "#af4f31",
+    "group": "materia",
+    "row": 10,
+    "col": 12,
+    "image": "/images/shades/lebel-materia/k-10.webp"
+  },
+  {
+    "code": "O-10",
+    "hex": "#de783b",
+    "group": "materia",
+    "row": 10,
+    "col": 13,
+    "image": "/images/shades/lebel-materia/o-10.webp"
+  },
+  {
+    "code": "G-10",
+    "hex": "#bfa153",
+    "group": "materia",
+    "row": 10,
+    "col": 14,
+    "image": "/images/shades/lebel-materia/g-10.webp"
+  },
+  {
+    "code": "M-10",
+    "hex": "#93af7e",
+    "group": "materia",
+    "row": 10,
+    "col": 15,
+    "image": "/images/shades/lebel-materia/m-10.webp"
+  },
+  {
+    "code": "L-10",
+    "hex": "#85a888",
+    "group": "materia",
+    "row": 10,
+    "col": 16,
+    "image": "/images/shades/lebel-materia/l-10.webp"
+  },
+  {
+    "code": "A-10",
+    "hex": "#9ca2bd",
+    "group": "materia",
+    "row": 10,
+    "col": 17,
+    "image": "/images/shades/lebel-materia/a-10.webp"
+  },
+  {
+    "code": "CA-10",
+    "hex": "#7c98c1",
+    "group": "materia",
+    "row": 10,
+    "col": 18,
+    "image": "/images/shades/lebel-materia/ca-10.webp"
+  },
+  {
+    "code": "V-10",
+    "hex": "#7e6c9e",
+    "group": "materia",
+    "row": 10,
+    "col": 19,
+    "image": "/images/shades/lebel-materia/v-10.webp"
+  },
+  {
+    "code": "P-10",
+    "hex": "#b35658",
+    "group": "materia",
+    "row": 10,
+    "col": 20,
+    "image": "/images/shades/lebel-materia/p-10.webp"
+  },
+  {
+    "code": "CB-9",
+    "hex": "#97916d",
+    "group": "materia",
+    "row": 9,
+    "col": 0,
+    "image": "/images/shades/lebel-materia/cb-9.webp",
+    "name": "Краска д/волос СТОЙКАЯ CB-9 7890",
+    "price": 1075.13
+  },
+  {
+    "code": "B-9",
+    "hex": "#a08d6b",
+    "group": "materia",
+    "row": 9,
+    "col": 1,
+    "image": "/images/shades/lebel-materia/b-9.webp"
+  },
+  {
+    "code": "WB-9",
+    "hex": "#bc9d7a",
+    "group": "materia",
+    "row": 9,
+    "col": 2,
+    "image": "/images/shades/lebel-materia/wb-9.webp",
+    "name": "Краска д/волос СТОЙКАЯ WB-9 8040/0-WB-9",
+    "price": 1156.05
+  },
+  {
+    "code": "CB-8",
+    "hex": "#7b7555",
+    "group": "materia",
+    "row": 8,
+    "col": 0,
+    "image": "/images/shades/lebel-materia/cb-8.webp"
+  },
+  {
+    "code": "B-8",
+    "hex": "#816f4e",
+    "group": "materia",
+    "row": 8,
+    "col": 1,
+    "image": "/images/shades/lebel-materia/b-8.webp"
+  },
+  {
+    "code": "WB-8",
+    "hex": "#836451",
+    "group": "materia",
+    "row": 8,
+    "col": 2,
+    "image": "/images/shades/lebel-materia/wb-8.webp",
+    "name": "Краска д/волос СТОЙКАЯ WB-8 8033",
+    "price": 1075.13
+  },
+  {
+    "code": "PBe-8",
+    "hex": "#894b44",
+    "group": "materia",
+    "row": 8,
+    "col": 3,
+    "image": "/images/shades/lebel-materia/pbe-8.webp"
+  },
+  {
+    "code": "OBe-8",
+    "hex": "#a66034",
+    "group": "materia",
+    "row": 8,
+    "col": 4,
+    "image": "/images/shades/lebel-materia/obe-8.webp",
+    "name": "Краска д/волос СТОЙКАЯ OBE-8 8118",
+    "price": 1156.05
+  },
+  {
+    "code": "Be-8",
+    "hex": "#826b4f",
+    "group": "materia",
+    "row": 8,
+    "col": 5,
+    "image": "/images/shades/lebel-materia/be-8.webp"
+  },
+  {
+    "code": "ABe-8",
+    "hex": "#7e747f",
+    "group": "materia",
+    "row": 8,
+    "col": 6,
+    "image": "/images/shades/lebel-materia/abe-8.webp"
+  },
+  {
+    "code": "Gr-8",
+    "hex": "#736e5d",
+    "group": "materia",
+    "row": 8,
+    "col": 7,
+    "image": "/images/shades/lebel-materia/gr-8.webp"
+  },
+  {
+    "code": "Ma-8",
+    "hex": "#95748c",
+    "group": "materia",
+    "row": 8,
+    "col": 8,
+    "image": "/images/shades/lebel-materia/ma-8.webp"
+  },
+  {
+    "code": "Pe-8",
+    "hex": "#9b837c",
+    "group": "materia",
+    "row": 8,
+    "col": 9,
+    "image": "/images/shades/lebel-materia/pe-8.webp"
+  },
+  {
+    "code": "MT-8",
+    "hex": "#655e57",
+    "group": "materia",
+    "row": 8,
+    "col": 10,
+    "image": "/images/shades/lebel-materia/mt-8.webp",
+    "name": "Краска д/волос СТОЙКАЯ MT-8 8262/0-MT-8",
+    "price": 1156.05
+  },
+  {
+    "code": "R-8",
+    "hex": "#922e34",
+    "group": "materia",
+    "row": 8,
+    "col": 11,
+    "image": "/images/shades/lebel-materia/r-8.webp"
+  },
+  {
+    "code": "K-8",
+    "hex": "#97402e",
+    "group": "materia",
+    "row": 8,
+    "col": 12,
+    "image": "/images/shades/lebel-materia/k-8.webp"
+  },
+  {
+    "code": "O-8",
+    "hex": "#ab4c30",
+    "group": "materia",
+    "row": 8,
+    "col": 13,
+    "image": "/images/shades/lebel-materia/o-8.webp"
+  },
+  {
+    "code": "G-8",
+    "hex": "#a17d3b",
+    "group": "materia",
+    "row": 8,
+    "col": 14,
+    "image": "/images/shades/lebel-materia/g-8.webp"
+  },
+  {
+    "code": "M-8",
+    "hex": "#5d8b5a",
+    "group": "materia",
+    "row": 8,
+    "col": 15,
+    "image": "/images/shades/lebel-materia/m-8.webp"
+  },
+  {
+    "code": "L-8",
+    "hex": "#648a69",
+    "group": "materia",
+    "row": 8,
+    "col": 16,
+    "image": "/images/shades/lebel-materia/l-8.webp"
+  },
+  {
+    "code": "A-8",
+    "hex": "#6e7183",
+    "group": "materia",
+    "row": 8,
+    "col": 17,
+    "image": "/images/shades/lebel-materia/a-8.webp"
+  },
+  {
+    "code": "CA-8",
+    "hex": "#44638d",
+    "group": "materia",
+    "row": 8,
+    "col": 18,
+    "image": "/images/shades/lebel-materia/ca-8.webp",
+    "name": "Краска д/волос СТОЙКАЯ CA-8 8583",
+    "price": 1156.05
+  },
+  {
+    "code": "V-8",
+    "hex": "#67578a",
+    "group": "materia",
+    "row": 8,
+    "col": 19,
+    "image": "/images/shades/lebel-materia/v-8.webp",
+    "name": "Краска д/волос СТОЙКАЯ V-8 8637",
+    "price": 1075.13
+  },
+  {
+    "code": "P-8",
+    "hex": "#7d2f3a",
+    "group": "materia",
+    "row": 8,
+    "col": 20,
+    "image": "/images/shades/lebel-materia/p-8.webp"
+  },
+  {
+    "code": "CB-7",
+    "hex": "#57533c",
+    "group": "materia",
+    "row": 7,
+    "col": 0,
+    "image": "/images/shades/lebel-materia/cb-7.webp"
+  },
+  {
+    "code": "B-7",
+    "hex": "#594c3c",
+    "group": "materia",
+    "row": 7,
+    "col": 1,
+    "image": "/images/shades/lebel-materia/b-7.webp"
+  },
+  {
+    "code": "WB-7",
+    "hex": "#6c5041",
+    "group": "materia",
+    "row": 7,
+    "col": 2,
+    "image": "/images/shades/lebel-materia/wb-7.webp",
+    "name": "Краска д/волос СТОЙКАЯ WB-7 8026",
+    "price": 1156.05
+  },
+  {
+    "code": "CB-6",
+    "hex": "#3a3724",
+    "group": "materia",
+    "row": 6,
+    "col": 0,
+    "image": "/images/shades/lebel-materia/cb-6.webp"
+  },
+  {
+    "code": "B-6",
+    "hex": "#3a3023",
+    "group": "materia",
+    "row": 6,
+    "col": 1,
+    "image": "/images/shades/lebel-materia/b-6.webp"
+  },
+  {
+    "code": "WB-6",
+    "hex": "#4e3429",
+    "group": "materia",
+    "row": 6,
+    "col": 2,
+    "image": "/images/shades/lebel-materia/wb-6.webp",
+    "name": "Краска д/волос СТОЙКАЯ WB-6 8019",
+    "price": 1156.05
+  },
+  {
+    "code": "PBe-6",
+    "hex": "#56312e",
+    "group": "materia",
+    "row": 6,
+    "col": 3,
+    "image": "/images/shades/lebel-materia/pbe-6.webp"
+  },
+  {
+    "code": "OBe-6",
+    "hex": "#6c2e17",
+    "group": "materia",
+    "row": 6,
+    "col": 4,
+    "image": "/images/shades/lebel-materia/obe-6.webp"
+  },
+  {
+    "code": "Be-6",
+    "hex": "#4e3b2a",
+    "group": "materia",
+    "row": 6,
+    "col": 5,
+    "image": "/images/shades/lebel-materia/be-6.webp"
+  },
+  {
+    "code": "ABe-6",
+    "hex": "#4e4752",
+    "group": "materia",
+    "row": 6,
+    "col": 6,
+    "image": "/images/shades/lebel-materia/abe-6.webp"
+  },
+  {
+    "code": "Gr-6",
+    "hex": "#4e4c41",
+    "group": "materia",
+    "row": 6,
+    "col": 7,
+    "image": "/images/shades/lebel-materia/gr-6.webp"
+  },
+  {
+    "code": "Ma-6",
+    "hex": "#64475f",
+    "group": "materia",
+    "row": 6,
+    "col": 8,
+    "image": "/images/shades/lebel-materia/ma-6.webp"
+  },
+  {
+    "code": "MT-6",
+    "hex": "#3d3c3b",
+    "group": "materia",
+    "row": 6,
+    "col": 10,
+    "image": "/images/shades/lebel-materia/mt-6.webp"
+  },
+  {
+    "code": "R-6",
+    "hex": "#6f182b",
+    "group": "materia",
+    "row": 6,
+    "col": 11,
+    "image": "/images/shades/lebel-materia/r-6.webp"
+  },
+  {
+    "code": "K-6",
+    "hex": "#67261d",
+    "group": "materia",
+    "row": 6,
+    "col": 12,
+    "image": "/images/shades/lebel-materia/k-6.webp"
+  },
+  {
+    "code": "O-6",
+    "hex": "#8e382b",
+    "group": "materia",
+    "row": 6,
+    "col": 13,
+    "image": "/images/shades/lebel-materia/o-6.webp"
+  },
+  {
+    "code": "M-6",
+    "hex": "#4c5138",
+    "group": "materia",
+    "row": 6,
+    "col": 15,
+    "image": "/images/shades/lebel-materia/m-6.webp"
+  },
+  {
+    "code": "A-6",
+    "hex": "#374555",
+    "group": "materia",
+    "row": 6,
+    "col": 17,
+    "image": "/images/shades/lebel-materia/a-6.webp",
+    "name": "Краска д/волос СТОЙКАЯ A-6 8538",
+    "price": 1156.05
+  },
+  {
+    "code": "CA-6",
+    "hex": "#1e385c",
+    "group": "materia",
+    "row": 6,
+    "col": 18,
+    "image": "/images/shades/lebel-materia/ca-6.webp",
+    "name": "Краска д/волос СТОЙКАЯ CA-6 8576",
+    "price": 1156.05
+  },
+  {
+    "code": "V-6",
+    "hex": "#45346d",
+    "group": "materia",
+    "row": 6,
+    "col": 19,
+    "image": "/images/shades/lebel-materia/v-6.webp"
+  },
+  {
+    "code": "P-6",
+    "hex": "#561b26",
+    "group": "materia",
+    "row": 6,
+    "col": 20,
+    "image": "/images/shades/lebel-materia/p-6.webp"
+  },
+  {
+    "code": "CB-5",
+    "hex": "#272b17",
+    "group": "materia",
+    "row": 5,
+    "col": 0,
+    "image": "/images/shades/lebel-materia/cb-5.webp",
+    "name": "Краска д/волос СТОЙКАЯ CB-5 7852",
+    "price": 1156.05
+  },
+  {
+    "code": "B-5",
+    "hex": "#282417",
+    "group": "materia",
+    "row": 5,
+    "col": 1,
+    "image": "/images/shades/lebel-materia/b-5.webp"
+  },
+  {
+    "code": "WB-5",
+    "hex": "#392520",
+    "group": "materia",
+    "row": 5,
+    "col": 2,
+    "image": "/images/shades/lebel-materia/wb-5.webp"
+  },
+  {
+    "code": "R-4",
+    "hex": "#52061a",
+    "group": "materia",
+    "row": 4,
+    "col": 11,
+    "image": "/images/shades/lebel-materia/r-4.webp"
+  },
+  {
+    "code": "V-4",
+    "hex": "#33284b",
+    "group": "materia",
+    "row": 4,
+    "col": 19,
+    "image": "/images/shades/lebel-materia/v-4.webp",
+    "name": "Краска д/волос СТОЙКАЯ V-4 8613",
+    "price": 1156.05
+  },
+  {
+    "code": "CB-3",
+    "hex": "#060908",
+    "group": "materia",
+    "row": 3,
+    "col": 0,
+    "image": "/images/shades/lebel-materia/cb-3.webp"
+  },
+  {
+    "code": "WB-3",
+    "hex": "#1d0f0e",
+    "group": "materia",
+    "row": 3,
+    "col": 2,
+    "image": "/images/shades/lebel-materia/wb-3.webp"
+  },
+  {
+    "code": "A-2",
+    "hex": "#102550",
+    "group": "materia",
+    "row": 2,
+    "col": 17,
+    "image": "/images/shades/lebel-materia/a-2.webp"
+  }
+]
