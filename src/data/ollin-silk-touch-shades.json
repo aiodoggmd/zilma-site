@@ -1,0 +1,82 @@
+[
+  {
+    "code": "0/02",
+    "hex": "#b4a3b5",
+    "group": "ollin-silk-touch",
+    "row": 0,
+    "col": 0,
+    "image": "/images/shades/ollin-silk-touch/0-02.webp",
+    "name": "Silk Touch Безаммиачный стойкая краска 0/02 60 мл 00-02",
+    "price": 256
+  },
+  {
+    "code": "10/31",
+    "hex": "#b69a8d",
+    "group": "ollin-silk-touch",
+    "row": 0,
+    "col": 1,
+    "image": "/images/shades/ollin-silk-touch/10-31.webp",
+    "name": "Silk Touch Безаммиачный стойкая краска 10/31 60 мл 010-31",
+    "price": 256
+  },
+  {
+    "code": "10/7",
+    "hex": "#4a3629",
+    "group": "ollin-silk-touch",
+    "row": 0,
+    "col": 2,
+    "image": "/images/shades/ollin-silk-touch/10-7.webp",
+    "name": "Silk Touch Безаммиачный стойкая краска 10/7 60 мл 010-7",
+    "price": 256
+  },
+  {
+    "code": "6/0",
+    "hex": "#291917",
+    "group": "ollin-silk-touch",
+    "row": 0,
+    "col": 3,
+    "image": "/images/shades/ollin-silk-touch/6-0.webp",
+    "name": "Silk Touch Безаммиачный стойкая краска 6/0 60 мл 06-0",
+    "price": 256
+  },
+  {
+    "code": "8/0",
+    "hex": "#3c251a",
+    "group": "ollin-silk-touch",
+    "row": 0,
+    "col": 4,
+    "image": "/images/shades/ollin-silk-touch/8-0.webp",
+    "name": "Silk Touch Безаммиачный стойкая краска 8/0 60 мл 08-0",
+    "price": 256
+  },
+  {
+    "code": "8/72",
+    "hex": "#513925",
+    "group": "ollin-silk-touch",
+    "row": 0,
+    "col": 5,
+    "image": "/images/shades/ollin-silk-touch/8-72.webp",
+    "name": "Silk Touch Безаммиачный стойкая краска 8/72 60 мл 08-72",
+    "price": 238.08
+  },
+  {
+    "code": "9/0",
+    "hex": "#563f28",
+    "group": "ollin-silk-touch",
+    "row": 0,
+    "col": 6,
+    "image": "/images/shades/ollin-silk-touch/9-0.webp",
+    "name": "Silk Touch Безаммиачный стойкая краска 9/0 60 мл 09-0",
+    "price": 238.08
+  },
+  {
+    "code": "9/26",
+    "hex": "#413029",
+    "group": "ollin-silk-touch",
+    "row": 0,
+    "col": 7,
+    "image": "/images/shades/ollin-silk-touch/9-26.webp",
+    "name": "Silk Touch Безаммиачный стойкая краска 9/26 60 мл 09-26",
+    "price": 256
+  }
+]

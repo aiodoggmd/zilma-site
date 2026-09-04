@@ -1,0 +1,322 @@
+[
+  {
+    "code": "0-33",
+    "hex": "#d3a214",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 0,
+    "image": "/images/shades/ollin-performance/0-33.webp",
+    "name": "Performanse 0-33 60ml 0-033",
+    "price": 231.57
+  },
+  {
+    "code": "0-66",
+    "hex": "#c91e17",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 1,
+    "image": "/images/shades/ollin-performance/0-66.webp",
+    "name": "Performanse 0-66 60ml 0-066",
+    "price": 231.57
+  },
+  {
+    "code": "10-43",
+    "hex": "#7b2302",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 2,
+    "image": "/images/shades/ollin-performance/10-43.webp",
+    "name": "Performanse 10-43 60ml 0-1043",
+    "price": 249
+  },
+  {
+    "code": "10-5",
+    "hex": "#915039",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 3,
+    "image": "/images/shades/ollin-performance/10-5.webp",
+    "name": "Performanse 10-5 60ml 0-105",
+    "price": 231.57
+  },
+  {
+    "code": "10-72",
+    "hex": "#775a50",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 4,
+    "image": "/images/shades/ollin-performance/10-72.webp",
+    "name": "Performanse 10-72 60ml 0-1072",
+    "price": 231.57
+  },
+  {
+    "code": "11-1",
+    "hex": "#bbaba1",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 5,
+    "image": "/images/shades/ollin-performance/11-1.webp",
+    "name": "Performanse 11-1 60ml 0-111",
+    "price": 231.57
+  },
+  {
+    "code": "11-31",
+    "hex": "#987d6d",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 6,
+    "image": "/images/shades/ollin-performance/11-31.webp",
+    "name": "Performanse 11-31 60ml 0-1131",
+    "price": 249
+  },
+  {
+    "code": "2-0",
+    "hex": "#272727",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 7,
+    "image": "/images/shades/ollin-performance/2-0.webp",
+    "name": "Performanse 2-0 60ml 0-20",
+    "price": 231.57
+  },
+  {
+    "code": "2-22",
+    "hex": "#160b0d",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 8,
+    "image": "/images/shades/ollin-performance/2-22.webp",
+    "name": "Performanse 2-22 60ml 0-222",
+    "price": 231.57
+  },
+  {
+    "code": "4-3",
+    "hex": "#26110b",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 9,
+    "image": "/images/shades/ollin-performance/4-3.webp",
+    "name": "Performanse 4-3 60ml 0-43",
+    "price": 231.57
+  },
+  {
+    "code": "4-5",
+    "hex": "#270c0c",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 10,
+    "image": "/images/shades/ollin-performance/4-5.webp",
+    "name": "Performanse 4-5 60ml 0-45",
+    "price": 249
+  },
+  {
+    "code": "5-1",
+    "hex": "#2b1e19",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 11,
+    "image": "/images/shades/ollin-performance/5-1.webp",
+    "name": "Performanse 5-1 60ml 0-51",
+    "price": 231.57
+  },
+  {
+    "code": "5-22",
+    "hex": "#220b10",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 12,
+    "image": "/images/shades/ollin-performance/5-22.webp",
+    "name": "Performanse 5-22 60ml 0-522",
+    "price": 249
+  },
+  {
+    "code": "5-5",
+    "hex": "#100201",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 13,
+    "image": "/images/shades/ollin-performance/5-5.webp",
+    "name": "Performanse 5-5 60ml 0-55",
+    "price": 231.57
+  },
+  {
+    "code": "6-22",
+    "hex": "#38111a",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 14,
+    "image": "/images/shades/ollin-performance/6-22.webp",
+    "name": "Performanse 6-22 60ml 0-622",
+    "price": 231.57
+  },
+  {
+    "code": "6-3",
+    "hex": "#2b110b",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 15,
+    "image": "/images/shades/ollin-performance/6-3.webp",
+    "name": "Performanse 6-3 60ml 0-63",
+    "price": 231.57
+  },
+  {
+    "code": "6-34",
+    "hex": "#37170d",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 16,
+    "image": "/images/shades/ollin-performance/6-34.webp",
+    "name": "Performanse 6-34 60ml 0-634",
+    "price": 231.57
+  },
+  {
+    "code": "7-00",
+    "hex": "#371d0f",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 17,
+    "image": "/images/shades/ollin-performance/7-00.webp",
+    "name": "Performanse 7-00 60ml 0-700",
+    "price": 231.57
+  },
+  {
+    "code": "7-09",
+    "hex": "#1c1814",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 18,
+    "image": "/images/shades/ollin-performance/7-09.webp",
+    "name": "Performanse 7-09 60ml 0-709",
+    "price": 231.57
+  },
+  {
+    "code": "7-3",
+    "hex": "#3a1609",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 19,
+    "image": "/images/shades/ollin-performance/7-3.webp",
+    "name": "Performanse 7-3 60ml 0-73",
+    "price": 231.57
+  },
+  {
+    "code": "7-6",
+    "hex": "#3a0101",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 20,
+    "image": "/images/shades/ollin-performance/7-6.webp",
+    "name": "Performanse 7-6 60ml 0-76",
+    "price": 249
+  },
+  {
+    "code": "7-71",
+    "hex": "#361a0f",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 21,
+    "image": "/images/shades/ollin-performance/7-71.webp",
+    "name": "Performanse 7-71 60ml 0-771",
+    "price": 231.57
+  },
+  {
+    "code": "8-0",
+    "hex": "#724220",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 22,
+    "image": "/images/shades/ollin-performance/8-0.webp",
+    "name": "Performanse 8-0 60ml 0-80",
+    "price": 249
+  },
+  {
+    "code": "8-34",
+    "hex": "#2d0e04",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 23,
+    "image": "/images/shades/ollin-performance/8-34.webp",
+    "name": "Performanse 8-34 60ml 0-834",
+    "price": 231.57
+  },
+  {
+    "code": "8-44",
+    "hex": "#6c0701",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 24,
+    "image": "/images/shades/ollin-performance/8-44.webp",
+    "name": "Performanse 8-44 60ml 0-844",
+    "price": 231.57
+  },
+  {
+    "code": "8-71",
+    "hex": "#6a422e",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 25,
+    "image": "/images/shades/ollin-performance/8-71.webp",
+    "name": "Performanse 8-71 60ml 0-871",
+    "price": 231.57
+  },
+  {
+    "code": "8-73",
+    "hex": "#451d11",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 26,
+    "image": "/images/shades/ollin-performance/8-73.webp",
+    "name": "Performanse 8-73 60ml 0-873",
+    "price": 231.57
+  },
+  {
+    "code": "9-26",
+    "hex": "#58362e",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 27,
+    "image": "/images/shades/ollin-performance/9-26.webp",
+    "name": "Performanse 9-26 60ml 0-926",
+    "price": 231.57
+  },
+  {
+    "code": "9-3",
+    "hex": "#7a3e11",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 28,
+    "image": "/images/shades/ollin-performance/9-3.webp",
+    "name": "Performanse 9-3 60ml 0-93",
+    "price": 231.57
+  },
+  {
+    "code": "9-7",
+    "hex": "#703d22",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 29,
+    "image": "/images/shades/ollin-performance/9-7.webp",
+    "name": "Performanse 9-7 60ml 0-97",
+    "price": 231.57
+  },
+  {
+    "code": "9-72",
+    "hex": "#724d36",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 30,
+    "image": "/images/shades/ollin-performance/9-72.webp",
+    "name": "Performanse 9-72 60ml 0-972",
+    "price": 231.57
+  },
+  {
+    "code": "9-8",
+    "hex": "#493b44",
+    "group": "ollin-performance",
+    "row": 0,
+    "col": 31,
+    "image": "/images/shades/ollin-performance/9-8.webp",
+    "name": "Performanse 9-8 60ml 0-98",
+    "price": 231.57
+  }
+]

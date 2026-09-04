@@ -122,7 +122,12 @@ function ownPaletteFor(brand: string | null, line: string | null, name: string):
   if (brand === 'WELLA' && l.startsWith('Illumina')) return 'illumina';
   if (brand === 'WELLA' && l.startsWith('SHINEFINITY')) return 'shinefinity';
   if (brand === 'SCHWARZKOPF' && l.startsWith('IGORA/BLONDME')) return 'igora-royal';
-  if (brand === 'OLLIN' && normName(name).startsWith('color ')) return 'ollin';
+  if (brand === 'OLLIN') {
+    const n = normName(name);
+    if (n.startsWith('color ')) return 'ollin';
+    if (n.startsWith('performanse ')) return 'ollin-performance';
+    if (n.startsWith('silk touch')) return 'ollin-silk-touch';
+  }
   // У MATRIX линейки в прайсе тоже не проставлены. Кислотные тонеры проверяем ПЕРВЫМИ:
   // их названия начинаются с того же «color sync », и без этой проверки они забрали бы
   // цвет из щелочной палитры, где те же буквенные коды означают другой оттенок.
