@@ -1518,11 +1518,16 @@ const bestDeals = groupBy === 'discount'
     flex: none;
     width: 30px;
     height: 30px;
-    border-radius: var(--radius-control);
+    border-radius: 50%;
     overflow: hidden;
     background: var(--color-paper);
     box-shadow: var(--shadow-sm);
     align-self: center;
+    /* Круг вместо квадрата — чтобы форма совпадала с кружками оттенков и список
+       не выглядел из двух разных фигур. Внутренний отступ обязателен: флаконы
+       вытянутые, и без него круглая маска срезала бы крышку и дно. Товар из-за
+       этого чуть мельче, зато целый. */
+    padding: 3px;
   }
 
   .pc-photo img {
