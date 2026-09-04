@@ -2134,11 +2134,36 @@ const bestDeals = groupBy === 'discount'
         // новый поиск уже с вкладки «По бренду», можно было случайно улететь обратно в
         // категории при очистке поля, хотя пользователь сюда пришёл сам, не через поиск.
         delete root.dataset.preSearchTab;
-        // Ручной уход на «По бренду» при активном фильтре категории — снимаем фильтр целиком
-        // (см. clearCategoryFilter): вкладка «По бренду» обязана показывать полный список
-        // брендов с полными счётчиками, а не остатки предыдущей категории.
-        if (tab === 'brand' && root.dataset.categoryMode === '1') clearCategoryFilter(root);
+        // Тап по вкладке = «вернуться в начало этого раздела», из ЛЮБОГО положения: раскрытый
+        // бренд, раскрытая линейка, активный поиск, фильтр категории, прокрутка в середине
+        // списка — всё сбрасывается. Реальная жалоба пользователя 2026-09-04: «тап по "По
+        // бренду" не переходит на главную в этом разделе... В разделе "по категории" это
+        // работает». Работало оно там лишь потому, что «По категории» переключает на ДРУГУЮ
+        // панель (экран карточек категорий), и это выглядело как сброс; повторный тап по уже
+        // активной вкладке «По бренду» не делал вообще ничего — состояние оставалось как было.
+        if (root.dataset.categoryMode === '1') clearCategoryFilter(root);
+        groups.forEach((g) => {
+          g.open = false;
+          g.hidden = false;
+          delete g.dataset.openedBySearch;
+        });
+        items.forEach((li) => {
+          li.hidden = false;
+        });
+        if (search && search.value) {
+          search.value = '';
+          search.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        if (search) search.placeholder = defaultSearchPlaceholder;
+        if (headerTitle) {
+          headerTitle.textContent = originalHeading;
+          const isTierDialog = root.dataset.groupBy === 'discount';
+          headerTitle.classList.toggle('pc-header-logo', !isTierDialog);
+          headerTitle.classList.toggle('pc-header-tier', isTierDialog);
+        }
+        if (noResults) noResults.hidden = true;
         setActiveTab(root, tab);
+        if (scrollEl) scrollEl.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
 
