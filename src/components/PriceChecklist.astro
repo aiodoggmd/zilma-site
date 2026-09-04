@@ -50,15 +50,20 @@ const WELLA_FAMILY_FILES = ['koleston', 'colortouch', 'londa-shades', 'londa-dem
 type Swatch = { image?: string; hex?: string; code: string };
 const normName = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
 
-// Код оттенка к единому виду: разделитель — «/», ведущие нули убираются («010/00» → «10/0»),
-// запятая в глубине тона приравнивается к точке («9,5-1» → «9.5/1»).
+// Код оттенка к единому виду: разделитель — «/», ведущий ноль убирается только в ГЛУБИНЕ
+// («010/00» → «10/00»), запятая в глубине приравнивается к точке («9,5-1» → «9.5/1»).
+//
+// В ТОНЕ ведущий ноль трогать нельзя: в нумерации Wella «10/05» и «10/5» — РАЗНЫЕ оттенки
+// (05 — натурально-махагоновый, 5 — махагоновый), как и «10/0» против «10/00» (натуральный
+// против интенсивного натурального). Первая версия этой функции срезала нули и в тоне —
+// внутри семейства это склеивало 21 пару разных оттенков в один ключ, и товар мог получить
+// фото чужого цвета. Проверка на склейки теперь даёт ноль.
 function normCode(raw: string): string {
   const c = String(raw).trim().toLowerCase().replace(/,/g, '.').replace(/-/g, '/');
-  if (c.startsWith('/')) return '/' + c.slice(1).replace(/^0+/, '');
+  if (c.startsWith('/')) return c;
   const m = /^0*(\d+(?:\.\d)?)(?:\/(.*))?$/.exec(c);
   if (!m) return c;
-  const tone = m[2] === undefined ? undefined : (m[2].replace(/^0+/, '') || '0');
-  return m[1] + (tone === undefined ? '' : '/' + tone);
+  return m[1] + (m[2] === undefined ? '' : '/' + m[2]);
 }
 
 // Первый код-подобный токен в названии — именно он в этих прайсах всегда и есть код оттенка
@@ -74,35 +79,55 @@ function codeFromName(name: string): string | null {
 
 const swatchByName = new Map<string, Swatch>();
 const familyByCode = new Map<string, Swatch>();
+// Свой отдельный индекс на каждую палитру — для линеек, которые в общий пул не входят
+// (Illumina, Shinefinity, Igora Royal): там подбор по коду допустим, но ТОЛЬКО внутри
+// собственной палитры, где технология и нумерация одни и те же.
+const byPaletteCode = new Map<string, Map<string, Swatch>>();
 for (const [path, mod] of Object.entries(shadeModules)) {
+  const file = path.split('/').pop()?.replace('-shades.json', '') ?? path;
   const inFamily = WELLA_FAMILY_FILES.some((f) => path.includes(f));
+  const own = byPaletteCode.get(file) ?? new Map<string, Swatch>();
+  byPaletteCode.set(file, own);
   for (const shade of mod.default) {
     const sw: Swatch = { image: shade.image, hex: shade.hex, code: shade.code };
     if (shade.name) {
       const key = normName(shade.name);
       if (!swatchByName.has(key)) swatchByName.set(key, sw);
     }
-    if (inFamily && shade.image) {
+    if (shade.image) {
       const key = normCode(shade.code);
-      if (!familyByCode.has(key)) familyByCode.set(key, sw);
+      if (!own.has(key)) own.set(key, sw);
+      if (inFamily && !familyByCode.has(key)) familyByCode.set(key, sw);
     }
   }
 }
 
-// Запасной пул применяем только к линейкам семейства и только к товарам-красителям: страховка
-// от того, что код-подобный набор цифр случайно найдётся в названии окислителя или уходового
-// средства, лежащего в той же линейке.
+// Подбор по коду применяем только к товарам-красителям: страховка от того, что код-подобный
+// набор цифр случайно найдётся в названии окислителя или уходового средства из той же линейки.
 function inWellaFamily(brand: string | null, line: string | null): boolean {
   if (brand === 'LONDA') return true;
   return brand === 'WELLA' && (line ?? '').startsWith('KP Me+/CT');
 }
+// Линейка → её собственная палитра, для тех, кто в общий пул не входит.
+function ownPaletteFor(brand: string | null, line: string | null): string | null {
+  const l = line ?? '';
+  if (brand === 'WELLA' && l.startsWith('Illumina')) return 'illumina';
+  if (brand === 'WELLA' && l.startsWith('SHINEFINITY')) return 'shinefinity';
+  if (brand === 'SCHWARZKOPF' && l.startsWith('IGORA/BLONDME')) return 'igora-royal';
+  return null;
+}
 function swatchFor(it: { name: string; brand?: string | null; line?: string | null; category?: string }): Swatch | undefined {
   const exact = swatchByName.get(normName(it.name));
   if (exact) return exact;
-  if (!inWellaFamily(it.brand ?? null, it.line ?? null)) return undefined;
   if (!(it.category ?? '').toLowerCase().includes('красител')) return undefined;
   const code = codeFromName(it.name);
-  return code ? familyByCode.get(normCode(code)) : undefined;
+  if (!code) return undefined;
+  const key = normCode(code);
+  const brand = it.brand ?? null;
+  const line = it.line ?? null;
+  if (inWellaFamily(brand, line)) return familyByCode.get(key);
+  const own = ownPaletteFor(brand, line);
+  return own ? byPaletteCode.get(own)?.get(key) : undefined;
 }
 
 // Сортировка: сначала латиница (A-Z), потом кириллица (А-Я), внутри каждой — по алфавиту.
