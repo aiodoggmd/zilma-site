@@ -131,6 +131,11 @@ function ownPaletteFor(brand: string | null, line: string | null, name: string):
   // У MATRIX линейки в прайсе тоже не проставлены. Кислотные тонеры проверяем ПЕРВЫМИ:
   // их названия начинаются с того же «color sync », и без этой проверки они забрали бы
   // цвет из щелочной палитры, где те же буквенные коды означают другой оттенок.
+  // Lebel MATERIA: в прайсе три линейки различаются началом названия —
+  // «краска д/волос new g …» (MATERIA G, для седины), «краска д/волос тон µ …» (MATERIA μ)
+  // и «краска д/волос стойкая …» (обычная MATERIA). Коды у них общие по написанию (A-6, CB-5),
+  // но это РАЗНЫЕ красители, поэтому палитры не смешиваем.
+  if (brand === 'LEBEL' && normName(name).startsWith('краска д/волос new g ')) return 'lebel-materia-g';
   if (brand === 'MATRIX') {
     const n = normName(name);
     if (n.startsWith('color sync тонер')) return 'matrix-sync-acid';

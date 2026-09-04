@@ -1,0 +1,612 @@
+[
+  {
+    "code": "A-10",
+    "hex": "#666c68",
+    "group": "materia-g",
+    "row": 0,
+    "col": 0,
+    "image": "/images/shades/lebel-materia-g/a-10.webp"
+  },
+  {
+    "code": "A-6",
+    "hex": "#1e221f",
+    "group": "materia-g",
+    "row": 0,
+    "col": 1,
+    "image": "/images/shades/lebel-materia-g/a-6.webp",
+    "name": "Краска д/волос NEW G A-6 0092",
+    "price": 1503.6
+  },
+  {
+    "code": "A-8",
+    "hex": "#454a46",
+    "group": "materia-g",
+    "row": 0,
+    "col": 2,
+    "image": "/images/shades/lebel-materia-g/a-8.webp",
+    "name": "Краска д/волос NEW G A-8 0108",
+    "price": 1503.6
+  },
+  {
+    "code": "ABe-10",
+    "hex": "#666769",
+    "group": "materia-g",
+    "row": 0,
+    "col": 3,
+    "image": "/images/shades/lebel-materia-g/abe-10.webp"
+  },
+  {
+    "code": "ABe-6",
+    "hex": "#28292a",
+    "group": "materia-g",
+    "row": 0,
+    "col": 4,
+    "image": "/images/shades/lebel-materia-g/abe-6.webp"
+  },
+  {
+    "code": "ABe-7",
+    "hex": "#3d3c3e",
+    "group": "materia-g",
+    "row": 0,
+    "col": 5,
+    "image": "/images/shades/lebel-materia-g/abe-7.webp"
+  },
+  {
+    "code": "ABe-8",
+    "hex": "#4a484a",
+    "group": "materia-g",
+    "row": 0,
+    "col": 6,
+    "image": "/images/shades/lebel-materia-g/abe-8.webp"
+  },
+  {
+    "code": "ABe-9",
+    "hex": "#545456",
+    "group": "materia-g",
+    "row": 0,
+    "col": 7,
+    "image": "/images/shades/lebel-materia-g/abe-9.webp"
+  },
+  {
+    "code": "B-10",
+    "hex": "#695642",
+    "group": "materia-g",
+    "row": 0,
+    "col": 8,
+    "image": "/images/shades/lebel-materia-g/b-10.webp"
+  },
+  {
+    "code": "B-5",
+    "hex": "#181009",
+    "group": "materia-g",
+    "row": 0,
+    "col": 9,
+    "image": "/images/shades/lebel-materia-g/b-5.webp",
+    "name": "Краска д/волос NEW G B-5 9559",
+    "price": 1503.6
+  },
+  {
+    "code": "B-6",
+    "hex": "#25190f",
+    "group": "materia-g",
+    "row": 0,
+    "col": 10,
+    "image": "/images/shades/lebel-materia-g/b-6.webp"
+  },
+  {
+    "code": "B-7",
+    "hex": "#392b20",
+    "group": "materia-g",
+    "row": 0,
+    "col": 11,
+    "image": "/images/shades/lebel-materia-g/b-7.webp"
+  },
+  {
+    "code": "B-8",
+    "hex": "#4b3c2d",
+    "group": "materia-g",
+    "row": 0,
+    "col": 12,
+    "image": "/images/shades/lebel-materia-g/b-8.webp"
+  },
+  {
+    "code": "B-9",
+    "hex": "#554535",
+    "group": "materia-g",
+    "row": 0,
+    "col": 13,
+    "image": "/images/shades/lebel-materia-g/b-9.webp"
+  },
+  {
+    "code": "Be-10",
+    "hex": "#7e6b54",
+    "group": "materia-g",
+    "row": 0,
+    "col": 14,
+    "image": "/images/shades/lebel-materia-g/be-10.webp"
+  },
+  {
+    "code": "Be-6",
+    "hex": "#2b1d09",
+    "group": "materia-g",
+    "row": 0,
+    "col": 15,
+    "image": "/images/shades/lebel-materia-g/be-6.webp"
+  },
+  {
+    "code": "Be-7",
+    "hex": "#4c3c29",
+    "group": "materia-g",
+    "row": 0,
+    "col": 16,
+    "image": "/images/shades/lebel-materia-g/be-7.webp"
+  },
+  {
+    "code": "Be-8",
+    "hex": "#5f4e39",
+    "group": "materia-g",
+    "row": 0,
+    "col": 17,
+    "image": "/images/shades/lebel-materia-g/be-8.webp",
+    "name": "Краска д/волос NEW G Be-8 9818/Be-8",
+    "price": 1503.6
+  },
+  {
+    "code": "Be-9",
+    "hex": "#695841",
+    "group": "materia-g",
+    "row": 0,
+    "col": 18,
+    "image": "/images/shades/lebel-materia-g/be-9.webp",
+    "name": "Краска д/волос NEW G Be-9 9825/Be-9",
+    "price": 1503.6
+  },
+  {
+    "code": "CA-10",
+    "hex": "#5e6568",
+    "group": "materia-g",
+    "row": 0,
+    "col": 19,
+    "image": "/images/shades/lebel-materia-g/ca-10.webp"
+  },
+  {
+    "code": "CA-6",
+    "hex": "#111d20",
+    "group": "materia-g",
+    "row": 0,
+    "col": 20,
+    "image": "/images/shades/lebel-materia-g/ca-6.webp"
+  },
+  {
+    "code": "CA-8",
+    "hex": "#3a4548",
+    "group": "materia-g",
+    "row": 0,
+    "col": 21,
+    "image": "/images/shades/lebel-materia-g/ca-8.webp"
+  },
+  {
+    "code": "CB-10",
+    "hex": "#66604d",
+    "group": "materia-g",
+    "row": 0,
+    "col": 22,
+    "image": "/images/shades/lebel-materia-g/cb-10.webp"
+  },
+  {
+    "code": "CB-3",
+    "hex": "#000402",
+    "group": "materia-g",
+    "row": 0,
+    "col": 23,
+    "image": "/images/shades/lebel-materia-g/cb-3.webp",
+    "name": "Краска д/волос NEW G CB-3 9474",
+    "price": 1503.6
+  },
+  {
+    "code": "CB-5",
+    "hex": "#160f04",
+    "group": "materia-g",
+    "row": 0,
+    "col": 24,
+    "image": "/images/shades/lebel-materia-g/cb-5.webp"
+  },
+  {
+    "code": "CB-6",
+    "hex": "#20160b",
+    "group": "materia-g",
+    "row": 0,
+    "col": 25,
+    "image": "/images/shades/lebel-materia-g/cb-6.webp",
+    "name": "Краска д/волос NEW G CB-6 120гр 9504",
+    "price": 1503.6
+  },
+  {
+    "code": "CB-7",
+    "hex": "#342b1d",
+    "group": "materia-g",
+    "row": 0,
+    "col": 26,
+    "image": "/images/shades/lebel-materia-g/cb-7.webp"
+  },
+  {
+    "code": "CB-8",
+    "hex": "#48402f",
+    "group": "materia-g",
+    "row": 0,
+    "col": 27,
+    "image": "/images/shades/lebel-materia-g/cb-8.webp"
+  },
+  {
+    "code": "CB-9",
+    "hex": "#4e4635",
+    "group": "materia-g",
+    "row": 0,
+    "col": 28,
+    "image": "/images/shades/lebel-materia-g/cb-9.webp"
+  },
+  {
+    "code": "G-10",
+    "hex": "#7a6647",
+    "group": "materia-g",
+    "row": 0,
+    "col": 29,
+    "image": "/images/shades/lebel-materia-g/g-10.webp"
+  },
+  {
+    "code": "G-6",
+    "hex": "#3a2f21",
+    "group": "materia-g",
+    "row": 0,
+    "col": 30,
+    "image": "/images/shades/lebel-materia-g/g-6.webp"
+  },
+  {
+    "code": "G-8",
+    "hex": "#5c4c31",
+    "group": "materia-g",
+    "row": 0,
+    "col": 31,
+    "image": "/images/shades/lebel-materia-g/g-8.webp",
+    "name": "Краска д/волос NEW G G-8 0047",
+    "price": 1503.6
+  },
+  {
+    "code": "K-10",
+    "hex": "#7e4233",
+    "group": "materia-g",
+    "row": 0,
+    "col": 32,
+    "image": "/images/shades/lebel-materia-g/k-10.webp"
+  },
+  {
+    "code": "K-6",
+    "hex": "#39110b",
+    "group": "materia-g",
+    "row": 0,
+    "col": 33,
+    "image": "/images/shades/lebel-materia-g/k-6.webp"
+  },
+  {
+    "code": "K-8",
+    "hex": "#5a281f",
+    "group": "materia-g",
+    "row": 0,
+    "col": 34,
+    "image": "/images/shades/lebel-materia-g/k-8.webp"
+  },
+  {
+    "code": "M-10",
+    "hex": "#635843",
+    "group": "materia-g",
+    "row": 0,
+    "col": 35,
+    "image": "/images/shades/lebel-materia-g/m-10.webp",
+    "name": "Краска д/волос NEW G M-10 120гр 0085",
+    "price": 1503.6
+  },
+  {
+    "code": "M-6",
+    "hex": "#2a200d",
+    "group": "materia-g",
+    "row": 0,
+    "col": 36,
+    "image": "/images/shades/lebel-materia-g/m-6.webp",
+    "name": "Краска д/волос NEW G M-6 120 г 0061лп",
+    "price": 1503.6
+  },
+  {
+    "code": "M-8",
+    "hex": "#40381e",
+    "group": "materia-g",
+    "row": 0,
+    "col": 37,
+    "image": "/images/shades/lebel-materia-g/m-8.webp",
+    "name": "Краска д/волос NEW G M-8 120 г 0078лп",
+    "price": 1398.35
+  },
+  {
+    "code": "MT-10",
+    "hex": "#74685f",
+    "group": "materia-g",
+    "row": 0,
+    "col": 38,
+    "image": "/images/shades/lebel-materia-g/mt-10.webp"
+  },
+  {
+    "code": "MT-6",
+    "hex": "#302b2a",
+    "group": "materia-g",
+    "row": 0,
+    "col": 39,
+    "image": "/images/shades/lebel-materia-g/mt-6.webp"
+  },
+  {
+    "code": "MT-7",
+    "hex": "#4c443e",
+    "group": "materia-g",
+    "row": 0,
+    "col": 40,
+    "image": "/images/shades/lebel-materia-g/mt-7.webp",
+    "name": "Краска д/волос NEW G MT-7 120гр 9900/MT-7 120",
+    "price": 1503.6
+  },
+  {
+    "code": "MT-8",
+    "hex": "#5b514a",
+    "group": "materia-g",
+    "row": 0,
+    "col": 41,
+    "image": "/images/shades/lebel-materia-g/mt-8.webp"
+  },
+  {
+    "code": "MT-9",
+    "hex": "#615750",
+    "group": "materia-g",
+    "row": 0,
+    "col": 42,
+    "image": "/images/shades/lebel-materia-g/mt-9.webp"
+  },
+  {
+    "code": "O-10",
+    "hex": "#8e5334",
+    "group": "materia-g",
+    "row": 0,
+    "col": 43,
+    "image": "/images/shades/lebel-materia-g/o-10.webp"
+  },
+  {
+    "code": "O-6",
+    "hex": "#40230d",
+    "group": "materia-g",
+    "row": 0,
+    "col": 44,
+    "image": "/images/shades/lebel-materia-g/o-6.webp"
+  },
+  {
+    "code": "O-8",
+    "hex": "#693820",
+    "group": "materia-g",
+    "row": 0,
+    "col": 45,
+    "image": "/images/shades/lebel-materia-g/o-8.webp"
+  },
+  {
+    "code": "OBe-10",
+    "hex": "#82624e",
+    "group": "materia-g",
+    "row": 0,
+    "col": 46,
+    "image": "/images/shades/lebel-materia-g/obe-10.webp"
+  },
+  {
+    "code": "OBe-6",
+    "hex": "#311a0a",
+    "group": "materia-g",
+    "row": 0,
+    "col": 47,
+    "image": "/images/shades/lebel-materia-g/obe-6.webp"
+  },
+  {
+    "code": "OBe-7",
+    "hex": "#483326",
+    "group": "materia-g",
+    "row": 0,
+    "col": 48,
+    "image": "/images/shades/lebel-materia-g/obe-7.webp"
+  },
+  {
+    "code": "OBe-8",
+    "hex": "#583f30",
+    "group": "materia-g",
+    "row": 0,
+    "col": 49,
+    "image": "/images/shades/lebel-materia-g/obe-8.webp",
+    "name": "Краска д/волос NEW G OBe-8 120 г 9764лп",
+    "price": 1503.6
+  },
+  {
+    "code": "OBe-9",
+    "hex": "#6a5040",
+    "group": "materia-g",
+    "row": 0,
+    "col": 50,
+    "image": "/images/shades/lebel-materia-g/obe-9.webp"
+  },
+  {
+    "code": "P-10",
+    "hex": "#7b3e4f",
+    "group": "materia-g",
+    "row": 0,
+    "col": 51,
+    "image": "/images/shades/lebel-materia-g/p-10.webp"
+  },
+  {
+    "code": "P-6",
+    "hex": "#2b060b",
+    "group": "materia-g",
+    "row": 0,
+    "col": 52,
+    "image": "/images/shades/lebel-materia-g/p-6.webp",
+    "name": "Краска д/волос NEW G P-6 0184",
+    "price": 1278.06
+  },
+  {
+    "code": "P-8",
+    "hex": "#542838",
+    "group": "materia-g",
+    "row": 0,
+    "col": 53,
+    "image": "/images/shades/lebel-materia-g/p-8.webp"
+  },
+  {
+    "code": "PBe-10",
+    "hex": "#7e5154",
+    "group": "materia-g",
+    "row": 0,
+    "col": 54,
+    "image": "/images/shades/lebel-materia-g/pbe-10.webp"
+  },
+  {
+    "code": "PBe-6",
+    "hex": "#391615",
+    "group": "materia-g",
+    "row": 0,
+    "col": 55,
+    "image": "/images/shades/lebel-materia-g/pbe-6.webp"
+  },
+  {
+    "code": "PBe-7",
+    "hex": "#4c292a",
+    "group": "materia-g",
+    "row": 0,
+    "col": 56,
+    "image": "/images/shades/lebel-materia-g/pbe-7.webp"
+  },
+  {
+    "code": "PBe-8",
+    "hex": "#5a3337",
+    "group": "materia-g",
+    "row": 0,
+    "col": 57,
+    "image": "/images/shades/lebel-materia-g/pbe-8.webp",
+    "name": "Краска д/волос NEW G PBe-8 9719",
+    "price": 1503.6
+  },
+  {
+    "code": "PBe-9",
+    "hex": "#694246",
+    "group": "materia-g",
+    "row": 0,
+    "col": 58,
+    "image": "/images/shades/lebel-materia-g/pbe-9.webp"
+  },
+  {
+    "code": "R-10",
+    "hex": "#753841",
+    "group": "materia-g",
+    "row": 0,
+    "col": 59,
+    "image": "/images/shades/lebel-materia-g/r-10.webp"
+  },
+  {
+    "code": "R-6",
+    "hex": "#2b060b",
+    "group": "materia-g",
+    "row": 0,
+    "col": 60,
+    "image": "/images/shades/lebel-materia-g/r-6.webp"
+  },
+  {
+    "code": "R-8",
+    "hex": "#4d1d26",
+    "group": "materia-g",
+    "row": 0,
+    "col": 61,
+    "image": "/images/shades/lebel-materia-g/r-8.webp"
+  },
+  {
+    "code": "V-10",
+    "hex": "#644c5a",
+    "group": "materia-g",
+    "row": 0,
+    "col": 62,
+    "image": "/images/shades/lebel-materia-g/v-10.webp",
+    "name": "Краска д/волос NEW G V-10 0177",
+    "price": 1503.6
+  },
+  {
+    "code": "V-6",
+    "hex": "#2b1f29",
+    "group": "materia-g",
+    "row": 0,
+    "col": 63,
+    "image": "/images/shades/lebel-materia-g/v-6.webp"
+  },
+  {
+    "code": "V-8",
+    "hex": "#4a3642",
+    "group": "materia-g",
+    "row": 0,
+    "col": 64,
+    "image": "/images/shades/lebel-materia-g/v-8.webp"
+  },
+  {
+    "code": "WB-10",
+    "hex": "#6d4c3f",
+    "group": "materia-g",
+    "row": 0,
+    "col": 65,
+    "image": "/images/shades/lebel-materia-g/wb-10.webp"
+  },
+  {
+    "code": "WB-3",
+    "hex": "#000402",
+    "group": "materia-g",
+    "row": 0,
+    "col": 66,
+    "image": "/images/shades/lebel-materia-g/wb-3.webp"
+  },
+  {
+    "code": "WB-5",
+    "hex": "#1c0d09",
+    "group": "materia-g",
+    "row": 0,
+    "col": 67,
+    "image": "/images/shades/lebel-materia-g/wb-5.webp"
+  },
+  {
+    "code": "WB-6",
+    "hex": "#26130c",
+    "group": "materia-g",
+    "row": 0,
+    "col": 68,
+    "image": "/images/shades/lebel-materia-g/wb-6.webp"
+  },
+  {
+    "code": "WB-7",
+    "hex": "#37221a",
+    "group": "materia-g",
+    "row": 0,
+    "col": 69,
+    "image": "/images/shades/lebel-materia-g/wb-7.webp",
+    "name": "Краска д/волос NEW G WB-7 9658",
+    "price": 1503.6
+  },
+  {
+    "code": "WB-8",
+    "hex": "#50372b",
+    "group": "materia-g",
+    "row": 0,
+    "col": 70,
+    "image": "/images/shades/lebel-materia-g/wb-8.webp"
+  },
+  {
+    "code": "WB-9",
+    "hex": "#563d30",
+    "group": "materia-g",
+    "row": 0,
+    "col": 71,
+    "image": "/images/shades/lebel-materia-g/wb-9.webp"
+  }
+]
