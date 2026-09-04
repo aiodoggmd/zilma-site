@@ -1,85 +1,136 @@
 ---
+// Строка причин внутри херо (перенесено из отдельного блока под ним 2026-09-05 по просьбе
+// пользователя, по образцу присланного концепта). Тексты остались наши, проверенные —
+// не из макета: «специальные цены на сайте» он подтверждал отдельно, это реальное условие.
+// Живёт внутри Hero.astro, поэтому оформлено под цветной фон херо, а не под белую страницу.
 interface Reason {
   title: string;
   text: string;
+  icon: 'price' | 'palette' | 'truck' | 'tag';
 }
 
 const reasons: Reason[] = [
-  { title: 'Актуальный прайс', text: 'Цены обновляются по наличию и остаткам.' },
-  { title: 'Колористика под рукой', text: 'Оттенки, палитры, пропорции и формулы — в гидах по брендам.' },
-  { title: 'Быстрая доставка', text: 'По Москве — на следующий рабочий день после подтверждения заказа.' },
-  { title: 'Специальные цены на сайте', text: 'Скидки каталога и раздела «Акции» действуют только при заказе через сайт.' },
+  { title: 'Актуальный прайс', text: 'Цены по наличию и остаткам', icon: 'price' },
+  { title: 'Колористика под рукой', text: 'Оттенки, пропорции, формулы', icon: 'palette' },
+  { title: 'Быстрая доставка', text: 'По Москве — на следующий день', icon: 'truck' },
+  { title: 'Цены ниже на сайте', text: 'Скидки только при заказе здесь', icon: 'tag' },
 ];
 ---
-<h2 class="section-title" id="why-zilma">Почему заказывают у Zilma</h2>
-<div class="why-grid">
+<ul class="why-row" id="why-zilma">
   {reasons.map((r) => (
-    <div class="why-card">
-      <p class="why-title">{r.title}</p>
-      <p class="why-text">{r.text}</p>
-    </div>
+    <li class="why-chip">
+      <span class="why-icon" aria-hidden="true">
+        {r.icon === 'price' && (
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h8M8 12h8M8 16h5" />
+          </svg>
+        )}
+        {r.icon === 'palette' && (
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" /><circle cx="9" cy="9.5" r="1.3" /><circle cx="15" cy="9.5" r="1.3" /><circle cx="10.5" cy="15" r="1.3" />
+          </svg>
+        )}
+        {r.icon === 'truck' && (
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" /><circle cx="7" cy="18" r="1.6" /><circle cx="17" cy="18" r="1.6" />
+          </svg>
+        )}
+        {r.icon === 'tag' && (
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12.5 12.5 20 4 11.5V4h7.5z" /><circle cx="8.6" cy="8.6" r="1.4" />
+          </svg>
+        )}
+      </span>
+      <span class="why-body">
+        <span class="why-title">{r.title}</span>
+        <span class="why-text">{r.text}</span>
+      </span>
+    </li>
   ))}
-</div>
+</ul>
 
 <style>
-  .why-grid {
+  .why-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 12px;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .why-card {
-    background: var(--color-paper);
-    border: 1px solid var(--color-panel-line);
-    border-radius: var(--radius-card);
-    padding: 18px 18px 20px;
-    border-top: 3px solid var(--color-red);
-    box-shadow: var(--shadow-card);
+  .why-chip {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 18px;
+    /* Тонкие разделители между причинами вместо четырёх отдельных карточек — так строка
+       читается как один блок и не спорит с логотипом справа. */
+    border-left: 1px solid rgba(250, 243, 234, 0.22);
   }
 
-  /* Чередуем акцент красный/синий вместо сплошного красного на всех четырёх карточках. */
-  .why-card:nth-child(2n) {
-    border-top-color: var(--color-blue-dark);
+  .why-chip:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .why-icon {
+    flex: none;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--color-cream);
+    background: rgba(250, 243, 234, 0.14);
+    border: 1px solid rgba(250, 243, 234, 0.3);
+  }
+
+  .why-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
   }
 
   .why-title {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: 1.02rem;
-    color: var(--color-ink);
-    margin: 0 0 6px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.87rem;
+    line-height: 1.25;
+    color: var(--color-cream);
   }
 
   .why-text {
-    font-size: 0.88rem;
-    color: var(--color-meta);
-    margin: 0;
-    line-height: 1.45;
+    font-size: 0.76rem;
+    line-height: 1.3;
+    color: var(--color-cream);
+    opacity: 0.72;
+    margin-top: 2px;
   }
 
   @media (max-width: 900px) {
-    .section-title {
-      margin: 32px 0 14px;
-    }
-
-    .why-grid {
+    .why-row {
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 14px 0;
     }
+    /* На двух колонках левая граница у третьей причины была бы «висящей» линией
+       посреди ряда — рисуем её только у правого столбца. */
+    .why-chip {
+      padding: 0 12px;
+    }
+    .why-chip:nth-child(odd) {
+      padding-left: 0;
+      border-left: none;
+    }
+  }
 
-    .why-card {
-      padding: 12px 12px 14px;
+  @media (max-width: 420px) {
+    .why-icon {
+      width: 32px;
+      height: 32px;
     }
-
-    .why-title {
-      font-size: 0.92rem;
-      margin-bottom: 4px;
-    }
-
-    .why-text {
-      font-size: 0.78rem;
-      line-height: 1.35;
-    }
+    .why-title { font-size: 0.8rem; }
+    .why-text { font-size: 0.7rem; }
   }
 </style>

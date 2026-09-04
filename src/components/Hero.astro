@@ -1,9 +1,11 @@
 ---
+import WhyZilma from './WhyZilma.astro';
 ---
 <section class="hero">
   <div class="bg-blue"></div>
   <div class="container hero-inner">
     <div class="hero-text">
+      <p class="eyebrow">Почему заказывают у Zilma</p>
       <h1>Профессиональная косметика для салонов</h1>
       <p class="brands">Wella · Londa · Schwarzkopf · Matrix · Lebel</p>
       <p class="subtitle">Актуальный прайс, гид по брендам и подбор оттенков — всё для работы мастера.</p>
@@ -15,17 +17,15 @@
       </div>
     </div>
   </div>
+  <div class="container hero-reasons">
+    <WhyZilma />
+  </div>
 </section>
 
 <style>
-  /* Пастель нового дизайна (2026-09-04, пользователь снял запрет «херо не трогать»):
-     та же хореография, что была — фон открывается одним цветом и перетекает во второй,
-     пока крутится и проявляется лого, — но вместо насыщенных красного и синего теперь
-     два пастельных тона из присланных образцов. Текст стал тёмным: на светлом фоне
-     кремовый нечитаем. */
   .hero {
     position: relative;
-    background: var(--color-surface-pink);
+    background: var(--color-red);
     padding: 44px 0;
     overflow: hidden;
   }
@@ -33,7 +33,7 @@
   .bg-blue {
     position: absolute;
     inset: 0;
-    background: var(--color-surface-blue);
+    background: linear-gradient(135deg, var(--color-blue-dark), var(--color-blue));
     opacity: 0;
     animation: bg-fade-in 1.1s ease-in-out 1.3s forwards;
     z-index: 0;
@@ -51,7 +51,29 @@
 
   .hero-text {
     max-width: 560px;
-    color: var(--color-ink);
+    color: var(--color-cream);
+  }
+
+  /* Надстрочник «Почему заказывают у Zilma» — заголовок переехавшего в херо блока причин
+     (2026-09-05). В отдельный <h2> над строкой чипов его выносить не стали: в херо он
+     работает именно как подводка к заголовку, как в присланном концепте. */
+  .eyebrow {
+    margin: 0 0 10px;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-cream);
+    opacity: 0.72;
+  }
+
+  .hero-reasons {
+    position: relative;
+    z-index: 1;
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(250, 243, 234, 0.22);
   }
 
   .hero-text h1 {
@@ -67,15 +89,15 @@
     font-size: 1.02rem;
     font-weight: 600;
     letter-spacing: 0.02em;
-    color: var(--color-blue-dark);
+    color: var(--color-cream);
   }
 
   .subtitle {
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.5;
-    color: var(--color-ink);
-    opacity: 0.75;
+    color: var(--color-cream);
+    opacity: 0.88;
   }
 
   .hero-art {
@@ -103,7 +125,7 @@
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.75), 0 14px 30px rgba(43, 32, 28, 0.16);
+    box-shadow: 0 0 0 6px rgba(250, 243, 234, 0.32), 0 20px 40px rgba(0, 0, 0, 0.35);
     animation: coin-flip 1.2s cubic-bezier(0.4, 0.2, 0.2, 1) forwards;
   }
 
