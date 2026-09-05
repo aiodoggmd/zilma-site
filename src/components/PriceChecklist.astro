@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import productPhotos from '../data/product-photos.json';
 
 interface Item {
@@ -48,6 +49,62 @@ const shadeModules = import.meta.glob<{ default: { name?: string; image?: string
 );
 // Файлы палитр, оттенки которых взаимозаменяемы по коду (см. подтверждение выше).
 const WELLA_FAMILY_FILES = ['koleston', 'colortouch', 'londa-shades', 'londa-demi', 'colortune'];
+
+// Связь «линейка каталога -> написанный гид» (2026-09-05). Из статьи в каталог связь была
+// давно (кнопки «в заявку», палитра с ценами), а обратной не было вовсе: мастер листал прайс
+// и не узнавал, что по этой линейке есть разбор с пропорциями и палитрой.
+//
+// Связь не проставляется вручную по товарам — она ВЫЧИСЛЯЕТСЯ из палитр: в *-shades.json
+// уже лежат реальные имена товаров из прайса (их подставляет resolveLiveShades на каждой
+// сборке). Поэтому достаточно знать, какой файл палитры принадлежит какой статье, и связь
+// сама попадает на те линейки, где эти товары реально лежат. Если товар переедет в другую
+// линейку прайса — плашка переедет вместе с ним, править ничего не нужно.
+//
+// Здесь только палитры, у которых СТАТЬЯ УЖЕ НАПИСАНА. Остальные (matrix-*, ollin-*,
+// lebel-materia*) собраны заранее ради кружков цвета в каталоге — гида по ним пока нет,
+// и обещать его плашкой нельзя.
+const PALETTE_ARTICLE: Record<string, string> = {
+  illumina: '2026-08-13-illumina-color',
+  shinefinity: '2026-08-13-shinefinity',
+  koleston: '2026-08-13-koleston-perfect',
+  colortouch: '2026-08-13-color-touch',
+  'igora-royal': '2026-08-28-igora-royal',
+  londa: '2026-08-29-londa-professional',
+  'londa-demi': '2026-08-29-londa-professional',
+  colortune: '2026-08-30-londa-color-tune',
+};
+
+type Guide = { id: string; label: string };
+const articleEntries = await getCollection('articles');
+const articleById = new Map(articleEntries.map((a) => [a.id, a]));
+
+// имя товара -> статьи, в которых он разобран
+const guidesByProduct = new Map<string, Set<string>>();
+for (const [path, mod] of Object.entries(shadeModules)) {
+  const file = path.split('/').pop()?.replace('-shades.json', '') ?? path;
+  const articleId = PALETTE_ARTICLE[file];
+  if (!articleId || !articleById.has(articleId)) continue;
+  for (const shade of mod.default) {
+    const name = (shade as { name?: string }).name;
+    if (!name) continue;
+    if (!guidesByProduct.has(name)) guidesByProduct.set(name, new Set());
+    guidesByProduct.get(name)!.add(articleId);
+  }
+}
+
+function guidesFor(list: Item[]): Guide[] {
+  const ids = new Set<string>();
+  for (const it of list) for (const id of guidesByProduct.get(it.name) ?? []) ids.add(id);
+  return [...ids]
+    .map((id) => {
+      const a = articleById.get(id)!;
+      // Подпись — короткое название линейки из статьи, а не её заголовок: заголовки
+      // длинные («Wella Koleston Perfect: точная формула цвета и 100% закрашивание...»)
+      // и в строку каталога не помещаются.
+      return { id, label: a.data.line ?? a.data.title };
+    })
+    .sort((a, b) => alphaCompare(a.label, b.label));
+}
 
 type Swatch = { image?: string; hex?: string; code: string };
 const normName = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
@@ -416,11 +473,22 @@ const bestDeals = groupBy === 'discount'
         <p class="pc-all-title">Все бренды</p>
       </div>
     )}
-    {groupBy === 'brand' && brandEntries.map(({ brand, total, flat, lineEntries }) => (
+    {groupBy === 'brand' && brandEntries.map(({ brand, total, flat, lineEntries }) => {
+      // Гид на самом бренде — только по товарам БЕЗ линейки: если у бренда есть линейки,
+      // плашка должна стоять на конкретной линейке, а не на всём бренде (иначе у Wella
+      // «Гид: Koleston Perfect» висел бы и над стайлингом EIMI).
+      const brandGuides = guidesFor(flat);
+      return (
       <details class="pc-group pc-group-brand" data-brand={brand} data-has-lines={lineEntries.length > 0 ? '1' : '0'}>
         <summary>
           <svg class="pc-row-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-          <span class="pc-row-name">{brand}</span>
+          <span class="pc-row-name">{brand}{brandGuides.length > 0 && (
+                  <span class="pc-guides">
+                    {brandGuides.map((g) => (
+                      <a class="pc-guide" href={`/articles/${g.id}/`} data-guide-link>Гид: {g.label}</a>
+                    ))}
+                  </span>
+                )}</span>
           <span class="pc-row-actions">
             <span class="pc-group-count">{total} {pluralItems(total)}</span>
             <button type="button" class="pc-row-search-btn" data-focus-search aria-label={`Искать в ${brand}`}>
@@ -470,11 +538,19 @@ const bestDeals = groupBy === 'discount'
               })}
             </ul>
           )}
-          {lineEntries.map(([line, list]) => (
+          {lineEntries.map(([line, list]) => {
+            const lineGuides = guidesFor(list);
+            return (
             <details class="pc-group pc-group-line">
               <summary>
                 <svg class="pc-row-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-                <span class="pc-row-name">{line}</span>
+                <span class="pc-row-name">{line}{lineGuides.length > 0 && (
+                  <span class="pc-guides">
+                    {lineGuides.map((g) => (
+                      <a class="pc-guide" href={`/articles/${g.id}/`} data-guide-link>Гид: {g.label}</a>
+                    ))}
+                  </span>
+                )}</span>
                 <span class="pc-row-actions">
                   <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span>
                   <button type="button" class="pc-row-search-btn" data-focus-search aria-label={`Искать в ${line}`}>
@@ -522,10 +598,12 @@ const bestDeals = groupBy === 'discount'
                 })}
               </ul>
             </details>
-          ))}
+            );
+          })}
         </div>
       </details>
-    ))}
+      );
+    })}
     </div>
     {bestDeals.length > 0 && (
       <div class="pc-best-deal">
@@ -1075,6 +1153,36 @@ const bestDeals = groupBy === 'discount'
      не читалось однозначно "это переключатель, а это поиск". Имя - flex:1, забирает всё
      свободное место между шевроном и правым блоком, поэтому именно оно "растягивает" строку.
      (flex:none у самого шеврона задан ниже, вместе с остальными его стилями.) */
+  /* Плашка «Гид: …» — связь каталог -> статья (2026-09-05). Стоит под названием линейки,
+     а не в одну строку с ним: в строке уже есть счётчик и лупа, и на телефоне всё это
+     не помещается. Ссылка синяя, потому что ведёт в раздел «Инфо» — по общему правилу
+     сайта прайс красный, инфо синее. */
+  .pc-guides {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 5px;
+  }
+
+  .pc-guide {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 3px 8px;
+    border-radius: var(--radius-control);
+    background: var(--color-surface-blue);
+    color: var(--color-blue-dark);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .pc-guide:hover {
+    background: var(--color-blue-dark);
+    color: var(--color-paper);
+  }
+
   .pc-row-name {
     flex: 1 1 auto;
     min-width: 0;
@@ -2637,6 +2745,18 @@ const bestDeals = groupBy === 'discount'
     // запускает встроенное открытие/закрытие <details>), preventDefault останавливает именно
     // это, дальше папка открывается ЯВНО (а не переключается - двойного эффекта не будет,
     // даже если она уже была открыта), а фокус уходит в input.
+    // Ссылка «Гид: …» лежит ВНУТРИ <summary>, а клик по summary по умолчанию сворачивает
+    // или разворачивает папку. Без перехвата тап по плашке делал бы и то и другое сразу:
+    // уводил в статью и попутно схлопывал каталог. preventDefault отменяет именно
+    // раскрытие папки, поэтому переход выполняем вручную.
+    root.querySelectorAll<HTMLAnchorElement>('[data-guide-link]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = link.href;
+      });
+    });
+
     root.querySelectorAll<HTMLButtonElement>('.pc-row-search-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
