@@ -522,11 +522,12 @@ const { framed = false } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 6px;
-    /* 300px вместо 180px: форму собрали компактнее (телефон+имя в строку, чаты иконками
-       в одну строку с подписью, комментарий с авторостом, файл одной строкой) — примерно
-       сто освободившихся пикселей отданы сюда, ради чего компоновку и переделывали.
-       Отдать их можно было только после того, как карточка прайса перестала тянуться за
-       высотой формы: до этого рост формы означал дыру в соседней карточке. */
+    /* Потолок 300px — только запасной, на случай если скрипт не отработал. Настоящую
+       высоту считает fitCartToViewport() под конкретный экран: требование пользователя
+       2026-09-05 — вся форма от заголовка «Оформить заявку» до кнопки «Отправить заявку»
+       должна помещаться в один экран, сколько бы товаров ни набрали. Жёсткое число тут
+       не годится: у форм разная высота (комментарий растёт, шкала появляется), да и
+       экраны разные. */
     max-height: 300px;
     overflow-y: auto;
   }
@@ -843,6 +844,38 @@ const { framed = false } = Astro.props;
     if (itemsInput) itemsInput.value = items.length ? JSON.stringify(items) : '';
   }
 
+  /* Подгоняем высоту списка товаров так, чтобы ВСЯ форма — от заголовка «Оформить заявку»
+     до кнопки «Отправить заявку» — помещалась в один экран (требование пользователя
+     2026-09-05: «сократи до состояния, когда сверху надпись оформить заявку и снизу видна
+     кнопка отправить заявку»).
+     Считаем от обратного: измеряем высоту всего блока и вычитаем из неё сам список —
+     получаем «сколько занимает всё остальное». Остаток экрана и отдаём списку. Так работает
+     при любом составе формы: комментарий может подрасти, шкала минимального заказа появиться
+     или исчезнуть — пересчёт учтёт это сам, без магических чисел. */
+  function fitCartToViewport() {
+    if (!cartEl || !cartList || cartEl.hidden) return;
+    const form = document.querySelector<HTMLElement>('.order-form');
+    const submit = form?.querySelector<HTMLElement>('button[type="submit"]');
+    if (!form || !submit) return;
+
+    const nav = document.querySelector<HTMLElement>('nav[aria-label="Быстрая навигация"]');
+    const navVisible = nav && getComputedStyle(nav).display !== 'none';
+    const navH = navVisible ? nav.getBoundingClientRect().height + 14 : 20;
+
+    const listH = cartList.getBoundingClientRect().height;
+    const blockH = submit.getBoundingClientRect().bottom - form.getBoundingClientRect().top;
+    const other = blockH - listH;                       // всё, кроме самого списка
+
+    // Нижняя граница 96px (~полторы строки): если ужать сильнее, список перестаёт быть
+    // списком — лучше пусть кнопка уедет на пиксели вниз, чем товары станут нечитаемы.
+    // 18px — зазор между кнопкой и плашкой навигации: без него кнопка упирается в неё
+    // впритык и выглядит зажатой.
+    const avail = window.innerHeight - navH - other - 18;
+    cartList.style.maxHeight = `${Math.max(96, Math.min(300, Math.round(avail)))}px`;
+  }
+  // Поворот экрана и появление/скрытие адресной строки меняют высоту — пересчитываем.
+  window.addEventListener('resize', fitCartToViewport);
+
   function renderCart() {
     if (!cartEl || !cartList || !cartTotal) return;
     const items = readCartItems();
@@ -921,6 +954,7 @@ const { framed = false } = Astro.props;
     // вставки строк и в следующем кадре: до отрисовки scrollHeight ещё равен clientHeight,
     // и подсказка не появилась бы там, где она как раз нужна.
     requestAnimationFrame(() => {
+      fitCartToViewport();
       const wrap = cartList.parentElement;
       if (!wrap) return;
       wrap.classList.toggle('is-scrollable', cartList.scrollHeight > cartList.clientHeight + 2);
