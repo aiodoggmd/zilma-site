@@ -1230,6 +1230,16 @@ const bestDeals = groupBy === 'discount'
     overflow-wrap: anywhere;
   }
 
+  /* Обязательно. Атрибут hidden скрывает элемент только через display:none из браузерных
+     стилей, а любой СВОЙ display его перебивает — у .pc-guide стоит inline-block, поэтому
+     link.hidden = true помечал плашку скрытой, но она продолжала висеть на экране.
+     Реальная авария 2026-09-05: в «Расходных материалах» и других категориях показывались
+     все гиды подряд. Мой же тест это пропустил, потому что проверял свойство hidden,
+     а не вычисленный display — проверять надо видимость, а не намерение. */
+  .pc-guide[hidden] {
+    display: none;
+  }
+
   .pc-guide:hover {
     background: var(--color-blue-dark);
     color: var(--color-paper);
