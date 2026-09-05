@@ -237,59 +237,105 @@
     });
   });
 
-  /* ДИАГНОСТИКА ТАПОВ (по просьбе пользователя 2026-09-05). Проблемы с плашкой ловились
-     только на реальном телефоне, а туда не заглянешь консолью — поэтому отладка живёт
-     прямо на странице.
-     Включить: добавить ?debug=nav к адресу (напр. 10.8.1.3:4321/order/?debug=nav).
-     Выключить: убрать параметр или нажать «×» на самой панельке.
-     Показывает: по какому пункту попал тап, есть ли на странице нужное окно, что скрипт
-     решил сделать, и дочитан ли документ до плашки — то есть ровно те вопросы, на которые
-     пришлось отвечать догадками. */
-  if (new URLSearchParams(location.search).get('debug') === 'nav') {
-    const log = document.createElement('div');
-    log.setAttribute('style',
-      'position:fixed;left:8px;right:8px;top:8px;z-index:9999;max-height:45vh;overflow:auto;' +
-      'background:rgba(20,14,12,.92);color:#fff;font:11px/1.45 monospace;padding:8px 26px 8px 8px;' +
-      'border-radius:6px;white-space:pre-wrap;');
-    const close = document.createElement('button');
-    close.textContent = '×';
-    close.setAttribute('style',
-      'position:absolute;top:2px;right:6px;background:none;border:0;color:#fff;font-size:18px;line-height:1');
-    close.addEventListener('click', () => log.remove());
-    log.appendChild(close);
-    document.body.appendChild(log);
+  /* ДИАГНОСТИКА ТАПОВ (по просьбе пользователя 2026-09-05). Баги с плашкой ловились только
+     на реальном телефоне, а туда не заглянешь консолью — поэтому отладка живёт на странице.
 
-    const say = (msg: string) => {
-      const line = document.createElement('div');
-      line.textContent = `${new Date().toLocaleTimeString('ru-RU')}  ${msg}`;
-      log.appendChild(line);
-      log.scrollTop = log.scrollHeight;
+     Включить:  добавить ?debug=nav к любому адресу (напр. 10.8.1.3:4321/order/?debug=nav)
+     Выключить: ?debug=off, либо кнопка «выкл» на самой панельке
+     Очистить:  кнопка «очистить»
+
+     ВАЖНО, почему через sessionStorage, а не по параметру в адресе: первая версия читала
+     только ?debug=nav из текущего адреса — и панель исчезала при первом же тапе, потому что
+     переход уводил на адрес без параметра (пользователь сразу это и поймал). А самое ценное
+     как раз и происходит В МОМЕНТ перехода. Поэтому: режим один раз включается и живёт до
+     выключения, а записи складываются в sessionStorage и переживают переходы — на новой
+     странице видно и то, что было до неё. */
+  const DEBUG_KEY = 'zilma-debug-nav';
+  const DEBUG_LOG = 'zilma-debug-nav-log';
+  const debugParam = new URLSearchParams(location.search).get('debug');
+  try {
+    if (debugParam === 'nav') sessionStorage.setItem(DEBUG_KEY, '1');
+    if (debugParam === 'off') {
+      sessionStorage.removeItem(DEBUG_KEY);
+      sessionStorage.removeItem(DEBUG_LOG);
+    }
+  } catch {}
+
+  let debugOn = false;
+  try { debugOn = sessionStorage.getItem(DEBUG_KEY) === '1'; } catch {}
+
+  if (debugOn) {
+    const readLog = (): string[] => {
+      try { return JSON.parse(sessionStorage.getItem(DEBUG_LOG) ?? '[]'); } catch { return []; }
+    };
+    // Держим последние 60 строк: больше на экране телефона всё равно не разобрать,
+    // а объём sessionStorage не бесконечен.
+    const writeLog = (lines: string[]) => {
+      try { sessionStorage.setItem(DEBUG_LOG, JSON.stringify(lines.slice(-60))); } catch {}
     };
 
-    say(`страница ${location.pathname}`);
-    say(`окно каталога: ${document.getElementById('checklist-current-dialog') ? 'есть' : 'НЕТ'}`);
-    say(`окно акций: ${document.getElementById('checklist-promo-dialog') ? 'есть' : 'НЕТ'}`);
-    say(`товаров в корзине: ${((window as any).zilmaCart?.get() ?? []).length}`);
-    document.addEventListener('DOMContentLoaded', () => say('документ дочитан полностью'));
-    window.addEventListener('load', () => say('всё загружено (картинки тоже)'));
+    const box = document.createElement('div');
+    box.setAttribute('style',
+      'position:fixed;left:8px;right:8px;top:8px;z-index:9999;max-height:45vh;overflow:auto;' +
+      'background:rgba(20,14,12,.93);color:#fff;font:11px/1.45 monospace;padding:26px 8px 8px;' +
+      'border-radius:6px;white-space:pre-wrap;');
 
-    // Тапы по плашке — что нажали и чем это кончилось.
+    const bar = document.createElement('div');
+    bar.setAttribute('style', 'position:absolute;top:4px;right:6px;display:flex;gap:6px');
+    const mkBtn = (text: string, onClick: () => void) => {
+      const b = document.createElement('button');
+      b.textContent = text;
+      b.setAttribute('style',
+        'background:#3c3330;border:0;color:#fff;font:10px monospace;padding:3px 7px;border-radius:4px');
+      b.addEventListener('click', onClick);
+      bar.appendChild(b);
+    };
+    mkBtn('очистить', () => { writeLog([]); lines.textContent = ''; });
+    mkBtn('выкл', () => {
+      try { sessionStorage.removeItem(DEBUG_KEY); sessionStorage.removeItem(DEBUG_LOG); } catch {}
+      box.remove();
+    });
+    box.appendChild(bar);
+
+    const lines = document.createElement('div');
+    box.appendChild(lines);
+    document.body.appendChild(box);
+
+    const render = (all: string[]) => {
+      lines.textContent = all.join('\n');
+      box.scrollTop = box.scrollHeight;
+    };
+    const say = (msg: string) => {
+      const all = readLog();
+      all.push(`${new Date().toLocaleTimeString('ru-RU')}  ${msg}`);
+      writeLog(all);
+      render(all.slice(-60));
+    };
+
+    render(readLog());
+    say(`--- открыта ${location.pathname}${location.hash} ---`);
+    say(`окно каталога: ${document.getElementById('checklist-current-dialog') ? 'есть' : 'НЕТ'}` +
+        ` | окно акций: ${document.getElementById('checklist-promo-dialog') ? 'есть' : 'НЕТ'}`);
+    say(`товаров в корзине: ${((window as any).zilmaCart?.get() ?? []).length}` +
+        ` | плашка в разметке: ${document.querySelector('.mobile-nav') ? 'есть' : 'НЕТ'}`);
+    document.addEventListener('DOMContentLoaded', () => say('документ дочитан'));
+    window.addEventListener('load', () => say(`всё загружено, прокрутка ${Math.round(window.scrollY)}`));
+
     document.querySelectorAll<HTMLAnchorElement>('.mobile-nav a').forEach((link) => {
       const label = link.querySelector('.mobile-nav-label')?.textContent ?? '?';
       link.addEventListener('click', () => {
         const targetId = LOCAL_TARGET[link.getAttribute('href') ?? ''];
         const local = targetId && document.getElementById(targetId);
-        say(`тап «${label}» -> ${link.getAttribute('href')}` +
+        say(`ТАП «${label}» -> ${link.getAttribute('href')}` +
             (targetId ? (local ? ' | окно тут, открываю на месте' : ' | окна тут нет, перехожу') : ''));
       }, true);
     });
 
-    // Куда встала страница после перехода по якорю — главный вопрос про «Инфо».
     window.addEventListener('hashchange', () => say(`якорь -> ${location.hash || '(снят)'}`));
     let last = -1;
     setInterval(() => {
       const y = Math.round(window.scrollY);
-      if (Math.abs(y - last) > 40) { say(`прокрутка ${y}`); last = y; }
-    }, 400);
+      if (Math.abs(y - last) > 60) { say(`прокрутка ${y}`); last = y; }
+    }, 500);
   }
 </script>
