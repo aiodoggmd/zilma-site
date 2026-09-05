@@ -41,7 +41,13 @@ const { framed = false } = Astro.props;
           <span class="cart-label">Выбранные товары</span>
           <ul class="cart-list" id="cart-list"></ul>
           <div class="cart-total" id="cart-total"></div>
-          <p class="cart-warning" id="cart-warning" hidden></p>
+          {/* Шкала до минимального заказа. Раньше про минимум в 5 000 ₽ человек узнавал
+              только в конце — кнопка просто не нажималась. Теперь видно с первого товара,
+              сколько осталось: это и честнее, и заметно понятнее, чем запрет постфактум. */}
+          <div class="min-progress" id="min-progress" hidden>
+            <div class="min-bar"><span class="min-fill" id="min-fill"></span></div>
+            <p class="min-text" id="min-text"></p>
+          </div>
         </div>
 
         <label class="file-drop" id="file-drop" for="attachment-input">
@@ -378,6 +384,53 @@ const { framed = false } = Astro.props;
     }
   }
 
+  /* Шкала до минимального заказа. Красная, пока не набрано, зелёная — когда набрано:
+     это единственное место на сайте, где нужен «сигнальный» цвет статуса, а не фирменный
+     акцент, поэтому зелёный тут уместен и палитру не размывает. */
+  .min-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .min-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-panel-line);
+    overflow: hidden;
+  }
+
+  .min-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 3px;
+    background: var(--color-red);
+    transition: width 0.35s ease, background-color 0.35s ease;
+  }
+
+  .min-progress[data-done='1'] .min-fill {
+    background: #3d7a4f;
+  }
+
+  .min-text {
+    margin: 0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-red);
+  }
+
+  .min-progress[data-done='1'] .min-text {
+    color: #3d7a4f;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .min-fill {
+      transition: none;
+    }
+  }
+
   .cart-total {
     font-size: 0.9rem;
     font-weight: 600;
@@ -508,12 +561,21 @@ const { framed = false } = Astro.props;
   // совпадать с текстом в .order-note ниже по файлу — если меняете число, меняйте оба места.
   const MIN_ORDER_TOTAL = 5000;
 
+  // Сумма без копеечного хвоста и с пробелом между тысячами: «осталось 1 470 ₽» читается
+  // с одного взгляда, а «1470.00 ₽» приходится разбирать. Округляем ВВЕРХ — иначе при
+  // остатке 0,4 ₽ показали бы «осталось 0 ₽», а кнопка всё ещё была бы заблокирована.
+  function formatMoney(value: number): string {
+    return Math.ceil(value).toLocaleString('ru-RU');
+  }
+
   const form = document.getElementById('order-form-el') as HTMLFormElement | null;
   const statusEl = form?.querySelector('.status') as HTMLElement | null;
   const button = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
   const nameInput = form?.querySelector<HTMLInputElement>('input[name="name"]');
   const contactInput = form?.querySelector<HTMLInputElement>('input[name="contact"]');
-  const cartWarningEl = document.getElementById('cart-warning') as HTMLElement | null;
+  const minProgressEl = document.getElementById('min-progress') as HTMLElement | null;
+  const minFillEl = document.getElementById('min-fill') as HTMLElement | null;
+  const minTextEl = document.getElementById('min-text') as HTMLElement | null;
   const contactWarningEl = document.getElementById('contact-warning') as HTMLElement | null;
 
   // Реальный случай (2026-09-02): в поле «Телефон» пришло «Трубина» (фамилия) — заявку
@@ -544,16 +606,16 @@ const { framed = false } = Astro.props;
       contactWarningEl.hidden = !contactValue || contactValid;
     }
 
-    if (cartWarningEl) {
-      if (meetsMin) {
-        cartWarningEl.hidden = true;
-      } else {
-        cartWarningEl.hidden = false;
-        cartWarningEl.textContent =
-          total > 0
-            ? `Минимальный заказ — 5 000 ₽. Добавьте товаров ещё на ${(MIN_ORDER_TOTAL - total).toFixed(2)} ₽.`
-            : 'Минимальный заказ — 5 000 ₽. Добавьте товары в заявку через Каталог или Акции.';
-      }
+    // Шкала показывается, как только в заявке появился хотя бы один товар: до этого
+    // говорить «осталось 5 000 ₽» бессмысленно, там ещё нечего измерять.
+    if (minProgressEl && minFillEl && minTextEl) {
+      minProgressEl.hidden = total <= 0;
+      const pct = Math.max(0, Math.min(100, (total / MIN_ORDER_TOTAL) * 100));
+      minFillEl.style.width = `${pct}%`;
+      minProgressEl.dataset.done = meetsMin ? '1' : '0';
+      minTextEl.textContent = meetsMin
+        ? 'Минимальный заказ набран — можно отправлять'
+        : `До минимального заказа осталось ${formatMoney(MIN_ORDER_TOTAL - total)} ₽`;
     }
   }
 
