@@ -60,7 +60,9 @@ const PALETTE_TITLE_SECONDARY: Record<string, string> = {
 
 // Статьи, где интерактивная палитра построена из реальных фото свотчей (не сэмплированного
 // цвета со статичной картинки) — отдельная статичная карта оттенков признана избыточной,
-// подсказка «более точный цвет — в палитре выше» тут не нужна (Londa, 2026-08-30).
+// подсказка «более точный цвет — в палитре ниже» тут не нужна (Londa, 2026-08-30).
+// Сейчас в этом наборе ВСЕ 7 статей с палитрой, то есть подсказка не показывается нигде —
+// она осталась для будущей линейки, где цвет будет снят со статичной карты, а не с фото.
 const PALETTE_NO_STATIC_IMAGE = new Set([
   '2026-08-29-londa-professional',
   '2026-08-13-illumina-color',
@@ -219,11 +221,13 @@ const articleLd = {
       <h1>{article.data.title}</h1>
       <p class="meta">Обновлено: {formattedDate}</p>
       <script type="application/json" id="price-lookup-data" set:html={JSON.stringify(priceLookup)} />
-      <div class="prose">
-        <Content />
-      </div>
+      {/* Палитры подняты НАД текстом статьи 2026-09-05 по решению пользователя. Причина:
+          большинство мастеров статью не читают — им нужен нужный оттенок и скорость заказа,
+          а раньше до палитры приходилось листать весь гид. Сюда же теперь попадает и переход
+          из каталога по плашке «Гид: …»: человек приходит ровно к месту выбора оттенка.
+          Текст гида остаётся ниже — для тех, кому нужна технология. Не возвращать вниз. */}
       {PALETTE_SHADES[article.id] && (
-        <div class="prose">
+        <div class="prose palette-first">
           <h2 id="permanent-line">{PALETTE_TITLE[article.id] ?? 'Интерактивная палитра — с ценами по прайсу'}</h2>
           <ShadeSwatchGrid
             shades={PALETTE_SHADES[article.id]}
@@ -236,7 +240,7 @@ const articleLd = {
         </div>
       )}
       {PALETTE_SHADES_SECONDARY[article.id] && (
-        <div class="prose">
+        <div class="prose palette-first">
           <h2 id="demi-line">{PALETTE_TITLE_SECONDARY[article.id]}</h2>
           <ShadeSwatchGrid
             shades={PALETTE_SHADES_SECONDARY[article.id]}
@@ -248,6 +252,9 @@ const articleLd = {
           />
         </div>
       )}
+      <div class="prose">
+        <Content />
+      </div>
       {/* Обратный переход: из гида — в прайс. Раньше из статьи можно было добавить
           только те товары, что в ней упомянуты; чтобы посмотреть ВЕСЬ бренд, нужно было
           возвращаться на главную и искать его руками. Хэш открывает каталог сразу на
@@ -614,6 +621,13 @@ const articleLd = {
     margin-top: 36px;
     color: var(--color-ink);
     font-size: 1.35rem;
+  }
+
+  /* Палитра теперь первый блок статьи, сразу под датой обновления. Отступ в 36px нужен,
+     чтобы разделять секции ВНУТРИ текста, а здесь он только отодвигал главное вниз —
+     на мобильном это лишний экран прокрутки до первого оттенка. */
+  .palette-first > :global(h2:first-child) {
+    margin-top: 8px;
   }
 
   .prose :global(p) {

@@ -10,7 +10,6 @@ import FilterTabs from '../components/FilterTabs.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import OrderForm from '../components/OrderForm.astro';
 import PriceChecklist from '../components/PriceChecklist.astro';
-import ShadeShowcase from '../components/ShadeShowcase.astro';
 import { currentPrice } from '../data/prices';
 import priceItems from '../data/priceItems.json';
 
@@ -64,7 +63,10 @@ const organizationLd = {
     <PriceChecklist items={priceItems} instanceId="checklist-current" heading="ZILMA" />
     <PriceChecklist items={promoItems} instanceId="checklist-promo" heading="Акции" groupBy="discount" />
 
-    <ShadeShowcase />
+    {/* Витрина оттенков убрана 2026-09-05 по решению пользователя: стена из цветов без
+        привязки к бренду и линейке полезна «зевакам, которым нужен цвет», а мастер выбирает
+        оттенок ВНУТРИ своей линейки — ему нужен и цвет, и бренд сразу. Вместо неё палитры
+        подняты наверх самих статей, ближе к заказу. Не возвращать без явной просьбы. */}
 
     <h2 class="section-title" id="info">Инфо</h2>
     <FilterTabs brands={brands} />
