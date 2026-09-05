@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import productPhotos from '../data/product-photos.json';
 import guideLinks from '../data/guide-links.json';
+import MinOrderLine from './MinOrderLine.astro';
 
 interface Item {
   id: number;
@@ -473,6 +474,9 @@ const bestDeals = groupBy === 'discount'
       <span class="pc-cart-badge" data-cart-badge hidden>0</span>
     </a>
   </div>
+  {/* Полоса «сколько осталось до минимального заказа» — прямо под шапкой, там же, где
+      идёт выбор товара. Пока корзина пуста, её нет вовсе (см. MinOrderLine.astro). */}
+  <MinOrderLine />
   {categoryCounts.length > 0 && (
     <div class="pc-mode-tabs">
       <button type="button" class="pc-mode-tab" data-mode-tab="brand">По бренду</button>

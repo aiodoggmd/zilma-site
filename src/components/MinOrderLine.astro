@@ -1,0 +1,98 @@
+---
+// Тонкая полоса прогресса до минимального заказа (2026-09-05, идея пользователя).
+//
+// Развитие шкалы из формы заявки: пока человек ВЫБИРАЕТ товар, ему полезно видеть,
+// сколько осталось до 5 000 ₽ — а форма заявки в этот момент далеко. Поэтому та же
+// величина показывается одной линией там, где идёт выбор: в шапке каталога, в «Акциях»
+// и на страницах статей. Без текста и цифр — только линия: в шапке нет места, а смысл
+// («ещё не набрал» / «набрал») читается по длине и цвету.
+//
+// Цвета строго из палитры: красный, пока не набрано, синий — когда набрано. Зелёного
+// в палитре сайта нет, и вводить его сюда нельзя (правка пользователя).
+interface Props {
+  /** fixed — прилипает к верхнему краю экрана (страницы статей, где нет своей шапки). */
+  variant?: 'inline' | 'fixed';
+}
+const { variant = 'inline' } = Astro.props;
+---
+<div
+  class:list={['min-order-line', `mol-${variant}`]}
+  data-min-order-line
+  data-done="0"
+  hidden
+  aria-hidden="true"
+>
+  <span class="mol-fill"></span>
+</div>
+
+<style>
+  .min-order-line {
+    height: 3px;
+    width: 100%;
+    background: var(--color-panel-line);
+    overflow: hidden;
+  }
+
+  /* Скрываем явным правилом: у элемента задан свой display, а атрибут hidden работает
+     только через display:none из браузерных стилей и своим display перебивается —
+     ровно на этом уже обжигались с плашками гидов. */
+  .min-order-line[hidden] {
+    display: none;
+  }
+
+  .mol-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* Ниже лайтбокса фото (200): при открытом на весь экран снимке оттенка полоса не должна
+       резать кадр сверху. Явным числом, а не порядком в DOM — на порядок здесь уже полагались
+       и один раз потеряли обводку «нет в прайсе». Выше остального: у контента статьи максимум 3. */
+    z-index: 190;
+    /* Слой чисто декоративный — не должен перехватывать касания в верхних 3 пикселях экрана. */
+    pointer-events: none;
+  }
+
+  .mol-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--color-red);
+    transition: width 0.35s ease, background-color 0.35s ease;
+  }
+
+  .min-order-line[data-done='1'] .mol-fill {
+    background: var(--color-blue-dark);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mol-fill {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  import { MIN_ORDER_TOTAL, minOrderProgress } from '../lib/order-rules';
+
+  // Один обработчик на все полосы на странице. Astro дедуплицирует одинаковый inline-script
+  // по содержимому — здесь это безвредно и даже правильно: скрипт находит ВСЕ элементы
+  // [data-min-order-line] сразу, сколько бы их ни было (шапка каталога, шапка «Акций»,
+  // фиксированная полоса статьи).
+  function updateMinOrderLines() {
+    const cart: { price: number; qty: number }[] = (window as any).zilmaCart?.get() ?? [];
+    const total = cart.reduce((s, it) => s + it.price * it.qty, 0);
+    const pct = minOrderProgress(total) * 100;
+    document.querySelectorAll<HTMLElement>('[data-min-order-line]').forEach((line) => {
+      // Пустая корзина — полосы нет вовсе: показывать «0 из 5 000» до первого товара
+      // значит рисовать пустую красную рамку на каждом экране без всякой пользы.
+      line.hidden = total <= 0;
+      line.dataset.done = total >= MIN_ORDER_TOTAL ? '1' : '0';
+      const fill = line.querySelector<HTMLElement>('.mol-fill');
+      if (fill) fill.style.width = `${pct}%`;
+    });
+  }
+
+  updateMinOrderLines();
+  document.addEventListener('zilma:cart-updated', updateMinOrderLines);
+</script>

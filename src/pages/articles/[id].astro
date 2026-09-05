@@ -6,6 +6,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { categoryColor } from '../../lib/category-color';
 import ShadeSwatchGrid from '../../components/ShadeSwatchGrid.astro';
+import MinOrderLine from '../../components/MinOrderLine.astro';
 import { resolveLiveShades } from '../../lib/resolve-live-price';
 import illuminaShadesRaw from '../../data/illumina-shades.json';
 import shinefinityShadesRaw from '../../data/shinefinity-shades.json';
@@ -194,6 +195,9 @@ const articleLd = {
   verifiedDate={article.data.verifiedDate}
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleLd)} />
+  {/* Статья — тоже место выбора товара (палитра оттенков, таблицы наборов), но своей шапки
+      у неё нет: полоса прогресса прилипает к верхнему краю экрана и видна при любой прокрутке. */}
+  <MinOrderLine variant="fixed" />
   <div class="cover-wrap">
     <div class={`cover cover-${accent}`}>
       <div class="cover-overlay"></div>
