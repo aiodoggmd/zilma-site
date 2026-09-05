@@ -194,7 +194,14 @@ const links: Record<string, string> = {
   .price-card {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /* Высота — по содержимому, не 100% (решение пользователя 2026-09-05).
+       С `height: 100%` карточка заполняла всю строку сетки и `align-items: start`
+       на .price-grid не работал: строку задаёт более высокая форма заявки, и карточка
+       добирала разницу пустотой между текстом и кнопками (см. `.text-panel .row`
+       с `align-self: end`). Пустота росла вместе с корзиной — композиция зависела от
+       того, сколько товаров набрал клиент.
+       На /order/ карточка стоит вне сетки, у родителя высота auto — там это правило
+       и так ничего не давало, поэтому снятие безопасно. */
     background: var(--color-paper);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
