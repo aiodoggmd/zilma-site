@@ -200,7 +200,7 @@
   // главной оставляем якорь, а с любой другой страницы (статьи и т.п.) ведём на лёгкую
   // страницу /order/ — без херо, без лишней перезагрузки-в-никуда.
   const cartLink = document.querySelector<HTMLAnchorElement>('[data-cart-link]');
-  if (location.pathname === '/') {
+  if (location.pathname === '/' && cartLink) {
     cartLink.href = '/#order';
   } else if (cartLink) {
     // Якорь #order убран: форма заявки теперь ПЕРВЫЙ блок на /order/ (переставлена
@@ -236,4 +236,60 @@
       trigger.click();
     });
   });
+
+  /* ДИАГНОСТИКА ТАПОВ (по просьбе пользователя 2026-09-05). Проблемы с плашкой ловились
+     только на реальном телефоне, а туда не заглянешь консолью — поэтому отладка живёт
+     прямо на странице.
+     Включить: добавить ?debug=nav к адресу (напр. 10.8.1.3:4321/order/?debug=nav).
+     Выключить: убрать параметр или нажать «×» на самой панельке.
+     Показывает: по какому пункту попал тап, есть ли на странице нужное окно, что скрипт
+     решил сделать, и дочитан ли документ до плашки — то есть ровно те вопросы, на которые
+     пришлось отвечать догадками. */
+  if (new URLSearchParams(location.search).get('debug') === 'nav') {
+    const log = document.createElement('div');
+    log.setAttribute('style',
+      'position:fixed;left:8px;right:8px;top:8px;z-index:9999;max-height:45vh;overflow:auto;' +
+      'background:rgba(20,14,12,.92);color:#fff;font:11px/1.45 monospace;padding:8px 26px 8px 8px;' +
+      'border-radius:6px;white-space:pre-wrap;');
+    const close = document.createElement('button');
+    close.textContent = '×';
+    close.setAttribute('style',
+      'position:absolute;top:2px;right:6px;background:none;border:0;color:#fff;font-size:18px;line-height:1');
+    close.addEventListener('click', () => log.remove());
+    log.appendChild(close);
+    document.body.appendChild(log);
+
+    const say = (msg: string) => {
+      const line = document.createElement('div');
+      line.textContent = `${new Date().toLocaleTimeString('ru-RU')}  ${msg}`;
+      log.appendChild(line);
+      log.scrollTop = log.scrollHeight;
+    };
+
+    say(`страница ${location.pathname}`);
+    say(`окно каталога: ${document.getElementById('checklist-current-dialog') ? 'есть' : 'НЕТ'}`);
+    say(`окно акций: ${document.getElementById('checklist-promo-dialog') ? 'есть' : 'НЕТ'}`);
+    say(`товаров в корзине: ${((window as any).zilmaCart?.get() ?? []).length}`);
+    document.addEventListener('DOMContentLoaded', () => say('документ дочитан полностью'));
+    window.addEventListener('load', () => say('всё загружено (картинки тоже)'));
+
+    // Тапы по плашке — что нажали и чем это кончилось.
+    document.querySelectorAll<HTMLAnchorElement>('.mobile-nav a').forEach((link) => {
+      const label = link.querySelector('.mobile-nav-label')?.textContent ?? '?';
+      link.addEventListener('click', () => {
+        const targetId = LOCAL_TARGET[link.getAttribute('href') ?? ''];
+        const local = targetId && document.getElementById(targetId);
+        say(`тап «${label}» -> ${link.getAttribute('href')}` +
+            (targetId ? (local ? ' | окно тут, открываю на месте' : ' | окна тут нет, перехожу') : ''));
+      }, true);
+    });
+
+    // Куда встала страница после перехода по якорю — главный вопрос про «Инфо».
+    window.addEventListener('hashchange', () => say(`якорь -> ${location.hash || '(снят)'}`));
+    let last = -1;
+    setInterval(() => {
+      const y = Math.round(window.scrollY);
+      if (Math.abs(y - last) > 40) { say(`прокрутка ${y}`); last = y; }
+    }, 400);
+  }
 </script>

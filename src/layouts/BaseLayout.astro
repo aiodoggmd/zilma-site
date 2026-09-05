@@ -84,9 +84,15 @@ const ogImageURL = new URL(image, Astro.site);
     <CartStore />
     <Analytics />
     <SpeedInsights />
+    {/* Плашка навигации стоит ПЕРЕД содержимым страницы, хотя визуально она внизу
+        (position: fixed — порядок в разметке на её место не влияет). Причина: страницы
+        с каталогом весят больше мегабайта, и на реальном телефоне пользователь застал
+        момент, когда форма уже видна, а плашки ещё нет — браузер просто не дочитал
+        документ до неё (2026-09-05). Стоя первой, она появляется сразу.
+        Не переносить обратно вниз «для порядка». */}
+    <MobileNavBar />
     <slot />
     <InstallPrompt />
-    <MobileNavBar />
     <script>
       function initReveal() {
         const selector = '.price-card, .section-title, .card, .prose > *';

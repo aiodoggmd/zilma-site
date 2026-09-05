@@ -2328,12 +2328,28 @@ const bestDeals = groupBy === 'discount'
     document.dispatchEvent(new CustomEvent('zilma:nav-show'));
   }
 
+  // Куда уходить, если нужного окна на ЭТОЙ странице нет. Реальный случай: на /order/
+  // PriceBlock рисует кнопку «Акции — выбрать и заказать», а окна акций там нет —
+  // нажатие не делало ровно ничего (найдено 2026-09-05). Держать ради этой кнопки
+  // второй список на 300 позиций оказалось дороже, чем переход: страница вырастала
+  // вдвое и на телефоне не успевала дочитаться. Поэтому — переход на главную.
+  const DIALOG_FALLBACK: Record<string, string> = {
+    'checklist-current-dialog': '/#open-catalog',
+    'checklist-promo-dialog': '/#open-promo',
+  };
+
   document.addEventListener('click', (e) => {
     const trigger = (e.target as HTMLElement).closest('[data-open-modal]') as HTMLElement | null;
     if (!trigger) return;
     const id = trigger.getAttribute('data-open-modal');
-    const dialog = id && document.getElementById(id);
-    if (dialog instanceof HTMLDialogElement) openDialog(dialog);
+    if (!id) return;
+    const dialog = document.getElementById(id);
+    if (dialog instanceof HTMLDialogElement) {
+      openDialog(dialog);
+      return;
+    }
+    const fallback = DIALOG_FALLBACK[id];
+    if (fallback) location.href = fallback;
   });
 
   // Автооткрытие по хэшу-команде из плашки быстрой навигации (MobileNavBar.astro), которая всегда
