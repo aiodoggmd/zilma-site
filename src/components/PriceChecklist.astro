@@ -347,9 +347,21 @@ const CATEGORY_ORDER = [
 function categorize(it: Item): string | null {
   return it.category ?? null;
 }
-const categoryCounts = groupBy === 'brand'
+const categoryCountsRaw = groupBy === 'brand'
   ? CATEGORY_ORDER.map((cat) => ({ cat, total: items.filter((it) => categorize(it) === cat).length })).filter((c) => c.total > 0)
   : [];
+
+// Визуальный вес по размеру категории (2026-09-05). До этого все 17 карточек были
+// одинаковыми, хотя «Аммиачные красители» — 552 товара, а «Термозащита» — 4. Взгляд
+// не понимал, где ядро ассортимента, а где хвост.
+//
+// Порог считаем от САМОЙ БОЛЬШОЙ категории, а не фиксированным числом: прайс меняется,
+// и жёсткое «больше 100 — крупная» рано или поздно разъедется с реальностью.
+const maxCategoryTotal = Math.max(1, ...categoryCountsRaw.map((c) => c.total));
+const categoryCounts = categoryCountsRaw.map((c) => ({
+  ...c,
+  size: c.total >= maxCategoryTotal * 0.3 ? 'lg' : c.total >= maxCategoryTotal * 0.05 ? 'md' : 'sm',
+}));
 
 // Группировка по ступени скидки -> бренд -> товары — только для окна «Акции».
 // Ступени сортируются по РАЗМЕРУ скидки (большая первой), а не по фиксированному списку:
@@ -482,8 +494,8 @@ const bestDeals = groupBy === 'discount'
     {categoryCounts.length > 0 && (
       <div class="pc-category-screen" data-category-screen>
         <div class="pc-popular-grid">
-          {categoryCounts.map(({ cat, total }) => (
-            <button type="button" class="pc-popular-card" data-filter-category={cat}>
+          {categoryCounts.map(({ cat, total, size }) => (
+            <button type="button" class:list={['pc-popular-card', `pc-cat-${size}`]} data-filter-category={cat}>
               <span class="pc-popular-name">{cat}</span>
               <span class="pc-popular-count">{total} {pluralItems(total)}</span>
             </button>
@@ -1546,14 +1558,32 @@ const bestDeals = groupBy === 'discount'
     margin-bottom: 20px;
   }
 
-  .pc-popular-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  /* Крупные категории занимают всю ширину сетки, средние — обычную ячейку, мелкие
+     остаются мелкими. Так по одному взгляду видно, где реальный выбор, а где две-три
+     позиции. Класс приходит из frontmatter и считается от самой большой категории,
+     а не от жёсткого числа (см. maxCategoryTotal). */
+  .pc-popular-card.pc-cat-lg {
+    grid-column: 1 / -1;
   }
 
-  .pc-popular-cell .pc-popular-card {
-    flex: 1;
+  .pc-cat-lg .pc-popular-name {
+    font-size: 1.22rem;
+  }
+
+  .pc-cat-lg {
+    min-height: 96px;
+  }
+
+  .pc-cat-sm {
+    min-height: 68px;
+  }
+
+  .pc-cat-sm .pc-popular-name {
+    font-size: 0.95rem;
+  }
+
+  .pc-cat-sm .pc-popular-count {
+    font-size: 0.76rem;
   }
 
   .pc-popular-card {
