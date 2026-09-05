@@ -2317,25 +2317,59 @@ const bestDeals = groupBy === 'discount'
     // ВЕСЬ бренд, а не только те товары, что упомянуты в статье (2026-09-05).
     const eq = hash.indexOf('=');
     const command = eq === -1 ? hash : hash.slice(0, eq);
-    const wantedBrand = eq === -1 ? '' : decodeURIComponent(hash.slice(eq + 1));
+    const payload = eq === -1 ? '' : hash.slice(eq + 1);
+    // «WELLA|Illumina - Красители&cat=Аммиачные красители»: где был человек и был ли
+    // при этом включён фильтр по категории.
+    const [wherePart, ...restParts] = payload.split('&');
+    const wantedBrand = decodeURIComponent(wherePart);
+    const catParam = restParts.find((p) => p.startsWith('cat='));
+    const wantedCategory = catParam ? decodeURIComponent(catParam.slice(4)) : '';
     const targetId = HASH_TO_DIALOG[command];
     if (targetId) {
       const dialog = document.getElementById(targetId);
       if (dialog instanceof HTMLDialogElement) {
         openDialog(dialog);
-        if (wantedBrand) {
-          const group = dialog.querySelector<HTMLDetailsElement>(
-            `.pc-group-brand[data-brand="${CSS.escape(wantedBrand)}"]`
-          );
-          if (group) {
-            group.open = true;
-            // Прокрутку даём следующим кадром: раскрытие <details> меняет высоту списка,
-            // и scrollIntoView, вызванный сразу, попадает по старым координатам.
-            requestAnimationFrame(() => {
-              group.querySelector('summary')?.scrollIntoView({ block: 'start' });
-            });
+        // Откладываем на следующий тик. openFromHash() вызывается РАНЬШЕ, чем ниже по
+        // скрипту навешиваются обработчики на карточки категорий, — а восстановление
+        // категории делается именно кликом по такой карточке (чтобы не дублировать её
+        // логику). Без задержки клик уходил в пустоту, и «назад» из статьи возвращал
+        // в общий список брендов вместо категории. Найдено проверкой 2026-09-05.
+        setTimeout(() => {
+          if (wantedBrand) {
+            // «БРЕНД» или «БРЕНД|Линейка» — вторая часть нужна для возврата «назад» из статьи:
+            // человек был внутри конкретной линейки, туда и возвращаем, а не просто в бренд.
+            // Категорию восстанавливаем ЧЕРЕЗ КЛИК по её карточке, а не выставляя
+            // data-атрибуты руками: у выбора категории есть побочные действия (пересчёт
+            // счётчиков папок, скрытие несовпавших товаров, фильтр плашек гидов), и
+            // повторять их здесь значило бы держать две копии одной логики.
+            if (wantedCategory) {
+              const catBtn = dialog.querySelector<HTMLButtonElement>(
+                `[data-filter-category="${CSS.escape(wantedCategory)}"]`
+              );
+              catBtn?.click();
+            }
+            const [brandPart, linePart] = wantedBrand.split('|');
+            const group = dialog.querySelector<HTMLDetailsElement>(
+              `.pc-group-brand[data-brand="${CSS.escape(brandPart)}"]`
+            );
+            if (group) {
+              group.open = true;
+              let target: HTMLElement | null = group.querySelector('summary');
+              if (linePart) {
+                const line = [...group.querySelectorAll<HTMLDetailsElement>('.pc-group-line')].find(
+                  (l) => l.querySelector('.pc-row-name')?.firstChild?.textContent?.trim() === linePart
+                );
+                if (line) {
+                  line.open = true;
+                  target = line.querySelector('summary');
+                }
+              }
+              // Прокрутку даём следующим кадром: раскрытие <details> меняет высоту списка,
+              // и scrollIntoView, вызванный сразу, попадает по старым координатам.
+              requestAnimationFrame(() => target?.scrollIntoView({ block: 'start' }));
+            }
           }
-        }
+        }, 0);
       }
       history.replaceState(null, '', location.pathname + location.search);
       return;
@@ -2851,6 +2885,22 @@ const bestDeals = groupBy === 'discount'
       link.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        // Перед уходом в статью записываем в текущую запись истории, ГДЕ мы были.
+        // Без этого «назад» из статьи возвращал на пустую главную (в самый верх, к херо):
+        // каталог открывался кнопкой, никакого следа в адресе не оставалось, и браузеру
+        // некуда было возвращаться. Реальная жалоба пользователя 2026-09-05.
+        const brandGroup = link.closest<HTMLDetailsElement>('.pc-group-brand[data-brand]');
+        const brand = brandGroup?.dataset.brand ?? '';
+        const lineGroup = link.closest<HTMLDetailsElement>('.pc-group-line');
+        const lineName = lineGroup?.querySelector('.pc-row-name')?.firstChild?.textContent?.trim() ?? '';
+        if (brand) {
+          const where = lineName ? `${brand}|${lineName}` : brand;
+          // Если человек был внутри категории — её тоже надо запомнить, иначе «назад»
+          // вернёт в общий список брендов, а не туда, откуда он ушёл.
+          const cat = root.dataset.categoryMode === '1' ? root.dataset.categoryFilter ?? '' : '';
+          const suffix = cat ? `&cat=${encodeURIComponent(cat)}` : '';
+          history.replaceState(null, '', `${location.pathname}#open-catalog=${encodeURIComponent(where)}${suffix}`);
+        }
         window.location.href = link.href;
       });
     });
