@@ -578,31 +578,33 @@ const articleLd = {
     margin: 0 0 12px;
   }
 
+  /* Список идёт колонкой, а не плашками в ряд: без заливки и рамки соседние ссылки
+     в одну строку слипались бы в сплошной подчёркнутый текст. */
   .related-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 4px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
+  /* Синяя подчёркнутая ссылка на белом — как все остальные ссылки в статье
+     (правка пользователя 2026-09-05: «чтоб ссылки в статьях были едины»).
+     Была пастельная плашка с рамкой и тёмным текстом. Отступы оставлены только
+     ради зоны нажатия пальцем, фона и рамки нет. */
   .related-list a {
     display: inline-block;
-    background: var(--surface-flat);
-    border: 1px solid var(--color-panel-line);
-    border-radius: 4px;
-    padding: 8px 16px;
+    padding: 6px 4px;
     font-size: 0.86rem;
-    color: var(--color-ink);
-    text-decoration: none;
-    transition: background 0.15s ease, border-color 0.15s ease;
+    color: var(--color-blue-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.15s ease;
   }
 
   .related-list a:hover {
-    background: var(--color-blue-dark);
-    border-color: var(--color-blue-dark);
-    color: #fff;
+    color: var(--color-blue);
   }
 
 
@@ -1594,13 +1596,18 @@ const articleLd = {
     line-height: 1.7;
   }
 
+  /* Подчёркивание как у всех остальных ссылок статьи — раньше эти были синими, но без
+     него, и оглавление читалось иначе, чем ссылки в тексте (правка пользователя
+     2026-09-05: ссылки в статьях должны выглядеть одинаково). Сама карточка оглавления
+     остаётся — это блок контента с заголовком, а не рамка вокруг ссылки. */
   .prose :global(.toc-box a) {
     color: var(--color-blue-dark);
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .prose :global(.toc-box a:hover) {
-    text-decoration: underline;
+    color: var(--color-blue);
   }
 
   /* вопрос-ответ (FAQ) */
