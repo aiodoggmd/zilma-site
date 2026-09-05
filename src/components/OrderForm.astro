@@ -97,6 +97,30 @@ const { framed = false } = Astro.props;
           </div>
         </div>
 
+        {/* Строки корзины рисует модульный скрипт, а он выполняется только ПОСЛЕ разбора
+            страницы. Из-за этого при переходе с плашки «Заявка» человек успевал увидеть
+            пустую форму, а потом товары «падали» в неё и всё уезжало вниз (жалоба
+            пользователя 2026-09-05). Этот скрипт — is:inline, то есть выполняется сразу
+            здесь же: он не рисует строки, а лишь заранее занимает под них место, чтобы
+            появление содержимого ничего не сдвигало. Реальную высоту renderCart потом
+            выставит сам, а резерв снимет. */}
+        <script is:inline>
+          (function () {
+            try {
+              var items = (window.zilmaCart && window.zilmaCart.get()) || [];
+              if (!items.length) return;
+              var cart = document.getElementById('order-cart');
+              if (!cart) return;
+              cart.hidden = false;
+              // 56px на строку + 6px зазор, плюс подпись, итог и шкала — приблизительно,
+              // но этого хватает: важно не угадать до пикселя, а не дать блоку прыгнуть.
+              var rows = Math.min(items.length, 5);
+              cart.style.minHeight = 20 + rows * 62 + 30 + 45 + 'px';
+              cart.dataset.reserved = '1';
+            } catch (e) {}
+          })();
+        </script>
+
         <label class="file-drop" id="file-drop" for="attachment-input" title="Фото, скриншот или документ, до 4 МБ. Можно перетащить файл сюда.">
           <input type="file" name="attachment" id="attachment-input" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" />
           <svg class="file-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -913,6 +937,13 @@ const { framed = false } = Astro.props;
       const wrap = cartList.parentElement;
       if (!wrap) return;
       wrap.classList.toggle('is-scrollable', cartList.scrollHeight > cartList.clientHeight + 2);
+      // Резерв высоты из инлайн-скрипта выше больше не нужен — строки на месте,
+      // блок держит высоту сам. Оставить резерв значило бы прибить блоку минимум,
+      // из-за которого он не сожмётся при удалении товаров.
+      if (cartEl?.dataset.reserved) {
+        cartEl.style.minHeight = '';
+        delete cartEl.dataset.reserved;
+      }
     });
   }
 

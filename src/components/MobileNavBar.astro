@@ -199,26 +199,41 @@
   // уже на странице, и /#order — это мгновенный скролл без перезагрузки. Поэтому именно на
   // главной оставляем якорь, а с любой другой страницы (статьи и т.п.) ведём на лёгкую
   // страницу /order/ — без херо, без лишней перезагрузки-в-никуда.
+  const cartLink = document.querySelector<HTMLAnchorElement>('[data-cart-link]');
   if (location.pathname === '/') {
-    const cartLink = document.querySelector<HTMLAnchorElement>('[data-cart-link]');
-    if (cartLink) cartLink.href = '/#order';
+    cartLink.href = '/#order';
+  } else if (cartLink) {
+    // Якорь #order убран: форма заявки теперь ПЕРВЫЙ блок на /order/ (переставлена
+    // 2026-08-30), прыгать к ней больше некуда — страница и так открывается на ней.
+    // А прыжок был виден как «дёрнулось и поехало» сразу после загрузки.
+    cartLink.href = '/order/';
   }
 
-  // Тот же баг, вторая часть: на телефоне живой человек возвращается из корзины не через
-  // маленькую ссылку «← Назад» вверху страницы (её ещё надо заметить и до неё доскроллить),
-  // а через всегда видную нижнюю плашку — интуитивно жмёт «Инфо», ожидая вернуться туда, откуда
-  // пришёл. А «Инфо» жёстко вела на секцию «О бренде» на главной. Чиним так же, как «← Назад»
-  // в order.astro: если на страницу корзины (/order/) попали с этого же сайта — «Инфо» ведёт
-  // взаправду назад по истории (и восстанавливает прокрутку), а не на главную.
-  if (location.pathname === '/order/' && document.referrer) {
-    try {
-      if (new URL(document.referrer).origin === location.origin) {
-        const infoLink = document.querySelector<HTMLAnchorElement>('[data-info-link]');
-        infoLink?.addEventListener('click', (e) => {
-          e.preventDefault();
-          history.back();
-        });
-      }
-    } catch {}
-  }
+  // «Инфо» больше НЕ перехватывается на /order/. Раньше там она делала history.back()
+  // (задумка: человек жмёт её, чтобы вернуться откуда пришёл). На практике это читалось
+  // как поломка — пользователь 2026-09-05: «на инфо из корзины не переходит, появляется
+  // главный с херо». И правильно: пункт подписан «Инфо», значит должен вести в «Инфо»,
+  // а «вернуться назад» — это кнопка «назад» самого браузера, она и так под рукой.
+
+  // Каталог и Акции: если нужное окно есть НА ЭТОЙ странице — открываем его на месте,
+  // без перехода. Раньше обе ссылки всегда вели на главную, и со страницы заявки это
+  // выглядело так: мелькнула главная с логотипом, только потом открылось окно
+  // (жалоба пользователя 2026-09-05). Клик отдаём существующей кнопке с data-open-modal,
+  // а не открываем диалог сами: у неё уже есть вся логика открытия, дублировать её —
+  // верный способ со временем получить два разных поведения.
+  const LOCAL_TARGET: Record<string, string> = {
+    '/#open-catalog': 'checklist-current-dialog',
+    '/#open-promo': 'checklist-promo-dialog',
+  };
+  document.querySelectorAll<HTMLAnchorElement>('.mobile-nav a').forEach((link) => {
+    const targetId = LOCAL_TARGET[link.getAttribute('href') ?? ''];
+    if (!targetId) return;
+    link.addEventListener('click', (e) => {
+      if (!document.getElementById(targetId)) return;   // окна тут нет — обычный переход
+      const trigger = document.querySelector<HTMLElement>(`[data-open-modal="${targetId}"]`);
+      if (!trigger) return;
+      e.preventDefault();
+      trigger.click();
+    });
+  });
 </script>

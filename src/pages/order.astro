@@ -8,6 +8,9 @@ import PriceChecklist from '../components/PriceChecklist.astro';
 import OrderForm from '../components/OrderForm.astro';
 import { currentPrice } from '../data/prices';
 import priceItems from '../data/priceItems.json';
+
+// Акционные позиции — для второго окна (см. ниже, почему оно тут понадобилось).
+const promoItems = priceItems.filter((it) => it.promo);
 ---
 <BaseLayout
   title="Заказать по актуальному прайсу — Zilma"
@@ -30,6 +33,14 @@ import priceItems from '../data/priceItems.json';
       date={currentPrice.date}
     />
     <PriceChecklist items={priceItems} instanceId="checklist-current" heading="ZILMA" />
+    {/* Окно «Акции» тоже нужно ЗДЕСЬ, а не только на главной. Две причины, обе реальные:
+        1) Кнопка «Акции — выбрать и заказать» на этой странице была мёртвой: PriceBlock её
+           рисует всегда, а диалога checklist-promo-dialog на странице не было — нажатие
+           не делало ничего. Это одна из трёх кнопок, которые обязаны работать везде.
+        2) «Акции» в нижней плашке уводили на главную: человек видел хиро с логотипом,
+           и только потом открывался каталог. Теперь окно открывается на месте, без
+           перезагрузки страницы и без мелькания главной. */}
+    <PriceChecklist items={promoItems} instanceId="checklist-promo" heading="Акции" groupBy="discount" />
   </div>
 </BaseLayout>
 
