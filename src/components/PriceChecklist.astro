@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import productPhotos from '../data/product-photos.json';
+import guideLinks from '../data/guide-links.json';
 
 interface Item {
   id: number;
@@ -92,16 +93,43 @@ for (const [path, mod] of Object.entries(shadeModules)) {
   }
 }
 
-function guidesFor(list: Item[]): Guide[] {
+// Ручные связи поверх вычисленных — см. src/data/guide-links.json. Нужны там, где палитра
+// не помогает: у статей про осветление её нет вовсе, а сами порошки лежат внутри красочных
+// линеек («Blondor» в «KP Me+/CT», «BlondMe» в «IGORA/BLONDME»).
+const manualLines = (guideLinks as { lines: Record<string, string[]> }).lines ?? {};
+const manualCategories = (guideLinks as { categories: Record<string, string[]> }).categories ?? {};
+
+function toGuides(ids: Iterable<string>): Guide[] {
+  const seen = new Set<string>();
+  const out: Guide[] = [];
+  for (const id of ids) {
+    if (seen.has(id)) continue;
+    seen.add(id);
+    const a = articleById.get(id);
+    if (!a) continue;   // статья могла быть снята — молча пропускаем, а не рисуем битую ссылку
+    out.push({ id, label: (a.data.line ?? a.data.title).replace(/\s*\([^)]*\)\s*$/, '').trim() });
+  }
+  return out.sort((a, b) => alphaCompare(a.label, b.label));
+}
+
+function guidesForCategory(category: string): Guide[] {
+  return toGuides(manualCategories[category] ?? []);
+}
+
+function guidesFor(list: Item[], brand?: string, line?: string): Guide[] {
   const ids = new Set<string>();
   for (const it of list) for (const id of guidesByProduct.get(it.name) ?? []) ids.add(id);
+  if (brand != null) for (const id of manualLines[`${brand} :: ${line ?? ''}`] ?? []) ids.add(id);
   return [...ids]
     .map((id) => {
       const a = articleById.get(id)!;
       // Подпись — короткое название линейки из статьи, а не её заголовок: заголовки
       // длинные («Wella Koleston Perfect: точная формула цвета и 100% закрашивание...»)
       // и в строку каталога не помещаются.
-      return { id, label: a.data.line ?? a.data.title };
+      // Уточнение в скобках («Londa Professional (Permanent Color)») в плашку не влезает
+      // и распирало сетку карточек вбок — в подписи оставляем только имя линейки.
+      const label = (a.data.line ?? a.data.title).replace(/\s*\([^)]*\)\s*$/, '').trim();
+      return { id, label };
     })
     .sort((a, b) => alphaCompare(a.label, b.label));
 }
@@ -444,12 +472,26 @@ const bestDeals = groupBy === 'discount'
     {categoryCounts.length > 0 && (
       <div class="pc-category-screen" data-category-screen>
         <div class="pc-popular-grid">
-          {categoryCounts.map(({ cat, total }) => (
-            <button type="button" class="pc-popular-card" data-filter-category={cat}>
-              <span class="pc-popular-name">{cat}</span>
-              <span class="pc-popular-count">{total} {pluralItems(total)}</span>
-            </button>
-          ))}
+          {categoryCounts.map(({ cat, total }) => {
+            const catGuides = guidesForCategory(cat);
+            return (
+            // Ссылка не может лежать внутри <button>, поэтому карточка и гиды —
+            // соседи в общей ячейке, а не вложены друг в друга.
+            <div class="pc-popular-cell">
+              <button type="button" class="pc-popular-card" data-filter-category={cat}>
+                <span class="pc-popular-name">{cat}</span>
+                <span class="pc-popular-count">{total} {pluralItems(total)}</span>
+              </button>
+              {catGuides.length > 0 && (
+                <span class="pc-guides">
+                  {catGuides.map((g) => (
+                    <a class="pc-guide" href={`/articles/${g.id}/`} data-guide-link>Гид: {g.label}</a>
+                  ))}
+                </span>
+              )}
+            </div>
+            );
+          })}
         </div>
       </div>
     )}
@@ -477,7 +519,7 @@ const bestDeals = groupBy === 'discount'
       // Гид на самом бренде — только по товарам БЕЗ линейки: если у бренда есть линейки,
       // плашка должна стоять на конкретной линейке, а не на всём бренде (иначе у Wella
       // «Гид: Koleston Perfect» висел бы и над стайлингом EIMI).
-      const brandGuides = guidesFor(flat);
+      const brandGuides = guidesFor(flat, brand, '');
       return (
       <details class="pc-group pc-group-brand" data-brand={brand} data-has-lines={lineEntries.length > 0 ? '1' : '0'}>
         <summary>
@@ -539,7 +581,7 @@ const bestDeals = groupBy === 'discount'
             </ul>
           )}
           {lineEntries.map(([line, list]) => {
-            const lineGuides = guidesFor(list);
+            const lineGuides = guidesFor(list, brand, line);
             return (
             <details class="pc-group pc-group-line">
               <summary>
@@ -1096,6 +1138,20 @@ const bestDeals = groupBy === 'discount'
     display: none;
   }
 
+  /* ...но плашки гидов внутри имени — оставить. Реальная жалоба пользователя 2026-09-05:
+     «лонда вся в одной общей папке и нет ссылок вообще». У Londa нет линеек, поэтому её
+     гиды висят на самом бренде, а правило выше прятало имя целиком — вместе с ними.
+     Показываем их отдельной строкой под шапкой открытого бренда. */
+  .pc-group-brand[data-has-lines="0"][open] > summary .pc-row-name:has(.pc-guides) {
+    display: block;
+    font-size: 0;
+  }
+
+  .pc-group-brand[data-has-lines="0"][open] > summary .pc-guides {
+    font-size: 0.72rem;
+    margin-top: 0;
+  }
+
   .pc-group-brand[open] > summary .pc-group-count {
     color: var(--color-meta);
   }
@@ -1175,7 +1231,7 @@ const bestDeals = groupBy === 'discount'
     background: var(--color-surface-blue);
     color: var(--color-blue-dark);
     text-decoration: none;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
   }
 
   .pc-guide:hover {
@@ -1482,6 +1538,16 @@ const bestDeals = groupBy === 'discount'
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-bottom: 20px;
+  }
+
+  .pc-popular-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .pc-popular-cell .pc-popular-card {
+    flex: 1;
   }
 
   .pc-popular-card {
