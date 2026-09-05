@@ -540,21 +540,25 @@ const articleLd = {
     text-align: center;
   }
 
-  .to-catalog-btn {
-    display: inline-block;
+  /* Обычная синяя ссылка на белом, без заливки и рамки (правка пользователя 2026-09-05).
+     До этого была красная кнопка с белым текстом — и она НЕ работала: правило .prose a
+     (специфичность выше, чем у одного класса) перекрашивало текст внутри в синий с
+     подчёркиванием, получалась синяя ссылка на красной плашке. Селектор ниже намеренно
+     повышен до .to-catalog > .to-catalog-btn, чтобы больше не проигрывать .prose a. */
+  .to-catalog > .to-catalog-btn {
     font-family: var(--font-sans);
     font-weight: 600;
     font-size: 0.95rem;
-    padding: 13px 26px;
-    border-radius: var(--radius-control);
-    background: var(--color-red);
-    color: #fff;
-    text-decoration: none;
+    color: var(--color-blue-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    /* Отступы только ради зоны нажатия: без них ссылка высотой 19px, в такую на телефоне
+       трудно попасть пальцем. Фона и рамки нет, поэтому визуально это не плашка. */
+    padding: 8px 6px;
   }
 
-  .to-catalog-btn:hover {
-    background: var(--color-red-dark);
-    color: #fff;
+  .to-catalog > .to-catalog-btn:hover {
+    color: var(--color-blue);
   }
 
   .to-catalog-note {
