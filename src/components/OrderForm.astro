@@ -39,7 +39,12 @@ const { framed = false } = Astro.props;
 
         <div class="cart" id="order-cart" hidden>
           <span class="cart-label">Выбранные товары</span>
-          <ul class="cart-list" id="cart-list"></ul>
+          {/* Обёртка нужна только под затухание у нижнего края (см. .cart-list-wrap::after):
+              сам список прокручивается, а тень на него не повесить — она уехала бы вместе
+              с содержимым. Класс is-scrollable ставит renderCart, когда строки не влезли. */}
+          <div class="cart-list-wrap">
+            <ul class="cart-list" id="cart-list"></ul>
+          </div>
           <div class="cart-total" id="cart-total"></div>
           {/* Шкала до минимального заказа. Раньше про минимум в 5 000 ₽ человек узнавал
               только в конце — кнопка просто не нажималась. Теперь видно с первого товара,
@@ -362,6 +367,18 @@ const { framed = false } = Astro.props;
     letter-spacing: 0.02em;
   }
 
+  /* Список ВСЕГДА со своим скроллом и фиксированным потолком высоты — правка пользователя
+     2026-09-05: «отключи флексибельность корзины и верни скролл внутри».
+     Причина: без потолка блок заявки растёт вместе с числом позиций (замерено: секция
+     572px при пустой корзине против 860px при шести товарах), а соседняя карточка прайса
+     тянется за ним и получает пустоту в пол-экрана — композиция рассыпается.
+     Раньше здесь было исключение для телефона (max-height:none) — снято. Проблему,
+     ради которой его вводили (обрезанная посередине строка выглядела как оборванный
+     список), решает затухание ниже, а не отключение скролла. */
+  .cart-list-wrap {
+    position: relative;
+  }
+
   .cart-list {
     list-style: none;
     margin: 0;
@@ -373,15 +390,19 @@ const { framed = false } = Astro.props;
     overflow-y: auto;
   }
 
-  /* На телефоне внутренний скролл списка обрезал последнюю строку посередине —
-     выглядело как оборванная корзина (скриншот пользователя 2026-09-05). Внутренний
-     скролл внутри скролла страницы там и без того неудобен, поэтому на узких экранах
-     список просто разворачивается целиком: страница прокрутится сама. */
-  @media (max-width: 640px) {
-    .cart-list {
-      max-height: none;
-      overflow-y: visible;
-    }
+  /* Затухание у нижнего края — только когда строки реально не влезли (класс ставит
+     renderCart). Строки разной высоты: длинное имя переносится на две, поэтому «ровная»
+     обрезка по границе строки невозможна в принципе — вместо этого делаем полустроку
+     осмысленной: видно, что список продолжается. */
+  .cart-list-wrap.is-scrollable::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 12px;
+    bottom: 0;
+    height: 28px;
+    background: linear-gradient(to bottom, transparent, var(--surface-flat, #fff));
+    pointer-events: none;
   }
 
   /* Шкала до минимального заказа. Красная, пока не набрано, синяя — когда набрано.
@@ -687,6 +708,9 @@ const { framed = false } = Astro.props;
     if (!items.length) {
       cartEl.hidden = true;
       cartList.replaceChildren();
+      // Снимаем затухание вместе со строками: иначе класс переживает опустошение корзины
+      // и вернётся уже неуместным, когда блок покажут снова с одной позицией.
+      cartList.parentElement?.classList.remove('is-scrollable');
       return;
     }
     cartEl.hidden = false;
@@ -751,6 +775,15 @@ const { framed = false } = Astro.props;
     );
     const total = items.reduce((s, it) => s + it.price * it.qty, 0);
     cartTotal.textContent = `Выбрано товаров: ${items.length}, на сумму ${total.toFixed(2)} ₽`;
+
+    // Затухание у нижнего края — только когда список реально не влез. Считаем ПОСЛЕ
+    // вставки строк и в следующем кадре: до отрисовки scrollHeight ещё равен clientHeight,
+    // и подсказка не появилась бы там, где она как раз нужна.
+    requestAnimationFrame(() => {
+      const wrap = cartList.parentElement;
+      if (!wrap) return;
+      wrap.classList.toggle('is-scrollable', cartList.scrollHeight > cartList.clientHeight + 2);
+    });
   }
 
   function setQty(idx: number, qty: number) {
