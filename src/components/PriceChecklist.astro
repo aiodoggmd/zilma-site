@@ -2344,7 +2344,13 @@ const bestDeals = groupBy === 'discount'
     '#open-catalog': 'checklist-current-dialog',
     '#open-promo': 'checklist-promo-dialog',
   };
-  function openFromHash() {
+  // smooth=false при ПЕРВОЙ загрузке страницы, true — когда якорь меняется уже на открытой.
+  // Разница важная: при переходе с другой страницы (напр. «Инфо» из заявки) плавная прокрутка
+  // означает, что человек сначала видит хиро, а потом смотрит, как мимо него едет вся главная
+  // — жалоба пользователя 2026-09-05: «из корзины тапаю по инфо — херо и скролл до инфо».
+  // Он и так уже нажал, куда хотел; показывать ему дорогу незачем. Внутри же страницы плавность
+  // наоборот нужна — она показывает, что произошло и куда переехали.
+  function openFromHash(smooth = true) {
     const hash = location.hash;
     // «#open-catalog=WELLA» — открыть каталог сразу на нужном бренде. Нужно для перехода
     // из статьи: гид рассказывает про линейку, и логично одним тапом увидеть в прайсе
@@ -2418,7 +2424,7 @@ const bestDeals = groupBy === 'discount'
     if (openDlg) {
       closeDialogAndScrollTo(openDlg, target);
     } else {
-      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
     }
     // Флаг «переход был по якорю» — до того, как якорь снимут со строки адреса.
     // Зачем: автоскролл главной (index.astro) пропускает себя, если в адресе есть якорь,
@@ -2430,8 +2436,8 @@ const bestDeals = groupBy === 'discount'
     if (target) document.documentElement.dataset.anchorNav = '1';
     history.replaceState(null, '', location.pathname + location.search);
   }
-  openFromHash();
-  window.addEventListener('hashchange', openFromHash);
+  openFromHash(false);
+  window.addEventListener('hashchange', () => openFromHash(true));
 
   document.querySelectorAll<HTMLDialogElement>('[data-checklist]').forEach((dialog) => {
     dialog.addEventListener('close', unlockPageScroll);
