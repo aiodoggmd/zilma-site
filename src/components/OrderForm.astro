@@ -12,20 +12,62 @@ const { framed = false } = Astro.props;
       <h2>Оформить заявку</h2>
       <p class="desc">Осталось оставить контакт — и заявка уйдёт.</p>
       <form id="order-form-el" novalidate>
+        {/* Телефон ПЕРВЫМ, имя вторым (порядок задан пользователем 2026-09-05): телефон —
+            то, без чего заявку не обработать, имя лишь помогает обратиться. Оба в одну
+            строку — экономит высоту в пользу корзины. */}
         <div class="row">
+          {/* Подсказка укорочена с «Телефон, например +7 999 123-45-67»: в паре с именем
+              на одной строке длинная не помещалась и обрезалась на середине. Формат всё
+              равно виден, а если человек введёт не номер — об этом скажет .contact-warning. */}
+          <input type="text" name="contact" placeholder="Телефон +7 999…" required maxlength="200" autocomplete="tel" inputmode="tel" title="Телефон, например +7 999 123-45-67" />
           <input type="text" name="name" placeholder="Имя" required maxlength="200" autocomplete="name" />
-          <input type="text" name="contact" placeholder="Телефон, например +7 999 123-45-67" required maxlength="200" autocomplete="tel" inputmode="tel" />
         </div>
         <p class="contact-warning" id="contact-warning" hidden>Похоже, это не номер телефона — укажите номер, по которому можно связаться.</p>
+        {/* Подпись и кнопки в одну строку, кнопки — иконками вместо слов (правка пользователя).
+            «Чат» вместо «мессенджер»: короче и понятнее тем, кто про VPN и слово «мессенджер»
+            не думает — та же причина, по которой из плейсхолдера телефона убрали «Telegram».
+            Иконки те же, что в контактах блока прайса, чтобы значки на сайте не разъезжались.
+            У MAX официальной иконки нет — ставим буквенный знак в том же круге, а не рисуем
+            похожий на настоящий логотип. Название остаётся в aria-label и title: без текста
+            кнопка должна оставаться понятной и скринридеру, и по наведению. */}
         <div class="messenger-group">
-          <span class="messenger-label">Удобный мессенджер</span>
+          <span class="messenger-label">Удобный чат</span>
           <div class="messenger-chips" id="messenger-chips">
-            {['Telegram', 'WhatsApp', 'MAX', 'Bip'].map((m) => (
-              <button type="button" class="chip" data-messenger={m}>{m}</button>
-            ))}
+            <button type="button" class="chip" data-messenger="Telegram" aria-label="Telegram" title="Telegram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 2 11 13 M22 2 15 22 11 13 2 9 22 2Z" />
+              </svg>
+            </button>
+            <button type="button" class="chip" data-messenger="WhatsApp" aria-label="WhatsApp" title="WhatsApp">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M12 21a9 9 0 1 0-7.6-4.2L3 21l4.4-1.3A9 9 0 0 0 12 21Z" />
+                <path
+                  transform="translate(6.3,5.3) scale(0.56)"
+                  fill="currentColor"
+                  stroke="none"
+                  d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z"
+                />
+              </svg>
+            </button>
+            <button type="button" class="chip chip-lettermark" data-messenger="MAX" aria-label="MAX" title="MAX">MAX</button>
+            <button type="button" class="chip" data-messenger="Bip" aria-label="Bip" title="Bip">
+              <svg viewBox="0 0 100 100" width="21" height="21" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="46" cy="44" r="38" />
+                <path d="M66 76 L82 82 L74 64" />
+                <line x1="24" y1="24" x2="24" y2="62" />
+                <circle cx="32" cy="54" r="11" />
+                <circle cx="46" cy="27" r="2.3" fill="currentColor" stroke="none" />
+                <line x1="46" y1="35" x2="46" y2="62" />
+                <line x1="62" y1="35" x2="62" y2="74" />
+                <circle cx="70" cy="54" r="11" />
+              </svg>
+            </button>
           </div>
         </div>
-        <textarea name="comment" placeholder="Комментарий (необязательно)" rows="3"></textarea>
+        {/* rows=1 + авторост (см. initCommentAutogrow): поле начинается с одной строки и
+            растёт под текст. Раньше три пустые строки занимали высоту всегда, даже когда
+            комментарий никто не писал, — а он необязательный. */}
+        <textarea name="comment" placeholder="Комментарий (необязательно)" rows="1"></textarea>
         <input type="hidden" name="messenger" />
         <input type="hidden" name="items_json" />
         <input type="hidden" name="form_rendered_at" />
@@ -55,9 +97,16 @@ const { framed = false } = Astro.props;
           </div>
         </div>
 
-        <label class="file-drop" id="file-drop" for="attachment-input">
+        <label class="file-drop" id="file-drop" for="attachment-input" title="Фото, скриншот или документ, до 4 МБ. Можно перетащить файл сюда.">
           <input type="file" name="attachment" id="attachment-input" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" />
-          <span class="file-hint" id="file-hint">Прикрепить файл (фото, скриншот, документ) — до 4 МБ, или перетащите сюда</span>
+          <svg class="file-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 11.5 12.5 20a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.9-7.9" />
+          </svg>
+          {/* Одна короткая строка вместо двух (правка пользователя 2026-09-05). Формат файла
+              и лимит в 4 МБ ушли в title: это подробности для тех немногих, кто до них дойдёт,
+              а место на экране нужно корзине. Перетаскивание работает как работало — просто
+              больше не описывается словами, на телефоне его всё равно нет. */}
+          <span class="file-hint" id="file-hint">Прикрепить файл</span>
           <span class="file-picked" id="file-picked" hidden>
             <span id="file-picked-name"></span>
             <button type="button" id="file-remove" aria-label="Убрать файл">✕</button>
@@ -111,8 +160,9 @@ const { framed = false } = Astro.props;
     flex-direction: column;
     height: 100%;
     background: var(--color-paper);
+    /* Красной полосы сверху больше нет (правка пользователя 2026-09-05) — рядом стоит
+       карточка прайса с обычной рамкой, и полоса выбивалась из пары. */
     border: 1px solid var(--color-card-line);
-    border-top: 4px solid var(--color-red);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
     overflow: hidden;
@@ -174,19 +224,52 @@ const { framed = false } = Astro.props;
     padding: 24px;
   }
 
+  /* Телефон и имя всегда в одну строку, в том числе на телефоне (правка пользователя
+     2026-09-05). Раньше строка переносилась из-за `min-width: 200px` у полей — на 390px
+     два поля по 200 не помещались. Здесь min-width снят, а телефону дана бОльшая доля:
+     номер длиннее имени, делить пополам было бы неверно. */
   .row {
     display: flex;
     gap: 12px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
+  .row input[type='text'] {
+    min-width: 0;
+  }
+
+  .row input[name='contact'] {
+    flex: 1.45;
+  }
+
+  .row input[name='name'] {
+    flex: 1;
+  }
+
+  /* Ниже 360px одна строка перестаёт работать: телефону остаётся ~119px, а подсказке
+     «Телефон +7 999…» нужно 159px — она обрезалась бы на середине (замерено, не на глаз).
+     Такие экраны сегодня редкость, поэтому там честнее вернуть две строки, чем показать
+     огрызок подсказки в поле, где важен формат ввода. */
+  @media (max-width: 359px) {
+    .row {
+      flex-wrap: wrap;
+    }
+    .row input[name='contact'],
+    .row input[name='name'] {
+      flex: 1 1 100%;
+    }
+  }
+
+  /* Подпись и кнопки в ОДНУ строку (правка пользователя 2026-09-05) — отдельная строка
+     под подпись съедала высоту, которая нужнее корзине. */
   .messenger-group {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 12px;
   }
 
   .messenger-label {
+    flex: none;
     font-size: 0.82rem;
     color: #5c5049;
   }
@@ -203,24 +286,41 @@ const { framed = false } = Astro.props;
     display: none;
   }
 
+  /* Кнопка-иконка вместо кнопки-слова. Квадрат со стороной 38px — палец попадает,
+     и четыре штуки помещаются в строку рядом с подписью даже на 320px. */
   .chip {
     flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
     border: 1px solid var(--color-panel-line);
     background: #fff;
     color: var(--color-ink);
-    padding: 7px 16px;
+    padding: 0;
     border-radius: var(--radius-control);
-    font-size: 0.85rem;
     font-family: var(--font-sans);
     cursor: pointer;
     box-shadow: none;
     transition: all 0.2s ease;
   }
 
+  /* У MAX официальной иконки нет — буквенный знак в том же круге. Рисовать похожий
+     на настоящий логотип нельзя: это чужой знак, а выдуманный вводит в заблуждение. */
+  .chip-lettermark {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
   @media (max-width: 420px) {
     .chip {
-      padding: 6px 12px;
-      font-size: 0.78rem;
+      width: 34px;
+      height: 34px;
+    }
+    .chip-lettermark {
+      font-size: 0.56rem;
     }
     .messenger-chips {
       gap: 6px;
@@ -249,9 +349,22 @@ const { framed = false } = Astro.props;
     color: var(--color-ink);
   }
 
+  /* Поле растёт под текст (см. initCommentAutogrow), поэтому ручную «резинку» убрали:
+     две системы изменения высоты на одном поле мешают друг другу — после ручного
+     растягивания авторост сбрасывал бы высоту при первом же вводе.
+     Потолок: дальше поле прокручивается само, чтобы длинный комментарий не выдавил
+     корзину вниз — ради неё эту компоновку и собирали. */
   textarea {
-    resize: vertical;
-    min-height: 60px;
+    /* flex: none обязателен. Общее правило `input, textarea { flex: 1 }` писалось под
+       .row — горизонтальную пару полей. Но форма выложена колонкой, и в ней flex:1
+       означает «расти/сжиматься по вертикали»: высота, которую ставит авторост, молча
+       игнорировалась, поле замирало на min-height (замерено: inline height был 100px,
+       computed оставался 46px). */
+    flex: none;
+    resize: none;
+    min-height: 46px;
+    max-height: 150px;
+    overflow-y: auto;
   }
 
   input:focus, textarea:focus {
@@ -259,24 +372,36 @@ const { framed = false } = Astro.props;
     outline-offset: 1px;
   }
 
+  /* Компактная строка вместо блока с пунктирной рамкой (правка пользователя 2026-09-05):
+     опция нужна — клиенты присылают заказ фотографией списка или скриншотом, — но занимала
+     высоту как полноценный блок. Рамка убрана, отступы урезаны: выглядит как действие,
+     а не как ещё одна зона ввода. Область перетаскивания это не меняет — она по-прежнему
+     весь label, просто он теперь ниже. */
   .file-drop {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-align: center;
-    border: 1.5px dashed var(--color-panel-line);
-    border-radius: var(--radius-card);
-    padding: 14px;
-    font-size: 0.88rem;
-    color: #5c5049;
+    gap: 7px;
+    padding: 4px 2px;
+    font-size: 0.82rem;
+    color: var(--color-blue-dark);
     cursor: pointer;
-    transition: border-color 0.2s ease, background 0.2s ease;
+    border-radius: var(--radius-control);
+    transition: color 0.2s ease, background 0.2s ease;
   }
 
-  .file-drop:hover, .file-drop.drag-over {
-    border-color: var(--color-blue-dark);
-    background: rgba(56, 98, 140, 0.05);
+  .file-icon {
+    flex: none;
+  }
+
+  .file-drop:hover {
+    color: var(--color-blue);
+  }
+
+  /* При перетаскивании подсветка нужна заметная — человек должен видеть, куда бросает. */
+  .file-drop.drag-over {
+    background: rgba(56, 98, 140, 0.09);
+    outline: 1.5px dashed var(--color-blue-dark);
+    outline-offset: 2px;
   }
 
   .file-drop input[type='file'] {
@@ -386,7 +511,12 @@ const { framed = false } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 6px;
-    max-height: 180px;
+    /* 300px вместо 180px: форму собрали компактнее (телефон+имя в строку, чаты иконками
+       в одну строку с подписью, комментарий с авторостом, файл одной строкой) — примерно
+       сто освободившихся пикселей отданы сюда, ради чего компоновку и переделывали.
+       Отдать их можно было только после того, как карточка прайса перестала тянуться за
+       высотой формы: до этого рост формы означал дыру в соседней карточке. */
+    max-height: 300px;
     overflow-y: auto;
   }
 
@@ -830,6 +960,21 @@ const { framed = false } = Astro.props;
   nameInput?.addEventListener('input', updateSubmitState);
   contactInput?.addEventListener('input', updateSubmitState);
   updateSubmitState();
+
+  // Комментарий начинается с одной строки и растёт под текст. Порядок важен: сначала
+  // сбросить height, иначе scrollHeight вернёт прежнюю (уже растянутую) высоту и поле
+  // будет только расти, никогда не сжимаясь при удалении текста.
+  function initCommentAutogrow() {
+    const ta = document.querySelector<HTMLTextAreaElement>('textarea[name="comment"]');
+    if (!ta) return;
+    const fit = () => {
+      ta.style.height = 'auto';
+      ta.style.height = `${ta.scrollHeight}px`;
+    };
+    ta.addEventListener('input', fit);
+    fit();
+  }
+  initCommentAutogrow();
 
   // Чипы мессенджера — необязательный одиночный выбор, повторный клик по активному снимает выбор.
   const messengerChips = document.getElementById('messenger-chips');
