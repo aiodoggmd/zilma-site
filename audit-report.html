@@ -1,0 +1,156 @@
+<title>Проверка перед публикацией</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+  :root {
+    --red: #c8000f; --blue: #38628c; --good: #2f7a4f;
+    --ink: #241c19; --muted: #6d625c; --line: #e4ded4;
+    --paper: #fffdfa; --ground: #f6f2ec; --shade: #f0ebe3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #f2ece6; --muted: #a99f97; --line: #3a322d;
+      --paper: #211b18; --ground: #171310; --shade: #2a2320; --good: #6fb98c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #f2ece6; --muted: #a99f97; --line: #3a322d;
+    --paper: #211b18; --ground: #171310; --shade: #2a2320; --good: #6fb98c;
+  }
+  body { background: var(--ground); color: var(--ink);
+         font: 15px/1.65 -apple-system, "Segoe UI", system-ui, sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 30px 18px 70px; }
+
+  .eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+             text-transform: uppercase; color: var(--red); margin: 0 0 8px; }
+  h1 { font-family: "Playfair Display", Georgia, serif; font-size: 2rem;
+       margin: 0 0 8px; text-wrap: balance; }
+  .lede { color: var(--muted); margin: 0 0 26px; }
+
+  .verdict { background: var(--paper); border: 2px solid var(--good);
+             border-radius: 10px; padding: 20px; margin-bottom: 30px; }
+  .verdict h2 { font-family: "Playfair Display", Georgia, serif; font-size: 1.3rem;
+                margin: 0 0 8px; color: var(--good); }
+  .verdict p { margin: 0; }
+
+  h2.sec { font-family: "Playfair Display", Georgia, serif; font-size: 1.2rem;
+           margin: 30px 0 12px; padding-bottom: 7px; border-bottom: 1px solid var(--line); }
+
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; margin-bottom: 6px; }
+  th { text-align: left; font-weight: 700; font-size: .74rem; text-transform: uppercase;
+       letter-spacing: .05em; color: var(--muted); padding: 0 8px 7px 0; }
+  td { padding: 7px 8px 7px 0; border-top: 1px solid var(--line); vertical-align: top; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--muted); }
+  td.ok { color: var(--good); font-weight: 600; white-space: nowrap; }
+
+  .todo { background: var(--paper); border-left: 3px solid var(--red);
+          padding: 15px 17px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .todo h3 { margin: 0 0 6px; font-size: 1rem; }
+  .todo p { margin: 0 0 7px; font-size: .92rem; }
+  .todo p:last-child { margin: 0; }
+  .minor { border-left-color: var(--muted); }
+
+  .stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 4px; }
+  .stat { background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
+          padding: 12px 15px; flex: 1 1 130px; }
+  .stat b { display: block; font-family: "Playfair Display", Georgia, serif;
+            font-size: 1.5rem; line-height: 1.15; }
+  .stat span { font-size: .78rem; color: var(--muted); }
+  .foot { color: var(--muted); font-size: .85rem; margin-top: 34px;
+          padding-top: 14px; border-top: 1px solid var(--line); }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Zilma · версия 2.0</p>
+  <h1>Проверка перед публикацией</h1>
+  <p class="lede">23 проверки: сборка, данные, вёрстка, сценарии покупателя, безопасность.
+     Ниже — что проверялось и что нашлось.</p>
+
+  <div class="verdict">
+    <h2>Блокирующих проблем нет</h2>
+    <p>Сайт готов к публикации. Два пункта требуют твоего решения — они внизу,
+       ни один из них не ломает сайт.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><b>18</b><span>страниц собрано</span></div>
+    <div class="stat"><b>0</b><span>ошибок сборки</span></div>
+    <div class="stat"><b>0</b><span>битых картинок</span></div>
+    <div class="stat"><b>0</b><span>ошибок в консоли</span></div>
+  </div>
+
+  <h2 class="sec">Сборка и целостность</h2>
+  <table>
+    <tr><th>Что проверял</th><th>Результат</th><th></th></tr>
+    <tr><td>Чистая сборка с нуля</td><td class="num">18 страниц</td><td class="ok">без ошибок</td></tr>
+    <tr><td>Ссылки на файлы и картинки</td><td class="num">3940 шт.</td><td class="ok">битых нет</td></tr>
+    <tr><td>Внутренние ссылки между страницами</td><td class="num">189 шт.</td><td class="ok">все живые</td></tr>
+    <tr><td>Компоненты без применения</td><td class="num">—</td><td class="ok">нет</td></tr>
+    <tr><td>Отладочный мусор в коде</td><td class="num">—</td><td class="ok">нет</td></tr>
+    <tr><td>Карта сайта и robots.txt</td><td class="num">18 адресов</td><td class="ok">на месте</td></tr>
+    <tr><td>Заголовки и описания страниц</td><td class="num">19 страниц</td><td class="ok">везде есть</td></tr>
+  </table>
+
+  <h2 class="sec">Данные: прайс и оттенки</h2>
+  <table>
+    <tr><th>Что проверял</th><th>Результат</th><th></th></tr>
+    <tr><td>Позиций в прайсе</td><td class="num">1101</td><td class="ok">все с ценой</td></tr>
+    <tr><td>Файл Excel против данных сайта</td><td class="num">311 акций в обоих</td><td class="ok">сходится</td></tr>
+    <tr><td>Ступени скидок</td><td class="num">5% — 162 · 10% — 105 · 15% — 44</td><td class="ok">верно</td></tr>
+    <tr><td>Цены в палитрах статей</td><td class="num">355 оттенков</td><td class="ok">совпадают с прайсом</td></tr>
+    <tr><td>Товары-призраки (исчезли из прайса)</td><td class="num">25 оттенков</td><td class="ok">цену теряют, как надо</td></tr>
+    <tr><td>Скачивание прайса с сайта</td><td class="num">49 КБ</td><td class="ok">работает</td></tr>
+  </table>
+
+  <h2 class="sec">Вёрстка на телефоне (390 px)</h2>
+  <table>
+    <tr><th>Что проверял</th><th>Результат</th><th></th></tr>
+    <tr><td>Горизонтальное переполнение</td><td class="num">все 18 страниц</td><td class="ok">нет нигде</td></tr>
+    <tr><td>Широкие таблицы</td><td class="num">в своих обёртках</td><td class="ok">скроллятся отдельно</td></tr>
+    <tr><td>Битые картинки постранично</td><td class="num">18 страниц</td><td class="ok">ноль</td></tr>
+  </table>
+
+  <h2 class="sec">Сценарии покупателя</h2>
+  <table>
+    <tr><th>Что проверял</th><th>Результат</th><th></th></tr>
+    <tr><td>Каталог: товары, папки, гиды</td><td class="num">1101 · 16 · 15</td><td class="ok">на месте</td></tr>
+    <tr><td>Кружки цвета и фото товаров</td><td class="num">693 · 86</td><td class="ok">на месте</td></tr>
+    <tr><td>Поиск «колестон»</td><td class="num">93 позиции</td><td class="ok">верно</td></tr>
+    <tr><td>Отметка товара кладёт в корзину</td><td class="num">—</td><td class="ok">работает</td></tr>
+    <tr><td>Математика суммы заказа</td><td class="num">4569,12 ₽</td><td class="ok">до копейки</td></tr>
+    <tr><td>Кнопка отправки: 7 разных случаев</td><td class="num">7 из 7</td><td class="ok">верно</td></tr>
+    <tr><td>Окно акций: ступени и старые цены</td><td class="num">4 ступени · 627 цен</td><td class="ok">все зачёркнуты</td></tr>
+    <tr><td>Каталог → гид → возврат назад</td><td class="num">Wella / Illumina</td><td class="ok">точно на место</td></tr>
+    <tr><td>Фильтры ленты статей</td><td class="num">9 вкладок</td><td class="ok">считают верно</td></tr>
+    <tr><td>Три главные кнопки прайса</td><td class="num">на обеих страницах</td><td class="ok">все живые</td></tr>
+  </table>
+
+  <h2 class="sec">Безопасность</h2>
+  <table>
+    <tr><th>Что проверял</th><th>Результат</th><th></th></tr>
+    <tr><td>Ключи и пароли в коде</td><td class="num">—</td><td class="ok">нет</td></tr>
+    <tr><td>Файл .env в репозитории</td><td class="num">никогда не попадал</td><td class="ok">чисто</td></tr>
+    <tr><td>Защита формы от ботов</td><td class="num">ловушка · лимит · время</td><td class="ok">на месте</td></tr>
+    <tr><td>Ограничение размера вложения</td><td class="num">4 МБ</td><td class="ok">есть</td></tr>
+  </table>
+
+  <h2 class="sec">Требует твоего решения</h2>
+
+  <div class="todo">
+    <h3>1. Прайс глазами ты ещё не смотрел</h3>
+    <p>Файл пересобран 5 сентября по новой схеме скидок. С данными сайта сходится
+       полностью — 1101 товар, 311 акционных в обоих. Но у нас правило: прайс уходит
+       в публикацию только после твоей проверки.</p>
+    <p><b>Открой</b> <code>Site/public/prices/price-current.xlsx</code> и глянь глазами.</p>
+  </div>
+
+  <div class="todo minor">
+    <h3>2. Шесть неиспользуемых картинок — 252 КБ</h3>
+    <p>Три фото снятых с производства линеек Color Touch и три старых значка Bip,
+       которых заменили рисованными. На сайте нигде не показываются, просто лежат.</p>
+    <p>Скажешь — удалю. Не скажешь — останутся, вреда от них нет.</p>
+  </div>
+
+  <p class="foot">Что ждёт публикации: 216 правок, 671 новый файл.
+     Страница главной весит 57 КБ по сети, страница заявки — 52 КБ.
+     Иконка приложения обновится, иконка вкладки останется прежней.</p>
+</div>
