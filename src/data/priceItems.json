@@ -755,6 +755,7 @@
     "name": "№1 Сыв-ка д/волос PROEDIT CARE WORKS CMC 150 мл. 2849",
     "price": 2368,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 1
   },
   {
@@ -774,6 +775,7 @@
     "name": "№2 Сыв-ка д/волос PROEDIT CARE WORKS NMF 150 мл. 2863",
     "price": 1986,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 1
   },
   {
@@ -793,6 +795,7 @@
     "name": "№3 Сыв-ка д/волос PROEDIT CARE WORKS PPT 150 мл. 2856",
     "price": 2368,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 2
   },
   {
@@ -812,6 +815,7 @@
     "name": "№4 Сыв-ка д/волос PROEDIT CARE WORKS ELEMENT FIX 150 мл. 2870",
     "price": 1986,
     "promo": false,
+    "category": "Ампулы/концентраты",
     "stock": 1
   },
   {
@@ -1438,6 +1442,7 @@
     "price": 1705,
     "promo": false,
     "isNew": true,
+    "category": "Технические средства",
     "stock": 1
   },
   {
