@@ -22,6 +22,11 @@
     Без maskable-набора Android скругляет уже скруглённую картинку и по краям остаются
     белые огрызки — на это уже наступали в августе, см. CLAUDE.md.
 
+ЧЕГО СКРИПТ НЕ ДЕЛАЕТ: не трогает иконку вкладки браузера (favicon.ico/.svg/-16/-32).
+Пользователь просил заменить ТОЛЬКО экран загрузки приложения. Я один раз вышел за
+рамки просьбы и поменял заодно вкладку — пришлось откатывать. Вкладка живёт своей
+жизнью, её мастер — Site/favicon.png.
+
 Запуск: .venv/Scripts/python.exe scripts/build-app-icons.py
 """
 from PIL import Image, ImageDraw
@@ -84,46 +89,6 @@ def compose(size: int, art_ratio: float, circle: bool) -> Image.Image:
     return icon
 
 
-def favicons() -> list:
-    """Иконка вкладки браузера — тот же логотип, что и у приложения.
-
-    Решение пользователя 2026-09-05, принято с открытыми глазами: я показал ему
-    сравнение четырёх вариантов в реальных размерах и честно предупредил, что в 16
-    пикселях тонкие линии логотипа сливаются в красный круг. Он выбрал единство знака
-    важнее читаемости мелкой иконки — это его бренд и его право.
-
-    Единственная уступка размеру: в 16 и 32 пикселях рисунок кладём КРУПНЕЕ (0.78
-    против 0.62). Мельче он превращается в шум быстрее. Это не новая графика, а тот же
-    рисунок в другом масштабе.
-    """
-    made = []
-    for s, ratio in ((16, 0.78), (32, 0.78)):
-        p = f'{OUT}/favicon-{s}x{s}.png'
-        compose(s * 8, ratio, circle=True).resize((s, s), Image.LANCZOS).save(p)
-        made.append(p)
-
-    # Настоящий multi-size ICO, а не PNG с переименованным расширением: старые версии
-    # Windows/Edge читают именно .ico и на подделку реагируют пустым квадратом.
-    ico = compose(256, 0.72, circle=True)
-    ico.save(f'{OUT}/favicon.ico', sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
-    made.append(f'{OUT}/favicon.ico')
-
-    # SVG с вложенным PNG: рисунок фотографический (тонкие линии, градиент),
-    # честная векторная трассировка тут не даёт ничего, кроме потери деталей.
-    import base64, io as _io
-    buf = _io.BytesIO()
-    compose(256, 0.72, circle=True).save(buf, 'PNG', optimize=True)
-    b64 = base64.b64encode(buf.getvalue()).decode()
-    svg = (
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">'
-        f'<image width="256" height="256" href="data:image/png;base64,{b64}"/></svg>'
-    )
-    with open(f'{OUT}/favicon.svg', 'w', encoding='utf-8') as f:
-        f.write(svg)
-    made.append(f'{OUT}/favicon.svg')
-    return made
-
-
 def main() -> None:
     made = []
     # Круглые (purpose: any) — рисунок покрупнее, поле круглое.
@@ -143,8 +108,6 @@ def main() -> None:
     p = f'{OUT}/apple-touch-icon.png'
     compose(180, 0.58, circle=False).convert('RGB').save(p)
     made.append(p)
-
-    made += favicons()
 
     for p in made:
         kb = os.path.getsize(p) // 1024
