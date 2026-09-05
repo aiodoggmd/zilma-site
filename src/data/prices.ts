@@ -10,5 +10,5 @@ export const contacts = {
 
 export const currentPrice = {
   file: '/prices/price-current.xlsx',
-  date: '2026-09-02',
+  date: '2026-09-05',
 };
