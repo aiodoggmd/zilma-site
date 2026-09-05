@@ -112,8 +112,18 @@ function toGuides(ids: Iterable<string>): Guide[] {
   return out.sort((a, b) => alphaCompare(a.label, b.label));
 }
 
-function guidesForCategory(category: string): Guide[] {
-  return toGuides(manualCategories[category] ?? []);
+// Обратная карта: статья -> категории, к которым она относится. Нужна, чтобы внутри
+// выбранной категории показывать ТОЛЬКО подходящие гиды: в «Аммиачных красителях» не
+// должно быть ссылки на Color Touch, хотя её товары лежат в той же линейке каталога.
+const categoriesByGuide = new Map<string, string[]>();
+for (const [cat, ids] of Object.entries(manualCategories)) {
+  for (const id of ids) {
+    if (!categoriesByGuide.has(id)) categoriesByGuide.set(id, []);
+    categoriesByGuide.get(id)!.push(cat);
+  }
+}
+function categoriesOfGuide(id: string): string {
+  return (categoriesByGuide.get(id) ?? []).join('|');
 }
 
 function guidesFor(list: Item[], brand?: string, line?: string): Guide[] {
@@ -472,26 +482,12 @@ const bestDeals = groupBy === 'discount'
     {categoryCounts.length > 0 && (
       <div class="pc-category-screen" data-category-screen>
         <div class="pc-popular-grid">
-          {categoryCounts.map(({ cat, total }) => {
-            const catGuides = guidesForCategory(cat);
-            return (
-            // Ссылка не может лежать внутри <button>, поэтому карточка и гиды —
-            // соседи в общей ячейке, а не вложены друг в друга.
-            <div class="pc-popular-cell">
-              <button type="button" class="pc-popular-card" data-filter-category={cat}>
-                <span class="pc-popular-name">{cat}</span>
-                <span class="pc-popular-count">{total} {pluralItems(total)}</span>
-              </button>
-              {catGuides.length > 0 && (
-                <span class="pc-guides">
-                  {catGuides.map((g) => (
-                    <a class="pc-guide" href={`/articles/${g.id}/`} data-guide-link>Гид: {g.label}</a>
-                  ))}
-                </span>
-              )}
-            </div>
-            );
-          })}
+          {categoryCounts.map(({ cat, total }) => (
+            <button type="button" class="pc-popular-card" data-filter-category={cat}>
+              <span class="pc-popular-name">{cat}</span>
+              <span class="pc-popular-count">{total} {pluralItems(total)}</span>
+            </button>
+          ))}
         </div>
       </div>
     )}
@@ -527,7 +523,7 @@ const bestDeals = groupBy === 'discount'
           <span class="pc-row-name">{brand}{brandGuides.length > 0 && (
                   <span class="pc-guides">
                     {brandGuides.map((g) => (
-                      <a class="pc-guide" href={`/articles/${g.id}/`} data-guide-link>Гид: {g.label}</a>
+                      <a class="pc-guide" href={`/articles/${g.id}/`} data-guide-link data-guide-cats={categoriesOfGuide(g.id)}>Гид: {g.label}</a>
                     ))}
                   </span>
                 )}</span>
@@ -589,7 +585,7 @@ const bestDeals = groupBy === 'discount'
                 <span class="pc-row-name">{line}{lineGuides.length > 0 && (
                   <span class="pc-guides">
                     {lineGuides.map((g) => (
-                      <a class="pc-guide" href={`/articles/${g.id}/`} data-guide-link>Гид: {g.label}</a>
+                      <a class="pc-guide" href={`/articles/${g.id}/`} data-guide-link data-guide-cats={categoriesOfGuide(g.id)}>Гид: {g.label}</a>
                     ))}
                   </span>
                 )}</span>
@@ -2166,6 +2162,11 @@ const bestDeals = groupBy === 'discount'
     delete dialog.dataset.categoryMode;
     delete dialog.dataset.categoryFilter;
     delete dialog.dataset.categoryScrollY;
+    // Вышли из категории — плашки гидов снова показываем все (их прятал
+    // applyGuideCategoryFilter при входе в категорию).
+    dialog.querySelectorAll<HTMLAnchorElement>('[data-guide-link]').forEach((link) => {
+      link.hidden = false;
+    });
     restoreGroupCounts(dialog);
     dialog.querySelectorAll<HTMLElement>('.pc-item[hidden]').forEach((li) => {
       li.hidden = false;
@@ -2875,6 +2876,21 @@ const bestDeals = groupBy === 'discount'
     // совпадение, прячем остальные. Работает поверх той же CSS-логики "прячь неоткрытых
     // соседей" (:has(.pc-search:placeholder-shown) ...) — она уже реагирует на .open, ничего
     // отдельно для категорий дорабатывать не пришлось.
+    // Плашки гидов внутри выбранной категории: показываем только те, что относятся
+    // именно к ней. Иначе в «Аммиачных красителях» висела бы ссылка на Color Touch —
+    // её товары лежат в той же линейке каталога, но статья не про аммиачные краски.
+    // Вне режима категорий (обычный просмотр по брендам) показываем все.
+    function applyGuideCategoryFilter(cat: string | null) {
+      root.querySelectorAll<HTMLAnchorElement>('[data-guide-link]').forEach((link) => {
+        if (cat === null) {
+          link.hidden = false;
+          return;
+        }
+        const cats = (link.dataset.guideCats ?? '').split('|').filter(Boolean);
+        link.hidden = !cats.includes(cat);
+      });
+    }
+
     root.querySelectorAll<HTMLButtonElement>('[data-filter-category]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const cat = btn.dataset.filterCategory ?? '';
@@ -2891,6 +2907,7 @@ const bestDeals = groupBy === 'discount'
         // поиска ниже использует это, чтобы искать ТОЛЬКО внутри выбранной категории, а не
         // сбрасывать фильтр при вводе текста (см. коммент у search input listener).
         root.dataset.categoryFilter = cat;
+        applyGuideCategoryFilter(cat);
         let anyVisibleTotal = false;
         groups.forEach((g) => {
           const groupItems = [...g.querySelectorAll<HTMLLIElement>('.pc-item')];
