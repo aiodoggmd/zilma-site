@@ -2312,10 +2312,31 @@ const bestDeals = groupBy === 'discount'
   };
   function openFromHash() {
     const hash = location.hash;
-    const targetId = HASH_TO_DIALOG[hash];
+    // «#open-catalog=WELLA» — открыть каталог сразу на нужном бренде. Нужно для перехода
+    // из статьи: гид рассказывает про линейку, и логично одним тапом увидеть в прайсе
+    // ВЕСЬ бренд, а не только те товары, что упомянуты в статье (2026-09-05).
+    const eq = hash.indexOf('=');
+    const command = eq === -1 ? hash : hash.slice(0, eq);
+    const wantedBrand = eq === -1 ? '' : decodeURIComponent(hash.slice(eq + 1));
+    const targetId = HASH_TO_DIALOG[command];
     if (targetId) {
       const dialog = document.getElementById(targetId);
-      if (dialog instanceof HTMLDialogElement) openDialog(dialog);
+      if (dialog instanceof HTMLDialogElement) {
+        openDialog(dialog);
+        if (wantedBrand) {
+          const group = dialog.querySelector<HTMLDetailsElement>(
+            `.pc-group-brand[data-brand="${CSS.escape(wantedBrand)}"]`
+          );
+          if (group) {
+            group.open = true;
+            // Прокрутку даём следующим кадром: раскрытие <details> меняет высоту списка,
+            // и scrollIntoView, вызванный сразу, попадает по старым координатам.
+            requestAnimationFrame(() => {
+              group.querySelector('summary')?.scrollIntoView({ block: 'start' });
+            });
+          }
+        }
+      }
       history.replaceState(null, '', location.pathname + location.search);
       return;
     }
