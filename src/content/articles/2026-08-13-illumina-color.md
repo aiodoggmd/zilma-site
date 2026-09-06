@@ -1,5 +1,6 @@
 ---
 title: "Wella Illumina Color: технология MICROLIGHT, пропорции смешивания и Opal-Essence"
+seoTitle: "Wella Illumina Color: пропорции смешивания и оттенки"
 description: "Перманентное окрашивание с сиянием без утяжеления волоса: покрытие седины, схема смешивания с Welloxon Perfect, линейка металлик-оттенков Opal-Essence и палитра из 49 оттенков"
 brand: "Wella"
 line: "Illumina Color"

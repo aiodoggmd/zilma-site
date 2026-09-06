@@ -1,5 +1,6 @@
 ---
 title: "Schwarzkopf: осветление порошком — Igora Vario Blond «Супра» и BlondMe, пропорции и техника"
+seoTitle: "Schwarzkopf: осветление — Супра и BlondMe, пропорции"
 description: "Две линейки осветляющих порошков Schwarzkopf: Igora Vario Blond (Супра) до 7-8 уровней и BlondMe Premium Lightener 9+ — состав, пропорции, окислители и время выдержки"
 brand: "Schwarzkopf"
 line: "Igora Vario Blond / BlondMe"

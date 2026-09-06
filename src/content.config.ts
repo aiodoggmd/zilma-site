@@ -6,6 +6,10 @@ const articles = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
   schema: z.object({
     title: z.string(),
+    // Короткий заголовок ТОЛЬКО для вкладки браузера и поисковой выдачи (≈57 символов,
+    // чтобы вместе с « — Zilma» уложиться в 65 — дальше поисковик обрезает многоточием).
+    // На самой странице и на карточке в ленте по-прежнему показывается полный title.
+    seoTitle: z.string().optional(),
     description: z.string(),
     brand: z.string(),
     line: z.string(),

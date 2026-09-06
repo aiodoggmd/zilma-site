@@ -1,5 +1,6 @@
 ---
 title: "Matrix SoColor Pre-Bonded: три коллекции, пропорции смешивания и работа с сединой"
+seoTitle: "Matrix SoColor Pre-Bonded: пропорции и работа с сединой"
 description: "Перманентный краситель Matrix: пропорции 1:1 и 1:2 по коллекциям, выбор оксиданта, осветление до 5 уровней, закрашивание седины больше 50% и полная палитра оттенков"
 brand: "Matrix"
 line: "SoColor Pre-Bonded"

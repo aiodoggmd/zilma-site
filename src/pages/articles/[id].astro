@@ -188,7 +188,10 @@ function truncateTitle(title: string, max = 70) {
   const trimmed = (lastSpace > 40 ? cut.slice(0, lastSpace) : cut).replace(/[\s:,.;—-]+$/, '');
   return `${trimmed}…`;
 }
-const ogTitle = truncateTitle(article.data.title);
+// Заголовок для вкладки и выдачи: короткий seoTitle, если он задан в статье, иначе полный
+// (обрезанный поисковиком). Заголовок на самой странице — всегда полный article.data.title.
+const searchTitle = article.data.seoTitle ?? article.data.title;
+const ogTitle = truncateTitle(searchTitle);
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const articleLd = {
@@ -204,7 +207,7 @@ const articleLd = {
 };
 ---
 <BaseLayout
-  title={`${article.data.title} — Zilma`}
+  title={`${searchTitle} — Zilma`}
   ogTitle={ogTitle}
   description={article.data.description}
   image={article.data.coverImage}

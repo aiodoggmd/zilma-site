@@ -1,5 +1,6 @@
 ---
 title: "Wella Shinefinity: тонирующий уход-глазирование без осветления и без аммиака"
+seoTitle: "Wella Shinefinity: глазирование без осветления"
 description: "Zero Lift Glaze с балансом pH — смешивание 1:1, пять форматов услуги (Glaze, Speed, Corrective, Flash, Balancing), бустер-тона и полная палитра оттенков"
 brand: "Wella"
 line: "Shinefinity"

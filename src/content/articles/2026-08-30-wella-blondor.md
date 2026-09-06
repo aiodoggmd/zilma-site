@@ -1,5 +1,6 @@
 ---
 title: "Wella Blondor: осветление порошком — линейка, пропорции и техника"
+seoTitle: "Wella Blondor: осветление порошком и пропорции"
 description: "BlondorPlex, Multi Blonde, Freelights и крем Soft Blonde — чем отличаются, в каких пропорциях разводить с окислителем, как наносить и сколько держать"
 brand: "Wella"
 line: "Blondor"

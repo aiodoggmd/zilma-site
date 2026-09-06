@@ -1,5 +1,6 @@
 ---
 title: "Londa Blondoran: осветление порошком — линейка, пропорции и техника"
+seoTitle: "Londa Blondoran: осветление порошком и пропорции"
 description: "Blondoran, Blondoran LightPlex и Blondes Unlimited — чем отличаются, в каких пропорциях разводить с окислителем, как наносить и сколько держать"
 brand: "Londa"
 line: "Blondoran"

@@ -3,13 +3,19 @@ interface Props {
   // framed — используется в сетке рядом с price-card (главная страница), где форма должна
   // выглядеть таким же цельным блоком с рамкой/тенью, а не отдельным заголовком над своей мини-рамкой.
   framed?: boolean;
+  // Уровень заголовка «Оформить заявку». На главной форма — один из разделов страницы (h2),
+  // а на /order/ она И ЕСТЬ содержание страницы, поэтому там h1: без него у страницы вообще
+  // не было главного заголовка, и поисковик определял её тему только по <title> (2026-09-06).
+  // Вид заголовка от уровня не зависит — стиль висит на классе .panel-title, а не на теге.
+  as?: 'h1' | 'h2';
 }
-const { framed = false } = Astro.props;
+const { framed = false, as = 'h2' } = Astro.props;
+const Heading = as;
 ---
 <section class:list={['order-form', { framed }]} id="order">
   <div class="order-panel">
     <div class="order-panel-body">
-      <h2>Оформить заявку</h2>
+      <Heading class="panel-title">Оформить заявку</Heading>
       <p class="desc">Осталось оставить контакт — и заявка уйдёт.</p>
       <form id="order-form-el" novalidate>
         {/* Телефон ПЕРВЫМ, имя вторым (порядок задан пользователем 2026-09-05): телефон —
@@ -208,7 +214,9 @@ const { framed = false } = Astro.props;
     background: transparent;
   }
 
-  h2 {
+  /* Класс, а не тег: на /order/ этот же заголовок рендерится как h1 (см. проп `as`),
+     а выглядеть должен ровно так же. */
+  .panel-title {
     font-family: var(--font-serif);
     font-weight: 600;
     font-size: 1.4rem;

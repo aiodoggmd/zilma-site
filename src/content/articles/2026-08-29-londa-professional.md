@@ -1,5 +1,6 @@
 ---
 title: "Londa Professional: гид по оттенкам, пропорциям и применению"
+seoTitle: "Londa Professional: оттенки, пропорции и применение"
 description: "Londa Professional (Kadus Professional): пропорции по каждой подлинии, закрашивание седины, время выдержки и интерактивная палитра с ценами по прайсу"
 brand: "Londa"
 line: "Londa Professional (Permanent Color)"
