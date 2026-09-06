@@ -1,0 +1,93 @@
+---
+// Яндекс.Метрика — счётчик 112324602 (заведён Олегом 2026-09-06).
+//
+// Зачем отдельный компонент, а не пара строк в BaseLayout: вместе со счётчиком здесь
+// живут ЦЕЛИ — то, ради чего он и ставился. Vercel Analytics считает только просмотры
+// страниц, а конверсия (открыл каталог → отправил заявку) на бесплатном тарифе не видна:
+// кастомные события у Vercel — платная Pro-функция. Метрика даёт это бесплатно.
+//
+// Цели отправляются как JS-события. В интерфейсе Метрики их нужно один раз создать
+// (Настройки → Цели → «JavaScript-событие») с ТОЧНО такими идентификаторами:
+//   open_catalog   — открыл окно «Каталог — выбрать и заказать»
+//   open_promo     — открыл окно «Акции — выбрать и заказать»
+//   download_price — скачал прайс в Excel
+//   order_sent     — заявка реально ушла (сервер ответил успехом, а не просто нажали кнопку)
+const COUNTER_ID = 112324602;
+---
+{/* is:inline — скрипт должен выполниться как есть, без сборки Astro в модуль:
+    сниппет Метрики сам подгружает tag.js и обязан отработать до остальных скриптов. */}
+<script is:inline define:vars={{ COUNTER_ID }}>
+  // На деве и при тестах с телефона по локальной сети (та же проверка, что у service worker
+  // ниже в BaseLayout) счётчик НЕ инициализируем: иначе наши собственные заходы во время
+  // правок засчитаются как посещения и испортят и без того небольшую статистику.
+  const isDevHost =
+    ['localhost', '127.0.0.1'].includes(location.hostname) ||
+    /^(10|172\.(1[6-9]|2\d|3[01])|192\.168)\./.test(location.hostname);
+
+  if (!isDevHost) {
+    (function (m, e, t, r, i, k, a) {
+      m[i] =
+        m[i] ||
+        function () {
+          (m[i].a = m[i].a || []).push(arguments);
+        };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < e.scripts.length; j++) {
+        if (e.scripts[j].src === r) return;
+      }
+      k = e.createElement(t);
+      a = e.getElementsByTagName(t)[0];
+      k.async = 1;
+      k.src = r;
+      a.parentNode.insertBefore(k, a);
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+    // ecommerce намеренно НЕ включён: у сайта нет слоя данных о товарах в формате Метрики
+    // (заказ уходит заявкой в Telegram, а не через корзину магазина) — включённый параметр
+    // просто рисовал бы пустые отчёты.
+    ym(COUNTER_ID, 'init', {
+      webvisor: true,
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      defer: false,
+    });
+
+    const goal = (name) => {
+      try {
+        ym(COUNTER_ID, 'reachGoal', name);
+      } catch {}
+    };
+
+    // Клики ловим делегированием на документе, а не навешиванием обработчиков на каждую
+    // кнопку: кнопки прайс-блока живут в трёх местах (главная, /order/, мобильная плашка),
+    // и держать три копии подписки — верный способ со временем забыть одну из них.
+    document.addEventListener(
+      'click',
+      (e) => {
+        const el = e.target instanceof Element ? e.target.closest('a, button') : null;
+        if (!el) return;
+
+        const modal = el.getAttribute('data-open-modal');
+        if (modal) {
+          goal(modal.includes('promo') ? 'open_promo' : 'open_catalog');
+          return;
+        }
+
+        // Скачивание прайса: ссылка с атрибутом download на файл прайса.
+        const href = el.getAttribute('href') || '';
+        if (el.hasAttribute('download') && href.includes('/prices/')) {
+          goal('download_price');
+        }
+      },
+      true
+    );
+
+    // Отправленную заявку засчитываем не по клику на кнопку, а по реальному успеху:
+    // OrderForm шлёт это событие только после того, как сервер принял заявку.
+    document.addEventListener('zilma:order-sent', () => goal('order_sent'));
+  }
+</script>
+<noscript
+  ><div><img src={`https://mc.yandex.ru/watch/${COUNTER_ID}`} style="position:absolute; left:-9999px;" alt="" /></div></noscript
+>

@@ -1134,6 +1134,9 @@ const Heading = as;
       }
       statusEl.textContent = 'Заявка отправлена, спасибо!';
       statusEl.className = 'status ok';
+      // Цель Яндекс.Метрики — ровно здесь, после успешного ответа сервера, а не по клику
+      // на кнопку: иначе в конверсию попали бы и неудачные отправки (см. YandexMetrika.astro).
+      document.dispatchEvent(new CustomEvent('zilma:order-sent'));
       form.reset();
       setFile(null);
       messengerChips?.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
