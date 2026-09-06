@@ -11,7 +11,6 @@ const articles = defineCollection({
     line: z.string(),
     tags: z.array(z.enum(['колористика', 'уход и восстановление', 'база знаний', 'акции', 'цены'])),
     coverImage: z.string(),
-    paletteImage: z.string().optional(),
     publishDate: z.coerce.date(),
     verifiedDate: z.coerce.date(),
   }),

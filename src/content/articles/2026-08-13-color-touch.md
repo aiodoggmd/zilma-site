@@ -5,7 +5,6 @@ brand: "Wella"
 line: "Color Touch"
 tags: ["колористика"]
 coverImage: "/images/articles/2026-08-13-color-touch/cover.webp"
-paletteImage: "/images/articles/2026-08-13-color-touch/palette.webp"
 publishDate: 2026-08-13T07:00:00
 verifiedDate: 2026-09-02
 ---

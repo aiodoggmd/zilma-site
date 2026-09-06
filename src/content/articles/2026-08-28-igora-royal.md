@@ -5,7 +5,6 @@ brand: "Schwarzkopf"
 line: "Igora Royal"
 tags: ["колористика"]
 coverImage: "/images/articles/2026-08-28-igora-royal/cover.webp"
-paletteImage: "/images/articles/2026-08-28-igora-royal/palette.webp"
 publishDate: 2026-08-28T10:00:00
 verifiedDate: 2026-09-02
 ---
