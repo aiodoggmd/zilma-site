@@ -55,7 +55,11 @@ const ogImageURL = new URL(image, Astro.site);
     <meta name="theme-color" content="#c8000f" />
     <meta name="geo.region" content="RU-MOW" />
     <meta name="geo.placename" content="Москва" />
+    {/* Подтверждение прав в панелях вебмастеров. Не удалять: без них панели теряют доступ
+        к сайту и перестают показывать индексацию и запросы. Яндекс — с 2026-08-26,
+        Google Search Console — с 2026-09-06 (ресурс https://www.zilma.pro). */}
     <meta name="yandex-verification" content="94926554404b9c62" />
+    <meta name="google-site-verification" content="VPnHdCABL-bK6OMh6iSkfh1ZQWhy-XKMpJISWODNCVg" />
     <title>{title}</title>
 
     <meta property="og:type" content={type} />
