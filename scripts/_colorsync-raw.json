@@ -1,0 +1,416 @@
+{
+ "1A": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "1a.webp",
+  "hex": "#20252a"
+ },
+ "4A": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "4a.webp",
+  "hex": "#3b342d"
+ },
+ "5VV": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "5vv.webp",
+  "hex": "#6a445d"
+ },
+ "8A": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "8a.webp",
+  "hex": "#bbaf9d"
+ },
+ "8V": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "8v.webp",
+  "hex": "#afa39e"
+ },
+ "8P": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "8p.webp",
+  "hex": "#aba4aa"
+ },
+ "10A": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "10a.webp",
+  "hex": "#b7b3a9"
+ },
+ "10V": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "10v.webp",
+  "hex": "#cdc0b4"
+ },
+ "10P": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "10p.webp",
+  "hex": "#eadcda"
+ },
+ "11A": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "11a.webp",
+  "hex": "#c5c2b7"
+ },
+ "11V": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "11v.webp",
+  "hex": "#dbd2c5"
+ },
+ "11P": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "11p.webp",
+  "hex": "#cec3c1"
+ },
+ "SPA": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "spa.webp",
+  "hex": "#c2c2ba"
+ },
+ "SPV": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "spv.webp",
+  "hex": "#c3bbb5"
+ },
+ "SPP": {
+  "panel": "Холодные",
+  "page": 1,
+  "file": "spp.webp",
+  "hex": "#b5afaf"
+ },
+ "3N": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "3n.webp",
+  "hex": "#2f2721"
+ },
+ "5N": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "5n.webp",
+  "hex": "#471b0b"
+ },
+ "6N": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "6n.webp",
+  "hex": "#765d46"
+ },
+ "7NA": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "7na.webp",
+  "hex": "#715838"
+ },
+ "7NV": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "7nv.webp",
+  "hex": "#755f50"
+ },
+ "8N": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "8n.webp",
+  "hex": "#baa183"
+ },
+ "9NA": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "9na.webp",
+  "hex": "#987e5a"
+ },
+ "10N": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "10n.webp",
+  "hex": "#e5c89e"
+ },
+ "11N": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "11n.webp",
+  "hex": "#d5c9b2"
+ },
+ "SPN": {
+  "panel": "Натуральные",
+  "page": 1,
+  "file": "spn.webp",
+  "hex": "#dbcbaa"
+ },
+ "3WN": {
+  "panel": "Тёплые",
+  "page": 2,
+  "file": "3wn.webp",
+  "hex": "#461b0a"
+ },
+ "5WN": {
+  "panel": "Тёплые",
+  "page": 2,
+  "file": "5wn.webp",
+  "hex": "#502425"
+ },
+ "6WN": {
+  "panel": "Тёплые",
+  "page": 2,
+  "file": "6wn.webp",
+  "hex": "#96694a"
+ },
+ "7WM": {
+  "panel": "Тёплые",
+  "page": 2,
+  "file": "7wm.webp",
+  "hex": "#80503c"
+ },
+ "8WN": {
+  "panel": "Тёплые",
+  "page": 2,
+  "file": "8wn.webp",
+  "hex": "#c49160"
+ },
+ "5M": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "5m.webp",
+  "hex": "#50271e"
+ },
+ "5MM": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "5mm.webp",
+  "hex": "#542a19"
+ },
+ "6M": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "6m.webp",
+  "hex": "#84614a"
+ },
+ "7AM": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "7am.webp",
+  "hex": "#634529"
+ },
+ "7VM": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "7vm.webp",
+  "hex": "#5c3d2a"
+ },
+ "7MV": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "7mv.webp",
+  "hex": "#6a4a3a"
+ },
+ "7M": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "7m.webp",
+  "hex": "#9e7653"
+ },
+ "7MM": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "7mm.webp",
+  "hex": "#9c765f"
+ },
+ "8M": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "8m.webp",
+  "hex": "#ae8359"
+ },
+ "9MM": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "9mm.webp",
+  "hex": "#ae8c76"
+ },
+ "10M": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "10m.webp",
+  "hex": "#ddb88b"
+ },
+ "10MM": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "10mm.webp",
+  "hex": "#b69783"
+ },
+ "SPM": {
+  "panel": "Мокка",
+  "page": 2,
+  "file": "spm.webp",
+  "hex": "#dcb88b"
+ },
+ "6BC": {
+  "panel": "Коричневые",
+  "page": 3,
+  "file": "6bc.webp",
+  "hex": "#693d26"
+ },
+ "8BC": {
+  "panel": "Коричневые",
+  "page": 3,
+  "file": "8bc.webp",
+  "hex": "#a2745b"
+ },
+ "8G": {
+  "panel": "Бронзовые",
+  "page": 3,
+  "file": "8g.webp",
+  "hex": "#e3bc88"
+ },
+ "9GV": {
+  "panel": "Бронзовые",
+  "page": 3,
+  "file": "9gv.webp",
+  "hex": "#e3c6ae"
+ },
+ "10G": {
+  "panel": "Бронзовые",
+  "page": 3,
+  "file": "10g.webp",
+  "hex": "#f8dfb6"
+ },
+ "5AA": {
+  "panel": "Пауэр Кулс",
+  "page": 4,
+  "file": "5aa.webp",
+  "hex": "#3d3330"
+ },
+ "5VA": {
+  "panel": "Пауэр Кулс",
+  "page": 4,
+  "file": "5va.webp",
+  "hex": "#392b2d"
+ },
+ "7AA": {
+  "panel": "Пауэр Кулс",
+  "page": 4,
+  "file": "7aa.webp",
+  "hex": "#544a47"
+ },
+ "7VA": {
+  "panel": "Пауэр Кулс",
+  "page": 4,
+  "file": "7va.webp",
+  "hex": "#463437"
+ },
+ "4RV+": {
+  "panel": "Яркие",
+  "page": 4,
+  "file": "4rvplus.webp",
+  "hex": "#62212d"
+ },
+ "6RV+": {
+  "panel": "Яркие",
+  "page": 4,
+  "file": "6rvplus.webp",
+  "hex": "#872a39"
+ },
+ "7CC+": {
+  "panel": "Яркие",
+  "page": 4,
+  "file": "7ccplus.webp",
+  "hex": "#c15f29"
+ },
+ "8RC+": {
+  "panel": "Яркие",
+  "page": 4,
+  "file": "8rcplus.webp",
+  "hex": "#d96b2f"
+ },
+ "ac:2J": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-2j.webp",
+  "hex": "#362a24"
+ },
+ "ac:5A": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-5a.webp",
+  "hex": "#332828"
+ },
+ "ac:5N": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-5n.webp",
+  "hex": "#402b24"
+ },
+ "ac:5M": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-5m.webp",
+  "hex": "#3b2923"
+ },
+ "ac:8AA": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-8aa.webp",
+  "hex": "#cbcaca"
+ },
+ "ac:8A": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-8a.webp",
+  "hex": "#d2cbc1"
+ },
+ "ac:8V": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-8v.webp",
+  "hex": "#bbb6bf"
+ },
+ "ac:8AG": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-8ag.webp",
+  "hex": "#d7cbb8"
+ },
+ "ac:10PA": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-10pa.webp",
+  "hex": "#bfbebe"
+ },
+ "ac:10PV": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-10pv.webp",
+  "hex": "#b8acc5"
+ },
+ "ac:10PR": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-10pr.webp",
+  "hex": "#dba19d"
+ },
+ "ac:10PG": {
+  "panel": "Кислотные",
+  "page": 5,
+  "file": "acid-10pg.webp",
+  "hex": "#e7cdba"
+ },
+ "CLEAR": {
+  "panel": "Прозрачный",
+  "page": 5,
+  "file": "clear.webp",
+  "hex": "#eae8e9"
+ }
+}
