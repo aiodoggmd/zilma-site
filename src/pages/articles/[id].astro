@@ -18,6 +18,7 @@ import londaDemiShadesRaw from '../../data/londa-demi-shades.json';
 import colortuneShadesRaw from '../../data/colortune-shades.json';
 import matrixSocolorShadesRaw from '../../data/matrix-socolor-shades.json';
 import matrixSyncShadesRaw from '../../data/matrix-sync-shades.json';
+import matrixTonalShadesRaw from '../../data/matrix-tonal-control-shades.json';
 import priceItems from '../../data/priceItems.json';
 
 // Цена/наличие каждого оттенка пересчитывается из актуального priceItems.json на каждой
@@ -33,6 +34,7 @@ const londaDemiShades = resolveLiveShades(londaDemiShadesRaw, 'LONDA');
 const colortuneShades = resolveLiveShades(colortuneShadesRaw, 'LONDA');
 const matrixSocolorShades = resolveLiveShades(matrixSocolorShadesRaw, 'MATRIX');
 const matrixSyncShades = resolveLiveShades(matrixSyncShadesRaw, 'MATRIX');
+const matrixTonalShades = resolveLiveShades(matrixTonalShadesRaw, 'MATRIX');
 
 const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-13-illumina-color': illuminaShades,
@@ -44,6 +46,7 @@ const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-30-londa-color-tune': colortuneShades,
   '2026-09-06-matrix-socolor': matrixSocolorShades,
   '2026-09-06-matrix-color-sync': matrixSyncShades,
+  '2026-09-06-matrix-tonal-control': matrixTonalShades,
 };
 
 // Заголовок над основной палитрой — по умолчанию общий, но для линеек с несколькими
@@ -79,6 +82,7 @@ const PALETTE_NO_STATIC_IMAGE = new Set([
   '2026-08-30-londa-color-tune',
   '2026-09-06-matrix-socolor',
   '2026-09-06-matrix-color-sync',
+  '2026-09-06-matrix-tonal-control',
 ]);
 
 // Линейки с нерегулярной структурой палитры (несколько несовпадающих семейств оттенков вместо
@@ -88,6 +92,21 @@ const PALETTE_GROUP_CONFIG: Record<string, { order: string[]; labels: Record<str
   // Группы у SoColor — не «семейства оттенков», а три коллекции с РАЗНОЙ техникой
   // смешивания (1:1, 1:1 с 6%, 1:2 с 9/12%). Для мастера это единственное деление,
   // которое экономит время: перепутать пропорцию между ними легко.
+  '2026-09-06-matrix-tonal-control': {
+    // Группы = цвет тюбика у бренда, по нему тонер и находят на полке.
+    // Порядок наш: сначала холодные (ими нейтрализуют), потом натуральные и тёплые.
+    order: ['Голубые', 'Фиолетовые', 'Коричневые', 'Нефритовый', 'Золотые', 'Розовые', 'Прозрачный'],
+    labels: {
+      'Голубые': 'Голубой тюбик · пепельные и титановые',
+      'Фиолетовые': 'Фиолетовый тюбик · жемчужные и перламутровые',
+      'Коричневые': 'Коричневый тюбик · натуральные',
+      'Нефритовый': 'Нефритовый',
+      'Золотые': 'Жёлтый тюбик · золотистые и бежевые',
+      'Розовые': 'Розовый тюбик · медные и красные',
+      'Прозрачный': 'Прозрачный',
+    },
+    flat: ['Голубые', 'Фиолетовые', 'Коричневые', 'Нефритовый', 'Золотые', 'Розовые', 'Прозрачный'],
+  },
   '2026-09-06-matrix-color-sync': {
     // Группы — отражения с официальной страницы палитры Super Sync: именно так бренд
     // раскладывает оттенки сейчас. «Прежняя палитра» — не бренд-группа, а наша:
