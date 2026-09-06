@@ -4,6 +4,7 @@ import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import CartStore from '../components/CartStore.astro';
 import InstallPrompt from '../components/InstallPrompt.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import MobileNavBar from '../components/MobileNavBar.astro';
 import YandexMetrika from '../components/YandexMetrika.astro';
 
@@ -98,6 +99,10 @@ const ogImageURL = new URL(image, Astro.site);
         Не переносить обратно вниз «для порядка». */}
     <MobileNavBar />
     <slot />
+    {/* Футер общий для всех страниц (2026-09-06). Раньше он существовал только на главной,
+        и статья — самая частая точка входа из поиска — заканчивалась ничем: ни контактов,
+        ни условий доставки, ни даже понимания, чей это сайт. */}
+    <SiteFooter />
     <InstallPrompt />
     <script>
       function initReveal() {

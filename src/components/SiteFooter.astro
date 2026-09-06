@@ -1,0 +1,109 @@
+---
+// Футер сайта. Отдельный компонент, а не разметка внутри index.astro — потому что раньше
+// он был ТОЛЬКО на главной: в статьях и на /order/ страница просто обрывалась. А приходят
+// из поиска как раз на статьи, и человек там не видел ни того, чей это сайт, ни как заказать.
+import { contacts } from '../data/prices';
+import { MIN_ORDER_TOTAL } from '../lib/order-rules';
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <p class="footer-title">Zilma</p>
+      <p class="footer-text">
+        Профессиональная косметика для салонов красоты: Wella, Londa, Schwarzkopf, Matrix, Lebel.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-title">Заказ и связь</p>
+      <ul class="footer-links">
+        <li><a href={contacts.telegram.href} target="_blank" rel="noopener">Telegram — {contacts.telegram.value}</a></li>
+        <li><a href={contacts.whatsapp.href} target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href={contacts.bip.href} target="_blank" rel="noopener">Bip</a></li>
+        <li><a href={contacts.email.href}>{contacts.email.value}</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-title">Доставка</p>
+      <p class="footer-text">
+        По Москве бесплатно, на следующий рабочий день (пн–пт). В регионы — СДЭК или ваша
+        транспортная. Минимальный заказ {MIN_ORDER_TOTAL.toLocaleString('ru-RU')} ₽.
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="footer-copy">© {new Date().getFullYear()} Zilma</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-ink);
+    color: #cbb;
+    padding: 28px 0 20px;
+    font-size: 0.85rem;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.4fr;
+    gap: 28px;
+    padding-bottom: 20px;
+  }
+
+  .footer-title {
+    margin: 0 0 8px;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: #fff;
+  }
+
+  .footer-text {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .footer-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 6px;
+  }
+
+  .footer-links a {
+    color: #e4d6d6;
+    text-decoration: underline;
+  }
+
+  .footer-links a:hover {
+    color: #fff;
+  }
+
+  .footer-copy {
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    color: #a99;
+  }
+
+  @media (max-width: 720px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  /* Ниже 640px внизу висит плашка навигации (84px + 10px отступа). Без запаса она
+     перекрывала бы последние строки футера — а это единственное место, где на странице
+     статьи вообще есть контакты. Число то же, что у отступа .shade-detail в статьях:
+     меняешь высоту плашки — правишь оба места. */
+  @media (max-width: 640px) {
+    .site-footer {
+      padding-bottom: calc(20px + 94px + env(safe-area-inset-bottom));
+    }
+  }
+</style>
