@@ -16,6 +16,7 @@ import igoraRoyalShadesRaw from '../../data/igora-royal-shades.json';
 import londaShadesRaw from '../../data/londa-shades.json';
 import londaDemiShadesRaw from '../../data/londa-demi-shades.json';
 import colortuneShadesRaw from '../../data/colortune-shades.json';
+import matrixSocolorShadesRaw from '../../data/matrix-socolor-shades.json';
 import priceItems from '../../data/priceItems.json';
 
 // Цена/наличие каждого оттенка пересчитывается из актуального priceItems.json на каждой
@@ -29,6 +30,7 @@ const igoraRoyalShades = resolveLiveShades(igoraRoyalShadesRaw, 'SCHWARZKOPF');
 const londaShades = resolveLiveShades(londaShadesRaw, 'LONDA');
 const londaDemiShades = resolveLiveShades(londaDemiShadesRaw, 'LONDA');
 const colortuneShades = resolveLiveShades(colortuneShadesRaw, 'LONDA');
+const matrixSocolorShades = resolveLiveShades(matrixSocolorShadesRaw, 'MATRIX');
 
 const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-13-illumina-color': illuminaShades,
@@ -38,6 +40,7 @@ const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-28-igora-royal': igoraRoyalShades,
   '2026-08-29-londa-professional': londaShades,
   '2026-08-30-londa-color-tune': colortuneShades,
+  '2026-09-06-matrix-socolor': matrixSocolorShades,
 };
 
 // Заголовок над основной палитрой — по умолчанию общий, но для линеек с несколькими
@@ -71,12 +74,25 @@ const PALETTE_NO_STATIC_IMAGE = new Set([
   '2026-08-13-color-touch',
   '2026-08-28-igora-royal',
   '2026-08-30-londa-color-tune',
+  '2026-09-06-matrix-socolor',
 ]);
 
 // Линейки с нерегулярной структурой палитры (несколько несовпадающих семейств оттенков вместо
 // одной ровной сетки) передают свой набор групп сюда — по умолчанию ShadeSwatchGrid использует
 // warm/neutral/cool/opal/booster (Illumina/Shinefinity), этого словаря для них не нужно.
 const PALETTE_GROUP_CONFIG: Record<string, { order: string[]; labels: Record<string, string>; flat: string[] }> = {
+  // Группы у SoColor — не «семейства оттенков», а три коллекции с РАЗНОЙ техникой
+  // смешивания (1:1, 1:1 с 6%, 1:2 с 9/12%). Для мастера это единственное деление,
+  // которое экономит время: перепутать пропорцию между ними легко.
+  '2026-09-06-matrix-socolor': {
+    order: ['main', 'extra', 'ultra'],
+    labels: {
+      main: 'Основная коллекция · 1:1',
+      extra: 'Extra Coverage · 1:1 с 6% · седина больше 50%',
+      ultra: 'Ultra Blond · 1:2 с 9% или 12%',
+    },
+    flat: ['main', 'extra', 'ultra'],
+  },
   '2026-08-13-koleston-perfect': {
     order: ['pure', 'rich', 'deep', 'vibrant', 'blonde', 'mix'],
     labels: { pure: 'Pure Naturals', rich: 'Rich Naturals', deep: 'Deep Browns', vibrant: 'Vibrant Reds', blonde: 'Special Blonde', mix: 'Special Mix' },
