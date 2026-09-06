@@ -5,7 +5,6 @@ brand: "Matrix"
 line: "SoColor Pre-Bonded"
 tags: ["колористика"]
 coverImage: "/images/articles/2026-09-06-matrix-socolor/cover.webp"
-paletteImage: "/images/articles/2026-09-06-matrix-socolor/palette.webp"
 publishDate: 2026-09-06T10:00:00
 verifiedDate: 2026-09-06
 ---
@@ -189,17 +188,48 @@ verifiedDate: 2026-09-06
 
 ## Система нумерации оттенков
 
-Код строится как «уровень + буквенное отражение».
+Код строится как «уровень + буквенное отражение»: **8NW** — светлый блондин натуральный тёплый.
 
-**Число (1–11) — глубина тона:** 1 иссиня-чёрный, 2 чёрный, 3 тёмный шатен, 4 шатен, 5 светлый шатен, 6 тёмный блондин, 7 блондин, 8 светлый блондин, 9 очень светлый блондин, 10 и 11 — самые светлые уровни.
+### Число — глубина тона
 
-**Буквы — отражение:** A — пепельный (Ash), AV — пепельно-фиолетовый, SP — серебристо-жемчужный, P — жемчужный, N — натуральный, NW — натуральный тёплый, W — тёплый, G — золотистый, C — медный, R — красный, M — мокка, BR — коричневый, V — фиолетовый. Двойная буква (MM, RR, VV) означает усиленное отражение, знак «+» — повышенную интенсивность.
+| Уровень | Цвет |
+| --- | --- |
+| **1** | Иссиня-чёрный |
+| **2** | Чёрный |
+| **3** | Тёмный шатен |
+| **4** | Шатен |
+| **5** | Светлый шатен |
+| **6** | Тёмный блондин |
+| **7** | Блондин |
+| **8** | Светлый блондин |
+| **9** | Очень светлый блондин |
+| **10–11** | Самые светлые уровни |
 
-**Коды 504–510** — коллекция Extra Coverage: последние две цифры показывают глубину тона (504 — уровень 4, 510 — уровень 10).
+### Буква — отражение
+
+| Код | Отражение |
+| --- | --- |
+| **N** | Натуральный |
+| **NW** | Натуральный тёплый |
+| **A** | Пепельный (Ash) |
+| **AV** | Пепельно-фиолетовый |
+| **SP** | Серебристо-жемчужный |
+| **P** | Жемчужный |
+| **V** | Фиолетовый |
+| **W** | Тёплый |
+| **G** | Золотистый |
+| **C** | Медный |
+| **R** | Красный |
+| **M** | Мокка |
+| **BR** | Коричневый |
+
+<div class="callout"><b>Двойная буква</b> (MM, RR, VV) — усиленное отражение. <b>Знак «+»</b> (UL-A+, 4RV+) — повышенная интенсивность.</div>
+
+<div class="callout"><b>Коды 504–510</b> — коллекция Extra Coverage. Последние две цифры показывают глубину тона: 504 — уровень 4, 510 — уровень 10.</div>
 
 ## Что заказать
 
-<div class="callout"><b>Позиции с пометкой «под заказ»</b> сейчас закончились, но скоро поступят — напишите в комментариях к заявке, отложим для вас.</div>
+<div class="callout"><b>Позиции с пометкой «нет в наличии»</b> временно закончились. Напишите в комментариях к заявке, какая нужна — сообщим, как только поступит.</div>
 
 <div class="kit-table-wrap">
 <table class="kit-table">
@@ -207,7 +237,7 @@ verifiedDate: 2026-09-06
 <thead><tr><th>№</th><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
 <tbody>
 <tr><td>1</td><td>Оксид Socolor / Color Sync 3%, 60 мл</td><td>290876</td><td class="col-price-cell">110 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Socolor/ Color Sync 3% 60 мл. 290876" data-price="110" data-brand="MATRIX">+ В заявку</button></td></tr>
-<tr><td>2</td><td>Оксид Socolor 6% — нужен для коллекции Extra Coverage</td><td>—</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-brand="MATRIX">Под заказ</span></td></tr>
+<tr><td>2</td><td>Оксид Socolor 6% — нужен для коллекции Extra Coverage</td><td>—</td><td class="col-price-cell">—</td><td class="col-order-cell"><span class="order-unavailable" data-brand="MATRIX">Нет в наличии</span></td></tr>
 <tr><td>3</td><td>Оксид Socolor 9%, 1000 мл</td><td>308147</td><td class="col-price-cell">1030,75 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Socolor 9% 1000 мл. 308147" data-price="1030.75" data-brand="MATRIX" data-promo="1">+ В заявку</button></td></tr>
 <tr><td>4</td><td>Оксид Socolor 12%, 1000 мл</td><td>99989418180</td><td class="col-price-cell">1030,75 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Socolor 12% 1000 мл. 99989418180" data-price="1030.75" data-brand="MATRIX" data-promo="1">+ В заявку</button></td></tr>
 <tr><td>5</td><td>Осветлитель Light Master с бондером, до 8 уровней, 500 г</td><td>3779500</td><td class="col-price-cell">1968 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Супра, фиолетовый пакет Light Master с Бондером 8 уровней 500 г. 3779500/3453600" data-price="1968" data-brand="MATRIX">+ В заявку</button></td></tr>
@@ -219,10 +249,4 @@ verifiedDate: 2026-09-06
 </table>
 </div>
 
-<div class="callout"><b>Сами оттенки</b> — в интерактивной палитре в начале страницы: нажмите на цвет, чтобы увидеть цену и добавить в заявку.</div>
-
-## Палитра оттенков
-
-![Палитра оттенков Matrix SoColor Pre-Bonded](/images/articles/2026-09-06-matrix-socolor/palette.webp)
-
-Палитра разложена по трём коллекциям — основная, Extra Coverage и Ultra Blond, — потому что у каждой своя пропорция смешивания и свой оксидант. Внутри коллекции оттенки идут по глубине тона, от самых тёмных к самым светлым.
+<div class="callout"><b>Сами оттенки</b> — в интерактивной палитре в начале страницы: нажмите на цвет, чтобы увидеть цену и добавить в заявку. Оттенки разложены по трём коллекциям, внутри каждой — по глубине тона.</div>
