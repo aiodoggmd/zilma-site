@@ -85,6 +85,20 @@ const Heading = as;
           <input type="text" id="hp-field" name="hp_field" tabindex="-1" autocomplete="off" />
         </div>
 
+        {/* «Повторить прошлый заказ» — для постоянного клиента, который каждый месяц берёт
+            почти одно и то же. Показывается ТОЛЬКО когда корзина пуста: если человек уже
+            начал собирать заявку, предложение начать с прошлой — помеха, а не помощь.
+            Цены и наличие берутся из каталога на этой же странице ЗАНОВО (см. renderRepeat),
+            а не из сохранённой заявки: с прошлого раза цена могла измениться, а товар —
+            уйти из прайса. Показать старую цифру значило бы соврать. */}
+        <div class="repeat-order" id="repeat-order" hidden>
+          <div class="repeat-text">
+            <span class="repeat-label" id="repeat-label"></span>
+            <p class="repeat-sum" id="repeat-sum"></p>
+          </div>
+          <button type="button" class="repeat-btn" id="repeat-btn">Повторить</button>
+        </div>
+
         <div class="cart" id="order-cart" hidden>
           <span class="cart-label">Выбранные товары</span>
           {/* Обёртка нужна только под затухание у нижнего края (см. .cart-list-wrap::after):
@@ -488,6 +502,71 @@ const Heading = as;
 
   .status.ok { color: var(--color-blue-dark); }
   .status.err { color: var(--color-red); }
+
+  /* Блок повтора стоит на месте пустой корзины, поэтому оформлен как она же — та же рамка,
+     фон и отступы, только в строку. Кнопка синяя: синий на этом сайте — «информация и
+     навигация», красный — «прайс и деньги», а повтор ничего не заказывает сам, он только
+     наполняет корзину. */
+  .repeat-order {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--color-panel-line);
+    border-radius: var(--radius-card);
+    background: var(--color-mist);
+    padding: 10px 14px;
+  }
+
+  .repeat-order[hidden] {
+    display: none;
+  }
+
+  .repeat-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .repeat-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #5c5049;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .repeat-sum {
+    margin: 2px 0 0;
+    font-size: 0.82rem;
+    color: var(--color-meta);
+    line-height: 1.35;
+  }
+
+  .repeat-btn {
+    flex: none;
+    border: 1px solid var(--color-blue-dark);
+    border-radius: var(--radius-control);
+    background: var(--color-blue-dark);
+    color: #fff;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    cursor: pointer;
+  }
+
+  .repeat-btn:hover {
+    background: var(--color-blue);
+    border-color: var(--color-blue);
+  }
+
+  @media (max-width: 420px) {
+    .repeat-order {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
 
   .cart {
     display: flex;
@@ -1001,15 +1080,98 @@ const Heading = as;
     setQty(Number(input.dataset.index), parseInt(input.value, 10));
   });
 
+  /* ---- «Повторить прошлый заказ» ----------------------------------------------------
+     Задача: постоянный клиент берёт из месяца в месяц почти один и тот же набор, и каждый
+     раз собирает его заново по каталогу вручную.
+
+     Главное правило здесь — НЕ доверять сохранённым ценам. С прошлой заявки цена могла
+     измениться, товар мог уйти из прайса или попасть в акцию. Поэтому каждая позиция
+     заново ищется в каталоге НА ЭТОЙ ЖЕ странице (окна «Каталог»/«Акции» отрисованы в
+     разметке целиком, см. PriceChecklist.astro) и берёт оттуда текущую цену. Чего в
+     каталоге больше нет — того нет и в повторе, и об этом честно написано.
+     Отдельная копия цен ради этого не заводится: она бы устарела ровно так же. */
+  const repeatEl = document.getElementById('repeat-order') as HTMLElement | null;
+  const repeatLabel = document.getElementById('repeat-label');
+  const repeatSum = document.getElementById('repeat-sum');
+  const repeatBtn = document.getElementById('repeat-btn') as HTMLButtonElement | null;
+
+  // Каталог на странице — источник актуальной цены. Ключ Map — точное имя товара, то же,
+  // что уходит в заявку (по нему же товар опознаётся в 1С).
+  function currentPrices(): Map<string, { price: number; promo: boolean; brand: string }> {
+    const map = new Map<string, { price: number; promo: boolean; brand: string }>();
+    document.querySelectorAll<HTMLInputElement>('.pc-check[data-name]').forEach((el) => {
+      const name = el.dataset.name ?? '';
+      const price = parseFloat(el.dataset.price ?? '');
+      if (!name || !Number.isFinite(price) || map.has(name)) return;
+      map.set(name, { price, promo: el.dataset.promo === '1', brand: el.dataset.brandLabel ?? '' });
+    });
+    return map;
+  }
+
+  // Что из прошлой заявки можно собрать сегодня и почём.
+  function repriceOrder(order: { at: number; items: CartItem[] }) {
+    const prices = currentPrices();
+    const items: CartItem[] = [];
+    let gone = 0;
+    for (const it of order.items) {
+      const now = prices.get(it.name);
+      if (!now) { gone += 1; continue; }
+      items.push({ name: it.name, price: now.price, qty: it.qty, brand: now.brand || it.brand, promo: now.promo });
+    }
+    const total = items.reduce((s, it) => s + it.price * it.qty, 0);
+    return { items, gone, total };
+  }
+
+  function pluralPositions(n: number): string {
+    const d10 = n % 10;
+    const d100 = n % 100;
+    if (d10 === 1 && d100 !== 11) return 'позиция';
+    if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) return 'позиции';
+    return 'позиций';
+  }
+
+  function renderRepeat() {
+    if (!repeatEl) return;
+    // Пока в корзине что-то есть — предложение начать с прошлой заявки только мешает.
+    if (readCartItems().length) { repeatEl.hidden = true; return; }
+    const last = (window as any).zilmaOrders?.list()?.[0];
+    if (!last) { repeatEl.hidden = true; return; }
+    const { items, gone, total } = repriceOrder(last);
+    // Каталога на странице нет или из прошлой заявки не осталось ничего — обещать нечего.
+    if (!items.length) { repeatEl.hidden = true; return; }
+
+    const when = new Date(last.at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+    if (repeatLabel) repeatLabel.textContent = `Прошлая заявка от ${when}`;
+    if (repeatSum) {
+      repeatSum.textContent =
+        `${items.length} ${pluralPositions(items.length)} · ${formatMoney(total)} ₽ по сегодняшнему прайсу` +
+        // «N позиций уже НЕТ» требует родительного падежа и ломается на числах;
+        // «больше не в прайсе» верно и с 1, и с 2, и с 5 — падеж именительный.
+        (gone ? ` · ${gone} ${pluralPositions(gone)} больше не в прайсе` : '');
+    }
+    repeatEl.hidden = false;
+  }
+
+  repeatBtn?.addEventListener('click', () => {
+    const last = (window as any).zilmaOrders?.list()?.[0];
+    if (!last) return;
+    const { items } = repriceOrder(last);
+    if (!items.length) return;
+    writeCartItems(items);                              // событие перерисует и корзину, и этот блок
+    document.getElementById('order-cart')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
   document.addEventListener('zilma:cart-updated', () => {
     syncHiddenInputFromStore();
     renderCart();
+    renderRepeat();
     updateSubmitState();
   });
   // Хранилище могло быть заполнено ещё до загрузки этой страницы (напр. добавили товар
   // на странице статьи) — синхронизируем сразу при открытии, не дожидаясь события.
   syncHiddenInputFromStore();
   renderCart();
+  renderRepeat();
   nameInput?.addEventListener('input', updateSubmitState);
   contactInput?.addEventListener('input', updateSubmitState);
   updateSubmitState();
@@ -1140,6 +1302,10 @@ const Heading = as;
       form.reset();
       setFile(null);
       messengerChips?.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+      // Состав запоминается ДО очистки корзины — из него потом собирается «Повторить».
+      // Именно здесь, а не по клику на кнопку: заявка, которая не ушла на сервер, повтора
+      // не заслуживает (та же причина, по которой здесь же стоит цель Метрики).
+      (window as any).zilmaOrders?.remember(readCartItems());
       (window as any).zilmaCart?.set([]);
     } catch (err) {
       statusEl.textContent = err instanceof Error ? err.message : 'Не получилось отправить — напишите в Telegram/WhatsApp напрямую.';

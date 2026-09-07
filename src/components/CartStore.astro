@@ -42,5 +42,41 @@
     }
 
     window.zilmaCart = { get: get, set: set };
+
+    // История отправленных заявок — для кнопки «Повторить прошлый заказ» (OrderForm.astro).
+    // Отдельный ключ и намного больший срок жизни, чем у корзины: корзина живёт 6 часов,
+    // потому что забытая корзина превращается в случайный лишний заказ; история сама
+    // ничего не заказывает — её нужно нажать, поэтому пусть переживёт месяц-другой между
+    // закупками. Хранятся только последние заявки: список «всех заказов за год» — это уже
+    // личный кабинет, а его на сайте нет.
+    var HKEY = 'zilma-orders';
+    var HISTORY_TTL_MS = 180 * 24 * 60 * 60 * 1000; // полгода
+    var HISTORY_MAX = 3;
+
+    function historyList() {
+      try {
+        var raw = localStorage.getItem(HKEY);
+        if (!raw) return [];
+        var parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) return [];
+        var now = Date.now();
+        return parsed.filter(function (o) {
+          return o && Array.isArray(o.items) && o.items.length && now - (o.at || 0) < HISTORY_TTL_MS;
+        });
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function remember(items) {
+      if (!items || !items.length) return;
+      try {
+        var list = historyList();
+        list.unshift({ at: Date.now(), items: items });
+        localStorage.setItem(HKEY, JSON.stringify(list.slice(0, HISTORY_MAX)));
+      } catch (e) {}
+    }
+
+    window.zilmaOrders = { list: historyList, remember: remember };
   })();
 </script>
