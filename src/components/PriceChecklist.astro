@@ -2495,6 +2495,28 @@ const bestDeals = groupBy === 'discount'
   // мастер печатает код и получает мусор вперемешку с нужным (поймано 2026-09-07).
   // Без lookbehind в регулярке — она есть не во всех мобильных браузерах; проверяем
   // соседние символы вручную.
+  // Код оттенка клиент печатает как придётся: 8/38, 8-38, 8.38, 8,38 — их разводит
+  // normalizeSearch, — но ещё и слитно: «838», «0838». Слитную форму разворачиваем
+  // обратно в «глубина/тон»: первые 1–2 цифры это уровень (бывает только 1–12),
+  // остальное — тон. Ведущий ноль встречается в артикулах 1С («0838»), отбрасываем и его.
+  // Сам исходный токен тоже остаётся в поиске: по нему находятся артикулы как есть.
+  function shadeCodeVariants(token: string): string[] {
+    if (!/^\d{2,5}$/.test(token)) return [];
+    const out = new Set<string>();
+    const trimmed = token.replace(/^0+/, '');
+    for (const digits of [token, trimmed]) {
+      if (digits.length < 2) continue;
+      for (const depthLen of [1, 2]) {
+        if (digits.length - depthLen < 1 || digits.length - depthLen > 2) continue;
+        const depth = digits.slice(0, depthLen);
+        if (depthLen === 2 && depth.startsWith('0')) continue;
+        if (Number(depth) < 1 || Number(depth) > 12) continue;
+        out.add(depth + '/' + digits.slice(depthLen));
+      }
+    }
+    return [...out];
+  }
+
   function isShadeCode(term: string): boolean {
     return /^\d{1,3}(\/[0-9a-zа-я+]{1,4})?$/.test(term);
   }
@@ -3224,7 +3246,8 @@ const bestDeals = groupBy === 'discount'
       // ~1100 раз (см. resolveSearchTerms). Опечатки вроде "калистон"/"kaliston"/"ilumina"
       // резолвятся здесь в реальное слово каталога ("колестон"/"illumina"), дальше обычная
       // проверка "содержит подстроку" против уже найденного термина.
-      const tokenTerms = tokens.map((t) => resolveSearchTerms(t, vocabulary, fuzzyPool));
+      const tokenTerms = tokens.map((t) =>
+        [...resolveSearchTerms(t, vocabulary, fuzzyPool), ...shadeCodeVariants(t)]);
       // Поиск ищет по товарам/брендам, а не по категориям — если ввели что-то, пока была
       // активна вкладка «По категории», переключаем на «По бренду», чтобы результат было видно.
       // Запоминаем, откуда переключили (`preSearchTab`) — реальная жалоба пользователя
