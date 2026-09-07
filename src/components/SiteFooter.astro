@@ -13,6 +13,13 @@ import { MIN_ORDER_TOTAL } from '../lib/order-rules';
       <p class="footer-text">
         Профессиональная косметика для салонов красоты: Wella, Londa, Schwarzkopf, Matrix, Lebel.
       </p>
+      {/* Единственная ссылка на страницу бренда — она нужна, чтобы поисковик вообще нашёл
+          страницу (в sitemap она есть, но ссылка надёжнее). Страница пока одна и живёт как
+          эксперимент: через 2–3 недели Search Console покажет, приходят ли по ней люди.
+          Придут — здесь появится список брендов, нет — строку и страницу убираем. */}
+      <p class="footer-text footer-brands">
+        Прайс по брендам: <a href="/brands/wella/">Wella</a>
+      </p>
     </div>
 
     <div class="footer-col">
@@ -73,6 +80,10 @@ import { MIN_ORDER_TOTAL } from '../lib/order-rules';
     display: grid;
     gap: 6px;
   }
+
+  .footer-brands { margin-top: 8px; }
+  .footer-brands a { color: #e4d6d6; text-decoration: underline; }
+  .footer-brands a:hover { color: #fff; }
 
   .footer-links a {
     color: #e4d6d6;
