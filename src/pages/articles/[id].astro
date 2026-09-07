@@ -20,6 +20,7 @@ import matrixSocolorShadesRaw from '../../data/matrix-socolor-shades.json';
 import matrixSyncShadesRaw from '../../data/matrix-sync-shades.json';
 import matrixTonalShadesRaw from '../../data/matrix-tonal-control-shades.json';
 import priceItems from '../../data/priceItems.json';
+import { buildSubstitutes } from '../../lib/shade-substitutes';
 
 // Цена/наличие каждого оттенка пересчитывается из актуального priceItems.json на каждой
 // сборке сайта (по артикулу — см. resolve-live-price.ts), а не берётся застывшей из
@@ -35,6 +36,28 @@ const colortuneShades = resolveLiveShades(colortuneShadesRaw, 'LONDA');
 const matrixSocolorShades = resolveLiveShades(matrixSocolorShadesRaw, 'MATRIX');
 const matrixSyncShades = resolveLiveShades(matrixSyncShadesRaw, 'MATRIX');
 const matrixTonalShades = resolveLiveShades(matrixTonalShadesRaw, 'MATRIX');
+
+// Честная замена оттенка (2026-09-07). Считается ПОСЛЕ resolveLiveShades, на актуальном
+// прайсе: иначе предложили бы товар по вчерашней цене или тот, что уже кончился.
+// Правила эквивалентности и то, почему Illumina с Shinefinity сюда не входят —
+// в src/lib/shade-substitutes.ts.
+const SUBSTITUTES = buildSubstitutes({
+  koleston: kolestonShades,
+  londa: londaShades,
+  colortouch: colortouchShades,
+  'londa-demi': londaDemiShades,
+});
+
+// Какая палитра статьи какой линейке соответствует — основная и дополнительная отдельно
+// (у Londa на одной странице две палитры: аммиачная и безаммиачная).
+const SUBSTITUTE_KEY: Record<string, string> = {
+  '2026-08-13-koleston-perfect': 'koleston',
+  '2026-08-13-color-touch': 'colortouch',
+  '2026-08-29-londa-professional': 'londa',
+};
+const SUBSTITUTE_KEY_SECONDARY: Record<string, string> = {
+  '2026-08-29-londa-professional': 'londa-demi',
+};
 
 const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-08-13-illumina-color': illuminaShades,
@@ -281,6 +304,7 @@ const articleLd = {
           <h2 id="permanent-line">{PALETTE_TITLE[article.id] ?? 'Интерактивная палитра — с ценами по прайсу'}</h2>
           <ShadeSwatchGrid
             shades={PALETTE_SHADES[article.id]}
+            substitutes={SUBSTITUTES[SUBSTITUTE_KEY[article.id]]}
             groupOrder={PALETTE_GROUP_CONFIG[article.id]?.order}
             groupLabels={PALETTE_GROUP_CONFIG[article.id]?.labels}
             flatGroups={PALETTE_GROUP_CONFIG[article.id]?.flat}
@@ -294,6 +318,7 @@ const articleLd = {
           <h2 id="demi-line">{PALETTE_TITLE_SECONDARY[article.id]}</h2>
           <ShadeSwatchGrid
             shades={PALETTE_SHADES_SECONDARY[article.id]}
+            substitutes={SUBSTITUTES[SUBSTITUTE_KEY_SECONDARY[article.id]]}
             groupOrder={PALETTE_GROUP_CONFIG[article.id]?.order}
             groupLabels={PALETTE_GROUP_CONFIG[article.id]?.labels}
             flatGroups={PALETTE_GROUP_CONFIG[article.id]?.flat}

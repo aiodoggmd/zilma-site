@@ -38,10 +38,15 @@ interface Props {
   // С 2026-09-05 интерактивная палитра стоит НАД текстом статьи, поэтому картинка — ниже,
   // а не выше; если когда-нибудь порядок вернут обратно, поправить и слово в подсказке.
   showPaletteNote?: boolean;
+  // Честная замена: код оттенка -> что предложить, если его нет в прайсе.
+  // Считается на сборке в [id].astro, правила — в src/lib/shade-substitutes.ts.
+  substitutes?: Record<string, { line: string; code: string; name: string; price: number;
+    promo: boolean; sameType: boolean; note: string }[]>;
 }
 
 const {
   shades,
+  substitutes = {},
   groupOrder = ['warm', 'neutral', 'cool', 'opal', 'booster'],
   groupLabels = {
     warm: 'Тёплые',
@@ -97,6 +102,12 @@ function textVarsFor(hex: string): string {
             data-old-price={s.oldPrice ?? ''}
             data-discount={s.discountPct ?? ''}
             data-is-new={s.isNew ? '1' : ''}
+            data-sub-name={s.price == null ? substitutes[s.code]?.[0]?.name ?? '' : ''}
+            data-sub-price={s.price == null ? substitutes[s.code]?.[0]?.price ?? '' : ''}
+            data-sub-promo={s.price == null && substitutes[s.code]?.[0]?.promo ? '1' : ''}
+            data-sub-note={s.price == null ? substitutes[s.code]?.[0]?.note ?? '' : ''}
+            data-sub-code={s.price == null ? substitutes[s.code]?.[0]?.code ?? '' : ''}
+            data-sub-same={s.price == null && substitutes[s.code]?.[0]?.sameType ? '1' : ''}
             data-label={s.label ?? ''}
             aria-label={`${s.label ?? s.code}${s.price != null ? `, ${s.price} ₽` : ', нет в прайсе'}`}
           >
@@ -229,9 +240,36 @@ function textVarsFor(hex: string): string {
           if (detailCta) detailCta.hidden = false;
           refreshCtaLabel();
         } else {
-          detailSub.textContent = `Код ${code} · нет в актуальном прайсе`;
-          activeName = '';
-          if (detailCta) detailCta.hidden = true;
+          // Оттенка нет в прайсе — но тот же тон может быть в соседней линейке.
+          // Раньше здесь всё заканчивалось, и человек уходил (правила замены —
+          // в src/lib/shade-substitutes.ts, решение показывать и замену другой
+          // стойкости с явной пометкой — пользователя, 2026-09-07).
+          const subName = btn.dataset.subName;
+          const subPrice = btn.dataset.subPrice;
+          detailSub.innerHTML = '';
+          detailSub.append(document.createTextNode(`Код ${code} · нет в наличии`));
+          if (subName && subPrice) {
+            const line = document.createElement('span');
+            line.className = 'shade-sub';
+            const note = document.createElement('span');
+            note.className = btn.dataset.subSame === '1' ? 'shade-sub-note' : 'shade-sub-note shade-sub-warn';
+            note.textContent = btn.dataset.subNote ?? '';
+            const price = document.createElement('b');
+            price.textContent = `${formatPriceRu(parseFloat(subPrice))} ₽`;
+            line.append(
+              document.createTextNode(`Есть замена — ${btn.dataset.subCode ?? ''}: `),
+              price,
+              document.createTextNode(' · '),
+              note
+            );
+            detailSub.append(document.createElement('br'), line);
+            activeName = subName;
+            if (detailCta) detailCta.hidden = false;
+            refreshCtaLabel();
+          } else {
+            activeName = '';
+            if (detailCta) detailCta.hidden = true;
+          }
         }
         detail.hidden = false;
       });
@@ -239,9 +277,11 @@ function textVarsFor(hex: string): string {
 
     detailCta?.addEventListener('click', () => {
       const activeBtn = wrap.querySelector<HTMLButtonElement>('.shade-swatch.is-active');
-      const name = activeBtn?.dataset.name;
-      const price = parseFloat(activeBtn?.dataset.price ?? '');
-      const promo = activeBtn?.dataset.promo === '1';
+      // У оттенка без цены в заявку идёт ЗАМЕНА из соседней линейки, а не он сам.
+      const useSub = !activeBtn?.dataset.name && !!activeBtn?.dataset.subName;
+      const name = useSub ? activeBtn?.dataset.subName : activeBtn?.dataset.name;
+      const price = parseFloat((useSub ? activeBtn?.dataset.subPrice : activeBtn?.dataset.price) ?? '');
+      const promo = (useSub ? activeBtn?.dataset.subPromo : activeBtn?.dataset.promo) === '1';
       if (!name || !Number.isFinite(price)) return;
       addToCart(wrap, name, price, promo);
       refreshCtaLabel();
@@ -492,6 +532,17 @@ function textVarsFor(hex: string): string {
       text-align: center;
     }
   }
+
+  /* Строка замены под ценой: спокойная, не кричит — это подсказка, а не акция. */
+  .shade-sub {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.86rem;
+  }
+  .shade-sub b { color: var(--color-blue-dark); }
+  .shade-sub-note { color: var(--color-meta); }
+  /* Замена другой стойкости — та же подсказка, но её нельзя прочитать вскользь. */
+  .shade-sub-warn { color: var(--color-red); }
 </style>
 
 <!-- Цена и бейджи в панели оттенка собираются через document.createElement в скрипте выше,
