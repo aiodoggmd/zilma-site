@@ -76,10 +76,22 @@ export function pluralPositions(n: number): string {
   return 'позиций';
 }
 
-/** Заголовок строки: когда была прошлая заявка. */
+/** Когда была прошлая заявка — «7 сентября». */
+export function repeatDate(state: RepeatState): string {
+  return new Date(state.at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+}
+
+/** Заголовок строки в форме заявки, где место есть. */
 export function repeatTitle(state: RepeatState): string {
-  const when = new Date(state.at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
-  return `Прошлая заявка от ${when}`;
+  return `Прошлая заявка от ${repeatDate(state)}`;
+}
+
+/** Короткая пара для каталога: там строка одна и должна поместиться на телефоне. */
+export function repeatShort(state: RepeatState): { action: string; sum: string } {
+  return {
+    action: `Повторить заказ от ${repeatDate(state)}`,
+    sum: `${state.items.length} ${pluralPositions(state.items.length)} · ${formatMoney(state.total)} ₽`,
+  };
 }
 
 /** Подпись под заголовком: состав и сумма по сегодняшнему прайсу. */

@@ -497,24 +497,23 @@ const bestDeals = groupBy === 'discount'
     </div>
   </div>
   <p class="pc-search-hint">Например: Koleston 7/0, Londa, шампунь…</p>
+  {/* «Повторить прошлый заказ» — там, где заказ и начинается. Пользователь искал повтор
+      именно в каталоге (2026-09-07) и был прав: в форме заявки его видят последним.
+      Строка занимает место подсказки с примерами, а не добавляет свою высоту: на телефоне
+      каждые лишние 90 px отодвигают «Все бренды» за нижний край, и человек не понимает,
+      что список можно листать (замечание пользователя со скриншотом, 2026-09-07). Подсказка
+      с примерами нужна новичку, повтор — тому, кто уже заказывал; вместе они не нужны.
+      Показывается только при пустой корзине, только в основном каталоге (в окне акций лишь
+      часть прайса) и только если из прошлой заявки хоть что-то ещё есть в прайсе.
+      Логика — src/lib/repeat-order.ts, общая со строкой в форме заявки. */}
+  {groupBy === 'brand' && (
+    <button type="button" class="pc-repeat" data-repeat hidden>
+      <span class="pc-repeat-icon" aria-hidden="true">↻</span>
+      <span class="pc-repeat-title" data-repeat-title></span>
+      <span class="pc-repeat-sum" data-repeat-sum></span>
+    </button>
+  )}
   <div class="pc-groups">
-    {/* «Повторить прошлый заказ» — здесь же, где человек начинает собирать заказ. Раньше эта
-        строка была только в форме заявки, куда обычный клиент попадает последним: пользователь
-        честно сказал, что искал её именно тут (2026-09-07), и был прав.
-        Внутри .pc-groups, а не в шапке: строка уезжает вместе со списком при прокрутке и не
-        занимает место в шапке постоянно. Показывается только при пустой корзине, только в
-        основном каталоге (в окне акций повтор не к месту — там лишь часть прайса) и только
-        если из прошлой заявки хоть что-то ещё есть в прайсе. Логика — src/lib/repeat-order.ts,
-        она же обслуживает строку в форме заявки. */}
-    {groupBy === 'brand' && (
-      <button type="button" class="pc-repeat" data-repeat hidden>
-        <span class="pc-repeat-icon" aria-hidden="true">↻</span>
-        <span class="pc-repeat-text">
-          <span class="pc-repeat-title" data-repeat-title></span>
-          <span class="pc-repeat-sum" data-repeat-sum></span>
-        </span>
-      </button>
-    )}
     {categoryCounts.length > 0 && (
       <div class="pc-category-screen" data-category-screen>
         <div class="pc-popular-grid">
@@ -1610,68 +1609,57 @@ const bestDeals = groupBy === 'discount'
     font-size: 0.76rem;
   }
 
-  /* Строка повтора прошлого заказа. Оформлена как карточка каталога (та же рамка и радиус),
-     но в строку и с синей иконкой: синий на сайте — «информация и навигация», а строка сама
-     ничего не заказывает, только наполняет корзину. */
+  /* Строка повтора прошлого заказа — ОДНА строка на месте подсказки с примерами, а не
+     карточка: на телефоне карточка съедала ~94 px и уводила «Все бренды» под нижний край,
+     из-за чего было не видно, что список листается. Высота теперь равна строке подсказки. */
   .pc-repeat {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 7px;
     width: 100%;
     font: inherit;
+    font-size: 0.82rem;
     text-align: left;
-    background: var(--color-paper);
-    border: 1px solid var(--color-panel-line);
-    border-radius: var(--radius-card);
-    padding: 12px 14px;
-    margin-bottom: 14px;
+    background: none;
+    border: 0;
+    padding: 2px 16px 10px;
     cursor: pointer;
-    transition: border-color 0.15s ease;
+    color: var(--color-blue-dark);
   }
 
   .pc-repeat[hidden] {
     display: none;
   }
 
-  .pc-repeat:hover {
-    border-color: var(--color-blue);
-  }
-
   .pc-repeat-icon {
     flex: none;
-    width: 30px;
-    height: 30px;
+    width: 19px;
+    height: 19px;
     display: grid;
     place-items: center;
     border-radius: 50%;
     background: var(--color-blue-dark);
     color: #fff;
-    font-size: 1rem;
+    font-size: 0.72rem;
     line-height: 1;
   }
 
-  .pc-repeat-text {
-    min-width: 0;
-  }
-
   .pc-repeat-title {
-    display: block;
     font-weight: 600;
-    font-size: 0.9rem;
+    text-decoration: underline;
   }
 
+  /* Сумма — вторым, приглушённо: она уточняет, а не зовёт. На узком экране уходит первой,
+     чтобы сама фраза «Повторить заказ …» осталась в одну строку. */
   .pc-repeat-sum {
-    display: block;
-    margin-top: 2px;
-    font-size: 0.8rem;
     color: var(--color-meta);
-    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* Подтверждение после нажатия — та же строка, но зелёного в палитре нет, поэтому
-     «сделано» показываем синей заливкой иконки и синей рамкой, а не другим цветом. */
-  .pc-repeat-done {
-    border-color: var(--color-blue-dark);
+  .pc-repeat-done .pc-repeat-title {
+    text-decoration: none;
   }
 
   .pc-popular-card {
@@ -2076,7 +2064,7 @@ const bestDeals = groupBy === 'discount'
 </style>
 
 <script>
-  import { repriceLastOrder, repeatTitle, repeatSummary, applyRepeat, pluralPositions } from '../lib/repeat-order';
+  import { repriceLastOrder, repeatShort, applyRepeat, pluralPositions } from '../lib/repeat-order';
 
   // Открытие модалок по клику на любую кнопку с data-open-modal="<id диалога>" (см. PriceBlock.astro).
   // Простой overflow:hidden не спасает: showModal() сам фокусирует кнопку закрытия и браузер асинхронно
@@ -3299,16 +3287,24 @@ const bestDeals = groupBy === 'discount'
       // о наполненной корзине спрячет её в тот же миг, и человек не увидит, что произошло.
       let confirmUntil = 0;
 
+      // Подсказка с примерами и строка повтора делят одно место — показываем что-то одно.
+      const searchHint = root.querySelector<HTMLElement>('.pc-search-hint');
+      const showRow = (on: boolean) => {
+        repeatRow.hidden = !on;
+        if (searchHint) searchHint.hidden = on;
+      };
+
       const renderRepeatRow = () => {
         if (Date.now() < confirmUntil) return;
         const cart = (window as any).zilmaCart?.get() ?? [];
-        if (cart.length) { repeatRow.hidden = true; return; }
+        if (cart.length) { showRow(false); return; }
         const state = repriceLastOrder();
-        if (!state) { repeatRow.hidden = true; return; }
-        if (rTitle) rTitle.textContent = repeatTitle(state);
-        if (rSum) rSum.textContent = repeatSummary(state);
+        if (!state) { showRow(false); return; }
+        const short = repeatShort(state);
+        if (rTitle) rTitle.textContent = short.action;
+        if (rSum) rSum.textContent = short.sum;
         repeatRow.classList.remove('pc-repeat-done');
-        repeatRow.hidden = false;
+        showRow(true);
       };
 
       repeatRow.addEventListener('click', () => {
@@ -3320,8 +3316,8 @@ const bestDeals = groupBy === 'discount'
         confirmUntil = Date.now() + 3500;
         const n = applyRepeat(state);
         repeatRow.classList.add('pc-repeat-done');
-        if (rTitle) rTitle.textContent = `Добавлено в заявку: ${n} ${pluralPositions(n)}`;
-        if (rSum) rSum.textContent = 'Товары отмечены в списке — количество можно поправить';
+        if (rTitle) rTitle.textContent = `Добавлено: ${n} ${pluralPositions(n)}`;
+        if (rSum) rSum.textContent = '— отмечены в списке';
         setTimeout(renderRepeatRow, 3600);
       });
 
