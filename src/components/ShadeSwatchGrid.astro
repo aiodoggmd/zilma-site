@@ -66,6 +66,11 @@ const groups = groupOrder.map((g) => ({
   items: shades.filter((s) => s.group === g).sort((a, b) => (flatGroups.includes(g) ? a.col - b.col : b.row - a.row || a.col - b.col)),
 })).filter((g) => g.items.length > 0);
 
+// Обещать замену в подсказке имеет смысл, только если на ЭТОЙ палитре она реально
+// у кого-то есть: у линеек вне семьи Wella/Londa (Illumina, Shinefinity, Matrix, Igora)
+// подмены нет вовсе, и лишняя строка была бы обещанием, которого никто не выполнит.
+const hasSubstitutes = shades.some((s) => !s.name && (substitutes[s.code]?.length ?? 0) > 0);
+
 // Код оттенка белым текстом теряется на светлых свотчах (пастельные блонды и т.п.) —
 // цвет и подложка текста подбираются по яркости фона, а не фиксированы (найдено
 // пользователем на реальных скриншотах Illumina/Shinefinity, 2026-08-27).
@@ -83,7 +88,7 @@ function textVarsFor(hex: string): string {
   <p class="shade-grid-hint">Нажмите на цвет, чтобы увидеть наличие и заказать. Фото оттенка можно увеличить.</p>
   {showPaletteNote
     ? <p class="shade-grid-note">Более точный цвет можно увидеть в <a href="#палитра-оттенков">палитре ниже</a>.</p>
-    : <p class="shade-grid-note">Серая обводка круга — оттенка сейчас нет в актуальном прайсе.</p>}
+    : <p class="shade-grid-note">Серая обводка круга — оттенка сейчас нет в актуальном прайсе.{hasSubstitutes && ' Для таких оттенков предлагается замена того же тона из аммиачной или безаммиачной линии — выбор за мастером.'}</p>}
   {groups.map((g) => (
     <div class="shade-group">
       <p class="shade-group-label">{g.label}</p>
