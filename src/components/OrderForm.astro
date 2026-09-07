@@ -818,6 +818,7 @@ const Heading = as;
 
 <script>
   import { MIN_ORDER_TOTAL } from '../lib/order-rules';
+  import { repriceLastOrder, repeatTitle, repeatSummary, applyRepeat } from '../lib/repeat-order';
 
   const MAX_FILE_BYTES = 4 * 1024 * 1024;
   // Условие «Минимальный заказ 5 000 ₽» и так было написано в .order-note, но сумма корзины
@@ -1084,80 +1085,29 @@ const Heading = as;
      Задача: постоянный клиент берёт из месяца в месяц почти один и тот же набор, и каждый
      раз собирает его заново по каталогу вручную.
 
-     Главное правило здесь — НЕ доверять сохранённым ценам. С прошлой заявки цена могла
-     измениться, товар мог уйти из прайса или попасть в акцию. Поэтому каждая позиция
-     заново ищется в каталоге НА ЭТОЙ ЖЕ странице (окна «Каталог»/«Акции» отрисованы в
-     разметке целиком, см. PriceChecklist.astro) и берёт оттуда текущую цену. Чего в
-     каталоге больше нет — того нет и в повторе, и об этом честно написано.
-     Отдельная копия цен ради этого не заводится: она бы устарела ровно так же. */
+     Сама логика (пересчёт по сегодняшнему прайсу, формулировки, отбор позиций) живёт в
+     src/lib/repeat-order.ts — её же использует строка повтора в шапке каталога. Здесь
+     остаётся только отрисовка. */
   const repeatEl = document.getElementById('repeat-order') as HTMLElement | null;
   const repeatLabel = document.getElementById('repeat-label');
   const repeatSum = document.getElementById('repeat-sum');
   const repeatBtn = document.getElementById('repeat-btn') as HTMLButtonElement | null;
 
-  // Каталог на странице — источник актуальной цены. Ключ Map — точное имя товара, то же,
-  // что уходит в заявку (по нему же товар опознаётся в 1С).
-  function currentPrices(): Map<string, { price: number; promo: boolean; brand: string }> {
-    const map = new Map<string, { price: number; promo: boolean; brand: string }>();
-    document.querySelectorAll<HTMLInputElement>('.pc-check[data-name]').forEach((el) => {
-      const name = el.dataset.name ?? '';
-      const price = parseFloat(el.dataset.price ?? '');
-      if (!name || !Number.isFinite(price) || map.has(name)) return;
-      map.set(name, { price, promo: el.dataset.promo === '1', brand: el.dataset.brandLabel ?? '' });
-    });
-    return map;
-  }
-
-  // Что из прошлой заявки можно собрать сегодня и почём.
-  function repriceOrder(order: { at: number; items: CartItem[] }) {
-    const prices = currentPrices();
-    const items: CartItem[] = [];
-    let gone = 0;
-    for (const it of order.items) {
-      const now = prices.get(it.name);
-      if (!now) { gone += 1; continue; }
-      items.push({ name: it.name, price: now.price, qty: it.qty, brand: now.brand || it.brand, promo: now.promo });
-    }
-    const total = items.reduce((s, it) => s + it.price * it.qty, 0);
-    return { items, gone, total };
-  }
-
-  function pluralPositions(n: number): string {
-    const d10 = n % 10;
-    const d100 = n % 100;
-    if (d10 === 1 && d100 !== 11) return 'позиция';
-    if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) return 'позиции';
-    return 'позиций';
-  }
-
   function renderRepeat() {
     if (!repeatEl) return;
     // Пока в корзине что-то есть — предложение начать с прошлой заявки только мешает.
     if (readCartItems().length) { repeatEl.hidden = true; return; }
-    const last = (window as any).zilmaOrders?.list()?.[0];
-    if (!last) { repeatEl.hidden = true; return; }
-    const { items, gone, total } = repriceOrder(last);
-    // Каталога на странице нет или из прошлой заявки не осталось ничего — обещать нечего.
-    if (!items.length) { repeatEl.hidden = true; return; }
-
-    const when = new Date(last.at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
-    if (repeatLabel) repeatLabel.textContent = `Прошлая заявка от ${when}`;
-    if (repeatSum) {
-      repeatSum.textContent =
-        `${items.length} ${pluralPositions(items.length)} · ${formatMoney(total)} ₽ по сегодняшнему прайсу` +
-        // «N позиций уже НЕТ» требует родительного падежа и ломается на числах;
-        // «больше не в прайсе» верно и с 1, и с 2, и с 5 — падеж именительный.
-        (gone ? ` · ${gone} ${pluralPositions(gone)} больше не в прайсе` : '');
-    }
+    const state = repriceLastOrder();
+    if (!state) { repeatEl.hidden = true; return; }
+    if (repeatLabel) repeatLabel.textContent = repeatTitle(state);
+    if (repeatSum) repeatSum.textContent = repeatSummary(state);
     repeatEl.hidden = false;
   }
 
   repeatBtn?.addEventListener('click', () => {
-    const last = (window as any).zilmaOrders?.list()?.[0];
-    if (!last) return;
-    const { items } = repriceOrder(last);
-    if (!items.length) return;
-    writeCartItems(items);                              // событие перерисует и корзину, и этот блок
+    const state = repriceLastOrder();
+    if (!state) return;
+    applyRepeat(state);                                 // событие перерисует и корзину, и этот блок
     document.getElementById('order-cart')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 

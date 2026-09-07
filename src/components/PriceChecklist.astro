@@ -498,6 +498,23 @@ const bestDeals = groupBy === 'discount'
   </div>
   <p class="pc-search-hint">Например: Koleston 7/0, Londa, шампунь…</p>
   <div class="pc-groups">
+    {/* «Повторить прошлый заказ» — здесь же, где человек начинает собирать заказ. Раньше эта
+        строка была только в форме заявки, куда обычный клиент попадает последним: пользователь
+        честно сказал, что искал её именно тут (2026-09-07), и был прав.
+        Внутри .pc-groups, а не в шапке: строка уезжает вместе со списком при прокрутке и не
+        занимает место в шапке постоянно. Показывается только при пустой корзине, только в
+        основном каталоге (в окне акций повтор не к месту — там лишь часть прайса) и только
+        если из прошлой заявки хоть что-то ещё есть в прайсе. Логика — src/lib/repeat-order.ts,
+        она же обслуживает строку в форме заявки. */}
+    {groupBy === 'brand' && (
+      <button type="button" class="pc-repeat" data-repeat hidden>
+        <span class="pc-repeat-icon" aria-hidden="true">↻</span>
+        <span class="pc-repeat-text">
+          <span class="pc-repeat-title" data-repeat-title></span>
+          <span class="pc-repeat-sum" data-repeat-sum></span>
+        </span>
+      </button>
+    )}
     {categoryCounts.length > 0 && (
       <div class="pc-category-screen" data-category-screen>
         <div class="pc-popular-grid">
@@ -1593,6 +1610,70 @@ const bestDeals = groupBy === 'discount'
     font-size: 0.76rem;
   }
 
+  /* Строка повтора прошлого заказа. Оформлена как карточка каталога (та же рамка и радиус),
+     но в строку и с синей иконкой: синий на сайте — «информация и навигация», а строка сама
+     ничего не заказывает, только наполняет корзину. */
+  .pc-repeat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    font: inherit;
+    text-align: left;
+    background: var(--color-paper);
+    border: 1px solid var(--color-panel-line);
+    border-radius: var(--radius-card);
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+  }
+
+  .pc-repeat[hidden] {
+    display: none;
+  }
+
+  .pc-repeat:hover {
+    border-color: var(--color-blue);
+  }
+
+  .pc-repeat-icon {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-blue-dark);
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .pc-repeat-text {
+    min-width: 0;
+  }
+
+  .pc-repeat-title {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .pc-repeat-sum {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.8rem;
+    color: var(--color-meta);
+    line-height: 1.35;
+  }
+
+  /* Подтверждение после нажатия — та же строка, но зелёного в палитре нет, поэтому
+     «сделано» показываем синей заливкой иконки и синей рамкой, а не другим цветом. */
+  .pc-repeat-done {
+    border-color: var(--color-blue-dark);
+  }
+
   .pc-popular-card {
     font: inherit;
     text-align: left;
@@ -1995,6 +2076,8 @@ const bestDeals = groupBy === 'discount'
 </style>
 
 <script>
+  import { repriceLastOrder, repeatTitle, repeatSummary, applyRepeat, pluralPositions } from '../lib/repeat-order';
+
   // Открытие модалок по клику на любую кнопку с data-open-modal="<id диалога>" (см. PriceBlock.astro).
   // Простой overflow:hidden не спасает: showModal() сам фокусирует кнопку закрытия и браузер асинхронно
   // (уже после нашего кода) скроллит страницу, чтобы она попала в область видимости — window.scrollTo()
@@ -3203,6 +3286,48 @@ const bestDeals = groupBy === 'discount'
     }
     syncCheckedFromCart();
     document.addEventListener('zilma:cart-updated', syncCheckedFromCart);
+
+    /* Строка «Повторить прошлый заказ» в начале списка. Пересчёт и формулировки — общие с
+       формой заявки (src/lib/repeat-order.ts), здесь только показ и клик.
+       Галочки и количества у товаров проставятся сами: syncCheckedFromCart выше слушает то же
+       событие zilma:cart-updated, которое поднимет запись корзины. */
+    const repeatRow = root.querySelector<HTMLButtonElement>('[data-repeat]');
+    if (repeatRow) {
+      const rTitle = repeatRow.querySelector<HTMLElement>('[data-repeat-title]');
+      const rSum = repeatRow.querySelector<HTMLElement>('[data-repeat-sum]');
+      // Пока висит подтверждение «добавлено», перерисовка строку не трогает — иначе событие
+      // о наполненной корзине спрячет её в тот же миг, и человек не увидит, что произошло.
+      let confirmUntil = 0;
+
+      const renderRepeatRow = () => {
+        if (Date.now() < confirmUntil) return;
+        const cart = (window as any).zilmaCart?.get() ?? [];
+        if (cart.length) { repeatRow.hidden = true; return; }
+        const state = repriceLastOrder();
+        if (!state) { repeatRow.hidden = true; return; }
+        if (rTitle) rTitle.textContent = repeatTitle(state);
+        if (rSum) rSum.textContent = repeatSummary(state);
+        repeatRow.classList.remove('pc-repeat-done');
+        repeatRow.hidden = false;
+      };
+
+      repeatRow.addEventListener('click', () => {
+        const state = repriceLastOrder();
+        if (!state) return;
+        // Флаг взводится ДО записи корзины: applyRepeat рассылает zilma:cart-updated
+        // синхронно, и перерисовка успела бы спрятать строку раньше, чем человек увидит,
+        // что заказ добавлен.
+        confirmUntil = Date.now() + 3500;
+        const n = applyRepeat(state);
+        repeatRow.classList.add('pc-repeat-done');
+        if (rTitle) rTitle.textContent = `Добавлено в заявку: ${n} ${pluralPositions(n)}`;
+        if (rSum) rSum.textContent = 'Товары отмечены в списке — количество можно поправить';
+        setTimeout(renderRepeatRow, 3600);
+      });
+
+      renderRepeatRow();
+      document.addEventListener('zilma:cart-updated', renderRepeatRow);
+    }
 
     // Степпер количества: +/- меняют значение и, если товар ещё не отмечен, отмечают его.
     // Любое изменение (отметка, снятие отметки, +/-, ручной ввод количества) сразу применяется
