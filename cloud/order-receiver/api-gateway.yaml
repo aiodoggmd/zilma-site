@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Zilma — приём заявок
+  version: "1.0"
+
+# API Gateway нужен не ради красоты адреса: он даёт постоянный URL и умеет отдавать
+# браузеру обычный HTTP-ответ. Все три маршрута ведут в ОДНУ функцию — она сама
+# разбирает путь; так дешевле в сопровождении, чем три отдельные функции с общим кодом.
+#
+# service_account_id — сервисный аккаунт с ролью functions.functionInvoker.
+# function_id — идентификатор развёрнутой функции.
+
+paths:
+  /order:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: ЗАПОЛНИТЬ
+        service_account_id: ЗАПОЛНИТЬ
+      operationId: createOrder
+    options:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: ЗАПОЛНИТЬ
+        service_account_id: ЗАПОЛНИТЬ
+      operationId: orderPreflight
+
+  /upload-url:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: ЗАПОЛНИТЬ
+        service_account_id: ЗАПОЛНИТЬ
+      operationId: createUploadUrl
+    options:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: ЗАПОЛНИТЬ
+        service_account_id: ЗАПОЛНИТЬ
+      operationId: uploadPreflight
+
+  /view:
+    get:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: ЗАПОЛНИТЬ
+        service_account_id: ЗАПОЛНИТЬ
+      operationId: viewOrder
