@@ -89,6 +89,31 @@ if (!is_array($items)) {
     $items = [];
 }
 
+/* Один товар — одна строка, и порядок предсказуемый (просьба пользователя 2026-09-10).
+   Дубли возникают буднично: человек добавил краску из каталога, потом ту же из палитры в
+   статье — в корзине две строки одного товара. В письме и в таблице для сборки заказа это
+   лишняя работа глазами и риск отгрузить дважды. Складываем количества по имени товара
+   (имя содержит артикул, поэтому разные фасовки не слипнутся), затем сортируем по бренду,
+   а внутри бренда по названию. */
+$merged = [];
+foreach ($items as $it) {
+    $key = (string)($it['name'] ?? '');
+    if ($key === '') {
+        continue;
+    }
+    if (isset($merged[$key])) {
+        $merged[$key]['qty'] = (int)$merged[$key]['qty'] + (int)($it['qty'] ?? 1);
+    } else {
+        $it['qty'] = (int)($it['qty'] ?? 1);
+        $merged[$key] = $it;
+    }
+}
+$items = array_values($merged);
+usort($items, static function ($a, $b) {
+    $byBrand = strcasecmp((string)($a['brand'] ?? ''), (string)($b['brand'] ?? ''));
+    return $byBrand !== 0 ? $byBrand : strcasecmp((string)$a['name'], (string)$b['name']);
+});
+
 $total = 0.0;
 foreach ($items as $it) {
     $total += (float)($it['price'] ?? 0) * (int)($it['qty'] ?? 1);
@@ -179,6 +204,50 @@ $itemsText = $itemLines ? implode("\n", $itemLines) : '(без позиций и
 $totalText = number_format($total, 2, ',', ' ');
 $orderUrl  = "{$config['site_url']}/orders.php?id={$id}";
 
+/* --- Таблица товаров вложением ------------------------------------------------------
+   Раньше, на прежнем движке, к каждой заявке в Telegram прикладывался csv-файл со
+   списком товаров — по нему удобно собирать заказ и переносить его в 1С. Пользователь
+   заметил пропажу сразу (10.09.2026), возвращаем в письмо.
+
+   Формат повторяет прежний один в один: точка с запятой как разделитель, BOM в начале
+   (без него Excel открывает кириллицу кракозябрами), товары сгруппированы по бренду
+   НАСТОЯЩИМИ группами, а не «пока бренд не сменился у соседних строк» — иначе один и тот
+   же бренд, добавленный в корзину в два захода, даёт два заголовка. */
+$csvCell = static function ($v): string {
+    $s = (string)$v;
+    return preg_match('/[;"\n]/', $s) ? '"' . str_replace('"', '""', $s) . '"' : $s;
+};
+
+$byBrand = [];
+foreach ($items as $it) {
+    $brand = (string)($it['brand'] ?? '') ?: 'Без бренда';
+    $byBrand[$brand][] = $it;
+}
+
+$rows = [implode(';', array_map($csvCell, ['№', 'Товар', 'Кол-во', 'Акция', 'Цена', 'Сумма']))];
+$n = 0;
+$csvTotal = 0.0;
+foreach ($byBrand as $brand => $group) {
+    $rows[] = $csvCell($brand);
+    foreach ($group as $it) {
+        $n++;
+        $sum = round((float)($it['price'] ?? 0) * (int)($it['qty'] ?? 1), 2);
+        $csvTotal += $sum;
+        $rows[] = implode(';', array_map($csvCell, [
+            $n, $it['name'] ?? '', (int)($it['qty'] ?? 1),
+            !empty($it['promo']) ? 'Да' : '', $it['price'] ?? 0, $sum,
+        ]));
+    }
+}
+$csvTotal = round($csvTotal, 2);
+$rows[] = implode(';', array_map($csvCell, ['', '', '', '', 'Итого:', $csvTotal]));
+$rows[] = '';
+$rows[] = $csvCell('Всего наименований: ' . count($items)
+    . ', на сумму ' . number_format($csvTotal, 2, '.', '') . ' руб.');
+
+$csv = "\xEF\xBB\xBF" . implode("\r\n", $rows);
+$csvName = 'zayavka-tovary-' . date('Y-m-d-His') . '.csv';
+
 /* Полный текст — для российских каналов. */
 $full = "Заявка {$id}\n"
     . date('d.m.Y H:i') . "\n\n"
@@ -197,7 +266,8 @@ if (!empty($config['email_to'])) {
     // способами — отказ при любом отправителе), поэтому письмо уходит через SMTP с
     // авторизацией от ящика на домене. См. mailer.php.
     $subjectPlain = 'Заявка ' . $id . ' · ' . count($items) . ' поз. · ' . $totalText . ' ₽';
-    $sent = smtp_send($config, $config['email_to'], $subjectPlain, $full);
+    $sent = smtp_send($config, $config['email_to'], $subjectPlain, $full,
+        $items ? ['name' => $csvName, 'type' => 'text/csv', 'body' => $csv] : null);
     // Итог отправки кладём в саму заявку: иначе «письмо не пришло» невозможно отличить
     // от «письмо не отправлялось». При отказе рядом ложится файл с диалогом почтового
     // сервера — по нему сразу видно, на каком шаге сорвалось (логин и пароль в него

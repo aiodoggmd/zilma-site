@@ -18,7 +18,7 @@ declare(strict_types=1);
  * @return array{ok: bool, log: string} log пригодится, когда письмо не дойдёт:
  *         по ответам сервера сразу видно, на каком шаге отказ.
  */
-function smtp_send(array $cfg, string $to, string $subject, string $body): array
+function smtp_send(array $cfg, string $to, string $subject, string $body, ?array $attach = null): array
 {
     $host = (string)($cfg['smtp_host'] ?? '');
     $port = (int)($cfg['smtp_port'] ?? 465);
@@ -89,9 +89,28 @@ function smtp_send(array $cfg, string $to, string $subject, string $body): array
             'Subject: =?UTF-8?B?' . base64_encode($subject) . '?=',
             'Date: ' . date('r'),
             'MIME-Version: 1.0',
-            'Content-Type: text/plain; charset=UTF-8',
-            'Content-Transfer-Encoding: 8bit',
         ];
+
+        if ($attach !== null) {
+            // Письмо с вложением собирается вручную: письмо из двух частей — текст заявки
+            // и файл таблицы. Граница между частями должна быть строкой, которой заведомо
+            // нет в содержимом, поэтому берём случайную.
+            $boundary = 'zilma' . bin2hex(random_bytes(8));
+            $headers[] = 'Content-Type: multipart/mixed; boundary="' . $boundary . '"';
+            $body = "--{$boundary}\r\n"
+                . "Content-Type: text/plain; charset=UTF-8\r\n"
+                . "Content-Transfer-Encoding: 8bit\r\n\r\n"
+                . str_replace("\n", "\r\n", str_replace("\r\n", "\n", $body)) . "\r\n"
+                . "--{$boundary}\r\n"
+                . 'Content-Type: ' . $attach['type'] . '; name="' . $attach['name'] . "\"\r\n"
+                . "Content-Transfer-Encoding: base64\r\n"
+                . 'Content-Disposition: attachment; filename="' . $attach['name'] . "\"\r\n\r\n"
+                . chunk_split(base64_encode($attach['body'])) . "\r\n"
+                . "--{$boundary}--\r\n";
+        } else {
+            $headers[] = 'Content-Type: text/plain; charset=UTF-8';
+            $headers[] = 'Content-Transfer-Encoding: 8bit';
+        }
         // Строка из одной точки завершает письмо, поэтому такую строку в тексте
         // экранируют второй точкой — иначе письмо оборвётся на середине.
         $safeBody = preg_replace('/^\./m', '..', str_replace("\r\n", "\n", $body));

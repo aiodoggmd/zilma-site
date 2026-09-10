@@ -119,7 +119,15 @@ def main():
     remote = remote_sizes(ftp, base)
     print(f'на сервере файлов: {len(remote)}')
 
-    to_upload = [f for f, size in local.items() if remote.get(f) != size]
+    # Страницы и прочие текстовые файлы заливаем ВСЕГДА, не глядя на размер. Реальный
+    # случай 10.09.2026: в сборке сменилось имя скрипта формы (…CA4-Tigt.js на …N3F1ajg3.js),
+    # длина имени та же — значит и размер страницы тот же. Сравнение по размеру решило, что
+    # менять нечего, страницы остались со ссылкой на удалённый скрипт, и форма заказа
+    # перестала работать. У картинок и шрифтов имена содержат хеш содержимого, поэтому для
+    # них сравнение размера безопасно и экономит время выкладки.
+    ALWAYS = ('.html', '.xml', '.txt', '.json', '.webmanifest', '.php', '.htaccess')
+    to_upload = [f for f, size in local.items()
+                 if f.endswith(ALWAYS) or remote.get(f) != size]
     to_delete = [f for f in remote if f not in local and f.rsplit('/', 1)[-1] not in KEEP]
 
     print(f'\nзалить: {len(to_upload)}')

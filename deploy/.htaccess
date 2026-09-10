@@ -53,8 +53,14 @@ RewriteEngine On
 # адрес хостинга (zilmapro.temp.swtest.ru), на котором сайт проверяется ДО переключения
 # домена, немедленно уводил бы на www.zilma.pro — то есть на старую версию, и проверить
 # новую было бы невозможно.
+# ВАЖНО: перед Apache стоит nginx — он расшифровывает https и передаёт запрос дальше
+# обычным http. Поэтому переменная HTTPS тут НИКОГДА не равна "on", даже когда посетитель
+# пришёл по защищённому адресу, и правило гоняло страницу по бесконечному кругу
+# (поймано вживую 10.09.2026 сразу после выпуска сертификата). Настоящий протокол
+# приезжает в заголовке X-Forwarded-Proto — проверяем ОБА признака.
 RewriteCond %{HTTP_HOST} (^|\.)zilma\.pro$ [NC]
 RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
 RewriteRule ^(.*)$ https://www.zilma.pro/$1 [R=301,L]
 
 RewriteCond %{HTTP_HOST} ^zilma\.pro$ [NC]
