@@ -50,15 +50,17 @@ function smtp_send(array $cfg, string $to, string $subject, string $body): array
         return $data;
     };
 
-    $say = static function (string $command, string $expect) use ($fp, $read, &$log): bool {
+    // $secret = true для шагов, где уходят логин и пароль: они передаются закодированной
+    // строкой, и её нельзя писать в лог. Реальный случай 10.09.2026: пароль ящика попал в
+    // переписку через вывод диагностики, потому что фильтр прятал только цифры.
+    $say = static function (string $command, string $expect, bool $secret = false) use ($fp, $read, &$log): bool {
         if ($command !== '') {
             fwrite($fp, $command . "\r\n");
-            // Пароль в лог не пишем — лог может уехать в переписку или в файл.
-            $log .= (str_starts_with($command, 'AUTH') || strlen($command) > 60 && !str_contains($command, ' ')
-                ? '(скрыто)' : $command) . "\n";
+            $log .= ($secret ? '(логин/пароль скрыты)' : $command) . "\n";
         }
         $answer = $read();
-        $log .= '  < ' . trim($answer) . "\n";
+        $log .= '  < ' . trim($answer) . "
+";
         return str_starts_with(trim($answer), $expect);
     };
 
@@ -73,8 +75,8 @@ function smtp_send(array $cfg, string $to, string $subject, string $body): array
 
     $ok = $ok
         && $say('AUTH LOGIN', '334')
-        && $say(base64_encode($user), '334')
-        && $say(base64_encode($pass), '235')
+        && $say(base64_encode($user), '334', true)
+        && $say(base64_encode($pass), '235', true)
         && $say('MAIL FROM:<' . $user . '>', '250')
         && $say('RCPT TO:<' . $to . '>', '250')
         && $say('DATA', '354');
