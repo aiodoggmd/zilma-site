@@ -1233,7 +1233,11 @@ const Heading = as;
     };
 
     try {
-      const res = await fetch('/api/order', {
+      // Адрес приёмника задаётся при сборке: на Vercel это серверная функция /api/order,
+      // на российском хостинге — /order.php (PHP-скрипт рядом с сайтом). Хардкодить нельзя:
+      // одна и та же ветка собирается под оба варианта.
+      const endpoint = import.meta.env.PUBLIC_ORDER_ENDPOINT || '/api/order';
+      const res = await fetch(endpoint, {
         method: 'POST',
         body: new FormData(form),
       });

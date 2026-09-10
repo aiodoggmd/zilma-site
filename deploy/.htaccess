@@ -48,9 +48,16 @@ RewriteEngine On
 
 # Только https и только www — тот же канонический адрес, что был на Vercel.
 # Иначе поисковик увидит две копии сайта, а уже полученная индексация разъедется.
+#
+# ВАЖНО: правила срабатывают ТОЛЬКО для самого zilma.pro. Без этого условия технический
+# адрес хостинга (zilmapro.temp.swtest.ru), на котором сайт проверяется ДО переключения
+# домена, немедленно уводил бы на www.zilma.pro — то есть на старую версию, и проверить
+# новую было бы невозможно.
+RewriteCond %{HTTP_HOST} (^|\.)zilma\.pro$ [NC]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://www.zilma.pro/$1 [R=301,L]
-RewriteCond %{HTTP_HOST} !^www\. [NC]
+
+RewriteCond %{HTTP_HOST} ^zilma\.pro$ [NC]
 RewriteRule ^(.*)$ https://www.zilma.pro/$1 [R=301,L]
 
 # Astro строит страницы папками: /order/ -> order/index.html. Адрес без слэша должен

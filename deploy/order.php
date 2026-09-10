@@ -21,7 +21,10 @@ declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
 
-$config = require __DIR__ . '/config.php';
+// Конфиг лежит НА УРОВЕНЬ ВЫШЕ public_html — там, куда веб-сервер не пускает.
+// Рядом со скриптом его держать нельзя: файл с паролем и токенами открывался бы
+// прямой ссылкой.
+$config = require __DIR__ . '/../config.php';
 
 function fail(string $code, int $status = 400)
 {

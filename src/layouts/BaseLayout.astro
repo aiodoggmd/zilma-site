@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css';
-import Analytics from '@vercel/analytics/astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
 import CartStore from '../components/CartStore.astro';
 import InstallPrompt from '../components/InstallPrompt.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -88,8 +86,6 @@ const ogImageURL = new URL(image, Astro.site);
   </head>
   <body>
     <CartStore />
-    <Analytics />
-    <SpeedInsights />
     <YandexMetrika />
     {/* Плашка навигации стоит ПЕРЕД содержимым страницы, хотя визуально она внизу
         (position: fixed — порядок в разметке на её место не влияет). Причина: страницы

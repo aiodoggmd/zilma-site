@@ -6,8 +6,14 @@
 файлов, руками это и долго, и легко забыть один. Скрипт заливает только изменившееся
 (сравнивает размер) и в конце показывает, что именно поехало.
 
-Доступы берутся из переменных окружения, чтобы пароль не лежал в файле проекта:
-    FTP_HOST, FTP_USER, FTP_PASSWORD, FTP_DIR (по умолчанию public_html)
+Доступы читаются из файла Site/.env.deploy (он в .gitignore, в репозиторий не попадёт)
+или из переменных окружения. Файл удобнее: пароль вписывается один раз в блокноте и не
+проходит ни через чат, ни через историю команд.
+
+    FTP_HOST=77.222.40.65
+    FTP_USER=логин
+    FTP_PASSWORD=пароль
+    FTP_DIR=public_html
 
 Запуск:
     npx astro build
@@ -25,6 +31,27 @@ DIST = ROOT / 'dist'
 # Файлы, которые лежат на хостинге постоянно и сборкой не создаются — их не трогаем,
 # иначе выкладка каждый раз затирала бы приём заявок и настройки сервера.
 KEEP = {'.htaccess', 'order.php', 'orders.php', 'config.php'}
+
+
+def load_credentials() -> dict:
+    """Сначала файл .env.deploy рядом с проектом, потом переменные окружения.
+
+    Пароль намеренно НЕ передаётся аргументом командной строки: команда с ним осела бы
+    в истории терминала и в логе сессии.
+    """
+    creds = {}
+    env_file = ROOT / '.env.deploy'
+    if env_file.is_file():
+        for line in env_file.read_text(encoding='utf-8').splitlines():
+            line = line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            key, value = line.split('=', 1)
+            creds[key.strip()] = value.strip()
+    for key in ('FTP_HOST', 'FTP_USER', 'FTP_PASSWORD', 'FTP_DIR'):
+        if os.environ.get(key):
+            creds[key] = os.environ[key]
+    return creds
 
 
 def walk_local():
@@ -75,12 +102,13 @@ def main():
     if not DIST.is_dir():
         sys.exit('Нет папки dist — сначала `npx astro build`')
 
-    host = os.environ.get('FTP_HOST')
-    user = os.environ.get('FTP_USER')
-    password = os.environ.get('FTP_PASSWORD')
-    base = os.environ.get('FTP_DIR', 'public_html').rstrip('/')
+    creds = load_credentials()
+    host = creds.get('FTP_HOST')
+    user = creds.get('FTP_USER')
+    password = creds.get('FTP_PASSWORD')
+    base = creds.get('FTP_DIR', 'public_html').rstrip('/')
     if not (host and user and password):
-        sys.exit('Нужны переменные окружения FTP_HOST, FTP_USER, FTP_PASSWORD')
+        sys.exit('Не хватает доступов. Заполни Site/.env.deploy: FTP_HOST, FTP_USER, FTP_PASSWORD')
 
     local = dict(walk_local())
     print(f'в сборке файлов: {len(local)}')
