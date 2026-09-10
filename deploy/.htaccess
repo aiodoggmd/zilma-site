@@ -1,0 +1,82 @@
+# Настройки сайта на российском хостинге. Кладётся в public_html рядом с index.html.
+#
+# Главное здесь — СЖАТИЕ. На Vercel оно включено само: главная едет как 110 КБ вместо
+# 2,5 МБ, разница в 23 раза. На обычном хостинге его надо включать руками, и если про
+# это забыть, каждый заход будет тянуть два с половиной мегабайта — на мобильном
+# интернете это несколько секунд белого экрана.
+
+# ---------- Сжатие ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml application/rss+xml
+  # Картинки, шрифты и excel уже сжаты — повторное сжатие только греет процессор.
+  SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|ico|woff2?|xlsx|zip)$ no-gzip dont-vary
+</IfModule>
+
+# Brotli жмёт ещё плотнее gzip; если модуль есть — используем, нет — строка просто не сработает.
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css application/javascript application/json
+</IfModule>
+
+# ---------- Кэш ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Файлы сборки Astro содержат хеш в имени: меняется содержимое — меняется имя,
+  # поэтому их можно кэшировать надолго без риска показать старое.
+  <FilesMatch "\.(js|css|woff2)$">
+    ExpiresDefault "access plus 1 year"
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|webp|gif|ico|svg)$">
+    ExpiresDefault "access plus 30 days"
+  </FilesMatch>
+  # HTML не кэшируем: иначе после обновления прайса человек увидит вчерашние цены.
+  <FilesMatch "\.html$">
+    ExpiresDefault "access plus 0 seconds"
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  # Прайс скачивается по адресу с датой в имени, но подстрахуемся и здесь.
+  <FilesMatch "\.xlsx$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
+
+# ---------- Адреса ----------
+RewriteEngine On
+
+# Только https и только www — тот же канонический адрес, что был на Vercel.
+# Иначе поисковик увидит две копии сайта, а уже полученная индексация разъедется.
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://www.zilma.pro/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.zilma.pro/$1 [R=301,L]
+
+# Astro строит страницы папками: /order/ -> order/index.html. Адрес без слэша должен
+# вести туда же, а не на 404.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.*[^/])$ /$1/ [R=301,L]
+
+ErrorDocument 404 /404.html
+
+# ---------- Безопасность ----------
+# Те же заголовки, что отдавал Vercel: без них сайт можно встроить в чужую страницу.
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Служебное наружу не отдаём.
+<FilesMatch "^(config\.php|\.env|.*\.log)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+Options -Indexes
