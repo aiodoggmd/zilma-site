@@ -87,7 +87,7 @@ def main() -> None:
         data_dir=c.get('DATA_DIR', '/home/z/zilmapro/zilma-data'),
         email_to=c.get('EMAIL_TO', 'aiodoggmd@yandex.ru'),
         email_from=c.get('EMAIL_FROM', c.get('SMTP_USER', 'zakaz@zilma.pro')),
-        smtp_host=c.get('SMTP_HOST', 'smtp.sweb.ru'),
+        smtp_host=c.get('SMTP_HOST', 'smtp.spaceweb.ru'),
         smtp_port=c.get('SMTP_PORT', '465'),
         smtp_user=c.get('SMTP_USER', ''),
         smtp_pass=c.get('SMTP_PASS', ''),
