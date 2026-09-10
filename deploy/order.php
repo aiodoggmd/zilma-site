@@ -128,46 +128,105 @@ $record = [
 ];
 file_put_contents($dir . '/' . $id . '.json', json_encode($record, JSON_UNESCAPED_UNICODE), LOCK_EX);
 
-/* --- Уведомление БЕЗ персональных данных -------------------------------------------
-   Не уходят: имя, телефон и комментарий. Комментарий человек пишет свободно и вполне
-   может назвать там себя, поэтому он тоже остаётся на сервере.
-   А вот СОСТАВ заказа персональными данными не является: товары и количества ни на кого
-   не указывают. Поэтому список идёт прямо в уведомление — с ним можно сразу собирать
-   заказ, не открывая ссылку (просьба пользователя 2026-09-10). */
-$lines = [];
+/* --- Куда уходит заявка ------------------------------------------------------------
+   Решение пользователя 2026-09-10: заявки идут на ПОЧТУ ЯНДЕКСА и в MAX. Серверы обоих
+   в России, значит персональные данные страну не покидают — трансграничной передачи нет,
+   и уведомлять о ней Роскомнадзор не нужно. Поэтому в эти два канала уходит заявка
+   ЦЕЛИКОМ: имя, телефон, комментарий.
+
+   Telegram остаётся необязательным и получает только состав и сумму, без персональных
+   данных: его серверы за границей. Выключается пустым токеном в config.php.
+
+   Уведомление о начале обработки ПДн в Роскомнадзор это не отменяет — оно нужно любому,
+   кто собирает контакты, и от выбора каналов не зависит. */
+
+$itemLines = [];
 foreach (array_slice($items, 0, 20) as $it) {
-    $lines[] = '· ' . mb_substr((string)($it['name'] ?? ''), 0, 70)
-        . ' — ' . (int)($it['qty'] ?? 1) . ' шт.';
+    $itemLines[] = '· ' . mb_substr((string)($it['name'] ?? ''), 0, 70)
+        . ' — ' . (int)($it['qty'] ?? 1) . ' шт. × '
+        . number_format((float)($it['price'] ?? 0), 2, ',', ' ') . ' ₽';
 }
 if (count($items) > 20) {
-    $lines[] = '· … и ещё ' . (count($items) - 20) . ' поз., смотреть по ссылке';
+    $itemLines[] = '· … и ещё ' . (count($items) - 20) . ' поз., смотреть по ссылке';
+}
+$itemsText = $itemLines ? implode("\n", $itemLines) : '(без позиций из каталога)';
+$totalText = number_format($total, 2, ',', ' ');
+$orderUrl  = "{$config['site_url']}/orders.php?id={$id}";
+
+/* Полный текст — для российских каналов. */
+$full = "Заявка {$id}\n"
+    . date('d.m.Y H:i') . "\n\n"
+    . "Имя: {$name}\n"
+    . "Контакт: {$contact}\n"
+    . ($messenger !== '' ? "Удобный чат: {$messenger}\n" : '')
+    . ($comment !== '' ? "Комментарий: {$comment}\n" : '')
+    . "\n{$itemsText}\n\nИтого: {$totalText} ₽\n"
+    . ($attachment !== null ? "Вложение: {$orderUrl}&file=1\n" : '')
+    . "\nЗаявка на сайте: {$orderUrl}";
+
+/* Почта. Отправитель — ящик на этом же домене: письмо, отправленное от чужого адреса,
+   почтовые службы считают подделкой и кладут в спам. */
+if (!empty($config['email_to'])) {
+    $headers = implode("\r\n", [
+        'From: Zilma <' . $config['email_from'] . '>',
+        'Reply-To: ' . $config['email_from'],
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+        'X-Mailer: zilma-order',
+    ]);
+    // Тема кодируется base64: кириллица в заголовке письма иначе приезжает кракозябрами.
+    $subject = '=?UTF-8?B?' . base64_encode(
+        'Заявка ' . $id . ' · ' . count($items) . ' поз. · ' . $totalText . ' ₽') . '?=';
+    if (!@mail($config['email_to'], $subject, $full, $headers)) {
+        error_log("zilma: mail() failed for {$id}");
+    }
 }
 
-$text = "Новая заявка {$id}\n"
-    . count($items) . ' поз. · ' . number_format($total, 0, ',', ' ') . ' ₽'
-    . ($attachment !== null ? ' · есть вложение' : '')
-    . ($lines ? "\n\n" . implode("\n", $lines) : '')
-    . "\n\nИмя и телефон: {$config['site_url']}/orders.php?id={$id}";
-
-
-$payload = http_build_query([
-    'chat_id' => $config['telegram_chat_id'],
-    'text' => $text,
-    'disable_web_page_preview' => 'true',
-]);
-$ctx = stream_context_create(['http' => [
-    'method' => 'POST',
-    'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
-    'content' => $payload,
-    'timeout' => 20,
-    'ignore_errors' => true,
-]]);
-// Заявка уже сохранена в РФ. Если Telegram не ответит — это не повод терять заказ,
-// поэтому ошибку уведомления клиенту не показываем, а пишем в лог.
-$sent = @file_get_contents(
-    "https://api.telegram.org/bot{$config['telegram_bot_token']}/sendMessage", false, $ctx);
-if ($sent === false) {
-    error_log("zilma: telegram notify failed for {$id}");
+/* MAX. Официальный Bot API (dev.max.ru): токен идёт в заголовке Authorization
+   БЕЗ префикса Bearer, домен platform-api2. */
+if (!empty($config['max_token']) && !empty($config['max_chat_id'])) {
+    $ctxMax = stream_context_create(['http' => [
+        'method'  => 'POST',
+        'header'  => "Content-Type: application/json\r\nAuthorization: {$config['max_token']}\r\n",
+        'content' => json_encode(['text' => $full], JSON_UNESCAPED_UNICODE),
+        'timeout' => 20,
+        'ignore_errors' => true,
+    ]]);
+    $maxUrl = 'https://platform-api2.max.ru/messages?chat_id='
+        . rawurlencode((string)$config['max_chat_id']);
+    if (@file_get_contents($maxUrl, false, $ctxMax) === false) {
+        error_log("zilma: MAX notify failed for {$id}");
+    }
 }
+
+/* Telegram — только если заполнен токен. Персональных данных не содержит. */
+if (!empty($config['telegram_bot_token']) && !empty($config['telegram_chat_id'])) {
+    $text = "Новая заявка {$id}\n"
+        . count($items) . ' поз. · ' . number_format($total, 0, ',', ' ') . ' ₽'
+        . ($attachment !== null ? ' · есть вложение' : '')
+        . ($itemLines ? "\n\n" . $itemsText : '')
+        . "\n\nИмя и телефон: {$orderUrl}";
+
+    $payload = http_build_query([
+        'chat_id' => $config['telegram_chat_id'],
+        'text' => $text,
+        'disable_web_page_preview' => 'true',
+    ]);
+    $ctx = stream_context_create(['http' => [
+        'method' => 'POST',
+        'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
+        'content' => $payload,
+        'timeout' => 20,
+        'ignore_errors' => true,
+    ]]);
+    // Заявка уже сохранена в РФ. Если канал уведомления не ответит — это не повод терять
+    // заказ, поэтому ошибку клиенту не показываем, а пишем в лог.
+    if (@file_get_contents(
+        "https://api.telegram.org/bot{$config['telegram_bot_token']}/sendMessage",
+        false, $ctx) === false) {
+        error_log("zilma: telegram notify failed for {$id}");
+    }
+}
+
 
 echo json_encode(['ok' => true, 'id' => $id], JSON_UNESCAPED_UNICODE);
