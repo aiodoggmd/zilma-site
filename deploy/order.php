@@ -25,6 +25,7 @@ header('Content-Type: application/json; charset=utf-8');
 // Рядом со скриптом его держать нельзя: файл с паролем и токенами открывался бы
 // прямой ссылкой.
 $config = require __DIR__ . '/../config.php';
+require __DIR__ . '/mailer.php';
 
 function fail(string $code, int $status = 400)
 {
@@ -170,18 +171,16 @@ $full = "Заявка {$id}\n"
 /* Почта. Отправитель — ящик на этом же домене: письмо, отправленное от чужого адреса,
    почтовые службы считают подделкой и кладут в спам. */
 if (!empty($config['email_to'])) {
-    $headers = implode("\r\n", [
-        'From: Zilma <' . $config['email_from'] . '>',
-        'Reply-To: ' . $config['email_from'],
-        'Content-Type: text/plain; charset=UTF-8',
-        'Content-Transfer-Encoding: 8bit',
-        'X-Mailer: zilma-order',
-    ]);
-    // Тема кодируется base64: кириллица в заголовке письма иначе приезжает кракозябрами.
-    $subject = '=?UTF-8?B?' . base64_encode(
-        'Заявка ' . $id . ' · ' . count($items) . ' поз. · ' . $totalText . ' ₽') . '?=';
-    if (!@mail($config['email_to'], $subject, $full, $headers)) {
-        error_log("zilma: mail() failed for {$id}");
+    // Встроенная mail() на этом хостинге заблокирована (проверено 10.09.2026 пятью
+    // способами — отказ при любом отправителе), поэтому письмо уходит через SMTP с
+    // авторизацией от ящика на домене. См. mailer.php.
+    $subjectPlain = 'Заявка ' . $id . ' · ' . count($items) . ' поз. · ' . $totalText . ' ₽';
+    $sent = smtp_send($config, $config['email_to'], $subjectPlain, $full);
+    if (!$sent['ok']) {
+        // В лог кладём ответы сервера: «письмо не пришло» само по себе не говорит,
+        // на каком шаге отказ.
+        error_log("zilma: письмо по заявке {$id} не ушло
+" . $sent['log']);
     }
 }
 

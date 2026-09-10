@@ -33,6 +33,14 @@ return [
     'email_to'   => '{email_to}',
     'email_from' => '{email_from}',
 
+    // Встроенная mail() на этом хостинге заблокирована — письма уходят только через
+    // SMTP с авторизацией, от имени ящика на домене.
+    'smtp_host' => '{smtp_host}',
+    'smtp_port' => {smtp_port},
+    'smtp_user' => '{smtp_user}',
+    'smtp_pass' => '{smtp_pass}',
+    'smtp_helo' => 'zilma.pro',
+
     'max_token'   => '{max_token}',
     'max_chat_id' => '{max_chat_id}',
 
@@ -70,14 +78,19 @@ def creds() -> dict:
 
 def main() -> None:
     c = creds()
-    missing = [k for k in ('FTP_HOST', 'FTP_USER', 'FTP_PASSWORD', 'VIEW_PASSWORD') if not c.get(k)]
+    missing = [k for k in ('FTP_HOST', 'FTP_USER', 'FTP_PASSWORD', 'VIEW_PASSWORD',
+                           'SMTP_USER', 'SMTP_PASS') if not c.get(k)]
     if missing:
         sys.exit('В .env.deploy не хватает: ' + ', '.join(missing))
 
     body = TEMPLATE.format(
         data_dir=c.get('DATA_DIR', '/home/z/zilmapro/zilma-data'),
         email_to=c.get('EMAIL_TO', 'aiodoggmd@yandex.ru'),
-        email_from=c.get('EMAIL_FROM', 'zakaz@zilma.pro'),
+        email_from=c.get('EMAIL_FROM', c.get('SMTP_USER', 'zakaz@zilma.pro')),
+        smtp_host=c.get('SMTP_HOST', 'smtp.sweb.ru'),
+        smtp_port=c.get('SMTP_PORT', '465'),
+        smtp_user=c.get('SMTP_USER', ''),
+        smtp_pass=c.get('SMTP_PASS', ''),
         max_token=c.get('MAX_TOKEN', ''),
         max_chat_id=c.get('MAX_CHAT_ID', ''),
         tg_token=c.get('TG_TOKEN', ''),
