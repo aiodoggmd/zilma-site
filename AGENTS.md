@@ -16,6 +16,7 @@ Codex и OpenCode читают напрямую). Здесь только дей
 | `docs/legal.md` | персональные данные, 152-ФЗ, оферта |
 | `docs/vision.md` | планы развития, идеи, KPI |
 | `docs/tooling.md` | подбираем новый MCP-сервер или скилл |
+| `scripts/README.md` | какой скрипт за что отвечает |
 | `docs/learning.md` | контекст курса ZeroCoder |
 | `docs/journal/status-log.md` | «а как мы это делали раньше?» — хроника всех правок |
 | `docs/journal/features.md` | история отдельных фич, статей и аварий |
