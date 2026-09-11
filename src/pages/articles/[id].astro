@@ -1524,9 +1524,9 @@ const articleLd = {
     position: relative;
   }
 
-  /* Затухание у правого края + круглая стрелка. Затухание — главное: обрезанная «начисто»
+  /* Затухание у правого края + кнопка прокрутки. Затухание — главное: обрезанная «начисто»
      колонка выглядит как конец таблицы, а размытый край сам по себе читается как
-     «дальше есть ещё». Стрелка добавляет движение, за которое цепляется глаз. */
+     «дальше есть ещё». Сама полоса кликов не ловит — кликается только кнопка. */
   .prose :global(.scroll-cue) {
     position: absolute;
     top: 0;
@@ -1534,9 +1534,9 @@ const articleLd = {
     bottom: 0;
     width: 64px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-end;
-    padding-right: 6px;
+    padding: 6px 6px 0 0;
     pointer-events: none;
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--color-paper) 78%);
     transition: opacity 0.25s ease;
@@ -1547,9 +1547,14 @@ const articleLd = {
     opacity: 0;
   }
 
-  .prose :global(.scroll-cue span) {
-    width: 30px;
-    height: 30px;
+  /* Стрелка стоит НА УРОВНЕ ШАПКИ таблицы, а не по центру (просьба пользователя
+     11.09.2026): посреди строк её принимали за кнопку у товара и она закрывала цену. */
+  .prose :global(.scroll-cue-btn) {
+    pointer-events: auto;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
     background: var(--color-blue-dark);
     color: #fff;
@@ -1558,8 +1563,19 @@ const articleLd = {
     justify-content: center;
     font-size: 0.95rem;
     line-height: 1;
+    cursor: pointer;
     box-shadow: 0 2px 6px rgba(43, 32, 28, 0.28);
     animation: cue-arrow 1.8s ease-in-out infinite;
+  }
+
+  .prose :global(.scroll-cue-btn:active) {
+    transform: scale(0.92);
+  }
+
+  /* Человек уже листал таблицу — подсказывать больше нечего, кнопка перестаёт дёргаться
+     и остаётся просто удобным способом сдвинуть таблицу дальше. */
+  .prose :global(.table-scroll-shell.is-touched .scroll-cue-btn) {
+    animation: none;
   }
 
   @keyframes cue-arrow {
@@ -1571,7 +1587,7 @@ const articleLd = {
      систему не анимировать, подсказка остаётся, но перестаёт дёргаться. */
   @media (prefers-reduced-motion: reduce) {
     .prose :global(.scroll-hint .hint-arrow),
-    .prose :global(.scroll-cue span) {
+    .prose :global(.scroll-cue-btn) {
       animation: none;
     }
   }
@@ -2064,7 +2080,12 @@ const articleLd = {
 
       const cue = document.createElement('div');
       cue.className = 'scroll-cue';
-      cue.innerHTML = '<span aria-hidden="true">→</span>';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'scroll-cue-btn';
+      btn.setAttribute('aria-label', 'Показать следующие колонки таблицы');
+      btn.textContent = '→';
+      cue.appendChild(btn);
       shell.appendChild(cue);
 
       // У правого края метку убираем: дальше листать нечего, и она закрывала бы данные.
@@ -2073,7 +2094,26 @@ const articleLd = {
         cue.classList.toggle('is-done', atEnd);
       };
       wrap.addEventListener('scroll', sync, { passive: true });
+      wrap.addEventListener('scroll', () => shell.classList.add('is-touched'), { passive: true, once: true });
       sync();
+
+      // Шаг в пол-экрана, а не во всю ширину: при полном шаге колонка, на которую человек
+      // смотрел, уезжает из кадра целиком, и связь с предыдущей половиной теряется.
+      // Анимацию ведём таймером, а не `behavior: 'smooth'`: штатная плавная прокрутка
+      // местами не срабатывает вовсе (проверено — в автоматическом браузере она не сдвинула
+      // таблицу ни на пиксель), и кнопка выглядела бы сломанной.
+      btn.addEventListener('click', () => {
+        shell.classList.add('is-touched');
+        const from = wrap.scrollLeft;
+        const to = Math.min(from + wrap.clientWidth * 0.5, wrap.scrollWidth - wrap.clientWidth);
+        const started = Date.now();
+        const timer = setInterval(() => {
+          const t = Math.min(1, (Date.now() - started) / 280);
+          // Плавное замедление к концу — рывок читается как сбой, а не как прокрутка.
+          wrap.scrollLeft = from + (to - from) * (1 - (1 - t) ** 3);
+          if (t >= 1) clearInterval(timer);
+        }, 16);
+      });
 
       if (calm) return;
 
