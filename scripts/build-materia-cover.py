@@ -69,19 +69,16 @@ def main() -> None:
         x += p.width + gap
     cover.save(OUT_DIR / 'cover.webp', 'WEBP', quality=88, method=6)
 
-    # Отдельные фото для тела статьи — на белом квадрате, чтобы не прыгали по высоте.
-    for name, img, side in (('tube', tube, 700), ('oxy', None, 700)):
-        if name == 'tube':
-            canvas = Image.new('RGB', (side, side), 'white')
-            p = scaled(img, int(side * 0.92))
-            canvas.paste(p, ((side - p.width) // 2, (side - p.height) // 2))
-        else:
-            canvas = Image.new('RGB', (side, side), 'white')
-            a, b = scaled(oxy3, int(side * 0.8)), scaled(oxy6, int(side * 0.8))
-            w = a.width + b.width + 30
-            canvas.paste(a, ((side - w) // 2, (side - a.height) // 2))
-            canvas.paste(b, ((side - w) // 2 + a.width + 30, (side - b.height) // 2))
-        canvas.save(OUT_DIR / f'{name}.webp', 'WEBP', quality=88, method=6)
+    # Фото оксидантов для раздела про выбор процента. Отдельного фото тубы этот скрипт не
+    # делает: картинку в начале статьи (hero-product.webp — туба с упаковкой) прислал
+    # пользователь, она нагляднее композиции из трёх предметов.
+    side = 700
+    canvas = Image.new('RGB', (side, side), 'white')
+    a, b = scaled(oxy3, int(side * 0.8)), scaled(oxy6, int(side * 0.8))
+    w = a.width + b.width + 30
+    canvas.paste(a, ((side - w) // 2, (side - a.height) // 2))
+    canvas.paste(b, ((side - w) // 2 + a.width + 30, (side - b.height) // 2))
+    canvas.save(OUT_DIR / 'oxy.webp', 'WEBP', quality=88, method=6)
 
     for f in sorted(OUT_DIR.glob('*.webp')):
         print(f'{f.name:12} {f.stat().st_size // 1024} КБ  {Image.open(f).size}')
