@@ -146,15 +146,16 @@ const PALETTE_GROUP_CONFIG: Record<string, { order: string[]; labels: Record<str
   // даёт натуральный цвет на седине, Texture работает нюансом, Primary — чистые тона.
   // Make-up Line и mix-tone стоят отдельно, потому что у них СВОИ пропорции разведения.
   '2026-09-11-lebel-materia': {
-    order: ['brown', 'texture', 'primary', 'makeup', 'mix'],
+    order: ['brown', 'texture', 'primary', 'makeup', 'mix', 'lift'],
     labels: {
       brown: 'Brown Shade · базовые коричневые',
       texture: 'Texture Shade · оттеночные нюансы',
       primary: 'Primary Shade · чистые тона',
       makeup: 'Make-up Line · тонирование поверх, 1+3',
       mix: 'Mix-tone · корректоры',
+      lift: 'Осветляющие · белые, потому что не дают цвет',
     },
-    flat: ['makeup', 'mix'],
+    flat: ['makeup', 'mix', 'lift'],
   },
   '2026-09-06-matrix-socolor': {
     order: ['main', 'extra', 'ultra'],

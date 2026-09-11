@@ -39,11 +39,15 @@ TONES = ['CB', 'B', 'WB',
 # находит; в этом списке их тоже нет.
 ROW_NAMES = ['makeup', 14, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 'mix']
 
-# Контрольная колонка слева (LT, LT-EX, CLRμ) в палитру НЕ идёт, и это осознанно: это не
-# оттенки, а осветляющие и разбавитель. На карте у LT и LT-EX вместо цвета показана сила
-# осветления — прядь наполовину белая, наполовину коричневая; круглым свотчем рядом с
-# настоящими оттенками это читалось бы как брак печати. Про них — текстом в статье.
-# CLRμ к тому же помечен синим квадратом, то есть относится к линии MATERIA μ.
+# Осветляющие LT и LT-EX стоят в палитре БЕЛЫМИ кружками (решение пользователя 11.09.2026).
+# Своего цвета у них нет — они поднимают уровень, а не красят, — и белый кружок это как раз
+# и показывает. Фото с карты для них не годится: там прядь наполовину белая, наполовину
+# коричневая (это показ силы осветления, а не оттенок), и рядом с настоящими цветами такой
+# свотч читался бы как брак печати. Поэтому кружок рисуется однотонным.
+#
+# CLRμ из той же колонки в палитру не идёт: он помечен на карте синим квадратом, то есть
+# относится к линии MATERIA μ, а это отдельная статья.
+LIFTERS = [('LT-EX', 'осветление до 5 уровней'), ('LT', 'осветление до 2 уровней')]
 
 BROWN = {'CB', 'B', 'WB'}
 TEXTURE = {'PBe', 'OBe', 'Be', 'ABe', 'Gr', 'Ma', 'Pe', 'MT'}
@@ -176,12 +180,28 @@ def main() -> None:
                 cx0, cx1 = col_runs[col_idx]
                 take(code, group_for(tone, row), row, col_idx, cx0, cx1, ry0, y1)
 
+    # Белый кружок рисуем сами, а не берём с карты: см. комментарий к LIFTERS выше.
+    # Он идёт картинкой, а не цветом фона, только ради формы — свотчи с картинкой круглые,
+    # а без неё квадратные, и два квадрата среди сотни кругов выглядели бы как сбой.
+    for idx, (code, _what) in enumerate(LIFTERS):
+        slug = code.lower()
+        circle(Image.new('RGB', (400, 400), 'white')).save(
+            IMG_DIR / f'{slug}.webp', 'WEBP', quality=92, method=6)
+        shade = {'code': code, 'hex': '#ffffff', 'group': 'lift', 'row': 0, 'col': idx,
+                 'image': f'/images/shades/lebel-materia/{slug}.webp'}
+        live = prices.get(code.upper())
+        if live:
+            shade['name'], shade['price'] = live['name'], live['price']
+            matched += 1
+        shades.append(shade)
+
     OUT_JSON.write_text(json.dumps(shades, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
     print(f'оттенков: {len(shades)}, пустых ячеек пропущено: {skipped}')
     per_row = {}
     for s in shades:
-        per_row.setdefault(s['group'] if s['group'] in ('makeup', 'mix') else s['row'], []).append(s['code'])
+        key = s['group'] if s['group'] in ('makeup', 'mix', 'lift') else s['row']
+        per_row.setdefault(key, []).append(s['code'])
     for row, codes in per_row.items():
         print(f'  {str(row):>6}: {len(codes):2d}  {" ".join(codes)}')
     print(f'\nсопоставлено с прайсом: {matched} из {len(prices)} позиций MATERIA')
