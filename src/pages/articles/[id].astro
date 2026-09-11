@@ -1491,13 +1491,88 @@ const articleLd = {
 
   /* Подсказка «прокрутите вправо» — вставляется в рантайме (см. initScrollHints ниже) только
      когда таблица реально не помещается на экране, поэтому на десктопе её не видно вообще. */
+  /* Подсказка о прокрутке была серой и мелкой — её просто не замечали. Реальный случай
+     11.09.2026: клиент написал продавцу «объёмы разные, а цена одинаковая?» — на телефоне
+     в кадр попала колонка «Артикул», и номер артикула прочитался как цена. Подсказка при
+     этом была на экране. Вывод пользователя, с которым не поспоришь: люди не читают, они
+     видят то, что бросается в глаза. Поэтому подсказка теперь синяя и со стрелкой, которая
+     движется, а у правого края таблицы стоит отдельная метка — см. .scroll-cue ниже. */
   .prose :global(.scroll-hint) {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-size: 0.78rem;
-    color: var(--color-meta);
-    margin: 0 0 6px;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-blue-dark);
+    margin: 0 0 8px;
+  }
+
+  .prose :global(.scroll-hint .hint-arrow) {
+    display: inline-block;
+    animation: hint-arrow 1.6s ease-in-out infinite;
+  }
+
+  @keyframes hint-arrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+  }
+
+  /* Обёртка вокруг прокручиваемой таблицы: сама таблица скроллится, а метка стоит поверх
+     неё и не уезжает вместе с содержимым. */
+  .prose :global(.table-scroll-shell) {
+    position: relative;
+  }
+
+  /* Затухание у правого края + круглая стрелка. Затухание — главное: обрезанная «начисто»
+     колонка выглядит как конец таблицы, а размытый край сам по себе читается как
+     «дальше есть ещё». Стрелка добавляет движение, за которое цепляется глаз. */
+  .prose :global(.scroll-cue) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    pointer-events: none;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--color-paper) 78%);
+    transition: opacity 0.25s ease;
+  }
+
+  /* Дочитали до правого края — метка больше не нужна и не мешает смотреть на данные. */
+  .prose :global(.scroll-cue.is-done) {
+    opacity: 0;
+  }
+
+  .prose :global(.scroll-cue span) {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--color-blue-dark);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgba(43, 32, 28, 0.28);
+    animation: cue-arrow 1.8s ease-in-out infinite;
+  }
+
+  @keyframes cue-arrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-6px); }
+  }
+
+  /* Движение — приём для привлечения внимания, а не украшение: если человек попросил
+     систему не анимировать, подсказка остаётся, но перестаёт дёргаться. */
+  @media (prefers-reduced-motion: reduce) {
+    .prose :global(.scroll-hint .hint-arrow),
+    .prose :global(.scroll-cue span) {
+      animation: none;
+    }
   }
 
   .prose :global(.order-unavailable) {
@@ -1969,12 +2044,62 @@ const articleLd = {
   // в ширину экрана (на десктопе, где всё и так видно, подсказка не создаётся вообще).
   // Общий шаблон, а не разметка статьи — правится в одном месте сразу для всех таблиц сайта.
   function initScrollHints() {
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     document.querySelectorAll<HTMLElement>('.kit-table-wrap, .table-scroll-wrap').forEach((wrap) => {
       if (wrap.scrollWidth <= wrap.clientWidth + 1) return;
+
       const hint = document.createElement('p');
       hint.className = 'scroll-hint';
-      hint.textContent = 'Прокрутите таблицу вправо, чтобы увидеть остальные колонки →';
+      hint.innerHTML = 'Таблица шире экрана — листайте вбок <span class="hint-arrow">→</span>';
       wrap.parentNode?.insertBefore(hint, wrap);
+
+      // Метка кладётся ПОВЕРХ обёртки, а не внутрь неё: содержимое обёртки прокручивается,
+      // и метка внутри уехала бы вместе с таблицей ровно тогда, когда она нужнее всего.
+      const shell = document.createElement('div');
+      shell.className = 'table-scroll-shell';
+      wrap.parentNode?.insertBefore(shell, wrap);
+      shell.appendChild(wrap);
+
+      const cue = document.createElement('div');
+      cue.className = 'scroll-cue';
+      cue.innerHTML = '<span aria-hidden="true">→</span>';
+      shell.appendChild(cue);
+
+      // У правого края метку убираем: дальше листать нечего, и она закрывала бы данные.
+      const sync = () => {
+        const atEnd = wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 2;
+        cue.classList.toggle('is-done', atEnd);
+      };
+      wrap.addEventListener('scroll', sync, { passive: true });
+      sync();
+
+      if (calm) return;
+
+      // Короткий «толчок» в момент, когда таблица впервые появляется на экране: колонки
+      // заметно сдвигаются и возвращаются. Неподвижную подсказку человек пропускает, а
+      // движение самой таблицы читается как «её можно двигать» без единого слова.
+      // Сдвиг мгновенный, без плавной анимации, и это выбор в пользу надёжности: и свой
+      // цикл на requestAnimationFrame, и штатный `behavior: 'smooth'` ведёт компоновщик
+      // кадров, а он местами придушен — тогда «толчок» молча не происходит, и проверить
+      // это в автоматическом браузере невозможно (оба варианта там не сдвинули таблицу
+      // ни на пиксель). Обычное присваивание scrollLeft срабатывает всегда.
+      const nudge = () => {
+        wrap.scrollLeft = 24;
+        setTimeout(() => { wrap.scrollLeft = 0; }, 420);
+      };
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          // Толкаем только нетронутую таблицу: если человек уже листал её сам, дёргать
+          // содержимое под рукой — грубость, а не подсказка.
+          if (e.isIntersecting && wrap.scrollLeft === 0) {
+            nudge();
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.35 });
+      io.observe(wrap);
     });
   }
   initScrollHints();
