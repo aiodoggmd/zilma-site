@@ -29,16 +29,35 @@ ROOT = Path(__file__).resolve().parent.parent
 PY = sys.executable
 
 
-def run(title: str, command: list[str] | str, *, shell: bool = False, quiet: bool = False) -> str:
-    """Выполняет шаг и останавливает публикацию, если он не прошёл."""
+def run(title: str, command: list[str] | str, *, shell: bool = False, quiet: bool = False,
+        stream: bool = False) -> str:
+    """Выполняет шаг и останавливает публикацию, если он не прошёл.
+
+    stream=True — показывать вывод по ходу, а не после. Нужно для заливки: скрипт выкладки
+    печатает «будет УДАЛЕНО файлов: N» до заливки и до удаления, и увидеть это надо тогда
+    же, а не в конце. Раньше ради этого делался отдельный прогон плана — второе FTP-соединение
+    подряд, на котором хостинг 11.09.2026 дважды ответил отказом.
+    """
     print(f'\n[{title}]')
-    proc = subprocess.run(command, shell=shell, cwd=ROOT, text=True, encoding='utf-8',
-                          errors='replace', capture_output=True)
-    out = (proc.stdout or '') + (proc.stderr or '')
-    if proc.returncode != 0:
-        print(out.strip()[-2000:])
+    if stream:
+        proc = subprocess.Popen(command, shell=shell, cwd=ROOT, text=True, encoding='utf-8',
+                                errors='replace', stdout=subprocess.PIPE,
+                                stderr=subprocess.STDOUT, bufsize=1)
+        parts = []
+        for line in proc.stdout:
+            parts.append(line)
+            print(line.rstrip(), flush=True)
+        proc.wait()
+        out, code = ''.join(parts), proc.returncode
+    else:
+        proc = subprocess.run(command, shell=shell, cwd=ROOT, text=True, encoding='utf-8',
+                              errors='replace', capture_output=True)
+        out, code = (proc.stdout or '') + (proc.stderr or ''), proc.returncode
+    if code != 0:
+        if not stream:
+            print(out.strip()[-2000:])
         sys.exit(f'\n✗ Шаг «{title}» не прошёл. Публикация остановлена, на сайте ничего не изменилось.')
-    if not quiet:
+    if not quiet and not stream:
         print(out.rstrip())
     return out
 
@@ -94,21 +113,19 @@ def main() -> None:
     check_build()
     print('[3/5 Проверка сборки] — выше')
 
-    plan = run('4/5 Что поедет на сайт', [PY, 'scripts/deploy-to-hosting.py'])
-
     if not args.apply:
+        run('4/5 Что поедет на сайт', [PY, 'scripts/deploy-to-hosting.py'])
         print('\nЭто был план, на сайте ничего не изменилось.')
         print('Публиковать: npm run publish -- --apply\n')
         return
 
-    # «Удалить лишние» — единственная строка плана, которую нельзя пролистывать: именно она
-    # один раз собралась снести mailer.php, на котором держится отправка заказов.
-    for line in plan.splitlines():
-        if line.startswith('удалить лишние:') and not line.endswith(' 0'):
-            print(f'\n  ВНИМАНИЕ: {line.strip()} — это файлы, которых нет в сборке.')
-
-    run('5/5 Заливка', [PY, 'scripts/deploy-to-hosting.py', '--apply'])
-    run('Проверка живого сайта', [PY, 'scripts/morning-check.py'])
+    # ОДИН заход на сервер вместо двух. Скрипт выкладки сам печатает план, затем громкое
+    # «будет УДАЛЕНО файлов: N», и только после этого заливает и удаляет — всё в одном
+    # соединении. Раньше здесь стоял отдельный прогон плана ради того предупреждения: два
+    # FTP-сеанса подряд, и хостинг 11.09.2026 дважды ответил отказом (421, ConnectionReset).
+    # Вывод идёт потоком, поэтому предупреждение видно вовремя, а не в конце шага.
+    run('4/5 План и заливка', [PY, 'scripts/deploy-to-hosting.py', '--apply'], stream=True)
+    run('5/5 Проверка живого сайта', [PY, 'scripts/morning-check.py'])
     print('\nОпубликовано.\n')
 
 

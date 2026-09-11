@@ -25,6 +25,7 @@ import ftplib
 import os
 import pathlib
 import sys
+import time
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DIST = ROOT / 'dist'
@@ -76,11 +77,24 @@ def connect(host: str, user: str, password: str) -> ftplib.FTP_TLS:
     prot_p() шифрует не только команды, но и сам поток файлов — без него по TLS идёт только
     авторизация.
     """
-    ftp = ftplib.FTP_TLS(host, timeout=60)
-    ftp.login(user, password)
-    ftp.prot_p()
-    ftp.set_pasv(True)
-    return ftp
+    # Повтор с паузой — не от капризов сети. 11.09.2026 публикация дважды упала на
+    # `421 chdir: Permission denied` и `ConnectionResetError`: хостинг не успевал закрыть
+    # предыдущую сессию. Основное лечение — одно соединение на всю публикацию (см.
+    # publish.py); это подстраховка на случай, когда сессию держит что-то ещё.
+    last = None
+    for attempt, pause in enumerate((0, 3, 8), start=1):
+        if pause:
+            print(f'  подключение не удалось ({last}); повтор через {pause} с [{attempt}/3]')
+            time.sleep(pause)
+        try:
+            ftp = ftplib.FTP_TLS(host, timeout=60)
+            ftp.login(user, password)
+            ftp.prot_p()
+            ftp.set_pasv(True)
+            return ftp
+        except (ftplib.error_temp, ftplib.error_perm, OSError) as e:
+            last = e
+    raise SystemExit(f'Не удалось подключиться к хостингу после 3 попыток: {last}')
 
 
 def remote_sizes(ftp: ftplib.FTP, base: str) -> dict:
@@ -159,6 +173,15 @@ def main():
     print(f'удалить лишние: {len(to_delete)}')
     for f in to_delete[:10]:
         print('  ', f)
+
+    # Единственная строка плана, которую нельзя пролистывать: однажды выкладка собралась
+    # снести mailer.php, на котором держится приём заказов. Печатается ДО заливки и ДО
+    # удаления, в том же прогоне — значит видна вовремя, и второй заход на сервер ради
+    # неё не нужен.
+    if to_delete:
+        print()
+        print(f'  ВНИМАНИЕ: будет УДАЛЕНО с сервера файлов: {len(to_delete)}')
+        print('  Их нет в свежей сборке. Проверь список выше, прежде чем продолжать.')
 
     if not args.apply:
         print('\nЭто был план. Для заливки — запустить с --apply')
