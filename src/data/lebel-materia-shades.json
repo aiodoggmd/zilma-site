@@ -1,8 +1,64 @@
 [
   {
+    "code": "M-Be",
+    "hex": "#a07e55",
+    "group": "makeup",
+    "row": 0,
+    "col": 5,
+    "image": "/images/shades/lebel-materia/m-be.webp"
+  },
+  {
+    "code": "M-MT",
+    "hex": "#7c827e",
+    "group": "makeup",
+    "row": 0,
+    "col": 10,
+    "image": "/images/shades/lebel-materia/m-mt.webp"
+  },
+  {
+    "code": "M-R",
+    "hex": "#7c2535",
+    "group": "makeup",
+    "row": 0,
+    "col": 11,
+    "image": "/images/shades/lebel-materia/m-r.webp"
+  },
+  {
+    "code": "M-O",
+    "hex": "#bf5230",
+    "group": "makeup",
+    "row": 0,
+    "col": 13,
+    "image": "/images/shades/lebel-materia/m-o.webp"
+  },
+  {
+    "code": "M-CA",
+    "hex": "#91aecc",
+    "group": "makeup",
+    "row": 0,
+    "col": 18,
+    "image": "/images/shades/lebel-materia/m-ca.webp"
+  },
+  {
+    "code": "M-RV",
+    "hex": "#661737",
+    "group": "makeup",
+    "row": 0,
+    "col": 19,
+    "image": "/images/shades/lebel-materia/m-rv.webp"
+  },
+  {
+    "code": "M-P",
+    "hex": "#903e45",
+    "group": "makeup",
+    "row": 0,
+    "col": 20,
+    "image": "/images/shades/lebel-materia/m-p.webp"
+  },
+  {
     "code": "CB-14",
     "hex": "#e5e2ce",
-    "group": "materia",
+    "group": "brown",
     "row": 14,
     "col": 0,
     "image": "/images/shades/lebel-materia/cb-14.webp",
@@ -11,48 +67,48 @@
   },
   {
     "code": "CB-12",
-    "hex": "#d5d0b0",
-    "group": "materia",
+    "hex": "#d6d1ae",
+    "group": "brown",
     "row": 12,
     "col": 0,
     "image": "/images/shades/lebel-materia/cb-12.webp"
   },
   {
     "code": "PBe-12",
-    "hex": "#f7d3d3",
-    "group": "materia",
+    "hex": "#f7d4d4",
+    "group": "texture",
     "row": 12,
     "col": 3,
     "image": "/images/shades/lebel-materia/pbe-12.webp"
   },
   {
     "code": "OBe-12",
-    "hex": "#f9d6b7",
-    "group": "materia",
+    "hex": "#fad7b7",
+    "group": "texture",
     "row": 12,
     "col": 4,
     "image": "/images/shades/lebel-materia/obe-12.webp"
   },
   {
     "code": "Be-12",
-    "hex": "#e4d4bb",
-    "group": "materia",
+    "hex": "#e5d5bb",
+    "group": "texture",
     "row": 12,
     "col": 5,
     "image": "/images/shades/lebel-materia/be-12.webp"
   },
   {
     "code": "ABe-12",
-    "hex": "#cfc4cf",
-    "group": "materia",
+    "hex": "#cfc5d0",
+    "group": "texture",
     "row": 12,
     "col": 6,
     "image": "/images/shades/lebel-materia/abe-12.webp"
   },
   {
     "code": "Gr-12",
-    "hex": "#cac6b4",
-    "group": "materia",
+    "hex": "#cac8b4",
+    "group": "texture",
     "row": 12,
     "col": 7,
     "image": "/images/shades/lebel-materia/gr-12.webp",
@@ -61,8 +117,8 @@
   },
   {
     "code": "Ma-12",
-    "hex": "#d8bfd0",
-    "group": "materia",
+    "hex": "#d9bfd1",
+    "group": "texture",
     "row": 12,
     "col": 8,
     "image": "/images/shades/lebel-materia/ma-12.webp"
@@ -70,39 +126,39 @@
   {
     "code": "Pe-12",
     "hex": "#e4dcd9",
-    "group": "materia",
+    "group": "texture",
     "row": 12,
     "col": 9,
     "image": "/images/shades/lebel-materia/pe-12.webp"
   },
   {
     "code": "O-12",
-    "hex": "#eb9f51",
-    "group": "materia",
+    "hex": "#eca051",
+    "group": "primary",
     "row": 12,
     "col": 13,
     "image": "/images/shades/lebel-materia/o-12.webp"
   },
   {
     "code": "G-12",
-    "hex": "#d8b867",
-    "group": "materia",
+    "hex": "#d9b966",
+    "group": "primary",
     "row": 12,
     "col": 14,
     "image": "/images/shades/lebel-materia/g-12.webp"
   },
   {
     "code": "M-12",
-    "hex": "#b4c89f",
-    "group": "materia",
+    "hex": "#b5c99e",
+    "group": "primary",
     "row": 12,
     "col": 15,
     "image": "/images/shades/lebel-materia/m-12.webp"
   },
   {
     "code": "L-12",
-    "hex": "#a8c3ac",
-    "group": "materia",
+    "hex": "#a8c3ab",
+    "group": "primary",
     "row": 12,
     "col": 16,
     "image": "/images/shades/lebel-materia/l-12.webp"
@@ -110,23 +166,23 @@
   {
     "code": "A-12",
     "hex": "#c8c5d3",
-    "group": "materia",
+    "group": "primary",
     "row": 12,
     "col": 17,
     "image": "/images/shades/lebel-materia/a-12.webp"
   },
   {
     "code": "CA-12",
-    "hex": "#b6c3da",
-    "group": "materia",
+    "hex": "#b7c3db",
+    "group": "primary",
     "row": 12,
     "col": 18,
     "image": "/images/shades/lebel-materia/ca-12.webp"
   },
   {
     "code": "P-12",
-    "hex": "#bc6e6d",
-    "group": "materia",
+    "hex": "#be706f",
+    "group": "primary",
     "row": 12,
     "col": 20,
     "image": "/images/shades/lebel-materia/p-12.webp",
@@ -135,24 +191,24 @@
   },
   {
     "code": "CB-10",
-    "hex": "#d0c8a4",
-    "group": "materia",
+    "hex": "#d1c9a3",
+    "group": "brown",
     "row": 10,
     "col": 0,
     "image": "/images/shades/lebel-materia/cb-10.webp"
   },
   {
     "code": "B-10",
-    "hex": "#d4c295",
-    "group": "materia",
+    "hex": "#d5c295",
+    "group": "brown",
     "row": 10,
     "col": 1,
     "image": "/images/shades/lebel-materia/b-10.webp"
   },
   {
     "code": "WB-10",
-    "hex": "#f0d3ac",
-    "group": "materia",
+    "hex": "#efd2ab",
+    "group": "brown",
     "row": 10,
     "col": 2,
     "image": "/images/shades/lebel-materia/wb-10.webp",
@@ -161,48 +217,48 @@
   },
   {
     "code": "PBe-10",
-    "hex": "#da9898",
-    "group": "materia",
+    "hex": "#d79694",
+    "group": "texture",
     "row": 10,
     "col": 3,
     "image": "/images/shades/lebel-materia/pbe-10.webp"
   },
   {
     "code": "OBe-10",
-    "hex": "#e6b084",
-    "group": "materia",
+    "hex": "#e7b183",
+    "group": "texture",
     "row": 10,
     "col": 4,
     "image": "/images/shades/lebel-materia/obe-10.webp"
   },
   {
     "code": "Be-10",
-    "hex": "#c8af8b",
-    "group": "materia",
+    "hex": "#c8b08b",
+    "group": "texture",
     "row": 10,
     "col": 5,
     "image": "/images/shades/lebel-materia/be-10.webp"
   },
   {
     "code": "ABe-10",
-    "hex": "#a79cad",
-    "group": "materia",
+    "hex": "#a99eaf",
+    "group": "texture",
     "row": 10,
     "col": 6,
     "image": "/images/shades/lebel-materia/abe-10.webp"
   },
   {
     "code": "Gr-10",
-    "hex": "#a5a28d",
-    "group": "materia",
+    "hex": "#a39f88",
+    "group": "texture",
     "row": 10,
     "col": 7,
     "image": "/images/shades/lebel-materia/gr-10.webp"
   },
   {
     "code": "Ma-10",
-    "hex": "#b494ab",
-    "group": "materia",
+    "hex": "#b695ac",
+    "group": "texture",
     "row": 10,
     "col": 8,
     "image": "/images/shades/lebel-materia/ma-10.webp",
@@ -211,124 +267,122 @@
   },
   {
     "code": "Pe-10",
-    "hex": "#c2b0ab",
-    "group": "materia",
+    "hex": "#c1afa9",
+    "group": "texture",
     "row": 10,
     "col": 9,
     "image": "/images/shades/lebel-materia/pe-10.webp"
   },
   {
     "code": "MT-10",
-    "hex": "#b3aca5",
-    "group": "materia",
+    "hex": "#b4aca5",
+    "group": "texture",
     "row": 10,
     "col": 10,
-    "image": "/images/shades/lebel-materia/mt-10.webp",
-    "name": "Краска д/волос СТОЙКАЯ MT-10 8279",
-    "price": 1156.05
+    "image": "/images/shades/lebel-materia/mt-10.webp"
   },
   {
     "code": "R-10",
-    "hex": "#c04b4e",
-    "group": "materia",
+    "hex": "#c04c4e",
+    "group": "primary",
     "row": 10,
     "col": 11,
     "image": "/images/shades/lebel-materia/r-10.webp"
   },
   {
     "code": "K-10",
-    "hex": "#af4f31",
-    "group": "materia",
+    "hex": "#b05030",
+    "group": "primary",
     "row": 10,
     "col": 12,
     "image": "/images/shades/lebel-materia/k-10.webp"
   },
   {
     "code": "O-10",
-    "hex": "#de783b",
-    "group": "materia",
+    "hex": "#df7939",
+    "group": "primary",
     "row": 10,
     "col": 13,
     "image": "/images/shades/lebel-materia/o-10.webp"
   },
   {
     "code": "G-10",
-    "hex": "#bfa153",
-    "group": "materia",
+    "hex": "#c0a251",
+    "group": "primary",
     "row": 10,
     "col": 14,
     "image": "/images/shades/lebel-materia/g-10.webp"
   },
   {
     "code": "M-10",
-    "hex": "#93af7e",
-    "group": "materia",
+    "hex": "#92af7c",
+    "group": "primary",
     "row": 10,
     "col": 15,
     "image": "/images/shades/lebel-materia/m-10.webp"
   },
   {
     "code": "L-10",
-    "hex": "#85a888",
-    "group": "materia",
+    "hex": "#86a988",
+    "group": "primary",
     "row": 10,
     "col": 16,
     "image": "/images/shades/lebel-materia/l-10.webp"
   },
   {
     "code": "A-10",
-    "hex": "#9ca2bd",
-    "group": "materia",
+    "hex": "#9da3be",
+    "group": "primary",
     "row": 10,
     "col": 17,
     "image": "/images/shades/lebel-materia/a-10.webp"
   },
   {
     "code": "CA-10",
-    "hex": "#7c98c1",
-    "group": "materia",
+    "hex": "#7c9ac2",
+    "group": "primary",
     "row": 10,
     "col": 18,
     "image": "/images/shades/lebel-materia/ca-10.webp"
   },
   {
     "code": "V-10",
-    "hex": "#7e6c9e",
-    "group": "materia",
+    "hex": "#7f6c9f",
+    "group": "primary",
     "row": 10,
     "col": 19,
     "image": "/images/shades/lebel-materia/v-10.webp"
   },
   {
     "code": "P-10",
-    "hex": "#b35658",
-    "group": "materia",
+    "hex": "#b4575a",
+    "group": "primary",
     "row": 10,
     "col": 20,
     "image": "/images/shades/lebel-materia/p-10.webp"
   },
   {
     "code": "CB-9",
-    "hex": "#97916d",
-    "group": "materia",
+    "hex": "#98926e",
+    "group": "brown",
     "row": 9,
     "col": 0,
     "image": "/images/shades/lebel-materia/cb-9.webp",
     "name": "Краска д/волос СТОЙКАЯ CB-9 7890",
-    "price": 1075.13
+    "price": 1098.25
   },
   {
     "code": "B-9",
-    "hex": "#a08d6b",
-    "group": "materia",
+    "hex": "#a18e6a",
+    "group": "brown",
     "row": 9,
     "col": 1,
     "image": "/images/shades/lebel-materia/b-9.webp"
   },
   {
     "code": "WB-9",
-    "hex": "#bc9d7a",
-    "group": "materia",
+    "hex": "#bd9d7b",
+    "group": "brown",
     "row": 9,
     "col": 2,
     "image": "/images/shades/lebel-materia/wb-9.webp",
@@ -337,92 +391,90 @@
   },
   {
     "code": "CB-8",
-    "hex": "#7b7555",
-    "group": "materia",
+    "hex": "#7d7656",
+    "group": "brown",
     "row": 8,
     "col": 0,
     "image": "/images/shades/lebel-materia/cb-8.webp"
   },
   {
     "code": "B-8",
-    "hex": "#816f4e",
-    "group": "materia",
+    "hex": "#82714e",
+    "group": "brown",
     "row": 8,
     "col": 1,
     "image": "/images/shades/lebel-materia/b-8.webp"
   },
   {
     "code": "WB-8",
-    "hex": "#836451",
-    "group": "materia",
+    "hex": "#836551",
+    "group": "brown",
     "row": 8,
     "col": 2,
     "image": "/images/shades/lebel-materia/wb-8.webp",
     "name": "Краска д/волос СТОЙКАЯ WB-8 8033",
-    "price": 1075.13
+    "price": 1098.25
   },
   {
     "code": "PBe-8",
-    "hex": "#894b44",
-    "group": "materia",
+    "hex": "#884b44",
+    "group": "texture",
     "row": 8,
     "col": 3,
     "image": "/images/shades/lebel-materia/pbe-8.webp"
   },
   {
     "code": "OBe-8",
-    "hex": "#a66034",
-    "group": "materia",
+    "hex": "#a86134",
+    "group": "texture",
     "row": 8,
     "col": 4,
-    "image": "/images/shades/lebel-materia/obe-8.webp",
-    "name": "Краска д/волос СТОЙКАЯ OBE-8 8118",
-    "price": 1156.05
+    "image": "/images/shades/lebel-materia/obe-8.webp"
   },
   {
     "code": "Be-8",
-    "hex": "#826b4f",
-    "group": "materia",
+    "hex": "#7e5a41",
+    "group": "texture",
     "row": 8,
     "col": 5,
     "image": "/images/shades/lebel-materia/be-8.webp"
   },
   {
     "code": "ABe-8",
-    "hex": "#7e747f",
-    "group": "materia",
+    "hex": "#807581",
+    "group": "texture",
     "row": 8,
     "col": 6,
     "image": "/images/shades/lebel-materia/abe-8.webp"
   },
   {
     "code": "Gr-8",
-    "hex": "#736e5d",
-    "group": "materia",
+    "hex": "#75705e",
+    "group": "texture",
     "row": 8,
     "col": 7,
     "image": "/images/shades/lebel-materia/gr-8.webp"
   },
   {
     "code": "Ma-8",
-    "hex": "#95748c",
-    "group": "materia",
+    "hex": "#94748b",
+    "group": "texture",
     "row": 8,
     "col": 8,
     "image": "/images/shades/lebel-materia/ma-8.webp"
   },
   {
     "code": "Pe-8",
-    "hex": "#9b837c",
-    "group": "materia",
+    "hex": "#9d847d",
+    "group": "texture",
     "row": 8,
     "col": 9,
     "image": "/images/shades/lebel-materia/pe-8.webp"
   },
   {
     "code": "MT-8",
-    "hex": "#655e57",
-    "group": "materia",
+    "hex": "#655e56",
+    "group": "texture",
     "row": 8,
     "col": 10,
     "image": "/images/shades/lebel-materia/mt-8.webp",
@@ -431,64 +483,64 @@
   },
   {
     "code": "R-8",
-    "hex": "#922e34",
-    "group": "materia",
+    "hex": "#932e34",
+    "group": "primary",
     "row": 8,
     "col": 11,
     "image": "/images/shades/lebel-materia/r-8.webp"
   },
   {
     "code": "K-8",
-    "hex": "#97402e",
-    "group": "materia",
+    "hex": "#97412e",
+    "group": "primary",
     "row": 8,
     "col": 12,
     "image": "/images/shades/lebel-materia/k-8.webp"
   },
   {
     "code": "O-8",
-    "hex": "#ab4c30",
-    "group": "materia",
+    "hex": "#ab4d30",
+    "group": "primary",
     "row": 8,
     "col": 13,
     "image": "/images/shades/lebel-materia/o-8.webp"
   },
   {
     "code": "G-8",
-    "hex": "#a17d3b",
-    "group": "materia",
+    "hex": "#a27e3a",
+    "group": "primary",
     "row": 8,
     "col": 14,
     "image": "/images/shades/lebel-materia/g-8.webp"
   },
   {
     "code": "M-8",
-    "hex": "#5d8b5a",
-    "group": "materia",
+    "hex": "#5e8c5b",
+    "group": "primary",
     "row": 8,
     "col": 15,
     "image": "/images/shades/lebel-materia/m-8.webp"
   },
   {
     "code": "L-8",
-    "hex": "#648a69",
-    "group": "materia",
+    "hex": "#668b6a",
+    "group": "primary",
     "row": 8,
     "col": 16,
     "image": "/images/shades/lebel-materia/l-8.webp"
   },
   {
     "code": "A-8",
-    "hex": "#6e7183",
-    "group": "materia",
+    "hex": "#717486",
+    "group": "primary",
     "row": 8,
     "col": 17,
     "image": "/images/shades/lebel-materia/a-8.webp"
   },
   {
     "code": "CA-8",
-    "hex": "#44638d",
-    "group": "materia",
+    "hex": "#466690",
+    "group": "primary",
     "row": 8,
     "col": 18,
     "image": "/images/shades/lebel-materia/ca-8.webp",
@@ -497,42 +549,42 @@
   },
   {
     "code": "V-8",
-    "hex": "#67578a",
-    "group": "materia",
+    "hex": "#66578b",
+    "group": "primary",
     "row": 8,
     "col": 19,
     "image": "/images/shades/lebel-materia/v-8.webp",
     "name": "Краска д/волос СТОЙКАЯ V-8 8637",
-    "price": 1075.13
+    "price": 1098.25
   },
   {
     "code": "P-8",
-    "hex": "#7d2f3a",
-    "group": "materia",
+    "hex": "#7c2f3a",
+    "group": "primary",
     "row": 8,
     "col": 20,
     "image": "/images/shades/lebel-materia/p-8.webp"
   },
   {
     "code": "CB-7",
-    "hex": "#57533c",
-    "group": "materia",
+    "hex": "#57533b",
+    "group": "brown",
     "row": 7,
     "col": 0,
     "image": "/images/shades/lebel-materia/cb-7.webp"
   },
   {
     "code": "B-7",
-    "hex": "#594c3c",
-    "group": "materia",
+    "hex": "#594c3b",
+    "group": "brown",
     "row": 7,
     "col": 1,
     "image": "/images/shades/lebel-materia/b-7.webp"
   },
   {
     "code": "WB-7",
-    "hex": "#6c5041",
-    "group": "materia",
+    "hex": "#6a4f3f",
+    "group": "brown",
     "row": 7,
     "col": 2,
     "image": "/images/shades/lebel-materia/wb-7.webp",
@@ -541,24 +593,26 @@
   },
   {
     "code": "CB-6",
-    "hex": "#3a3724",
-    "group": "materia",
+    "hex": "#3d3a26",
+    "group": "brown",
     "row": 6,
     "col": 0,
-    "image": "/images/shades/lebel-materia/cb-6.webp"
+    "image": "/images/shades/lebel-materia/cb-6.webp",
+    "name": "Краска д/волос СТОЙКАЯ CB-6 7869/0-CB-6",
+    "price": 1156.05
   },
   {
     "code": "B-6",
-    "hex": "#3a3023",
-    "group": "materia",
+    "hex": "#3d3225",
+    "group": "brown",
     "row": 6,
     "col": 1,
     "image": "/images/shades/lebel-materia/b-6.webp"
   },
   {
     "code": "WB-6",
-    "hex": "#4e3429",
-    "group": "materia",
+    "hex": "#4c3227",
+    "group": "brown",
     "row": 6,
     "col": 2,
     "image": "/images/shades/lebel-materia/wb-6.webp",
@@ -567,96 +621,96 @@
   },
   {
     "code": "PBe-6",
-    "hex": "#56312e",
-    "group": "materia",
+    "hex": "#57312e",
+    "group": "texture",
     "row": 6,
     "col": 3,
     "image": "/images/shades/lebel-materia/pbe-6.webp"
   },
   {
     "code": "OBe-6",
-    "hex": "#6c2e17",
-    "group": "materia",
+    "hex": "#6d3017",
+    "group": "texture",
     "row": 6,
     "col": 4,
     "image": "/images/shades/lebel-materia/obe-6.webp"
   },
   {
     "code": "Be-6",
-    "hex": "#4e3b2a",
-    "group": "materia",
+    "hex": "#4b2e1f",
+    "group": "texture",
     "row": 6,
     "col": 5,
     "image": "/images/shades/lebel-materia/be-6.webp"
   },
   {
     "code": "ABe-6",
-    "hex": "#4e4752",
-    "group": "materia",
+    "hex": "#4f4754",
+    "group": "texture",
     "row": 6,
     "col": 6,
     "image": "/images/shades/lebel-materia/abe-6.webp"
   },
   {
     "code": "Gr-6",
-    "hex": "#4e4c41",
-    "group": "materia",
+    "hex": "#4d4c40",
+    "group": "texture",
     "row": 6,
     "col": 7,
     "image": "/images/shades/lebel-materia/gr-6.webp"
   },
   {
     "code": "Ma-6",
-    "hex": "#64475f",
-    "group": "materia",
+    "hex": "#654860",
+    "group": "texture",
     "row": 6,
     "col": 8,
     "image": "/images/shades/lebel-materia/ma-6.webp"
   },
   {
     "code": "MT-6",
-    "hex": "#3d3c3b",
-    "group": "materia",
+    "hex": "#3d3d3b",
+    "group": "texture",
     "row": 6,
     "col": 10,
     "image": "/images/shades/lebel-materia/mt-6.webp"
   },
   {
     "code": "R-6",
-    "hex": "#6f182b",
-    "group": "materia",
+    "hex": "#6e172a",
+    "group": "primary",
     "row": 6,
     "col": 11,
     "image": "/images/shades/lebel-materia/r-6.webp"
   },
   {
     "code": "K-6",
-    "hex": "#67261d",
-    "group": "materia",
+    "hex": "#69271e",
+    "group": "primary",
     "row": 6,
     "col": 12,
     "image": "/images/shades/lebel-materia/k-6.webp"
   },
   {
     "code": "O-6",
-    "hex": "#8e382b",
-    "group": "materia",
+    "hex": "#8e392a",
+    "group": "primary",
     "row": 6,
     "col": 13,
     "image": "/images/shades/lebel-materia/o-6.webp"
   },
   {
     "code": "M-6",
-    "hex": "#4c5138",
-    "group": "materia",
+    "hex": "#4e5438",
+    "group": "primary",
     "row": 6,
     "col": 15,
     "image": "/images/shades/lebel-materia/m-6.webp"
   },
   {
     "code": "A-6",
-    "hex": "#374555",
-    "group": "materia",
+    "hex": "#394655",
+    "group": "primary",
     "row": 6,
     "col": 17,
     "image": "/images/shades/lebel-materia/a-6.webp",
@@ -665,8 +719,8 @@
   },
   {
     "code": "CA-6",
-    "hex": "#1e385c",
-    "group": "materia",
+    "hex": "#1e395d",
+    "group": "primary",
     "row": 6,
     "col": 18,
     "image": "/images/shades/lebel-materia/ca-6.webp",
@@ -675,24 +729,24 @@
   },
   {
     "code": "V-6",
-    "hex": "#45346d",
-    "group": "materia",
+    "hex": "#45346f",
+    "group": "primary",
     "row": 6,
     "col": 19,
     "image": "/images/shades/lebel-materia/v-6.webp"
   },
   {
     "code": "P-6",
-    "hex": "#561b26",
-    "group": "materia",
+    "hex": "#581c27",
+    "group": "primary",
     "row": 6,
     "col": 20,
     "image": "/images/shades/lebel-materia/p-6.webp"
   },
   {
     "code": "CB-5",
-    "hex": "#272b17",
-    "group": "materia",
+    "hex": "#2a2d19",
+    "group": "brown",
     "row": 5,
     "col": 0,
     "image": "/images/shades/lebel-materia/cb-5.webp",
@@ -701,60 +755,84 @@
   },
   {
     "code": "B-5",
-    "hex": "#282417",
-    "group": "materia",
+    "hex": "#292518",
+    "group": "brown",
     "row": 5,
     "col": 1,
     "image": "/images/shades/lebel-materia/b-5.webp"
   },
   {
     "code": "WB-5",
-    "hex": "#392520",
-    "group": "materia",
+    "hex": "#38241f",
+    "group": "brown",
     "row": 5,
     "col": 2,
     "image": "/images/shades/lebel-materia/wb-5.webp"
   },
   {
     "code": "R-4",
-    "hex": "#52061a",
-    "group": "materia",
+    "hex": "#52041a",
+    "group": "primary",
     "row": 4,
     "col": 11,
     "image": "/images/shades/lebel-materia/r-4.webp"
   },
   {
     "code": "V-4",
-    "hex": "#33284b",
-    "group": "materia",
+    "hex": "#35294d",
+    "group": "primary",
     "row": 4,
     "col": 19,
-    "image": "/images/shades/lebel-materia/v-4.webp",
-    "name": "Краска д/волос СТОЙКАЯ V-4 8613",
-    "price": 1156.05
+    "image": "/images/shades/lebel-materia/v-4.webp"
   },
   {
     "code": "CB-3",
-    "hex": "#060908",
-    "group": "materia",
+    "hex": "#070b09",
+    "group": "brown",
     "row": 3,
     "col": 0,
     "image": "/images/shades/lebel-materia/cb-3.webp"
   },
   {
     "code": "WB-3",
-    "hex": "#1d0f0e",
-    "group": "materia",
+    "hex": "#1f100f",
+    "group": "brown",
     "row": 3,
     "col": 2,
     "image": "/images/shades/lebel-materia/wb-3.webp"
   },
   {
-    "code": "A-2",
-    "hex": "#102550",
-    "group": "materia",
+    "code": "BB",
+    "hex": "#102551",
+    "group": "primary",
     "row": 2,
     "col": 17,
-    "image": "/images/shades/lebel-materia/a-2.webp"
+    "image": "/images/shades/lebel-materia/bb.webp",
+    "name": "Краска д/волос СТОЙКАЯ BB MIX 8521",
+    "price": 1156.05
+  },
+  {
+    "code": "R-mix",
+    "hex": "#6e202d",
+    "group": "mix",
+    "row": 0,
+    "col": 11,
+    "image": "/images/shades/lebel-materia/r-mix.webp"
+  },
+  {
+    "code": "M-mix",
+    "hex": "#053d2b",
+    "group": "mix",
+    "row": 0,
+    "col": 15,
+    "image": "/images/shades/lebel-materia/m-mix.webp"
+  },
+  {
+    "code": "A-mix",
+    "hex": "#0c2c58",
+    "group": "mix",
+    "row": 0,
+    "col": 17,
+    "image": "/images/shades/lebel-materia/a-mix.webp"
   }
 ]

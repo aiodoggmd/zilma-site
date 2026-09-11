@@ -19,6 +19,7 @@ import colortuneShadesRaw from '../../data/colortune-shades.json';
 import matrixSocolorShadesRaw from '../../data/matrix-socolor-shades.json';
 import matrixSyncShadesRaw from '../../data/matrix-sync-shades.json';
 import matrixTonalShadesRaw from '../../data/matrix-tonal-control-shades.json';
+import lebelMateriaShadesRaw from '../../data/lebel-materia-shades.json';
 import priceItems from '../../data/priceItems.json';
 import { buildSubstitutes } from '../../lib/shade-substitutes';
 
@@ -36,6 +37,7 @@ const colortuneShades = resolveLiveShades(colortuneShadesRaw, 'LONDA');
 const matrixSocolorShades = resolveLiveShades(matrixSocolorShadesRaw, 'MATRIX');
 const matrixSyncShades = resolveLiveShades(matrixSyncShadesRaw, 'MATRIX');
 const matrixTonalShades = resolveLiveShades(matrixTonalShadesRaw, 'MATRIX');
+const lebelMateriaShades = resolveLiveShades(lebelMateriaShadesRaw, 'LEBEL');
 
 // Честная замена оттенка (2026-09-07). Считается ПОСЛЕ resolveLiveShades, на актуальном
 // прайсе: иначе предложили бы товар по вчерашней цене или тот, что уже кончился.
@@ -70,6 +72,7 @@ const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-09-06-matrix-socolor': matrixSocolorShades,
   '2026-09-06-matrix-color-sync': matrixSyncShades,
   '2026-09-06-matrix-tonal-control': matrixTonalShades,
+  '2026-09-11-lebel-materia': lebelMateriaShades,
 };
 
 // Заголовок над основной палитрой — по умолчанию общий, но для линеек с несколькими
@@ -106,6 +109,7 @@ const PALETTE_NO_STATIC_IMAGE = new Set([
   '2026-09-06-matrix-socolor',
   '2026-09-06-matrix-color-sync',
   '2026-09-06-matrix-tonal-control',
+  '2026-09-11-lebel-materia',
 ]);
 
 // Линейки с нерегулярной структурой палитры (несколько несовпадающих семейств оттенков вместо
@@ -137,6 +141,20 @@ const PALETTE_GROUP_CONFIG: Record<string, { order: string[]; labels: Record<str
     order: ['Натуральный', 'Глубокий натуральный', 'Глубокий натуральный золотистый', 'Глубокий натуральный пепельный', 'Натуральный пепельный', 'Теплый натуральный', 'Натуральный красный', 'Пепельный', 'Пепельно-золотистый', 'Перламутровый', 'Перламутрово-золотистый', 'Золотисто-перламутровый', 'Золотистый перламутровый', 'Жемчужный', 'Глубокий перламутровый', 'Мокка', 'Мокка мокка', 'Золотистый', 'Медный золотистый', 'Глубокий медный', 'Коричнево-медный', 'Коричнево-красный', 'Красно-медный', 'Красно-перламутровый+', 'Глубокий красный', 'Яркие оттенки', 'Silver living', 'Прозрачный оттенок', 'Прежняя палитра'],
     labels: {},
     flat: ['Натуральный', 'Глубокий натуральный', 'Глубокий натуральный золотистый', 'Глубокий натуральный пепельный', 'Натуральный пепельный', 'Теплый натуральный', 'Натуральный красный', 'Пепельный', 'Пепельно-золотистый', 'Перламутровый', 'Перламутрово-золотистый', 'Золотисто-перламутровый', 'Золотистый перламутровый', 'Жемчужный', 'Глубокий перламутровый', 'Мокка', 'Мокка мокка', 'Золотистый', 'Медный золотистый', 'Глубокий медный', 'Коричнево-медный', 'Коричнево-красный', 'Красно-медный', 'Красно-перламутровый+', 'Глубокий красный', 'Яркие оттенки', 'Silver living', 'Прозрачный оттенок', 'Прежняя палитра'],
+  },
+  // Группы MATERIA — три shade group с официальной карты. Деление не декоративное: Brown
+  // даёт натуральный цвет на седине, Texture работает нюансом, Primary — чистые тона.
+  // Make-up Line и mix-tone стоят отдельно, потому что у них СВОИ пропорции разведения.
+  '2026-09-11-lebel-materia': {
+    order: ['brown', 'texture', 'primary', 'makeup', 'mix'],
+    labels: {
+      brown: 'Brown Shade · базовые коричневые',
+      texture: 'Texture Shade · оттеночные нюансы',
+      primary: 'Primary Shade · чистые тона',
+      makeup: 'Make-up Line · тонирование поверх, 1+3',
+      mix: 'Mix-tone · корректоры',
+    },
+    flat: ['makeup', 'mix'],
   },
   '2026-09-06-matrix-socolor': {
     order: ['main', 'extra', 'ultra'],
