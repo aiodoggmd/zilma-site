@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "check": "python scripts/morning-check.py",
+    "publish": "python scripts/publish.py",
     "preview": "astro preview",
     "astro": "astro"
   },

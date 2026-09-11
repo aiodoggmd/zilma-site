@@ -65,6 +65,24 @@ def walk_local():
             yield p.relative_to(DIST).as_posix(), p.stat().st_size
 
 
+def connect(host: str, user: str, password: str) -> ftplib.FTP_TLS:
+    """Соединение с хостингом — ТОЛЬКО шифрованное (FTPS).
+
+    Обычный FTP отправляет логин и пароль по сети открытым текстом, и так эта выкладка
+    работала до 11.09.2026. Хостинг принимает FTPS (проверено, TLS 1.2), поэтому запасного
+    незашифрованного пути здесь нет намеренно: молчаливый откат на открытый FTP вернул бы
+    ту же дыру, только незаметно.
+
+    prot_p() шифрует не только команды, но и сам поток файлов — без него по TLS идёт только
+    авторизация.
+    """
+    ftp = ftplib.FTP_TLS(host, timeout=60)
+    ftp.login(user, password)
+    ftp.prot_p()
+    ftp.set_pasv(True)
+    return ftp
+
+
 def remote_sizes(ftp: ftplib.FTP, base: str) -> dict:
     """Карта «путь -> размер» на сервере. MLSD есть не везде, поэтому с запасным вариантом."""
     sizes = {}
@@ -118,9 +136,7 @@ def main():
     local = dict(walk_local())
     print(f'в сборке файлов: {len(local)}')
 
-    ftp = ftplib.FTP(host, timeout=60)
-    ftp.login(user, password)
-    ftp.set_pasv(True)
+    ftp = connect(host, user, password)
     remote = remote_sizes(ftp, base)
     print(f'на сервере файлов: {len(remote)}')
 

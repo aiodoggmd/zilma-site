@@ -99,8 +99,12 @@ def main() -> None:
         site_url=c.get('SITE_URL', 'https://www.zilma.pro'),
     )
 
-    ftp = ftplib.FTP(c['FTP_HOST'], timeout=60)
+    # Только шифрованное соединение: в этом файле пароль от почты и пароль на просмотр
+    # заявок, и по обычному FTP они ушли бы по сети открытым текстом (как и сам пароль от
+    # хостинга). То же правило, что в deploy-to-hosting.py — запасного пути нет намеренно.
+    ftp = ftplib.FTP_TLS(c['FTP_HOST'], timeout=60)
     ftp.login(c['FTP_USER'], c['FTP_PASSWORD'])
+    ftp.prot_p()
     ftp.set_pasv(True)
     # Корень FTP-аккаунта = /home/z/zilmapro, то есть ВЫШЕ public_html. Ровно то, что нужно:
     # конфиг и заявки лежат там, куда веб-сервер не пускает.
