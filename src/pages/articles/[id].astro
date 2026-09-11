@@ -1783,6 +1783,8 @@ const articleLd = {
 </style>
 
 <script>
+  import { AMBIGUOUS, articleOf, buildArticleIndex } from '../../lib/article-key';
+
   // На мобильном pinch-zoom по картинке в лайтбоксе — это зум ВСЕЙ страницы (браузер не умеет
   // масштабировать один fixed-элемент отдельно от остальных), и после закрытия оверлея масштаб
   // сайта остаётся «прилипшим» увеличенным. Единственный надёжный кросс-браузерный способ сбросить
@@ -1817,10 +1819,9 @@ const articleLd = {
   // Живая сверка таблиц "Что заказать" с актуальным прайсом — сервер отдал урезанный
   // список товаров в #price-lookup-data (см. priceLookup в frontmatter), здесь сверяем
   // с ним каждую кнопку "+ В заявку"/"Нет в наличии" при загрузке страницы. Тот же
-  // (бренд, артикул)-поиск с защитой от неоднозначности, что и в resolve-live-price.ts
-  // для интерактивной палитры — короткие тоновые коды могут повторяться у разных линий
-  // одного бренда (найдено программно на реальных данных, 2026-08-31), поэтому при
-  // коллизии строку просто не трогаем, а не гадаем.
+  // (бренд, артикул)-поиск — РОВНО ТОТ ЖЕ, что у интерактивной палитры: общий модуль
+  // article-key.ts. Раньше здесь лежала своя копия логики, и таблица статьи считала товар
+  // отсутствующим там, где палитра его находила.
   interface PriceLookupItem {
     name: string;
     brand: string;
@@ -1829,11 +1830,6 @@ const articleLd = {
     promo: boolean;
     discountPct: number | null;
     isNew: boolean;
-  }
-
-  function articleOfName(name: string): string {
-    const toks = name.trim().split(/\s+/);
-    return toks[toks.length - 1] ?? '';
   }
 
   function formatPriceRu(n: number): string {
@@ -1873,22 +1869,14 @@ const articleLd = {
       return;
     }
 
-    const AMBIGUOUS = Symbol('ambiguous');
-    const byBrandArticle = new Map<string, Map<string, PriceLookupItem | typeof AMBIGUOUS>>();
-    for (const it of items) {
-      const brand = it.brand.toUpperCase();
-      if (!byBrandArticle.has(brand)) byBrandArticle.set(brand, new Map());
-      const m = byBrandArticle.get(brand)!;
-      const key = articleOfName(it.name);
-      m.set(key, m.has(key) ? AMBIGUOUS : it);
-    }
+    const findByArticle = buildArticleIndex(items);
 
     document.querySelectorAll<HTMLElement>('.cart-add-btn, .order-unavailable').forEach((el) => {
       const brand = el.dataset.brand;
       if (!brand) return;
-      const key = el.dataset.article || articleOfName(el.dataset.name || '');
+      const key = el.dataset.article || articleOf(el.dataset.name || '');
       if (!key) return;
-      const match = byBrandArticle.get(brand.toUpperCase())?.get(key);
+      const match = findByArticle(brand, key);
       if (match === AMBIGUOUS) return;
 
       const row = el.closest('tr');

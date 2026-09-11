@@ -31,23 +31,53 @@ ARTICLES_DIR = ROOT / "src/content/articles"
 
 
 def article_of(name: str) -> str:
-    """Тот же приём, что в resolve-live-price.ts/initLivePrices(): последний
-    пробельный токен 1С-имени — это артикул."""
+    """Тот же приём, что в src/lib/article-key.ts: последний пробельный токен
+    1С-имени — это артикул."""
     toks = name.strip().split()
-    return toks[-1] if toks else ""
+    return toks[-1].rstrip(".") if toks else ""
+
+
+def base_article(token: str) -> str:
+    """Составной код («4669-3891») — след ребрендинга, актуален первый номер.
+    Обе части не короче трёх цифр: «010-7» у OLLIN — это код оттенка, не ребрендинг.
+    Порт с src/lib/article-key.ts, держать в согласии с ним."""
+    m = re.fullmatch(r"(\d{3,10})[-/]\d{3,10}", token)
+    return m.group(1) if m else token
 
 
 def build_price_index(items):
     """(бренд, артикул) -> товар, либо AMBIGUOUS если внутри бренда два товара
-    делят один и тот же короткий тоновый код (см. коммент в resolve-live-price.ts)."""
+    делят один ключ. Возвращает ФУНКЦИЮ поиска: точные совпадения проверяются
+    раньше запасных (по первой части составного кода), как в article-key.ts."""
     AMBIGUOUS = object()
-    idx = {}
+    exact: dict = {}
+    alias: dict = {}
+
+    def put(store, brand, key, item):
+        store.setdefault(brand, {})
+        store[brand][key] = AMBIGUOUS if key in store[brand] else item
+
     for it in items:
         brand = it["brand"].upper()
-        idx.setdefault(brand, {})
-        key = article_of(it["name"])
-        idx[brand][key] = AMBIGUOUS if key in idx[brand] else it
-    return idx, AMBIGUOUS
+        token = article_of(it["name"])
+        put(exact, brand, token, it)
+        base = base_article(token)
+        if base != token:
+            put(alias, brand, base, it)
+
+    def find(brand, key):
+        b = (brand or "").upper()
+        k = (key or "").strip().rstrip(".")
+        hit = exact.get(b, {}).get(k)
+        if hit is not None:
+            return hit
+        hit = alias.get(b, {}).get(k)
+        if hit is not None:
+            return hit
+        base = base_article(k)
+        return exact.get(b, {}).get(base) if base != k else None
+
+    return find, AMBIGUOUS
 
 
 def parse_shade_brand_map(astro_src: str):
@@ -63,7 +93,7 @@ def parse_shade_brand_map(astro_src: str):
     return result
 
 
-def check_palettes(price_idx, AMBIGUOUS):
+def check_palettes(find, AMBIGUOUS):
     astro_src = ARTICLE_PAGE.read_text(encoding="utf-8")
     brand_map = parse_shade_brand_map(astro_src)
     if not brand_map:
@@ -86,7 +116,7 @@ def check_palettes(price_idx, AMBIGUOUS):
             name = s.get("name")
             if not name:
                 continue
-            live = price_idx.get(brand, {}).get(article_of(name))
+            live = find(brand, article_of(name))
             if live is AMBIGUOUS:
                 ambiguous += 1
             elif live is None:
@@ -97,7 +127,7 @@ def check_palettes(price_idx, AMBIGUOUS):
               f"{note}")
 
 
-def check_kit_tables(price_idx, AMBIGUOUS):
+def check_kit_tables(find, AMBIGUOUS):
     row_pat = re.compile(r"<tr>.*?</tr>", re.S)
     btn_pat = re.compile(
         r'class="cart-add-btn"[^>]*data-name="([^"]+)"[^>]*data-price="([^"]+)"[^>]*data-brand="([^"]+)"'
@@ -124,7 +154,7 @@ def check_kit_tables(price_idx, AMBIGUOUS):
                 name_raw, _price_str, brand = m.groups()
                 name = name_raw.replace("&quot;", '"')
                 checked += 1
-                live = price_idx.get(brand.upper(), {}).get(article_of(name))
+                live = find(brand, article_of(name))
                 if live is AMBIGUOUS:
                     ambiguous += 1
                 elif live is None:
@@ -134,7 +164,7 @@ def check_kit_tables(price_idx, AMBIGUOUS):
             if m:
                 article, brand = m.groups()
                 checked += 1
-                live = price_idx.get(brand.upper(), {}).get(article)
+                live = find(brand, article)
                 if live is AMBIGUOUS:
                     ambiguous += 1
                 elif live is not None:
@@ -165,10 +195,10 @@ def check_kit_tables(price_idx, AMBIGUOUS):
 
 def main():
     price_items = json.loads((DATA_DIR / "priceItems.json").read_text(encoding="utf-8"))
-    price_idx, AMBIGUOUS = build_price_index(price_items)
+    find, AMBIGUOUS = build_price_index(price_items)
     print(f"priceItems.json: {len(price_items)} позиций\n")
-    check_palettes(price_idx, AMBIGUOUS)
-    check_kit_tables(price_idx, AMBIGUOUS)
+    check_palettes(find, AMBIGUOUS)
+    check_kit_tables(find, AMBIGUOUS)
 
 
 if __name__ == "__main__":

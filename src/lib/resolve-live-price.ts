@@ -1,30 +1,10 @@
 import priceItems from '../data/priceItems.json';
+import { AMBIGUOUS, articleOf, buildArticleIndex } from './article-key';
 
-// Последний "слово"-токен в 1С-имени товара — это и есть артикул (та же логика, что в
-// Price/build_price_current.py:article() и в scripts/xlsx-to-price-items.py).
-function articleOf(name: string): string {
-  const toks = name.trim().split(/\s+/);
-  return toks[toks.length - 1] ?? '';
-}
-
-// Сигнал "внутри этого бренда два разных товара делят один и тот же артикул-токен" —
-// найдено программно (2026-08-31): WELLA "8/38" (Illumina и Shinefinity — это РАЗНЫЕ
-// линии, но в прайсе у них общий брэнд WELLA) и OLLIN "0-88". Настоящие числовые SKU
-// (647, 5192 и т.п.) уникальны по всему прайсу — коллизии бывают только у коротких
-// "тоновых" кодов, которые разные линии одного бренда совпадают друг с другом. Гадать,
-// какой из двух это на самом деле, не будем — для такого ключа оттенок просто не трогаем
-// (остаётся с тем, что уже было в data-файле), вместо того чтобы молча подставить не тот
-// товар или ошибочно пометить как "нет в наличии".
-const AMBIGUOUS = Symbol('ambiguous');
-
-const priceByBrandArticle = new Map<string, Map<string, (typeof priceItems)[number] | typeof AMBIGUOUS>>();
-for (const it of priceItems) {
-  const brand = it.brand.toUpperCase();
-  if (!priceByBrandArticle.has(brand)) priceByBrandArticle.set(brand, new Map());
-  const brandMap = priceByBrandArticle.get(brand)!;
-  const key = articleOf(it.name);
-  brandMap.set(key, brandMap.has(key) ? AMBIGUOUS : it);
-}
+// Как именно считается артикул и что делать с составными кодами и коллизиями — в
+// article-key.ts. Тот же индекс использует рантайм страницы статьи для кнопок «+ В заявку»,
+// чтобы палитра и таблицы не расходились в том, есть товар в прайсе или нет.
+const findByArticle = buildArticleIndex(priceItems);
 
 // Интерактивная палитра (ShadeSwatchGrid) хранит name/price оттенка в data-файле линии,
 // вписанные вручную на момент сборки статьи — застывший снимок прайса, как и таблицы
@@ -39,7 +19,7 @@ for (const it of priceItems) {
 // закрытие дрейфа для уже известных позиций (изменилась цена или пропала из прайса).
 export function resolveLiveShade<T extends { name?: string; price?: number }>(shade: T, brand: string): T {
   if (!shade.name) return shade;
-  const live = priceByBrandArticle.get(brand.toUpperCase())?.get(articleOf(shade.name));
+  const live = findByArticle(brand, articleOf(shade.name));
   if (live === AMBIGUOUS) return shade; // не трогаем — не гадаем, какой из нескольких это
   if (!live) {
     const { name, price, promo, oldPrice, discountPct, isNew, ...rest } = shade as Record<string, unknown>;
