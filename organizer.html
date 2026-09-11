@@ -465,11 +465,18 @@ footer code {
   <div class="block-head">
     <h2>Проверять время от времени</h2>
     <span class="rule"></span>
-    <span class="count">7 проверок</span>
+    <span class="count">8 проверок</span>
   </div>
   <p class="block-note">Нажми «Проверил» — дата обновится, и пункт перестанет гореть до следующего раза. Отметки хранятся в этом браузере: на телефоне и на компьютере они будут свои.</p>
 
   <div class="checks" id="checks">
+    <div class="check" data-key="morning" data-every="7" data-last="2026-09-11">
+      <span class="name">Проверка сайта одной командой</span>
+      <span class="when"></span>
+      <button type="button" class="mark">Проверил</button>
+      <span class="how">Раз в неделю, полминуты: в папке сайта выполни <b>npm run check</b>. Проверяются все страницы, скачивание прайса, приём заявок, пароль на странице заказов, срок сертификата и срок домена. В ответ будет либо «Всё в порядке», либо список того, что не так — тогда просто пришли его мне.</span>
+    </div>
+
     <div class="check" data-key="webmaster" data-every="14" data-last="2026-08-26">
       <span class="name">Яндекс.Вебмастер</span>
       <span class="when"></span>
@@ -481,14 +488,14 @@ footer code {
       <span class="name">Посещаемость сайта</span>
       <span class="when"></span>
       <button type="button" class="mark">Проверил</button>
-      <span class="how">Раз в месяц: <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a> → проект zilma-site → вкладка Analytics. Смотри число визитов, откуда люди и с чего заходят. Доля России должна расти — если нет, скажи, разберёмся.</span>
+      <span class="how">Раз в месяц: <a href="https://metrika.yandex.ru" target="_blank" rel="noopener">metrika.yandex.ru</a> → счётчик Zilma. Смотри число визитов, откуда люди заходят и доходят ли до заявки (цели «Каталог», «Акции», «Скачать прайс», «Заявка отправлена»). Аналитика Vercel больше не считает ничего: сайт уехал на российский хостинг.</span>
     </div>
 
     <div class="check" data-key="speed" data-every="60" data-last="2026-08-27">
       <span class="name">Скорость загрузки</span>
       <span class="when"></span>
       <button type="button" class="mark">Проверил</button>
-      <span class="how">Раз в два месяца: там же в Vercel → Speed Insights. Это реальная скорость у живых посетителей, а не тест. Если оценка поехала вниз — пришли скриншот.</span>
+      <span class="how">Раз в два месяца: <a href="https://pagespeed.web.dev" target="_blank" rel="noopener">pagespeed.web.dev</a> → вставь адрес сайта, смотри мобильную вкладку. Speed Insights от Vercel данные больше не собирает — сайт на российском хостинге.</span>
     </div>
 
     <div class="check" data-key="price-date" data-every="14" data-last="2026-09-02">
@@ -502,7 +509,7 @@ footer code {
       <span class="name">Заявка реально доходит</span>
       <span class="when"></span>
       <button type="button" class="mark">Проверил</button>
-      <span class="how">Раз в месяц: отправь сам себе тестовую заявку с сайта и проверь, пришла ли она в Telegram. Форма — единственный канал, который ломается молча: на экране «отправлено», а до тебя не дошло.</span>
+      <span class="how">Раз в месяц: отправь сам себе тестовую заявку с сайта и проверь, пришло ли письмо с таблицей на <b>aiodoggmd@yandex.ru</b> и видна ли заявка на <a href="https://www.zilma.pro/orders.php" target="_blank" rel="noopener">zilma.pro/orders.php</a>. В Telegram заявки больше не приходят: с российского хостинга он недоступен. Еженедельная проверка командой видит, что приёмник жив, но не проверяет саму почту — это можно только настоящей заявкой.</span>
     </div>
 
     <div class="check" data-key="mobile" data-every="30" data-last="2026-09-04">
@@ -516,7 +523,7 @@ footer code {
       <span class="name">Пост в Telegram-канал</span>
       <span class="when"></span>
       <button type="button" class="mark">Проверил</button>
-      <span class="how">Каждый день, пока не закроется очередь из 8 тем (осталось 6). Скажи мне тему — соберу пост и пришлю; публикуешь ты. Когда очередь кончится, перейдём на общий режим: статья выходит на сайте и в канале одновременно.</span>
+      <span class="how">Каждый день, пока не закроется очередь из 8 тем (осталось 2: Londa Blondoran и «Неравномерное выцветание цвета»). Скажи мне тему — соберу пост и пришлю; публикуешь ты. Когда очередь кончится, перейдём на общий режим: статья выходит на сайте и в канале одновременно.</span>
     </div>
   </div>
 </section>
