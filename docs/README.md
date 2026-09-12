@@ -8,6 +8,7 @@
 - `content-rules.md` — правила поиска кодов оттенков, товарные фото
 - `infrastructure.md` — домен, хостинг, деплой, почта
 - `legal.md` — персональные данные и 152-ФЗ
+- `2026-09-12-rkn-notification-draft.md` — черновик ответов для уведомления в РКН
 - `vision.md` — планы, идеи, KPI
 - `tooling.md` — где искать MCP-серверы и скиллы
 - `learning.md` — курс ZeroCoder
