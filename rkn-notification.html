@@ -1,0 +1,272 @@
+<title>Уведомление в РКН</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap">
+<style>
+:root {
+  --ground: #fbfaf8;
+  --surface: #ffffff;
+  --quote: #f7f4ee;
+  --line: #e7e0d4;
+  --line-soft: #f0ebe2;
+  --ink: #2b201c;
+  --muted: #7d7168;
+  --urgent: #c8000f;
+  --urgent-soft: #fdf0f1;
+  --plan: #38628c;
+  --plan-soft: #eef3f8;
+  --ok: #3d7a4f;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #17120f; --surface: #201a16; --quote: #241d18;
+    --line: #3a2e27; --line-soft: #2b231e;
+    --ink: #f2e9e1; --muted: #ab9d92;
+    --urgent: #ff6470; --urgent-soft: #2e1a1a;
+    --plan: #8fb8dc; --plan-soft: #1a232c; --ok: #74c286;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #17120f; --surface: #201a16; --quote: #241d18;
+  --line: #3a2e27; --line-soft: #2b231e;
+  --ink: #f2e9e1; --muted: #ab9d92;
+  --urgent: #ff6470; --urgent-soft: #2e1a1a;
+  --plan: #8fb8dc; --plan-soft: #1a232c; --ok: #74c286;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--ground); color: var(--ink);
+  font-family: var(--font-sans); line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 760px; margin: 0 auto; padding: 40px 22px 90px;
+  display: flex; flex-direction: column; gap: 34px;
+}
+@media (max-width: 640px) { .wrap { padding: 26px 14px 70px; gap: 28px; } }
+
+.masthead { display: flex; flex-direction: column; gap: 8px; }
+.kicker {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--plan);
+}
+h1 {
+  font-family: var(--font-display); font-size: clamp(1.7rem, 4.4vw, 2.3rem);
+  font-weight: 700; margin: 0; text-wrap: balance;
+}
+.standfirst { color: var(--muted); font-size: 0.95rem; margin: 0; max-width: 62ch; }
+
+.warn {
+  border: 1px solid var(--line); border-left: 3px solid var(--urgent);
+  background: var(--surface); padding: 15px 17px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.warn strong { font-size: 0.97rem; }
+.warn p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+
+.block { display: flex; flex-direction: column; gap: 14px; }
+.block-head { display: flex; align-items: baseline; gap: 12px; }
+.block-head h2 {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.22rem;
+  margin: 0; flex: none;
+}
+.block-head .rule { flex: 1; height: 1px; background: var(--line); }
+
+.gap { display: flex; flex-direction: column; gap: 10px; }
+.gap li {
+  list-style: none; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px;
+  padding: 12px 2px; border-bottom: 1px solid var(--line-soft);
+}
+.gap { margin: 0; padding: 0; }
+.gap li:last-child { border-bottom: none; }
+.gap .no {
+  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
+  color: var(--urgent); white-space: nowrap; padding-top: 2px;
+}
+.gap b { font-weight: 600; font-size: 0.95rem; }
+.gap .why { grid-column: 2; color: var(--muted); font-size: 0.87rem; }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field + .field { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line-soft); }
+.field .label {
+  display: flex; align-items: baseline; gap: 10px;
+}
+.field .num {
+  font-family: var(--font-mono); font-size: 0.73rem; font-weight: 600;
+  color: var(--muted); flex: none; font-variant-numeric: tabular-nums;
+}
+.field h3 { margin: 0; font-size: 1rem; font-weight: 600; }
+.field .note { margin: 0; font-size: 0.88rem; color: var(--muted); }
+.field .note.flag { color: var(--urgent); }
+.field .note.good { color: var(--ok); }
+
+.copy {
+  background: var(--quote); border: 1px solid var(--line);
+  padding: 13px 15px; font-size: 0.93rem; line-height: 1.6;
+  overflow-x: auto; white-space: pre-wrap;
+}
+.copy em { font-style: normal; color: var(--urgent); font-family: var(--font-mono); font-size: 0.86rem; }
+
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+.tablewrap { overflow-x: auto; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+th {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); font-weight: 600;
+}
+td:first-child { white-space: nowrap; color: var(--muted); }
+td em { font-style: normal; color: var(--urgent); font-family: var(--font-mono); font-size: 0.86rem; }
+
+.after li { font-size: 0.93rem; margin-bottom: 9px; }
+.after { padding-left: 20px; margin: 0; }
+
+footer {
+  border-top: 1px solid var(--line); padding-top: 18px;
+  font-size: 0.85rem; color: var(--muted);
+  display: flex; flex-direction: column; gap: 8px;
+}
+footer a { color: var(--plan); }
+a:focus-visible { outline: 2px solid var(--plan); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">Черновик · 12 сентября 2026</div>
+  <h1>Уведомление в Роскомнадзор</h1>
+  <p class="standfirst">Готовые ответы по каждому пункту формы — собраны по фактическому
+  устройству сайта zilma.pro, из кода, а не из описаний. Подаёт сам оператор, через
+  Госуслуги или сайт РКН.</p>
+</header>
+
+<div class="warn">
+  <strong>Я не юрист.</strong>
+  <p>Факты о системе здесь точные. Формулировки и применимость к статусу самозанятого
+  должен подтвердить юрист или бухгалтер — цена ошибки тут твоя, а не моя.</p>
+</div>
+
+<section class="block">
+  <div class="block-head"><h2>Чего не хватает до подачи</h2><span class="rule"></span></div>
+  <p class="standfirst">Обе вещи бесплатны, обе делаются за вечер и не зависят ни от хостинга,
+  ни от денег. Подать уведомление можно и без них — обязанность возникает от самого факта
+  обработки. Но основание «согласие субъекта» станет правдой только после второго пункта.</p>
+  <ul class="gap">
+    <li><span class="no">нет</span><b>Страницы политики обработки персональных данных</b>
+      <span class="why">В <code>src/pages/</code> её не существует.</span></li>
+    <li><span class="no">нет</span><b>Галочки согласия в форме заявки</b>
+      <span class="why">В <code>OrderForm.astro</code> ничего похожего.</span></li>
+  </ul>
+</section>
+
+<section class="block">
+  <div class="block-head"><h2>Ответы по пунктам</h2><span class="rule"></span></div>
+  <p class="standfirst">Названия полей в форме могут звучать чуть иначе — сопоставляй по
+  смыслу. Красным помечено то, что впиши сам.</p>
+
+  <div class="field">
+    <div class="label"><span class="num">01</span><h3>Оператор</h3></div>
+    <div class="tablewrap"><table>
+      <tr><th>Поле</th><th>Что вписать</th></tr>
+      <tr><td>ФИО</td><td>Сиритяну Олег <em>отчество — впиши</em></td></tr>
+      <tr><td>Статус</td><td>физическое лицо, применяющее НПД (самозанятый)</td></tr>
+      <tr><td>ИНН</td><td><em>впиши свой</em></td></tr>
+      <tr><td>Адрес</td><td><em>адрес регистрации</em></td></tr>
+      <tr><td>Связь</td><td>рабочий телефон и email</td></tr>
+      <tr><td>Сайт</td><td>https://www.zilma.pro</td></tr>
+    </table></div>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">02</span><h3>Цель обработки</h3></div>
+    <div class="copy">Приём и обработка заявок на поставку профессиональной косметики от юридических лиц, индивидуальных предпринимателей и мастеров салонов красоты; связь с заказчиком для уточнения состава, стоимости и условий поставки.</div>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">03</span><h3>Категории персональных данных</h3></div>
+    <div class="copy">Имя или иное обращение, указанное самим заказчиком; контактные данные — номер телефона либо идентификатор мессенджера по выбору заказчика; текст комментария к заявке; состав и сумма заказа; приложенный заказчиком файл, если он его приложил.</div>
+    <p class="note good">Биометрия и специальные категории — здоровье, судимость и подобное — не
+    обрабатываются. Этот пункт снимает самые тяжёлые требования, его стоит указать явно.</p>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">04</span><h3>Категории субъектов</h3></div>
+    <div class="copy">Клиенты и потенциальные клиенты — представители салонов красоты, мастера-парикмахеры, колористы. Работников нет.</div>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">05</span><h3>Правовое основание</h3></div>
+    <div class="copy">Согласие субъекта персональных данных, выраженное при отправке формы заявки на сайте (п. 1 ч. 1 ст. 6 152-ФЗ); исполнение договора поставки, стороной которого является субъект (п. 5 ч. 1 ст. 6 152-ФЗ).</div>
+    <p class="note flag">Первое основание станет правдой только после того, как в форме появится
+    галочка согласия.</p>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">06</span><h3>Действия и способы обработки</h3></div>
+    <div class="copy">Сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, удаление, уничтожение.
+
+Обработка смешанная: автоматизированная — сохранение заявки на сервере и отправка уведомления по электронной почте; неавтоматизированная — просмотр заявки оператором и перенос заказа в учётную систему. Передачи третьим лицам и распространения нет.</div>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">07</span><h3>Место нахождения базы данных</h3></div>
+    <div class="copy">Российская Федерация. Заявки хранятся на сервере хостинг-провайдера SpaceWeb, дата-центр на территории РФ. Уведомления о заявках направляются на адрес электронной почты в домене Яндекса, серверы которого расположены в Российской Федерации.</div>
+    <p class="note good">Сильный пункт. Переезд 10 сентября его и закрыл.</p>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">08</span><h3>Трансграничная передача</h3></div>
+    <div class="copy">Не осуществляется.</div>
+    <p class="note">Так и есть: каналы Telegram и MAX в коде присутствуют, но выключены пустыми
+    ключами в конфигурации. Включишь Telegram — этот пункт придётся менять и подавать
+    уведомление об уточнении.</p>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">09</span><h3>Меры по обеспечению безопасности</h3></div>
+    <div class="copy">— Данные хранятся вне публичной директории сайта, в каталоге с правами доступа 0700; прямое обращение к каталогу из интернета закрыто настройками веб-сервера.
+— Просмотр заявок возможен только после ввода пароля; сравнение пароля выполняется способом, устойчивым к подбору по времени ответа.
+— Идентификатор заявки содержит случайную часть — ссылку нельзя подобрать перебором.
+— Обмен данными с сайтом и передача файлов на сервер выполняются только по шифрованным каналам (HTTPS, FTPS); незашифрованный путь в инструментах публикации отсутствует.
+— Ограничение частоты отправки формы и защита от автоматических отправок.
+— Круг лиц, имеющих доступ к данным, ограничен самим оператором.</div>
+    <p class="note">Здесь перечислено только то, что действительно сделано. Каждый пункт можно
+    показать в коде.</p>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">10</span><h3>Ответственный за организацию обработки</h3></div>
+    <div class="copy">Оператор лично. <em>ФИО и контакты — твои же</em></div>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">11</span><h3>Дата начала обработки</h3></div>
+    <div class="copy"><em>дата, когда форма заявки заработала на сайте</em></div>
+    <p class="note">Ориентир — август 2026. Точную дату лучше взять по первой реальной заявке.</p>
+  </div>
+
+  <div class="field">
+    <div class="label"><span class="num">12</span><h3>Условие прекращения обработки</h3></div>
+    <div class="copy">Достижение цели обработки, отзыв согласия субъектом либо прекращение деятельности оператора.</div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="block-head"><h2>После подачи</h2><span class="rule"></span></div>
+  <ol class="after">
+    <li>В реестр вносят примерно <b>30 дней</b>, уведомление о включении приходит на почту.</li>
+    <li><b>Любое изменение из этого списка</b> — новый канал уведомлений, смена хостинга, новые
+      категории данных — требует письма об уточнении не позднее 15-го числа следующего месяца.</li>
+    <li>Поэтому в правилах проекта записано: включение Telegram или MAX меняет пункт 8.</li>
+  </ol>
+</section>
+
+<footer>
+  <div>Проверено по: <a href="https://e-kontur.ru/enquiry/2409/uvedomlenie-v-roskomnadzor-ob-obrabotke-personalnyh-dannyh" target="_blank" rel="noopener">Контур</a>, <a href="https://astral.ru/products/152doc/uvedomlenie-ob-obrabotke-personalnykh-dannykh/" target="_blank" rel="noopener">Астрал</a>. Подтверждено: самозанятые подавать обязаны, срок — до начала обработки, штраф для физлица 5–10 тыс. ₽.</div>
+  <div>Источники называют разные номера приказа РКН (№187 от 14.11.2022 и №180 от 28.10.2022). Я это не сверял и в текст не тащу: форма на Госуслугах подставляется сама.</div>
+</footer>
+
+</div>
