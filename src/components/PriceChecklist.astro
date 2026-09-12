@@ -2851,6 +2851,51 @@ const bestDeals = groupBy === 'discount'
     const fuzzyPool = new Set<string>([...vocabulary, ...FUZZY_POOL]);
     const noResults = root.querySelector<HTMLElement>('.pc-no-results');
 
+    /* Пустой результат обязан подсказывать, а не разводить руками.
+       Реальный случай 11.09.2026: клиентка искала «колор тач 10.73». Color Touch в прайсе
+       действительно нет — она увидела пустой экран, решила, что нужного оттенка нет вовсе,
+       и ушла оформлять заказ текстом в Telegram. А по ОДНОМУ коду 10/73 в прайсе три
+       позиции, включая ту самую Londa, которую ей потом назвали руками. Ответ у сайта был,
+       он просто промолчал.
+
+       Поэтому: если в запросе несколько слов и одно из них похоже на код оттенка, считаем,
+       сколько нашлось бы по коду отдельно, и предлагаем это. */
+    function plural(n: number, one: string, few: string, many: string): string {
+      const m10 = n % 10;
+      const m100 = n % 100;
+      if (m10 === 1 && m100 !== 11) return one;
+      if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
+      return many;
+    }
+
+    function shadeCodeToken(toks: string[]): string | null {
+      // Код уже нормализован: любой разделитель приведён к «/» (см. normalizeSearch).
+      return toks.find((t) => /^\d{1,2}\/\d{1,3}$/.test(t)) ?? null;
+    }
+
+    function countByTerm(index: Map<HTMLLIElement, { name: string; brand: string; line: string }>,
+                         term: string): number {
+      let n = 0;
+      index.forEach((entry) => {
+        if (fieldMatches(entry.name, term) || fieldMatches(entry.brand, term)
+          || fieldMatches(entry.line, term)) n += 1;
+      });
+      return n;
+    }
+
+    function updateNoResultsText(
+      toks: string[],
+      index: Map<HTMLLIElement, { name: string; brand: string; line: string }>,
+    ): void {
+      if (!noResults) return;
+      const code = toks.length > 1 ? shadeCodeToken(toks) : null;
+      const found = code ? countByTerm(index, code) : 0;
+      noResults.textContent = found > 0
+        ? `По этому запросу ничего нет. Но по одному коду ${code} в прайсе `
+          + `${found} ${plural(found, 'товар', 'товара', 'товаров')} — попробуйте поискать только код.`
+        : 'Ничего не найдено. Попробуйте другой запрос — или пришлите заказ в свободной форме, как раньше.';
+    }
+
     // Отдельной кнопки «✕ Закрыть» больше нет (пользователь справедливо заметил: рядом с «←»
     // и всегда доступной нижней плашкой навигации она лишняя). Стрелка «←» теперь «умная»:
     // внутри открытого бренда — сворачивает к списку папок (как раньше), а на самом верхнем
@@ -3247,7 +3292,13 @@ const bestDeals = groupBy === 'discount'
           g.open = false;
           if (anyVisible) anyVisibleTotal = true;
         });
-        if (noResults) noResults.hidden = anyVisibleTotal;
+        if (noResults) {
+          // Здесь фильтр по категории, текстового запроса нет — поэтому общий текст, а не
+          // подсказка про код оттенка. Сбрасываем явно: иначе осталась бы фраза от прошлого
+          // поиска, уже неуместная.
+          if (!anyVisibleTotal) updateNoResultsText([], searchIndex);
+          noResults.hidden = anyVisibleTotal;
+        }
         if (headerTitle) {
           headerTitle.textContent = cat;
           headerTitle.classList.remove('pc-header-logo');
@@ -3504,7 +3555,11 @@ const bestDeals = groupBy === 'discount'
         }
         if (anyVisible) anyVisibleTotal = true;
       });
-      if (noResults) noResults.hidden = anyVisibleTotal || items.length === 0;
+      if (noResults) {
+        const empty = !anyVisibleTotal && items.length > 0;
+        if (empty) updateNoResultsText(tokens, searchIndex);
+        noResults.hidden = !empty;
+      }
       // Заголовок/подсказка поиска при множественных совпадениях - см. фикс в toggle-слушателе
       // бренда выше (там же и разбор бага): каждый toggle сам умеет пересчитать, сколько брендов
       // сейчас реально открыто, и не полагается на порядок срабатывания.

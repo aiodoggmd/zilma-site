@@ -16,22 +16,45 @@
 <script is:inline>
   (function () {
     var KEY = 'zilma-cart';
-    var TTL_MS = 6 * 60 * 60 * 1000; // 6 часов — с запасом на одну сессию заказа, но не переживает "зашёл в другой раз"
+    /* Корзина БОЛЬШЕ НЕ СТИРАЕТСЯ через 6 часов — изменено 12.09.2026 по реальному случаю.
+       Клиентка собирала заказ вечером, вернулась утром и получила пустую заявку: «Всё
+       слетело!!!». Бросила сайт и прислала заказ текстом в Telegram. Шесть часов не
+       переживают одну ночь, а собрать заказ за два захода — обычное дело.
 
-    function get() {
+       Исходная задача никуда не делась: клиент, вернувшийся через неделю за СОВСЕМ другим
+       заказом, не должен молча отправить забытые позиции. Но решается она предупреждением,
+       а не удалением чужой работы. Старая корзина возвращается как есть, а форма заявки
+       показывает, когда она собрана, и просит проверить состав (см. age() ниже). */
+    var MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000; // месяц — дальше это уже не «тот же заказ»
+    var STALE_MS = 6 * 60 * 60 * 1000;         // старше — показываем предупреждение
+
+    function read() {
       try {
         var raw = localStorage.getItem(KEY);
-        if (!raw) return [];
+        if (!raw) return null;
         var parsed = JSON.parse(raw);
-        if (!parsed || !Array.isArray(parsed.items)) return [];
-        if (Date.now() - (parsed.updatedAt || 0) > TTL_MS) {
+        if (!parsed || !Array.isArray(parsed.items)) return null;
+        var age = Date.now() - (parsed.updatedAt || 0);
+        if (age > MAX_AGE_MS) {
           localStorage.removeItem(KEY);
-          return [];
+          return null;
         }
-        return parsed.items;
+        return { items: parsed.items, updatedAt: parsed.updatedAt || 0, age: age };
       } catch (e) {
-        return [];
+        return null;
       }
+    }
+
+    function get() {
+      var r = read();
+      return r ? r.items : [];
+    }
+
+    /* Возраст корзины — для предупреждения в форме заявки. null, если корзина пуста. */
+    function age() {
+      var r = read();
+      if (!r || !r.items.length) return null;
+      return { updatedAt: r.updatedAt, ms: r.age, stale: r.age > STALE_MS };
     }
 
     function set(items) {
@@ -41,7 +64,7 @@
       document.dispatchEvent(new CustomEvent('zilma:cart-updated'));
     }
 
-    window.zilmaCart = { get: get, set: set };
+    window.zilmaCart = { get: get, set: set, age: age };
 
     // История отправленных заявок — для строки «Повторить прошлый заказ» (в каталоге и в
     // форме заявки). Отдельный ключ и намного больший срок жизни, чем у корзины: корзина

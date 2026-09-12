@@ -101,6 +101,10 @@ const Heading = as;
 
         <div class="cart" id="order-cart" hidden>
           <span class="cart-label">Выбранные товары</span>
+          {/* Заявка, собранная в прошлый заход, больше не стирается молча (см. CartStore.astro).
+              Вместо этого — строчка о том, когда её собрали: чтобы вернувшийся через неделю за
+              другим заказом заметил старые позиции, а не отправил их не глядя. */}
+          <p class="cart-stale" id="cart-stale" hidden></p>
           {/* Обёртка нужна только под затухание у нижнего края (см. .cart-list-wrap::after):
               сам список прокручивается, а тень на него не повесить — она уехала бы вместе
               с содержимым. Класс is-scrollable ставит renderCart, когда строки не влезли. */}
@@ -145,7 +149,10 @@ const Heading = as;
         </label>
 
         <div class="submit-row">
-          <button type="submit" disabled>Отправить заявку</button>
+          {/* Без disabled намеренно: отключённая кнопка молчит в ответ на нажатие, и человек
+              решает, что сайт сломан (реальный случай 11.09.2026). Вид «ещё не готово» несёт
+              класс .not-ready, а причину называет сама кнопка при нажатии. */}
+          <button type="submit" class="not-ready">Отправить заявку</button>
           <span class="status" role="status" aria-live="polite"></span>
         </div>
       </form>
@@ -489,6 +496,16 @@ const Heading = as;
   }
 
   button:hover { filter: brightness(1.1); }
+  /* Два разных состояния, и это важно.
+     .not-ready — «ещё рано»: кнопка выглядит неготовой, но НАЖИМАЕТСЯ и по нажатию
+     называет причину. Отключать её нельзя: отключённая кнопка молчит, и человек решает,
+     что сайт сломан (реальный случай 11.09.2026).
+     :disabled — только на те секунды, пока заявка уходит, чтобы не ушла дважды. */
+  button.not-ready {
+    background: var(--color-pastel-blue);
+    color: var(--color-blue-dark);
+    opacity: 1;
+  }
   button:disabled {
     background: var(--color-pastel-blue);
     color: var(--color-blue-dark);
@@ -588,6 +605,14 @@ const Heading = as;
     color: #5c5049;
     text-transform: uppercase;
     letter-spacing: 0.02em;
+  }
+
+  /* «Заявка собрана вчера» — заметно, но не тревожно: это не ошибка, а напоминание. */
+  .cart-stale {
+    margin: 2px 0 0;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    color: #8a5a12;
   }
 
   /* Список ВСЕГДА со своим скроллом и фиксированным потолком высоты — правка пользователя
@@ -857,19 +882,44 @@ const Heading = as;
   const renderedAtInput = form?.querySelector<HTMLInputElement>('input[name="form_rendered_at"]');
   if (renderedAtInput) renderedAtInput.value = String(Date.now());
 
-  // Кнопка серая/неактивна, пока не заполнены обязательные поля или сумма корзины меньше
-  // минимального заказа — тот же приём, что у «Добавить в заявку» в прайсе.
+  /* Почему заявку нельзя отправить прямо сейчас — одной фразой, или null, если можно.
+     Порядок проверок повторяет порядок действий человека: сначала он набирает товары
+     в каталоге, потом заполняет себя. */
+  function blockingReason(): string | null {
+    const contactValue = contactInput?.value.trim() ?? '';
+    const total = readCartItems().reduce((s, it) => s + it.price * it.qty, 0);
+    if (total <= 0) return 'В заявке пока нет товаров — выберите их в каталоге.';
+    if (total < MIN_ORDER_TOTAL) {
+      return `До минимального заказа не хватает ${formatMoney(MIN_ORDER_TOTAL - total)} ₽ — `
+        + 'добавьте товаров в каталоге. Или пришлите заказ в свободной форме, как раньше.';
+    }
+    if (!nameInput?.value.trim()) return 'Напишите, как к вам обращаться.';
+    if (!contactValue || !looksLikePhone(contactValue)) {
+      return 'Оставьте телефон, по которому с вами связаться.';
+    }
+    return null;
+  }
+
+  /* Кнопка больше НЕ отключается — изменено 12.09.2026 по реальному случаю.
+     Клиентка жала кнопку в 22:35, 22:41 и 23:32 и каждый раз получала тишину: не хватало
+     253 ₽ до минимального заказа, а отключённая кнопка не порождает событий вообще — ни
+     отклика, ни сообщения. Вывод человека был единственно возможный: «Ничего не
+     отправляется!!!», сайт сломан. Она ушла в Telegram и заказала текстом.
+
+     Теперь кнопка нажимается всегда, а причина называется прямо под ней. Вид «ещё не
+     готово» остался прежним, но держится классом .not-ready, а не атрибутом disabled:
+     отключать кнопку можно только на время самой отправки, чтобы не ушло два запроса. */
   function updateSubmitState() {
     if (!button) return;
     const contactValue = contactInput?.value.trim() ?? '';
-    const hasName = !!nameInput?.value.trim();
-    const contactValid = !!contactValue && looksLikePhone(contactValue);
     const total = readCartItems().reduce((s, it) => s + it.price * it.qty, 0);
     const meetsMin = total >= MIN_ORDER_TOTAL;
-    button.disabled = !(hasName && contactValid && meetsMin);
+    // disabled снимаем явно: он остаётся после отправки, а до неё не должен стоять никогда.
+    button.disabled = false;
+    button.classList.toggle('not-ready', blockingReason() !== null);
 
     if (contactWarningEl) {
-      contactWarningEl.hidden = !contactValue || contactValid;
+      contactWarningEl.hidden = !contactValue || looksLikePhone(contactValue);
     }
 
     // Шкала показывается, как только в заявке появился хотя бы один товар: до этого
@@ -976,6 +1026,25 @@ const Heading = as;
       return;
     }
     cartEl.hidden = false;
+
+    /* Когда эту заявку собрали. Показываем только если прошло больше шести часов —
+       за один заход напоминание было бы шумом. */
+    const staleEl = document.getElementById('cart-stale') as HTMLElement | null;
+    if (staleEl) {
+      const info = (window as any).zilmaCart?.age?.();
+      if (info && info.stale) {
+        /* Считаем КАЛЕНДАРНЫЕ дни, а не прошедшие часы: заявка, собранная в 23:00 и открытая
+           в 09:00, для человека «вчерашняя», хотя прошло всего десять часов. */
+        const midnight = (t: number) => { const d = new Date(t); d.setHours(0, 0, 0, 0); return d.getTime(); };
+        const days = Math.round((midnight(Date.now()) - midnight(info.updatedAt)) / 86400000);
+        const when = days <= 0 ? 'сегодня, раньше' : days === 1 ? 'вчера' : `${days} дн. назад`;
+        staleEl.textContent = `Эта заявка собрана ${when} — проверьте состав перед отправкой.`;
+        staleEl.hidden = false;
+      } else {
+        staleEl.hidden = true;
+      }
+    }
+
     cartList.replaceChildren(
       ...items.map((it, i) => {
         const displayName = stripArticle(it.name);
@@ -1210,6 +1279,15 @@ const Heading = as;
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!statusEl || !button) return;
+
+    /* Сначала — почему нельзя отправить. Раньше эту роль играла отключённая кнопка, и
+       человек не получал ни ответа, ни причины (см. заметку у updateSubmitState). */
+    const reason = blockingReason();
+    if (reason) {
+      statusEl.textContent = reason;
+      statusEl.className = 'status err';
+      return;
+    }
 
     const f = fileInput?.files?.[0];
     if (f && f.size > MAX_FILE_BYTES) {
