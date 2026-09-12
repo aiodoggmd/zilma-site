@@ -1286,6 +1286,12 @@ const Heading = as;
     if (reason) {
       statusEl.textContent = reason;
       statusEl.className = 'status err';
+      /* Короткий отклик телефона вдобавок к тексту. Работает на Android, на iPhone — нет:
+         WebKit не отдаёт вибрацию странице, и это не лечится. Поэтому вибрация здесь
+         ДОПОЛНЕНИЕ, а не способ сообщить: всё, что нужно понять, сказано текстом выше.
+         Оптional-вызов и try — чтобы на устройствах без поддержки просто ничего не было. */
+      try { navigator.vibrate?.(60); } catch { /* телефон без вибрации — не беда */ }
+      statusEl.scrollIntoView({ block: 'nearest' });
       return;
     }
 
