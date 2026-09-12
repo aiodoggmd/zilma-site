@@ -891,7 +891,7 @@ const Heading = as;
     if (total <= 0) return 'В заявке пока нет товаров — выберите их в каталоге.';
     if (total < MIN_ORDER_TOTAL) {
       return `До минимального заказа не хватает ${formatMoney(MIN_ORDER_TOTAL - total)} ₽ — `
-        + 'добавьте товаров в каталоге. Или пришлите заказ в свободной форме, как раньше.';
+        + 'добавьте товаров в каталоге. Или пришлите заказ в свободной форме.';
     }
     if (!nameInput?.value.trim()) return 'Напишите, как к вам обращаться.';
     if (!contactValue || !looksLikePhone(contactValue)) {
