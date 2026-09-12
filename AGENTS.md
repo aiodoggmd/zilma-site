@@ -17,6 +17,7 @@ Codex и OpenCode читают напрямую). Здесь только дей
 | `docs/vision.md` | планы развития, идеи, KPI |
 | `docs/tooling.md` | подбираем новый MCP-сервер или скилл |
 | `scripts/README.md` | какой скрипт за что отвечает |
+| `rkn-notification.html` | уведомление в РКН: готовые ответы по пунктам, артефакт https://claude.ai/code/artifact/e193634f-492c-4715-8ff9-0451887a5b19 |
 | `docs/learning.md` | контекст курса ZeroCoder |
 | `docs/journal/status-log.md` | «а как мы это делали раньше?» — хроника всех правок |
 | `docs/journal/features.md` | история отдельных фич, статей и аварий |
