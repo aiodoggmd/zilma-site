@@ -57,6 +57,24 @@ def article_of(name: str) -> str:
     return toks[-1] if toks else ''
 
 
+def article_candidates(name: str):
+    """Артикул с поправкой на хвост вроде «NEW».
+
+    1С дописывает пометки в конец имени: «...1000 мл 918 NEW». Тогда последний
+    токен — не артикул, и связь старого имени с новым рвётся молча: товар
+    считается новым, теряет категорию и фото и получает ложный бейдж «Нов».
+    Если в последнем токене нет цифр — пробуем ещё и предпоследний.
+    Поймано 13.09.2026 при переносе имён из Каталог.xlsx (1 позиция из 208).
+    """
+    toks = norm(name).split()
+    if not toks:
+        return []
+    out = [toks[-1]]
+    if len(toks) > 1 and not re.search(r'\d', toks[-1]):
+        out.append(toks[-2])
+    return out
+
+
 def body_of(name: str) -> str:
     """Имя без артикула — то, что остаётся, когда меняется только артикул."""
     toks = name.strip().split()
@@ -109,13 +127,18 @@ def main() -> None:
     for i in old_items:
         if i['name'] in gone:
             b = i['brand'].upper()
-            by_article.setdefault((b, article_of(i['name'])), []).append(i['name'])
+            for a in article_candidates(i['name']):
+                by_article.setdefault((b, a), []).append(i['name'])
             by_body.setdefault((b, body_of(i['name'])), []).append(i['name'])
 
     renames, ambiguous, truly_new = [], [], []
     for i in added:
         b = i['brand'].upper()
-        same_article = by_article.get((b, article_of(i['name'])), [])
+        same_article = []
+        for a in article_candidates(i['name']):
+            same_article = by_article.get((b, a), [])
+            if same_article:
+                break
         same_body = by_body.get((b, body_of(i['name'])), [])
         cands = same_article or same_body
         why = 'артикул тот же' if same_article else 'название то же'
