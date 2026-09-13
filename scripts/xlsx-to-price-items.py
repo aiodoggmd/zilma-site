@@ -86,6 +86,29 @@ def article(name: str):
     return toks[-1] if toks else None
 
 
+# Пометки, которые 1С дописывает в конец имени. Артикул стоит ПЕРЕД ними.
+TRAILING_MARKERS = {"new", "new!", "новинка", "акция", "распродажа", "хит"}
+
+
+def article_clean(name: str):
+    """Артикул с отброшенными хвостовыми пометками 1С.
+
+    1С дописывает пометки в конец имени и делает это НЕ ОДИНАКОВО в прайсе и в
+    остатках. Пока «NEW» стояло в обоих файлах, артикулом с обеих сторон
+    читалось «NEW», и остаток подтягивался по нему — случайно, а не по смыслу.
+    Стоило причесать имя в прайсе («...918 NEW» -> «...918»), как связь порвалась
+    и товар остался без остатка, хотя на складе его 156 штук (13.09.2026).
+
+    Отбрасываем пометки ПО СПИСКУ, а не «любое слово без цифр»: широкое правило
+    пробовали — оно добавляло «300» из «Шампунь 300 мл» как артикул, засоряло
+    индекс и уронило сопоставление с 1018 до 1004.
+    """
+    toks = name.strip().split()
+    while len(toks) > 1 and toks[-1].strip(".,").lower() in TRAILING_MARKERS:
+        toks.pop()
+    return toks[-1] if toks else None
+
+
 def is_excluded(name: str) -> bool:
     n = name.strip().lower()
     if any(n.startswith(p) for p in EXCLUDE_NAME_PREFIXES):
@@ -151,7 +174,9 @@ def load_stock_levels(items: list) -> dict:
 
     brands_by_article: dict = {}
     for it in items:
-        a = article(it["name"])
+        # Та же очистка от хвостовых пометок, что и на стороне остатков: иначе
+        # стороны читают артикул по-разному и товар молча остаётся без остатка.
+        a = article_clean(it["name"])
         brands_by_article.setdefault(a, set()).add(it["brand"])
     price_unambiguous = {a for a, brands in brands_by_article.items() if len(brands) == 1}
 
@@ -172,7 +197,7 @@ def load_stock_levels(items: list) -> dict:
         if not isinstance(qty, (int, float)):
             header = str(name).strip()
             continue
-        art = article(str(name))
+        art = article_clean(str(name))
         if not art:
             continue
         qty_by_article[art] = qty_by_article.get(art, 0) + int(qty)
