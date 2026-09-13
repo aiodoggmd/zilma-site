@@ -8,6 +8,12 @@ interface Item {
   id: number;
   brand: string | null;
   line: string | null;
+  // Раздел внутри бренда — ручная разбивка пользователя из Price/Каталог.xlsx
+  // (журнал src/data/price-sections.json). Группируем каталог по нему, а не по
+  // line: 1С валит 158 позиций WELLA в одну «KP Me+/CT», а у OLLIN линеек нет
+  // вовсе. Поле именно отдельное — line продолжает выбирать палитру оттенков
+  // (inWellaFamily / ownPaletteFor) и привязывать гиды, подменять его нельзя.
+  section?: string | null;
   name: string;
   price: number;
   promo: boolean;
@@ -298,7 +304,7 @@ function alphaCompare(a: string, b: string): number {
 const brandMap = new Map<string, Map<string, Item[]>>();
 for (const it of items) {
   const b = it.brand ?? 'Другое';
-  const l = it.line ?? '';
+  const l = it.section ?? it.line ?? '';
   if (!brandMap.has(b)) brandMap.set(b, new Map());
   const lineMap = brandMap.get(b)!;
   if (!lineMap.has(l)) lineMap.set(l, []);
@@ -392,7 +398,7 @@ if (groupBy === 'discount') {
   const allMap = new Map<string, Map<string, Item[]>>();
   const put = (target: Map<string, Map<string, Item[]>>, it: Item) => {
     const b = it.brand ?? 'Другое';
-    const l = it.line ?? '';
+    const l = it.section ?? it.line ?? '';
     if (!target.has(b)) target.set(b, new Map());
     const lineMap = target.get(b)!;
     if (!lineMap.has(l)) lineMap.set(l, []);

@@ -44,6 +44,10 @@ NEW_WINDOW_DAYS = 14
 # заранее проставить уже известные категории в новый прайс и подсветить синим то, чего
 # в журнале ещё нет (см. Price/build_price_current.py, add_category_column).
 CATEGORIES_PATH = ROOT / "src" / "data" / "price-categories.json"
+# Разделы внутри бренда - ручная разбивка пользователя из Price/Каталог.xlsx
+# (собирается scripts/build-price-sections.py). Журнал по ИМЕНИ товара, как и
+# остальные: тогда migrate-renamed-products.py переносит раздел при переименовании.
+SECTIONS_PATH = ROOT / "src" / "data" / "price-sections.json"
 CATEGORY_NAMES = {
     1: "Аммиачные красители",
     2: "Безаммиачные красители",
@@ -222,6 +226,16 @@ def main() -> None:
     if CATEGORIES_PATH.exists():
         categories = json.loads(CATEGORIES_PATH.read_text(encoding="utf-8"))
 
+    # Раздел внутри бренда — ручная разбивка пользователя из Price/Каталог.xlsx,
+    # собранная build-price-sections.py. Кладём в ОТДЕЛЬНОЕ поле, а не в line:
+    # line несёт выбор палитры оттенков и привязку гидов, подменять его нельзя.
+    sections = {}
+    if SECTIONS_PATH.exists():
+        sections = json.loads(SECTIONS_PATH.read_text(encoding="utf-8"))
+    else:
+        print(f"ВНИМАНИЕ: {SECTIONS_PATH.name} не найден - каталог сгруппируется "
+              f"по линейкам 1С, как до разбивки по разделам.")
+
     today = date.today()
     is_bootstrap = not FIRST_SEEN_PATH.exists()
     first_seen = {} if is_bootstrap else json.loads(FIRST_SEEN_PATH.read_text(encoding="utf-8"))
@@ -322,6 +336,10 @@ def main() -> None:
             cat_num = categories.get(clean_name)
         if cat_num is not None and cat_num in CATEGORY_NAMES:
             item["category"] = CATEGORY_NAMES[cat_num]
+
+        sec = sections.get(clean_name)
+        if sec:
+            item["section"] = sec
 
         items.append(item)
 
