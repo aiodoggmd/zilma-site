@@ -97,6 +97,19 @@ ABBR = [
 # Точка, слипшаяся со следующим словом или числом: «CLEAR.90мл», «прозр.100шт».
 GLUED_RE = re.compile(r'([А-Яа-яA-Za-z])\.(?=[0-9А-ЯA-Z])')
 
+# Запятая прямо перед объёмом: «...для укрепления волос, 1000мл».
+COMMA_BEFORE_UNIT_RE = re.compile(
+    r',\s*(?=\d+\s*(?:мл|ml|гр|г|л|кг|мг|шт)\b)', re.I)
+
+# Слово (или пара слов) подряд дважды: «для всех типов волос волос»,
+# «Светло-коричневый коричневый». Два из трёх случаев пришли из 1С, один —
+# из ручной правки. Схлопываем в одно.
+REPEAT_RE = re.compile(r'\b(\w+(?:\s+\w+)?)\s+\1\b', re.I)
+
+# Десятичные дроби и коды оттенков: «1,9%», «рн 3,5», «IR 9,5-1».
+# Ни одна правка не имеет права их разорвать.
+DECIMAL_RE = re.compile(r'\d+,\d+')
+
 # Спорные — их НЕ трогаем, только показываем.
 UNSURE = re.compile(
     r'\b(гиалур\.|vol\.|медн\.зол|шампуня/масок|зол\b|фикс\.|см\.|'
@@ -152,9 +165,25 @@ def tidy(name: str):
     if body != before:
         applied.append('слипшаяся точка')
 
+    # Запятая перед объёмом — мусор, и ставится он хаотично: «для укрепления
+    # волос, 1000мл» рядом с такими же именами без запятой.
+    before = body
+    body = REPEAT_RE.sub(r'\1', body)
+    if body != before:
+        applied.append('повтор слова')
+
+    before = body
+    body = COMMA_BEFORE_UNIT_RE.sub(' ', body)
+    if body != before:
+        applied.append('запятая перед объёмом')
+
     body = re.sub(r'\s+', ' ', body)
     body = re.sub(r'\s+([,;])', r'\1', body)
-    body = re.sub(r'([,;])(?=\S)', r'\1 ', body)
+    # Пробел после запятой — ТОЛЬКО если дальше не цифра. Иначе рвутся
+    # десятичные дроби и коды оттенков: «1,9%» -> «1, 9%», «IR 9,5-1» ->
+    # «IR 9, 5-1». Поймано 13.09.2026 на собственной правке: проверки на
+    # артикулы и дубли этого не видели.
+    body = re.sub(r'([,;])(?=[^\s\d])', r'\1 ', body)
     body = body.strip(' ,;')
 
     out = (body + ' ' + article).strip() if article else body
@@ -207,15 +236,28 @@ def main() -> None:
             [x for x in rows if all(x['row'] != c[0]['row'] for c in changes)]
     dup = [n for n, c in Counter(a['name'].casefold() for a in after).items() if c > 1]
 
+    # Дроби и коды оттенков должны уцелеть целиком. Без этой проверки правка
+    # «1,9%» -> «1, 9%» проходит незамеченной: артикул на месте, дублей нет.
+    broken = []
+    for x, new, _ in changes:
+        was = DECIMAL_RE.findall(x['name'])
+        now = DECIMAL_RE.findall(new)
+        if was != now:
+            broken.append((x, new, was, now))
+
     print('\nПРОВЕРКИ:')
     print(f'  артикул изменился:      {len(bad_article)}   (должно быть 0)')
     print(f'  имена стали одинаковы:  {len(dup)}   (должно быть 0)')
+    print(f'  разорваны дроби/коды:   {len(broken)}   (должно быть 0)')
     print(f'  строк было/стало:       {len(rows)}/{len(after)}')
     for x, new in bad_article[:5]:
         print(f'    ! стр.{x["row"]}: {x["name"]}  ->  {new}')
     for d in dup[:5]:
         print(f'    ! дубль: {d[:70]}')
-    if bad_article or dup or len(after) != len(rows):
+    for x, new, was, now in broken[:5]:
+        print(f'    ! стр.{x["row"]}: было {was} стало {now}')
+        print(f'      {new[:74]}')
+    if bad_article or dup or broken or len(after) != len(rows):
         sys.exit('\nПроверки не прошли — ничего не записано.')
 
     print('\nПРИМЕРЫ (первые 20):')
