@@ -100,6 +100,30 @@ def brand_variants(b: str):
     return out
 
 
+def words(name: str):
+    """Слова имени без артикула — для разрешения ничьей по артикулу."""
+    body = ' '.join(norm(name).split()[:-1])
+    return set(re.findall(r'[0-9A-Za-zА-Яа-яЁё]+', body.casefold()))
+
+
+def pick_closest(price_name: str, cands):
+    """Из нескольких кандидатов по артикулу выбрать того, чьё имя ближе.
+
+    Нужно, потому что артикул не уникален: у OLLIN артикул 0-88 носят и
+    «Color 0/88 синий», и «Performanse 8-8» — разные товары. Пока имена
+    совпадали дословно, до артикула дело не доходило; после причёсывания
+    имён (мл./ml -> мл) совпадение пропало и ничья вылезла наружу.
+    Берём кандидата со строго наибольшим пересечением слов. Если чёткого
+    победителя нет — возвращаем None, и человек решает сам.
+    """
+    target = words(price_name)
+    scored = sorted(((len(target & words(c['name'])), c) for c in cands),
+                    key=lambda t: -t[0])
+    if len(scored) < 2 or scored[0][0] > scored[1][0]:
+        return scored[0][1] if scored and scored[0][0] else None
+    return None
+
+
 def read_catalog():
     """Каталог: жирный ВЕРХНИЙ регистр = бренд, 11 кегль = категория, 8 = товар.
 
@@ -171,10 +195,12 @@ def main() -> None:
 
     by_name = defaultdict(list)
     by_article = defaultdict(list)
+    by_article_any_brand = defaultdict(list)
     for c in catalog:
         by_name[key_name(c['name'])].append(c)
-        for b in brand_variants(c['brand']):
-            for a in article_candidates(c['name']):
+        for a in article_candidates(c['name']):
+            by_article_any_brand[a].append(c)
+            for b in brand_variants(c['brand']):
                 by_article[(b, a)].append(c)
 
     renames, unchanged, ambiguous, not_in_catalog = [], [], [], []
@@ -191,11 +217,25 @@ def main() -> None:
                     break
             how = 'по артикулу'
         if not hits:
+            # Бренд в каталоге и в прайсе может называться по-разному
+            # (КОРЕЯ против WELLA у филлера). Если артикул уникален на весь
+            # каталог, бренд для опознания не нужен.
+            for a in article_candidates(p['name']):
+                cand = by_article_any_brand.get(a, [])
+                if len(cand) == 1:
+                    hits = cand
+                    how = 'по артикулу (бренд не совпал)'
+                    break
+        if not hits:
             not_in_catalog.append(p)
             continue
         if len({key_name(h['name']) for h in hits}) > 1:
-            ambiguous.append((p, hits))
-            continue
+            best = pick_closest(p['name'], hits)
+            if best is None:
+                ambiguous.append((p, hits))
+                continue
+            hits = [best]
+            how += ', ничья снята по имени'
         new_name = hits[0]['name']
         if new_name == p['name']:
             unchanged.append(p)
