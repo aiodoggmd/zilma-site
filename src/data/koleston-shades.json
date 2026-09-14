@@ -371,7 +371,9 @@
   "group": "pure",
   "row": 4,
   "col": 3,
-  "image": "/images/articles/2026-08-13-koleston-perfect/shades/4-07.webp?v=2"
+  "image": "/images/articles/2026-08-13-koleston-perfect/shades/4-07.webp?v=2",
+  "name": "Краска колестон 4/07 Сакура 60мл 4-07",
+  "price": "664.05"
  },
  {
   "code": "3/0",
@@ -841,7 +843,9 @@
   "group": "rich",
   "row": 2,
   "col": 0,
-  "image": "/images/articles/2026-08-13-koleston-perfect/shades/2-8.webp?v=2"
+  "image": "/images/articles/2026-08-13-koleston-perfect/shades/2-8.webp?v=2",
+  "name": "Краска колестон 2/8 Сине-черный 60мл 2-8",
+  "price": "699"
  },
  {
   "code": "9/7",
@@ -877,7 +881,9 @@
   "group": "deep",
   "row": 8,
   "col": 1,
-  "image": "/images/articles/2026-08-13-koleston-perfect/shades/8-71.webp?v=2"
+  "image": "/images/articles/2026-08-13-koleston-perfect/shades/8-71.webp?v=2",
+  "name": "Краска колестон 8/71 Дымчатая норка 60мл 8-71",
+  "price": "699"
  },
  {
   "code": "8/73",
@@ -1065,7 +1071,9 @@
   "group": "deep",
   "row": 4,
   "col": 1,
-  "image": "/images/articles/2026-08-13-koleston-perfect/shades/4-75.webp?v=2"
+  "image": "/images/articles/2026-08-13-koleston-perfect/shades/4-75.webp?v=2",
+  "name": "Краска колестон 4/75 Бомбейский палисандр 60мл 4-75",
+  "price": "664.05"
  },
  {
   "code": "4/77",
@@ -1529,7 +1537,9 @@
   "group": "mix",
   "row": 0,
   "col": 7,
-  "image": "/images/articles/2026-08-13-koleston-perfect/shades/0-65.webp?v=2"
+  "image": "/images/articles/2026-08-13-koleston-perfect/shades/0-65.webp?v=2",
+  "name": "Краска колестон 0/65 Фиолетовый махагон 60мл 0-65",
+  "price": "699"
  },
  {
   "code": "0/66",
