@@ -151,14 +151,18 @@ def read_catalog():
     return rows
 
 
-def read_price_rows(known_brands):
-    """Товарные строки price-current.xlsx вместе с брендом и номером строки.
+def rows_from_sheet(ws, known_brands):
+    """Товарные строки ЛИСТА прайса вместе с брендом и номером строки.
+
+    Отдельной функцией, потому что вызывается из двух мест: отсюда (по файлу
+    с диска) и из Price/build_price_current.py, который ставит имена ещё до
+    сохранения — до промо-сайдкара и до колонки категорий, иначе и то и другое
+    считается по старым именам 1С (поймано 14.09.2026: 494 строки подсвечивались
+    синим в файле, который скачивает клиент).
 
     Бренд определяем по СПИСКУ известных брендов, а не по заливке ячейки:
     подсветка неразмеченных категорий затирает заливку бренда (поймано 2026-09-05).
     """
-    wb = openpyxl.load_workbook(PRICE_XLSX)
-    ws = wb.active
     rows, brand = [], ''
     for r in range(6, ws.max_row + 1):
         name = ws.cell(row=r, column=2).value
@@ -173,7 +177,60 @@ def read_price_rows(known_brands):
             continue
         if price is not None:
             rows.append({'row': r, 'brand': brand, 'name': clean})
-    return wb, ws, rows
+    return rows
+
+
+def read_price_rows(known_brands):
+    """То же по файлу с диска: возвращает (книгу, лист, строки)."""
+    wb = openpyxl.load_workbook(PRICE_XLSX)
+    ws = wb.active
+    return wb, ws, rows_from_sheet(ws, known_brands)
+
+
+def resolve_names(catalog, price_rows):
+    """{номер строки: имя из каталога} по правилу «имя, потом артикул».
+
+    Единственное место, где живёт это правило. Вызывается и отсюда, и из
+    сборщика прайса — чтобы порядок шагов не решал, какие имена попадут
+    в промо-сайдкар и в колонку категорий.
+    """
+    by_name, by_article, by_any = defaultdict(list), defaultdict(list), defaultdict(list)
+    for c in catalog:
+        by_name[key_name(c['name'])].append(c)
+        for a in article_candidates(c['name']):
+            by_any[a].append(c)
+            for b in brand_variants(c['brand']):
+                by_article[(b, a)].append(c)
+
+    out, ambiguous, missing = {}, [], []
+    for p in price_rows:
+        hits = by_name.get(key_name(p['name']), [])
+        if not hits:
+            for b in brand_variants(p['brand']):
+                for a in article_candidates(p['name']):
+                    hits = by_article.get((b, a), [])
+                    if hits:
+                        break
+                if hits:
+                    break
+        if not hits:
+            for a in article_candidates(p['name']):
+                cand = by_any.get(a, [])
+                if len(cand) == 1:
+                    hits = cand
+                    break
+        if not hits:
+            missing.append(p)
+            continue
+        if len({key_name(h['name']) for h in hits}) > 1:
+            best = pick_closest(p['name'], hits)
+            if best is None:
+                ambiguous.append((p, hits))
+                continue
+            hits = [best]
+        if hits[0]['name'] != p['name']:
+            out[p['row']] = hits[0]['name']
+    return out, ambiguous, missing
 
 
 def main() -> None:
