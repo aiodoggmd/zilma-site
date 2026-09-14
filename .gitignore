@@ -68,3 +68,4 @@ deploy/orders-data/
 
 # MCP-конфиг: содержит токен телеграм-бота и ключи API
 .mcp.json
+__pycache__/

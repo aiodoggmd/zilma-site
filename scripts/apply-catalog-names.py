@@ -85,7 +85,26 @@ def article_candidates(name: str):
     out = [toks[-1].upper()]
     if len(toks) > 1 and not re.search(r'\d', toks[-1]):
         out.append(toks[-2].upper())
+    out += [b for b in (base_article(a) for a in out) if b not in out]
     return out
+
+
+def base_article(token: str) -> str:
+    """Составной артикул -> его первая часть. «4959-1422» -> «4959».
+
+    След переименования: первый номер актуален, второй остался от прежней
+    карточки. В каталоге номер составной, а 1С шлёт только первую часть —
+    без этого новые позиции LEBEL (маска 4959, дозатор 6052, эссенция 4669)
+    не сцеплялись с каталогом (14.09.2026).
+
+    ОБЕ части обязаны быть не короче ТРЁХ цифр — то же правило, что в
+    src/lib/article-key.ts, и оно тут не формальность: у OLLIN артикул вида
+    «0-88» и «010-7» — это код оттенка, а не переименование. Резать его нельзя.
+    Проверено: наивная нарезка по любому дефису схлопывает 60 оттенков OLLIN
+    в один ключ «0», а товар LONDA получает имя и раздел WELLA.
+    """
+    m = re.fullmatch(r'(\d{3,10})[-/]\d{3,10}', token)
+    return m.group(1) if m else token
 
 
 def brand_variants(b: str):
@@ -195,6 +214,10 @@ def resolve_names(catalog, price_rows):
     в промо-сайдкар и в колонку категорий.
     """
     by_name, by_article, by_any = defaultdict(list), defaultdict(list), defaultdict(list)
+    catalog_brands = set()
+    for c in catalog:
+        for b in brand_variants(c['brand']):
+            catalog_brands.add(b)
     for c in catalog:
         by_name[key_name(c['name'])].append(c)
         for a in article_candidates(c['name']):
@@ -213,7 +236,15 @@ def resolve_names(catalog, price_rows):
                         break
                 if hits:
                     break
-        if not hits:
+        if not hits and (p['brand'] or '').upper() not in catalog_brands:
+            # Поиск по артикулу БЕЗ УЧЁТА БРЕНДА — только когда самого бренда
+            # в каталоге нет (филлер числится в прайсе как «Корея», а в каталоге
+            # лежит под WELLA). Если бренд в каталоге ЕСТЬ, а артикул под ним не
+            # нашёлся — товар действительно новый, и уходить за чужим брендом
+            # нельзя: артикулы у брендов пересекаются. Без этого ограничения
+            # «LC тонирование 3/0 … 0-30» (LONDA) забрало имя и раздел у
+            # «Краска колестон 0/30 … 0-30» (WELLA) — два товара с одним именем,
+            # а журналы привязаны к имени (поймано 14.09.2026).
             for a in article_candidates(p['name']):
                 cand = by_any.get(a, [])
                 if len(cand) == 1:
