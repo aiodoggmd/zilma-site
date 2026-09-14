@@ -85,7 +85,7 @@
   "col": 0,
   "image": "/images/articles/2026-08-29-londa-professional/shades/12-7.webp",
   "name": "LC крем-краска 12-7 спец блонд коричневый 0127",
-  "price": "357.5"
+  "price": 357.5
  },
  {
   "code": "9/79",
@@ -269,7 +269,7 @@
   "col": 7,
   "image": "/images/articles/2026-08-29-londa-professional/shades/4-77.webp",
   "name": "LC крем-краска 4-77 шатен интенсивно-коричневый 0477",
-  "price": "303.88"
+  "price": 303.88
  },
  {
   "code": "12/96",
@@ -317,7 +317,7 @@
   "col": 0,
   "image": "/images/articles/2026-08-29-londa-professional/shades/7-4.webp",
   "name": "LC крем-краска 7-4 блонд медный 074",
-  "price": "357.5"
+  "price": 357.5
  },
  {
   "code": "7/41",
@@ -327,7 +327,7 @@
   "col": 1,
   "image": "/images/articles/2026-08-29-londa-professional/shades/7-41.webp",
   "name": "LC крем-краска 7-41 блонд медно-пепельный 0741",
-  "price": "357.5"
+  "price": 357.5
  },
  {
   "code": "7/43",
@@ -455,7 +455,7 @@
   "col": 0,
   "image": "/images/articles/2026-08-29-londa-professional/shades/8-3.webp",
   "name": "LC крем-краска 8-3 светлый блонд золотистый 083",
-  "price": "357.5"
+  "price": 357.5
  },
  {
   "code": "8/38",

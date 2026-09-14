@@ -161,7 +161,7 @@
   "col": 1,
   "image": "/images/shades/ollin-color/10-1.webp",
   "name": "Color 10/1 60мл светлый блондин пепельный 10-1",
-  "price": "167"
+  "price": 167
  },
  {
   "code": "9/1",
@@ -503,7 +503,7 @@
   "col": 1,
   "image": "/images/shades/ollin-color/7-4.webp",
   "name": "Color 7/4 60мл русый медный 7-4",
-  "price": "167"
+  "price": 167
  },
  {
   "code": "6/4",
@@ -579,7 +579,7 @@
   "col": 9,
   "image": "/images/shades/ollin-color/7-43.webp",
   "name": "Color 7/43 60мл русый медно-золотистый 7-43",
-  "price": "167"
+  "price": 167
  },
  {
   "code": "7/46",

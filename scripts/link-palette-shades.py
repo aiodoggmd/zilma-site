@@ -162,7 +162,11 @@ def main() -> None:
                 if target is None or target.get('name'):
                     continue
                 target['name'] = it['name']
-                target['price'] = str(it['price'])
+                # Цена ЧИСЛОМ: в ShadeSwatchGrid поле объявлено price?: number,
+                # и по нему же считается недоступность (s.price == null).
+                # Строка сюда не ломает вид, но делает тип разнородным и
+                # отравляет любое сравнение (поймано на ревью 14.09.2026).
+                target['price'] = it['price']
             f.write_text(json.dumps(shades, ensure_ascii=False, indent=1) + '\n',
                          encoding='utf-8')
             print(f'  {f.name}: дописано {len(pairs)}')

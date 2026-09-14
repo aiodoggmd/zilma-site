@@ -163,7 +163,7 @@
   "col": 1,
   "image": "/images/articles/2026-08-13-illumina-color/shades/8-05.webp?v=2",
   "name": "Illumina 8/05 Светлый блонд натуральный махагоновый 60мл 8/05",
-  "price": "759"
+  "price": 759
  },
  {
   "code": "8/1",
@@ -295,7 +295,7 @@
   "col": 7,
   "image": "/images/articles/2026-08-13-illumina-color/shades/7-43.webp?v=2",
   "name": "Illumina 7/43 Блонд красно-золотистый 60мл 7/43",
-  "price": "759"
+  "price": 759
  },
  {
   "code": "7/7",
