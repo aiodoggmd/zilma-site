@@ -63,7 +63,9 @@
   "group": "natural",
   "row": 7,
   "col": 0,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/7-0.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-0.webp",
+  "name": "LC тонирование 7/0 блонд 0-70",
+  "price": 357.5
  },
  {
   "code": "7/4",
@@ -165,7 +167,9 @@
   "group": "natural",
   "row": 5,
   "col": 0,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/5-0.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/5-0.webp",
+  "name": "LC тонирование 5/0 светлый шатен 0-50",
+  "price": 357.5
  },
  {
   "code": "5/4",
@@ -267,7 +271,9 @@
   "group": "mixtone",
   "row": 0,
   "col": 8,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/0-68.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/0-68.webp",
+  "name": "LC микстон тонирующий 0-68 фиолетово-синий 00-0-68",
+  "price": 357.5
  },
  {
   "code": "0/88",
