@@ -151,6 +151,48 @@
     return iOSDevice || iPadOS13Up;
   }
 
+  // Баннер - position:fixed и сам по себе не двигает контент, поэтому при показе резервируем
+  // под него место через --install-space (используется в global.css), а при скрытии снимаем -
+  // иначе он просто наезжает на то, что окажется под ним (реальный случай 2026-09-16).
+  function showBanner(banner: HTMLDivElement) {
+    banner.hidden = false;
+    const gap = 16; // тот же отступ, что у .install-banner: bottom
+    document.documentElement.style.setProperty('--install-space', `${banner.offsetHeight + gap}px`);
+  }
+
+  function hideBanner(banner: HTMLDivElement) {
+    banner.hidden = true;
+    document.documentElement.style.setProperty('--install-space', '0px');
+  }
+
+  // Резерв места (выше) спасает только низ страницы - баннер фиксирован к вьюпорту и на
+  // ЛЮБОЙ странице при заходе с прокруткой 0 перекрывал то, что там уже есть (кнопку
+  // "Скачать" на главной, карточку новости) - реальный случай 2026-09-16. Общее решение,
+  // не завязанное на конкретную страницу/селектор: не показывать баннер, пока пользователь
+  // не прокрутил хоть немного - обычная практика для install-промптов (не навязываться
+  // раньше первого взаимодействия). Кто не скроллит вовсе - увидит баннер всё равно, через
+  // паузу, а не мгновенно поверх первого экрана.
+  function revealWhenSafe(reveal: () => void) {
+    const THRESHOLD = 300;
+    if (window.scrollY > THRESHOLD) {
+      reveal();
+      return;
+    }
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      window.removeEventListener('scroll', onScroll);
+      clearTimeout(timer);
+      reveal();
+    };
+    const onScroll = () => {
+      if (window.scrollY > THRESHOLD) finish();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    const timer = setTimeout(finish, 4000);
+  }
+
   if (!isStandalone() && !sessionStorage.getItem(DISMISS_KEY)) {
     const banner = document.getElementById('install-banner') as HTMLDivElement | null;
     const btn = document.getElementById('install-btn') as HTMLButtonElement | null;
@@ -160,36 +202,36 @@
 
     closeBtn?.addEventListener('click', () => {
       sessionStorage.setItem(DISMISS_KEY, '1');
-      if (banner) banner.hidden = true;
+      if (banner) hideBanner(banner);
     });
 
     if (isIOS()) {
       // На iOS нет API для программной установки — только ручная инструкция.
       if (hintAndroid) hintAndroid.hidden = true;
       if (hintIOS) hintIOS.hidden = false;
-      if (banner) banner.hidden = false;
+      if (banner) revealWhenSafe(() => showBanner(banner));
     } else {
       // На остальных платформах ждём разрешения браузера на установку (событие приходит только
       // если сайт реально проходит критерии installability — своей кнопкой это не обойти).
       window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         const deferredPrompt = e as any;
-        if (banner) banner.hidden = false;
         if (btn) btn.hidden = false;
+        if (banner) revealWhenSafe(() => showBanner(banner));
 
         btn?.addEventListener(
           'click',
           async () => {
             deferredPrompt.prompt();
             await deferredPrompt.userChoice;
-            if (banner) banner.hidden = true;
+            if (banner) hideBanner(banner);
           },
           { once: true }
         );
       });
 
       window.addEventListener('appinstalled', () => {
-        if (banner) banner.hidden = true;
+        if (banner) hideBanner(banner);
       });
     }
   }

@@ -8,7 +8,7 @@ export interface SiteNews {
 }
 
 export const currentNews: SiteNews | null = {
-  text: 'Теперь заказывать стало проще: прямо в статьях можно увидеть цвет красителей и сразу заказать нужный товар.',
-  link: '/articles/2026-08-29-londa-professional/',
-  linkLabel: 'Смотреть пример',
+  text: 'С 21 сентября 2026 ожидается повышение цен на продукцию Schwarzkopf Igora. Успейте оформить заказ по действующим ценам.',
+  link: '/articles/2026-08-28-igora-royal/',
+  linkLabel: 'Товары Igora Royal',
 };

@@ -71,6 +71,10 @@ body {
   color: var(--color-ink);
   background: var(--color-page-bg);
   -webkit-font-smoothing: antialiased;
+  /* Резерв под install-banner (InstallPrompt.astro), пока он показан - он же и двигает
+     переменную. Без этого баннер, будучи position:fixed, просто наезжал на контент под
+     собой (реальный случай 2026-09-16 - перекрывал кнопку "Скачать" и карточку новости). */
+  padding-bottom: var(--install-space, 0px);
 }
 
 img {
@@ -124,7 +128,7 @@ a {
   }
 
   body {
-    padding-bottom: 90px;
+    padding-bottom: calc(90px + var(--install-space, 0px));
   }
 }
 

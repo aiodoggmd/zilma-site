@@ -343,7 +343,7 @@ const Heading = as;
     font-family: var(--font-sans);
     cursor: pointer;
     box-shadow: none;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease;
   }
 
   /* У MAX официальной иконки нет — буквенный знак в том же круге. Рисовать похожий
@@ -367,8 +367,10 @@ const Heading = as;
     }
   }
 
-  .chip:hover {
-    border-color: var(--color-blue-dark);
+  @media (hover: hover) and (pointer: fine) {
+    .chip:hover {
+      border-color: var(--color-blue-dark);
+    }
   }
 
   .chip.active {
@@ -381,7 +383,7 @@ const Heading = as;
     flex: 1;
     min-width: 200px;
     font: inherit;
-    font-size: 0.95rem;
+    font-size: 16px;
     padding: 12px 14px;
     border: 1px solid var(--color-panel-line);
     border-radius: var(--radius-card);
@@ -495,7 +497,9 @@ const Heading = as;
     transition: filter 0.2s ease, background 0.2s ease, color 0.2s ease;
   }
 
-  button:hover { filter: brightness(1.1); }
+  @media (hover: hover) and (pointer: fine) {
+    button:hover { filter: brightness(1.1); }
+  }
   /* Два разных состояния, и это важно.
      .not-ready — «ещё рано»: кнопка выглядит неготовой, но НАЖИМАЕТСЯ и по нажатию
      называет причину. Отключать её нельзя: отключённая кнопка молчит, и человек решает,
@@ -825,7 +829,7 @@ const Heading = as;
     box-sizing: border-box;
     text-align: center;
     font: inherit;
-    font-size: 0.85rem;
+    font-size: 16px;
     border: 1px solid var(--color-panel-line);
     border-radius: 6px;
     padding: 0 2px;
