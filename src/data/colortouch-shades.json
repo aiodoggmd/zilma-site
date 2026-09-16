@@ -5,7 +5,9 @@
   "group": "pure",
   "row": 10,
   "col": 0,
-  "image": "/images/articles/2026-08-13-color-touch/shades/10-0.webp?v=1"
+  "image": "/images/articles/2026-08-13-color-touch/shades/10-0.webp?v=1",
+  "name": "Краска CT 10-0 очень яркий блонд ct10-0",
+  "price": 715
  },
  {
   "code": "10/01",
@@ -133,7 +135,9 @@
   "group": "pure",
   "row": 3,
   "col": 0,
-  "image": "/images/articles/2026-08-13-color-touch/shades/3-0.webp?v=1"
+  "image": "/images/articles/2026-08-13-color-touch/shades/3-0.webp?v=1",
+  "name": "Краска CT 3-0 темно-коричневый ct3-0",
+  "price": 715
  },
  {
   "code": "2/0",
@@ -485,7 +489,9 @@
   "group": "deep",
   "row": 6,
   "col": 1,
-  "image": "/images/articles/2026-08-13-color-touch/shades/6-71.webp?v=1"
+  "image": "/images/articles/2026-08-13-color-touch/shades/6-71.webp?v=1",
+  "name": "Краска CT 6-71 королевский соболь ct6-71",
+  "price": 715
  },
  {
   "code": "6/73",

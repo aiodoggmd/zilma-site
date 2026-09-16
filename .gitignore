@@ -44,8 +44,13 @@ _tmp_*
 # accidental clipboard-paste filename artifact
 Хочу создать сайт*
 
-# raw price files — already served from public/prices/, kept here as originals only
-/Price/
+# raw price files — already served from public/prices/, kept here as originals only.
+# Скрипт конвейера — не данные, его нужно версионировать (без этого правки вроде
+# фикса 16.09.2026 в header_level() жили бы только на диске). Игнорировать надо
+# СОДЕРЖИМОЕ (/Price/*), не саму папку — иначе git не спускается внутрь неё и
+# файловое исключение ниже молча не работает (проверено).
+/Price/*
+!/Price/build_price_current.py
 
 # reference screenshots used during design (not site content)
 /тут.jpg

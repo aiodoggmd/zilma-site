@@ -193,10 +193,76 @@ def check_kit_tables(find, AMBIGUOUS):
     )
 
 
+def _load_acn():
+    """Импортирует scripts/apply-catalog-names.py (дефис в имени - через importlib,
+    тот же приём, что уже использует Price/build_price_current.py). Общая логика
+    сопоставления с каталогом не дублируется - берём готовые read_catalog/
+    read_price_rows/resolve_names."""
+    import importlib.util
+    path = Path(__file__).resolve().parent / "apply-catalog-names.py"
+    spec = importlib.util.spec_from_file_location("acn", path)
+    acn = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(acn)
+    return acn
+
+
+#: Уже задокументированные, принятые расхождения (см. AGENTS.md, "Незакрытые
+#: хвосты" на 14.09.2026) - не настоящие поломки, глушим здесь, чтобы не
+#: кричать "СТОП" на каждом прогоне и не терять чувствительность к новым.
+KNOWN_BRAND_MISMATCHES = {"ISKARTES PROFESSIONAL", "КОРЕЯ"}
+
+
+def check_known_brands(price_items):
+    """Ловит бренд в priceItems.json, которого нет в Price/Каталог.xlsx - ровно
+    то, что 16.09.2026 тихо оторвало 243 позиции WELLA от бренда (заголовок
+    линейки Illumina/EIMI/KP Me+/CT был ошибочно принят за отдельный бренд, а
+    заметно это стало только при ручном чтении лога сборки). Теперь громко и
+    автоматически - здесь, а не глазами по scrollback."""
+    catalog_path = ROOT / "Price" / "Каталог.xlsx"
+    if not catalog_path.exists():
+        return
+    acn = _load_acn()
+    known = {c["brand"].upper() for c in acn.read_catalog()}
+    seen = sorted({it["brand"] for it in price_items if it.get("brand")})
+    unknown = [b for b in seen if b.upper() not in known and b.upper() not in KNOWN_BRAND_MISMATCHES]
+    if unknown:
+        print("СТОП — НЕИЗВЕСТНЫЙ БРЕНД в priceItems.json (нет в Каталог.xlsx),")
+        print("похоже на линейку/заголовок, ошибочно принятый за бренд:")
+        for b in unknown:
+            n = sum(1 for it in price_items if it.get("brand") == b)
+            print(f"    {b!r} — {n} товаров")
+        print()
+    else:
+        print(f"Бренды: все {len(seen)} совпадают со списком из Каталог.xlsx.\n")
+
+
+def check_uncatalogued():
+    """Единственный источник правды по товарам без имени из каталога - вместо
+    чтения лога build_price_current.py, где 16.09.2026 при ручном просмотре
+    потерялись 3 позиции. Тот же расчёт, что пишет Price/catalog-new-items.md."""
+    catalog_path = ROOT / "Price" / "Каталог.xlsx"
+    acn = _load_acn()
+    if not catalog_path.exists() or not acn.PRICE_XLSX.exists():
+        return
+    catalog = acn.read_catalog()
+    known_brands = {c["brand"].upper() for c in catalog}
+    _, _, price_rows = acn.read_price_rows(known_brands)
+    _, _, missing = acn.resolve_names(catalog, price_rows)
+    if missing:
+        print(f"Без имени из каталога ({len(missing)}) — см. Price/catalog-new-items.md:")
+        for p in sorted(missing, key=lambda x: (x["brand"], x["name"])):
+            print(f"    {p['brand']:<12} {p['name']}")
+        print()
+    else:
+        print("Без имени из каталога: 0.\n")
+
+
 def main():
     price_items = json.loads((DATA_DIR / "priceItems.json").read_text(encoding="utf-8"))
     find, AMBIGUOUS = build_price_index(price_items)
     print(f"priceItems.json: {len(price_items)} позиций\n")
+    check_known_brands(price_items)
+    check_uncatalogued()
     check_palettes(find, AMBIGUOUS)
     check_kit_tables(find, AMBIGUOUS)
 

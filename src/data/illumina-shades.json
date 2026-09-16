@@ -179,7 +179,9 @@
   "group": "cool",
   "row": 8,
   "col": 3,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/8-13.webp?v=2"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/8-13.webp?v=2",
+  "name": "Illumina 8/13 Светлый блонд пепльно-золотистый 60мл 8/13",
+  "price": 759
  },
  {
   "code": "8/69",
@@ -353,7 +355,9 @@
   "group": "warm",
   "row": 6,
   "col": 4,
-  "image": "/images/articles/2026-08-13-illumina-color/shades/6-37.webp?v=2"
+  "image": "/images/articles/2026-08-13-illumina-color/shades/6-37.webp?v=2",
+  "name": "Illumina 6/37 Темный блонд золотисто-коричневый 60мл 6/37",
+  "price": 759
  },
  {
   "code": "6/76",

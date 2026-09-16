@@ -263,7 +263,9 @@
   "group": "mixtone",
   "row": 0,
   "col": 6,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/0-56.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/0-56.webp",
+  "name": "LC микстон тонирующий 0-56 красно-фиолетовый 00-0-56",
+  "price": 303.88
  },
  {
   "code": "0/68",
@@ -281,6 +283,8 @@
   "group": "mixtone",
   "row": 0,
   "col": 8,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/0-88.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/0-88.webp",
+  "name": "LC микстон тонирующий 0-88 синий 00-0-88",
+  "price": 357.5
  }
 ]

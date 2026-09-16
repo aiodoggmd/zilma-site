@@ -138,7 +138,16 @@ def is_red(cell) -> bool:
 
 
 def header_level(cell) -> str:
-    """Возвращает 'brand', 'line' или 'unknown' по заливке ячейки-заголовка."""
+    """Возвращает 'brand', 'line' или 'unknown' по заливке ячейки-заголовка.
+
+    Комментарий-метка проверяется первым - см. build_price_current.py:header_level
+    (build_price_current.py красит заголовок синим, когда под ним есть неразмеченный
+    товар, и это стирает индексную заливку бренда/линейки; метка переживает эту покраску)."""
+    if cell.comment is not None:
+        if cell.comment.text == "zilma:line":
+            return "line"
+        if cell.comment.text == "zilma:brand":
+            return "brand"
     fg = cell.fill.fgColor
     if fg.type == "indexed":
         if fg.indexed == BRAND_FILL_INDEX:

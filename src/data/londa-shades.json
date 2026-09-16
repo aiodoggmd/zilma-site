@@ -345,7 +345,9 @@
   "group": "copper",
   "row": 7,
   "col": 4,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/7-44.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-44.webp",
+  "name": "LC крем-краска 7-44 блонд интенсивно-медный 0744",
+  "price": 357.5
  },
  {
   "code": "7/45",
@@ -381,7 +383,9 @@
   "group": "copper",
   "row": 6,
   "col": 3,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/6-43.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/6-43.webp",
+  "name": "LC крем-краска 6-43 тёмн блонд медно-золотист 0643",
+  "price": 357.5
  },
  {
   "code": "6/45",
@@ -390,7 +394,7 @@
   "row": 6,
   "col": 5,
   "image": "/images/articles/2026-08-29-londa-professional/shades/6-45.webp",
-  "name": "LC крем-краска 6-45 тёмн блонд медно-красный 0645",
+  "name": "LC крем-краска 6-45 тёмный блонд медно-красный 0645",
   "price": 357.5
  },
  {
@@ -400,7 +404,7 @@
   "row": 6,
   "col": 6,
   "image": "/images/articles/2026-08-29-londa-professional/shades/6-46.webp",
-  "name": "LC крем-краска 6-46 тёмн блонд мед-фио 0646",
+  "name": "LC крем-краска 6-46 тёмный блонд медно-фиолетовый 0646",
   "price": 357.5
  },
  {
@@ -826,7 +830,7 @@
   "row": 7,
   "col": 1,
   "image": "/images/articles/2026-08-29-londa-professional/shades/7-61.webp",
-  "name": "LC крем-краска 7-61 Мягкий тайп 0761",
+  "name": "LC крем-краска 7-61 мягкий тайп 0761",
   "price": 357.5
  },
  {
