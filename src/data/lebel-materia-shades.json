@@ -245,7 +245,9 @@
   "group": "texture",
   "row": 10,
   "col": 6,
-  "image": "/images/shades/lebel-materia/abe-10.webp"
+  "image": "/images/shades/lebel-materia/abe-10.webp",
+  "name": "Материя 80мл ABe-10 8200/0-ABe-10",
+  "price": 1156.05
  },
  {
   "code": "Gr-10",

@@ -1203,10 +1203,11 @@
     "id": 108,
     "brand": "LEBEL",
     "line": null,
-    "name": "Краска д/волос СТОЙКАЯ ABe-10 8200/0-ABe-10",
+    "name": "Материя 80мл ABe-10 8200/0-ABe-10",
     "price": 1156.05,
     "promo": false,
     "isNew": true,
+    "section": "Аммиачный краситель - Материя",
     "stock": 1
   },
   {
@@ -1739,10 +1740,11 @@
     "id": 155,
     "brand": "LEBEL",
     "line": null,
-    "name": "Шампунь \"Jojoba\" жожоба, для сухих волос, 1000мл 1576",
+    "name": "Шампунь \"Jojoba\" жожоба, для сухих волос 1000мл 1576",
     "price": 4511,
     "promo": false,
     "isNew": true,
+    "section": "Шампуни для волос",
     "stock": 1
   },
   {
@@ -1787,6 +1789,7 @@
     "price": 3401,
     "promo": false,
     "isNew": true,
+    "section": "Несмываемый уход",
     "stock": 1
   },
   {
@@ -1797,6 +1800,7 @@
     "price": 3401,
     "promo": false,
     "category": "Несмываемый уход",
+    "section": "Несмываемый уход",
     "stock": 1
   },
   {
@@ -3476,12 +3480,13 @@
     "id": 307,
     "brand": "LONDA",
     "line": null,
-    "name": "Кондиционер д/окрашенных волос 1000мл 4765/10559",
+    "name": "Кондиционер для окрашенных волос 1000мл 4765/10559",
     "price": 1560.87,
     "promo": true,
     "oldPrice": 1734.3,
     "discountPct": 10.0,
     "category": "Кондиционеры",
+    "section": "Бальзамы и кондиционеры для волос",
     "stock": 11
   },
   {
@@ -3558,6 +3563,7 @@
     "promo": true,
     "oldPrice": 778.5,
     "discountPct": 10.0,
+    "section": "Несмываемый уход",
     "stock": 6
   },
   {
@@ -10497,6 +10503,7 @@
     "promo": true,
     "oldPrice": 699,
     "discountPct": 10.0,
+    "section": "Аммиачный краситель - Koleston",
     "stock": 3
   },
   {
@@ -11848,6 +11855,7 @@
     "oldPrice": 715,
     "discountPct": 5.0,
     "category": "Безаммиачные красители",
+    "section": "Гелевый краситель, цветное глазирование - Shinefinity",
     "stock": 6
   },
   {
