@@ -42,7 +42,10 @@ import { MIN_ORDER_TOTAL } from '../lib/order-rules';
   </div>
 
   <div class="container">
-    <p class="footer-copy">© {new Date().getFullYear()} Zilma</p>
+    <p class="footer-copy">
+      © {new Date().getFullYear()} Zilma · <a href="/privacy/">Политика конфиденциальности</a>
+      · Сайт использует cookie для аналитики посещений
+    </p>
   </div>
 </footer>
 
@@ -99,6 +102,15 @@ import { MIN_ORDER_TOTAL } from '../lib/order-rules';
     padding-top: 14px;
     border-top: 1px solid rgba(255, 255, 255, 0.14);
     color: #a99;
+  }
+
+  .footer-copy a {
+    color: #a99;
+    text-decoration: underline;
+  }
+
+  .footer-copy a:hover {
+    color: #fff;
   }
 
   @media (max-width: 720px) {
