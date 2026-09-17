@@ -148,13 +148,14 @@ const Heading = as;
           </span>
         </label>
 
-        {/* Не отмечен по умолчанию намеренно — это требование закона (152-ФЗ), а не формальность:
-            согласие должно быть активным действием пользователя. Ссылка на политику доступна
-            ДО постановки галочки, как и требуется. */}
-        <label class="consent-row">
-          <input type="checkbox" name="pd_consent" id="pd-consent" />
-          <span>Согласен на <a href="/privacy/" target="_blank" rel="noopener">обработку персональных данных</a></span>
-        </label>
+        {/* НЕ чекбокс и НЕ блокирует отправку — основание обработки здесь не согласие, а
+            исполнение договора по инициативе клиента (п. 5 ч. 1 ст. 6 152-ФЗ, разбор в
+            артефакте "Уведомление в РКН"), отдельное согласие не требуется. Блокирующая
+            галочка только добавила бы повод бросить заявку на полпути. Строка — просто
+            прозрачность: где почитать, что происходит с данными. */}
+        <p class="consent-note">
+          Отправляя заявку, вы соглашаетесь с условиями обработки данных — подробнее в <a href="/privacy/" target="_blank" rel="noopener">политике конфиденциальности</a>.
+        </p>
 
         <div class="submit-row">
           {/* Без disabled намеренно: отключённая кнопка молчит в ответ на нажатие, и человек
@@ -486,25 +487,14 @@ const Heading = as;
 
   .file-picked button:hover { color: var(--color-red); filter: none; }
 
-  .consent-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 7px;
-    font-size: 0.8rem;
-    color: #5c5049;
-    cursor: pointer;
+  .consent-note {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--color-meta);
     line-height: 1.4;
   }
 
-  .consent-row input {
-    margin: 2px 0 0;
-    flex: none;
-    width: 15px;
-    height: 15px;
-    accent-color: var(--color-blue-dark);
-  }
-
-  .consent-row a {
+  .consent-note a {
     color: var(--color-blue-dark);
   }
 
@@ -898,7 +888,6 @@ const Heading = as;
   const button = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
   const nameInput = form?.querySelector<HTMLInputElement>('input[name="name"]');
   const contactInput = form?.querySelector<HTMLInputElement>('input[name="contact"]');
-  const consentInput = form?.querySelector<HTMLInputElement>('input[name="pd_consent"]');
   const minProgressEl = document.getElementById('min-progress') as HTMLElement | null;
   const minFillEl = document.getElementById('min-fill') as HTMLElement | null;
   const minTextEl = document.getElementById('min-text') as HTMLElement | null;
@@ -931,9 +920,6 @@ const Heading = as;
     if (!nameInput?.value.trim()) return 'Напишите, как к вам обращаться.';
     if (!contactValue || !looksLikePhone(contactValue)) {
       return 'Оставьте телефон, по которому с вами связаться.';
-    }
-    if (!consentInput?.checked) {
-      return 'Поставьте галочку «Согласен на обработку персональных данных» над кнопкой.';
     }
     return null;
   }
@@ -1231,7 +1217,6 @@ const Heading = as;
   renderRepeat();
   nameInput?.addEventListener('input', updateSubmitState);
   contactInput?.addEventListener('input', updateSubmitState);
-  consentInput?.addEventListener('change', updateSubmitState);
   updateSubmitState();
 
   // Комментарий начинается с одной строки и растёт под текст. Порядок важен: сначала

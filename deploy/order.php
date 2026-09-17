@@ -82,15 +82,6 @@ if ($name === '' || $contact === '') {
     fail('missing_fields');
 }
 
-/* Согласие на обработку ПДн — чекбокс на форме (не отмечен по умолчанию, см. OrderForm.astro).
-   Проверяем и на сервере: фронтенд можно обойти, а без этой проверки заявка ушла бы, даже
-   если JS отключён и клиент честно не соглашался. 152-ФЗ требует, чтобы факт согласия
-   фиксировал ОПЕРАТОР (дата, время, IP) — просто поставленной на клиенте галочки мало. */
-if (($_POST['pd_consent'] ?? '') === '') {
-    fail('consent_required');
-}
-$consentAt = date('c');
-
 $messenger = mb_substr(trim((string)($_POST['messenger'] ?? '')), 0, 50);
 $comment   = mb_substr(trim((string)($_POST['comment'] ?? '')), 0, 4000);
 $items     = json_decode((string)($_POST['items_json'] ?? '[]'), true);
@@ -171,7 +162,6 @@ $record = [
     'items'      => $items,
     'total'      => $total,
     'attachment' => $attachment,
-    'pd_consent' => ['at' => $consentAt, 'ip' => $ip],
 ];
 file_put_contents($dir . '/' . $id . '.json', json_encode($record, JSON_UNESCAPED_UNICODE), LOCK_EX);
 
