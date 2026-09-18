@@ -246,7 +246,6 @@ def add_category_column(ws):
 
     header_font = copy(ws.cell(row=4, column=5).font)
     header_align = copy(ws.cell(row=4, column=5).alignment)
-    blue_fill = PatternFill(start_color="FFBBDDF7", end_color="FFBBDDF7", fill_type="solid")
 
     ws.column_dimensions["F"].width = 12
 
@@ -268,8 +267,6 @@ def add_category_column(ws):
     # ограничение openpyxl, что уже ловили с border, см. add_order_column выше) - проверено
     # на реальном тесте: заливка F header-строки не пережила save()/load(), а у B/C всегда
     # была своя настоящая (не унаследованная от merge) заливка - её перезапись видна честно.
-    last_brand_cells = None  # (b_cell, c_cell)
-    last_line_cells = None
     for r in range(4, max_row + 1):
         c_cell = ws.cell(row=r, column=3)
         d_cell = ws.cell(row=r, column=4)
@@ -297,12 +294,6 @@ def add_category_column(ws):
             f_cell.alignment = copy(header_align)
         elif is_header_row:
             f_cell.fill = copy(c_cell.fill)
-            b_cell = ws.cell(row=r, column=2)
-            if header_level(b_cell) == "line":
-                last_line_cells = (b_cell, c_cell)
-            else:
-                last_brand_cells = (b_cell, c_cell)
-                last_line_cells = None  # новый бренд - предыдущая линейка больше не актуальна
         elif is_item_row:
             name = ws.cell(row=r, column=2).value
             clean_name = re.sub(r"\s+", " ", str(name).strip())
@@ -312,18 +303,10 @@ def add_category_column(ws):
                 f_cell.font = copy(d_cell.font)
                 f_cell.alignment = copy(d_cell.alignment)
             elif clean_name not in NEVER_CATEGORIZED:
-                f_cell.fill = blue_fill
-                for cells, level in ((last_brand_cells, "brand"), (last_line_cells, "line")):
-                    if cells is not None:
-                        b_head_cell = cells[0]
-                        if b_head_cell.comment is None:
-                            b_head_cell.comment = Comment(f"zilma:{level}", "system")
-                        for cell in cells:
-                            cell.fill = blue_fill
                 new_items.append(clean_name)
 
     if new_items:
-        print(f"Без категории, подсвечено синим в колонке F вместе с их папками-заголовками ({len(new_items)}): {new_items}")
+        print(f"Без категории ({len(new_items)}) — разметить в src/data/price-categories.json: {new_items}")
 
     # Колонка F СКРЫВАЕТСЯ в готовом файле. Она нужна только нам: её читает
     # xlsx-to-price-items.py при разметке категорий, а покупателю, который скачает прайс,

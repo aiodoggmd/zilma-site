@@ -49,9 +49,10 @@ PRICE_ITEMS = ROOT / 'src' / 'data' / 'priceItems.json'
 NEW_NAMES_REPORT = ROOT / 'Price' / 'catalog-new-items.md'
 
 # Бренд в каталоге и в прайсе назван по-разному. Товары те же, артикулы те же.
-BRAND_ALIASES = {
-    'ISKARTES': 'ISKARTES PROFESSIONAL',
-}
+# Пусто с 18.09.2026: пользователь убрал «PROFESSIONAL» из названия бренда в 1С,
+# и ISKARTES теперь пишется одинаково в прайсе и в каталоге. Словарь оставлен —
+# сюда же добавлять будущие расхождения «в 1С одно, в каталоге другое».
+BRAND_ALIASES = {}
 
 
 def norm(s) -> str:
