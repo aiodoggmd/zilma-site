@@ -21,6 +21,7 @@ import matrixSyncShadesRaw from '../../data/matrix-sync-shades.json';
 import matrixTonalShadesRaw from '../../data/matrix-tonal-control-shades.json';
 import lebelMateriaShadesRaw from '../../data/lebel-materia-shades.json';
 import lebelMateriaGShadesRaw from '../../data/lebel-materia-g-shades.json';
+import lebelMateriaMuShadesRaw from '../../data/lebel-materia-mu-shades.json';
 import priceItems from '../../data/priceItems.json';
 import { buildSubstitutes } from '../../lib/shade-substitutes';
 
@@ -40,6 +41,7 @@ const matrixSyncShades = resolveLiveShades(matrixSyncShadesRaw, 'MATRIX');
 const matrixTonalShades = resolveLiveShades(matrixTonalShadesRaw, 'MATRIX');
 const lebelMateriaShades = resolveLiveShades(lebelMateriaShadesRaw, 'LEBEL');
 const lebelMateriaGShades = resolveLiveShades(lebelMateriaGShadesRaw, 'LEBEL');
+const lebelMateriaMuShades = resolveLiveShades(lebelMateriaMuShadesRaw, 'LEBEL');
 
 // Честная замена оттенка (2026-09-07). Считается ПОСЛЕ resolveLiveShades, на актуальном
 // прайсе: иначе предложили бы товар по вчерашней цене или тот, что уже кончился.
@@ -76,6 +78,7 @@ const PALETTE_SHADES: Record<string, typeof illuminaShades> = {
   '2026-09-06-matrix-tonal-control': matrixTonalShades,
   '2026-09-11-lebel-materia': lebelMateriaShades,
   '2026-09-14-lebel-materia-g': lebelMateriaGShades,
+  '2026-09-18-lebel-materia-mu': lebelMateriaMuShades,
 };
 
 // Заголовок над основной палитрой — по умолчанию общий, но для линеек с несколькими
@@ -114,6 +117,7 @@ const PALETTE_NO_STATIC_IMAGE = new Set([
   '2026-09-06-matrix-tonal-control',
   '2026-09-11-lebel-materia',
   '2026-09-14-lebel-materia-g',
+  '2026-09-18-lebel-materia-mu',
 ]);
 
 // Линейки с нерегулярной структурой палитры (несколько несовпадающих семейств оттенков вместо
@@ -162,6 +166,17 @@ const PALETTE_GROUP_CONFIG: Record<string, { order: string[]; labels: Record<str
     flat: ['makeup', 'mix', 'lift'],
   },
   '2026-09-14-lebel-materia-g': {
+    order: ['brown', 'texture', 'primary'],
+    labels: {
+      brown: 'Brown Shade · базовые коричневые',
+      texture: 'Texture Shade · оттеночные нюансы',
+      primary: 'Primary Shade · чистые тона',
+    },
+    flat: [],
+  },
+  // μ — подмножество базовой карты MATERIA: те же три группы, но только уровни 5-10.
+  // Make-up Line, Mix-tone и осветляющие в линии не выпускаются, поэтому групп три, не шесть.
+  '2026-09-18-lebel-materia-mu': {
     order: ['brown', 'texture', 'primary'],
     labels: {
       brown: 'Brown Shade · базовые коричневые',
