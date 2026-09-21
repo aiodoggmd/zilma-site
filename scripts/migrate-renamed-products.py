@@ -122,6 +122,12 @@ def main() -> None:
     apply = '--apply' in sys.argv
 
     old_items = json.loads(PRICE_ITEMS.read_text(encoding='utf-8'))
+    # Товары «под заказ» (LebeL, см. scripts/build-lebel-preorder.py) в price-current.xlsx
+    # не попадают по определению: их нет ни на складе, ни в выгрузке 1С. Сравнение «что
+    # было против того, что в новом прайсе» объявляло все 575 «ушедшими из прайса» —
+    # ложная тревога на каждом обновлении, а при совпадении имён скрипт мог утащить
+    # журнал переименования не туда. Отсекаем их до сравнения (21.09.2026).
+    old_items = [i for i in old_items if not i.get('preorder')]
     known_brands = {i['brand'].upper() for i in old_items}
     old_names = {i['name'] for i in old_items}
 

@@ -279,9 +279,16 @@ def read_form() -> list[dict]:
             last_name = name
         elif not last_name:
             continue                      # артикул без имени и без предыдущего — пропускаем
-        full = last_name if not volume else f"{last_name} {volume}мл".replace("мл мл", "мл")
+        # Единицу приписываем, ТОЛЬКО если её нет в самой ячейке объёма. У LebeL она
+        # записана то как «600», то как «600 мл» — прежняя замена «мл мл» -> «мл»
+        # слипшийся вариант не ловила, и у 47 позиций в каталоге стояло «600 млмл».
         if name:
             full = name
+        elif volume:
+            unit = "" if re.search(r"[а-яёa-z]", volume, re.I) else "мл"
+            full = f"{last_name} {volume}{unit}"
+        else:
+            full = last_name
 
         items.append({
             "artRaw": article,
