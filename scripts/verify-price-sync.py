@@ -45,6 +45,15 @@ def base_article(token: str) -> str:
     return m.group(1) if m else token
 
 
+def bare_article(token: str) -> str:
+    """Складской хвост LebeL: «4263лп» -> «4263». В бланке заказа артикул записан с
+    буквами, в 1С и в статьях — голым номером. Порт с src/lib/article-key.ts:bareArticle,
+    держать в согласии с ним. Без этого сверка объявляла товары «под заказ» ненайденными
+    и врала, что строка станет мёртвой надписью, хотя на сайте там живая кнопка."""
+    m = re.fullmatch(r"(\d{3,10})[а-яёА-ЯЁ]{1,3}", token)
+    return m.group(1) if m else token
+
+
 def build_price_index(items):
     """(бренд, артикул) -> товар, либо AMBIGUOUS если внутри бренда два товара
     делят один ключ. Возвращает ФУНКЦИЮ поиска: точные совпадения проверяются
@@ -64,6 +73,9 @@ def build_price_index(items):
         base = base_article(token)
         if base != token:
             put(alias, brand, base, it)
+        bare = bare_article(token)
+        if bare != token:
+            put(alias, brand, bare, it)
 
     def find(brand, key):
         b = (brand or "").upper()
@@ -75,7 +87,12 @@ def build_price_index(items):
         if hit is not None:
             return hit
         base = base_article(k)
-        return exact.get(b, {}).get(base) if base != k else None
+        if base != k:
+            hit = exact.get(b, {}).get(base)
+            if hit is not None:
+                return hit
+        bare = bare_article(k)
+        return exact.get(b, {}).get(bare) if bare != k else None
 
     return find, AMBIGUOUS
 
@@ -186,8 +203,11 @@ def check_kit_tables(find, AMBIGUOUS):
 
     print(
         "\n  Ничего из этого не требует правки markdown — initLivePrices() в [id].astro\n"
-        "  делает это сам в браузере при загрузке страницы (LEBEL -> «Под заказ», иначе\n"
-        "  -> «Нет в наличии»). Правь markdown вручную только если авторская цена/название\n"
+        "  делает это сам в браузере при загрузке страницы. Товар, которого нет ни на складе,\n"
+        "  ни в бланке LebeL, становится надписью «Нет в наличии»; товар «под заказ» остаётся\n"
+        "  живой кнопкой с серой пометкой и сроком 2-3 рабочих дня (с 21.09.2026 — раньше\n"
+        "  у LEBEL любая ненайденная позиция превращалась в мёртвую надпись «Под заказ»).\n"
+        "  Правь markdown вручную только если авторская цена/название\n"
         "  товара изменились настолько, что артикул (последний токен в data-name) больше\n"
         "  не совпадает — такое встречается редко и обычно означает опечатку при написании статьи."
     )
