@@ -272,6 +272,11 @@ const priceLookup = priceItems.map((it) => ({
   // размер скидки и признак новинки — чтобы таблицы статей показывали то же, что каталог
   discountPct: 'discountPct' in it ? (it as { discountPct?: number }).discountPct ?? null : null,
   isNew: 'isNew' in it ? (it as { isNew?: boolean }).isNew ?? false : false,
+  // «Под заказ» — товара нет на складе, но поставщик привозит его за leadTime.
+  // Без этих двух полей таблица статьи показала бы обычную кнопку, и клиент узнал
+  // бы о сроке только из ответного письма.
+  preorder: 'preorder' in it ? (it as { preorder?: boolean }).preorder ?? false : false,
+  leadTime: 'leadTime' in it ? (it as { leadTime?: string }).leadTime ?? null : null,
 }));
 
 // «Ещё гиды по бренду» внизу статьи — чтобы из Koleston можно было сразу перейти в Color Touch,
@@ -1968,6 +1973,8 @@ const articleLd = {
     promo: boolean;
     discountPct: number | null;
     isNew: boolean;
+    preorder?: boolean;
+    leadTime?: string | null;
   }
 
   function formatPriceRu(n: number): string {
@@ -2023,10 +2030,13 @@ const articleLd = {
 
       if (match) {
         if (priceCell) priceCell.innerHTML = priceCellHtml(match);
+        let btnEl: HTMLElement;
         if (isBtn) {
           (el as HTMLButtonElement).dataset.name = match.name;
           (el as HTMLButtonElement).dataset.price = String(match.price);
           (el as HTMLButtonElement).dataset.promo = match.promo ? '1' : '';
+          (el as HTMLButtonElement).dataset.preorder = match.preorder ? '1' : '';
+          btnEl = el;
         } else {
           const btn = document.createElement('button');
           btn.type = 'button';
@@ -2035,8 +2045,23 @@ const articleLd = {
           btn.dataset.price = String(match.price);
           btn.dataset.brand = brand;
           btn.dataset.promo = match.promo ? '1' : '';
+          btn.dataset.preorder = match.preorder ? '1' : '';
           btn.textContent = '+ В заявку';
           el.replaceWith(btn);
+          btnEl = btn;
+        }
+        // Пометка «под заказ» рядом с кнопкой. Раньше такие позиции показывались мёртвой
+        // надписью «Под заказ» без возможности заказать; теперь кнопка живая, но клиент
+        // обязан видеть, что товар приедет не сегодня (21.09.2026).
+        const cell = btnEl.parentElement;
+        cell?.querySelector('.preorder-tag')?.remove();
+        if (match.preorder && cell) {
+          const tag = document.createElement('span');
+          tag.className = 'preorder-tag compact';
+          const dot = document.createElement('span');
+          dot.className = 'preorder-dot';
+          tag.append(dot, document.createTextNode('под заказ'));
+          btnEl.after(tag);
         }
       } else if (isBtn) {
         if (priceCell) priceCell.textContent = '—';

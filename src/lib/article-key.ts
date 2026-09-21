@@ -23,6 +23,19 @@ export function baseArticle(token: string): string {
   return m ? m[1] : token;
 }
 
+// Складской хвост LebeL: в их бланке заказа артикул записан как «4263лп», «8429еп»,
+// «4116лк», а в 1С и в статьях тот же товар подписан голым номером «4263». Пока хвост
+// не срезался, товары «под заказ» не находились из таблиц статей вовсе — строка
+// показывала мёртвую надпись вместо кнопки (поймано 21.09.2026 на гиде Infinity Aurum).
+//
+// Срезаем ТОЛЬКО буквы после цифр и не больше трёх: «и742» (Igora) начинается с буквы и
+// не трогается, «UL-N+» (Matrix) тоже — там нет ведущего числа. Ключ кладётся в запасную
+// карту, а не в основную, поэтому уже работающие точные совпадения он сдвинуть не может.
+export function bareArticle(token: string): string {
+  const m = /^(\d{3,10})[а-яё]{1,3}$/i.exec(token);
+  return m ? m[1] : token;
+}
+
 // «Внутри бренда два разных товара делят один ключ» — найдено программно (2026-08-31):
 // WELLA «8/38» (Illumina и Shinefinity — разные линии под общим брендом), OLLIN «0-88».
 // Гадать, какой из двух имелся в виду, не будем: такую строку просто не трогаем.
@@ -53,6 +66,8 @@ export function buildArticleIndex<T extends { name: string; brand: string }>(ite
     put(exact, brand, token, it);
     const base = baseArticle(token);
     if (base !== token) put(alias, brand, base, it);
+    const bare = bareArticle(token);
+    if (bare !== token) put(alias, brand, bare, it);
   }
 
   return function findByArticle(brand: string, key: string): ArticleMatch<T> {
@@ -64,6 +79,12 @@ export function buildArticleIndex<T extends { name: string; brand: string }>(ite
     if (aliased) return aliased;
     // Обратное направление: в статье записан составной код, а в прайсе остался короткий.
     const base = baseArticle(k);
-    return base !== k ? exact.get(b)?.get(base) : undefined;
+    if (base !== k) {
+      const byBase = exact.get(b)?.get(base);
+      if (byBase) return byBase;
+    }
+    // И то же самое для складского хвоста LebeL: в статье «4263лп», в прайсе «4263».
+    const bare = bareArticle(k);
+    return bare !== k ? exact.get(b)?.get(bare) : undefined;
   };
 }
