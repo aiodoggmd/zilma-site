@@ -185,6 +185,31 @@ CATEGORY_TO_SECTION: dict[str, str] = {
 
 COLORANT_CATEGORIES = {"Аммиачные красители", "Безаммиачные красители"}
 
+# Скрытые слова для поиска: имя линейки, которого НЕТ в названии товара.
+# Мастер ищет линейку так, как её знает, а в 1С-имени стоит другое обозначение:
+# Лайфер подписан как «Materia µ», Infinity Aurum — как «IAU», Жемчужная — как «LB 4.7».
+# Без этих слов поиск по «лайфер» не находил ни одной из 59 позиций (замечание
+# пользователя 21.09.2026).
+#
+# Список выверен, а не выведен эвристикой: автоматический разбор заголовков групп тащил
+# в поиск мусор вроде «Объёмы», «для», «домашнего» — по такому слову находилось бы
+# пол-каталога. Остальные линейки (edol, LUVIONA, Materia, Viege, Cool Orange, Proedit,
+# TRIE, THEO, Rufor, PLIA) уже названы в самих товарах и ключевых слов не требуют —
+# проверено на всех 575 позициях.
+LINE_KEYWORDS: list[tuple[str, str]] = [
+    (r"лайфер", "Лайфер"),
+    (r"infinity\s*aurum", "Infinity Aurum"),
+    (r"жемчужная", "Жемчужная серия"),
+]
+
+
+def keywords_for(group: str, name: str) -> str:
+    low_name = name.lower()
+    low_group = group.lower()
+    found = [word for pattern, word in LINE_KEYWORDS
+             if re.search(pattern, low_group) and word.split()[0].lower() not in low_name]
+    return " ".join(found)
+
 
 def section_for(group: str, category: str | None) -> str:
     """Раздел каталога по правилу самого прайса (указание пользователя 21.09.2026:
@@ -304,6 +329,9 @@ def main() -> int:
         it["section"] = section_for(it["group"], it["category"])
         it["preorder"] = True
         it["leadTime"] = LEAD_TIME
+        kw = keywords_for(it["group"], it["name"])
+        if kw:
+            it["keywords"] = kw
         out.append(it)
 
     # Страховка от того же круга с другой стороны: если бланк разобрался, а на выходе

@@ -269,6 +269,9 @@ def append_preorder(items: list[dict]) -> int:
             # хранится: внутри линейки он один на все оттенки, и 522 копии весили бы
             # 142 КБ вместо 66 (см. build-lebel-preorder.py).
             **({"descId": p["descId"]} if p.get("descId") else {}),
+            # Скрытые слова для поиска — имя линейки, которого нет в названии
+            # («Лайфер» у Materia µ). В каталог не выводятся, только в data-name.
+            **({"keywords": p["keywords"]} if p.get("keywords") else {}),
         })
         added += 1
     return added

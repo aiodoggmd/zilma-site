@@ -30,6 +30,8 @@ interface Item {
   leadTime?: string;
   /* Номер описания в lebel-descriptions.json; сам текст в товаре не хранится. */
   descId?: number;
+  /* Скрытые слова для поиска (имя линейки, которого нет в названии). */
+  keywords?: string;
 }
 
 interface Props {
@@ -331,6 +333,15 @@ const preorderItems = items.filter((i) => i.preorder);
 const preorderCount = preorderItems.length;
 const preorderLead = preorderItems[0]?.leadTime ?? '2-3 рабочих дня';
 
+/* Строка, по которой работает поиск. НЕ то же самое, что видимое название: сюда
+   добавляются скрытые слова — имя линейки, которого в названии нет. Мастер ищет
+   «лайфер», а товар подписан «Materia µ CB10», и без этого не находилось ни одной из
+   59 позиций (замечание пользователя 21.09.2026). Атрибут data-name на <li> читает
+   только поисковый индекс, на отображение он не влияет. */
+function searchKey(it: Item): string {
+  return (it.keywords ? `${it.name} ${it.keywords}` : it.name).toLowerCase();
+}
+
 const byName = (a: Item, b: Item) =>
   (a.preorder ? 1 : 0) - (b.preorder ? 1 : 0) || alphaCompare(a.name, b.name);
 
@@ -615,7 +626,7 @@ const bestDeals = groupBy === 'discount'
                 const sw = swatchFor(it);
                 const ph = sw ? undefined : photoFor(it);
                 return (
-                <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
+                <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={searchKey(it)} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
                   <label>
                     <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} data-preorder={it.preorder ? '1' : ''} />
                     {sw && (
@@ -675,7 +686,7 @@ const bestDeals = groupBy === 'discount'
                   const sw = swatchFor(it);
                 const ph = sw ? undefined : photoFor(it);
                   return (
-                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it) ?? ''}>
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={searchKey(it)} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} data-preorder={it.preorder ? '1' : ''} />
                       {sw && (
@@ -786,7 +797,7 @@ const bestDeals = groupBy === 'discount'
                   const sw = swatchFor(it);
                   const ph = sw ? undefined : photoFor(it);
                   return (
-                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line} data-category={categorize(it) ?? ''}>
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={searchKey(it)} data-brand={brand.toLowerCase()} data-line={line} data-category={categorize(it) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} data-preorder={it.preorder ? '1' : ''} />
                       {sw && (
@@ -829,7 +840,7 @@ const bestDeals = groupBy === 'discount'
                   const sw = swatchFor(it);
                   const ph = sw ? undefined : photoFor(it);
                   return (
-                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line} data-category={categorize(it) ?? ''}>
+                  <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={searchKey(it)} data-brand={brand.toLowerCase()} data-line={line} data-category={categorize(it) ?? ''}>
                     <label>
                       <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} data-preorder={it.preorder ? '1' : ''} />
                       {sw && (
