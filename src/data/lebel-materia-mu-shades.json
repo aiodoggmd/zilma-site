@@ -1,547 +1,661 @@
 [
-  {
-    "code": "CB-10",
-    "hex": "#d1c9a3",
-    "group": "brown",
-    "row": 10,
-    "col": 0,
-    "image": "/images/shades/lebel-materia/cb-10.webp"
-  },
-  {
-    "code": "B-10",
-    "hex": "#d5c295",
-    "group": "brown",
-    "row": 10,
-    "col": 1,
-    "image": "/images/shades/lebel-materia/b-10.webp"
-  },
-  {
-    "code": "WB-10",
-    "hex": "#efd2ab",
-    "group": "brown",
-    "row": 10,
-    "col": 2,
-    "image": "/images/shades/lebel-materia/wb-10.webp"
-  },
-  {
-    "code": "PBe-10",
-    "hex": "#d79694",
-    "group": "texture",
-    "row": 10,
-    "col": 3,
-    "image": "/images/shades/lebel-materia/pbe-10.webp"
-  },
-  {
-    "code": "OBe-10",
-    "hex": "#e7b183",
-    "group": "texture",
-    "row": 10,
-    "col": 4,
-    "image": "/images/shades/lebel-materia/obe-10.webp"
-  },
-  {
-    "code": "Be-10",
-    "hex": "#c8b08b",
-    "group": "texture",
-    "row": 10,
-    "col": 5,
-    "image": "/images/shades/lebel-materia/be-10.webp",
-    "name": "Материя µ 80мл Be-10 9023/mB-10"
-  },
-  {
-    "code": "ABe-10",
-    "hex": "#a99eaf",
-    "group": "texture",
-    "row": 10,
-    "col": 6,
-    "image": "/images/shades/lebel-materia/abe-10.webp"
-  },
-  {
-    "code": "Gr-10",
-    "hex": "#a39f88",
-    "group": "texture",
-    "row": 10,
-    "col": 7,
-    "image": "/images/shades/lebel-materia/gr-10.webp"
-  },
-  {
-    "code": "Ma-10",
-    "hex": "#b695ac",
-    "group": "texture",
-    "row": 10,
-    "col": 8,
-    "image": "/images/shades/lebel-materia/ma-10.webp"
-  },
-  {
-    "code": "Pe-10",
-    "hex": "#c1afa9",
-    "group": "texture",
-    "row": 10,
-    "col": 9,
-    "image": "/images/shades/lebel-materia/pe-10.webp"
-  },
-  {
-    "code": "MT-10",
-    "hex": "#b4aca5",
-    "group": "texture",
-    "row": 10,
-    "col": 10,
-    "image": "/images/shades/lebel-materia/mt-10.webp"
-  },
-  {
-    "code": "R-10",
-    "hex": "#c04c4e",
-    "group": "primary",
-    "row": 10,
-    "col": 11,
-    "image": "/images/shades/lebel-materia/r-10.webp"
-  },
-  {
-    "code": "K-10",
-    "hex": "#b05030",
-    "group": "primary",
-    "row": 10,
-    "col": 12,
-    "image": "/images/shades/lebel-materia/k-10.webp"
-  },
-  {
-    "code": "O-10",
-    "hex": "#df7939",
-    "group": "primary",
-    "row": 10,
-    "col": 13,
-    "image": "/images/shades/lebel-materia/o-10.webp"
-  },
-  {
-    "code": "G-10",
-    "hex": "#c0a251",
-    "group": "primary",
-    "row": 10,
-    "col": 14,
-    "image": "/images/shades/lebel-materia/g-10.webp"
-  },
-  {
-    "code": "M-10",
-    "hex": "#92af7c",
-    "group": "primary",
-    "row": 10,
-    "col": 15,
-    "image": "/images/shades/lebel-materia/m-10.webp"
-  },
-  {
-    "code": "L-10",
-    "hex": "#86a988",
-    "group": "primary",
-    "row": 10,
-    "col": 16,
-    "image": "/images/shades/lebel-materia/l-10.webp"
-  },
-  {
-    "code": "A-10",
-    "hex": "#9da3be",
-    "group": "primary",
-    "row": 10,
-    "col": 17,
-    "image": "/images/shades/lebel-materia/a-10.webp"
-  },
-  {
-    "code": "CA-10",
-    "hex": "#7c9ac2",
-    "group": "primary",
-    "row": 10,
-    "col": 18,
-    "image": "/images/shades/lebel-materia/ca-10.webp"
-  },
-  {
-    "code": "V-10",
-    "hex": "#7f6c9f",
-    "group": "primary",
-    "row": 10,
-    "col": 19,
-    "image": "/images/shades/lebel-materia/v-10.webp"
-  },
-  {
-    "code": "P-10",
-    "hex": "#b4575a",
-    "group": "primary",
-    "row": 10,
-    "col": 20,
-    "image": "/images/shades/lebel-materia/p-10.webp",
-    "name": "Материя µ 80мл P-10 9382"
-  },
-  {
-    "code": "B-9",
-    "hex": "#a18e6a",
-    "group": "brown",
-    "row": 9,
-    "col": 1,
-    "image": "/images/shades/lebel-materia/b-9.webp"
-  },
-  {
-    "code": "WB-9",
-    "hex": "#bd9d7b",
-    "group": "brown",
-    "row": 9,
-    "col": 2,
-    "image": "/images/shades/lebel-materia/wb-9.webp"
-  },
-  {
-    "code": "CB-8",
-    "hex": "#7d7656",
-    "group": "brown",
-    "row": 8,
-    "col": 0,
-    "image": "/images/shades/lebel-materia/cb-8.webp"
-  },
-  {
-    "code": "B-8",
-    "hex": "#82714e",
-    "group": "brown",
-    "row": 8,
-    "col": 1,
-    "image": "/images/shades/lebel-materia/b-8.webp"
-  },
-  {
-    "code": "WB-8",
-    "hex": "#836551",
-    "group": "brown",
-    "row": 8,
-    "col": 2,
-    "image": "/images/shades/lebel-materia/wb-8.webp",
-    "name": "Материя µ 80мл WB-8 8910"
-  },
-  {
-    "code": "PBe-8",
-    "hex": "#884b44",
-    "group": "texture",
-    "row": 8,
-    "col": 3,
-    "image": "/images/shades/lebel-materia/pbe-8.webp"
-  },
-  {
-    "code": "OBe-8",
-    "hex": "#a86134",
-    "group": "texture",
-    "row": 8,
-    "col": 4,
-    "image": "/images/shades/lebel-materia/obe-8.webp"
-  },
-  {
-    "code": "Be-8",
-    "hex": "#7e5a41",
-    "group": "texture",
-    "row": 8,
-    "col": 5,
-    "image": "/images/shades/lebel-materia/be-8.webp"
-  },
-  {
-    "code": "ABe-8",
-    "hex": "#807581",
-    "group": "texture",
-    "row": 8,
-    "col": 6,
-    "image": "/images/shades/lebel-materia/abe-8.webp"
-  },
-  {
-    "code": "Gr-8",
-    "hex": "#75705e",
-    "group": "texture",
-    "row": 8,
-    "col": 7,
-    "image": "/images/shades/lebel-materia/gr-8.webp"
-  },
-  {
-    "code": "Ma-8",
-    "hex": "#94748b",
-    "group": "texture",
-    "row": 8,
-    "col": 8,
-    "image": "/images/shades/lebel-materia/ma-8.webp"
-  },
-  {
-    "code": "Pe-8",
-    "hex": "#9d847d",
-    "group": "texture",
-    "row": 8,
-    "col": 9,
-    "image": "/images/shades/lebel-materia/pe-8.webp",
-    "name": "Материя µ 80мл Pe-8 9061"
-  },
-  {
-    "code": "MT-8",
-    "hex": "#655e56",
-    "group": "texture",
-    "row": 8,
-    "col": 10,
-    "image": "/images/shades/lebel-materia/mt-8.webp"
-  },
-  {
-    "code": "R-8",
-    "hex": "#932e34",
-    "group": "primary",
-    "row": 8,
-    "col": 11,
-    "image": "/images/shades/lebel-materia/r-8.webp"
-  },
-  {
-    "code": "K-8",
-    "hex": "#97412e",
-    "group": "primary",
-    "row": 8,
-    "col": 12,
-    "image": "/images/shades/lebel-materia/k-8.webp"
-  },
-  {
-    "code": "O-8",
-    "hex": "#ab4d30",
-    "group": "primary",
-    "row": 8,
-    "col": 13,
-    "image": "/images/shades/lebel-materia/o-8.webp"
-  },
-  {
-    "code": "G-8",
-    "hex": "#a27e3a",
-    "group": "primary",
-    "row": 8,
-    "col": 14,
-    "image": "/images/shades/lebel-materia/g-8.webp"
-  },
-  {
-    "code": "M-8",
-    "hex": "#5e8c5b",
-    "group": "primary",
-    "row": 8,
-    "col": 15,
-    "image": "/images/shades/lebel-materia/m-8.webp"
-  },
-  {
-    "code": "L-8",
-    "hex": "#668b6a",
-    "group": "primary",
-    "row": 8,
-    "col": 16,
-    "image": "/images/shades/lebel-materia/l-8.webp"
-  },
-  {
-    "code": "A-8",
-    "hex": "#717486",
-    "group": "primary",
-    "row": 8,
-    "col": 17,
-    "image": "/images/shades/lebel-materia/a-8.webp",
-    "name": "Материя µ 80мл A-8 9283"
-  },
-  {
-    "code": "CA-8",
-    "hex": "#466690",
-    "group": "primary",
-    "row": 8,
-    "col": 18,
-    "image": "/images/shades/lebel-materia/ca-8.webp"
-  },
-  {
-    "code": "V-8",
-    "hex": "#66578b",
-    "group": "primary",
-    "row": 8,
-    "col": 19,
-    "image": "/images/shades/lebel-materia/v-8.webp"
-  },
-  {
-    "code": "P-8",
-    "hex": "#7c2f3a",
-    "group": "primary",
-    "row": 8,
-    "col": 20,
-    "image": "/images/shades/lebel-materia/p-8.webp",
-    "name": "Материя µ 80мл P-8 80г 9375лп"
-  },
-  {
-    "code": "B-7",
-    "hex": "#594c3b",
-    "group": "brown",
-    "row": 7,
-    "col": 1,
-    "image": "/images/shades/lebel-materia/b-7.webp"
-  },
-  {
-    "code": "WB-7",
-    "hex": "#6a4f3f",
-    "group": "brown",
-    "row": 7,
-    "col": 2,
-    "image": "/images/shades/lebel-materia/wb-7.webp"
-  },
-  {
-    "code": "CB-6",
-    "hex": "#3d3a26",
-    "group": "brown",
-    "row": 6,
-    "col": 0,
-    "image": "/images/shades/lebel-materia/cb-6.webp"
-  },
-  {
-    "code": "B-6",
-    "hex": "#3d3225",
-    "group": "brown",
-    "row": 6,
-    "col": 1,
-    "image": "/images/shades/lebel-materia/b-6.webp"
-  },
-  {
-    "code": "WB-6",
-    "hex": "#4c3227",
-    "group": "brown",
-    "row": 6,
-    "col": 2,
-    "image": "/images/shades/lebel-materia/wb-6.webp"
-  },
-  {
-    "code": "PBe-6",
-    "hex": "#57312e",
-    "group": "texture",
-    "row": 6,
-    "col": 3,
-    "image": "/images/shades/lebel-materia/pbe-6.webp"
-  },
-  {
-    "code": "OBe-6",
-    "hex": "#6d3017",
-    "group": "texture",
-    "row": 6,
-    "col": 4,
-    "image": "/images/shades/lebel-materia/obe-6.webp"
-  },
-  {
-    "code": "Be-6",
-    "hex": "#4b2e1f",
-    "group": "texture",
-    "row": 6,
-    "col": 5,
-    "image": "/images/shades/lebel-materia/be-6.webp"
-  },
-  {
-    "code": "ABe-6",
-    "hex": "#4f4754",
-    "group": "texture",
-    "row": 6,
-    "col": 6,
-    "image": "/images/shades/lebel-materia/abe-6.webp"
-  },
-  {
-    "code": "Gr-6",
-    "hex": "#4d4c40",
-    "group": "texture",
-    "row": 6,
-    "col": 7,
-    "image": "/images/shades/lebel-materia/gr-6.webp"
-  },
-  {
-    "code": "Ma-6",
-    "hex": "#654860",
-    "group": "texture",
-    "row": 6,
-    "col": 8,
-    "image": "/images/shades/lebel-materia/ma-6.webp"
-  },
-  {
-    "code": "MT-6",
-    "hex": "#3d3d3b",
-    "group": "texture",
-    "row": 6,
-    "col": 10,
-    "image": "/images/shades/lebel-materia/mt-6.webp",
-    "name": "Материя µ 80мл MT-6 9085/mMT-6"
-  },
-  {
-    "code": "R-6",
-    "hex": "#6e172a",
-    "group": "primary",
-    "row": 6,
-    "col": 11,
-    "image": "/images/shades/lebel-materia/r-6.webp"
-  },
-  {
-    "code": "K-6",
-    "hex": "#69271e",
-    "group": "primary",
-    "row": 6,
-    "col": 12,
-    "image": "/images/shades/lebel-materia/k-6.webp"
-  },
-  {
-    "code": "O-6",
-    "hex": "#8e392a",
-    "group": "primary",
-    "row": 6,
-    "col": 13,
-    "image": "/images/shades/lebel-materia/o-6.webp"
-  },
-  {
-    "code": "M-6",
-    "hex": "#4e5438",
-    "group": "primary",
-    "row": 6,
-    "col": 15,
-    "image": "/images/shades/lebel-materia/m-6.webp",
-    "name": "Материя µ 80мл M-6 9221/mM-6"
-  },
-  {
-    "code": "A-6",
-    "hex": "#394655",
-    "group": "primary",
-    "row": 6,
-    "col": 17,
-    "image": "/images/shades/lebel-materia/a-6.webp"
-  },
-  {
-    "code": "CA-6",
-    "hex": "#1e395d",
-    "group": "primary",
-    "row": 6,
-    "col": 18,
-    "image": "/images/shades/lebel-materia/ca-6.webp"
-  },
-  {
-    "code": "V-6",
-    "hex": "#45346f",
-    "group": "primary",
-    "row": 6,
-    "col": 19,
-    "image": "/images/shades/lebel-materia/v-6.webp"
-  },
-  {
-    "code": "P-6",
-    "hex": "#581c27",
-    "group": "primary",
-    "row": 6,
-    "col": 20,
-    "image": "/images/shades/lebel-materia/p-6.webp"
-  },
-  {
-    "code": "CB-5",
-    "hex": "#2a2d19",
-    "group": "brown",
-    "row": 5,
-    "col": 0,
-    "image": "/images/shades/lebel-materia/cb-5.webp"
-  },
-  {
-    "code": "B-5",
-    "hex": "#292518",
-    "group": "brown",
-    "row": 5,
-    "col": 1,
-    "image": "/images/shades/lebel-materia/b-5.webp"
-  },
-  {
-    "code": "WB-5",
-    "hex": "#38241f",
-    "group": "brown",
-    "row": 5,
-    "col": 2,
-    "image": "/images/shades/lebel-materia/wb-5.webp",
-    "name": "Материя µ 80мл WB-5 8880/mWB-5"
-  }
+ {
+  "code": "CB-10",
+  "hex": "#d1c9a3",
+  "group": "brown",
+  "row": 10,
+  "col": 0,
+  "image": "/images/shades/lebel-materia/cb-10.webp",
+  "name": "Краска для волос Materia µ CB10 8811лп",
+  "price": 1290.45
+ },
+ {
+  "code": "B-10",
+  "hex": "#d5c295",
+  "group": "brown",
+  "row": 10,
+  "col": 1,
+  "image": "/images/shades/lebel-materia/b-10.webp",
+  "name": "Краска для волос Materia µ B10 8873лп",
+  "price": 1290.45
+ },
+ {
+  "code": "WB-10",
+  "hex": "#efd2ab",
+  "group": "brown",
+  "row": 10,
+  "col": 2,
+  "image": "/images/shades/lebel-materia/wb-10.webp",
+  "name": "Краска для волос Materia µ WB10 8934лп",
+  "price": 1290.45
+ },
+ {
+  "code": "PBe-10",
+  "hex": "#d79694",
+  "group": "texture",
+  "row": 10,
+  "col": 3,
+  "image": "/images/shades/lebel-materia/pbe-10.webp",
+  "name": "Краска для волос Materia µ PBe10 8965лп",
+  "price": 1290.45
+ },
+ {
+  "code": "OBe-10",
+  "hex": "#e7b183",
+  "group": "texture",
+  "row": 10,
+  "col": 4,
+  "image": "/images/shades/lebel-materia/obe-10.webp",
+  "name": "Краска для волос Materia µ OBe10 8996лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Be-10",
+  "hex": "#c8b08b",
+  "group": "texture",
+  "row": 10,
+  "col": 5,
+  "image": "/images/shades/lebel-materia/be-10.webp",
+  "name": "Материя µ 80мл Be-10 9023/mB-10"
+ },
+ {
+  "code": "ABe-10",
+  "hex": "#a99eaf",
+  "group": "texture",
+  "row": 10,
+  "col": 6,
+  "image": "/images/shades/lebel-materia/abe-10.webp",
+  "name": "Краска для волос Materia µ ABe10 9054лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Gr-10",
+  "hex": "#a39f88",
+  "group": "texture",
+  "row": 10,
+  "col": 7,
+  "image": "/images/shades/lebel-materia/gr-10.webp",
+  "name": "Краска для волос Materia µ Тон GR10 80г 0788лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Ma-10",
+  "hex": "#b695ac",
+  "group": "texture",
+  "row": 10,
+  "col": 8,
+  "image": "/images/shades/lebel-materia/ma-10.webp",
+  "name": "Краска для волос Materia µ Тон MA10 80г 0757лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Pe-10",
+  "hex": "#c1afa9",
+  "group": "texture",
+  "row": 10,
+  "col": 9,
+  "image": "/images/shades/lebel-materia/pe-10.webp",
+  "name": "Краска для волос Materia µ Pe10 9078лп",
+  "price": 1290.45
+ },
+ {
+  "code": "MT-10",
+  "hex": "#b4aca5",
+  "group": "texture",
+  "row": 10,
+  "col": 10,
+  "image": "/images/shades/lebel-materia/mt-10.webp",
+  "name": "Краска для волос Materia µ MT10 9108лп",
+  "price": 1290.45
+ },
+ {
+  "code": "R-10",
+  "hex": "#c04c4e",
+  "group": "primary",
+  "row": 10,
+  "col": 11,
+  "image": "/images/shades/lebel-materia/r-10.webp",
+  "name": "Краска для волос Materia µ R10 9139лп",
+  "price": 1290.45
+ },
+ {
+  "code": "K-10",
+  "hex": "#b05030",
+  "group": "primary",
+  "row": 10,
+  "col": 12,
+  "image": "/images/shades/lebel-materia/k-10.webp",
+  "name": "Краска для волос Materia µ K10 9160лп",
+  "price": 1290.45
+ },
+ {
+  "code": "O-10",
+  "hex": "#df7939",
+  "group": "primary",
+  "row": 10,
+  "col": 13,
+  "image": "/images/shades/lebel-materia/o-10.webp",
+  "name": "Краска для волос Materia µ O10 9191лп",
+  "price": 1290.45
+ },
+ {
+  "code": "G-10",
+  "hex": "#c0a251",
+  "group": "primary",
+  "row": 10,
+  "col": 14,
+  "image": "/images/shades/lebel-materia/g-10.webp",
+  "name": "Краска для волос Materia µ G10 9214лп",
+  "price": 1290.45
+ },
+ {
+  "code": "M-10",
+  "hex": "#92af7c",
+  "group": "primary",
+  "row": 10,
+  "col": 15,
+  "image": "/images/shades/lebel-materia/m-10.webp",
+  "name": "Краска для волос Materia µ M10 9245лп",
+  "price": 1290.45
+ },
+ {
+  "code": "L-10",
+  "hex": "#86a988",
+  "group": "primary",
+  "row": 10,
+  "col": 16,
+  "image": "/images/shades/lebel-materia/l-10.webp",
+  "name": "Краска для волос Materia µ L10 9269лп",
+  "price": 1290.45
+ },
+ {
+  "code": "A-10",
+  "hex": "#9da3be",
+  "group": "primary",
+  "row": 10,
+  "col": 17,
+  "image": "/images/shades/lebel-materia/a-10.webp",
+  "name": "Краска для волос Materia µ A10 9290лп",
+  "price": 1290.45
+ },
+ {
+  "code": "CA-10",
+  "hex": "#7c9ac2",
+  "group": "primary",
+  "row": 10,
+  "col": 18,
+  "image": "/images/shades/lebel-materia/ca-10.webp",
+  "name": "Краска для волос Materia µ CA10 9320лп",
+  "price": 1290.45
+ },
+ {
+  "code": "V-10",
+  "hex": "#7f6c9f",
+  "group": "primary",
+  "row": 10,
+  "col": 19,
+  "image": "/images/shades/lebel-materia/v-10.webp",
+  "name": "Краска для волос Materia µ V10 9351лп",
+  "price": 1290.45
+ },
+ {
+  "code": "P-10",
+  "hex": "#b4575a",
+  "group": "primary",
+  "row": 10,
+  "col": 20,
+  "image": "/images/shades/lebel-materia/p-10.webp",
+  "name": "Материя µ 80мл P-10 9382"
+ },
+ {
+  "code": "B-9",
+  "hex": "#a18e6a",
+  "group": "brown",
+  "row": 9,
+  "col": 1,
+  "image": "/images/shades/lebel-materia/b-9.webp",
+  "name": "Краска для волос Materia µ B9 8866лп",
+  "price": 1290.45
+ },
+ {
+  "code": "WB-9",
+  "hex": "#bd9d7b",
+  "group": "brown",
+  "row": 9,
+  "col": 2,
+  "image": "/images/shades/lebel-materia/wb-9.webp",
+  "name": "Краска для волос Materia µ WB9 8927лп",
+  "price": 1290.45
+ },
+ {
+  "code": "CB-8",
+  "hex": "#7d7656",
+  "group": "brown",
+  "row": 8,
+  "col": 0,
+  "image": "/images/shades/lebel-materia/cb-8.webp",
+  "name": "Краска для волос Materia µ CB8 8804лп",
+  "price": 1290.45
+ },
+ {
+  "code": "B-8",
+  "hex": "#82714e",
+  "group": "brown",
+  "row": 8,
+  "col": 1,
+  "image": "/images/shades/lebel-materia/b-8.webp",
+  "name": "Краска для волос Materia µ B8 8859лп",
+  "price": 1290.45
+ },
+ {
+  "code": "WB-8",
+  "hex": "#836551",
+  "group": "brown",
+  "row": 8,
+  "col": 2,
+  "image": "/images/shades/lebel-materia/wb-8.webp",
+  "name": "Материя µ 80мл WB-8 8910"
+ },
+ {
+  "code": "PBe-8",
+  "hex": "#884b44",
+  "group": "texture",
+  "row": 8,
+  "col": 3,
+  "image": "/images/shades/lebel-materia/pbe-8.webp",
+  "name": "Краска для волос Materia µ PBe8 8958лп",
+  "price": 1290.45
+ },
+ {
+  "code": "OBe-8",
+  "hex": "#a86134",
+  "group": "texture",
+  "row": 8,
+  "col": 4,
+  "image": "/images/shades/lebel-materia/obe-8.webp",
+  "name": "Краска для волос Materia µ OBe8 8989лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Be-8",
+  "hex": "#7e5a41",
+  "group": "texture",
+  "row": 8,
+  "col": 5,
+  "image": "/images/shades/lebel-materia/be-8.webp",
+  "name": "Краска для волос Materia µ Be8 9016лп",
+  "price": 1290.45
+ },
+ {
+  "code": "ABe-8",
+  "hex": "#807581",
+  "group": "texture",
+  "row": 8,
+  "col": 6,
+  "image": "/images/shades/lebel-materia/abe-8.webp",
+  "name": "Краска для волос Materia µ ABe8 9047лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Gr-8",
+  "hex": "#75705e",
+  "group": "texture",
+  "row": 8,
+  "col": 7,
+  "image": "/images/shades/lebel-materia/gr-8.webp",
+  "name": "Краска для волос Materia µ Тон GR8 80г 0771лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Ma-8",
+  "hex": "#94748b",
+  "group": "texture",
+  "row": 8,
+  "col": 8,
+  "image": "/images/shades/lebel-materia/ma-8.webp",
+  "name": "Краска для волос Materia µ Тон MA8 80г 0740лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Pe-8",
+  "hex": "#9d847d",
+  "group": "texture",
+  "row": 8,
+  "col": 9,
+  "image": "/images/shades/lebel-materia/pe-8.webp",
+  "name": "Материя µ 80мл Pe-8 9061"
+ },
+ {
+  "code": "MT-8",
+  "hex": "#655e56",
+  "group": "texture",
+  "row": 8,
+  "col": 10,
+  "image": "/images/shades/lebel-materia/mt-8.webp",
+  "name": "Краска для волос Materia µ MT8 9092лп",
+  "price": 1290.45
+ },
+ {
+  "code": "R-8",
+  "hex": "#932e34",
+  "group": "primary",
+  "row": 8,
+  "col": 11,
+  "image": "/images/shades/lebel-materia/r-8.webp",
+  "name": "Краска для волос Materia µ R8 9122лп",
+  "price": 1290.45
+ },
+ {
+  "code": "K-8",
+  "hex": "#97412e",
+  "group": "primary",
+  "row": 8,
+  "col": 12,
+  "image": "/images/shades/lebel-materia/k-8.webp",
+  "name": "Краска для волос Materia µ K8 9153лп",
+  "price": 1290.45
+ },
+ {
+  "code": "O-8",
+  "hex": "#ab4d30",
+  "group": "primary",
+  "row": 8,
+  "col": 13,
+  "image": "/images/shades/lebel-materia/o-8.webp",
+  "name": "Краска для волос Materia µ O8 9184лп",
+  "price": 1290.45
+ },
+ {
+  "code": "G-8",
+  "hex": "#a27e3a",
+  "group": "primary",
+  "row": 8,
+  "col": 14,
+  "image": "/images/shades/lebel-materia/g-8.webp",
+  "name": "Краска для волос Materia µ G8 9207лп",
+  "price": 1290.45
+ },
+ {
+  "code": "M-8",
+  "hex": "#5e8c5b",
+  "group": "primary",
+  "row": 8,
+  "col": 15,
+  "image": "/images/shades/lebel-materia/m-8.webp",
+  "name": "Краска для волос Materia µ M8 9238лп",
+  "price": 1290.45
+ },
+ {
+  "code": "L-8",
+  "hex": "#668b6a",
+  "group": "primary",
+  "row": 8,
+  "col": 16,
+  "image": "/images/shades/lebel-materia/l-8.webp",
+  "name": "Краска для волос Materia µ L8 9252лп",
+  "price": 1290.45
+ },
+ {
+  "code": "A-8",
+  "hex": "#717486",
+  "group": "primary",
+  "row": 8,
+  "col": 17,
+  "image": "/images/shades/lebel-materia/a-8.webp",
+  "name": "Материя µ 80мл A-8 9283"
+ },
+ {
+  "code": "CA-8",
+  "hex": "#466690",
+  "group": "primary",
+  "row": 8,
+  "col": 18,
+  "image": "/images/shades/lebel-materia/ca-8.webp"
+ },
+ {
+  "code": "V-8",
+  "hex": "#66578b",
+  "group": "primary",
+  "row": 8,
+  "col": 19,
+  "image": "/images/shades/lebel-materia/v-8.webp",
+  "name": "Краска для волос Materia µ V8 9344лп",
+  "price": 1290.45
+ },
+ {
+  "code": "P-8",
+  "hex": "#7c2f3a",
+  "group": "primary",
+  "row": 8,
+  "col": 20,
+  "image": "/images/shades/lebel-materia/p-8.webp",
+  "name": "Материя µ 80мл P-8 80г 9375лп"
+ },
+ {
+  "code": "B-7",
+  "hex": "#594c3b",
+  "group": "brown",
+  "row": 7,
+  "col": 1,
+  "image": "/images/shades/lebel-materia/b-7.webp",
+  "name": "Краска для волос Materia µ B7 8842лп",
+  "price": 1290.45
+ },
+ {
+  "code": "WB-7",
+  "hex": "#6a4f3f",
+  "group": "brown",
+  "row": 7,
+  "col": 2,
+  "image": "/images/shades/lebel-materia/wb-7.webp",
+  "name": "Краска для волос Materia µ WB7 8903лп",
+  "price": 1290.45
+ },
+ {
+  "code": "CB-6",
+  "hex": "#3d3a26",
+  "group": "brown",
+  "row": 6,
+  "col": 0,
+  "image": "/images/shades/lebel-materia/cb-6.webp",
+  "name": "Краска для волос Materia µ CB6 8798лп",
+  "price": 1290.45
+ },
+ {
+  "code": "B-6",
+  "hex": "#3d3225",
+  "group": "brown",
+  "row": 6,
+  "col": 1,
+  "image": "/images/shades/lebel-materia/b-6.webp",
+  "name": "Краска для волос Materia µ B6 8835лп",
+  "price": 1290.45
+ },
+ {
+  "code": "WB-6",
+  "hex": "#4c3227",
+  "group": "brown",
+  "row": 6,
+  "col": 2,
+  "image": "/images/shades/lebel-materia/wb-6.webp",
+  "name": "Краска для волос Materia µ WB6 8897лп",
+  "price": 1290.45
+ },
+ {
+  "code": "PBe-6",
+  "hex": "#57312e",
+  "group": "texture",
+  "row": 6,
+  "col": 3,
+  "image": "/images/shades/lebel-materia/pbe-6.webp",
+  "name": "Краска для волос Materia µ PBe6 8941лп",
+  "price": 1290.45
+ },
+ {
+  "code": "OBe-6",
+  "hex": "#6d3017",
+  "group": "texture",
+  "row": 6,
+  "col": 4,
+  "image": "/images/shades/lebel-materia/obe-6.webp",
+  "name": "Краска для волос Materia µ OBe6 8972лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Be-6",
+  "hex": "#4b2e1f",
+  "group": "texture",
+  "row": 6,
+  "col": 5,
+  "image": "/images/shades/lebel-materia/be-6.webp",
+  "name": "Краска для волос Materia µ Be6 9009лп",
+  "price": 1290.45
+ },
+ {
+  "code": "ABe-6",
+  "hex": "#4f4754",
+  "group": "texture",
+  "row": 6,
+  "col": 6,
+  "image": "/images/shades/lebel-materia/abe-6.webp",
+  "name": "Краска для волос Materia µ ABe6 9030лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Gr-6",
+  "hex": "#4d4c40",
+  "group": "texture",
+  "row": 6,
+  "col": 7,
+  "image": "/images/shades/lebel-materia/gr-6.webp",
+  "name": "Краска для волос Materia µ Тон GR6 80г 0764лп",
+  "price": 1290.45
+ },
+ {
+  "code": "Ma-6",
+  "hex": "#654860",
+  "group": "texture",
+  "row": 6,
+  "col": 8,
+  "image": "/images/shades/lebel-materia/ma-6.webp",
+  "name": "Краска для волос Materia µ Тон MA6 80г 0733лп",
+  "price": 1290.45
+ },
+ {
+  "code": "MT-6",
+  "hex": "#3d3d3b",
+  "group": "texture",
+  "row": 6,
+  "col": 10,
+  "image": "/images/shades/lebel-materia/mt-6.webp",
+  "name": "Материя µ 80мл MT-6 9085/mMT-6"
+ },
+ {
+  "code": "R-6",
+  "hex": "#6e172a",
+  "group": "primary",
+  "row": 6,
+  "col": 11,
+  "image": "/images/shades/lebel-materia/r-6.webp",
+  "name": "Краска для волос Materia µ R6 9115лп",
+  "price": 1290.45
+ },
+ {
+  "code": "K-6",
+  "hex": "#69271e",
+  "group": "primary",
+  "row": 6,
+  "col": 12,
+  "image": "/images/shades/lebel-materia/k-6.webp",
+  "name": "Краска для волос Materia µ K6 9146лп",
+  "price": 1290.45
+ },
+ {
+  "code": "O-6",
+  "hex": "#8e392a",
+  "group": "primary",
+  "row": 6,
+  "col": 13,
+  "image": "/images/shades/lebel-materia/o-6.webp",
+  "name": "Краска для волос Materia µ O6 9177лп",
+  "price": 1290.45
+ },
+ {
+  "code": "M-6",
+  "hex": "#4e5438",
+  "group": "primary",
+  "row": 6,
+  "col": 15,
+  "image": "/images/shades/lebel-materia/m-6.webp",
+  "name": "Материя µ 80мл M-6 9221/mM-6"
+ },
+ {
+  "code": "A-6",
+  "hex": "#394655",
+  "group": "primary",
+  "row": 6,
+  "col": 17,
+  "image": "/images/shades/lebel-materia/a-6.webp",
+  "name": "Краска для волос Materia µ A6 9276лп",
+  "price": 1290.45
+ },
+ {
+  "code": "CA-6",
+  "hex": "#1e395d",
+  "group": "primary",
+  "row": 6,
+  "col": 18,
+  "image": "/images/shades/lebel-materia/ca-6.webp",
+  "name": "Краска для волос Materia µ CA6 9306лп",
+  "price": 1290.45
+ },
+ {
+  "code": "V-6",
+  "hex": "#45346f",
+  "group": "primary",
+  "row": 6,
+  "col": 19,
+  "image": "/images/shades/lebel-materia/v-6.webp",
+  "name": "Краска для волос Materia µ V6 9337лп",
+  "price": 1290.45
+ },
+ {
+  "code": "P-6",
+  "hex": "#581c27",
+  "group": "primary",
+  "row": 6,
+  "col": 20,
+  "image": "/images/shades/lebel-materia/p-6.webp",
+  "name": "Краска для волос Materia µ P6 9368лп",
+  "price": 1290.45
+ },
+ {
+  "code": "CB-5",
+  "hex": "#2a2d19",
+  "group": "brown",
+  "row": 5,
+  "col": 0,
+  "image": "/images/shades/lebel-materia/cb-5.webp",
+  "name": "Краска для волос Materia µ CB5 8781лп",
+  "price": 1290.45
+ },
+ {
+  "code": "B-5",
+  "hex": "#292518",
+  "group": "brown",
+  "row": 5,
+  "col": 1,
+  "image": "/images/shades/lebel-materia/b-5.webp",
+  "name": "Краска для волос Materia µ B5 8828лп",
+  "price": 1290.45
+ },
+ {
+  "code": "WB-5",
+  "hex": "#38241f",
+  "group": "brown",
+  "row": 5,
+  "col": 2,
+  "image": "/images/shades/lebel-materia/wb-5.webp",
+  "name": "Материя µ 80мл WB-5 8880/mWB-5"
+ }
 ]

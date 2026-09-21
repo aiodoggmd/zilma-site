@@ -155,3 +155,51 @@ a {
     transform: none !important;
   }
 }
+
+/* Пометка «под заказ» — товар, которого нет на складе, но LebeL привозит его за
+   2-3 рабочих дня. Стили ГЛОБАЛЬНЫЕ, а не в компоненте PreorderTag.astro, потому что
+   в палитре оттенков (ShadeSwatchGrid) такую же пометку создаёт скрипт в браузере, и
+   scoped-классы компонента там не действуют. Одна разметка — один вид везде.
+
+   Цвет серый, не оранжевый: «под заказ» стоит у 575 позиций из 667, то есть у
+   большинства. Оранжевый на большинстве карточек читается как тревога и перестаёт
+   замечаться, а серый остаётся спокойной технической пометкой и не спорит с обводкой
+   «нет в наличии» в палитрах (решение 21.09.2026). */
+.preorder-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6f665f;
+  background: #efeae3;
+  border-radius: 20px;
+  padding: 1px 8px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.preorder-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+  align-self: center;
+}
+
+.preorder-lead {
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.preorder-tag.compact {
+  font-size: 0.72rem;
+  padding: 0 6px;
+}
+
+/* Срок в плотных списках ломает строку — на узком экране остаётся только пометка,
+   а срок клиент читает в пояснении над каталогом. */
+@media (max-width: 560px) {
+  .preorder-lead { display: none; }
+}

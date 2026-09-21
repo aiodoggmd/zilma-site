@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import productPhotos from '../data/product-photos.json';
 import guideLinks from '../data/guide-links.json';
 import MinOrderLine from './MinOrderLine.astro';
+import PreorderTag from './PreorderTag.astro';
+import lebelDescriptions from '../data/lebel-descriptions.json';
 
 interface Item {
   id: number;
@@ -22,6 +24,12 @@ interface Item {
   isNew?: boolean;
   stock?: number;
   category?: string;
+  /* Товар «под заказ»: остатка нет, но заказать можно — LebeL привозит за
+     leadTime. Приходит из src/data/lebel-preorder.json через xlsx-to-price-items.py. */
+  preorder?: boolean;
+  leadTime?: string;
+  /* Номер описания в lebel-descriptions.json; сам текст в товаре не хранится. */
+  descId?: number;
 }
 
 interface Props {
@@ -312,7 +320,19 @@ for (const it of items) {
   lineMap.get(l)!.push(it);
 }
 
-const byName = (a: Item, b: Item) => alphaCompare(a.name, b.name);
+// Складское идёт ПЕРВЫМ, «под заказ» — ниже, внутри каждого раздела (решение
+// пользователя 21.09.2026). Иначе 575 позиций LEBEL под заказ тонут вперемешку с
+// 92 складскими, и мастер перестаёт понимать, что можно получить сегодня.
+// Правится здесь один раз: этот компаратор используют все группировки каталога.
+// Сколько в прайсе товаров «под заказ» и на какой срок — считаем по самим данным,
+// а не зашиваем в текст. Срок берётся из товара (его ставит build-lebel-preorder.py),
+// поэтому меняется в одном месте и сразу везде.
+const preorderItems = items.filter((i) => i.preorder);
+const preorderCount = preorderItems.length;
+const preorderLead = preorderItems[0]?.leadTime ?? '2-3 рабочих дня';
+
+const byName = (a: Item, b: Item) =>
+  (a.preorder ? 1 : 0) - (b.preorder ? 1 : 0) || alphaCompare(a.name, b.name);
 
 const brandEntries = [...brandMap.entries()]
   .sort((a, b) => alphaCompare(a[0], b[0]))
@@ -488,6 +508,17 @@ const bestDeals = groupBy === 'discount'
   {/* Полоса «сколько осталось до минимального заказа» — прямо под шапкой, там же, где
       идёт выбор товара. Пока корзина пуста, её нет вовсе (см. MinOrderLine.astro). */}
   <MinOrderLine />
+  <script type="application/json" data-lebel-descriptions set:html={JSON.stringify(lebelDescriptions)} />
+  {preorderCount > 0 && (
+    /* Расшифровка серой пометки. Стоит ЗДЕСЬ, над списком, а не в подвале: пометка
+       встречается у 575 позиций, и человек увидит её раньше, чем догадается искать
+       объяснение. Показывается, только если такие товары в прайсе реально есть —
+       когда LebeL перестанет возить под заказ, строка исчезнет сама. */
+    <p class="pc-preorder-note">
+      <span class="preorder-tag"><span class="preorder-dot" aria-hidden="true"></span><span>под заказ</span></span>
+      <span>— нет на складе, но привезём за <b>{preorderLead}</b>. Заказывается так же, как обычный товар.</span>
+    </p>
+  )}
   {categoryCounts.length > 0 && (
     <div class="pc-mode-tabs">
       <button type="button" class="pc-mode-tab" data-mode-tab="brand">По бренду</button>
@@ -586,7 +617,7 @@ const bestDeals = groupBy === 'discount'
                 return (
                 <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
                   <label>
-                    <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                    <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} data-preorder={it.preorder ? '1' : ''} />
                     {sw && (
                       <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
                         {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
@@ -597,7 +628,7 @@ const bestDeals = groupBy === 'discount'
                         <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
                       </span>
                     )}
-                    <span class="pc-item-name">{it.name}</span>
+                    <span class="pc-item-name">{it.name}{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>
                     <span class="pc-item-price">
                       <b class="pc-price-now">{it.price} ₽</b>
                       {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
@@ -646,7 +677,7 @@ const bestDeals = groupBy === 'discount'
                   return (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it) ?? ''}>
                     <label>
-                      <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                      <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} data-preorder={it.preorder ? '1' : ''} />
                       {sw && (
                         <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
                           {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
@@ -657,7 +688,7 @@ const bestDeals = groupBy === 'discount'
                         <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
                       </span>
                     )}
-                      <span class="pc-item-name">{it.name}</span>
+                      <span class="pc-item-name">{it.name}{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
                         {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
@@ -757,7 +788,7 @@ const bestDeals = groupBy === 'discount'
                   return (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line} data-category={categorize(it) ?? ''}>
                     <label>
-                      <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                      <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} data-preorder={it.preorder ? '1' : ''} />
                       {sw && (
                         <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
                           {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
@@ -768,7 +799,7 @@ const bestDeals = groupBy === 'discount'
                           <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
                         </span>
                       )}
-                      <span class="pc-item-name">{it.name}</span>
+                      <span class="pc-item-name">{it.name}{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
                         {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
@@ -800,7 +831,7 @@ const bestDeals = groupBy === 'discount'
                   return (
                   <li class:list={['pc-item', { 'pc-promo': it.promo }]} data-name={it.name.toLowerCase()} data-brand={brand.toLowerCase()} data-line={line} data-category={categorize(it) ?? ''}>
                     <label>
-                      <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} />
+                      <input type="checkbox" class="pc-check" data-name={it.name} data-price={it.price} data-brand-label={brand} data-promo={it.promo ? '1' : ''} data-preorder={it.preorder ? '1' : ''} />
                       {sw && (
                         <span class="pc-swatch" style={`background:${sw.hex ?? 'transparent'}`} title={`Оттенок ${sw.code}`}>
                           {sw.image && <img src={sw.image} alt="" loading="lazy" decoding="async" width="30" height="30" />}
@@ -811,7 +842,7 @@ const bestDeals = groupBy === 'discount'
                           <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
                         </span>
                       )}
-                      <span class="pc-item-name">{it.name}</span>
+                      <span class="pc-item-name">{it.name}{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
                         {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
@@ -1593,6 +1624,58 @@ const bestDeals = groupBy === 'discount'
      остаются мелкими. Так по одному взгляду видно, где реальный выбор, а где две-три
      позиции. Класс приходит из frontmatter и считается от самой большой категории,
      а не от жёсткого числа (см. maxCategoryTotal). */
+  /* Кнопка «?» у товара с описанием от поставщика. Намеренно маленькая и бледная:
+     она стоит в 522 строках, и полноценная кнопка превратила бы список в частокол.
+     Описание раскрывается по клику под строкой — в самой строке ему не место,
+     каталог из 1608 позиций стал бы нечитаемой простынёй. */
+  .pc-desc-btn {
+    font: inherit;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin-left: 6px;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-ink-soft, #6d5f58);
+    cursor: pointer;
+    vertical-align: middle;
+    flex: none;
+  }
+
+  .pc-desc-btn:hover,
+  .pc-desc-btn[aria-expanded='true'] {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-page-bg);
+  }
+
+  .pc-desc-text {
+    margin: 0;
+    padding: 2px 14px 10px 44px;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft, #6d5f58);
+    max-width: 78ch;
+  }
+
+  .pc-preorder-note {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 0 0 14px;
+    padding: 9px 12px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-panel-line);
+    border-radius: var(--radius-card);
+    font-size: 0.86rem;
+    color: var(--color-ink);
+  }
+
   .pc-popular-card.pc-cat-lg {
     grid-column: 1 / -1;
   }
@@ -2240,6 +2323,9 @@ const bestDeals = groupBy === 'discount'
           qty,
           brand: check.dataset.brandLabel ?? '',
           promo: check.dataset.promo === '1',
+          // Признак едет до самой заявки и до письма: пользователю нужно сразу видеть,
+          // какие позиции придётся дозаказывать у поставщика (заведено 21.09.2026).
+          preorder: check.dataset.preorder === '1',
         });
       }
     } else if (idx >= 0) {
@@ -3590,6 +3676,44 @@ const bestDeals = groupBy === 'discount'
       // Заголовок/подсказка поиска при множественных совпадениях - см. фикс в toggle-слушателе
       // бренда выше (там же и разбор бага): каждый toggle сам умеет пересчитать, сколько брендов
       // сейчас реально открыто, и не полагается на порядок срабатывания.
+    });
+  });
+
+  /* Описание товара от поставщика — раскрывается по «?» под строкой товара.
+     Тексты лежат ОДНИМ словарём в JSON-теге на странице, а товар хранит только номер:
+     внутри линейки описание одно на все оттенки, и 522 копии весили бы 142 КБ вместо 66.
+     Обработчик один на весь список (делегирование), а не 522 отдельных. */
+  document.querySelectorAll<HTMLElement>('[data-checklist]').forEach((root) => {
+    const store = document.querySelector('script[data-lebel-descriptions]');
+    if (!store) return;
+    let texts = {};
+    try { texts = JSON.parse(store.textContent || '{}'); } catch { return; }
+
+    root.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.pc-desc-btn') as HTMLElement | null;
+      if (!btn) return;
+      // Кнопка стоит внутри <label>: без этого клик переключил бы галочку товара.
+      e.preventDefault();
+      e.stopPropagation();
+      const li = btn.closest('.pc-item');
+      if (!li) return;
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      const existing = li.nextElementSibling;
+      if (open) {
+        if (existing && existing.classList.contains('pc-desc-row')) existing.remove();
+        btn.setAttribute('aria-expanded', 'false');
+        return;
+      }
+      const text = texts[btn.dataset.descId || ''];
+      if (!text) return;
+      const row = document.createElement('li');
+      row.className = 'pc-desc-row';
+      const p = document.createElement('p');
+      p.className = 'pc-desc-text';
+      p.textContent = text;
+      row.append(p);
+      li.after(row);
+      btn.setAttribute('aria-expanded', 'true');
     });
   });
 </script>

@@ -26,6 +26,12 @@ OUT_JSON = ROOT / "src" / "data" / "priceItems.json"
 # скидкой, старая цена иначе теряется. Файла может не быть (напр. кто-то прогнал этот
 # скрипт отдельно, без пересборки прайса) - тогда просто не добавляем oldPrice/discountPct.
 PROMO_META_PATH = ROOT / "Price" / "promo-meta.json"
+# Товары «под заказ» — то, что LebeL возит, но чего нет на складе. Журнал собирается
+# отдельным скриптом из бланка заказа (scripts/build-lebel-preorder.py) и подмешивается
+# сюда ПОСЛЕ остатков: у этих позиций остатка нет по определению, и правило
+# «нет остатка — нет кнопки» для них не действует. Файла может не быть — тогда каталог
+# просто остаётся складским, как раньше.
+PREORDER_PATH = ROOT / "src" / "data" / "lebel-preorder.json"
 # Ведётся В РЕПОЗИТОРИИ (не в Price/, который локальный и в .gitignore) - в отличие от
 # промо-сайдкара, это НАКАПЛИВАЕМЫЙ журнал "когда товар впервые встретился в прайсе",
 # должен пережить любую пересборку и не потеряться со сменой машины/сессии. Формат:
@@ -224,6 +230,50 @@ def load_stock_levels(items: list) -> dict:
     return stock
 
 
+def append_preorder(items: list[dict]) -> int:
+    """Дописывает товары «под заказ» из журнала LebeL в конец списка.
+
+    Зачем отдельным проходом, а не внутри сборки: у этих позиций нет ни строки в
+    price-current.xlsx, ни остатка, ни себестоимости. Они не участвуют в акциях
+    (скидка считается от себестоимости, а товар ещё не куплен) и не получают бейдж
+    «Нов» — иначе 575 позиций разом вспыхнули бы новинками.
+
+    Артикул дописывается в конец имени: весь сайт достаёт его как ПОСЛЕДНЕЕ слово
+    (resolveLiveShade, link-palette-shades, migrate-renamed-products). Без этого
+    оттенок в палитре не нашёл бы свой товар.
+    """
+    if not PREORDER_PATH.exists():
+        return 0
+    preorder = json.loads(PREORDER_PATH.read_text(encoding="utf-8"))
+    known = {article(i["name"]) for i in items}
+    idx = max((i["id"] for i in items), default=0)
+    added = 0
+    for p in preorder:
+        name = f'{p["name"]} {p["artRaw"]}'
+        if article(name) in known:
+            continue                      # подстраховка: товар успел появиться в 1С
+        idx += 1
+        items.append({
+            "id": idx,
+            "brand": "LEBEL",
+            "line": None,                 # на line висит выбор палитры — не выдумываем
+            "name": name,
+            "price": p["price"],
+            "promo": False,
+            "category": p["category"],
+            "section": p["section"],
+            "stock": 0,
+            "preorder": True,
+            "leadTime": p["leadTime"],
+            # Номер текста в src/data/lebel-descriptions.json. Сам текст в товаре не
+            # хранится: внутри линейки он один на все оттенки, и 522 копии весили бы
+            # 142 КБ вместо 66 (см. build-lebel-preorder.py).
+            **({"descId": p["descId"]} if p.get("descId") else {}),
+        })
+        added += 1
+    return added
+
+
 def main() -> None:
     promo_meta = {}
     if PROMO_META_PATH.exists():
@@ -359,6 +409,8 @@ def main() -> None:
         qty = stock_levels.get(article(it["name"]))
         if qty is not None:
             it["stock"] = qty
+
+    preorder_count = append_preorder(items)
 
     FIRST_SEEN_PATH.write_text(json.dumps(first_seen, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
     CATEGORIES_PATH.write_text(json.dumps(categories, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")

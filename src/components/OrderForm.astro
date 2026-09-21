@@ -965,6 +965,9 @@ const Heading = as;
     qty: number;
     brand: string;
     promo: boolean;
+    /* Товара нет на складе, поставщик привезёт его за 2-3 рабочих дня. В заявке такие
+       позиции идут отдельным блоком — иначе Олег не увидит, что именно дозаказывать. */
+    preorder?: boolean;
   }
 
   // Корзина — список товаров, отмеченных в окнах Каталог/Акции (PriceChecklist.astro пишет их
@@ -979,7 +982,10 @@ const Heading = as;
   // в узкой карточке заявки это слипается с ценой в нечитаемую кашу из цифр, поэтому в корзине
   // показываем название без него. В items_json и в самой заявке артикул остаётся как есть.
   function stripArticle(name: string): string {
-    return name.replace(/\s+\d{3,8}(?:\/\d{3,8})?\.?$/, '').trim();
+    // Хвост из букв («8552лп») — складской код LebeL в бланке заказа. В 1С те же
+    // артикулы голые, поэтому без этого допуска у товаров «под заказ» артикул оставался
+    // в названии, а у складских срезался — в одной заявке две разные манеры.
+    return name.replace(/\s+\d{3,8}(?:\/\d{3,8})?[а-яё]{0,3}\.?$/i, '').trim();
   }
 
   // Поле кол-ва по умолчанию — тот же квадрат 24×24, что у соседних кнопок, расширяется
@@ -1077,6 +1083,17 @@ const Heading = as;
         const nameEl = document.createElement('span');
         nameEl.className = 'cart-item-name';
         nameEl.textContent = displayName;
+        // Пометка обязана дожить до последнего экрана. Клиент видел её в каталоге, но
+        // решение он принимает здесь — и «под заказ» должно стоять перед глазами в тот
+        // момент, когда он жмёт «Отправить», а не остаться в памяти двумя экранами выше.
+        if (it.preorder) {
+          const tag = document.createElement('span');
+          tag.className = 'preorder-tag compact';
+          const dot = document.createElement('span');
+          dot.className = 'preorder-dot';
+          tag.append(dot, document.createTextNode('под заказ'));
+          nameEl.append(' ', tag);
+        }
         const priceEl = document.createElement('span');
         priceEl.className = 'cart-item-price';
         priceEl.textContent = `${it.price.toFixed(2)} ₽`;

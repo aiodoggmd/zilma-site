@@ -107,6 +107,8 @@ function textVarsFor(hex: string): string {
             data-old-price={s.oldPrice ?? ''}
             data-discount={s.discountPct ?? ''}
             data-is-new={s.isNew ? '1' : ''}
+            data-preorder={s.preorder ? '1' : ''}
+            data-lead-time={s.leadTime ?? ''}
             data-sub-name={s.price == null ? substitutes[s.code]?.[0]?.name ?? '' : ''}
             data-sub-price={s.price == null ? substitutes[s.code]?.[0]?.price ?? '' : ''}
             data-sub-promo={s.price == null && substitutes[s.code]?.[0]?.promo ? '1' : ''}
@@ -240,6 +242,25 @@ function textVarsFor(hex: string): string {
             b.className = 'shade-badge shade-badge-new';
             b.textContent = 'Нов';
             detailSub.append(' ', b);
+          }
+          // «Под заказ» — оттенок можно заказать, но он приедет не сегодня. Пометка
+          // обязана стоять рядом с ценой: кнопка «Добавить в заявку» у такого оттенка
+          // выглядит точно так же, как у складского, и без пометки клиент узнал бы о
+          // сроке только из ответного письма (заведено 21.09.2026).
+          if (btn.dataset.preorder === '1') {
+            const tag = document.createElement('span');
+            tag.className = 'preorder-tag compact';
+            const dot = document.createElement('span');
+            dot.className = 'preorder-dot';
+            tag.append(dot, document.createTextNode('под заказ'));
+            const lead = btn.dataset.leadTime;
+            if (lead) {
+              const l = document.createElement('span');
+              l.className = 'preorder-lead';
+              l.textContent = `· ${lead}`;
+              tag.append(' ', l);
+            }
+            detailSub.append(' ', tag);
           }
           activeName = name;
           if (detailCta) detailCta.hidden = false;

@@ -25,6 +25,9 @@ ROOT = Path(__file__).resolve().parent.parent
 FORM = max(ROOT.glob("Price/lebel-order-form-*.xlsx"), key=lambda p: p.name)
 PRICE_ITEMS = ROOT / "src/data/priceItems.json"
 OUT = ROOT / "src/data/lebel-preorder.json"
+# Описания товаров от LebeL, без повторов: {номер: текст}. Отдельным файлом, чтобы
+# каталог хранил только номер и не таскал один и тот же текст по 20 раз.
+DESC_OUT = ROOT / "src/data/lebel-descriptions.json"
 
 # Срок поставки — ОДНА константа на весь проект. Правится здесь, а не в вёрстке.
 LEAD_TIME = "2-3 рабочих дня"
@@ -254,8 +257,13 @@ def main() -> int:
 
     site = json.loads(PRICE_ITEMS.read_text(encoding="utf-8"))
     site = site if isinstance(site, list) else site.get("items", site)
+    # ВАЖНО: берём только настоящие складские позиции (из 1С), а НЕ те, что этот же
+    # скрипт добавил в прошлый раз. priceItems.json содержит и то и другое, и без
+    # фильтра по preorder получается круг: скрипт видит свой прошлый результат, решает,
+    # что добавлять нечего, и записывает пустой файл — данные исчезают молча.
+    # Поймано 21.09.2026 на втором прогоне после слияния.
     in_stock = {art_num(i["name"].split()[-1]) for i in site
-                if "LEBEL" in str(i.get("brand", "")).upper()}
+                if "LEBEL" in str(i.get("brand", "")).upper() and not i.get("preorder")}
     in_stock.discard(None)
 
     seen: set[str] = set()
@@ -277,6 +285,15 @@ def main() -> int:
         it["leadTime"] = LEAD_TIME
         out.append(it)
 
+    # Страховка от того же круга с другой стороны: если бланк разобрался, а на выходе
+    # пусто — это не «нечего добавлять», а сломанная сверка. Лучше упасть, чем тихо
+    # затереть журнал нулями (см. комментарий про preorder выше).
+    if raw and not out:
+        print("СТОП: бланк разобран, но под заказ не осталось ни одной позиции.\n"
+              "      Похоже, сверка со складом захватила собственный прошлый результат.\n"
+              "      Файлы НЕ перезаписаны.")
+        return 1
+
     print(f"Уже на складе (есть в priceItems) — пропущено: {skipped_stock}")
     print(f"Дубли артикула в бланке — пропущено: {skipped_dup}")
     print(f"ПОД ЗАКАЗ: {len(out)}")
@@ -296,9 +313,26 @@ def main() -> int:
     for sec, n in Counter(i["section"] for i in out).most_common():
         print(f"   {n:4}  {sec}")
 
+    # Описания от LebeL — в отдельный файл и БЕЗ повторов. Внутри линейки текст один и
+    # тот же на все оттенки: 522 описания сводятся к 261 уникальному, 142 КБ к 63.
+    # Товар хранит только номер текста, поэтому каталог не раздувается.
+    texts: dict[str, int] = {}
+    for it in out:
+        d = it.pop("desc", "")
+        if not d:
+            continue
+        if d not in texts:
+            texts[d] = len(texts) + 1
+        it["descId"] = texts[d]
+    descriptions = {str(n): t for t, n in texts.items()}
+    print(f"\nОписаний: {sum(1 for i in out if i.get('descId'))} у товаров, "
+          f"{len(descriptions)} уникальных текстов")
+
     if apply:
         OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-        print(f"\nЗаписано: {OUT.relative_to(ROOT)} ({len(out)} позиций)")
+        DESC_OUT.write_text(json.dumps(descriptions, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"Записано: {OUT.relative_to(ROOT)} ({len(out)} позиций)")
+        print(f"Записано: {DESC_OUT.relative_to(ROOT)} ({len(descriptions)} текстов)")
     else:
         print("\n(предпросмотр; чтобы записать — запусти с --apply)")
     return 0

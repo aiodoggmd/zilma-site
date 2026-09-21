@@ -35,6 +35,11 @@ export function resolveLiveShade<T extends { name?: string; price?: number }>(sh
     // в статьях у акционного оттенка было бы видно «дешевле», но не видно насколько.
     discountPct: 'discountPct' in live ? (live as { discountPct?: number }).discountPct ?? null : null,
     isNew: 'isNew' in live ? (live as { isNew?: boolean }).isNew ?? false : false,
+    // «Под заказ»: товара нет на складе, но LebeL привозит его за leadTime. Признак
+    // обязан доехать до палитры — иначе оттенок выглядел бы обычным складским, клиент
+    // ждал бы его сегодня, а он приедет через 2-3 дня (заведено 21.09.2026).
+    preorder: 'preorder' in live ? (live as { preorder?: boolean }).preorder ?? false : false,
+    leadTime: 'leadTime' in live ? (live as { leadTime?: string }).leadTime ?? null : null,
   };
 }
 

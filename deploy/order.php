@@ -198,17 +198,41 @@ file_put_contents($dir . '/' . $id . '.json', json_encode($record, JSON_UNESCAPE
    Уведомление о начале обработки ПДн в Роскомнадзор это не отменяет — оно нужно любому,
    кто собирает контакты, и от выбора каналов не зависит. */
 
+/* «Под заказ» — товар, которого нет на складе: его надо дозаказать у поставщика
+   (пока это только LebeL, срок 2-3 рабочих дня). В письме такие позиции помечены и
+   вынесены отдельной сводкой: иначе при заявке на два десятка строк легко не заметить,
+   что часть заказа требует действия. Заведено 21.09.2026. */
+$preorder = array_values(array_filter($items, static fn($it) => !empty($it['preorder'])));
+
 $itemLines = [];
 foreach (array_slice($items, 0, 20) as $it) {
     $itemLines[] = '· ' . mb_substr((string)($it['name'] ?? ''), 0, 70)
         . ' — ' . (int)($it['qty'] ?? 1) . ' шт. × '
-        . number_format((float)($it['price'] ?? 0), 2, ',', ' ') . ' ₽';
+        . number_format((float)($it['price'] ?? 0), 2, ',', ' ') . ' ₽'
+        . (!empty($it['preorder']) ? '  [ПОД ЗАКАЗ]' : '');
 }
 if (count($items) > 20) {
     $itemLines[] = '· … и ещё ' . (count($items) - 20) . ' поз., смотреть по ссылке';
 }
 $itemsText = $itemLines ? implode("\n", $itemLines) : '(без позиций из каталога)';
 $totalText = number_format($total, 2, ',', ' ');
+
+/* Отдельная сводка внизу письма: что именно надо дозаказать у поставщика. Дублирует
+   пометки [ПОД ЗАКАЗ] в списке намеренно — при двух десятках строк пометка теряется,
+   а здесь готовый список, который можно сразу отправить поставщику. */
+$preorderText = '';
+if ($preorder) {
+    $preorderLines = [];
+    $preorderSum = 0.0;
+    foreach ($preorder as $it) {
+        $qty = (int)($it['qty'] ?? 1);
+        $preorderSum += (float)($it['price'] ?? 0) * $qty;
+        $preorderLines[] = '· ' . (string)($it['name'] ?? '') . ' — ' . $qty . ' шт.';
+    }
+    $preorderText = "\n— ПОД ЗАКАЗ (" . count($preorder) . ' поз. на '
+        . number_format($preorderSum, 2, ',', ' ') . " ₽), срок 2-3 рабочих дня —\n"
+        . implode("\n", $preorderLines) . "\n";
+}
 $orderUrl  = "{$config['site_url']}/orders.php?id={$id}";
 
 /* --- Таблица товаров вложением ------------------------------------------------------
@@ -231,7 +255,7 @@ foreach ($items as $it) {
     $byBrand[$brand][] = $it;
 }
 
-$rows = [implode(';', array_map($csvCell, ['№', 'Товар', 'Кол-во', 'Акция', 'Цена', 'Сумма']))];
+$rows = [implode(';', array_map($csvCell, ['№', 'Товар', 'Кол-во', 'Акция', 'Под заказ', 'Цена', 'Сумма']))];
 $n = 0;
 $csvTotal = 0.0;
 foreach ($byBrand as $brand => $group) {
@@ -242,12 +266,14 @@ foreach ($byBrand as $brand => $group) {
         $csvTotal += $sum;
         $rows[] = implode(';', array_map($csvCell, [
             $n, $it['name'] ?? '', (int)($it['qty'] ?? 1),
-            !empty($it['promo']) ? 'Да' : '', $it['price'] ?? 0, $sum,
+            !empty($it['promo']) ? 'Да' : '',
+            !empty($it['preorder']) ? 'Да' : '',
+            $it['price'] ?? 0, $sum,
         ]));
     }
 }
 $csvTotal = round($csvTotal, 2);
-$rows[] = implode(';', array_map($csvCell, ['', '', '', '', 'Итого:', $csvTotal]));
+$rows[] = implode(';', array_map($csvCell, ['', '', '', '', '', 'Итого:', $csvTotal]));
 $rows[] = '';
 $rows[] = $csvCell('Всего наименований: ' . count($items)
     . ', на сумму ' . number_format($csvTotal, 2, '.', '') . ' руб.');
@@ -263,6 +289,7 @@ $full = "Заявка {$id}\n"
     . ($messenger !== '' ? "Удобный чат: {$messenger}\n" : '')
     . ($comment !== '' ? "Комментарий: {$comment}\n" : '')
     . "\n{$itemsText}\n\nИтого: {$totalText} ₽\n"
+    . $preorderText
     . ($attachment !== null ? "Вложение: {$orderUrl}&file=1\n" : '')
     . "\nЗаявка на сайте: {$orderUrl}";
 
