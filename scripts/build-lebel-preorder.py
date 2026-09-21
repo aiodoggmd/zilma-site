@@ -208,6 +208,27 @@ def section_for(group: str, category: str | None) -> str:
     return CATEGORY_TO_SECTION.get(category or "", "Прочее")
 
 
+DESC_LIMIT = 700
+
+
+def trim_description(text: str) -> str:
+    """Обрезает описание по концу ПРЕДЛОЖЕНИЯ, а не по счётчику букв.
+
+    Прежний срез ровно на 400 знаках рвал текст на полуслове («…кардинального
+    изменения ») у 21 описания из 261 — в карточке товара это выглядит как обрыв связи,
+    а не как краткость. Предел поднят: разница в весе — единицы килобайт, потому что
+    длинных описаний мало, а тексты внутри линейки всё равно повторяются и хранятся раз.
+    """
+    clean = re.sub(r"\s+", " ", text).strip()
+    if len(clean) <= DESC_LIMIT:
+        return clean
+    head = clean[:DESC_LIMIT]
+    cut = max(head.rfind(". "), head.rfind("! "), head.rfind("? "))
+    if cut > DESC_LIMIT // 2:          # нашлась граница предложения в разумном месте
+        return head[:cut + 1]
+    return head.rsplit(" ", 1)[0].rstrip(" ,;:-") + "…"
+
+
 def read_form() -> list[dict]:
     wb = openpyxl.load_workbook(FORM, read_only=True, data_only=True)
     ws = wb[wb.sheetnames[0]]
@@ -244,7 +265,7 @@ def read_form() -> list[dict]:
             "volume": volume,
             "price": round(float(price), 2),
             "group": group,
-            "desc": re.sub(r"\s+", " ", desc).strip()[:400],
+            "desc": trim_description(desc),
         })
     return items
 

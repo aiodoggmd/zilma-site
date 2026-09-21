@@ -516,7 +516,7 @@ const bestDeals = groupBy === 'discount'
        когда LebeL перестанет возить под заказ, строка исчезнет сама. */
     <p class="pc-preorder-note">
       <span class="preorder-tag"><span class="preorder-dot" aria-hidden="true"></span><span>под заказ</span></span>
-      <span>— нет на складе, но привезём за <b>{preorderLead}</b>. Заказывается так же, как обычный товар.</span>
+      {' '}— нет на складе, привезём за <b>{preorderLead}</b>
     </p>
   )}
   {categoryCounts.length > 0 && (
@@ -628,7 +628,7 @@ const bestDeals = groupBy === 'discount'
                         <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
                       </span>
                     )}
-                    <span class="pc-item-name">{it.name}{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>
+                    <span class="pc-item-name">{it.name}{(it.preorder || it.descId) && <span class="pc-item-meta">{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>}</span>
                     <span class="pc-item-price">
                       <b class="pc-price-now">{it.price} ₽</b>
                       {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
@@ -688,7 +688,7 @@ const bestDeals = groupBy === 'discount'
                         <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
                       </span>
                     )}
-                      <span class="pc-item-name">{it.name}{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>
+                      <span class="pc-item-name">{it.name}{(it.preorder || it.descId) && <span class="pc-item-meta">{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
                         {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
@@ -799,7 +799,7 @@ const bestDeals = groupBy === 'discount'
                           <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
                         </span>
                       )}
-                      <span class="pc-item-name">{it.name}{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>
+                      <span class="pc-item-name">{it.name}{(it.preorder || it.descId) && <span class="pc-item-meta">{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
                         {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
@@ -842,7 +842,7 @@ const bestDeals = groupBy === 'discount'
                           <img src={ph} alt="" loading="lazy" decoding="async" width="30" height="30" />
                         </span>
                       )}
-                      <span class="pc-item-name">{it.name}{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>
+                      <span class="pc-item-name">{it.name}{(it.preorder || it.descId) && <span class="pc-item-meta">{it.preorder && <PreorderTag compact />}{it.descId && <button type="button" class="pc-desc-btn" data-desc-id={it.descId} aria-label="Описание товара">?</button>}</span>}</span>
                       <span class="pc-item-price">
                         <b class="pc-price-now">{it.price} ₽</b>
                         {it.promo && it.oldPrice != null && <span class="pc-old-price">{it.oldPrice} ₽</span>}
@@ -1653,20 +1653,14 @@ const bestDeals = groupBy === 'discount'
     color: var(--color-page-bg);
   }
 
-  .pc-desc-text {
-    margin: 0;
-    padding: 2px 14px 10px 44px;
-    font-size: 0.84rem;
-    line-height: 1.5;
-    color: var(--color-ink-soft, #6d5f58);
-    max-width: 78ch;
-  }
+  /* Стили .pc-desc-row/.pc-desc-text — в global.css: блок создаёт скрипт,
+     и scoped-стили компонента на него не действуют. */
 
   .pc-preorder-note {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 7px;
+    /* Обычный текстовый поток, а НЕ flex: во flex-контейнере длинный текст переносился
+       целиком под пометку, и строка занимала две. Пометка — inline-flex, поэтому
+       спокойно стоит внутри строки. */
+    display: block;
     margin: 0 0 14px;
     padding: 9px 12px;
     background: var(--color-paper);
@@ -2047,6 +2041,18 @@ const bestDeals = groupBy === 'discount'
     flex: 1;
     font-size: 0.9rem;
     color: var(--color-ink);
+  }
+
+  /* Пометка и «?» — отдельной строкой ПОД названием, а не в его конце. В конце они
+     вели себя по-разному от длины имени: у короткого названия метка оставалась в той же
+     строке и терялась в тексте, у длинного уезжала вниз. Блок внутри flex-элемента
+     .pc-item-name всегда начинает новую строку — ряд выглядит одинаково всегда
+     (замечание пользователя 21.09.2026). */
+  .pc-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 3px;
   }
 
   .pc-promo .pc-item-name {
