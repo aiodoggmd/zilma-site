@@ -92,6 +92,10 @@ def main() -> None:
     shared = {k for k, n in claims.items() if n > 1}
 
     total_nameless = total_linked = total_amb = 0
+    # Имена товаров, которые сейчас реально есть в прайсе — по ним видно, не протухло ли
+    # имя, записанное в палитре.
+    live_names = {i['name'] for i in items}
+
     changes = []
     skipped = []
 
@@ -102,7 +106,13 @@ def main() -> None:
         if not isinstance(shades, list):
             continue
         key = pal_section.get(f.name)
-        nameless = [s for s in shades if not s.get('name') and s.get('code')]
+        # Оттенок считается неподписанным не только когда имени нет вовсе, но и когда
+        # записанного товара БОЛЬШЕ НЕТ в прайсе. Иначе имя-снимок протухает молча:
+        # товар переезжает из «под заказ» на склад и меняет имя («...9580лп» ->
+        # «...9580/B-8»), палитра продолжает помнить старое, и оттенок гаснет серым,
+        # хотя товар есть и продаётся. Поймано 22.09.2026 на Materia G: пять оттенков.
+        nameless = [s for s in shades
+                    if s.get('code') and (not s.get('name') or s['name'] not in live_names)]
         if not key:
             if nameless:
                 skipped.append((f.name, 'раздел не определён — нет ни одного подписанного оттенка'))
@@ -159,7 +169,14 @@ def main() -> None:
             by_code = {norm_code(x.get('code')): x for x in shades if x.get('code')}
             for s, it in pairs:
                 target = by_code.get(norm_code(s['code']))
-                if target is None or target.get('name'):
+                if target is None:
+                    continue
+                # Раньше здесь стояло «есть имя — не трогаем». Защита имела смысл, пока
+                # привязывались только пустые оттенки. С перепривязкой протухших она же
+                # всё и блокировала: скрипт бодро рапортовал «записано 4», а в файле
+                # оставались старые имена (поймано 22.09.2026 — счётчик кружков не
+                # сдвинулся). Перезаписываем ТОЛЬКО протухшее: живое имя не трогаем.
+                if target.get('name') and target['name'] in live_names:
                     continue
                 target['name'] = it['name']
                 # Цена ЧИСЛОМ: в ShadeSwatchGrid поле объявлено price?: number,

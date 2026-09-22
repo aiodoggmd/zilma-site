@@ -32,6 +32,11 @@ PROMO_META_PATH = ROOT / "Price" / "promo-meta.json"
 # «нет остатка — нет кнопки» для них не действует. Файла может не быть — тогда каталог
 # просто остаётся складским, как раньше.
 PREORDER_PATH = ROOT / "src" / "data" / "lebel-preorder.json"
+# Разделы по артикулам из бланка LebeL — запасной источник для новинок LEBEL,
+# которых ещё нет в Price/Каталог.xlsx. Каталог остаётся главным: журнал читается
+# только там, где раздела нет (22.09.2026, замечание пользователя «каталог для
+# lebel уже не годен» — верное для новинок, которые он не успел вписать).
+LEBEL_SECTIONS_PATH = ROOT / "src" / "data" / "lebel-sections.json"
 # Ведётся В РЕПОЗИТОРИИ (не в Price/, который локальный и в .gitignore) - в отличие от
 # промо-сайдкара, это НАКАПЛИВАЕМЫЙ журнал "когда товар впервые встретился в прайсе",
 # должен пережить любую пересборку и не потеряться со сменой машины/сессии. Формат:
@@ -230,6 +235,33 @@ def load_stock_levels(items: list) -> dict:
     return stock
 
 
+def fill_missing_lebel_sections(items: list[dict]) -> int:
+    """Проставляет раздел товарам LEBEL, которым его не дал Каталог.xlsx.
+
+    Новинка, которой нет в каталоге, оставалась совсем без раздела: в каталоге сайта она
+    не попадала ни в одну группу, а привязка оттенков палитры её не находила — та ищет
+    товар ВНУТРИ раздела. На Materia G из-за этого два оттенка светились серыми, хотя
+    краска есть и продаётся (22.09.2026).
+    """
+    if not LEBEL_SECTIONS_PATH.exists():
+        return 0
+    by_art = json.loads(LEBEL_SECTIONS_PATH.read_text(encoding="utf-8"))
+    filled = 0
+    for it in items:
+        if it.get("section") or "LEBEL" not in str(it.get("brand", "")).upper():
+            continue
+        tok = str(article(it["name"]) or "").split("/")[0]
+        m = re.match(r"^\D*(\d+)", tok)
+        key = (m.group(1).lstrip("0") or "0") if m else None
+        section = by_art.get(key) if key else None
+        if section:
+            it["section"] = section
+            filled += 1
+    if filled:
+        print(f"Разделы LEBEL из бланка (нет в каталоге): проставлено {filled}")
+    return filled
+
+
 def append_preorder(items: list[dict]) -> int:
     """Дописывает товары «под заказ» из журнала LebeL в конец списка.
 
@@ -413,6 +445,7 @@ def main() -> None:
         if qty is not None:
             it["stock"] = qty
 
+    fill_missing_lebel_sections(items)
     preorder_count = append_preorder(items)
 
     FIRST_SEEN_PATH.write_text(json.dumps(first_seen, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")

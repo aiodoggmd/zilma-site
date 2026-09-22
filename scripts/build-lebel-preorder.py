@@ -28,6 +28,10 @@ OUT = ROOT / "src/data/lebel-preorder.json"
 # Описания товаров от LebeL, без повторов: {номер: текст}. Отдельным файлом, чтобы
 # каталог хранил только номер и не таскал один и тот же текст по 20 раз.
 DESC_OUT = ROOT / "src/data/lebel-descriptions.json"
+# Разделы по артикулам ВСЕХ позиций бланка, включая складские: {артикул: раздел}.
+# Нужны, чтобы новинки LEBEL, которых пользователь ещё не вписал в Каталог.xlsx,
+# всё-таки попали в свою группу каталога, а не повисли без раздела (22.09.2026).
+SECTIONS_OUT = ROOT / "src/data/lebel-sections.json"
 
 # Срок поставки — ОДНА константа на весь проект. Правится здесь, а не в вёрстке.
 LEAD_TIME = "2-3 рабочих дня"
@@ -384,7 +388,19 @@ def main() -> int:
     print(f"\nОписаний: {sum(1 for i in out if i.get('descId'))} у товаров, "
           f"{len(descriptions)} уникальных текстов")
 
+    # Разделы для ВСЕХ позиций бланка — и под заказ, и уже складских: складская новинка
+    # тоже может отсутствовать в каталоге, а раздел ей нужен.
+    all_sections = {}
+    for it in raw:
+        if not it["art"]:
+            continue
+        cat = categorize(it["name"], it["group"])
+        all_sections[it["art"]] = section_for(it["group"], cat)
+
     if apply:
+        SECTIONS_OUT.write_text(json.dumps(all_sections, ensure_ascii=False, indent=1,
+                                           sort_keys=True), encoding="utf-8")
+        print(f"Записано: {SECTIONS_OUT.relative_to(ROOT)} ({len(all_sections)} артикулов)")
         OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
         DESC_OUT.write_text(json.dumps(descriptions, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"Записано: {OUT.relative_to(ROOT)} ({len(out)} позиций)")

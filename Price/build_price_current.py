@@ -363,6 +363,186 @@ def norm_spaces(s):
     return re.sub(r"\s+", " ", str(s).strip())
 
 
+def lebel_prices_from_form():
+    """{числовой артикул: цена} из бланка заказа LebeL (Price/lebel-order-form-*.xlsx).
+
+    Зачем: в 1С цены LEBEL обновляются не всегда вовремя — 22.09.2026 пользователь
+    прямо сказал «не успел сделать цены для lebel, их нужно будет оставить из основного
+    прайса lebel». Бланк поставщика в этом случае и есть источник истины.
+
+    Ключ — ЧИСЛОВАЯ часть артикула: у LebeL к номеру приписан складской хвост
+    («4263лп», «8429еп»), а в 1С номера голые. Тот же приём, что в
+    scripts/build-lebel-preorder.py:art_num — держать в согласии с ним.
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    forms = sorted(f for f in os.listdir(here)
+                   if f.startswith("lebel-order-form-") and f.endswith(".xlsx"))
+    if not forms:
+        return {}
+    wb = openpyxl.load_workbook(os.path.join(here, forms[-1]), read_only=True, data_only=True)
+    ws_f = wb[wb.sheetnames[0]]
+    out = {}
+    for row in ws_f.iter_rows(min_row=3, values_only=True):
+        art = str(row[3]).strip() if len(row) > 3 and row[3] else ""
+        price = row[5] if len(row) > 5 else None
+        if not art or not isinstance(price, (int, float)) or not price:
+            continue
+        m = re.match(r"^\D*(\d+)", art.split("/")[0])
+        if m:
+            out[m.group(1).lstrip("0") or "0"] = round(float(price), 2)
+    wb.close()
+    return out
+
+
+def apply_lebel_prices(ws, item_rows, header_rows):
+    """Ставит товарам LEBEL цену из бланка поставщика вместо цены из 1С.
+
+    Место вызова принципиально — между сопоставлением себестоимостей и расчётом акций:
+      * ВЫШЕ себестоимости уже найдены по именам из 1С, до этой точки строки трогать
+        нельзя;
+      * НИЖЕ считаются акции, и считаться они должны от НОВОЙ цены. Маржа при
+        подорожании растёт, и товар может честно провалиться в акционную ступень —
+        пользователь подтвердил это поведение 21.09.2026 на Igora.
+    Подмена идёт в самом файле, поэтому скачиваемый прайс и сайт получают одинаковые
+    цены. Правка только на сайте развела бы их, и клиент увидел бы в файле одно, а на
+    странице другое.
+
+    Ограничена строками под заголовком бренда LEBEL: числовой артикул сам по себе может
+    совпасть с артикулом другого бренда.
+    """
+    prices = lebel_prices_from_form()
+    if not prices:
+        print("Бланк LebeL не найден — цены LEBEL остаются из 1С")
+        return item_rows, 0
+    brands = [(h, norm_spaces(ws.cell(row=h, column=2).value)) for h, lvl in header_rows
+              if lvl == "brand"]
+
+    def brand_of(row_idx):
+        cur = ""
+        for h, nm in brands:
+            if h < row_idx:
+                cur = nm
+            else:
+                break
+        return (cur or "").upper()
+
+    out, changed, same = [], 0, 0
+    for row_idx, name, price, unit in item_rows:
+        if "LEBEL" in brand_of(row_idx):
+            m = re.match(r"^\D*(\d+)", str(article(name) or "").split("/")[0])
+            key = (m.group(1).lstrip("0") or "0") if m else None
+            fresh = prices.get(key)
+            if fresh is not None:
+                if abs(fresh - price) > 0.01:
+                    ws.cell(row=row_idx, column=3, value=fresh)
+                    price = fresh
+                    changed += 1
+                else:
+                    same += 1
+        out.append((row_idx, name, price, unit))
+    print(f"Цены LEBEL из бланка поставщика: заменено {changed}, уже совпадали {same}")
+    return out, changed
+
+
+def lebel_names_from_form():
+    """{числовой артикул: имя товара} из бланка заказа LebeL.
+
+    Для LEBEL бланк поставщика полнее, чем Price/Каталог.xlsx: в каталоге имена заведены
+    руками и новинок там может не быть, а бланк приходит со всеми позициями сразу и с
+    нормальными именами. Замечание пользователя 22.09.2026: «зачем ты берёшь lebel из
+    каталога, он для него уже не годен?!» — и он прав: в тот день три новинки LEBEL
+    остались с сокращениями из 1С («Краска д/волос NEW G B-8»), хотя в бланке они
+    подписаны как «Краска для волос Materia G Тон New B-8».
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    forms = sorted(f for f in os.listdir(here)
+                   if f.startswith("lebel-order-form-") and f.endswith(".xlsx"))
+    if not forms:
+        return {}
+    wb = openpyxl.load_workbook(os.path.join(here, forms[-1]), read_only=True, data_only=True)
+    ws_f = wb[wb.sheetnames[0]]
+    out, last_name = {}, ""
+    for row in ws_f.iter_rows(min_row=3, values_only=True):
+        name = norm_spaces(row[1]) if len(row) > 1 and row[1] else ""
+        volume = str(row[2]).strip() if len(row) > 2 and row[2] else ""
+        art = str(row[3]).strip() if len(row) > 3 and row[3] else ""
+        price = row[5] if len(row) > 5 else None
+        if name and not art:
+            last_name = ""
+            continue
+        if name:
+            last_name = name
+        if not art or not isinstance(price, (int, float)) or not price or not last_name:
+            continue
+        # Товар в нескольких фасовках: имя стоит только в первой строке, дальше один объём.
+        # Единицу приписываем, только если её нет в самой ячейке (иначе «600 млмл»).
+        full = name if name else (
+            f"{last_name} {volume}{'' if re.search(r'[а-яёa-z]', volume, re.I) else 'мл'}"
+            if volume else last_name)
+        m = re.match(r"^\D*(\d+)", art.split("/")[0])
+        if m:
+            out[m.group(1).lstrip("0") or "0"] = norm_spaces(full)
+    wb.close()
+    return out
+
+
+def apply_lebel_names(ws, item_rows, header_rows, only_rows=None):
+    """Добирает имена товарам LEBEL из бланка поставщика — ТОЛЬКО тем, которых нет
+    в Price/Каталог.xlsx. Артикул из 1С НЕ трогает.
+
+    Почему только пробелы, а не все подряд: имена в каталоге причёсаны пользователем и
+    несут то, чего в бланке нет. Первый прогон 22.09.2026 переписал все 92 позиции и
+    потерял и номер шага, и объём:
+        было:  «№1 Сыворотка для волос PROEDIT CARE WORKS CMC 150мл»
+        стало: «Сыворотка для волос PROEDIT CARE WORKS CMC»
+    Номер шага важен мастеру, объём — всем. Каталог остаётся главным; бланк закрывает
+    новинки, которые пользователь ещё не успел туда вписать.
+
+    Артикул — последнее слово имени, на нём держатся остатки, палитры и гиды
+    (правило проекта). Поэтому меняется только тело имени, а хвост остаётся прежним:
+    «Краска д/волос NEW G B-8 9580/B-8» -> «Краска для волос Materia G Тон New B-8 9580/B-8».
+    """
+    names = lebel_names_from_form()
+    if not names:
+        return item_rows, 0
+    brands = [(h, norm_spaces(ws.cell(row=h, column=2).value)) for h, lvl in header_rows
+              if lvl == "brand"]
+
+    def brand_of(row_idx):
+        cur = ""
+        for h, nm in brands:
+            if h < row_idx:
+                cur = nm
+            else:
+                break
+        return (cur or "").upper()
+
+    out, changed = [], 0
+    for row_idx, name, price, unit in item_rows:
+        if only_rows is not None and row_idx not in only_rows:
+            out.append((row_idx, name, price, unit))
+            continue
+        if "LEBEL" in brand_of(row_idx):
+            tail = article(name) or ""
+            m = re.match(r"^\D*(\d+)", str(tail).split("/")[0])
+            key = (m.group(1).lstrip("0") or "0") if m else None
+            fresh = names.get(key)
+            if fresh:
+                # Имя из бланка берём ЦЕЛИКОМ и дописываем артикул из 1С.
+                # Срезать последнее слово нельзя: в бланке артикул лежит в отдельной
+                # колонке, а последним словом имени стоит КОД ОТТЕНКА. Срез превращал
+                # «Materia G New Тон A-6» в «Materia G New Тон» и обезличивал всю
+                # палитру — поймано на первом же прогоне 22.09.2026.
+                new_name = norm_spaces(f"{fresh} {tail}")
+                if new_name != name:
+                    ws.cell(row=row_idx, column=2).value = new_name
+                    name = new_name
+                    changed += 1
+        out.append((row_idx, name, price, unit))
+    print(f"Имена LEBEL из бланка поставщика: заменено {changed}")
+    return out, changed
+
+
 def apply_catalog_names(ws):
     """Ставит в лист имена из Price/Каталог.xlsx. Возвращает число замен.
 
@@ -401,7 +581,10 @@ def apply_catalog_names(ws):
         print(f"   НЕТ В КАТАЛОГЕ (имя останется из 1С): {p['brand']} / {p['name']}")
     for p, hits in ambiguous:
         print(f"   ДВУСМЫСЛЕННО (не трогаем): {p['name']}")
-    return len(mapping)
+    # Номера строк, которых в каталоге нет: их имена добирает бланк поставщика
+    # (для LEBEL), см. apply_lebel_names.
+    missing_rows = {p["row"] for p in missing if p.get("row")}
+    return len(mapping), missing_rows
 
 
 def build(src_price, src_ost, dst):
@@ -532,10 +715,17 @@ def build(src_price, src_ost, dst):
     #     подсвечивались синим как «без категории» — в файле, который скачивает
     #     клиент. Поймано сквозным прогоном 14.09.2026.
     # Правило сопоставления живёт в одном месте — scripts/apply-catalog-names.py.
-    renamed = apply_catalog_names(ws)
+    renamed, rows_without_catalog_name = apply_catalog_names(ws)
     if renamed:
         item_rows = [(ri, norm_spaces(ws.cell(row=ri, column=2).value), pr, un)
                      for ri, _nm, pr, un in item_rows]
+
+    # LEBEL — имена и цены из бланка поставщика. Идут ПОСЛЕ каталога (бланк для LEBEL
+    # полнее и перекрывает его) и ДО расчёта акций и колонки категорий, которые ключуются
+    # по имени. См. apply_lebel_names / apply_lebel_prices.
+    item_rows, _lebel_renamed = apply_lebel_names(ws, item_rows, header_rows,
+                                                  rows_without_catalog_name)
+    item_rows, _lebel_repriced = apply_lebel_prices(ws, item_rows, header_rows)
 
     # заголовок ценовой колонки: "2. Олег" -> "Цена"
     ws.cell(row=4, column=3, value="Цена")

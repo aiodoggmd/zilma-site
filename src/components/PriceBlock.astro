@@ -42,8 +42,8 @@ const links: Record<string, string> = {
 ---
 <article class:list={['price-card', kind]}>
   <div class="split">
-    <div class:list={['stat-panel', { 'has-news': kind === 'current' && currentNews }]}>
-      {kind === 'current' && currentNews ? (
+    <div class:list={['stat-panel', { 'has-news': kind === 'current' && currentNews.length > 0 }]}>
+      {kind === 'current' && currentNews.length > 0 ? (
         <>
           <div class="stat-compact">
             <span class="stat-compact-date"><b>{day}</b> {month}</span>
@@ -58,11 +58,17 @@ const links: Record<string, string> = {
               </svg>
             </span>
             <div class="news-body">
-              <span class="news-badge">Новость</span>
-              <p class="news-text">{currentNews.text}</p>
-              {currentNews.link && (
-                <a class="news-link" href={currentNews.link}>{currentNews.linkLabel ?? 'Подробнее'} →</a>
-              )}
+              {/* Значок и подпись — ОДИН на все новости, а не на каждую: в колонке
+                  шириной 183 px повторный рупор съедал бы строку под самим текстом. */}
+              <span class="news-badge">{currentNews.length > 1 ? 'Новости' : 'Новость'}</span>
+              {currentNews.map((n, i) => (
+                <div class:list={['news-item', { 'news-item-next': i > 0 }]}>
+                  <p class="news-text">{n.text}</p>
+                  {n.link && (
+                    <a class="news-link" href={n.link}>{n.linkLabel ?? 'Подробнее'} →</a>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </>
@@ -340,6 +346,14 @@ const links: Record<string, string> = {
     display: flex;
     flex-direction: column;
     min-width: 0;
+  }
+
+  /* Вторая и последующие новости отделяются тонкой чертой: без неё два коротких
+     текста в узкой колонке читаются как один абзац с непонятной ссылкой посередине. */
+  .news-item-next {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-panel-line);
   }
 
   .news-text {
