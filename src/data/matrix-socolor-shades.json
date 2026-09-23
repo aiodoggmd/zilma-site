@@ -1369,7 +1369,9 @@
   "group": "ultra",
   "row": 0,
   "col": 6,
-  "image": "/images/shades/matrix-socolor/ul-p.webp"
+  "image": "/images/shades/matrix-socolor/ul-p.webp",
+  "name": "Socolor UL-P жемчужный UL-P",
+  "price": 610
  },
  {
   "code": "UL-V+",
