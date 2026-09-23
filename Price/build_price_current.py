@@ -26,7 +26,7 @@
 задеплоивается автоматически.
 """
 import openpyxl
-from openpyxl.styles import Font, Border, Side, PatternFill
+from openpyxl.styles import Font, Border, Side, PatternFill, Alignment
 from openpyxl.comments import Comment
 from copy import copy
 from collections import defaultdict, deque
@@ -320,6 +320,92 @@ def add_category_column(ws):
     ws.column_dimensions["F"].hidden = True
 
 
+def add_sum_column(ws):
+    """Колонка G «Сумма» = кол-во × цена, итог вверху и автофильтр по шапке.
+
+    Просьба пользователя 23.09.2026: клиент заполняет «Заказ» прямо в скачанном файле,
+    и ему нужно видеть, на сколько он набрал, а не считать в уме.
+
+    Почему G, а не F: F занята служебной колонкой категорий, и она СКРЫТА — для клиента
+    «Заказ» и «Сумма» окажутся вплотную. Вставлять колонку в середину нельзя: в файле
+    объединённые ячейки на каждом заголовке бренда, а openpyxl при вставке их не
+    переносит (та же природа, что у delete_rows, см. remove_rows_clean).
+
+    Почему итог ВВЕРХУ, в строке 5, а не отдельной строкой внизу:
+      * строк больше тысячи — итог внизу клиент не увидит, пока не долистает;
+      * со закреплённой шапкой строка 5 висит на экране всегда;
+      * лишняя строка под таблицей опасна: у неё нет цены, и xlsx-to-price-items.py
+        принял бы её за заголовок бренда с нераспознанной заливкой.
+    """
+    thin = Side(style="thin")
+    medium = Side(style="medium")
+    max_row = ws.max_row
+    ws.column_dimensions["G"].width = 13
+
+    # объединения заголовков бренда/линейки тянем с C:F на C:G — чтобы полоса заливки
+    # шла до края таблицы без разрыва, как это делают add_order_column/add_category_column
+    cf_merges = [m for m in list(ws.merged_cells.ranges)
+                 if m.min_row == m.max_row and m.min_col == 3 and m.max_col == 6 and m.min_row > 5]
+    for m in cf_merges:
+        r = m.min_row
+        ws.unmerge_cells(start_row=r, end_row=r, start_column=3, end_column=6)
+        ws.merge_cells(start_row=r, end_row=r, start_column=3, end_column=7)
+
+    header_font = copy(ws.cell(row=4, column=5).font)
+    header_align = copy(ws.cell(row=4, column=5).alignment)
+    money = '# ##0.00'
+
+    for r in range(4, max_row + 1):
+        c_cell = ws.cell(row=r, column=3)
+        f_cell = ws.cell(row=r, column=6)
+        g_cell = ws.cell(row=r, column=7)
+        fb = f_cell.border
+        is_item_row = isinstance(c_cell.value, (int, float))
+        is_header_row = r > 5 and not is_item_row
+
+        # правая внешняя граница таблицы переезжает с F на G
+        f_cell.border = Border(left=fb.left, right=thin, top=fb.top, bottom=fb.bottom)
+        g_cell.border = Border(left=thin, right=medium, top=fb.top, bottom=fb.bottom)
+
+        if r == 4:
+            g_cell.value = "Сумма"
+            g_cell.font = copy(header_font)
+            g_cell.alignment = copy(header_align)
+        elif r == 5:
+            pass  # строка-дисклеймер про НДС — только граница
+        elif is_header_row:
+            g_cell.fill = copy(c_cell.fill)
+        elif is_item_row:
+            # Пустая клетка «Заказ» не должна давать ноль в каждой строке — тысяча нулей
+            # превратит колонку в шум, и настоящие суммы в ней потеряются.
+            g_cell.value = f'=IF(E{r}="","",E{r}*C{r})'
+            g_cell.number_format = money
+            g_cell.alignment = copy(ws.cell(row=r, column=4).alignment)
+
+    # Итог — в строке 3, ВЫШЕ шапки таблицы. Внутри диапазона фильтра ему не место:
+    # при любом отборе строка с итогом спряталась бы вместе с отфильтрованными
+    # товарами. Строка 3 пустая, лежит выше фильтра и внутри закреплённой области,
+    # поэтому итог виден всегда — и до прокрутки, и после.
+    label = ws.cell(row=3, column=5, value="Итого заказа:")
+    label.font = copy(header_font)
+    # Прижимаем вправо: в колонке «Заказ» ширины 12 подпись не помещается и обрезается
+    # («Итого зака»). У правого выравнивания текст вытягивается ВЛЕВО по пустым соседним
+    # ячейкам (D3, C3 в строке 3 пусты) и виден целиком. Замечание пользователя 23.09.2026.
+    label.alignment = Alignment(horizontal="right", vertical="center")
+    total = ws.cell(row=3, column=7, value=f"=SUM(G6:G{max_row})")
+    total.font = copy(header_font)
+    total.number_format = money
+    total.alignment = Alignment(horizontal="right", vertical="center")
+    # Высота строки: по умолчанию строка 3 была технической и узкой — текст и сумма
+    # в ней срезались сверху и снизу.
+    ws.row_dimensions[3].height = 21
+
+    # Фильтр по шапке и закреплённая шапка: в прайсе больше тысячи строк, и без этого
+    # клиент, долистав до середины, уже не помнит, какая колонка чему.
+    ws.auto_filter.ref = f"B4:G{max_row}"
+    ws.freeze_panes = "A6"
+
+
 def close_table_bottom(ws):
     """Прочерчивает нижнюю границу таблицы на последней строке (B:E) - без неё низ
     таблицы держался только на верхней границе следующей строки (общий приём Excel:
@@ -331,7 +417,7 @@ def close_table_bottom(ws):
     """
     medium = Side(style="medium")
     last_row = ws.max_row
-    for col in range(2, 7):  # B..F
+    for col in range(2, 8):  # B..G
         cell = ws.cell(row=last_row, column=col)
         b = cell.border
         cell.border = Border(left=b.left, right=b.right, top=b.top, bottom=medium)
@@ -763,6 +849,7 @@ def build(src_price, src_ost, dst):
     remove_rows_clean(ws, excluded_rows)
     add_order_column(ws)
     add_category_column(ws)
+    add_sum_column(ws)
     close_table_bottom(ws)
 
     os.makedirs(os.path.dirname(dst), exist_ok=True)
