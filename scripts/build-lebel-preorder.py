@@ -267,6 +267,7 @@ def read_form() -> list[dict]:
     items: list[dict] = []
     group = ""
     last_name = ""           # товар в нескольких фасовках: имя стоит только в первой строке
+    last_desc = ""           # ...и описание тоже — оно одно на все фасовки
     for row in rows[2:]:
         cell = lambda i: (str(row[i]).strip() if len(row) > i and row[i] is not None else "")
         name, volume, article, desc = cell(1), cell(2), cell(3), cell(8)
@@ -277,22 +278,60 @@ def read_form() -> list[dict]:
             if name and not article:
                 group = name.split("\n")[0].strip()
                 last_name = ""
+                last_desc = ""
             continue
 
         if name:
+            # Описание сбрасываем только у ДРУГОГО товара. Фасовки одного товара бланк
+            # иногда записывает не пустой строкой, а полным именем — «...MOISTURE, 500мл»
+            # и «...MOISTURE, 1000мл Refill»: описание стоит только у первой, и сброс
+            # оставлял вторую пустой. Общее начало в 20 знаков отличает фасовку от соседа
+            # («Комплект THEO standard...» против «Шампунь увлажняющий THEO standard...»
+            # начинаются по-разному, и там сброс правильный). Найдено 23.09.2026.
+            common = 0
+            for a, b in zip(name.lower(), last_name.lower()):
+                if a != b:
+                    break
+                common += 1
+            if common < 20:
+                last_desc = ""
             last_name = name
         elif not last_name:
             continue                      # артикул без имени и без предыдущего — пропускаем
+
+        # У строк-продолжений (вторая и следующие фасовки) в колонке описания стоит
+        # литеральный ноль, а не текст. Принимали его за описание, и в карточке товара
+        # вместо текста показывался «0» (замечание пользователя 23.09.2026).
+        if desc.replace(".", "", 1).replace(",", "", 1).isdigit():
+            desc = ""
+        if desc:
+            last_desc = desc
+        else:
+            desc = last_desc              # одно описание на все фасовки, как в бланке
         # Единицу приписываем, ТОЛЬКО если её нет в самой ячейке объёма. У LebeL она
         # записана то как «600», то как «600 мл» — прежняя замена «мл мл» -> «мл»
         # слипшийся вариант не ловила, и у 47 позиций в каталоге стояло «600 млмл».
-        if name:
-            full = name
-        elif volume:
-            unit = "" if re.search(r"[а-яёa-z]", volume, re.I) else "мл"
-            full = f"{last_name} {volume}{unit}"
+        # Объём дописываем ВСЕГДА, когда он есть в своей колонке — и к первой фасовке
+        # тоже. Раньше строка с именем бралась как есть, и «Шампунь COOL ORANGE HAIR SOAP
+        # COOL» оставался без «200 мл», хотя соседние 600 и 1600 мл его имели: в каталоге
+        # три разные фасовки выглядели почти одинаково (замечание пользователя 23.09.2026).
+        base = name if name else last_name
+        # Сверяем по ЧИСЛУ, а не по тексту объёма: у «Порошок ... KEROBLEACH 500г» имя
+        # уже содержит объём, а ячейка объёма — «500г», и сравнение текста с требованием
+        # единицы ПОСЛЕ него не совпадало, отчего объём приписывался дважды: «500г 500г».
+        vol = volume
+        num = re.match(r"\s*([\d.,]+)", vol)
+        if vol:
+            # В бланке единица местами обрезана — «600м» вместо «600 мл». У клиента это
+            # выглядит опечаткой, поэтому достраиваем.
+            vol = re.sub(r"(\d)\s*м$", r"\1 мл", vol)
+        already = bool(num) and bool(
+            re.search(re.escape(num.group(1)) + r"\s*(мл|м|г|гр|кг|л)\b", base, re.I))
+        if vol and not already:
+            unit = "" if re.search(r"[а-яёa-z]", vol, re.I) else " мл"
+            full = f"{base} {vol}{unit}"
         else:
-            full = last_name
+            full = base
 
         items.append({
             "artRaw": article,
