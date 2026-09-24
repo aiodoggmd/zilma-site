@@ -26,12 +26,12 @@ export interface SiteNews {
 // «дорожает» стало неправдой. Заменён на факт: цены уже новые, а товар приехал.
 export const currentNews: SiteNews[] = [
   {
-    text: 'Поступление Matrix и Londa — весь ассортимент на складе.',
+    text: 'Поступление Matrix — весь ассортимент на складе.',
     link: '/#open-catalog=MATRIX',
     linkLabel: 'Смотреть Matrix',
   },
   {
-    text: 'На красители Londa новые цены с 24 сентября.',
+    text: 'Londa: поступление и новые цены на красители.',
     link: '/#open-catalog=LONDA',
     linkLabel: 'Открыть Londa',
   },
