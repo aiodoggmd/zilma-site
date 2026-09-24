@@ -73,6 +73,34 @@ EXCLUDE_ARTICLES = {"007927"}
 # строки под ним), а не только по мятая-подстроке - страхуется от товаров без этого слова в имени.
 JUNK_SECTION_SUFFIXES = ("_акция",)
 
+# Разделы, которые НИКОГДА не уходят в акцию, по брендам (24.09.2026, решение пользователя).
+# Повод: у LONDA поднялись закупочные цены на красители, и продавать их со скидкой нельзя.
+# Скидка считается от маржи, а маржа при подорожании РАСТЁТ — то есть без этого списка
+# подорожавший товар провалился бы в акцию сам собой, ровно наоборот к намерению.
+#
+# Ключ — раздел из Price/Каталог.xlsx (через журнал src/data/price-sections.json), а не
+# линейка 1С: у LONDA линеек в 1С нет вовсе, все товары лежат прямо под брендом.
+# Оксиданты и уход НЕ включены: подорожали красители, про остальное речи не было.
+NO_PROMO_SECTIONS = {
+    "LONDA": (
+        "Аммиачный краситель",
+        "Безаммиачный краситель",
+        "Экспресс-тонирование блонда - Color Tune",
+    ),
+}
+SECTIONS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             "..", "src", "data", "price-sections.json")
+
+
+def sections_by_name():
+    """Раздел каталога по имени товара. Пусто — значит журнала ещё нет, и это не авария:
+    исключение просто не сработает, а сборка не должна падать из-за него."""
+    try:
+        with open(SECTIONS_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
 def is_excluded(name):
     n = name.strip().lower()
     if any(n.startswith(p) for p in EXCLUDE_NAME_PREFIXES):
@@ -824,11 +852,35 @@ def build(src_price, src_ost, dst):
     ws.cell(row=4, column=3, value="Цена")
 
     red = Font(name="Arial", sz=8, color="FFFF0000")
+
+    # Бренд строки — тем же способом, что и в apply_lebel_prices: по ближайшему
+    # заголовку бренда выше. Нужен, чтобы «Аммиачный краситель» у LONDA и у другого
+    # бренда не спутались: раздел с таким именем есть не только у неё.
+    _brand_headers = [(h, norm_spaces(ws.cell(row=h, column=2).value))
+                      for h, lvl in header_rows if lvl == "brand"]
+    _sections = sections_by_name()
+
+    def _no_promo(row_idx, name):
+        brand = ""
+        for h, nm in _brand_headers:
+            if h < row_idx:
+                brand = nm
+            else:
+                break
+        blocked = NO_PROMO_SECTIONS.get(brand.strip().upper())
+        if not blocked:
+            return False
+        return _sections.get(norm_spaces(name), "") in blocked
+
     promo_count = 0
     promo_meta = {}
+    no_promo_count = 0
     for row_idx, name, price, unit in item_rows:
         cost = matched.get(row_idx)
         if not cost:
+            continue
+        if _no_promo(row_idx, name):
+            no_promo_count += 1
             continue
         current_margin = (price - cost) / price * 100
         discount = discount_for_margin(current_margin)
@@ -845,6 +897,8 @@ def build(src_price, src_ost, dst):
         promo_meta[re.sub(r"\s+", " ", name).strip()] = {"old_price": price, "discount": discount}
 
     print("Товаров переведено в акцию:", promo_count)
+    if no_promo_count:
+        print("Удержано от акции по NO_PROMO_SECTIONS:", no_promo_count)
 
     remove_rows_clean(ws, excluded_rows)
     add_order_column(ws)

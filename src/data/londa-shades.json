@@ -55,7 +55,9 @@
   "group": "ash",
   "row": 8,
   "col": 0,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/8-1.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-1.webp",
+  "name": "LC крем-краска 8-1 светл блонд пепельный 081",
+  "price": 375.5
  },
  {
   "code": "7/1",
@@ -239,7 +241,9 @@
   "group": "brown",
   "row": 5,
   "col": 5,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/5-75.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/5-75.webp",
+  "name": "LC крем-краска 5-75 светл шатен корич-красный 0575",
+  "price": 375.5
  },
  {
   "code": "4/71",
@@ -763,7 +767,9 @@
   "group": "red",
   "row": 5,
   "col": 0,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/5-5.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/5-5.webp",
+  "name": "LC крем-краска 5-5 светл шатен красный 055",
+  "price": 375.5
  },
  {
   "code": "3/5",
@@ -791,7 +797,9 @@
   "group": "violet",
   "row": 10,
   "col": 5,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/10-65.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/10-65.webp",
+  "name": "LC крем-краска 10-65 клубничный блонд 01065",
+  "price": 375.5
  },
  {
   "code": "9/65",
@@ -869,7 +877,9 @@
   "group": "violet",
   "row": 5,
   "col": 5,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/5-65.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/5-65.webp",
+  "name": "LC крем-краска 5-65 светлый шатен фиолетово-красн 0565",
+  "price": 375.5
  },
  {
   "code": "4/6",

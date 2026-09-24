@@ -65,7 +65,11 @@ for i, v in enumerate(vals):
         cur_s = v
         sec_start[(cur_b, cur_s)] = i
     brand_at[i], sec_at[i] = cur_b, cur_s
-cat_arts = {art(v) for v in vals if v}
+# Артикул сам по себе бренд НЕ определяет: 24.09.2026 «LC тонирование 2/0 чёрный 0-20»
+# (LONDA, безаммиачный) не попало в каталог, потому что артикул 0-20 уже занимал
+# «Performanse 2-0 60мл 0-20» у OLLIN. Та же ловушка, что у 8/38 в link-palette-shades:
+# сверять пару (бренд, артикул), а не артикул в одиночку.
+cat_arts = {(brand_at[i], art(v)) for i, v in enumerate(vals) if v}
 
 wp = openpyxl.load_workbook(PRICE, read_only=True, data_only=True)
 brand, todo = '', []
@@ -75,7 +79,7 @@ for r in wp.active.iter_rows(values_only=True):
     if not nm: continue
     if nm in BRANDS: brand = nm; continue
     if not isinstance(pr, (int, float)) or brand == 'LEBEL': continue
-    if art(nm) not in cat_arts: todo.append((brand, nm))
+    if (brand, art(nm)) not in cat_arts: todo.append((brand, nm))
 wp.close()
 
 def family(s):

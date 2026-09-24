@@ -81,7 +81,9 @@
   "group": "copper",
   "row": 7,
   "col": 3,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/7-43.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-43.webp",
+  "name": "LC тонирование 7/43 блонд медно-золотистый 0-743",
+  "price": 375.5
  },
  {
   "code": "7/45",
@@ -239,7 +241,9 @@
   "group": "natural",
   "row": 2,
   "col": 0,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/2-0.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/2-0.webp",
+  "name": "LC тонирование 2/0 чёрный 0-20",
+  "price": 375.5
  },
  {
   "code": "2/8",
