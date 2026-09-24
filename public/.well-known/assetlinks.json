@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "pro.zilma.app",
+      "sha256_cert_fingerprints": [
+        "88:61:89:AE:D8:58:7F:B7:2F:AC:17:54:A9:5A:2A:25:76:81:C6:CE:C5:DB:B7:3B:E7:B5:07:C4:F3:2B:A0:55"
+      ]
+    }
+  }
+]
