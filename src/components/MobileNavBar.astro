@@ -45,7 +45,10 @@
     </span>
     <span class="mobile-nav-label">Заявка</span>
   </a>
-  <a href="/#info" class="mobile-nav-item" data-info-link>
+  {/* 24.09.2026: ведёт на страницу-список /articles/, а не на якорь /#info внизу
+     главной. Якорь показывал шесть карточек из 22 и требовал проехать весь каталог.
+     data-info-link оставлен: это просто метка, скрипта на ней нет. */}
+  <a href="/articles/" class="mobile-nav-item" data-info-link>
     <span class="mobile-nav-icon">
       <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M6 2.5h8.5L19 7v14.5H6Z" />
@@ -54,7 +57,7 @@
         <line x1="9" y1="17" x2="15.5" y2="17" />
       </svg>
     </span>
-    <span class="mobile-nav-label">Инфо</span>
+    <span class="mobile-nav-label">Инструкции</span>
   </a>
 </nav>
 
@@ -159,12 +162,24 @@
     display: none;
   }
 
+  /* «Инструкции» — самая длинная подпись в меню: 63 px при 64 px доступных на экране
+     320 px (замер 24.09.2026 через canvas measureText в шрифте самой подписи). Влезает,
+     но запас — один пиксель, а метрики шрифта на живом телефоне могут разойтись с
+     десктопными. nowrap + уменьшение на узких экранах убирают и перенос в две строки,
+     и горизонтальную прокрутку страницы — ту самую, что уже ловили на мобильном меню. */
   .mobile-nav-label {
     font-family: var(--font-sans);
     font-size: 0.64rem;
+    white-space: nowrap;
     font-weight: 600;
     letter-spacing: 0.01em;
     line-height: 1;
+  }
+
+  @media (max-width: 349px) {
+    .mobile-nav-label {
+      font-size: 0.56rem;
+    }
   }
 
   .mobile-nav-item:active .mobile-nav-icon {

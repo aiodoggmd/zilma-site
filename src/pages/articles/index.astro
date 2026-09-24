@@ -1,0 +1,140 @@
+---
+// Страница-список всех инструкций. Заведена 24.09.2026.
+//
+// ЗАЧЕМ. До неё тропинки к статьям не было: человек из поиска попадал на ОДНУ статью, и
+// дальше у него не было места, где видно остальные — только назад в Яндекс. На главной
+// лента есть, но она спрятана под заголовком «Инфо», показывает первые шесть и живёт в
+// самом низу, за каталогом. Отдельная страница даёт три вещи разом: место, куда можно
+// привести из меню и из статьи; полный список без «показать ещё»; и собственный адрес,
+// который может ранжироваться по «инструкции по окрашиванию» — такой страницы у сайта
+// не было вообще, поэтому и ранжироваться было нечему.
+//
+// Лента здесь НЕ обрезается, в отличие от главной. Там обрезка спасает нового посетителя
+// от 12 экранов прокрутки (замер 2026-09-06), здесь показать всё — и есть весь смысл
+// страницы: человек пришёл именно за списком.
+export const prerender = true;
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilterTabs from '../../components/FilterTabs.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+// «Zilma» — служебное значение brand у статей базы знаний, не привязанных к бренду
+// поставщика. В фильтре оно дублировало бы категорию «база знаний» (так же на главной).
+const brands = [...new Set(articles.map((a) => a.data.brand))]
+  .filter((b) => b !== 'Zilma')
+  .sort((a, b) => a.localeCompare(b, 'ru'));
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const listLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Инструкции по окрашиванию',
+  itemListElement: articles.map((a, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `${siteUrl}/articles/${a.id}/`,
+    name: a.data.seoTitle ?? a.data.title,
+  })),
+};
+---
+<BaseLayout
+  title="Инструкции по окрашиванию: пропорции, оксид, время — Zilma"
+  description="Как разводить краску с окислителем, сколько держать, как смешать два оттенка и закрасить седину — инструкции по Wella, Schwarzkopf, Matrix, Londa и Lebel."
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(listLd)} />
+
+  <div class="container">
+    <nav class="crumbs" aria-label="Вы здесь">
+      <a href="/">Главная</a><span aria-hidden="true">→</span><span>Инструкции</span>
+    </nav>
+
+    <h1>Инструкции по окрашиванию</h1>
+    <p class="lead">
+      Пропорции с окислителем, время выдержки, смешивание оттенков и работа с сединой —
+      по каждой линейке, которая есть в наличии. Товары из инструкции можно сразу положить
+      в заявку.
+    </p>
+
+    <FilterTabs brands={brands} />
+
+    <div class="article-grid">
+      {articles.map((a, i) => (
+        <ArticleCard
+          id={a.id}
+          title={a.data.title}
+          description={a.data.description}
+          line={a.data.line}
+          brand={a.data.brand}
+          tags={a.data.tags}
+          coverImage={a.data.coverImage}
+          publishDate={a.data.publishDate}
+          verifiedDate={a.data.verifiedDate}
+          isNew={i === 0}
+        />
+      ))}
+    </div>
+
+    <p class="back-to-catalog">
+      <a href="/#open-catalog" class="link">Открыть каталог и оформить заявку →</a>
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .crumbs {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    padding: 22px 0 0;
+  }
+
+  .crumbs a {
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+
+  .crumbs a:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    margin: 14px 0 10px;
+  }
+
+  .lead {
+    max-width: 60ch;
+    color: var(--color-muted);
+    margin: 0 0 26px;
+  }
+
+  /* Сетка повторяет ленту главной, чтобы карточки выглядели одинаково в обоих местах.
+     Без .card.lg: выделять «самую свежую» на странице-списке нечем — сюда приходят за
+     нужной линейкой, а не за новинкой. */
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding-bottom: 20px;
+  }
+
+  .back-to-catalog {
+    padding-bottom: 60px;
+  }
+
+  @media (max-width: 900px) {
+    .article-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .article-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
