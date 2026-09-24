@@ -1,6 +1,6 @@
 ---
 title: "Schwarzkopf Igora Royal: система нумерации, все линейки и полная палитра оттенков."
-seoTitle: "Игора Роял (Igora Royal): палитра и что значат цифры"
+seoTitle: "Игора Роял (Igora Royal): палитра и как смешивать"
 description: "Диагностика клиента, линейки Naturals/Fashion/Absolutes/Highlifts/Pastels, таблица окислителя, бустеры и нейтрализаторы, система нумерации и полная палитра — гид по применению"
 brand: "Schwarzkopf"
 line: "Igora Royal"
