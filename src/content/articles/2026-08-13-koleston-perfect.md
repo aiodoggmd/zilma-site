@@ -1,6 +1,6 @@
 ---
 title: "Wella Koleston Perfect: точная формула цвета и 100% закрашивание седины на любой глубине тона."
-seoTitle: "Wella Koleston Perfect: формулы и закрашивание седины"
+seoTitle: "Колестон (Koleston): как смешивать с окислителем"
 description: "Закрашивание седины, схема смешивания с Welloxon Perfect, пастельные тона, глянцевание, Special Mix и аллерготест — гид по применению"
 brand: "Wella"
 line: "Koleston Perfect"
