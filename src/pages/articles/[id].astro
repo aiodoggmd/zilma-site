@@ -252,7 +252,10 @@ export async function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-const { Content } = await render(article);
+const { Content, headings } = await render(article);
+// Ссылка «Подробнее» из рамки «Коротко» ведёт на первый раздел статьи — во всех статьях
+// с полем answer это и есть раздел «Как смешивать/разводить…».
+const answerTarget = headings.find((h) => h.depth === 2)?.slug;
 const formattedDate = article.data.verifiedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 const accent = categoryColor(article.data.tags);
 
@@ -345,6 +348,14 @@ const articleLd = {
       <a href="/" class="back" aria-label="Все статьи">←</a>
       <h1>{article.data.title}</h1>
       <p class="meta">Обновлено: {formattedDate}</p>
+      {article.data.answer && (
+        <div class="prose">
+          <p class="callout quick-answer">
+            <b>Коротко.</b> {article.data.answer}
+            {answerTarget && <> <a href={`#${answerTarget}`}>Подробнее&nbsp;↓</a></>}
+          </p>
+        </div>
+      )}
       <script type="application/json" id="price-lookup-data" set:html={JSON.stringify(priceLookup)} />
       {/* Палитры подняты НАД текстом статьи 2026-09-05 по решению пользователя. Причина:
           большинство мастеров статью не читают — им нужен нужный оттенок и скорость заказа,
