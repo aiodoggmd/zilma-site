@@ -1,13 +1,14 @@
 ---
 title: "Schwarzkopf Igora Royal: система нумерации, все линейки и полная палитра оттенков."
 seoTitle: "Игора Роял (Igora Royal): палитра и как смешивать"
-description: "Диагностика клиента, линейки Naturals/Fashion/Absolutes/Highlifts/Pastels, таблица окислителя, бустеры и нейтрализаторы, система нумерации и полная палитра — гид по применению"
+description: "Игору смешивают с оксигентом 1:1, выдержка 30–45 минут, Pastels — 5–30. Оксигент 3–12% под задачу. В коде: первое число — глубина тона, второе — направление."
+answer: "Igora Royal смешивают с оксигентом 1:1 — одинаково у Naturals, Natural Extra, Fashion Tones, Absolutes и Highlifts; выдержка 30–45 минут, Pastels — 5–30 минут под присмотром. Оксигент: 3% — затемнение и 100% закрашивание седины, 6% — тон в тон, седина, осветление на 1–2 уровня, 9% — на 2–3 уровня, 12% — Ultra Blonde и Special Blonde. В коде оттенка число перед дефисом — глубина тона, после дефиса — его направление."
 brand: "Schwarzkopf"
 line: "Igora Royal"
 tags: ["колористика"]
 coverImage: "/images/articles/2026-08-28-igora-royal/cover.webp"
 publishDate: 2026-08-28T10:00:00
-verifiedDate: 2026-09-02
+verifiedDate: 2026-09-25
 ---
 
 **Igora Royal** — перманентная крем-краска Schwarzkopf Professional. Руководство по применению: диагностика клиента, все продуктовые линейки (Naturals, Natural Extra, Fashion, Absolutes, Silver Whites, Highlifts, Fashion Lights, Pastels), таблица окислителя, дополнительные продукты, система нумерации оттенков и полная палитра.
