@@ -17,6 +17,6 @@ export const contacts = {
 };
 
 export const currentPrice = {
-  file: '/prices/2026-09-24-zilma-price.xlsx',
-  date: '2026-09-24',
+  file: '/prices/2026-09-25-zilma-price.xlsx',
+  date: '2026-09-25',
 };
