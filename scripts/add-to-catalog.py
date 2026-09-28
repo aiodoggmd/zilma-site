@@ -60,7 +60,11 @@ cur_b = cur_s = ''
 sec_start = {}
 for i, v in enumerate(vals):
     if v in BRANDS:
+        # Товары прямо под брендом (у ОДНОРАЗОВАЯ ПРОДУКЦИЯ подразделов нет вовсе) —
+        # это раздел с пустым заголовком, а его «заголовок» — строка бренда. Без этого
+        # такие новинки уходили в «БЕЗ МЕСТА» (фольга 02550, 28.09.2026).
         cur_b, cur_s = v, ''
+        sec_start[(cur_b, cur_s)] = i
     elif v and not re.search(r'\d', v.split()[-1]):
         cur_s = v
         sec_start[(cur_b, cur_s)] = i
@@ -96,7 +100,7 @@ for b, nm in todo:
         key = None
         for pref in family(nm):
             for i, v in enumerate(vals):
-                if v.startswith(pref) and brand_at[i] == b and sec_at[i]:
+                if v.startswith(pref) and brand_at[i] == b and v not in BRANDS:
                     key = (b, sec_at[i]); break
             if key: break
     if not key: unplaced.append((b, nm)); continue
