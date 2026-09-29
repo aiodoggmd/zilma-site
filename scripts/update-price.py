@@ -14,6 +14,10 @@
      «Остатки_06,05,2026» однажды оказался сентябрьским); данные сайта закоммичены —
      иначе при сбое откатить будет нечем; снимок «было».
   1. Сборка прайса (имена из Каталог.xlsx ставятся внутри).
+     1а. Новинки в каталог (add-to-catalog.py). Если что-то дописано — по ритуалу:
+         пересборка → разделы → перенос журналов → ещё пересборка (журналы ключуются по
+         имени, без этого новинки остались бы без категории). Каталог должен быть закрыт
+         в Excel — проверяется до записи.
   2. Разделы.
   3. Перенос журналов — предпросмотр, проверка, запись.
   4. Данные сайта.
@@ -51,15 +55,21 @@ MONTHS = {'января': 1, 'февраля': 2, 'марта': 3, 'апреля
 NAME_DATE = re.compile(r'_(\d{2}),(\d{2}),(\d{4})\.xlsx$')
 
 
-WRITING = False  # True с первого пишущего шага: до него откатывать нечего
+CATALOG = PRICE_DIR / 'Каталог.xlsx'
+CATALOG_LOCK = PRICE_DIR / '~$Каталог.xlsx'  # Excel кладёт такой файл, пока каталог открыт
+WRITING = False           # True с первого пишущего шага: до него откатывать нечего
+CATALOG_BACKUP = None     # копия каталога, если add-to-catalog.py его менял
 
 
 def stop(reason: str) -> None:
     if not WRITING:
         sys.exit(f'\n✗ СТОП: {reason}\n  Ничего не записано.')
-    sys.exit(f'\n✗ СТОП: {reason}\n'
-             f'  Откатить данные сайта: git checkout -- {" ".join(TRACKED)}\n'
-             f'  Откатить акции: скопировать {PROMO_BACKUP.name} обратно в {PROMO_META.name}')
+    msg = (f'\n✗ СТОП: {reason}\n'
+           f'  Откатить данные сайта: git checkout -- {" ".join(TRACKED)}\n'
+           f'  Откатить акции: скопировать {PROMO_BACKUP.name} обратно в {PROMO_META.name}')
+    if CATALOG_BACKUP:
+        msg += f'\n  Откатить каталог: скопировать {CATALOG_BACKUP.name} обратно в {CATALOG.name}'
+    sys.exit(msg)
 
 
 def run(title: str, args: list[str]) -> str:
@@ -186,17 +196,51 @@ def after_migrate_preview(out: str, stock_before: int) -> int:
     return int(gone.group(1)) if gone else 0
 
 
-def compare(before: dict, after: dict, gone: int) -> None:
+def add_new_to_catalog() -> list[str]:
+    """Шаг 1а. Возвращает строки «БЕЗ МЕСТА» — новинки, которым скрипт не нашёл раздел."""
+    global CATALOG_BACKUP
+    out = run('1а Новинки в каталог — предпросмотр', ['scripts/add-to-catalog.py'])
+    m = re.search(r'позиций: (\d+) \| без места: (\d+)', out)
+    if not m:
+        stop('add-to-catalog.py не напечатал «позиций: N | без места: M» — вывод изменился, проверить глазами')
+    added = int(m.group(1))
+    unplaced = [line.strip() for line in out.splitlines() if 'БЕЗ МЕСТА:' in line]
+    if added == 0:
+        print('  новинок для каталога нет')
+        return unplaced
+    if CATALOG_LOCK.exists():
+        stop('Каталог.xlsx открыт в Excel — закрыть его и запустить команду снова '
+             f'(дописать нужно {added} новинок)')
+    before_files = set(PRICE_DIR.glob('Каталог-до-правки-*.xlsx'))
+    run('1а Новинки в каталог — запись', ['scripts/add-to-catalog.py', '--apply'])
+    new_backups = set(PRICE_DIR.glob('Каталог-до-правки-*.xlsx')) - before_files
+    CATALOG_BACKUP = max(new_backups or before_files, key=lambda p: p.stat().st_mtime, default=None)
+    return unplaced
+
+
+def uncategorized() -> list[str]:
+    items = json.loads((DATA / 'priceItems.json').read_text(encoding='utf-8'))
+    return [f'{i["brand"]} / {i["name"]}' for i in items if not i.get('category')]
+
+
+def compare(before: dict, after: dict, gone: int, uncat_before: set[str]) -> list[str]:
+    """Стоп на поломке; возвращает предупреждения — то, что ждёт человека, но не авария."""
     print(f'\n{"":<34}{"было":>8}{"стало":>8}')
     for k in before:
         print(f'  {k:<32}{before[k]:>8}{after[k]:>8}')
-    problems = []
+    problems, warnings = [], []
     if after['акций со старой ценой'] != after['акций']:
         problems.append(f'акций {after["акций"]}, а со старой ценой {after["акций со старой ценой"]} — '
                         'часть акций потеряла зачёркнутую цену')
+    # Новинка без категории — обычное дело, а не авария: стоп здесь заводил в тупик (данные
+    # уже записаны, а повторный запуск на незакоммиченных данных не стартует). Проверено
+    # повтором прогона 29.09.2026: ровно три новинки, которые утром размечали руками.
     if after['без категории'] > before['без категории']:
-        problems.append(f'без категории стало {after["без категории"]} (было {before["без категории"]}) — '
-                        'разметить новинки (price-categories.json)')
+        warnings.append(f'без категории стало {after["без категории"]} (было {before["без категории"]}). '
+                        'Разметить новинки в src/data/price-categories.json (по родне, спорное — '
+                        'спросить Олега), затем прогнать scripts/xlsx-to-price-items.py и '
+                        'scripts/verify-price-sync.py. Новые без категории:\n      '
+                        + '\n      '.join(x for x in uncategorized() if x not in uncat_before))
     if after['дублей имени']:
         problems.append(f'дублей имени: {after["дублей имени"]}')
     if after['LEBEL и на складе, и под заказ']:
@@ -209,6 +253,7 @@ def compare(before: dict, after: dict, gone: int) -> None:
                         'переименования (AGENTS.md, «Переименование рвёт связь каталога с цветом»)')
     if problems:
         stop('после сборки:\n  - ' + '\n  - '.join(problems))
+    return warnings
 
 
 def write_dated_copy(key) -> None:
@@ -226,6 +271,7 @@ def write_dated_copy(key) -> None:
 
 
 def main() -> None:
+    global WRITING
     ap = argparse.ArgumentParser(description='Обновить прайс сайта одной командой')
     ap.add_argument('--date', help='дата файлов в Price/, формат 29,09,2026 (по умолчанию — самая свежая)')
     args = ap.parse_args()
@@ -237,16 +283,32 @@ def main() -> None:
     check_dates(price, stock, key)
     check_clean()
     before = snapshot(run('0/8 Снимок «было»', ['scripts/verify-price-sync.py']))
+    uncat_before = set(uncategorized())
     if PROMO_META.exists():
         shutil.copyfile(PROMO_META, PROMO_BACKUP)
 
-    global WRITING
     WRITING = True
-    run('1/8 Сборка прайса', ['Price/build_price_current.py', str(price), str(stock), str(PRICE_XLSX)])
+    build = ['Price/build_price_current.py', str(price), str(stock), str(PRICE_XLSX)]
+    migrate = ['scripts/migrate-renamed-products.py']
+    run('1/8 Сборка прайса', build)
     run('2/8 Разделы', ['scripts/build-price-sections.py', '--apply'])
-    gone = after_migrate_preview(run('3/8 Перенос журналов — предпросмотр',
-                                     ['scripts/migrate-renamed-products.py']), before['складских'])
-    run('3/8 Перенос журналов — запись', ['scripts/migrate-renamed-products.py', '--apply'])
+    gone = after_migrate_preview(run('3/8 Перенос журналов — предпросмотр', migrate), before['складских'])
+    run('3/8 Перенос журналов — запись', [*migrate, '--apply'])
+    unplaced = add_new_to_catalog()
+    if CATALOG_BACKUP:
+        # add-to-catalog причёсывает имена новинок («250 мл.» -> «250мл»), а журналы
+        # (категории, дата первого появления) ключуются по имени. Товар, вернувшийся после
+        # паузы, иначе теряет категорию и получает ложный бейдж «Нов» — так было с шампунем
+        # OLLIN 395171 при повторе прогона 29.09.2026 (в прайсе с 12.08). Поэтому: снять
+        # данные сайта с именами из 1С, пересобрать с именами каталога и перенести журналы
+        # с первых на вторые — migrate опознает переименование по артикулу.
+        run('1а Данные сайта с именами из 1С', ['scripts/xlsx-to-price-items.py'])
+        run('1а Пересборка с новинками', build)
+        run('1а Разделы', ['scripts/build-price-sections.py', '--apply'])
+        after_migrate_preview(run('1а Перенос журналов на имена каталога — предпросмотр', migrate),
+                              before['складских'])
+        run('1а Перенос журналов на имена каталога — запись', [*migrate, '--apply'])
+        run('1а Пересборка после переноса журналов', build)
     run('4/8 Данные сайта', ['scripts/xlsx-to-price-items.py'])
     run('5/8 Привязка палитр', ['scripts/link-palette-shades.py', '--apply'])
     run('6/8 LEBEL под заказ — предпросмотр', ['scripts/build-lebel-preorder.py'])
@@ -255,10 +317,19 @@ def main() -> None:
     run('6/8 Привязка палитр — повтор', ['scripts/link-palette-shades.py', '--apply'])
     write_dated_copy(key)
     after = snapshot(run('8/8 Сверка', ['scripts/verify-price-sync.py']))
-    compare(before, after, gone)
+    warnings = compare(before, after, gone, uncat_before)
 
     print('\n✓ Прайс обновлён, аномалий нет.')
-    print('  Новинки без каталога — в выводе сверки выше («Без имени из каталога»).')
+    for w in warnings:
+        print(f'  ! {w}')
+    if CATALOG_BACKUP:
+        print(f'  В каталог дописаны новинки; копия до правки — {CATALOG_BACKUP.name}.')
+    if unplaced:
+        print(f'  ! Без места в каталоге ({len(unplaced)}) — раздел не нашёлся, вписать руками '
+              '(или добавить в MANUAL_SECTION в add-to-catalog.py):')
+        for line in unplaced:
+            print(f'    {line}')
+    print('  Всё, что осталось без имени из каталога, — в выводе сверки выше («Без имени из каталога»).')
     print('  Дальше: git diff для просмотра, затем npm run publish (план) и публикация с --apply.\n')
 
 
