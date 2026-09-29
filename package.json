@@ -10,6 +10,7 @@
     "build": "astro build",
     "check": "python scripts/morning-check.py",
     "publish": "python scripts/publish.py",
+    "price": ".venv\\Scripts\\python.exe scripts/update-price.py",
     "preview": "astro preview",
     "astro": "astro"
   },
