@@ -13,6 +13,7 @@ import PriceChecklist from '../components/PriceChecklist.astro';
 import { currentPrice } from '../data/prices';
 import { MIN_ORDER_TOTAL } from '../lib/order-rules';
 import priceItems from '../data/priceItems.json';
+import goneItems from '../data/gone-items.json';
 
 const articles = (await getCollection('articles')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
@@ -76,7 +77,7 @@ const organizationLd = {
       <OrderForm framed />
     </div>
 
-    <PriceChecklist items={priceItems} instanceId="checklist-current" heading="ZILMA" />
+    <PriceChecklist items={priceItems} goneItems={goneItems} instanceId="checklist-current" heading="ZILMA" />
     <PriceChecklist items={promoItems} instanceId="checklist-promo" heading="Акции" groupBy="discount" />
 
     {/* Витрина оттенков убрана 2026-09-05 по решению пользователя: стена из цветов без

@@ -32,10 +32,24 @@ interface Item {
   descId?: number;
   /* Скрытые слова для поиска (имя линейки, которого нет в названии). */
   keywords?: string;
+  /* Нет в наличии: был в прайсе за последние 90 дней, сейчас нет. Серая строка без цены
+     и без галочки. Приходит только через goneItems (src/data/gone-items.json). */
+  gone?: boolean;
+}
+
+/* Товар из src/data/gone-items.json — его пишет scripts/build-gone-items.py. */
+interface GoneItem {
+  brand: string | null;
+  name: string;
+  section?: string | null;
+  category?: string | null;
 }
 
 interface Props {
   items: Item[];
+  /* Товары «нет в наличии» — только для основного каталога (groupBy 'brand'). Отдельно от
+     items намеренно: items читают акции, лучшие скидки и счётчики категорий. */
+  goneItems?: GoneItem[];
   instanceId: string;
   heading: string;
   // 'discount' — верхний уровень группировки не бренд, а ступень скидки (15%/7%),
@@ -43,7 +57,7 @@ interface Props {
   groupBy?: 'brand' | 'discount';
 }
 
-const { items, instanceId, heading, groupBy = 'brand' } = Astro.props;
+const { items, goneItems = [], instanceId, heading, groupBy = 'brand' } = Astro.props;
 const dialogId = `${instanceId}-dialog`;
 
 // Кружок-образец цвета рядом с товаром в каталоге. Источник — те же файлы палитр, что питают
@@ -313,7 +327,13 @@ function alphaCompare(a: string, b: string): number {
 // Двухуровневая группировка: бренд (напр. WELLA) -> линейка внутри бренда (напр. EIMI) -> товары.
 // Пустой ключ '' — товары без линейки, показываются плоским списком прямо под брендом.
 const brandMap = new Map<string, Map<string, Item[]>>();
-for (const it of items) {
+// Серые строки «нет в наличии» (решение пользователя 30.09.2026) — только в группировке по
+// бренду. В items их нет, поэтому акции, лучшие скидки и счётчики категорий их не видят.
+const goneAsItems: Item[] = groupBy === 'brand'
+  ? goneItems.map((g, n) => ({ id: -1 - n, brand: g.brand, line: null, section: g.section ?? null,
+      name: g.name, price: 0, promo: false, category: g.category ?? undefined, gone: true }))
+  : [];
+for (const it of [...items, ...goneAsItems]) {
   const b = it.brand ?? 'Другое';
   const l = it.section ?? it.line ?? '';
   if (!brandMap.has(b)) brandMap.set(b, new Map());
@@ -342,8 +362,16 @@ function searchKey(it: Item): string {
   return (it.keywords ? `${it.name} ${it.keywords}` : it.name).toLowerCase();
 }
 
-const byName = (a: Item, b: Item) =>
-  (a.preorder ? 1 : 0) - (b.preorder ? 1 : 0) || alphaCompare(a.name, b.name);
+// Порядок внутри раздела: склад -> «под заказ» -> «нет в наличии».
+const rank = (it: Item) => (it.gone ? 2 : it.preorder ? 1 : 0);
+const byName = (a: Item, b: Item) => rank(a) - rank(b) || alphaCompare(a.name, b.name);
+
+// Счётчик папки — сколько можно заказать, серые не считаются. Папка, где всё ушло, так и
+// подписана, а не «0 товаров».
+function countLabel(list: Item[]): string {
+  const n = list.filter((it) => !it.gone).length;
+  return n > 0 ? `${n} ${pluralItems(n)}` : 'нет в наличии';
+}
 
 const brandEntries = [...brandMap.entries()]
   .sort((a, b) => alphaCompare(a[0], b[0]))
@@ -353,8 +381,9 @@ const brandEntries = [...brandMap.entries()]
       .filter(([l]) => l !== '')
       .sort((a, b) => alphaCompare(a[0], b[0]))
       .map(([line, list]) => [line, [...list].sort(byName)] as [string, Item[]]);
-    const total = [...lineMap.values()].reduce((s, arr) => s + arr.length, 0);
-    return { brand, total, flat, lineEntries };
+    const total = [...lineMap.values()].reduce((s, arr) => s + arr.filter((it) => !it.gone).length, 0);
+    const all = [...lineMap.values()].flat();
+    return { brand, total, all, flat, lineEntries };
   });
 
 function pluralItems(n: number): string {
@@ -596,11 +625,11 @@ const bestDeals = groupBy === 'discount'
         <p class="pc-all-title">Все бренды</p>
       </div>
     )}
-    {groupBy === 'brand' && brandEntries.map(({ brand, total, flat, lineEntries }) => {
+    {groupBy === 'brand' && brandEntries.map(({ brand, all, flat, lineEntries }) => {
       // Гид на самом бренде — только по товарам БЕЗ линейки: если у бренда есть линейки,
       // плашка должна стоять на конкретной линейке, а не на всём бренде (иначе у Wella
       // «Гид: Koleston Perfect» висел бы и над стайлингом EIMI).
-      const brandGuides = guidesFor(flat, brand, '');
+      const brandGuides = guidesFor(flat.filter((it) => !it.gone), brand, '');
       return (
       <details class="pc-group pc-group-brand" data-brand={brand} data-has-lines={lineEntries.length > 0 ? '1' : '0'}>
         <summary>
@@ -613,7 +642,7 @@ const bestDeals = groupBy === 'discount'
                   </span>
                 )}</span>
           <span class="pc-row-actions">
-            <span class="pc-group-count">{total} {pluralItems(total)}</span>
+            <span class="pc-group-count">{countLabel(all)}</span>
             <button type="button" class="pc-row-search-btn" data-focus-search aria-label={`Искать в ${brand}`}>
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
             </button>
@@ -623,6 +652,11 @@ const bestDeals = groupBy === 'discount'
           {flat.length > 0 && (
             <ul>
               {flat.map((it) => {
+                if (it.gone) return (
+                  <li class="pc-item pc-gone" data-name={searchKey(it)} data-brand={brand.toLowerCase()} data-line="" data-category={categorize(it) ?? ''}>
+                    <span class="pc-item-name">{it.name}<span class="pc-item-meta"><span class="gone-tag">нет в наличии</span></span></span>
+                  </li>
+                );
                 const sw = swatchFor(it);
                 const ph = sw ? undefined : photoFor(it);
                 return (
@@ -662,7 +696,7 @@ const bestDeals = groupBy === 'discount'
             </ul>
           )}
           {lineEntries.map(([line, list]) => {
-            const lineGuides = guidesFor(list, brand, line);
+            const lineGuides = guidesFor(list.filter((it) => !it.gone), brand, line);
             return (
             <details class="pc-group pc-group-line">
               <summary>
@@ -675,7 +709,7 @@ const bestDeals = groupBy === 'discount'
                   </span>
                 )}</span>
                 <span class="pc-row-actions">
-                  <span class="pc-group-count">{list.length} {pluralItems(list.length)}</span>
+                  <span class="pc-group-count">{countLabel(list)}</span>
                   <button type="button" class="pc-row-search-btn" data-focus-search aria-label={`Искать в ${line}`}>
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
                   </button>
@@ -683,6 +717,11 @@ const bestDeals = groupBy === 'discount'
               </summary>
               <ul>
                 {list.map((it) => {
+                  if (it.gone) return (
+                    <li class="pc-item pc-gone" data-name={searchKey(it)} data-brand={brand.toLowerCase()} data-line={line.toLowerCase()} data-category={categorize(it) ?? ''}>
+                      <span class="pc-item-name">{it.name}<span class="pc-item-meta"><span class="gone-tag">нет в наличии</span></span></span>
+                    </li>
+                  );
                   const sw = swatchFor(it);
                 const ph = sw ? undefined : photoFor(it);
                   return (
@@ -2071,6 +2110,23 @@ const bestDeals = groupBy === 'discount'
     margin-top: 3px;
   }
 
+  /* «Нет в наличии» (30.09.2026): товар был в прайсе за 90 дней, сейчас нет. Строка
+     приглушена, без цены и галочки. Пометка — контуром, а не заливкой: залитая серая
+     пилюля уже занята «под заказ», и два одинаковых серых значка путались бы. */
+  .pc-gone .pc-item-name {
+    color: var(--color-meta);
+  }
+  .gone-tag {
+    display: inline-flex;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-meta);
+    border: 1px solid var(--color-card-line);
+    border-radius: 20px;
+    padding: 0 7px;
+    white-space: nowrap;
+  }
+
   .pc-promo .pc-item-name {
     color: var(--color-red);
   }
@@ -3394,7 +3450,9 @@ const bestDeals = groupBy === 'discount'
           groupItems.forEach((li) => {
             const match = li.dataset.category === cat;
             li.hidden = !match;
-            if (match) {
+            // Серые «нет в наличии» видны, но папку не открывают и в счётчик не идут —
+            // так же, как в «По бренду» (countLabel в разметке выше).
+            if (match && !li.classList.contains('pc-gone')) {
               anyVisible = true;
               matchCount += 1;
             }
