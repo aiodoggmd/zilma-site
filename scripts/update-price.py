@@ -23,8 +23,7 @@
   4. Данные сайта.
   5. Привязка оттенков палитр.
   6. LEBEL «под заказ» — предпросмотр, проверка, запись; затем снова 4 и 5.
-  7. Датированная копия прайса и дата в src/data/prices.ts; затем «нет в наличии» —
-     build-gone-items.py (серые строки каталога, окно 90 дней от даты прайса).
+  7. Датированная копия прайса и дата в src/data/prices.ts.
   8. Сверка и снимок «стало»: сравнение с «было», стоп на аномалии.
 
 Публикации здесь нет — она остаётся отдельным шагом с подтверждением (npm run publish).
@@ -167,12 +166,7 @@ def snapshot(verify_out: str) -> dict:
     names = [i['name'] for i in items]
     stock_lebel = {article(i['name']) for i in stock if i['brand'].upper() == 'LEBEL'}
     palettes = re.findall(r'(\d+)/(\d+) с ценой останутся доступны', verify_out)
-    gone_path = DATA / 'gone-items.json'
-    gone = json.loads(gone_path.read_text(encoding='utf-8')) if gone_path.exists() else []
-    live_keys = {(i['brand'].upper(), article(i['name'])) for i in items}
     return {
-        'нет в наличии (серые)': len(gone),
-        'серых, совпавших с живыми': sum(1 for g in gone if ((g['brand'] or '').upper(), article(g['name'])) in live_keys),
         'всего позиций': len(items),
         'складских': len(stock),
         'под заказ': len(pre),
@@ -247,8 +241,6 @@ def compare(before: dict, after: dict, gone: int, uncat_before: set[str]) -> lis
                         'спросить Олега), затем прогнать scripts/xlsx-to-price-items.py и '
                         'scripts/verify-price-sync.py. Новые без категории:\n      '
                         + '\n      '.join(x for x in uncategorized() if x not in uncat_before))
-    if after['серых, совпавших с живыми']:
-        problems.append(f'{after["серых, совпавших с живыми"]} товаров одновременно в наличии и «нет в наличии»')
     if after['дублей имени']:
         problems.append(f'дублей имени: {after["дублей имени"]}')
     if after['LEBEL и на складе, и под заказ']:
@@ -324,8 +316,6 @@ def main() -> None:
     run('6/8 Данные сайта — повтор после LEBEL', ['scripts/xlsx-to-price-items.py'])
     run('6/8 Привязка палитр — повтор', ['scripts/link-palette-shades.py', '--apply'])
     write_dated_copy(key)
-    # После даты в prices.ts: по ней считается окно «90 дней».
-    run('7/8 Нет в наличии', ['scripts/build-gone-items.py'])
     after = snapshot(run('8/8 Сверка', ['scripts/verify-price-sync.py']))
     warnings = compare(before, after, gone, uncat_before)
 

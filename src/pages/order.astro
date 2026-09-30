@@ -8,7 +8,6 @@ import PriceChecklist from '../components/PriceChecklist.astro';
 import OrderForm from '../components/OrderForm.astro';
 import { currentPrice } from '../data/prices';
 import priceItems from '../data/priceItems.json';
-import goneItems from '../data/gone-items.json';
 ---
 <BaseLayout
   title="Заказать по актуальному прайсу — Zilma"
@@ -30,7 +29,7 @@ import goneItems from '../data/gone-items.json';
       file={currentPrice.file}
       date={currentPrice.date}
     />
-    <PriceChecklist items={priceItems} goneItems={goneItems} instanceId="checklist-current" heading="ZILMA" />
+    <PriceChecklist items={priceItems} instanceId="checklist-current" heading="ZILMA" />
     {/* Второго окна («Акции») здесь СОЗНАТЕЛЬНО НЕТ. Я его добавил 2026-09-05, чтобы
         оживить кнопку «Акции», и тут же откатил: страница выросла с ~1.3 МБ до 2.5 МБ,
         и на реальном телефоне пользователь застал её недочитанной — форма уже видна,
