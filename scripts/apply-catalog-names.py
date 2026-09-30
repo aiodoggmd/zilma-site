@@ -108,6 +108,21 @@ def base_article(token: str) -> str:
     return m.group(1) if m else token
 
 
+def compound_clash(price_name: str, cat_name: str) -> bool:
+    """Оба артикула составные и разные — это РАЗНЫЕ товары, не переименование.
+
+    base_article сводит «601-066» и «601-068» к общему «601», и новое полотенце
+    COTTO 45x90 (601-068) забирало имя полотенца 35x70 (601-066) — дубль имени
+    в прайсе (поймано 30.09.2026). Первая часть решает, только когда составной
+    номер лишь на одной стороне («4959-1422» в каталоге против «4959» из 1С).
+    """
+    def full(n):
+        return {a for a in article_candidates(n)
+                if re.fullmatch(r'\d{3,10}[-/]\d{3,10}', a)}
+    fp, fc = full(price_name), full(cat_name)
+    return bool(fp and fc and not fp & fc)
+
+
 def brand_variants(b: str):
     """Бренд плюс его псевдонимы — в обе стороны."""
     b = (b or '').upper()
@@ -232,7 +247,8 @@ def resolve_names(catalog, price_rows):
         if not hits:
             for b in brand_variants(p['brand']):
                 for a in article_candidates(p['name']):
-                    hits = by_article.get((b, a), [])
+                    hits = [h for h in by_article.get((b, a), [])
+                            if not compound_clash(p['name'], h['name'])]
                     if hits:
                         break
                 if hits:
@@ -247,7 +263,8 @@ def resolve_names(catalog, price_rows):
             # «Краска колестон 0/30 … 0-30» (WELLA) — два товара с одним именем,
             # а журналы привязаны к имени (поймано 14.09.2026).
             for a in article_candidates(p['name']):
-                cand = by_any.get(a, [])
+                cand = [h for h in by_any.get(a, [])
+                        if not compound_clash(p['name'], h['name'])]
                 if len(cand) == 1:
                     hits = cand
                     break
@@ -299,7 +316,8 @@ def main() -> None:
         if not hits:
             for b in brand_variants(p['brand']):
                 for a in article_candidates(p['name']):
-                    hits = by_article.get((b, a), [])
+                    hits = [h for h in by_article.get((b, a), [])
+                            if not compound_clash(p['name'], h['name'])]
                     if hits:
                         break
                 if hits:
@@ -310,7 +328,8 @@ def main() -> None:
             # (КОРЕЯ против WELLA у филлера). Если артикул уникален на весь
             # каталог, бренд для опознания не нужен.
             for a in article_candidates(p['name']):
-                cand = by_article_any_brand.get(a, [])
+                cand = [h for h in by_article_any_brand.get(a, [])
+                        if not compound_clash(p['name'], h['name'])]
                 if len(cand) == 1:
                     hits = cand
                     how = 'по артикулу (бренд не совпал)'

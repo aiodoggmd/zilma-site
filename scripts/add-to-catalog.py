@@ -103,6 +103,12 @@ for b, nm in todo:
                 if v.startswith(pref) and brand_at[i] == b and v not in BRANDS:
                     key = (b, sec_at[i]); break
             if key: break
+    if not key:
+        # Родни нет, но у бренда всего один раздел — выбирать не из чего
+        # (простыни 02-892 у ОДНОРАЗОВАЯ ПРОДУКЦИЯ, 30.09.2026).
+        own = [k for k in sec_start if k[0] == b]
+        if len(own) == 1:
+            key = own[0]
     if not key: unplaced.append((b, nm)); continue
     add_to.setdefault(key, []).append(tidy(nm))
 
