@@ -3008,13 +3008,43 @@ const bestDeals = groupBy === 'discount'
       return n;
     }
 
+    // Подсказка обязана считать код ТАК ЖЕ, как сам поиск — вместе с роднёй (88/03 -> 8/03).
+    // Раньше считала код как введён и на «колор тач 88/03» молчала «Ничего не найдено», хотя
+    // поиск по одному «88/03» находил Колестон 8/03 (живой случай клиентки, 30.09.2026).
+    function countByCode(index: Map<HTMLLIElement, { name: string; brand: string; line: string }>,
+                         code: string): number {
+      const terms = [...new Set([code, ...shadeCodeVariants(code)].flatMap((t) => [t, ...shadeFamily(t)]))];
+      let n = 0;
+      index.forEach((entry) => {
+        if (terms.some((term) => fieldMatches(entry.name, term) || fieldMatches(entry.brand, term)
+          || fieldMatches(entry.line, term))) n += 1;
+      });
+      return n;
+    }
+
+    // Замер «поиск ничего не нашёл» (решение пользователя 30.09.2026): что клиенты ищут и не
+    // находят — чтобы понять, чего нет в наличии, а что есть, но называется иначе. Шлём ОДИН
+    // раз на запрос и только когда человек перестал печатать (1,5 с), иначе «к», «ко», «кол»…
+    // засыпали бы отчёт обрывками слов. Отправку в Метрику делает YandexMetrika.astro.
+    let emptyReportTimer = 0;
+    const reportedEmpty = new Set<string>();
+    function reportEmptySearch(query: string | null): void {
+      window.clearTimeout(emptyReportTimer);
+      const q = (query ?? '').trim().toLowerCase();
+      if (q.length < 2 || reportedEmpty.has(q)) return;
+      emptyReportTimer = window.setTimeout(() => {
+        reportedEmpty.add(q);
+        document.dispatchEvent(new CustomEvent('zilma:search-empty', { detail: { query: q } }));
+      }, 1500);
+    }
+
     function updateNoResultsText(
       toks: string[],
       index: Map<HTMLLIElement, { name: string; brand: string; line: string }>,
     ): void {
       if (!noResults) return;
       const code = toks.length > 1 ? shadeCodeToken(toks) : null;
-      const found = code ? countByTerm(index, code) : 0;
+      const found = code ? countByCode(index, code) : 0;
       noResults.textContent = found > 0
         ? `По этому запросу ничего нет. Но по одному коду ${code} в прайсе `
           + `${found} ${plural(found, 'товар', 'товара', 'товаров')} — попробуйте поискать только код.`
@@ -3694,6 +3724,7 @@ const bestDeals = groupBy === 'discount'
         const empty = !anyVisibleTotal && items.length > 0;
         if (empty) updateNoResultsText(tokens, searchIndex);
         noResults.hidden = !empty;
+        reportEmptySearch(empty && tokens.length > 0 ? search?.value ?? null : null);
       }
       // Заголовок/подсказка поиска при множественных совпадениях - см. фикс в toggle-слушателе
       // бренда выше (там же и разбор бага): каждый toggle сам умеет пересчитать, сколько брендов
