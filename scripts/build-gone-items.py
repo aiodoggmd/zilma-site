@@ -105,6 +105,37 @@ def catalog_names() -> dict:
     return out
 
 
+NO_SECTION_FOLDER = 'Нет в наличии'
+
+
+def place(gone: list, items: list) -> None:
+    """Раздел для серого товара без раздела. Без этого 85 серых легли россыпью над папками
+    бренда (замечание пользователя 30.09.2026: «позиции вне папки»).
+    1) По родне: живые товары того же бренда с тем же началом имени (3, затем 2 слова) —
+       если у всей родни один раздел, берём его. Тот же приём, что в add-to-catalog.py.
+    2) Родни нет, а у бренда есть разделы — в отдельную папку «Нет в наличии» в конце бренда.
+       У брендов совсем без разделов (CONCEPT, CAREPROST) серые остаются общим списком,
+       как и их живые товары."""
+    by_brand: dict = {}
+    for i in items:
+        by_brand.setdefault((i.get('brand') or '').upper(), []).append(i)
+    for g in gone:
+        if g['section']:
+            continue
+        live = by_brand.get((g['brand'] or '').upper(), [])
+        words = g['name'].lower().split()
+        for k in (3, 2):
+            if len(words) <= k:
+                continue
+            prefix = ' '.join(words[:k])
+            kin = {i.get('section') for i in live if i['name'].lower().startswith(prefix)}
+            if len(kin) == 1 and None not in kin:
+                g['section'] = kin.pop()
+                break
+        if not g['section'] and any(i.get('section') for i in live):
+            g['section'] = NO_SECTION_FOLDER
+
+
 def main() -> None:
     items = json.loads(ITEMS.read_text(encoding='utf-8'))
     if not items:
@@ -135,6 +166,7 @@ def main() -> None:
         name, section = cat.get(k, (e['name'], e.get('section')))
         gone.append({'brand': e['brand'], 'name': name, 'section': section or e.get('section'),
                      'category': e.get('category'), 'lastSeen': e['lastSeen']})
+    place(gone, items)
     gone.sort(key=lambda g: ((g['brand'] or ''), g['name'].lower()))
 
     # Проверка ДО записи: серый товар не должен совпасть с живым по имени (имя могло прийти

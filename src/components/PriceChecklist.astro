@@ -362,6 +362,9 @@ function searchKey(it: Item): string {
   return (it.keywords ? `${it.name} ${it.keywords}` : it.name).toLowerCase();
 }
 
+// Имя папки для серых, которым не нашёлся раздел — то же, что NO_SECTION_FOLDER в build-gone-items.py.
+const GONE_FOLDER = 'Нет в наличии';
+
 // Порядок внутри раздела: склад -> «под заказ» -> «нет в наличии».
 const rank = (it: Item) => (it.gone ? 2 : it.preorder ? 1 : 0);
 const byName = (a: Item, b: Item) => rank(a) - rank(b) || alphaCompare(a.name, b.name);
@@ -379,7 +382,8 @@ const brandEntries = [...brandMap.entries()]
     const flat = [...(lineMap.get('') ?? [])].sort(byName);
     const lineEntries = [...lineMap.entries()]
       .filter(([l]) => l !== '')
-      .sort((a, b) => alphaCompare(a[0], b[0]))
+      // Папка «Нет в наличии» (серые без раздела, см. build-gone-items.py) — всегда последней.
+      .sort((a, b) => (a[0] === GONE_FOLDER ? 1 : 0) - (b[0] === GONE_FOLDER ? 1 : 0) || alphaCompare(a[0], b[0]))
       .map(([line, list]) => [line, [...list].sort(byName)] as [string, Item[]]);
     const total = [...lineMap.values()].reduce((s, arr) => s + arr.filter((it) => !it.gone).length, 0);
     const all = [...lineMap.values()].flat();
