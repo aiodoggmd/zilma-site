@@ -21,18 +21,6 @@ verifiedDate: 2026-10-01
 
 **Ограничение смешивания.** Получить можно только процент между двумя имеющимися: ниже самого слабого и выше самого сильного оксида смешиванием не выйти. Поэтому слабый оксид 1,5–1,9% для тонирования нужно держать отдельно — его не получить ни из каких других. Надёжнее смешивать оксиды одной марки: у разных марок разные кислотность и густота эмульсии.
 
-## Что даёт каждый процент
-
-| Оксид | Задача |
-|---|---|
-| 1,5–1,9% | Пастельное тонирование, блеск, окрашивание тон в тон и темнее без осветления |
-| 3–4% | Окрашивание тон в тон и темнее, интенсивное тонирование |
-| 6% | Закрашивание седины, осветление примерно на 1 уровень |
-| 9% | Осветление на 2–3 уровня |
-| 12% | Осветление на 3–4 уровня; со специальными блондами — сильнее |
-
-<div class="callout"><b>Таблица — ориентир.</b> Один и тот же процент у разных красителей осветляет по-разному, потому что различается пропорция смешивания с краской: у одних марок 1 : 1, у других 1 : 1,5 или 1 : 2. Например, 9% с Koleston Perfect (1 : 1) осветляет на 2 уровня, а с перманентным красителем Londa (1 : 2) работает тон в тон или осветляет на 1 уровень. Точный результат — в инструкции конкретного красителя.</div>
-
 ## Таблица смешивания оксидов
 
 Везде сначала указан слабый оксид, затем сильный — и в пропорции, и в граммах. Количество — на 60 г готового оксида.
@@ -71,6 +59,18 @@ verifiedDate: 2026-10-01
 **Удобный набор — три флакона: слабый, 6% и 12%.** 6% — самый востребованный процент: закрашивание седины и стандартное окрашивание. Держать его готовым удобнее, чем смешивать перед каждой процедурой. Из 6% и 12% поровну получается 9%, из слабого и 6% — 3–4%.
 
 Слабый оксид обязателен в любом наборе: получить его из более сильных оксидов нельзя.
+
+## Что даёт каждый процент
+
+| Оксид | Задача |
+|---|---|
+| 1,5–1,9% | Пастельное тонирование, блеск, тон в тон и темнее |
+| 3–4% | Окрашивание тон в тон и темнее, интенсивное тонирование |
+| 6% | Закрашивание седины, осветление примерно на 1 уровень |
+| 9% | Осветление на 2–3 уровня |
+| 12% | Осветление на 3–4 уровня; со специальными блондами — сильнее |
+
+<div class="callout"><b>Таблица — ориентир.</b> Один и тот же процент у разных красителей осветляет по-разному, потому что различается пропорция смешивания с краской: у одних марок 1 : 1, у других 1 : 1,5 или 1 : 2. Например, 9% с Koleston Perfect (1 : 1) осветляет на 2 уровня, а с перманентным красителем Londa (1 : 2) работает тон в тон или осветляет на 1 уровень. Точный результат — в инструкции конкретного красителя.</div>
 
 ## Как сделать тон краски мягче и прозрачнее
 
@@ -122,6 +122,38 @@ verifiedDate: 2026-10-01
 <tr><td>Окислитель Welloxon Perfect 9%, 1000 мл</td><td>6498</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">898,72 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 9% 1000мл 6498/6484" data-price="898.72" data-brand="WELLA">+ В заявку</button></td></tr>
 <tr><td>Окислитель Welloxon Perfect 12%, 1000 мл</td><td>6499</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">898,72 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 12% 1000мл 6499/6488" data-price="898.72" data-brand="WELLA">+ В заявку</button></td></tr>
 <tr><td>Окислитель Welloxon Perfect 12%, 60 мл</td><td>6494</td><td class="col-price-cell"><s class="kit-old-price">194 ₽</s><b class="kit-price-now">184,30 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 12% 60мл 6494/50931" data-price="184.3" data-brand="WELLA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+### Wella Professionals — эмульсии Color Touch
+
+Для безаммиачной краски Color Touch.
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Эмульсия Color Touch 1,9%, 1000 мл</td><td>6021</td><td class="col-price-cell">998,58 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Color Touch 1,9 % 1000мл 6021/6298" data-price="998.58" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Эмульсия Color Touch 4%, 1000 мл</td><td>6019</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">948,65 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Color Touch 4 % 1000мл 6019/6291" data-price="948.65" data-brand="WELLA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+### Schwarzkopf Professional
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Blond Me премиум-окислитель 2%, 1000 мл</td><td>2140315</td><td class="col-price-cell"><s class="kit-old-price">1 300 ₽</s><b class="kit-price-now">1 170 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Blond Me Премиум-окислитель 2% 1000мл 2140315" data-price="1170" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal оксигент на масляной основе 3%, 1000 мл</td><td>2184625</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">849,15 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 3% 1000мл 2184625" data-price="849.15" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal оксигент на масляной основе 6%, 1000 мл</td><td>2184628</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">849,15 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 6% 1000мл 2184628" data-price="849.15" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal оксигент на масляной основе 9%, 1000 мл</td><td>1847105</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">849,15 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 9% 1000мл 1847105" data-price="849.15" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal оксигент на масляной основе 9%, 60 мл</td><td>945738</td><td class="col-price-cell">222 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 9% 60мл 945738" data-price="222" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal оксигент на масляной основе 12%, 1000 мл</td><td>2184627</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">899,10 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 12% 1000мл 2184627" data-price="899.1" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>
