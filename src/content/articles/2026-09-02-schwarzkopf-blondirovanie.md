@@ -19,6 +19,8 @@ Schwarzkopf предлагает две линейки осветляющих п
   <li><span class="check-icon">✓</span>Нейтрализация нежелательной желтизны</li>
 </ul>
 
+Как выполняют мелирование, балаяж, шатуш, аиртач и другие техники и какой порошок подходит для открытого нанесения — в статье [«Техники окрашивания волос»](/articles/2026-10-05-coloring-techniques/).
+
 ## Igora Vario Blond («Супра»)
 
 ![Осветляющие пудры Schwarzkopf в актуальной упаковке](/images/articles/2026-09-02-schwarzkopf-blondirovanie/vario-blond-pair.webp)
