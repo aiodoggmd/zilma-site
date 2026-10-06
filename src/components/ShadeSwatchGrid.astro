@@ -1,4 +1,5 @@
 ---
+import priceItems from '../data/priceItems.json';
 // Общий компонент для кликабельной палитры оттенков (пилот начат 2026-08-27 на Illumina,
 // продолжен на Shinefinity — тот же приём: цвета сняты программно с официальной картинки
 // палитры, коды сматчены с priceItems.json по регэкспу на имя товара, см. Site/CLAUDE.md).
@@ -60,6 +61,12 @@ const {
   showPaletteNote = true,
 } = Astro.props;
 
+// Бренд в заявку — по самому товару из прайса, а не по статье: палитра Londa предлагает
+// замену из Color Touch / Koleston, и с cartBrand статьи она уходила в заявку под LONDA
+// (заказ 06.10.2026). cartBrand остаётся запасным, если имени нет в прайсе.
+const brandByName = new Map((priceItems as { name: string; brand: string }[]).map((it) => [it.name, it.brand]));
+const brandOf = (name?: string) => (name ? brandByName.get(name) ?? '' : '');
+
 const groups = groupOrder.map((g) => ({
   key: g,
   label: groupLabels[g] ?? g,
@@ -113,6 +120,7 @@ function textVarsFor(hex: string): string {
             data-hex={s.hex}
             data-image={s.image ?? ''}
             data-name={s.name ?? ''}
+            data-brand={brandOf(s.name)}
             data-price={s.price ?? ''}
             data-promo={s.promo ? '1' : ''}
             data-old-price={s.oldPrice ?? ''}
@@ -124,6 +132,7 @@ function textVarsFor(hex: string): string {
             data-sub-price={s.price == null ? substitutes[s.code]?.[0]?.price ?? '' : ''}
             data-sub-promo={s.price == null && substitutes[s.code]?.[0]?.promo ? '1' : ''}
             data-sub-note={s.price == null ? substitutes[s.code]?.[0]?.note ?? '' : ''}
+            data-sub-brand={s.price == null ? brandOf(substitutes[s.code]?.[0]?.name) : ''}
             data-sub-code={s.price == null ? substitutes[s.code]?.[0]?.code ?? '' : ''}
             data-sub-same={s.price == null && substitutes[s.code]?.[0]?.sameType ? '1' : ''}
             data-label={s.label ?? ''}
@@ -174,13 +183,13 @@ function textVarsFor(hex: string): string {
     return items.filter((it) => it.name === name).reduce((s, it) => s + it.qty, 0);
   }
 
-  function addToCart(wrap: HTMLElement, name: string, price: number, promo: boolean) {
+  function addToCart(wrap: HTMLElement, name: string, price: number, promo: boolean, itemBrand?: string) {
     const items: CartItem[] = (window as any).zilmaCart?.get() ?? [];
     const existing = items.find((it) => it.name === name);
     if (existing) {
       existing.qty += 1;
     } else {
-      const brand = wrap.getAttribute('data-cart-brand') || 'WELLA';
+      const brand = itemBrand || wrap.getAttribute('data-cart-brand') || 'WELLA';
       items.push({ name, price, qty: 1, brand, promo });
     }
     (window as any).zilmaCart?.set(items);
@@ -320,7 +329,8 @@ function textVarsFor(hex: string): string {
       const price = parseFloat((useSub ? activeBtn?.dataset.subPrice : activeBtn?.dataset.price) ?? '');
       const promo = (useSub ? activeBtn?.dataset.subPromo : activeBtn?.dataset.promo) === '1';
       if (!name || !Number.isFinite(price)) return;
-      addToCart(wrap, name, price, promo);
+      const itemBrand = useSub ? activeBtn?.dataset.subBrand : activeBtn?.dataset.brand;
+      addToCart(wrap, name, price, promo, itemBrand);
       refreshCtaLabel();
     });
 
