@@ -268,6 +268,16 @@ def check_uncatalogued():
     known_brands = {c["brand"].upper() for c in catalog}
     _, _, price_rows = acn.read_price_rows(known_brands)
     _, _, missing = acn.resolve_names(catalog, price_rows)
+    # LEBEL в каталог не вписываем (решение 22.09.2026): имя ему даёт бланк LebeL
+    # (apply_lebel_names). 06.10.2026 пометка «без имени из каталога» была прочитана
+    # как «имя из 1С» — поэтому LEBEL печатается отдельно, с тем, что на самом деле.
+    lebel = [p for p in missing if "LEBEL" in p["brand"].upper()]
+    missing = [p for p in missing if p not in lebel]
+    if lebel:
+        print(f"LEBEL без каталога ({len(lebel)}) — имя из бланка LebeL, вписывать не нужно:")
+        for p in sorted(lebel, key=lambda x: x["name"]):
+            print(f"    {p['name']}")
+        print()
     if missing:
         print(f"Без имени из каталога ({len(missing)}) — см. Price/catalog-new-items.md:")
         for p in sorted(missing, key=lambda x: (x["brand"], x["name"])):
