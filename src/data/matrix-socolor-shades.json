@@ -1341,7 +1341,9 @@
   "group": "ultra",
   "row": 0,
   "col": 3,
-  "image": "/images/shades/matrix-socolor/ul-n.webp"
+  "image": "/images/shades/matrix-socolor/ul-n.webp",
+  "name": "Socolor UL-N нейтральный UL-N",
+  "price": 610
  },
  {
   "code": "UL-N+",
