@@ -2,10 +2,12 @@
 // Геометрия и цвета — из схем мульт-урока (мультики/episodes/vs-01…/schemes.py). Рисунок — схема, не фото.
 // В markdown статьи: <div class="hair-compare" data-left="hl" data-right="bl"></div>
 // Техники: hl — мелирование, bl — бейбилайтс, tz — тизилайт, fo — фойляж, ll — лоулайтс;
-// открытые и растяжки (вторая часть, 12.10.2026): ba — балаяж, sh — шатуш, at — аиртач, om — омбре, so — сомбре.
+// открытые и растяжки (вторая часть, 12.10.2026): ba — балаяж, sh — шатуш, at — аиртач, om — омбре, so — сомбре;
+// сочетания (третья часть): hlll — мелирование + лоулайтс, babl — балаяж + бейбилайтс, focm — фойляж + колор-мелт,
+// zone — мелирование сверху и балаяж снизу. data-grow="0" — без ползунка отрастания.
 
 type RGB = [number, number, number];
-type State = 'hl' | 'bl' | 'tz' | 'fo' | 'll' | 'ba' | 'sh' | 'at' | 'om' | 'so';
+type State = 'hl' | 'bl' | 'tz' | 'fo' | 'll' | 'ba' | 'sh' | 'at' | 'om' | 'so' | 'hlll' | 'babl' | 'focm' | 'zone';
 
 const DARK: RGB = [64, 41, 28];
 const BLONDE: RGB = [236, 219, 184];
@@ -60,6 +62,13 @@ const AT0 = arr(() => 0.06 + R() * 0.08);
 const OM0 = arr(() => 0.44 + R() * 0.05);             // омбре: заметный переход на середине длины
 const SO0 = arr(() => 0.08 + R() * 0.12);             // сомбре: переход почти от корня, хаотичные тонкие мазки
 const SOK = arr(() => 0.55 + R() * 0.45);
+const LLD = groups(3, 5, 3, 6, false).map((v, i) => (HL[i] ? 0 : v));   // лоулайтс между светлыми прядями
+const DEEP: RGB = [22, 13, 9];                       // на 2–3 тона темнее основного цвета
+const MELT: RGB[] = [[96, 64, 42], [150, 108, 72]];   // колор-мелт: промежуточный и самый светлый оттенок
+// «Верх» головы на схеме со спины — пряди, которые начинаются у макушки (середина дуги).
+const crown = (i: number) => i > NS * 0.3 && i < NS * 0.7;
+// Бейбилайтс на макушке: к краю зоны прядей всё меньше, чтобы не было резкого «столба».
+const crownBL = (i: number) => BL[i] && ((i * 37) % 100) / 100 < 1 - Math.abs(i / NS - 0.5) / 0.2;
 
 function strandPts(u: number, n: number) {
   const c = 2 * (u - 0.5), a = Math.PI * (1 - u);
@@ -97,11 +106,26 @@ function color(i: number, s: number, state: State, g: number): RGB {   // g — 
     case 'at': return AT[i] && ATK[i] ? mix(base, BLONDE, ease((s - g - AT0[i]) / 0.5) * 0.95) : base;
     case 'om': return mix(base, BLONDE, ease((s - g - OM0[i]) / 0.14) * 0.9);
     case 'so': return mix(base, SOFT, ease((s - g - SO0[i]) / 0.4) * SOK[i]);
+    case 'hlll':
+      if (HL[i]) return color(i, s, 'hl', g);
+      return LLD[i] && s > g + 0.03 ? mix(base, DEEP, 0.95) : base;
+    case 'babl': {
+      const a = color(i, s, 'ba', g);
+      if (!crownBL(i)) return a;
+      const b = color(i, s, 'bl', g);
+      return a[0] + a[1] + a[2] >= b[0] + b[1] + b[2] ? a : b;
+    }
+    case 'focm': {
+      const k = ease((s - 0.12) / 0.5), melt = k < 0.5 ? mix(base, MELT[0], k * 2) : mix(MELT[0], MELT[1], k * 2 - 1);
+      return FO[i] ? mix(melt, BLONDE, ease((s - 0.18) / 0.55) * 0.95) : melt;
+    }
+    case 'zone': return color(i, s, crown(i) ? 'hl' : 'ba', g);
   }
 }
 
 const NAMES: Record<State, string> = { hl: 'Мелирование', bl: 'Бейбилайтс', tz: 'Тизилайт', fo: 'Фойляж', ll: 'Лоулайтс',
-  ba: 'Балаяж', sh: 'Шатуш', at: 'Аиртач', om: 'Омбре', so: 'Сомбре' };
+  ba: 'Балаяж', sh: 'Шатуш', at: 'Аиртач', om: 'Омбре', so: 'Сомбре',
+  hlll: 'Мелирование + лоулайтс', babl: 'Балаяж + бейбилайтс', focm: 'Фойляж + колор-мелт', zone: 'Мелирование и балаяж по зонам' };
 const CAPS: Record<State, [string, string]> = {
   hl: ['чёткие светлые ленты от корня', 'резкая граница отросшего корня'],
   bl: ['сверхтонкие пряди, мягкое сияние', 'разница цвета едва заметна'],
@@ -113,6 +137,10 @@ const CAPS: Record<State, [string, string]> = {
   at: ['плавный переход к светлым концам', 'отрастание почти незаметно'],
   om: ['заметный переход на середине длины', 'корень свой — переход ушёл ниже'],
   so: ['мягкий переход почти от корня', 'граница размыта, корень свой'],
+  hlll: ['светлые и тёмные пряди вместе — объём цвета', 'у светлых прядей граница корня заметна'],
+  babl: ['балаяж по длине, бейбилайтс на макушке', 'корень отрастает без чёткой границы'],
+  focm: ['кончики осветлены, переход к корню сглажен', 'кончики осветлены, переход к корню сглажен'],
+  zone: ['сверху мелирование, снизу балаяж', 'сверху граница заметна, снизу — нет'],
 };
 
 function draw(cv: HTMLCanvasElement, state: State, months: number) {
@@ -130,7 +158,7 @@ function draw(cv: HTMLCanvasElement, state: State, months: number) {
   else ctx.rect(0.16 * S, 0.62 * S, 0.68 * S, 0.46 * S);
   ctx.fill();
   for (let i = 0; i < NS; i++) {
-    const thin = (state === 'bl' && BL[i]) || (state === 'tz' && TZ[i]);
+    const thin = (state === 'bl' && BL[i]) || (state === 'tz' && TZ[i]) || (state === 'babl' && crownBL(i));
     ctx.lineWidth = Math.max(1, (thin ? 0.004 : 0.0058) * S);
     const p = PTS[i];
     let prev = '';
@@ -154,18 +182,19 @@ const monthsLabel = (m: number) =>
 
 function build(box: HTMLElement, n: number) {
   const states = [box.dataset.left || 'hl', box.dataset.right || 'bl'] as State[];
+  const grow = box.dataset.grow !== '0';
   box.setAttribute('role', 'group');
-  box.setAttribute('aria-label', `Схема: ${NAMES[states[0]]} и ${NAMES[states[1]]} сразу после окрашивания и через 3 месяца`);
+  box.setAttribute('aria-label', `Схема: ${NAMES[states[0]]} и ${NAMES[states[1]]}` + (grow ? ' сразу после окрашивания и через 3 месяца' : ''));
   box.innerHTML = `<div class="hc-heads">${states.map((s) => `
       <figure class="hc-head"><canvas aria-hidden="true"></canvas>
         <figcaption><b>${NAMES[s]}</b><span data-cap="${s}"></span></figcaption></figure>`).join('')}
     </div>
-    <div class="hc-grow">
+    <div class="hc-grow"${grow ? '' : ' hidden'}>
       <button type="button" class="hc-play">▶ Показать отрастание</button>
       <input type="range" id="hc-range-${n}" min="0" max="3" step="0.01" value="0" aria-label="Сколько времени прошло, месяцев">
       <output for="hc-range-${n}"></output>
     </div>
-    <p class="hc-note">Схема, не фото: показан рисунок прядей и граница отросшего корня.</p>`;
+    <p class="hc-note">Схема, не фото: показан рисунок прядей${grow ? ' и граница отросшего корня' : ''}.</p>`;
   const canvases = [...box.querySelectorAll('canvas')];
   const input = box.querySelector('input') as HTMLInputElement;
   const out = box.querySelector('output') as HTMLOutputElement;
@@ -174,7 +203,7 @@ function build(box: HTMLElement, n: number) {
     const m = +input.value;
     out.textContent = monthsLabel(m);
     canvases.forEach((cv, i) => draw(cv, states[i], m));
-    caps.forEach((el) => { el.textContent = CAPS[el.dataset.cap as State][m > 1.5 ? 1 : 0]; });
+    caps.forEach((el) => { el.textContent = CAPS[el.dataset.cap as State][grow && m > 1.5 ? 1 : 0]; });
   };
   let raf = 0;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
