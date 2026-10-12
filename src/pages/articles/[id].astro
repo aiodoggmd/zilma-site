@@ -1844,6 +1844,84 @@ const articleLd = {
     color: var(--color-blue);
   }
 
+  /* сравнение техник на голове: две схемы и ползунок отрастания (src/lib/hair-compare.ts) */
+  .prose :global(.hair-compare) {
+    margin: 1.2em 0;
+    padding: 16px;
+    background: var(--color-cream);
+    border: 1px solid var(--color-card-line);
+    border-radius: 12px;
+    min-height: 200px;
+  }
+  .prose :global(.hc-heads) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .prose :global(.hc-head) {
+    margin: 0;
+    min-width: 0;
+    display: grid;
+    gap: 4px;
+    justify-items: center;
+    text-align: center;
+  }
+  .prose :global(.hc-head canvas) {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1;
+    display: block;
+  }
+  .prose :global(.hc-head figcaption) {
+    display: grid;
+    gap: 2px;
+    font-size: .9em;
+    line-height: 1.35;
+    color: var(--color-meta);
+  }
+  .prose :global(.hc-head figcaption b) {
+    color: var(--color-ink);
+    font-size: 1.05em;
+  }
+  .prose :global(.hc-grow) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin-top: 12px;
+  }
+  .prose :global(.hc-grow input) {
+    flex: 1 1 160px;
+    min-width: 0;
+    accent-color: var(--color-red);
+  }
+  .prose :global(.hc-grow output) {
+    font-weight: 700;
+    color: var(--color-red);
+    font-variant-numeric: tabular-nums;
+    min-width: 11em;
+  }
+  .prose :global(.hc-play) {
+    font: inherit;
+    font-size: .9em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--color-ink);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+  .prose :global(.hc-play:focus-visible),
+  .prose :global(.hc-grow input:focus-visible) {
+    outline: 2px solid var(--color-red);
+    outline-offset: 2px;
+  }
+  .prose :global(.hc-note) {
+    margin: 10px 0 0;
+    font-size: .85em;
+    color: var(--color-meta);
+  }
+
   /* вопрос-ответ (FAQ) */
   .prose :global(.faq-item) {
     background: var(--surface-card);
@@ -1938,6 +2016,12 @@ const articleLd = {
 
 <script>
   import { AMBIGUOUS, articleOf, buildArticleIndex } from '../../lib/article-key';
+
+  // Головы «сразу после ↔ через 3 мес.» (статья о техниках в фольге). Отдельный кусок скрипта —
+  // грузится только там, где в статье есть такой блок; остальные статьи его не скачивают.
+  if (document.querySelector('.hair-compare')) {
+    import('../../lib/hair-compare').then((m) => m.initHairCompare());
+  }
 
   // На мобильном pinch-zoom по картинке в лайтбоксе — это зум ВСЕЙ страницы (браузер не умеет
   // масштабировать один fixed-элемент отдельно от остальных), и после закрытия оверлея масштаб
