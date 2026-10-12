@@ -16,6 +16,7 @@ export interface RepeatItem {
   qty: number;
   brand: string;
   promo: boolean;
+  preorder?: boolean;
 }
 
 export interface RepeatState {
@@ -30,13 +31,13 @@ export interface RepeatState {
 }
 
 /** Каталог на странице — источник актуальной цены. Ключ — точное имя товара, как в 1С. */
-function currentPrices(): Map<string, { price: number; promo: boolean; brand: string }> {
-  const map = new Map<string, { price: number; promo: boolean; brand: string }>();
+function currentPrices(): Map<string, { price: number; promo: boolean; brand: string; preorder: boolean }> {
+  const map = new Map<string, { price: number; promo: boolean; brand: string; preorder: boolean }>();
   document.querySelectorAll<HTMLInputElement>('.pc-check[data-name]').forEach((el) => {
     const name = el.dataset.name ?? '';
     const price = parseFloat(el.dataset.price ?? '');
     if (!name || !Number.isFinite(price) || map.has(name)) return;
-    map.set(name, { price, promo: el.dataset.promo === '1', brand: el.dataset.brandLabel ?? '' });
+    map.set(name, { price, promo: el.dataset.promo === '1', brand: el.dataset.brandLabel ?? '', preorder: el.dataset.preorder === '1' });
   });
   return map;
 }
@@ -56,7 +57,7 @@ export function repriceLastOrder(): RepeatState | null {
   for (const it of last.items) {
     const now = prices.get(it.name);
     if (!now) { gone += 1; continue; }
-    items.push({ name: it.name, price: now.price, qty: it.qty, brand: now.brand || it.brand, promo: now.promo });
+    items.push({ name: it.name, price: now.price, qty: it.qty, brand: now.brand || it.brand, promo: now.promo, preorder: now.preorder });
   }
   if (!items.length) return null;
 

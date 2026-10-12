@@ -168,6 +168,7 @@ function textVarsFor(hex: string): string {
     qty: number;
     brand: string;
     promo: boolean;
+    preorder?: boolean;
   }
 
   // Тот же формат цены, что в таблицах статей и в каталоге (запятая как разделитель,
@@ -183,14 +184,15 @@ function textVarsFor(hex: string): string {
     return items.filter((it) => it.name === name).reduce((s, it) => s + it.qty, 0);
   }
 
-  function addToCart(wrap: HTMLElement, name: string, price: number, promo: boolean, itemBrand?: string) {
+  function addToCart(wrap: HTMLElement, name: string, price: number, promo: boolean, itemBrand?: string, preorder = false) {
     const items: CartItem[] = (window as any).zilmaCart?.get() ?? [];
     const existing = items.find((it) => it.name === name);
     if (existing) {
       existing.qty += 1;
     } else {
       const brand = itemBrand || wrap.getAttribute('data-cart-brand') || 'WELLA';
-      items.push({ name, price, qty: 1, brand, promo });
+      // preorder обязателен: без него заявка теряет «Под заказ» (12.10.2026, краски Lebel).
+      items.push({ name, price, qty: 1, brand, promo, preorder });
     }
     (window as any).zilmaCart?.set(items);
   }
@@ -330,7 +332,9 @@ function textVarsFor(hex: string): string {
       const promo = (useSub ? activeBtn?.dataset.subPromo : activeBtn?.dataset.promo) === '1';
       if (!name || !Number.isFinite(price)) return;
       const itemBrand = useSub ? activeBtn?.dataset.subBrand : activeBtn?.dataset.brand;
-      addToCart(wrap, name, price, promo, itemBrand);
+      // Замены — из линеек Wella, «под заказ» у них не бывает.
+      const preorder = !useSub && activeBtn?.dataset.preorder === '1';
+      addToCart(wrap, name, price, promo, itemBrand, preorder);
       refreshCtaLabel();
     });
 
