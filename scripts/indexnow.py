@@ -1,6 +1,8 @@
-r"""Сообщить Яндексу о новых и изменённых страницах через IndexNow — вместо переобхода в Вебмастере.
+r"""Сообщить Яндексу (и Bing) о новых и изменённых страницах через IndexNow — вместо переобхода в Вебмастере.
 Ключ не секретный: протокол требует, чтобы он лежал на сайте открыто (public/<ключ>.txt).
 Запуск после публикации: python scripts/indexnow.py /articles/2026-10-12-foil-techniques-compared/ /articles/
+Шлём на общий приёмник api.indexnow.org — он пересылает адреса Яндексу. Прямой yandex.com/indexnow
+12.10.2026 рвал соединение (выход через VPN, NL), общий принял с первого раза.
 Ответ 200 или 202 — адреса приняты в очередь; сам обход Яндекс делает в течение нескольких дней.
 """
 import json
@@ -18,13 +20,13 @@ def main() -> None:
     urls = [p if p.startswith('http') else f'https://{HOST}{p}' for p in paths]
     body = json.dumps({'host': HOST, 'key': KEY, 'keyLocation': f'https://{HOST}/{KEY}.txt',
                        'urlList': urls}).encode()
-    req = urllib.request.Request('https://yandex.com/indexnow', data=body,
+    req = urllib.request.Request('https://api.indexnow.org/indexnow', data=body,
                                  headers={'Content-Type': 'application/json; charset=utf-8'})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
-            print(f'Яндекс: {r.status} — принято адресов: {len(urls)}')
+            print(f'IndexNow: {r.status} — принято адресов: {len(urls)}')
     except urllib.error.HTTPError as e:
-        sys.exit(f'Яндекс отказал: {e.code} {e.read().decode(errors="replace")[:300]}')
+        sys.exit(f'IndexNow отказал: {e.code} {e.read().decode(errors="replace")[:300]}')
 
 
 if __name__ == '__main__':
