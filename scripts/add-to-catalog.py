@@ -32,7 +32,10 @@ APPLY = '--apply' in sys.argv
 BRANDS = {'CAREPROST','CONCEPT','DIKSON','ISKARTES','KAPOUS',"L'OREAL",'LEBEL','LEVISSIME',
           'LONDA','MATRIX','OLLIN','SCHWARZKOPF','WELLA','Корея','ОДНОРАЗОВАЯ ПРОДУКЦИЯ'}
 # Родню по имени не найти — указываем раздел по ИМЕНИ заголовка, а не по номеру строки.
-MANUAL_SECTION = {'2646468': ('SCHWARZKOPF', 'Средства для укладки волос - SILHOUETTE/Professionnelle')}
+MANUAL_SECTION = {'2646468': ('SCHWARZKOPF', 'Средства для укладки волос - SILHOUETTE/Professionnelle'),
+                  # VOLUME BOOST — новая для каталога серия INVIGO, родни по имени нет (13.10.2026)
+                  '585444': ('WELLA', 'Шампуни для волос - INVIGO'),
+                  '50117': ('WELLA', 'Несмываемый уход - INVIGO')}
 
 def art(n):
     t = str(n).strip().split()[-1] if str(n).strip() else ''
