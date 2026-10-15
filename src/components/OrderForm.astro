@@ -1368,10 +1368,19 @@ const Heading = as;
       // включая заказ на 17 477 ₽ — клиентка написала продавцу вручную.
       // Маршрут api/order.ts удалён вместе с переездом, подставлять его нечему.
       const endpoint = import.meta.env.PUBLIC_ORDER_ENDPOINT || '/order.php';
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        body: new FormData(form),
-      });
+      /* Обрыв связи браузер сообщает голым «Failed to fetch» — клиент не понимает, что
+         случилось (14.10.2026 так потерялась заявка на 7 позиций: мобильный интернет
+         ~7 КБ/с). Корзина при ошибке не очищается, поэтому достаточно попросить повторить.
+         Текст — решение Олега 15.10.2026 («Заявка не отправлена…»), без дополнительных кнопок. */
+      let res: Response;
+      try {
+        res = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(form),
+        });
+      } catch {
+        throw new Error('Заявка не отправлена. Повторите отправку, когда связь будет доступной.');
+      }
       if (!res.ok) {
         let code = '';
         try {
