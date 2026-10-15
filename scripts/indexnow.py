@@ -1,6 +1,8 @@
 r"""Сообщить Яндексу (и Bing) о новых и изменённых страницах через IndexNow — вместо переобхода в Вебмастере.
 Ключ не секретный: протокол требует, чтобы он лежал на сайте открыто (public/<ключ>.txt).
 Запуск после публикации: python scripts/indexnow.py /articles/2026-10-12-foil-techniques-compared/ /articles/
+Из Git Bash — с MSYS_NO_PATHCONV=1 впереди: иначе он превращает «/articles/…» в путь Windows
+(C:/Program Files/Git/articles/…), и IndexNow отвечает 422 «URLs are not related to your domain» (15.10.2026).
 Шлём на общий приёмник api.indexnow.org — он пересылает адреса Яндексу. Прямой yandex.com/indexnow
 12.10.2026 рвал соединение (выход через VPN, NL), общий принял с первого раза.
 Ответ 200 или 202 — адреса приняты в очередь; сам обход Яндекс делает в течение нескольких дней.
