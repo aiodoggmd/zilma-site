@@ -6,14 +6,14 @@ answer: "Рыжину гасит синий пигмент, желтизну —
 brand: "Zilma"
 line: "База знаний"
 tags: ["база знаний", "колористика"]
-coverImage: "/images/articles/2026-10-15-neutralize-brassiness-toning/cover.webp"
+coverImage: "/images/articles/2026-10-15-neutralize-brassiness-toning/cover-kling.webp"
 publishDate: 2026-10-15T18:00:00
 verifiedDate: 2026-10-15
 ---
 
 **Рыжина и желтизна** — тёплый фон, который остаётся после осветления: натуральный пигмент волоса разрушается не полностью. Чем ниже уровень после осветления, тем краснее и насыщеннее фон: с повышением уровня он меняется от красного через оранжевый к жёлтому. Ниже — четыре типа тёплого фона, пигмент, который его гасит, и оттенки Color Touch, безаммиачной Londa, Color Tune, Super Sync и Tonal Control для каждого случая.
 
-![Тонирование осветлённых волос: нейтрализация рыжины и желтизны](/images/articles/2026-10-15-neutralize-brassiness-toning/cover.webp)
+![Тонирование осветлённых волос: нейтрализация рыжины и желтизны](/images/articles/2026-10-15-neutralize-brassiness-toning/cover-kling.webp)
 
 ## Как убрать рыжину и желтизну тонированием
 
