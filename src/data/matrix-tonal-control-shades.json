@@ -21,7 +21,9 @@
   "row": 0,
   "col": 2,
   "hex": "#776457",
-  "image": "/images/shades/matrix-tonal-control/tc-7na.webp"
+  "image": "/images/shades/matrix-tonal-control/tc-7na.webp",
+  "name": "Color Sync Тонер с Кислым Ph 7NA 90мл 0-7NA",
+  "price": 750
  },
  {
   "code": "8T",
@@ -129,7 +131,9 @@
   "row": 0,
   "col": 6,
   "hex": "#a29395",
-  "image": "/images/shades/matrix-tonal-control/tc-10va.webp"
+  "image": "/images/shades/matrix-tonal-control/tc-10va.webp",
+  "name": "Color Sync Тонер с Кислым Ph 10VA 90мл 0-10VA",
+  "price": 750
  },
  {
   "code": "11NV",
@@ -157,7 +161,9 @@
   "row": 0,
   "col": 9,
   "hex": "#a38c82",
-  "image": "/images/shades/matrix-tonal-control/tc-11pv.webp"
+  "image": "/images/shades/matrix-tonal-control/tc-11pv.webp",
+  "name": "Color Sync Тонер с Кислым Ph 11PV 90мл 0-11PV",
+  "price": 750
  },
  {
   "code": "5NGA",

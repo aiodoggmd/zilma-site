@@ -59,7 +59,9 @@
   "row": 0,
   "col": 6,
   "image": "/images/shades/matrix-sync/ss-8n.webp",
-  "hex": "#8b715c"
+  "hex": "#8b715c",
+  "name": "Color Sync 8N блондин светлый 90мл 08N",
+  "price": 750
  },
  {
   "code": "9N",
@@ -85,7 +87,9 @@
   "row": 0,
   "col": 9,
   "image": "/images/shades/matrix-sync/ss-spn.webp",
-  "hex": "#dfcaaa"
+  "hex": "#dfcaaa",
+  "name": "Color Sync SPN пастельный нейтральный SPN",
+  "price": 750
  },
  {
   "code": "3NN",
@@ -285,7 +289,9 @@
   "row": 0,
   "col": 4,
   "image": "/images/shades/matrix-sync/ss-10a.webp",
-  "hex": "#dad0c5"
+  "hex": "#dad0c5",
+  "name": "Color Sync 10A 90мл 010A",
+  "price": 750
  },
  {
   "code": "11A",
@@ -303,7 +309,9 @@
   "row": 0,
   "col": 6,
   "image": "/images/shades/matrix-sync/ss-spa.webp",
-  "hex": "#c3bab1"
+  "hex": "#c3bab1",
+  "name": "Color Sync SPA SPA",
+  "price": 750
  },
  {
   "code": "8AG",
@@ -335,7 +343,9 @@
   "row": 0,
   "col": 0,
   "image": "/images/shades/matrix-sync/ss-8v.webp",
-  "hex": "#baa8a3"
+  "hex": "#baa8a3",
+  "name": "Color Sync 8V блондин перлам. светлый 90мл 08V",
+  "price": 750
  },
  {
   "code": "10V",
@@ -343,7 +353,9 @@
   "row": 0,
   "col": 1,
   "image": "/images/shades/matrix-sync/ss-10v.webp",
-  "hex": "#d6c4b8"
+  "hex": "#d6c4b8",
+  "name": "Color Sync 10V оч-оч. св. блонд. перлам. 90мл 010V",
+  "price": 750
  },
  {
   "code": "11V",
@@ -351,7 +363,9 @@
   "row": 0,
   "col": 2,
   "image": "/images/shades/matrix-sync/ss-11v.webp",
-  "hex": "#e4d8c9"
+  "hex": "#e4d8c9",
+  "name": "Color Sync 11V 90мл 011V",
+  "price": 750
  },
  {
   "code": "SPV",
@@ -411,7 +425,9 @@
   "row": 0,
   "col": 0,
   "image": "/images/shades/matrix-sync/ss-8p.webp",
-  "hex": "#b3aab1"
+  "hex": "#b3aab1",
+  "name": "Color Sync 8P 90мл 08P",
+  "price": 750
  },
  {
   "code": "10P",
@@ -477,7 +493,9 @@
   "row": 0,
   "col": 2,
   "image": "/images/shades/matrix-sync/ss-8m.webp",
-  "hex": "#b77d4e"
+  "hex": "#b77d4e",
+  "name": "Color Sync 8M 90мл 08M",
+  "price": 750
  },
  {
   "code": "10M",
@@ -485,7 +503,9 @@
   "row": 0,
   "col": 3,
   "image": "/images/shades/matrix-sync/ss-10m.webp",
-  "hex": "#eabd8e"
+  "hex": "#eabd8e",
+  "name": "Color Sync 10M 90мл 010M",
+  "price": 750
  },
  {
   "code": "SPM",
@@ -551,7 +571,9 @@
   "row": 0,
   "col": 1,
   "image": "/images/shades/matrix-sync/ss-8cg.webp",
-  "hex": "#d47806"
+  "hex": "#d47806",
+  "name": "Color Sync 8CG 90мл 08CG",
+  "price": 750
  },
  {
   "code": "7CC",
