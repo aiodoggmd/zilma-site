@@ -2015,6 +2015,168 @@ const articleLd = {
     cursor: zoom-out;
     margin: 0;
   }
+
+  /* ── Блоки «удобного чтения» (16.10.2026, первая статья — о меди). Цвет несёт смысл и одинаков
+     во всех статьях: зелёный — правило, которое помогает; янтарный — внимание, легко ошибиться;
+     красный — ошибка. Не больше двух абзацев или таблиц подряд без такого блока. ── */
+  .prose :global(.callout.tip) {
+    background: #eef6ef;
+    border-left-color: #3d7a4f;
+  }
+  .prose :global(.callout.tip b) { color: #2f6340; }
+  .prose :global(.callout.warn) {
+    background: #fdf4e3;
+    border-left-color: #b7791f;
+  }
+  .prose :global(.callout.warn b) { color: #8a5a12; }
+
+  /* шаги без картинок: подпись полосой вместо пустого квадрата */
+  .prose :global(.step-flow.compact .step-icon) {
+    aspect-ratio: auto;
+    padding: 12px 6px;
+    font-size: 1rem;
+  }
+
+  /* «Коротко» — 3–4 главных правила статьи карточками с номером */
+  .prose :global(.key-grid) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: key;
+  }
+  .prose :global(.key-grid li) {
+    counter-increment: key;
+    background: var(--surface-card);
+    border: 1px solid var(--color-panel-line);
+    border-radius: 10px;
+    padding: 14px 16px 14px 52px;
+    position: relative;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .prose :global(.key-grid li::before) {
+    content: counter(key);
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-blue-dark);
+    color: #fff;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .prose :global(.key-grid li b) { display: block; color: var(--color-ink); margin-bottom: 2px; }
+  @media (max-width: 640px) {
+    .prose :global(.key-grid) { grid-template-columns: 1fr; }
+  }
+
+  /* Формулы карточками: цель — коды оттенков — окислитель. Две колонки на широком экране. */
+  .prose :global(.formula-grid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin: 16px 0 24px;
+  }
+  .prose :global(.formula-card) {
+    background: var(--color-paper);
+    border: 1px solid var(--color-card-line);
+    border-top: 3px solid #c26a2e;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .prose :global(.formula-card .f-title) {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0 0 6px;
+  }
+  .prose :global(.formula-card .f-ox) {
+    flex: none;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-blue-dark);
+    background: var(--color-surface-blue);
+    border-radius: 999px;
+    padding: 1px 8px;
+  }
+  .prose :global(.formula-card .f-codes) {
+    margin: 0 0 4px;
+    font-size: 0.92rem;
+    color: var(--color-ink);
+  }
+  .prose :global(.formula-card b) {
+    color: #8a3f12;
+    font-size: 1.02em;
+    white-space: nowrap;
+  }
+  .prose :global(.formula-card p) { margin: 0; }
+  .prose :global(.formula-card .f-note) { color: var(--color-meta); font-size: 0.82rem; }
+
+  /* Ошибки карточками: что получилось (красный) → как исправить (зелёный) */
+  .prose :global(.fix-list) {
+    display: grid;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .prose :global(.fix-card) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .prose :global(.fix-card > div) { padding: 10px 14px; }
+  .prose :global(.fix-card .fix-bad) { background: #fbecec; border-left: 3px solid var(--color-red-dark); }
+  .prose :global(.fix-card .fix-good) { background: #eef6ef; border-left: 3px solid #3d7a4f; }
+  .prose :global(.fix-card b) { display: block; color: var(--color-ink); }
+  .prose :global(.fix-card .fix-why) { color: var(--color-meta); font-size: 0.82rem; }
+  .prose :global(.fix-card p) { margin: 0; }
+  @media (max-width: 640px) {
+    .prose :global(.fix-card) { grid-template-columns: 1fr; }
+  }
+
+  /* Вопрос-ответ, раскрывается по нажатию */
+  .prose :global(details.faq-item) { padding: 0; }
+  .prose :global(details.faq-item summary) {
+    cursor: pointer;
+    list-style: none;
+    padding: 14px 44px 14px 20px;
+    position: relative;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .prose :global(details.faq-item summary::-webkit-details-marker) { display: none; }
+  .prose :global(details.faq-item summary::after) {
+    content: '+';
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    color: var(--color-blue-dark);
+  }
+  .prose :global(details.faq-item[open] summary::after) { content: '−'; }
+  .prose :global(details.faq-item .faq-a) { padding: 0 20px 16px; }
 </style>
 
 <script>
