@@ -233,16 +233,16 @@ verifiedDate: 2026-10-16
 
 <div class="mix-card">
   <div class="wheel-badge">
-    <span class="wheel" style="--split: 33%"></span>
-    <span class="wheel-label">1 : 2</span>
+    <span class="wheel" style="--split: 50%"></span>
+    <span class="wheel-label">1 : 1</span>
     <span class="wheel-caption">Londa · L-Color</span>
   </div>
   <div class="mix-body">
-    <p><b>Стойкая краска Londa + окислительная эмульсия L-Color.</b></p>
+    <p><b>Стойкая краска Londa + окислительная эмульсия L-Color.</b> Пример: 60 мл краски + 60 мл эмульсии.</p>
     <ul>
-      <li><b>6%</b> — закрашивание седины, затемнение</li>
-      <li><b>9%</b> — тон в тон, осветление на 1 уровень</li>
-      <li><b>12%</b> — осветление на 2–3 уровня</li>
+      <li><b>6%</b> — закрашивание седины, затемнение, тон в тон, осветление на 1 уровень</li>
+      <li><b>9%</b> — осветление на 2 уровня</li>
+      <li><b>12%</b> — осветление на 3 уровня</li>
     </ul>
   </div>
   <div class="timer">

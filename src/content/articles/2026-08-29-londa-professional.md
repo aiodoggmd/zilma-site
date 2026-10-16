@@ -7,7 +7,7 @@ line: "Londa Professional (Permanent Color)"
 tags: ["колористика"]
 coverImage: "/images/articles/2026-08-29-londa-professional/cover.webp"
 publishDate: 2026-08-29T15:00:00
-verifiedDate: 2026-09-07
+verifiedDate: 2026-10-16
 ---
 
 **Londa** — линия перманентного окрашивания для профессионального использования. Международное название той же линии — **Kadus Professional**.
@@ -55,12 +55,12 @@ verifiedDate: 2026-09-07
 
 <div class="mix-card">
   <div class="wheel-badge">
-    <span class="wheel" style="--split: 33%"></span>
-    <span class="wheel-label">1 : 2</span>
+    <span class="wheel" style="--split: 50%"></span>
+    <span class="wheel-label">1 : 1</span>
     <span class="wheel-caption">краска : окислитель</span>
   </div>
   <div class="mix-body">
-    <p>Пропорция для базовой линии Permanent Color (включая оттенки Micro Reds) — <b>1:2</b>. Рекомендовано для закрашивания седины до 100%, смешивается только с другими перманентными оттенками.</p>
+    <p>Пропорция для базовой линии Permanent Color (включая оттенки Micro Reds) — <b>1:1</b>, например 60 мл краски + 60 мл окислительной эмульсии. Рекомендовано для закрашивания седины до 100%, смешивается только с другими перманентными оттенками.</p>
   </div>
 </div>
 
@@ -69,9 +69,9 @@ verifiedDate: 2026-09-07
 <colgroup><col style="width:170px"><col></colgroup>
 <thead><tr><th>Окислитель</th><th>Задача</th></tr></thead>
 <tbody>
-<tr><td>6% (20 vol)</td><td>Закрашивание седины, затемнение</td></tr>
-<tr><td>9% (30 vol)</td><td>Тон в тон, осветление на 1 уровень</td></tr>
-<tr><td>12% (40 vol)</td><td>Осветление на 2–3 уровня</td></tr>
+<tr><td>6% (20 vol)</td><td>Закрашивание седины, затемнение, тон в тон, осветление на 1 уровень</td></tr>
+<tr><td>9% (30 vol)</td><td>Осветление на 2 уровня</td></tr>
+<tr><td>12% (40 vol)</td><td>Осветление на 3 уровня</td></tr>
 </tbody>
 </table>
 </div>
@@ -90,7 +90,7 @@ verifiedDate: 2026-09-07
 </table>
 </div>
 
-Оттенки **/0, /03, /07, /7, /77** не требуют подмеса натурального оттенка даже для 100% закрашивания седины.
+Оттенки **/0, /07, /7, /77** не требуют подмеса натурального оттенка даже для 100% закрашивания седины.
 
 <div class="callout"><b>Порядок нанесения.</b> Начинается с зон с наибольшим процентом седины.</div>
 
@@ -117,12 +117,12 @@ verifiedDate: 2026-09-07
 
 <div class="mix-card">
   <div class="wheel-badge">
-    <span class="wheel" style="--split: 50%"></span>
-    <span class="wheel-label">1 : 1</span>
+    <span class="wheel" style="--split: 33%"></span>
+    <span class="wheel-label">1 : 2</span>
     <span class="wheel-caption">краска : окислитель</span>
   </div>
   <div class="mix-body">
-    <p>Отдельная пропорция для Special Blonds — <b>1:1</b>. Наносите чуть больше состава, чем обычно.</p>
+    <p>Отдельная пропорция для Special Blonds — <b>1:2</b>, например 60 мл краски + 120 мл окислительной эмульсии. Наносите чуть больше состава, чем обычно.</p>
   </div>
 </div>
 
