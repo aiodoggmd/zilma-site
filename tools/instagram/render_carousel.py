@@ -114,8 +114,9 @@ def base(n, total):
     d.rectangle([0, 0, W, 12], fill=RED)
     f = font('sans', 30, 500)
     d.text((M, H - FOOT + 10), 'zilma.pro', font=f, fill=MUTED)
-    t = f'{n} / {total}'
-    d.text((W - M - f.getlength(t), H - FOOT + 10), t, font=f, fill=MUTED)
+    if total:                                     # 0 — кадры видео: счётчик «3 / 10» не нужен
+        t = f'{n} / {total}'
+        d.text((W - M - f.getlength(t), H - FOOT + 10), t, font=f, fill=MUTED)
     return im, d
 
 
@@ -168,7 +169,10 @@ def s_cards(im, d, s, root):
 
     hs = [min(ch, need(c)) for c in cards]
     y += max(0, (avail - sum(hs) - gap * (len(cards) - 1)) // 2)   # стопку — по центру
-    for c, ch in zip(cards, hs):
+    show = s.get('show', len(cards))               # для видео: раскладка на все, рисуем первые show
+    for k, (c, ch) in enumerate(zip(cards, hs)):
+        if k >= show:
+            break
         card_box(d, M, y, W - 2 * M, ch, c.get('color', COPPER))
         ty = y + 30
         tag_w = 0
@@ -223,7 +227,56 @@ def s_end(im, d, s, root):
         text_block(d, s['body'], M, y, W - 2 * M, H - FOOT - y - 40, 42, 30, color=MUTED, align='center')
 
 
-KINDS = {'cover': s_cover, 'text': s_text, 'cards': s_cards, 'fix': s_fix, 'keys': s_keys, 'end': s_end}
+def s_versus(im, d, s, root):
+    """Две картинки рядом с подписями: «Заказали» / «Получили». reveal=false — правая ещё не видна."""
+    y = title(d, s['title'], size=70) + 10
+    gap = 30
+    w = (W - 2 * M - gap) // 2
+    h = H - FOOT - y - 170
+    for k, side in enumerate(('left', 'right')):
+        x = M + k * (w + gap)
+        sd = s[side]
+        if side == 'right' and s.get('reveal') is False:
+            d.rounded_rectangle([x, y, x + w, y + h], 28, outline=LINE, width=3)   # пустое место под ответ
+            continue
+        img = ImageOps.fit(Image.open(root / sd['image']).convert('RGB'), (w, h), centering=(0.5, 0.5))
+        mask = Image.new('L', (w, h), 0)
+        ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], 28, fill=255)
+        im.paste(img, (x, y), mask)
+        col = GREEN if sd.get('tone') == 'good' else DRED if sd.get('tone') == 'bad' else INK
+        lf = font('sans', 46, 700)
+        d.text((x + w / 2, y + h + 34), sd['label'], font=lf, fill=col, anchor='ma')
+        if sd.get('sub'):
+            sf = font('sans', 36, 500)
+            d.text((x + w / 2, y + h + 96), sd['sub'], font=sf, fill=MUTED, anchor='ma')
+
+
+def s_question(im, d, s, root):
+    """Неправильный вопрос зачёркнут, правильный — крупно. new=false — правильного ещё нет."""
+    y = title(d, s['title'])
+    y += 60
+    of = font('sans', 54, 500)
+    bad = s['bad']
+    lines, lh = layout(bad, 54, W - 2 * M)[0], 74
+    for ln in lines:
+        t = ' '.join(w for w, b, g in ln)
+        tw = of.getlength(t)
+        x = (W - tw) / 2
+        d.text((x, y), t, font=of, fill=MUTED)
+        d.line([x - 10, y + 40, x + tw + 10, y + 34], fill=DRED, width=7)
+        y += lh
+    if s.get('new') is False:
+        return
+    y += 70
+    d.polygon([(W / 2 - 34, y), (W / 2 + 34, y), (W / 2, y + 44)], fill=GREEN)
+    y += 90
+    sz, ln, lh2 = fit(s['good'], W - 2 * M - 100, H - FOOT - y - 160, 64, 40, 700)
+    box_h = len(ln) * lh2 + 100
+    d.rounded_rectangle([M, y, W - M, y + box_h], 28, fill=GREEN_BG, outline=GREEN, width=3)
+    draw_lines(d, M + 50, y + 50, sz, ln, lh2, weight=700, align='center', width=W - 2 * M - 100)
+
+
+KINDS = {'versus': s_versus, 'question': s_question, 'cover': s_cover, 'text': s_text, 'cards': s_cards, 'fix': s_fix, 'keys': s_keys, 'end': s_end}
 
 
 def main():
@@ -233,7 +286,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     files = []
     for n, s in enumerate(slides, 1):           # сначала всё нарисовать — при ошибке ничего не пишем
-        im, d = base(n, len(slides))
+        im, d = base(n, 0 if any('say' in x for x in slides) else len(slides))
         KINDS[s['type']](im, d, s, root)
         files.append(im)
     for n, im in enumerate(files, 1):
