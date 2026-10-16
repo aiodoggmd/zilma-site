@@ -122,6 +122,38 @@ def palette_watch(items, since=None):
     return out
 
 
+def table_watch(items, since=None):
+    """Сторож таблиц заказа: новый товар в разделе прайса, товары которого уже стоят в таблице
+    статьи, а его самого в статье нет («в статью просится»). 16.10.2026 так в статьях о техниках
+    не было синей банки Igora Vario Blond SUPER PLUS: списка позиций у статей не было, и новинку
+    никто не увидел. Оттенки красок не трогаем — их ведёт сторож палитр. Только сообщает."""
+    seen = json.loads((DATA / 'price-first-seen.json').read_text(encoding='utf-8'))
+    sec = {i['name']: (i.get('brand'), i.get('section')) for i in items}
+    in_palette = set()
+    for f in lps.palette_files():
+        shades = json.loads(f.read_text(encoding='utf-8'))
+        if isinstance(shades, list):
+            in_palette |= {s.get('name') for s in shades}
+    pal_secs = {sec[n] for n in in_palette if n in sec}
+    out = []
+    for art in sorted(ARTICLES.glob('*.md')):
+        text = art.read_text(encoding='utf-8')
+        have = {html.unescape(n) for n in NAME_RE.findall(text)}
+        if not have:
+            continue
+        have_art = {n.split()[-1] for n in have}
+        secs = {sec[n] for n in have if n in sec} - pal_secs
+        for it in items:
+            if (it.get('brand'), it.get('section')) not in secs:
+                continue
+            if it['name'] in have or it['name'].split()[-1] in have_art:
+                continue
+            if since and seen.get(it['name'], '') < since:
+                continue
+            out.append((art.stem, it['name']))
+    return out
+
+
 def main():
     apply = '--apply' in sys.argv
     items = json.loads((DATA / 'priceItems.json').read_text(encoding='utf-8'))
@@ -203,6 +235,13 @@ def main():
         print(f'\n! Оттенков нет в палитрах ({len(watch)}, {what}) — добавить с фото руками:')
         for f, n in watch:
             print(f'   {f:<34}{n}')
+
+    tw = table_watch(items, since)
+    if tw:
+        what = 'все товары' if since is None else f'поступили за {WATCH_DAYS} дней'
+        print(f'\n! В таблицы статей просятся ({len(tw)}, {what}) — решает Олег, дописать в список статьи:')
+        for a, n in tw:
+            print(f'   {a:<42}{n}')
 
     if problems:
         sys.exit('СТОП: списки статей разошлись со статьями или палитрами — ничего не записано.')
