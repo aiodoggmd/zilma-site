@@ -276,7 +276,45 @@ def s_question(im, d, s, root):
     draw_lines(d, M + 50, y + 50, sz, ln, lh2, weight=700, align='center', width=W - 2 * M - 100)
 
 
-KINDS = {'versus': s_versus, 'question': s_question, 'cover': s_cover, 'text': s_text, 'cards': s_cards, 'fix': s_fix, 'keys': s_keys, 'end': s_end}
+def s_hook(im, d, s, root):
+    """Крючок: одна крупная фраза на весь кадр + подпись. Для первых секунд ролика."""
+    d.rectangle([M, 330, M + 120, 342], fill=COPPER)
+    y = text_block(d, s['title'], M, 380, W - 2 * M, 620, 96, 56, kind='serif', weight=700) + 30
+    if s.get('subtitle'):
+        text_block(d, s['subtitle'], M, y, W - 2 * M, H - FOOT - y - 60, 50, 34, color=MUTED)
+
+
+def s_trio(im, d, s, root):
+    """Три картинки в ряд с подписями. show — сколько видно; mark — индекс выделенной (ответ)."""
+    y = title(d, s['title'], size=66) + 10
+    gap = 24
+    w = (W - 2 * M - 2 * gap) // 3
+    h = int(w * 1.55)
+    items = s['items']
+    show = s.get('show', len(items))
+    mark = s.get('mark')
+    for k, it in enumerate(items):
+        x = M + k * (w + gap)
+        if k >= show:
+            d.rounded_rectangle([x, y, x + w, y + h], 24, outline=LINE, width=3)
+            continue
+        img = ImageOps.fit(Image.open(root / it['image']).convert('RGB'), (w, h), centering=(0.5, 0.4))
+        if mark is not None and k != mark:            # не ответ — притушить
+            img = Image.blend(img, Image.new('RGB', img.size, BG), 0.6)
+        mask = Image.new('L', (w, h), 0)
+        ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], 24, fill=255)
+        im.paste(img, (x, y), mask)
+        if mark == k:
+            d.rounded_rectangle([x - 6, y - 6, x + w + 6, y + h + 6], 28, outline=GREEN, width=8)
+        lf = font('sans', 38, 700)
+        col = GREEN if mark == k else INK
+        d.text((x + w / 2, y + h + 26), it['label'], font=lf, fill=col, anchor='ma')
+    if s.get('caption'):
+        cy = y + h + 110
+        text_block(d, s['caption'], M, cy, W - 2 * M, H - FOOT - cy - 30, 46, 30, align='center', weight=600)
+
+
+KINDS = {'hook': s_hook, 'trio': s_trio, 'versus': s_versus, 'question': s_question, 'cover': s_cover, 'text': s_text, 'cards': s_cards, 'fix': s_fix, 'keys': s_keys, 'end': s_end}
 
 
 def main():

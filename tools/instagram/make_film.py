@@ -39,16 +39,22 @@ def main():
         if not wav.exists():
             if len(s['say']) > 250:
                 sys.exit(f'сцена {n}: реплика длиннее 250 знаков — разделите на две сцены')
-            subprocess.run([str(PY), str(TTS), 'vera', '-', 'livetts', s['say'], str(wav)], check=True,
-                           stdout=subprocess.DEVNULL)
+            for attempt in range(3):              # обрыв связи с Яндексом бывает (16.10.2026) — повторить
+                r = subprocess.run([str(PY), str(TTS), 'vera', '-', 'livetts', s['say'], str(wav)],
+                                   stdout=subprocess.DEVNULL)
+                if r.returncode == 0 and wav.exists():
+                    break
+            else:
+                sys.exit(f'сцена {n}: озвучка не удалась трижды')
         a = dur(wav)
         durs.append(LEAD + a + TAIL + X)          # X — запас на растворение в следующий кадр
         wavs.append(wav)
     # кадры с наездом
     for n, d in enumerate(durs, 1):
-        frames = int(d * FPS)
-        vf = (f"scale=2160:2700,zoompan=z='1+0.035*on/{frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
-              f":d={frames}:s=1080x1350:fps={FPS},pad=1080:1920:0:285:color={BG},format=yuv420p")
+        # наезд: масштаб растёт кадр за кадром, обрезка по центру. В 17 раз быстрее zoompan
+        # (5 с против 90 с на сцену, замер 17.10.2026) при том же виде.
+        vf = (f"scale=w='1080*(1+0.035*t/{d:.3f})':h=-1:eval=frame,crop=1080:1350,"
+              f"pad=1080:1920:0:285:color={BG},format=yuv420p")
         subprocess.run(['ffmpeg', '-y', '-v', 'error', '-loop', '1', '-t', f'{d:.3f}', '-i', str(root / 'frames' / f'{n:02d}.png'),
                         '-vf', vf, '-r', str(FPS), '-c:v', 'libx264', '-crf', '18', '-preset', 'medium', str(clips / f'{n:02d}.mp4')],
                        check=True)

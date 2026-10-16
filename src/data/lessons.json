@@ -8,6 +8,83 @@
   "poster": "/videos/lessons/copper-01-peach-poster.webp",
   "bubble": "/videos/lessons/copper-01-peach-bubble.webp",
   "duration": 43,
-  "date": "2026-10-16"
+  "date": "2026-10-17"
+ },
+ {
+  "id": "copper-02-bordo",
+  "title": "Медь на тёмной базе ушла в бордовый",
+  "subtitle": "Когда осветлять, как погасить красный фон и оттенки глубокой меди",
+  "article": "2026-10-15-copper-ginger-peach",
+  "video": "/videos/lessons/copper-02-bordo.mp4",
+  "poster": "/videos/lessons/copper-02-bordo-poster.webp",
+  "bubble": "/videos/lessons/copper-02-bordo-bubble.webp",
+  "duration": 53,
+  "date": "2026-10-17"
+ },
+ {
+  "id": "copper-03-flat",
+  "title": "Ярко, но плоско",
+  "subtitle": "Почему медь вышла плоским оранжевым и два тона для глубины",
+  "article": "2026-10-15-copper-ginger-peach",
+  "video": "/videos/lessons/copper-03-flat.mp4",
+  "poster": "/videos/lessons/copper-03-flat-poster.webp",
+  "bubble": "/videos/lessons/copper-03-flat-bubble.webp",
+  "duration": 33,
+  "date": "2026-10-17"
+ },
+ {
+  "id": "copper-04-translate",
+  "title": "«Хочу медный» — а цветов три",
+  "subtitle": "Медь, имбирь или персик: один вопрос клиентке и формулы Londa",
+  "article": "2026-10-15-copper-ginger-peach",
+  "video": "/videos/lessons/copper-04-translate.mp4",
+  "poster": "/videos/lessons/copper-04-translate-poster.webp",
+  "bubble": "/videos/lessons/copper-04-translate-bubble.webp",
+  "duration": 34,
+  "date": "2026-10-17"
+ },
+ {
+  "id": "copper-05-quiz",
+  "title": "Угадай за 3 секунды: где персик?",
+  "subtitle": "Медь, имбирь и персик на глаз — и формула персика Koleston",
+  "article": "2026-10-15-copper-ginger-peach",
+  "video": "/videos/lessons/copper-05-quiz.mp4",
+  "poster": "/videos/lessons/copper-05-quiz-poster.webp",
+  "bubble": "/videos/lessons/copper-05-quiz-bubble.webp",
+  "duration": 29,
+  "date": "2026-10-17"
+ },
+ {
+  "id": "copper-06-ginger",
+  "title": "Формула дня: имбирь на семёрке",
+  "subtitle": "Мягкий и яркий имбирь для Koleston, Igora, Londa, Matrix",
+  "article": "2026-10-15-copper-ginger-peach",
+  "video": "/videos/lessons/copper-06-ginger.mp4",
+  "poster": "/videos/lessons/copper-06-ginger-poster.webp",
+  "bubble": "/videos/lessons/copper-06-ginger-bubble.webp",
+  "duration": 30,
+  "date": "2026-10-17"
+ },
+ {
+  "id": "copper-07-grey",
+  "title": "Медь на седине",
+  "subtitle": "Сколько натурального тона: Koleston и Igora Royal",
+  "article": "2026-10-15-copper-ginger-peach",
+  "video": "/videos/lessons/copper-07-grey.mp4",
+  "poster": "/videos/lessons/copper-07-grey-poster.webp",
+  "bubble": "/videos/lessons/copper-07-grey-bubble.webp",
+  "duration": 36,
+  "date": "2026-10-17"
+ },
+ {
+  "id": "copper-08-fading",
+  "title": "Медь ушла за две недели",
+  "subtitle": "Что делать в салоне и дома, чтобы медь держалась",
+  "article": "2026-10-15-copper-ginger-peach",
+  "video": "/videos/lessons/copper-08-fading.mp4",
+  "poster": "/videos/lessons/copper-08-fading-poster.webp",
+  "bubble": "/videos/lessons/copper-08-fading-bubble.webp",
+  "duration": 37,
+  "date": "2026-10-17"
  }
 ]
