@@ -1,0 +1,611 @@
+---
+title: "Окрашивание седых волос: уровни закрашивания, предпигментация и мягкая маскировка — Wella, Schwarzkopf, Londa и Matrix"
+seoTitle: "Как закрасить седину: формулы Koleston, Igora Royal, Londa и Matrix"
+description: "Пять уровней работы с сединой — от 100% закрашивания до мягкой маскировки, как определить процент и стекловидную седину, сколько натурального тона добавлять по правилам Koleston Perfect, Igora Royal, Londa и Matrix SoColor, предпигментация, French blending, нанесение без резкой границы у корня и Igora Royal Absolutes"
+answer: "Седину закрашивают по правилам конкретной марки: Koleston Perfect и Londa при 30–50% седины добавляют 1/3 натурального оттенка, при 50–100% — 1/2; Igora Royal модные оттенки смешивает с натуральным 2:1 начиная с 70% седины, а Absolutes и Natural Extra кладёт без подмеса; Matrix при седине больше половины переходит на Extra Coverage. Окислитель для закрашивания — 6%, выдержка полная, без сокращения. Предпигментацию тёплым тоном делают на стойкой седине и при 70–100% седых волос. Когда клиент не хочет плотного цвета, седину маскируют: French blending, Color Touch Plus, Super Sync NN."
+brand: "Zilma"
+line: "База знаний"
+tags: ["база знаний", "колористика"]
+coverImage: "/images/articles/2026-10-16-grey-coverage/cover.webp"
+publishDate: 2026-10-17T11:00:00
+verifiedDate: 2026-10-16
+---
+
+**Окрашивание седых волос** — самая частая услуга в салоне и самая требовательная к формуле. Седой волос лишён собственного пигмента, кутикула у него плотнее, и тот же краситель, который ровно ложится на пигментированные пряди, на седине выходит прозрачным или теряет глубину. Результат зависит от трёх решений: какой уровень закрашивания нужен клиенту, сколько натурального тона добавить в формулу и нужна ли предпигментация. Ниже — правила Wella Koleston Perfect, Schwarzkopf Igora Royal, Londa Professional и Matrix SoColor, а также техники мягкой маскировки седины.
+
+![Тёмные волосы с вплетёнными седыми прядями у лица](/images/articles/2026-10-16-grey-coverage/cover.webp)
+
+## Пять уровней работы с сединой
+
+Плотное закрашивание — не единственный результат, который нужен клиенту. Чем меньше седины закрыто, тем мягче отрастает корень и тем реже нужен визит.
+
+| Уровень | Что закрыто | Чем работают | Обновление |
+|---|---|---|---|
+| Полное закрашивание | вся седина | стойкая краска с натуральным тоном, 6% | каждые 3–4 недели |
+| Высокое | большая часть, единичные седые волосы видны | стойкая краска, меньше натурального тона | каждые 4–5 недель |
+| Маскировка (grey blending) | около половины | безаммиачный краситель, French blending, лоулайты | каждые 6–8 недель |
+| Мягкая маскировка | меньшая часть, смягчён контраст | тонирование или глянец | каждые 8–12 недель |
+| Без закрашивания | седина не окрашивается | тонирование седины от желтизны, уход | каждые 6–8 недель, только тонирование |
+
+**Уровень выбирают вместе с клиентом до формулы.** При 70% седины и больше полное закрашивание означает яркую границу корня уже через 3 недели. Маскировка в таких случаях выглядит естественнее и обходится клиенту дешевле. Переходить между уровнями лучше постепенно — на одну ступень за 2–3 визита.
+
+## Как определить процент седины
+
+Процент определяют на сухих волосах при дневном или нейтральном белом свете — мокрые волосы скрывают седину. Смотрят отдельно виски, линию роста у лица, макушку и затылок: на висках и макушке седины обычно больше. Оценивают только отросший корень, а не окрашенную длину.
+
+| Процент | Картина | Что меняется в работе |
+|---|---|---|
+| 0–25% | отдельные седые волосы | модный оттенок в чистом виде у большинства марок |
+| 25–50% | седина собрана на висках и у лица | нужен подмес натурального тона |
+| 50–75% | седых волос больше, чем пигментированных | больше натурального тона, полная выдержка |
+| 75–100% | почти полностью седые волосы | натуральные ряды для седины, предпигментация на стойкой седине |
+
+![Пряди с разной долей седины: от тёмной с редкими седыми волосами до полностью седой](/images/articles/2026-10-16-grey-coverage/levels.webp)
+
+**Стекловидная седина** — самая трудная для окрашивания. Волосы жёсткие, блестят почти прозрачным блеском и отталкивают воду. На такой седине стандартная формула не держится: нужен натуральный оттенок для стойкой седины и, как правило, предпигментация.
+
+<div class="callout"><b>Клиент обычно занижает процент седины.</b> Опираются на собственную оценку корня при хорошем свете, а не на слова клиента. Если седина распределена неравномерно, на разных зонах головы работают разными смесями.</div>
+
+## Сколько натурального тона добавлять
+
+Натуральный тон даёт формуле глубину, которой седому волосу не хватает: модный оттенок без него дарит седине только рефлекс. Доля натурального тона у каждой марки своя — правило марки важнее общих таблиц.
+
+| Марка | До 30% седины | 30–50% седины | 50–100% седины | Без подмеса |
+|---|---|---|---|---|
+| Koleston Perfect | модный оттенок в чистом виде | добавить 1/3 оттенка Pure Naturals | добавить 1/2 оттенка Pure Naturals | ряд Pure Naturals; на стойкой седине — XX/0, XX/02 |
+| Londa Professional | натуральный тон не нужен | добавить 1/3 натурального | добавить 1/2 натурального | оттенки /0, /07, /7, /77 — до 100% седины |
+| Igora Royal | модный оттенок в чистом виде до 70% | модный оттенок в чистом виде до 70% | 70–100%: 2 части модного + 1 часть натурального; на плотных волосах — 1 : 1 | Natural, Natural Extra (-00), Absolutes |
+| Matrix SoColor | основная коллекция, желаемый уровень | основная коллекция, желаемый уровень | Extra Coverage (504–510) | Extra Coverage — коллекция под седину |
+
+**Уровень формулы — не светлее натурального уровня клиента.** Светлые оттенки 9–10 уровня содержат меньше пигмента и закрывают седину хуже. Если клиент был 6 уровнем, формула на 7 уровень и светлее на 70% седины даст прозрачный результат. Светлый результат на сильной седине получают в два шага: закрашивание на 6–7 уровень, затем мелирование.
+
+<div class="callout"><b>Красные оттенки на сильной седине.</b> У Koleston Perfect на волосах с сединой больше 50% красные оттенки смешивают с 1/3 оттенка Pure Naturals: например, 30 г красного оттенка + 15 г Pure Naturals.</div>
+
+## Окислитель и время выдержки
+
+**Для закрашивания седины берут 6%.** Окислитель 9–12% не усиливает закрашивание: он сильнее осветляет и меньше оставляет пигмента — цвет выходит светлее и тусклее задуманного. Исключение — Igora Royal Absolutes и Natural Extra: их базовый оксигент — 9%, а 6% используют, когда седины больше 90%, чтобы краситель лёг в чистом виде.
+
+<div class="mix-card">
+  <div class="wheel-badge">
+    <span class="wheel" style="--split: 50%"></span>
+    <span class="wheel-label">1 : 1</span>
+    <span class="wheel-caption">Koleston · Welloxon 6%</span>
+  </div>
+  <div class="mix-body">
+    <p><b>Koleston Perfect + Welloxon Perfect 6%.</b> Пример: 60 г краски + 60 г окислителя.</p>
+    <ul>
+      <li>Стойкая, трудная для окрашивания седина — натуральный оттенок из ряда <b>XX/0</b> вместо X/0</li>
+      <li>Перед смыванием проверить закрашивание: снять краску кончиком кисти и приподнять прядь</li>
+    </ul>
+  </div>
+  <div class="timer">
+    <span class="wheel" style="--split: 85%"></span>
+    <span class="time-text">30–40 мин <b>без тепла</b>, 15–25 мин <b>с теплом</b><br>на седине — полная выдержка, не дольше 40 мин</span>
+  </div>
+</div>
+
+<div class="mix-card">
+  <div class="wheel-badge">
+    <span class="wheel" style="--split: 50%"></span>
+    <span class="wheel-label">1 : 1</span>
+    <span class="wheel-caption">Igora Royal · оксигент</span>
+  </div>
+  <div class="mix-body">
+    <p><b>Igora Royal + оксигент Igora.</b> Пример: 60 мл краски + 60 мл оксигента.</p>
+    <ul>
+      <li><b>6%</b> — тон в тон и закрашивание седины натуральными и модными оттенками</li>
+      <li><b>9%</b> — базовый для Absolutes и Natural Extra; <b>6%</b> для них — при седине больше 90%</li>
+    </ul>
+  </div>
+  <div class="timer">
+    <span class="wheel" style="--split: 75%"></span>
+    <span class="time-text">30–45 мин</span>
+  </div>
+</div>
+
+<div class="mix-card">
+  <div class="wheel-badge">
+    <span class="wheel" style="--split: 50%"></span>
+    <span class="wheel-label">1 : 1</span>
+    <span class="wheel-caption">Londa · эмульсия 6%</span>
+  </div>
+  <div class="mix-body">
+    <p><b>Стойкая краска Londa + окислительная эмульсия 6%.</b> Пример: 60 мл краски + 60 мл эмульсии. Закрашивание седины до 100%; оттенки Special Blonds смешивают 1 : 2 и для седины не используют.</p>
+    <ul>
+      <li>Нанесение начинают с зон с наибольшим процентом седины</li>
+      <li>Отросшие корни — тонкими прядями</li>
+    </ul>
+  </div>
+  <div class="timer">
+    <span class="wheel" style="--split: 65%"></span>
+    <span class="time-text">30–40 мин <b>без тепла</b><br>15–25 мин <b>с теплом</b></span>
+  </div>
+</div>
+
+<div class="mix-card">
+  <div class="wheel-badge">
+    <span class="wheel" style="--split: 50%"></span>
+    <span class="wheel-label">1 : 1</span>
+    <span class="wheel-caption">SoColor · оксидант 6%</span>
+  </div>
+  <div class="mix-body">
+    <p><b>Matrix SoColor + крем-оксидант Matrix 6%.</b></p>
+    <ul>
+      <li>Седины меньше половины — основная коллекция на желаемом уровне</li>
+      <li>Седины больше половины — <b>Extra Coverage</b> на желаемом уровне, оттенки коллекции смешивают между собой</li>
+      <li>Модный оттенок (Reflect) на седине больше половины — смешать 1 : 1 с натуральным оттенком Blended; оба — на уровень темнее желаемого результата</li>
+    </ul>
+  </div>
+  <div class="timer">
+    <span class="wheel" style="--split: 100%"></span>
+    <span class="time-text">45 мин на седине</span>
+  </div>
+</div>
+
+**Время на седине не сокращают.** Седой волос впитывает краситель медленнее пигментированного, поэтому выдержку держат полностью. Если окрашенная длина темнеет быстрее корня, состав наносят по шагам:
+
+<ul class="checklist">
+  <li><span class="check-icon">✓</span><span>Сначала отросшие корни, с зон с наибольшим процентом седины — обычно виски и линия роста у лица</span></li>
+  <li><span class="check-icon">✓</span><span>Длину подключают через 15–20 минут, если цвет на ней отличается от корня</span></li>
+  <li><span class="check-icon">✓</span><span>Кончики — в последние 10 минут, только чтобы освежить цвет</span></li>
+  <li><span class="check-icon">✓</span><span>Перед смыванием состав эмульгируют: добавляют немного тёплой воды и массируют</span></li>
+  <li><span class="check-icon">✓</span><span>Перед любым окрашиванием — тест на чувствительность за 48 часов</span></li>
+</ul>
+
+## Предпигментация седины
+
+**Предпигментация** — нанесение тёплого пигмента на седину перед основным окрашиванием. Она заменяет седому волосу недостающий фон, и основная формула ложится ровно, без прозрачности. В инструкциях Koleston Perfect, Igora Royal, Londa и Matrix этот шаг обязательным не назван — ряды для седины рассчитаны на закрашивание до 100%. Предпигментацию применяют в салонной практике там, где эти ряды не справились.
+
+| Ситуация | Предпигментация |
+|---|---|
+| Седины меньше 30%, волосы хорошо окрашиваются | не нужна |
+| 30–50% седины | по необходимости, если седина стойкая |
+| 50–70% седины | рекомендуется |
+| 70–100% седины, стекловидная седина | обязательна |
+| Цвет на седине не держится и 3 недель, прозрачный результат прошлых окрашиваний | обязательна |
+
+Тон для предпигментации берут **на уровень светлее желаемого результата** и только из тёплых семейств — золотого, золотисто-медного, медного. Холодные и натуральные тона фон не восполняют: результат останется прозрачным, только с другим оттенком.
+
+| Желаемый результат | Семейство для предпигментации | Пример в номерах Koleston Perfect |
+|---|---|---|
+| 4–5 уровень, тёмный каштан | медный, медно-золотой | 6/43 для результата 5 уровня |
+| 5–6 уровень | медно-золотой | 7/43 для результата 6 уровня |
+| 6–7 уровень | золотисто-медный | 6/34 для результата 5–6 уровня, 7/43 — для 6–7 |
+| 7–8 уровень | золотой | 8/03 для результата 7 уровня, 9/03 — для 8 |
+
+![Две миски: тёплый золотисто-медный состав для предпигментации и основная формула, рядом седая прядь после предпигментации](/images/articles/2026-10-16-grey-coverage/bowls.webp)
+
+<div class="mix-card">
+  <div class="wheel-badge">
+    <span class="wheel" style="--split: 50%"></span>
+    <span class="wheel-label">1 : 1</span>
+    <span class="wheel-caption">краситель · тёплая вода</span>
+  </div>
+  <div class="mix-body">
+    <p><b>Предпигментация без окислителя.</b> Краситель тёплого тона смешивают с тёплой водой.</p>
+    <ul>
+      <li>Наносят только на седые зоны, на сухие или слегка влажные волосы</li>
+      <li><b>Не смывают</b> — основную формулу наносят сразу поверх</li>
+      <li>На тонких волосах время сокращают на 20–25%: начинать с 10 минут</li>
+    </ul>
+  </div>
+  <div class="timer">
+    <span class="wheel" style="--split: 35%"></span>
+    <span class="time-text">10–20 мин <b>с теплом</b><br>20–30 мин <b>без тепла</b></span>
+  </div>
+</div>
+
+**Ориентиры формул с предпигментацией.** 60% седины, результат 5 уровня — предпигментация медным оттенком 5–6 уровня, 15 минут с теплом, затем натуральный 5 уровня наполовину с пепельным 5 уровня на окислителе 6%, 35–40 минут. 100% седины, результат 7 уровня — предпигментация золотым оттенком 8 уровня, 20–25 минут без тепла, затем натуральный 7 уровня с 15% золотого 7 уровня на 6%, 40 минут. Пропорцию модного и натурального тона в основной формуле при этом берут по правилу марки.
+
+<div class="callout"><b>Две ошибки, которые обнуляют предпигментацию.</b> Холодный или натуральный тон вместо тёплого — фон не восполнен. Смывание перед основным окрашиванием — смыт пигмент, который только что нанесли.</div>
+
+## Маскировка седины: French blending и безаммиачные красители
+
+Маскировка не закрывает седину полностью, а вплетает её в цвет. Отрастающий корень почти не виден, визиты реже — раз в 8–10 недель вместо 4–5.
+
+**French blending** — маскировка тёплым тоном. Седина плюс золотисто-коричневый рефлекс читается как натуральный светлый оттенок, а не как неокрашенные волосы. Лучше всего работает при 30–70% седины. При меньшем проценте хватает обычного закрашивания, при большем — нужна предпигментация, иначе тёплый тон не задержится.
+
+| Натуральная база | Формула в номерах Koleston Perfect | Окислитель | Выдержка |
+|---|---|---|---|
+| 4 уровень | 30 г 6/73 + 10 г 4/0 | 40 г, 6% | 35 мин |
+| 5 уровень | 30 г 6/73 + 10 г 5/0 | 40 г, 6% | 35 мин |
+| 6 уровень | 30 г 7/73 + 10 г 6/0 | 40 г, 6% | 35 мин |
+| 7 уровень | 30 г 8/73 + 10 г 7/0 | 40 г, 6% | 30 мин |
+
+Коричнево-золотой оттенок даёт тёплый рефлекс, натуральный тон того же уровня, что и база, удерживает корень от лишней светлости. Формулы — подбор: исходная пропорция 3 : 1 разработана для универсальной нумерации и переведена в номера Koleston Perfect. Клиентам с холодным, розоватым тоном кожи часть коричнево-золотого оттенка заменяют пепельным /1.
+
+<ul class="checklist">
+  <li><span class="check-icon">✓</span><span>Плоская кисть, короткие горизонтальные мазки от корня — состав не втирают, а кладут: часть седых волос остаётся нетронутой</span></li>
+  <li><span class="check-icon">✓</span><span>На висках и макушке — пряди по 0,5 см, на остальной голове — до 1 см</span></li>
+  <li><span class="check-icon">✓</span><span>Только прикорневая зона; длину не окрашивают без необходимости</span></li>
+  <li><span class="check-icon">✓</span><span>Время контролировать по зонам: виски обычно прокрашиваются быстрее</span></li>
+</ul>
+
+**Безаммиачная маскировка** — без подъёма уровня и с мягким отрастанием.
+
+<div class="service-card">
+  <span class="wheel" style="--split: 50%"></span>
+  <div>
+    <p class="service-title">Wella Color Touch <span class="ratio-tag">до 50%</span></p>
+    <p>1 часть краски + 2 части эмульсии <b>1,9% или 4%</b>, 20 минут без тепла, 15 с теплом. Тон в тон, затемнение и маскировка седины до 50%; 4% — для более насыщенной маскировки.</p>
+  </div>
+</div>
+
+<div class="service-card">
+  <span class="wheel" style="--split: 70%"></span>
+  <div>
+    <p class="service-title">Wella Color Touch Plus <span class="ratio-tag">до 70%</span></p>
+    <p>1 часть краски + 2 части эмульсии <b>4%</b>, 20 минут без тепла, 15 с теплом. Закрашивает до 70% седины без стойкого окрашивания: оттенки <b>44/07, 55/07, 66/07, 77/07, 88/07</b>. На сухие волосы, при обновлении — начинать с корней.</p>
+  </div>
+</div>
+
+<div class="service-card">
+  <span class="wheel" style="--split: 50%"></span>
+  <div>
+    <p class="service-title">Londa безаммиачная <span class="ratio-tag">до 50% / до 70%</span></p>
+    <p>Основная безаммиачная линия: 1 часть краски + 2 части эмульсии <b>1,9% или 4%</b>, седина до 50%. Линия Extra Coverage: 1 часть краски + 2 части эмульсии <b>4%</b>, седина до 70%. Каждая линия смешивается только со своими оттенками.</p>
+  </div>
+</div>
+
+<div class="service-card">
+  <span class="wheel" style="--split: 75%"></span>
+  <div>
+    <p class="service-title">Matrix Super Sync <span class="ratio-tag">до 75%</span></p>
+    <p>1 часть краски + 1 часть оксида <b>3%</b>, 20 минут. Оттенки коллекций закрывают до 50% седины, натуральные <b>NN</b> — до 75%: <b>3NN, 5NN, 6NN, 8NN</b>.</p>
+  </div>
+</div>
+
+**Мягкая маскировка и седина без окрашивания.** При 70% седины и больше седые волосы не закрашивают, а выравнивают с ними пигментированные пряди: тонируют их ближе к тону седины или делают светлые пряди. Седину без окрашивания поддерживают тонированием от желтизны раз в 4–6 недель и уходом с фиолетовым пигментом — например, шампунем и кондиционером Matrix So Silver.
+
+## Граница отросшего корня: нанесение снизу вверх
+
+Резкая граница у корня появляется потому, что самый насыщенный цвет лежит ровно там, где контраст с отрастающей сединой максимальный. Техника нанесения снизу вверх (bottom-up) делает переход постепенным: граница становится заметной на 2–4 недели позже. Это техника маскировки для 30–70% седины, а не полного закрашивания — для 100% закрашивания нанесение по-прежнему начинают с самых седых зон у корня.
+
+![Нанесение краски на отросшую седину по диагональному пробору у корня](/images/articles/2026-10-16-grey-coverage/roots.webp)
+
+<ul class="checklist">
+  <li><span class="check-icon">✓</span><span><b>Проборы — неровным зигзагом по диагонали</b>, 30–45° к горизонтали. Ровный зигзаг или V-проборы снова дают линию, которую видит глаз</span></li>
+  <li><span class="check-icon">✓</span><span><b>Две смеси одного оттенка:</b> основная — на длину, смягчённая — на первые 3–4 см от кожи головы</span></li>
+  <li><span class="check-icon">✓</span><span><b>Нанесение от длины к корню:</b> у кожи головы пигмента меньше, по длине — полная насыщенность</span></li>
+  <li><span class="check-icon">✓</span><span><b>Смягчение подбирают по зонам:</b> на висках и макушке седины больше, чем на затылке</span></li>
+  <li><span class="check-icon">✓</span><span><b>Финиш — кислотный глянец</b> (pH 3,5–4,5): закрывает кутикулу и сохраняет переход дольше</span></li>
+</ul>
+
+При 30–50% седины достаточно обычного зигзага и умеренного смягчения. При 50–70% проборы делают тоньше, смягчение сильнее и при необходимости наносят в два приёма.
+
+<div class="callout"><b>Смягчение — только у корня.</b> Смягчённая смесь, нанесённая на середину длины, даёт обратный эффект: середина выходит светлее корня и кончиков.</div>
+
+## Igora Royal Absolutes — когда выбирать
+
+**Igora Royal Absolutes** — ряд Igora Royal для зрелых волос: закрывает до 100% седины без подмеса натурального тона, в том числе в модных оттенках. Смешивается 1 : 1 с оксигентом 9%, при седине больше 90% — с 6%, выдержка 30–45 минут.
+
+Решает не процент седины, а то, есть ли нужный рефлекс в ряду на нужном уровне:
+
+| Нужный результат | Есть ли в Absolutes | Чем работать |
+|---|---|---|
+| Шоколадный, золотистый, бежевый, медный, красный | да, по уровням: 4-60, 5-50, 5-60, 5-80, 6-50, 6-60, 6-70, 6-80, 7-50, 7-70, 8-50, 8-60, 9-40, 9-50, 9-60 | Absolutes в чистом виде |
+| Пепельный блонд 7–9 уровня | да: 7-10, 8-01 | Absolutes в чистом виде |
+| Пепельный ниже 7 уровня | нет | натуральный пепельный, например 5-1: Natural закрывает 100% седины до 9 уровня |
+| Дымчатый, матовый, фиолетовый | нет ни на одном уровне | модный оттенок Igora Royal + натуральный 2 : 1 при 70–100% седины |
+| Натуральный | только с пепельным рефлексом: 8-01, 7-10 | Natural Extra (-00) или Natural (-0) |
+
+<div class="callout"><b>Холодный модный оттенок на сильной седине, первое нанесение.</b> По инструкции Igora Royal состав не наносят на 2 см от линии роста волос; эту зону закрывают нейтрализующим оттенком в последнюю очередь, чтобы не получить избыточную пигментацию.</div>
+
+## Формулы по маркам
+
+Пропорции и окислители — по правилам каждой марки, они между марками не переносятся. Доля натурального тона рассчитана по таблице выше.
+
+### Wella Koleston Perfect
+
+<div class="service-card">
+  <span class="wheel" style="--split: 50%"></span>
+  <div>
+    <p class="service-title">Медно-золотистый 6 уровня, 50–100% седины <span class="ratio-tag">6%</span></p>
+    <p><b>30 г 6/43 + 30 г 6/0</b> + 60 г Welloxon Perfect 6%. На стойкой седине натуральный — <b>66/0</b>.</p>
+  </div>
+</div>
+
+<div class="service-card">
+  <span class="wheel" style="--split: 33%"></span>
+  <div>
+    <p class="service-title">Пепельный блонд 7 уровня, 30–50% седины <span class="ratio-tag">6%</span></p>
+    <p><b>40 г 7/1 + 20 г 7/0</b> + 60 г 6%. На стойкой седине натуральный — <b>77/0</b>.</p>
+  </div>
+</div>
+
+<div class="service-card">
+  <span class="wheel" style="--split: 100%"></span>
+  <div>
+    <p class="service-title">Натуральный коричневый, стекловидная седина <span class="ratio-tag">6%</span></p>
+    <p><b>55/0</b> или <b>5/00</b> в чистом виде, 60 г + 60 г 6%, 40 минут. Ряд XX/0 рассчитан на стойкую, трудную для окрашивания седину.</p>
+  </div>
+</div>
+
+### Schwarzkopf Igora Royal
+
+<div class="service-card">
+  <span class="wheel" style="--split: 100%"></span>
+  <div>
+    <p class="service-title">Шоколадный 5 уровня, 80% седины <span class="ratio-tag">9%</span></p>
+    <p><b>Absolutes 5-60</b> в чистом виде 1 : 1. Седины больше 90% — оксигент <b>6%</b>.</p>
+  </div>
+</div>
+
+<div class="service-card">
+  <span class="wheel" style="--split: 67%"></span>
+  <div>
+    <p class="service-title">Насыщенный красный 5 уровня, 70–100% седины <span class="ratio-tag">6%</span></p>
+    <p><b>2 части 5-88 + 1 часть 5-0</b>, на плотных, трудных для окрашивания волосах — <b>1 : 1</b>. Смесь 1 : 1 с оксигентом.</p>
+  </div>
+</div>
+
+<div class="service-card">
+  <span class="wheel" style="--split: 100%"></span>
+  <div>
+    <p class="service-title">Холодный светло-коричневый, больше 90% седины <span class="ratio-tag">6%</span></p>
+    <p><b>5-1</b> в чистом виде: пепельного ниже 7 уровня в Absolutes нет, а Natural закрывает 100% седины.</p>
+  </div>
+</div>
+
+### Londa Professional
+
+<div class="service-card">
+  <span class="wheel" style="--split: 100%"></span>
+  <div>
+    <p class="service-title">Коричневый без подмеса, до 100% седины <span class="ratio-tag">6%</span></p>
+    <p><b>6/77</b>, <b>5/7</b> или <b>4/77</b> в чистом виде: оттенки /7 и /77 не требуют натурального тона. 60 мл краски + 60 мл 6%.</p>
+  </div>
+</div>
+
+<div class="service-card">
+  <span class="wheel" style="--split: 50%"></span>
+  <div>
+    <p class="service-title">Медно-золотистый 6 уровня, 50–100% седины <span class="ratio-tag">6%</span></p>
+    <p><b>30 мл 6/43 + 30 мл 6/0</b> + 60 мл 6%.</p>
+  </div>
+</div>
+
+### Matrix SoColor
+
+<div class="service-card">
+  <span class="wheel" style="--split: 100%"></span>
+  <div>
+    <p class="service-title">Натуральный, седины больше половины <span class="ratio-tag">6%</span></p>
+    <p>Extra Coverage желаемого уровня: <b>505N</b>, <b>506N</b>, <b>507N</b>, <b>508N</b>. Тёплый вариант — <b>507G</b>, холодный — <b>508NA</b>, <b>509NA</b>. 1 : 1, 45 минут.</p>
+  </div>
+</div>
+
+<div class="service-card">
+  <span class="wheel" style="--split: 50%"></span>
+  <div>
+    <p class="service-title">Extra Coverage при седине меньше половины <span class="ratio-tag">6%</span></p>
+    <p>Оттенок берут <b>на уровень светлее</b> желаемого результата: на 50% седины и больше — желаемый уровень.</p>
+  </div>
+</div>
+
+## Ошибки и как их исправить
+
+| Проблема | Причина | Как исправить |
+|---|---|---|
+| Седина прозрачная, видна сквозь цвет | нет натурального тона в формуле или сокращена выдержка | натуральный тон по правилу марки, полная выдержка; на стойкой седине — ряд для стойкой седины и предпигментация |
+| Седина взяла рефлекс, но не глубину | модный оттенок в чистом виде на 50% седины и больше | добавить натуральный того же уровня |
+| Цвет светлее и тусклее задуманного | окислитель 9–12% «для лучшего закрашивания» | 6% для закрашивания седины |
+| Прозрачный светлый блонд на седине | формула 9–10 уровня на сильной седине | закрашивание на 6–7 уровень, затем мелирование |
+| После предпигментации результат прозрачный | холодный или натуральный тон для предпигментации, смывание перед основной формулой | только тёплый тон, основную формулу — сразу поверх |
+| Корень заметен через 2–3 недели | 100% закрашивание на 70% седины и больше | маскировка, нанесение снизу вверх, Color Touch Plus или Super Sync NN |
+| Цвет на седине смывается за пару недель | короткая выдержка, смыли без эмульгирования | полная выдержка, эмульгирование перед смыванием, шампунь без сульфатов |
+
+## Частые вопросы
+
+### Почему седина не прокрашивается, хотя формула правильная?
+
+Чаще всего это стекловидная седина: плотная кутикула не впускает краситель. Натуральный тон берут из ряда для стойкой седины (у Koleston Perfect — XX/0, у Igora Royal — Natural Extra -00), выдержку держат полностью, а перед окрашиванием делают предпигментацию тёплым тоном без окислителя.
+
+### Нужно ли добавлять натуральный тон к Igora Royal Absolutes?
+
+Нет. Absolutes закрывают до 100% седины без подмеса натурального тона, в том числе в модных оттенках. Если нужного рефлекса в ряду на нужном уровне нет, работают модным оттенком Igora Royal с натуральным, а не добавляют натуральный к Absolutes.
+
+### Почему для седины не берут окислитель 9% или 12%?
+
+Сильный окислитель больше осветляет и меньше оставляет пигмента: цвет выходит светлее и тусклее. Для закрашивания седины берут 6%. Исключение — Igora Royal Absolutes и Natural Extra, у которых базовый оксигент 9%, а 6% используют при седине больше 90%.
+
+### Когда нужна предпигментация?
+
+При 70–100% седины, на стекловидной седине и когда прошлые окрашивания вышли прозрачными или смылись быстрее чем за 3 недели. При 50–70% — рекомендуется, при меньшем проценте и хорошо окрашиваемых волосах — не нужна.
+
+### Можно ли закрасить седину безаммиачным красителем?
+
+Частично. Color Touch и безаммиачная Londa маскируют до 50% седины, Color Touch Plus и безаммиачная Londa Extra Coverage — до 70%, натуральные NN у Matrix Super Sync — до 75%. Для полного закрашивания нужна стойкая краска.
+
+### Чем French blending отличается от обычного закрашивания?
+
+French blending не закрывает седину полностью, а вплетает её тёплым коричнево-золотым рефлексом. Формула мягче, наносится плоской кистью только у корня, а отрастающий корень почти незаметен — обновление раз в 8–10 недель вместо 4–5.
+
+### Как часто обновлять закрашивание седины?
+
+При полном закрашивании и седине больше половины — каждые 4–5 недель. Маскировку — каждые 6–8 недель, French blending — каждые 8–10 недель.
+
+### Можно ли перейти с полного закрашивания на маскировку?
+
+Да, постепенно: на одну ступень за 2–3 визита. Начинают с висков — если результат нравится клиенту, переходят на всю голову. Вернуться к полному закрашиванию можно в любой визит.
+
+## Что заказать
+
+Оттенки, окислители и уход из этой статьи, которые есть в прайсе.
+
+### Wella Professionals — Koleston Perfect
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Koleston Perfect 6/43, 60 мл</td><td>6-43</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 6/43 Дикая орхидея 60мл 6-43" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 7/43, 60 мл</td><td>7-43</td><td class="col-price-cell"><s class="kit-old-price">699 ₽</s><b class="kit-price-now">664,05 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 7/43 Красный тициан 60мл 7-43" data-price="664.05" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 6/34, 60 мл</td><td>6-34</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 6/34 Медовый пунш 60мл 6-34" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 8/03, 60 мл</td><td>8-03</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 8/03 Янтарь 60мл 8-03" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 9/03, 60 мл</td><td>9-03</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 9/03 Лен 60мл 9-03" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 6/73, 60 мл</td><td>6-73</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 6/73 Темный орех 60мл 6-73" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 7/73, 60 мл</td><td>7-73</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 7/73 Лесной орех 60мл 7-73" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 8/73, 60 мл</td><td>8-73</td><td class="col-price-cell"><s class="kit-old-price">699 ₽</s><b class="kit-price-now">594,15 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 8/73 Мадейра 60мл 8-73" data-price="594.15" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 7/1, 60 мл</td><td>7-1</td><td class="col-price-cell"><s class="kit-old-price">699 ₽</s><b class="kit-price-now">629,10 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 7/1 Табачный маррон 60мл 7-1" data-price="629.1" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 5/0, 60 мл</td><td>5-0</td><td class="col-price-cell"><s class="kit-old-price">699 ₽</s><b class="kit-price-now">664,05 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 5/0 Светло-коричневый натуральный 60мл 5-0" data-price="664.05" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 7/0, 60 мл</td><td>7-0</td><td class="col-price-cell"><s class="kit-old-price">699 ₽</s><b class="kit-price-now">664,05 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 7/0 Блонд натуральный 60мл 7-0" data-price="664.05" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 55/0, 60 мл</td><td>55-0</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 55/0 Светло-коричневый интенсивный натуральный 60мл 55-0" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 66/0, 60 мл</td><td>66-0</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 66/0 Темный блонд натуральный 60мл 66-0" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 77/0, 60 мл</td><td>77-0</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 77/0 Блонд интенсивный натуральный 60мл 77-0" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 4/00, 60 мл</td><td>4-00</td><td class="col-price-cell"><s class="kit-old-price">699 ₽</s><b class="kit-price-now">664,05 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 4/00 Коричневый интенсивный натуральный 60мл 4-00" data-price="664.05" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 5/00, 60 мл</td><td>5-00</td><td class="col-price-cell"><s class="kit-old-price">699 ₽</s><b class="kit-price-now">664,05 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 5/00 60мл 5-00" data-price="664.05" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 6/00, 60 мл</td><td>6-00</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 6/00 Темный блонд натуральный интенсивный 60мл 6-00" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 7/00, 60 мл</td><td>7-00</td><td class="col-price-cell"><s class="kit-old-price">699 ₽</s><b class="kit-price-now">664,05 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 7/00 Блонд натуральный интенсивный 60мл 7-00" data-price="664.05" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Koleston Perfect 9/00, 60 мл</td><td>9-00</td><td class="col-price-cell">699 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска колестон 9/00 Очень светлый блонд натуральный интенсивный 60мл 9-00" data-price="699" data-brand="WELLA">+ В заявку</button></td></tr>
+<tr><td>Окислитель Welloxon Perfect 6%, 1000 мл</td><td>6497</td><td class="col-price-cell"><s class="kit-old-price">998,58 ₽</s><b class="kit-price-now">948,65 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Окислитель Welloxon Perfect 6% 1000мл 6497/6923" data-price="948.65" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+### Wella Professionals — Color Touch Plus
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Color Touch Plus 44/07, 60 мл</td><td>ct44-07</td><td class="col-price-cell"><s class="kit-old-price">715 ₽</s><b class="kit-price-now">679,25 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска CT Plus 44-07 сакура ct44-07" data-price="679.25" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Color Touch Plus 55/07, 60 мл</td><td>ct55-07</td><td class="col-price-cell"><s class="kit-old-price">715 ₽</s><b class="kit-price-now">679,25 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска CT Plus 55-07 кедр ct55-07" data-price="679.25" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Color Touch Plus 66/07, 60 мл</td><td>ct66-07</td><td class="col-price-cell"><s class="kit-old-price">715 ₽</s><b class="kit-price-now">643,50 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска CT Plus 66-07 кипарис ct66-07" data-price="643.5" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Color Touch Plus 77/07, 60 мл</td><td>ct77-07</td><td class="col-price-cell"><s class="kit-old-price">715 ₽</s><b class="kit-price-now">679,25 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска CT Plus 77-07 олива ct77-07" data-price="679.25" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Color Touch Plus 88/07, 60 мл</td><td>ct88-07</td><td class="col-price-cell"><s class="kit-old-price">715 ₽</s><b class="kit-price-now">679,25 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска CT Plus 88-07 платан ct88-07" data-price="679.25" data-brand="WELLA" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Эмульсия Color Touch 4%, 1000 мл</td><td>6019</td><td class="col-price-cell">998,58 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Color Touch 4 % 1000мл 6019/6291" data-price="998.58" data-brand="WELLA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+### Schwarzkopf Professional — Igora Royal Absolutes
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Igora Royal Absolutes 4-60, 60 мл</td><td>и460</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 4-60 Средний коричневый шоколадный натуральный 60мл и460" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 5-50, 60 мл</td><td>и550</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 5-50 Светлый коричн.золотистый натуральный 60мл и550" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 5-60, 60 мл</td><td>и560</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 5-60 Светлый коричн.шоколадный натуральный 60мл и560" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 5-80, 60 мл</td><td>и580</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 5-80 Светлый коричн.красный натуральный 60мл и580" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 6-50, 60 мл</td><td>и650</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 6-50 Темный русый золотистый натуральный 60мл и650" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 6-60, 60 мл</td><td>и660</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 6-60 Темный русый шоколадный натуральный 60мл и660" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 6-70, 60 мл</td><td>и670</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 6-70 Темный русый медный натуральный 60мл и670" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 6-80, 60 мл</td><td>и680</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 6-80 Темный русый красный натуральный 60мл и680" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 7-10, 60 мл</td><td>и710</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 7-10 Средний русый натуральный сандрэ 60мл и710" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 7-50, 60 мл</td><td>и750</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 7-50 Средний русый золотистый натуральный 60мл и750" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 7-70, 60 мл</td><td>и770</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 7-70 Средний русый медный натуральный 60мл и770" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 8-01, 60 мл</td><td>и801</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 8-01 60мл и801" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 8-50, 60 мл</td><td>и850</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 8-50 Светлый русый золотистый натуральный 60мл и850" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 8-60, 60 мл</td><td>и860</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 8-60 Светлый русый шоколадный натуральный 60мл и860" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 9-40, 60 мл</td><td>и940</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 9-40 Блондин бежевый натуральный 60мл и940" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 9-50, 60 мл</td><td>и950</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 9-50 Блондин золотистый натуральный 60мл и950" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal Absolutes 9-60, 60 мл</td><td>и960</td><td class="col-price-cell">540,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR AB 9-60 Блондин шоколадный натуральный 60мл и960" data-price="540.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+### Schwarzkopf Professional — Igora Royal Natural и Natural Extra
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Igora Royal 5-00, 60 мл</td><td>и500</td><td class="col-price-cell">519,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR 5-00 Светлый коричневый натуральный экстра 60мл и500" data-price="519.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal 6-00, 60 мл</td><td>и600</td><td class="col-price-cell">519,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR 6-00 Темный русый натуральный экстра 60мл и600" data-price="519.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal 9-00, 60 мл</td><td>и900</td><td class="col-price-cell">519,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR 9-00 Блондин натуральный экстра 60мл и900" data-price="519.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal 5-0, 60 мл</td><td>и50</td><td class="col-price-cell">519,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR 5-0 Светлый коричневый натуральный 60мл и50" data-price="519.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal 8-0, 60 мл</td><td>и80</td><td class="col-price-cell">519,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR 8-0 Светлый русый натуральный 60мл и80" data-price="519.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal 5-1, 60 мл</td><td>и51</td><td class="col-price-cell">519,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR 5-1 Светлый коричневый сандрэ 60мл и51" data-price="519.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Igora Royal 5-88, 60 мл</td><td>и588</td><td class="col-price-cell">519,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Краска IR 5-88 Светлый коричневый красный экстра 60мл и588" data-price="519.5" data-brand="SCHWARZKOPF">+ В заявку</button></td></tr>
+<tr><td>Оксигент Igora 6%, 1000 мл</td><td>2184628</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">849,15 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 6% 1000мл 2184628" data-price="849.15" data-brand="SCHWARZKOPF" data-promo="1">+ В заявку</button></td></tr>
+<tr><td>Оксигент Igora 9%, 1000 мл</td><td>1847105</td><td class="col-price-cell"><s class="kit-old-price">999 ₽</s><b class="kit-price-now">849,15 ₽</b><span class="kit-promo-badge">Акция</span></td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксигент на масляной основе 9% 1000мл 1847105" data-price="849.15" data-brand="SCHWARZKOPF" data-promo="1">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+### Londa Professional — стойкая краска
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Londa 6/77, 60 мл</td><td>0677</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 6-77 тёмн блонд интенс-коричневый 0677" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Londa 5/7, 60 мл</td><td>057</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 5-7 светл шатен коричневый 057" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Londa 4/77, 60 мл</td><td>0477</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 4-77 шатен интенсивно-коричневый 0477" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Londa 6/43, 60 мл</td><td>0643</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 6-43 тёмн блонд медно-золотист 0643" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Londa 5/0, 60 мл</td><td>050</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 5-0 светлый шатен 050" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Londa 9/0, 60 мл</td><td>090</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 9-0 очень светлый блонд 090" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+### Matrix — SoColor Extra Coverage
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>SoColor Extra Coverage 504N, 90 мл</td><td>504N</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 504N 504N" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 505N, 90 мл</td><td>505N</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 505N 505N" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 505M, 90 мл</td><td>505M</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 505M 505M" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 506N, 90 мл</td><td>506N</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 506N 506N" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 506NV, 90 мл</td><td>506NV</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 506NV 506NV" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 506NW, 90 мл</td><td>506NW</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 506NW 506NW" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 506BC, 90 мл</td><td>506BC</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 506BC 506BC" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 507N, 90 мл</td><td>507N</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 507N 507N" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 507G, 90 мл</td><td>507G</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 507G 507G" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 507AV, 90 мл</td><td>507AV</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 507AV 507AV" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 508N, 90 мл</td><td>508N</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 508N 508N" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 508NA, 90 мл</td><td>508NA</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 508NA 508NA" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 508NW, 90 мл</td><td>508NW</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 508NW 508NW" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 508M, 90 мл</td><td>508M</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 508M 508M" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 508BC, 90 мл</td><td>508BC</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 508BC 508BC" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 509N, 90 мл</td><td>509N</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 509N 509N" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 509NA, 90 мл</td><td>509NA</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 509NA 509NA" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 509G, 90 мл</td><td>509G</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 509G 509G" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 509AV, 90 мл</td><td>509AV</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 509AV 509AV" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 510G, 90 мл</td><td>510G</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 510G 510G" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>SoColor Extra Coverage 510NA, 90 мл</td><td>510NA</td><td class="col-price-cell">610 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Socolor 510NA 510NA" data-price="610" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>Оксид Socolor 6%, 1000 мл</td><td>312664</td><td class="col-price-cell">1 085 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Socolor 6% 1000 мл. 312664" data-price="1085" data-brand="MATRIX">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+### Matrix — Super Sync
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Super Sync 3NN, 90 мл</td><td>03NN</td><td class="col-price-cell">750 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Color Sync 3NN 90мл NEW 03NN" data-price="750" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>Super Sync 5NN, 90 мл</td><td>05NN</td><td class="col-price-cell">750 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Color Sync 5NN светлый шатен глубокий 90мл NEW 05NN" data-price="750" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>Super Sync 6NN, 90 мл</td><td>06NN</td><td class="col-price-cell">750 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Color Sync 6NN блонд. темный глубокий 90мл NEW 06NN" data-price="750" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>Super Sync 8NN, 90 мл</td><td>08NN</td><td class="col-price-cell">750 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Color Sync 8NN блондин светлый глубокий 90мл NEW 08NN" data-price="750" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>Оксид Socolor / Color Sync 3%, 1000 мл</td><td>313256</td><td class="col-price-cell">1 085 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Socolor/ Color Sync 3% 1000мл 313256" data-price="1085" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>Оксид Socolor / Color Sync 3%, 60 мл</td><td>290876</td><td class="col-price-cell">110 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Оксид Socolor/ Color Sync 3% 60мл 290876" data-price="110" data-brand="MATRIX">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
+### Уход для седых волос
+
+<div class="kit-table-wrap">
+<table class="kit-table">
+<colgroup><col><col style="width:90px"><col style="width:130px"><col style="width:108px"></colgroup>
+<thead><tr><th>Продукт</th><th>Артикул</th><th>Цена</th><th>Заказ</th></tr></thead>
+<tbody>
+<tr><td>Matrix So Silver, шампунь 300 мл</td><td>312459</td><td class="col-price-cell">854,26 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Шампунь Color Obsessed So Silver 300мл (нейтрализует желтые подтона на волосах 8-11 уровней) 312459/1577700" data-price="854.26" data-brand="MATRIX">+ В заявку</button></td></tr>
+<tr><td>Matrix So Silver, кондиционер 1000 мл</td><td>307010</td><td class="col-price-cell">2 508 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="Кондиционер Color Obsessed So Silver 1000мл (нейтрализует желтые подтона на волосах 8-11 уровней) 307010/2990300" data-price="2508" data-brand="MATRIX">+ В заявку</button></td></tr>
+</tbody>
+</table>
+</div>
+
