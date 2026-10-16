@@ -246,6 +246,16 @@
   "price": 375.5
  },
  {
+  "code": "5/77",
+  "hex": "#643c32",
+  "group": "brown",
+  "row": 5,
+  "col": 7,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/5-77.webp",
+  "name": "LC крем-краска 5-77 светлый шатен интенсивно-коричневый 0577",
+  "price": 375.5
+ },
+ {
   "code": "4/71",
   "hex": "#382720",
   "group": "brown",
