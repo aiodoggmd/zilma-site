@@ -1,0 +1,199 @@
+{
+ "article": "2026-10-16-grey-coverage",
+ "tables": [
+  {
+   "heading": "Wella Professionals — Koleston Perfect",
+   "palette": "koleston",
+   "label": "Koleston Perfect {c}, 60 мл",
+   "codes": [
+    "6/43",
+    "7/43",
+    "6/34",
+    "8/03",
+    "9/03",
+    "6/73",
+    "7/73",
+    "8/73",
+    "7/1",
+    "5/0",
+    "7/0",
+    "55/0",
+    "66/0",
+    "77/0",
+    "4/00",
+    "5/00",
+    "6/00",
+    "7/00",
+    "9/00"
+   ],
+   "extras": [
+    [
+     "Окислитель Welloxon Perfect 6%, 1000 мл",
+     "Окислитель Welloxon Perfect 6% 1000мл 6497/6923"
+    ]
+   ]
+  },
+  {
+   "heading": "Wella Professionals — Color Touch Plus",
+   "palette": "colortouch",
+   "label": "Color Touch Plus {c}, 60 мл",
+   "codes": [
+    "44/07",
+    "55/07",
+    "66/07",
+    "77/07",
+    "88/07"
+   ],
+   "extras": [
+    [
+     "Эмульсия Color Touch 4%, 1000 мл",
+     "Оксид Color Touch 4 % 1000мл 6019/6291"
+    ]
+   ]
+  },
+  {
+   "heading": "Schwarzkopf Professional — Igora Royal Absolutes",
+   "palette": "igora-royal",
+   "label": "Igora Royal Absolutes {c}, 60 мл",
+   "codes": [
+    "4-60",
+    "5-50",
+    "5-60",
+    "5-80",
+    "6-50",
+    "6-60",
+    "6-70",
+    "6-80",
+    "7-10",
+    "7-50",
+    "7-70",
+    "8-01",
+    "8-50",
+    "8-60",
+    "9-40",
+    "9-50",
+    "9-60"
+   ],
+   "extras": []
+  },
+  {
+   "heading": "Schwarzkopf Professional — Igora Royal Natural и Natural Extra",
+   "palette": "igora-royal",
+   "label": "Igora Royal {c}, 60 мл",
+   "codes": [
+    "5-00",
+    "6-00",
+    "9-00",
+    "5-0",
+    "8-0",
+    "5-1",
+    "5-88"
+   ],
+   "extras": [
+    [
+     "Оксигент Igora 6%, 1000 мл",
+     "Оксигент на масляной основе 6% 1000мл 2184628"
+    ],
+    [
+     "Оксигент Igora 9%, 1000 мл",
+     "Оксигент на масляной основе 9% 1000мл 1847105"
+    ]
+   ]
+  },
+  {
+   "heading": "Londa Professional — стойкая краска",
+   "palette": "londa",
+   "label": "Londa {c}, 60 мл",
+   "codes": [
+    "6/77",
+    "5/7",
+    "4/77",
+    "6/43",
+    "5/0",
+    "9/0"
+   ],
+   "extras": [
+    [
+     "Londa 6/ интенсивный тёплый, 60 мл",
+     "LC крем-краска 6/ интенсивный тёмный блонд (теплый) 0/6"
+    ],
+    [
+     "Londa 7/ интенсивный тёплый, 60 мл",
+     "LC крем-краска 7/ интенсивный блонд (теплый) 0/7"
+    ],
+    [
+     "Londa 8/ интенсивный тёплый, 60 мл",
+     "LC крем-краска 8/ интенсивный светлый блонд (теплый) 0/8"
+    ]
+   ]
+  },
+  {
+   "heading": "Matrix — SoColor Extra Coverage",
+   "palette": "matrix-socolor",
+   "label": "SoColor Extra Coverage {c}, 90 мл",
+   "codes": [
+    "504N",
+    "505N",
+    "505M",
+    "506N",
+    "506NV",
+    "506NW",
+    "506BC",
+    "507N",
+    "507G",
+    "507AV",
+    "508N",
+    "508NA",
+    "508NW",
+    "508M",
+    "508BC",
+    "509N",
+    "509NA",
+    "509G",
+    "509AV",
+    "510G",
+    "510NA"
+   ],
+   "extras": [
+    [
+     "Оксид Socolor 6%, 1000 мл",
+     "Оксид Socolor 6% 1000 мл. 312664"
+    ]
+   ]
+  },
+  {
+   "heading": "Matrix — Super Sync",
+   "palette": "matrix-sync",
+   "label": "Super Sync {c}, 90 мл",
+   "codes": [
+    "3NN",
+    "5NN",
+    "6NN",
+    "8NN"
+   ],
+   "extras": [
+    [
+     "Оксид Socolor / Color Sync 3%, 1000 мл",
+     "Оксид Socolor/ Color Sync 3% 1000мл 313256"
+    ],
+    [
+     "Оксид Socolor / Color Sync 3%, 60 мл",
+     "Оксид Socolor/ Color Sync 3% 60мл 290876"
+    ]
+   ]
+  },
+  {
+   "heading": "Уход для седых волос",
+   "extras": [
+    [
+     "Matrix So Silver, шампунь 300 мл",
+     "Шампунь Color Obsessed So Silver 300мл (нейтрализует желтые подтона на волосах 8-11 уровней) 312459/1577700"
+    ],
+    [
+     "Matrix So Silver, кондиционер 1000 мл",
+     "Кондиционер Color Obsessed So Silver 1000мл (нейтрализует желтые подтона на волосах 8-11 уровней) 307010/2990300"
+    ]
+   ]
+  }
+ ]
+}

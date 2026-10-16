@@ -315,6 +315,9 @@ def main() -> None:
     run('6/8 LEBEL под заказ — запись', ['scripts/build-lebel-preorder.py', '--apply'])
     run('6/8 Данные сайта — повтор после LEBEL', ['scripts/xlsx-to-price-items.py'])
     run('6/8 Привязка палитр — повтор', ['scripts/link-palette-shades.py', '--apply'])
+    # Таблицы «Что заказать» в статьях: поступившие позиции из списков src/data/article-kits.
+    # Строго после привязки палитр — оттенок ищется по имени, которое она только что записала.
+    run('6/8 Таблицы статей — поступления', ['scripts/update-article-kits.py', '--apply'])
     write_dated_copy(key)
     after = snapshot(run('8/8 Сверка', ['scripts/verify-price-sync.py']))
     warnings = compare(before, after, gone, uncat_before)

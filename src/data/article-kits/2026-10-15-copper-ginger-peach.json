@@ -1,0 +1,205 @@
+{
+ "article": "2026-10-15-copper-ginger-peach",
+ "tables": [
+  {
+   "heading": "Wella Professionals — Koleston Perfect",
+   "palette": "koleston",
+   "label": "Koleston Perfect {c}, 60 мл",
+   "codes": [
+    "5/43",
+    "6/34",
+    "6/43",
+    "6/45",
+    "7/34",
+    "7/43",
+    "77/43",
+    "77/44",
+    "7/47",
+    "8/34",
+    "8/43",
+    "88/43",
+    "8/45",
+    "8/04",
+    "9/04",
+    "7/0",
+    "7/3",
+    "8/3",
+    "9/3"
+   ],
+   "extras": [
+    [
+     "Окислитель Welloxon Perfect 6%, 1000 мл",
+     "Окислитель Welloxon Perfect 6% 1000мл 6497/6923"
+    ],
+    [
+     "Окислитель Welloxon Perfect 9%, 1000 мл",
+     "Окислитель Welloxon Perfect 9% 1000мл 6498/6484"
+    ]
+   ]
+  },
+  {
+   "heading": "Wella Professionals — Color Touch",
+   "palette": "colortouch",
+   "label": "Color Touch {c}, 60 мл",
+   "codes": [
+    "6/4",
+    "6/45",
+    "6/47",
+    "7/4",
+    "7/43",
+    "7/47",
+    "8/43",
+    "8/41",
+    "7/3",
+    "8/3",
+    "10/34",
+    "66/44",
+    "77/45"
+   ],
+   "extras": [
+    [
+     "Эмульсия Color Touch 1,9%, 1000 мл",
+     "Оксид Color Touch 1,9 % 1000мл 6021/6298"
+    ],
+    [
+     "Эмульсия Color Touch 4%, 1000 мл",
+     "Оксид Color Touch 4 % 1000мл 6019/6291"
+    ]
+   ]
+  },
+  {
+   "heading": "Schwarzkopf Professional — Igora Royal",
+   "palette": "igora-royal",
+   "label": "Igora Royal {c}, 60 мл",
+   "codes": [
+    "5-7",
+    "6-77",
+    "7-57",
+    "7-77",
+    "8-4",
+    "8-77",
+    "9-55",
+    "9-48",
+    "6-68",
+    "7-0",
+    "0-77"
+   ],
+   "extras": [
+    [
+     "Оксигент Igora 6%, 1000 мл",
+     "Оксигент на масляной основе 6% 1000мл 2184628"
+    ],
+    [
+     "Оксигент Igora 9%, 1000 мл",
+     "Оксигент на масляной основе 9% 1000мл 1847105"
+    ],
+    [
+     "Оксигент Igora 9%, 60 мл",
+     "Оксигент на масляной основе 9% 60мл 945738"
+    ]
+   ]
+  },
+  {
+   "heading": "Londa Professional — стойкая краска",
+   "palette": "londa",
+   "label": "Londa {c}, 60 мл",
+   "codes": [
+    "4/4",
+    "5/4",
+    "6/43",
+    "7/4",
+    "7/43",
+    "7/44",
+    "7/34",
+    "7/45",
+    "6/45",
+    "7/3",
+    "8/3",
+    "7/0",
+    "0/43"
+   ],
+   "extras": [
+    [
+     "Окислительная эмульсия L-Color 9%, 1000 мл",
+     "L-Color окислительная эмульсия 9% 1000мл 918"
+    ]
+   ]
+  },
+  {
+   "heading": "Londa Professional — безаммиачное тонирование",
+   "palette": "londa-demi",
+   "label": "Londa {c}, 60 мл",
+   "codes": [
+    "5/4",
+    "6/4",
+    "6/45",
+    "7/4",
+    "7/43",
+    "7/45"
+   ],
+   "extras": [
+    [
+     "Окислительная эмульсия L-Color 1,9%, 1000 мл",
+     "L-Color окислительная эмульсия 1,9% 1000мл 914"
+    ],
+    [
+     "Окислительная эмульсия L-Color 4%, 1000 мл",
+     "L-Color окислительная эмульсия 4% 1000мл 915"
+    ]
+   ]
+  },
+  {
+   "heading": "Matrix — SoColor",
+   "palette": "matrix-socolor",
+   "label": "SoColor {c}, 90 мл",
+   "codes": [
+    "5C",
+    "6C",
+    "7C",
+    "8C",
+    "7CC",
+    "8CC",
+    "5CG",
+    "7CG",
+    "9CG",
+    "7G",
+    "8G",
+    "7N"
+   ],
+   "extras": [
+    [
+     "Оксид Socolor 6%, 1000 мл",
+     "Оксид Socolor 6% 1000 мл. 312664"
+    ],
+    [
+     "Оксид Socolor 9%, 1000 мл",
+     "Оксид Socolor 9% 1000мл 308147"
+    ]
+   ]
+  },
+  {
+   "heading": "Matrix — Super Sync",
+   "palette": "matrix-sync",
+   "label": "Super Sync {c}, 90 мл",
+   "codes": [
+    "6CG",
+    "8CG",
+    "7CC",
+    "6BC",
+    "8BC",
+    "8G",
+    "10G"
+   ],
+   "extras": [
+    [
+     "Оксид Socolor / Color Sync 3%, 1000 мл",
+     "Оксид Socolor/ Color Sync 3% 1000мл 313256"
+    ],
+    [
+     "Оксид Socolor / Color Sync 3%, 60 мл",
+     "Оксид Socolor/ Color Sync 3% 60мл 290876"
+    ]
+   ]
+  }
+ ]
+}

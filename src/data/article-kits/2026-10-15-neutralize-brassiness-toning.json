@@ -1,0 +1,210 @@
+{
+ "article": "2026-10-15-neutralize-brassiness-toning",
+ "tables": [
+  {
+   "heading": "Wella Professionals — Color Touch",
+   "palette": "colortouch",
+   "label": "Color Touch {c}, 60 мл",
+   "codes": [
+    "5/1",
+    "4/71",
+    "5/71",
+    "6/71",
+    "7/1",
+    "7/71",
+    "7/86",
+    "7/89",
+    "7/97",
+    "8/71",
+    "8/81",
+    "9/16",
+    "9/86",
+    "9/96",
+    "10/6",
+    "10/1",
+    "10/81"
+   ],
+   "extras": [
+    [
+     "Эмульсия Color Touch 1,9%, 1000 мл",
+     "Оксид Color Touch 1,9 % 1000мл 6021/6298"
+    ],
+    [
+     "Эмульсия Color Touch 4%, 1000 мл",
+     "Оксид Color Touch 4 % 1000мл 6019/6291"
+    ]
+   ]
+  },
+  {
+   "heading": "Londa Professional — безаммиачное тонирование",
+   "palette": "londa-demi",
+   "label": "Londa {c}, 60 мл",
+   "codes": [
+    "8/81",
+    "10/81",
+    "0/88"
+   ],
+   "extras": [
+    [
+     "Londa 5/71, 60 мл",
+     "LC тонирование 5/71 светлый шатен корич-пепельный 0-571"
+    ],
+    [
+     "Londa 6/71, 60 мл",
+     "LC тонирование 6/71 0-671"
+    ],
+    [
+     "Londa 9/19, 60 мл",
+     "LC тонирование 9/19 призматический бежево-серый 0-919"
+    ],
+    [
+     "Londa 9/86, 60 мл",
+     "LC тонирование 9/86 призматический стальной серый 0-986"
+    ],
+    [
+     "Londa 9/96, 60 мл",
+     "LC тонирование 9/96 призматический пудрово-розовый 0-996"
+    ],
+    [
+     "Londa 10/6, 60 мл",
+     "LC тонирование 10/6 0-106"
+    ],
+    [
+     "Окислительная эмульсия L-Color 1,9%, 1000 мл",
+     "L-Color окислительная эмульсия 1,9% 1000мл 914"
+    ],
+    [
+     "Окислительная эмульсия L-Color 1,9%, 60 мл",
+     "L-Color окислительная эмульсия 1,9% 60мл 7371"
+    ],
+    [
+     "Окислительная эмульсия L-Color 4%, 1000 мл",
+     "L-Color окислительная эмульсия 4% 1000мл 915"
+    ]
+   ]
+  },
+  {
+   "heading": "Londa Professional — Color Tune",
+   "palette": "colortune",
+   "label": "Color Tune {c}, 60 мл",
+   "codes": [
+    "/81",
+    "/69",
+    "/06",
+    "/1",
+    "/19",
+    "/07"
+   ],
+   "extras": []
+  },
+  {
+   "heading": "Matrix — Super Sync",
+   "palette": "matrix-sync",
+   "label": "Super Sync {c}, 90 мл",
+   "codes": [
+    "4A",
+    "6A",
+    "6T",
+    "6P",
+    "7NA",
+    "8A",
+    "8P",
+    "8V",
+    "9NA",
+    "10V",
+    "10NV",
+    "10A",
+    "10P",
+    "11A",
+    "11P",
+    "11V",
+    "SPA",
+    "SPP",
+    "SPV",
+    "CLEAR"
+   ],
+   "extras": [
+    [
+     "Super Sync 4T, 90 мл",
+     "Color Sync 4T шатен титановый 90мл NEW 04T"
+    ],
+    [
+     "Super Sync 4P, 90 мл",
+     "Color Sync 4P 90мл NEW 04P"
+    ],
+    [
+     "Оксид Socolor / Color Sync 3%, 1000 мл",
+     "Оксид Socolor/ Color Sync 3% 1000мл 313256"
+    ],
+    [
+     "Оксид Socolor / Color Sync 3%, 60 мл",
+     "Оксид Socolor/ Color Sync 3% 60мл 290876"
+    ]
+   ]
+  },
+  {
+   "heading": "Matrix — Tonal Control",
+   "palette": "matrix-tonal-control",
+   "label": "Tonal Control {c}, 90 мл",
+   "codes": [
+    "10T",
+    "8T",
+    "11PV",
+    "9AA",
+    "10P",
+    "8P"
+   ],
+   "extras": [
+    [
+     "Tonal Control 9V, 90 мл",
+     "Color Sync Тонер с Кислым Ph 9V 90мл 0-9V"
+    ],
+    [
+     "Tonal Control 10PA, 90 мл",
+     "Color Sync Тонер с Кислым Ph 10PA 90мл 0-10PA"
+    ],
+    [
+     "Tonal Control 10VA, 90 мл",
+     "Color Sync Тонер с Кислым Ph 10VA 90мл 0-10VA"
+    ],
+    [
+     "Tonal Control 11NA, 90 мл",
+     "Color Sync Тонер с Кислым Ph 11NA 90мл 0-11NA"
+    ],
+    [
+     "Tonal Control 11NV, 90 мл",
+     "Color Sync Тонер с Кислым Ph 11NV 90мл 0-11NV"
+    ],
+    [
+     "Tonal Control 11PA, 90 мл",
+     "Color Sync Тонер с Кислым Ph 11PA 90мл 0-11PA"
+    ],
+    [
+     "Tonal Control Clear, 90 мл",
+     "Color Sync Тонер с Кислым Ph CLEAR 90мл 0-CLEAR"
+    ]
+   ]
+  },
+  {
+   "heading": "Поддержка холодного блонда дома",
+   "extras": [
+    [
+     "Шампунь Matrix Color Obsessed So Silver — гасит желтизну на 8–11 уровнях, 300 мл",
+     "Шампунь Color Obsessed So Silver 300мл (нейтрализует желтые подтона на волосах 8-11 уровней) 312459/1577700"
+    ],
+    [
+     "Кондиционер Matrix Color Obsessed So Silver — 8–11 уровни, 1000 мл",
+     "Кондиционер Color Obsessed So Silver 1000мл (нейтрализует желтые подтона на волосах 8-11 уровней) 307010/2990300"
+    ],
+    [
+     "Кондиционер Matrix Brass Off — гасит желтизну на 5–8 уровнях, 300 мл",
+     "Кондиционер Brass Off 300мл (нейтрализует желтые подтона на волосах 5-8 уровней) 2235400"
+    ],
+    [
+     "Кондиционер Matrix Brass Off — 5–8 уровни, 1000 мл",
+     "Кондиционер Brass Off 1000мл (нейтрализует желтые подтона на волосах 5-8 уровней) 2235800"
+    ]
+   ]
+  }
+ ]
+}
