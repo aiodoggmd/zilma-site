@@ -14,6 +14,21 @@ verifiedDate: 2026-10-16
 
 ![Londa Professional: Demi-Permanent Ammonia Free и Permanent Color Extra Rich](/images/articles/2026-08-29-londa-professional/hero-product.webp)
 
+<nav class="toc-box">
+  <p class="toc-title">В этой статье</p>
+  <ul>
+    <li><a href="#маркировка-на-карте-оттенков">Маркировка на карте оттенков</a></li>
+    <li><a href="#система-нумерации">Система нумерации</a></li>
+    <li><a href="#окислитель-l-color">Окислитель L-Color</a></li>
+    <li><a href="#permanent-color--база">Permanent Color — база</a></li>
+    <li><a href="#permanent-color--special-blonds-глубина-12">Permanent Color — Special Blonds (глубина 12/)</a></li>
+    <li><a href="#mix-tones--концентраты-для-коррекции">Mix Tones — концентраты для коррекции</a></li>
+    <li><a href="#demi-permanent-ammonia-free">Demi-Permanent Ammonia Free</a></li>
+    <li><a href="#завершение-процедуры">Завершение процедуры</a></li>
+    <li><a href="#палитра-оттенков">Палитра оттенков</a></li>
+  </ul>
+</nav>
+
 ## Маркировка на карте оттенков
 
 <ul class="marker-legend">
@@ -49,7 +64,7 @@ verifiedDate: 2026-10-16
 </table>
 </div>
 
-<div class="callout"><b>О названиях окислителей.</b> Окислительная эмульсия L-Color на одинаковом проценте технически близка к фирменным окислителям Wella — <a href="/articles/2026-08-13-koleston-perfect/#схема-смешивания-с-welloxon-perfect">Welloxon Perfect</a> (для Koleston Perfect) и <a href="/articles/2026-08-13-color-touch/#color-touch">«Оксид Color Touch»</a>. Равнозначная замена по проценту технически допустима.</div>
+<div class="callout warn"><b>О названиях окислителей.</b> Окислительная эмульсия L-Color на одинаковом проценте технически близка к фирменным окислителям Wella — <a href="/articles/2026-08-13-koleston-perfect/#схема-смешивания-с-welloxon-perfect">Welloxon Perfect</a> (для Koleston Perfect) и <a href="/articles/2026-08-13-color-touch/#color-touch">«Оксид Color Touch»</a>. Равнозначная замена по проценту технически допустима.</div>
 
 ## Permanent Color — база
 
@@ -92,7 +107,7 @@ verifiedDate: 2026-10-16
 
 Оттенки **/0, /07, /7, /77** не требуют подмеса натурального оттенка даже для 100% закрашивания седины.
 
-<div class="callout"><b>Порядок нанесения.</b> Начинается с зон с наибольшим процентом седины.</div>
+<div class="callout tip"><b>Порядок нанесения.</b> Начинается с зон с наибольшим процентом седины.</div>
 
 ### Время выдержки — база и Micro Reds
 
@@ -109,9 +124,9 @@ verifiedDate: 2026-10-16
 </table>
 </div>
 
-<div class="callout"><b>Дополнительное тепло.</b> Лёгкое дополнительное тепло на отросших корнях сокращает время выдержки почти вдвое.</div>
+<div class="callout tip"><b>Дополнительное тепло.</b> Лёгкое дополнительное тепло на отросших корнях сокращает время выдержки почти вдвое.</div>
 
-<div class="callout"><b>Выравнивание цвета.</b> После выдержки проэмульгируйте состав по всей длине и кончикам либо нанесите свежую порцию краски на длину и кончики — оставьте на 5 минут без тепла.</div>
+<div class="callout tip"><b>Выравнивание цвета.</b> После выдержки проэмульгируйте состав по всей длине и кончикам либо нанесите свежую порцию краски на длину и кончики — оставьте на 5 минут без тепла.</div>
 
 ## Permanent Color — Special Blonds (глубина 12/)
 
@@ -198,7 +213,7 @@ verifiedDate: 2026-10-16
 </table>
 </div>
 
-<div class="callout"><b>После химической завивки или выпрямления</b> сократите время выдержки на 5 минут.</div>
+<div class="callout warn"><b>После химической завивки или выпрямления</b> сократите время выдержки на 5 минут.</div>
 
 ## Завершение процедуры
 
@@ -220,4 +235,4 @@ verifiedDate: 2026-10-16
 
 <div class="callout"><b>Соответствие кодов между брендами.</b> Номерная система (глубина/тон) у Londa и Wella общая: Londa Professional (аммиачная) по коду соответствует <a href="/articles/2026-08-13-koleston-perfect/#палитра-оттенков">Koleston Perfect</a>, а Londa Demi-Permanent Ammonia Free — <a href="/articles/2026-08-13-color-touch/#палитра-оттенков">Color Touch</a>. Один и тот же код у обоих брендов означает один и тот же результат.</div>
 
-<div class="callout"><b>Микс-тона — это концентраты, не самостоятельные оттенки.</b> Добавляются в небольшом количестве к базовому тону для корректировки — поэтому на палитре они выглядят гораздо ярче и насыщеннее, чем обычные оттенки для волос.</div>
+<div class="callout warn"><b>Микс-тона — это концентраты, не самостоятельные оттенки.</b> Добавляются в небольшом количестве к базовому тону для корректировки — поэтому на палитре они выглядят гораздо ярче и насыщеннее, чем обычные оттенки для волос.</div>

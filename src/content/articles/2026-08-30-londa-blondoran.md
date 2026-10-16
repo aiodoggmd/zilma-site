@@ -14,6 +14,19 @@ verifiedDate: 2026-09-02
 
 ![Londa Blondoran — осветляющая пудра, коробка и банка](/images/articles/2026-08-30-londa-blondoran/cover.webp)
 
+<nav class="toc-box">
+  <p class="toc-title">В этой статье</p>
+  <ul>
+    <li><a href="#какой-продукт-выбрать">Какой продукт выбрать</a></li>
+    <li><a href="#blondoran">Blondoran</a></li>
+    <li><a href="#blondoran-lightplex">Blondoran LightPlex</a></li>
+    <li><a href="#blondes-unlimited--творческое-осветление-без-фольги">Blondes Unlimited — творческое осветление без фольги</a></li>
+    <li><a href="#общая-техника">Общая техника</a></li>
+    <li><a href="#после-осветления">После осветления</a></li>
+    <li><a href="#что-заказать">Что заказать</a></li>
+  </ul>
+</nav>
+
 ## Какой продукт выбрать
 
 <ul class="frac-list">
