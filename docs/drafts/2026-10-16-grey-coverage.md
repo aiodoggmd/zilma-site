@@ -53,7 +53,7 @@ verifiedDate: 2026-10-16
 | Марка | До 30% седины | 30–50% седины | 50–100% седины | Без подмеса |
 |---|---|---|---|---|
 | Koleston Perfect | модный оттенок в чистом виде | добавить 1/3 оттенка Pure Naturals | добавить 1/2 оттенка Pure Naturals | ряд Pure Naturals; на стойкой седине — XX/0, XX/02 |
-| Londa Professional | натуральный тон не нужен | добавить 1/3 натурального | добавить 1/2 натурального | оттенки /0, /07, /7, /77 — до 100% седины |
+| Londa Professional | натуральный тон не нужен | добавить 1/3 натурального | добавить 1/2 натурального | натуральные /0, /07, интенсивные тёплые натуральные X/ (6/, 7/, 8/), коричневые /7, /77 — до 100% седины |
 | Igora Royal | модный оттенок в чистом виде до 70% | модный оттенок в чистом виде до 70% | 70–100%: 2 части модного + 1 часть натурального; на плотных волосах — 1 : 1 | Natural, Natural Extra (-00), Absolutes |
 | Matrix SoColor | основная коллекция, желаемый уровень | основная коллекция, желаемый уровень | Extra Coverage (504–510) | Extra Coverage — коллекция под седину |
 
@@ -173,7 +173,7 @@ verifiedDate: 2026-10-16
 | Koleston Perfect | натуральный оттенок из ряда для стойкой седины XX/0, холодный — XX/02 | 6%, 1 : 1, 30–40 мин без тепла, 15–25 мин с теплом |
 | Igora Royal | Natural Extra -00 — закрашивание 100% седины даже на толстых, трудных для окрашивания волосах; модный оттенок смешивают с натуральным 1 : 1, а не 2 : 1; Absolutes | -00 и Absolutes — 9%, при седине больше 90% — 6%; 30–45 мин без тепла |
 | Matrix SoColor | Extra Coverage; 506NA — оттенок для стойкой седины | 6%, 1 : 1, полные 45 мин; при первом нанесении состав не протягивают на длину |
-| Londa Professional | оттенки /0, /07, /7, /77 без подмеса натурального тона — до 100% седины | 6%, 1 : 1, 30–40 мин без тепла |
+| Londa Professional | интенсивные тёплые натуральные X/ (6/, 7/, 8/), натуральные /0, /07, коричневые /7, /77 — без подмеса натурального тона, до 100% седины | 6%, 1 : 1, 30–40 мин без тепла |
 
 ### Приёмы нанесения
 
@@ -396,6 +396,14 @@ verifiedDate: 2026-10-16
 </div>
 
 <div class="service-card">
+  <span class="wheel" style="--split: 100%"></span>
+  <div>
+    <p class="service-title">Тёплый натуральный, до 100% седины <span class="ratio-tag">6%</span></p>
+    <p><b>6/</b>, <b>7/</b> или <b>8/</b> — интенсивный тёплый натуральный ряд, в чистом виде, без подмеса. 60 мл краски + 60 мл 6%.</p>
+  </div>
+</div>
+
+<div class="service-card">
   <span class="wheel" style="--split: 50%"></span>
   <div>
     <p class="service-title">Медно-золотистый 6 уровня, 50–100% седины <span class="ratio-tag">6%</span></p>
@@ -586,6 +594,9 @@ French blending не закрывает седину полностью, а вп
 <tr><td>Londa 6/43, 60 мл</td><td>0643</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 6-43 тёмн блонд медно-золотист 0643" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
 <tr><td>Londa 5/0, 60 мл</td><td>050</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 5-0 светлый шатен 050" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
 <tr><td>Londa 9/0, 60 мл</td><td>090</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 9-0 очень светлый блонд 090" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Londa 6/ интенсивный тёплый, 60 мл</td><td>0/6</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 6/ интенсивный тёмный блонд (теплый) 0/6" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Londa 7/ интенсивный тёплый, 60 мл</td><td>0/7</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 7/ интенсивный блонд (теплый) 0/7" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
+<tr><td>Londa 8/ интенсивный тёплый, 60 мл</td><td>0/8</td><td class="col-price-cell">375,50 ₽</td><td class="col-order-cell"><button type="button" class="cart-add-btn" data-name="LC крем-краска 8/ интенсивный светлый блонд (теплый) 0/8" data-price="375.5" data-brand="LONDA">+ В заявку</button></td></tr>
 </tbody>
 </table>
 </div>
