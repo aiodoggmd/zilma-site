@@ -11,7 +11,7 @@
 // одну страницу дешевле, чем пятнадцать.
 export const prerender = true;
 
-import { getCollection } from 'astro:content';
+import { getArticles } from '../../lib/articles';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import priceItems from '../../data/priceItems.json';
@@ -78,7 +78,7 @@ const categories = [...byCategory.entries()].sort((a, b) => b[1] - a[1]);
 const promoCount = items.filter((i) => i.promo).length;
 
 // Гиды этого бренда — из тех же статей, что и лента на главной.
-const guides = (await getCollection('articles'))
+const guides = (await getArticles())
   .filter((a) => a.data.brand.toUpperCase() === brandKey)
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getArticles } from '../lib/articles';
 import productPhotos from '../data/product-photos.json';
 import guideLinks from '../data/guide-links.json';
 import MinOrderLine from './MinOrderLine.astro';
@@ -98,7 +98,7 @@ const PALETTE_ARTICLE: Record<string, string> = {
 };
 
 type Guide = { id: string; label: string };
-const articleEntries = await getCollection('articles');
+const articleEntries = await getArticles();
 const articleById = new Map(articleEntries.map((a) => [a.id, a]));
 
 // имя товара -> статьи, в которых он разобран

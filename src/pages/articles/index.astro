@@ -13,12 +13,12 @@
 // от 12 экранов прокрутки (замер 2026-09-06), здесь показать всё — и есть весь смысл
 // страницы: человек пришёл именно за списком.
 export const prerender = true;
-import { getCollection } from 'astro:content';
+import { getArticles } from '../../lib/articles';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FilterTabs from '../../components/FilterTabs.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 
-const articles = (await getCollection('articles')).sort(
+const articles = (await getArticles()).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
 // «Zilma» — служебное значение brand у статей базы знаний, не привязанных к бренду

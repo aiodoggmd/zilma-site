@@ -2,7 +2,8 @@
 // Явная статика: с output:'server' (нужен для /api/order) страница иначе рендерилась бы
 // на каждый запрос вместо предсборки — а getStaticPaths() как раз для предсборки и нужен.
 export const prerender = true;
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getArticles } from '../../lib/articles';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { categoryColor } from '../../lib/category-color';
 import ShadeSwatchGrid from '../../components/ShadeSwatchGrid.astro';
@@ -244,7 +245,7 @@ const PALETTE_GROUP_CONFIG: Record<string, { order: string[]; labels: Record<str
 };
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles');
+  const articles = await getArticles();
   return articles.map((a) => ({
     params: { id: a.id },
     props: { article: a },
@@ -285,7 +286,7 @@ const priceLookup = priceItems.map((it) => ({
 // «Ещё гиды по бренду» внизу статьи — чтобы из Koleston можно было сразу перейти в Color Touch,
 // Illumina или Blondor, не возвращаясь на главную и не пролистывая ленту, отсортированную по
 // дате публикации (у одного бренда гиды часто разбросаны по времени создания).
-const allArticles = await getCollection('articles');
+const allArticles = await getArticles();
 const sameBrandArticles = allArticles
   .filter((a) => a.id !== article.id && a.data.brand === article.data.brand)
   .sort((a, b) => a.data.title.localeCompare(b.data.title, 'ru'));

@@ -22,6 +22,8 @@ const articles = defineCollection({
     coverImage: z.string(),
     publishDate: z.coerce.date(),
     verifiedDate: z.coerce.date(),
+    // черновик: виден на локальном сервере, в сборку для сайта не идёт (src/lib/articles.ts)
+    draft: z.boolean().optional(),
   }),
 });
 
