@@ -8,6 +8,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { categoryColor } from '../../lib/category-color';
 import ShadeSwatchGrid from '../../components/ShadeSwatchGrid.astro';
 import MinOrderLine from '../../components/MinOrderLine.astro';
+import LessonBubbles from '../../components/LessonBubbles.astro';
+import lessons from '../../data/lessons.json';
 import { resolveLiveShades } from '../../lib/resolve-live-price';
 import illuminaShadesRaw from '../../data/illumina-shades.json';
 import shinefinityShadesRaw from '../../data/shinefinity-shades.json';
@@ -315,6 +317,17 @@ const articleLd = {
   author: { '@type': 'Organization', name: 'Zilma' },
   publisher: { '@type': 'Organization', name: 'Zilma', logo: { '@type': 'ImageObject', url: `${siteUrl}/images/logo.jpg` } },
 };
+// Уроки-ролики к статье — разметка VideoObject, чтобы Яндекс мог показать их в видеопоиске.
+const videoLd = lessons.filter((l) => l.article === article.id).map((l) => ({
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: l.title,
+  description: l.subtitle,
+  thumbnailUrl: `${siteUrl}${l.poster}`,
+  contentUrl: `${siteUrl}${l.video}`,
+  uploadDate: l.date,
+  duration: `PT${l.duration}S`,
+}));
 ---
 <BaseLayout
   title={`${searchTitle} — Zilma`}
@@ -326,6 +339,7 @@ const articleLd = {
   verifiedDate={article.data.verifiedDate}
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleLd)} />
+  {videoLd.map((v) => <script type="application/ld+json" slot="head" set:html={JSON.stringify(v)} />)}
   {/* Статья — тоже место выбора товара (палитра оттенков, таблицы наборов), но своей шапки
       у неё нет: полоса прогресса прилипает к верхнему краю экрана и видна при любой прокрутке. */}
   <MinOrderLine variant="fixed" />
@@ -349,6 +363,7 @@ const articleLd = {
       <a href="/" class="back" aria-label="Все статьи">←</a>
       <h1>{article.data.title}</h1>
       <p class="meta">Обновлено: {formattedDate}</p>
+      <LessonBubbles article={article.id} />
       {article.data.answer && (
         <div class="prose">
           <p class="callout quick-answer">

@@ -1,0 +1,178 @@
+---
+// Кружки-уроки («как сторис»): короткие вертикальные ролики-рецепты. Над статьёй — ролики к ней,
+// на странице /lessons/ — все. По нажатию ролик открывается на весь экран в <dialog>.
+// Видео грузится только по нажатию (preload="none", src ставится при открытии) — страница
+// от кружков не тяжелеет (вес главной — отдельная забота, docs: «Вес главной страницы»).
+import lessons from '../data/lessons.json';
+
+interface Props {
+  article?: string;      // id статьи — показать только её уроки
+  showAllLink?: boolean;
+  player?: boolean;      // плеер без кружков — для страницы /lessons/ со своей сеткой
+  row?: boolean;         // главная: все уроки одной строкой, листается пальцем
+}
+const { article, showAllLink = true, player = false, row = false } = Astro.props;
+const list = article ? lessons.filter((l) => l.article === article) : lessons;
+const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+---
+{list.length > 0 && (
+  <div class:list={['lesson-bubbles', { row }]}>
+    {list.map((l) => (
+      <button type="button" class="lesson-bubble" data-video={l.video} data-poster={l.poster} data-title={l.title}
+              data-article={`/articles/${l.article}/`}
+              aria-label={`Урок: ${l.title}, ${fmt(l.duration)}`}>
+        <span class="lb-ring"><img src={l.bubble} alt="" width="160" height="160" loading="lazy" /><span class="lb-play" aria-hidden="true"></span></span>
+        <span class="lb-text">
+          <span class="lb-kicker">Урок · {fmt(l.duration)}</span>
+          <span class="lb-title">{l.title}</span>
+        </span>
+      </button>
+    ))}
+    {showAllLink && <a class="lb-all" href="/lessons/">Все уроки →</a>}
+  </div>
+)}
+
+{(list.length > 0 || player) && (
+  <dialog class="lesson-player" aria-label="Урок">
+    <video playsinline controls preload="none"></video>
+    <button type="button" class="lp-close" aria-label="Закрыть">×</button>
+    <a class="lp-article" href="#">Читать статью →</a>
+  </dialog>
+)}
+
+<style>
+  .lesson-bubbles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 22px;
+    margin: 14px 0 18px;
+  }
+  .lesson-bubble {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+  }
+  .lb-ring {
+    position: relative;
+    flex: none;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    padding: 3px;
+    background: conic-gradient(#c26a2e, #e8902f, #c8000f, #c26a2e);
+  }
+  .lb-ring img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--color-paper, #fff);
+    object-fit: cover;
+    display: block;
+    box-sizing: border-box;
+  }
+  .lb-play {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #c8000f;
+    border: 2px solid #fff;
+  }
+  .lb-play::after {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 6px;
+    border-style: solid;
+    border-width: 5px 0 5px 9px;
+    border-color: transparent transparent transparent #fff;
+  }
+  .lb-text { display: flex; flex-direction: column; gap: 2px; max-width: 260px; }
+  .lb-kicker { font-size: 0.78rem; font-weight: 600; color: #c26a2e; text-transform: uppercase; letter-spacing: 0.04em; }
+  .lb-title { font-family: var(--font-serif); font-weight: 700; font-size: 1rem; line-height: 1.3; color: var(--color-ink); }
+  .lesson-bubble:hover .lb-title { text-decoration: underline; text-underline-offset: 3px; }
+  .lb-all { font-size: 0.88rem; color: var(--color-blue-dark); }
+  .lesson-bubbles.row { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+  .lesson-bubbles.row::-webkit-scrollbar { display: none; }
+  .lesson-bubbles.row .lesson-bubble, .lesson-bubbles.row .lb-all { flex: none; }
+  .lesson-bubbles.row .lb-text { width: 190px; }
+  .lp-article {
+    position: absolute;
+    left: 50%;
+    bottom: 64px;
+    transform: translateX(-50%);
+    background: #c8000f;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  }
+  .lp-article[hidden] { display: none; }
+
+  .lesson-player {
+    padding: 0;
+    border: 0;
+    background: #000;
+    width: min(100vw, calc(100dvh * 9 / 16));
+    height: min(100dvh, calc(100vw * 16 / 9));
+    max-width: 100vw;
+    max-height: 100dvh;
+  }
+  .lesson-player::backdrop { background: rgba(0, 0, 0, 0.88); }
+  .lesson-player video { width: 100%; height: 100%; display: block; object-fit: contain; background: #000; }
+  .lp-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  // Один плеер на страницу; все кружки открывают его. Закрытие: крестик, Esc, нажатие на фон.
+  const dlg = document.querySelector<HTMLDialogElement>('dialog.lesson-player');
+  const video = dlg?.querySelector('video');
+  if (dlg && video) {
+    document.querySelectorAll<HTMLButtonElement>('.lesson-bubble').forEach((b) => {
+      b.addEventListener('click', () => {
+        // «Читать статью» — только если мы не в этой статье
+        const art = dlg.querySelector<HTMLAnchorElement>('.lp-article');
+        if (art) {
+          const href = b.dataset.article || '';
+          art.href = href;
+          art.hidden = !href || location.pathname === href;
+        }
+        video.src = b.dataset.video!;
+        video.poster = b.dataset.poster || '';
+        dlg.showModal();
+        video.play().catch(() => {});   // без звука браузер может не дать автозапуск — тогда кнопка в плеере
+      });
+    });
+    const close = () => dlg.close();
+    dlg.querySelector('.lp-close')?.addEventListener('click', close);
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
+    dlg.addEventListener('close', () => { video.pause(); video.removeAttribute('src'); video.load(); });
+  }
+</script>

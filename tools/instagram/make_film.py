@@ -4,7 +4,7 @@
 
 В папке должны быть scenes.json и кадры frames\\NN.png (их рисует render_carousel.py).
 Шаги: озвучка каждой реплики голосом vera (Яндекс, livetts; уже озвученные не трогает),
-наезд камеры на каждом кадре, растворение 0,35 с между кадрами, голос стоит точно на своём кадре.
+наезд камеры на каждом кадре, плавное наложение 0,35 с между кадрами (fade; dissolve рассыпает картинку на точки), голос стоит точно на своём кадре.
 Выход: <папка>\\film.mp4 (1080×1920).
 """
 import json
@@ -64,7 +64,7 @@ def main():
     fc, prev = [], '[0:v]'
     for n in range(1, len(durs)):
         out = f'[v{n}]'
-        fc.append(f'{prev}[{n}:v]xfade=transition=dissolve:duration={X}:offset={starts[n]:.3f}{out}')
+        fc.append(f'{prev}[{n}:v]xfade=transition=fade:duration={X}:offset={starts[n]:.3f}{out}')
         prev = out
     # голос: каждая реплика на своём кадре
     k = len(durs)

@@ -8,6 +8,7 @@ import Hero from '../components/Hero.astro';
 import PriceBlock from '../components/PriceBlock.astro';
 import FilterTabs from '../components/FilterTabs.astro';
 import ArticleCard from '../components/ArticleCard.astro';
+import LessonBubbles from '../components/LessonBubbles.astro';
 import OrderForm from '../components/OrderForm.astro';
 import PriceChecklist from '../components/PriceChecklist.astro';
 import { currentPrice } from '../data/prices';
@@ -88,6 +89,11 @@ const organizationLd = {
        лежат все 22 статьи. Ссылка рядом ведёт на полный список — на главной лента
        обрезана до шести карточек. id="info" НЕ трогаем: на него завязаны якоря
        /#info в мобильном меню и на 404. */}
+    {/* 16.10.2026: уроки-ролики над инструкциями — все, из плеера переход в статью урока.
+       Каталог и прайс выше не сдвигаются. */}
+    <h2 class="section-title" id="lessons">Уроки за минуту</h2>
+    <p class="section-more"><a href="/lessons/" class="link">Все уроки →</a></p>
+    <LessonBubbles row showAllLink={false} />
     <h2 class="section-title" id="info">Инструкции</h2>
     <p class="section-more"><a href="/articles/" class="link">Все инструкции →</a></p>
     <FilterTabs brands={brands} />
