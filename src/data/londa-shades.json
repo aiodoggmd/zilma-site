@@ -602,6 +602,14 @@
   "price": 357.5
  },
  {
+  "code": "9/",
+  "hex": "#cca46b",
+  "group": "natural",
+  "row": 9,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/9-.webp"
+ },
+ {
   "code": "8/0",
   "hex": "#be9f6a",
   "group": "natural",
@@ -610,6 +618,16 @@
   "image": "/images/articles/2026-08-29-londa-professional/shades/8-0.webp",
   "name": "LC крем-краска 8-0 светлый блонд 080",
   "price": 357.5
+ },
+ {
+  "code": "8/",
+  "hex": "#c09e62",
+  "group": "natural",
+  "row": 8,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-.webp",
+  "name": "LC крем-краска 8/ интенсивный светлый блонд (теплый) 0/8",
+  "price": 375.5
  },
  {
   "code": "7/0",
@@ -627,7 +645,9 @@
   "group": "natural",
   "row": 7,
   "col": 1,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/7-.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-.webp",
+  "name": "LC крем-краска 7/ интенсивный блонд (теплый) 0/7",
+  "price": 375.5
  },
  {
   "code": "7/03",
@@ -653,7 +673,9 @@
   "group": "natural",
   "row": 6,
   "col": 1,
-  "image": "/images/articles/2026-08-29-londa-professional/shades/6-.webp"
+  "image": "/images/articles/2026-08-29-londa-professional/shades/6-.webp",
+  "name": "LC крем-краска 6/ интенсивный тёмный блонд (теплый) 0/6",
+  "price": 375.5
  },
  {
   "code": "5/0",
