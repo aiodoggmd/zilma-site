@@ -54,6 +54,7 @@ def article_no(name):
     """Артикул для колонки: «4652/714» -> 4652 (второе — след ребрендинга), но «0/7» — целиком."""
     last = name.split()[-1]
     first = last.split('/')[0]
+    first = re.sub(r'(?<=\d)new$', '', first)   # «2242115new» — пометка 1С о новом дизайне, не артикул
     return last if first == '0' else first
 
 
@@ -72,11 +73,16 @@ NAME_RE = re.compile(r'data-name="([^"]+)"')
 
 
 def find_table(text, heading):
-    """(начало tbody, конец tbody) таблицы под заголовком «### heading»."""
-    m = re.search(r'^### ' + re.escape(heading) + r'\s*\n\s*<div class="kit-table-wrap">', text, re.M)
+    """(начало tbody, конец tbody) таблицы под заголовком «### heading». Между заголовком и
+    таблицей может стоять текст («Подробнее — в инструкции…», статьи о техниках), но не другой
+    заголовок: таблицу соседнего раздела не берём."""
+    m = re.search(r'^### ' + re.escape(heading) + r'[ \t]*\n', text, re.M)
     if not m:
         return None
-    a = text.index('<tbody>', m.end()) + len('<tbody>')
+    w = text.find('<div class="kit-table-wrap">', m.end())
+    if w < 0 or re.search(r'^#{2,3} ', text[m.end():w], re.M):
+        return None
+    a = text.index('<tbody>', w) + len('<tbody>')
     b = text.index('</tbody>', a)
     return a, b
 
