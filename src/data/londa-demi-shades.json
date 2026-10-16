@@ -290,5 +290,155 @@
   "image": "/images/articles/2026-08-29-londa-professional/shades/0-88.webp",
   "name": "LC микстон тонирующий 0-88 синий 00-0-88",
   "price": 357.5
+ },
+ {
+  "code": "10/3",
+  "hex": "#dab576",
+  "group": "gold",
+  "row": 10,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/10-3.webp",
+  "name": "LC тонирование 10/3 ярк блонд золотист 0-103",
+  "price": 375.5
+ },
+ {
+  "code": "10/6",
+  "hex": "#cebbab",
+  "group": "violet",
+  "row": 10,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/10-6.webp",
+  "name": "LC тонирование 10/6 0-106",
+  "price": 375.5
+ },
+ {
+  "code": "10/73",
+  "hex": "#d3ae79",
+  "group": "brown",
+  "row": 10,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/10-73.webp",
+  "name": "LC тонирование 10/73 ярк блонд корич-золотист 0-1073",
+  "price": 375.5
+ },
+ {
+  "code": "5/71",
+  "hex": "#4d3e34",
+  "group": "brown",
+  "row": 5,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/5-71.webp",
+  "name": "LC тонирование 5/71 светлый шатен корич-пепельный 0-571",
+  "price": 375.5
+ },
+ {
+  "code": "6/37",
+  "hex": "#65442c",
+  "group": "gold",
+  "row": 6,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/6-37.webp",
+  "name": "LC тонирование 6/37 тёмн блонд золотисто-коричневый 0-637",
+  "price": 375.5
+ },
+ {
+  "code": "6/71",
+  "hex": "#5c4735",
+  "group": "brown",
+  "row": 6,
+  "col": 8,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/6-71.webp",
+  "name": "LC тонирование 6/71 0-671",
+  "price": 375.5
+ },
+ {
+  "code": "7/73",
+  "hex": "#865d36",
+  "group": "brown",
+  "row": 7,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-73.webp",
+  "name": "LC тонирование 7/73 коричнево-золотистый 0-773",
+  "price": 375.5
+ },
+ {
+  "code": "8/43",
+  "hex": "#b25e2e",
+  "group": "copper",
+  "row": 8,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-43.webp",
+  "name": "LC тонирование 8/43 светлый блонд медно-золотистый 0-843",
+  "price": 375.5
+ },
+ {
+  "code": "9/19",
+  "hex": "#a18984",
+  "group": "ash",
+  "row": 9,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/9-19.webp",
+  "name": "LC тонирование 9/19 призматический бежево-серый 0-919",
+  "price": 375.5
+ },
+ {
+  "code": "9/73",
+  "hex": "#c49b69",
+  "group": "brown",
+  "row": 9,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/9-73.webp",
+  "name": "LC тонирование 9/73 очень светлый блонд коричнево-золотистый 0-973",
+  "price": 375.5
+ },
+ {
+  "code": "9/86",
+  "hex": "#9e939a",
+  "group": "pearl",
+  "row": 9,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/9-86.webp",
+  "name": "LC тонирование 9/86 призматический стальной серый 0-986",
+  "price": 375.5
+ },
+ {
+  "code": "9/96",
+  "hex": "#caa38e",
+  "group": "cendre",
+  "row": 9,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/9-96.webp",
+  "name": "LC тонирование 9/96 призматический пудрово-розовый 0-996",
+  "price": 375.5
+ },
+ {
+  "code": "4/07",
+  "hex": "#3a2e26",
+  "group": "natural",
+  "row": 4,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/4-07.webp",
+  "name": "LC тонирование экстра 4/07 шатен натуральный коричневый 0-407",
+  "price": 375.5
+ },
+ {
+  "code": "5/07",
+  "hex": "#50403d",
+  "group": "natural",
+  "row": 5,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/5-07.webp",
+  "name": "LC тонирование экстра 5/07 светлый шатен натуральный коричневый 0-507",
+  "price": 375.5
+ },
+ {
+  "code": "7/07",
+  "hex": "#745737",
+  "group": "natural",
+  "row": 7,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-07.webp",
+  "name": "LC тонирование экстра 7/07 блондин натур.кор. 0-707",
+  "price": 375.5
  }
 ]

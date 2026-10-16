@@ -922,5 +922,285 @@
   "image": "/images/articles/2026-08-29-londa-professional/shades/4-65.webp",
   "name": "LC крем-краска 4-65 шатен фиол-красн 0465",
   "price": 332.47
+ },
+ {
+  "code": "10/16",
+  "hex": "#cab9a8",
+  "group": "ash",
+  "row": 10,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/10-16.webp",
+  "name": "LC крем-краска 10-16 блонд пепельно-фиолетовый 01016",
+  "price": 375.5
+ },
+ {
+  "code": "10/1",
+  "hex": "#d2bf99",
+  "group": "ash",
+  "row": 10,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/10-1.webp",
+  "name": "LC крем-краска 10-1яркий блонд пепел 0101",
+  "price": 375.5
+ },
+ {
+  "code": "10/38",
+  "hex": "#dbc39c",
+  "group": "gold",
+  "row": 10,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/10-38.webp",
+  "name": "LC крем-краска 10-38 яркий блонд золотисто-жемч 01038",
+  "price": 375.5
+ },
+ {
+  "code": "10/96",
+  "hex": "#dcbba7",
+  "group": "cendre",
+  "row": 10,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/10-96.webp",
+  "name": "LC крем-краска 10-96 ярк блонд сандрэ фиолетовый 01096",
+  "price": 375.5
+ },
+ {
+  "code": "12/89",
+  "hex": "#d8c0a3",
+  "group": "pearl",
+  "row": 12,
+  "col": 2,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/12-89.webp",
+  "name": "LC крем-краска 12-89 спец блонд жемчужн сандрэ 01289",
+  "price": 375.5
+ },
+ {
+  "code": "3/6",
+  "hex": "#3b143d",
+  "group": "violet",
+  "row": 3,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/3-6.webp",
+  "name": "LC крем-краска 3-6 тём шатен фиолетовый 036",
+  "price": 375.5
+ },
+ {
+  "code": "4/07",
+  "hex": "#3a2e26",
+  "group": "natural",
+  "row": 4,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/4-07.webp",
+  "name": "LC крем-краска 4-07 шатен натурально-коричневый 0407",
+  "price": 375.5
+ },
+ {
+  "code": "5/07",
+  "hex": "#50403d",
+  "group": "natural",
+  "row": 5,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/5-07.webp",
+  "name": "LC крем-краска 5-07 светлый шатен натурально-коричневый 0507",
+  "price": 375.5
+ },
+ {
+  "code": "5/1",
+  "hex": "#494139",
+  "group": "ash",
+  "row": 5,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/5-1.webp",
+  "name": "LC крем-краска 5-1 шатен пепельный 051",
+  "price": 375.5
+ },
+ {
+  "code": "6/3",
+  "hex": "#6b543e",
+  "group": "gold",
+  "row": 6,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/6-3.webp",
+  "name": "LC крем-краска 6-3 тёмный блонд золотистый 063",
+  "price": 375.5
+ },
+ {
+  "code": "7/07",
+  "hex": "#745737",
+  "group": "natural",
+  "row": 7,
+  "col": 4,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-07.webp",
+  "name": "LC крем-краска 7-07 блонд натурально-коричневый 0707",
+  "price": 375.5
+ },
+ {
+  "code": "7/17",
+  "hex": "#87705c",
+  "group": "ash",
+  "row": 7,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-17.webp",
+  "name": "LC крем-краска 7-17 блонд пепельно-коричневый 0717",
+  "price": 375.5
+ },
+ {
+  "code": "7/18",
+  "hex": "#5b4f47",
+  "group": "ash",
+  "row": 7,
+  "col": 2,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-18.webp",
+  "name": "LC крем-краска 7-18 жареный миндаль 0718",
+  "price": 375.5
+ },
+ {
+  "code": "7/73",
+  "hex": "#865d36",
+  "group": "brown",
+  "row": 7,
+  "col": 8,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-73.webp",
+  "name": "LC крем-краска 7-73 блонд коричн-золотистый 0773",
+  "price": 375.5
+ },
+ {
+  "code": "7/89",
+  "hex": "#705b56",
+  "group": "pearl",
+  "row": 7,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/7-89.webp",
+  "name": "LC крем-краска 7-89 блонд жемчужный сандрэ 0789",
+  "price": 375.5
+ },
+ {
+  "code": "8/07",
+  "hex": "#a88d61",
+  "group": "natural",
+  "row": 8,
+  "col": 2,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-07.webp",
+  "name": "LC крем-краска 8-07 светлый блонд натурально-коричневый 0807",
+  "price": 375.5
+ },
+ {
+  "code": "8/34",
+  "hex": "#a26540",
+  "group": "gold",
+  "row": 8,
+  "col": 9,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-34.webp",
+  "name": "LC крем-краска 8-34 светлый блонд золотисто-медный 0834",
+  "price": 375.5
+ },
+ {
+  "code": "8/4",
+  "hex": "#a85437",
+  "group": "copper",
+  "row": 8,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-4.webp",
+  "name": "LC крем-краска 8-4 светлый блонд медный 084",
+  "price": 375.5
+ },
+ {
+  "code": "8/41",
+  "hex": "#834a37",
+  "group": "copper",
+  "row": 8,
+  "col": 1,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-41.webp",
+  "name": "LC крем-краска 8-41 светл блонд медно-пепельный 0841",
+  "price": 375.5
+ },
+ {
+  "code": "8/44",
+  "hex": "#934c2f",
+  "group": "copper",
+  "row": 8,
+  "col": 2,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-44.webp",
+  "name": "LC крем-краска 8-44 светл блонд интенсивно медный 0844",
+  "price": 375.5
+ },
+ {
+  "code": "8/45",
+  "hex": "#bb3b2e",
+  "group": "copper",
+  "row": 8,
+  "col": 3,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-45.webp",
+  "name": "LC крем-краска 8-45 светлый блонд медно-красный 0845",
+  "price": 375.5
+ },
+ {
+  "code": "8/7",
+  "hex": "#a87e50",
+  "group": "brown",
+  "row": 8,
+  "col": 4,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-7.webp",
+  "name": "LC крем-краска 8-7 Светлый блонд коричневый 60мл 087",
+  "price": 375.5
+ },
+ {
+  "code": "8/81",
+  "hex": "#a19893",
+  "group": "pearl",
+  "row": 8,
+  "col": 0,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-81.webp",
+  "name": "LC крем-краска 8-81 светлый блонд жемчужно-пепельный 0881",
+  "price": 375.5
+ },
+ {
+  "code": "8/97",
+  "hex": "#9c795f",
+  "group": "cendre",
+  "row": 8,
+  "col": 7,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/8-97.webp",
+  "name": "LC крем-краска 8-97 утренний капучино 0897",
+  "price": 375.5
+ },
+ {
+  "code": "9/13",
+  "hex": "#ccb181",
+  "group": "ash",
+  "row": 9,
+  "col": 8,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/9-13.webp",
+  "name": "LC крем-краска 9-13 песочный бежевый 0913",
+  "price": 375.5
+ },
+ {
+  "code": "9/3",
+  "hex": "#d0af6d",
+  "group": "gold",
+  "row": 9,
+  "col": 9,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/9-3.webp",
+  "name": "LC крем-краска 9-3 очень светлый блонд золотистый 093",
+  "price": 375.5
+ },
+ {
+  "code": "9/7",
+  "hex": "#d5a66f",
+  "group": "brown",
+  "row": 9,
+  "col": 10,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/9-7.webp",
+  "name": "LC крем-краска 9-7 оч. св. блонд коричневый 097",
+  "price": 375.5
+ },
+ {
+  "code": "0/11",
+  "hex": "#7a766d",
+  "group": "mixtone",
+  "row": 0,
+  "col": 9,
+  "image": "/images/articles/2026-08-29-londa-professional/shades/0-11.webp",
+  "name": "LC микстон 0-11 пепельный стойкий 00-11",
+  "price": 375.5
  }
 ]

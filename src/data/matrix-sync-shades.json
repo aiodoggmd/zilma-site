@@ -576,12 +576,14 @@
   "price": 750
  },
  {
-  "code": "7CC",
+  "code": "7CC+",
   "group": "Глубокий медный",
   "row": 0,
   "col": 0,
   "image": "/images/shades/matrix-sync/ss-7cc.webp",
-  "hex": "#de6426"
+  "hex": "#de6426",
+  "name": "Color Sync 7CC+ NEW 07CC+",
+  "price": 750
  },
  {
   "code": "6BC",
