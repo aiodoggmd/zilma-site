@@ -152,6 +152,8 @@ def card_box(d, x, y, w, h, top=COPPER):
 
 def s_cards(im, d, s, root):
     y = title(d, s['title'])
+    if s.get('note'):                              # строка под заголовком: пропорция, оксид, время
+        y = text_block(d, s['note'], M, y - 10, W - 2 * M, 120, 40, 28, color=BLUE, weight=600) + 14
     cards = s['cards']
     avail = H - FOOT - y - 30
     gap = 24
