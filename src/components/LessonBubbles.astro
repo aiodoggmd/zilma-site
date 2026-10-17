@@ -19,7 +19,7 @@ const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '
   <div class:list={['lesson-bubbles', { row }]}>
     {list.map((l) => (
       <button type="button" class="lesson-bubble" data-video={l.video} data-poster={l.poster} data-title={l.title}
-              data-article={`/articles/${l.article}/`}
+              data-article={`/articles/${l.article}/`} data-id={l.id}
               aria-label={`Урок: ${l.title}, ${fmt(l.duration)}`}>
         <span class="lb-ring"><img src={l.bubble} alt="" width="160" height="160" loading="lazy" /><span class="lb-play" aria-hidden="true"></span></span>
         <span class="lb-text">
@@ -37,6 +37,10 @@ const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '
     <video playsinline controls preload="none"></video>
     <button type="button" class="lp-close" aria-label="Закрыть">×</button>
     <a class="lp-article" href="#">Читать статью →</a>
+    <button type="button" class="lp-share" aria-label="Поделиться уроком">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/></svg>
+    </button>
+    <span class="lp-toast" hidden>Ссылка скопирована</span>
   </dialog>
 )}
 
@@ -122,6 +126,32 @@ const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
   }
   .lp-article[hidden] { display: none; }
+  .lp-share {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .lp-toast {
+    position: absolute;
+    top: 64px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .lp-toast[hidden] { display: none; }
 
   .lesson-player {
     padding: 0;
@@ -155,8 +185,10 @@ const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '
   const dlg = document.querySelector<HTMLDialogElement>('dialog.lesson-player');
   const video = dlg?.querySelector('video');
   if (dlg && video) {
+    let current: HTMLButtonElement | null = null;
     document.querySelectorAll<HTMLButtonElement>('.lesson-bubble').forEach((b) => {
       b.addEventListener('click', () => {
+        current = b;
         // «Читать статью» — только если мы не в этой статье
         const art = dlg.querySelector<HTMLAnchorElement>('.lp-article');
         if (art) {
@@ -170,6 +202,22 @@ const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '
         video.play().catch(() => {});   // без звука браузер может не дать автозапуск — тогда кнопка в плеере
       });
     });
+    // «Поделиться»: у каждого урока своя ссылка /lessons/?v=<id> — по ней ролик сразу открывается.
+    // На телефоне — системное меню (Telegram, WhatsApp…), на компьютере — копируем ссылку.
+    const toast = dlg.querySelector<HTMLElement>('.lp-toast');
+    dlg.querySelector('.lp-share')?.addEventListener('click', async () => {
+      if (!current) return;
+      const url = `${location.origin}/lessons/?v=${current.dataset.id}`;
+      const title = current.dataset.title || 'Урок Zilma';
+      try {
+        if (navigator.share) { await navigator.share({ title, text: `${title} — урок за минуту`, url }); return; }
+        await navigator.clipboard.writeText(url);
+        if (toast) { toast.hidden = false; setTimeout(() => (toast.hidden = true), 1800); }
+      } catch { /* человек закрыл меню — ничего не делаем */ }
+    });
+    // ссылка ?v=<id>: открыть этот урок сразу
+    const want = new URLSearchParams(location.search).get('v');
+    if (want) document.querySelector<HTMLButtonElement>(`.lesson-bubble[data-id="${CSS.escape(want)}"]`)?.click();
     const close = () => dlg.close();
     dlg.querySelector('.lp-close')?.addEventListener('click', close);
     dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });

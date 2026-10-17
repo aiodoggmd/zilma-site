@@ -48,6 +48,10 @@ def main():
             continue
         src = NEWS / folder / 'film.mp4'
         web = OUT / f'{lid}.mp4'
+        poster = OUT / f'{lid}-poster.webp'               # постер — кадр самого ролика (с шапкой ZILMA)
+        if src.exists() and (not poster.exists() or poster.stat().st_mtime < src.stat().st_mtime):
+            subprocess.run(['ffmpeg', '-y', '-v', 'error', '-ss', '1.3', '-i', str(src), '-frames:v', '1',
+                            '-vf', 'scale=540:960', '-q:v', '80', str(poster)], check=True)
         for need in (src, OUT / f'{lid}-bubble.webp', OUT / f'{lid}-poster.webp'):
             if not need.exists():
                 raise SystemExit(f'нет файла: {need}')
