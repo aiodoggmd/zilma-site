@@ -113,7 +113,8 @@ def base(n, total):
     d = ImageDraw.Draw(im)
     d.rectangle([0, 0, W, 12], fill=RED)
     f = font('sans', 30, 500)
-    d.text((M, H - FOOT + 10), 'zilma.pro', font=f, fill=MUTED)
+    if total:                                     # в видео подвала нет: шапка ZILMA стоит над кадром
+        d.text((M, H - FOOT + 10), 'zilma.pro', font=f, fill=MUTED)
     if total:                                     # 0 — кадры видео: счётчик «3 / 10» не нужен
         t = f'{n} / {total}'
         d.text((W - M - f.getlength(t), H - FOOT + 10), t, font=f, fill=MUTED)

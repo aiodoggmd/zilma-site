@@ -15,6 +15,7 @@ from pathlib import Path
 TTS = Path(r'D:\Projects\мультики\tts_yandex.py')
 PY = Path(r'D:\Projects\мультики\.venv\Scripts\python.exe')
 BG = '0xfaf6f0'
+HEADER = Path(__file__).parent / 'video-header.png'
 FPS = 30
 X = 0.35          # растворение между кадрами
 LEAD = 0.25       # кадр появляется чуть раньше голоса
@@ -28,6 +29,7 @@ def dur(f):
 
 def main():
     root = Path(sys.argv[1])
+    animate = '--anim' in sys.argv          # оживление сцен (anim.py) и полоска прогресса
     scenes = json.loads((root / 'scenes.json').read_text(encoding='utf-8'))
     audio = root / 'audio'
     audio.mkdir(exist_ok=True)
@@ -51,12 +53,41 @@ def main():
         wavs.append(wav)
     # кадры с наездом
     for n, d in enumerate(durs, 1):
+        if animate:
+            s = scenes[n - 1]
+            p = scenes[n - 2] if n > 1 else None
+            # раскрытие внутри сцены: тот же тип и тот же заголовок (у прядей и вопроса заголовок может смениться)
+            s['_same_as_prev'] = bool(p and p.get('type') == s.get('type') and
+                                      (p.get('title') == s.get('title') or s.get('type') in ('versus', 'trio', 'question')))
+            s['_seed'] = f'{root.name}-{n}'
+            # круг пропорции — сам, если на кадре написано «1 : 1» или «1 : 2» (доля краски)
+            import re as _re
+            m = _re.match(r'\s*1\s*:\s*(\d)', s.get('note', '')) if s.get('wheel') is None else None
+            if m:
+                s['wheel'], s['wheel_label'] = round(100 / (1 + int(m.group(1)))), f'1 : {m.group(1)}'
+            sys.path.insert(0, str(Path(__file__).parent))
+            from anim import anim_frames, ANIM
+            adir = root / 'anim' / f'{n:02d}'
+            for old in adir.glob('*.png'):
+                old.unlink()
+            prev_png = root / 'frames' / f'{n - 1:02d}.png' if n > 1 else None
+            cnt = anim_frames(root / 'frames' / f'{n:02d}.png', prev_png, s, adir, FPS)
+            rest = max(0.1, d - cnt / FPS)
+            vf = (f"[0:v][1:v]concat=n=2:v=1:a=0,fps={FPS},"
+                  f"scale=w='1080*(1+0.035*t/{d:.3f})':h=-1:eval=frame,crop=1080:1350,"
+                  f"pad=1080:1920:0:285:color={BG}[bg];[bg][2:v]overlay=0:0,format=yuv420p")
+            subprocess.run(['ffmpeg', '-y', '-v', 'error', '-framerate', str(FPS), '-i', str(adir / '%03d.png'),
+                            '-loop', '1', '-framerate', str(FPS), '-t', f'{rest:.3f}', '-i', str(adir / 'still.png'),
+                            '-i', str(HEADER), '-filter_complex', vf, '-r', str(FPS), '-t', f'{d:.3f}',
+                            '-c:v', 'libx264', '-crf', '18', '-preset', 'medium', str(clips / f'{n:02d}.mp4')], check=True)
+            continue
         # наезд: масштаб растёт кадр за кадром, обрезка по центру. В 17 раз быстрее zoompan
         # (5 с против 90 с на сцену, замер 17.10.2026) при том же виде.
-        vf = (f"scale=w='1080*(1+0.035*t/{d:.3f})':h=-1:eval=frame,crop=1080:1350,"
-              f"pad=1080:1920:0:285:color={BG},format=yuv420p")
+        # шапка ZILMA (как в каталоге сайта) — в верхнем поле, неподвижно: наезд камеры её не срезает
+        vf = (f"[0:v]scale=w='1080*(1+0.035*t/{d:.3f})':h=-1:eval=frame,crop=1080:1350,"
+              f"pad=1080:1920:0:285:color={BG}[bg];[bg][1:v]overlay=0:0,format=yuv420p")
         subprocess.run(['ffmpeg', '-y', '-v', 'error', '-loop', '1', '-t', f'{d:.3f}', '-i', str(root / 'frames' / f'{n:02d}.png'),
-                        '-vf', vf, '-r', str(FPS), '-c:v', 'libx264', '-crf', '18', '-preset', 'medium', str(clips / f'{n:02d}.mp4')],
+                        '-i', str(HEADER), '-filter_complex', vf, '-r', str(FPS), '-c:v', 'libx264', '-crf', '18', '-preset', 'medium', str(clips / f'{n:02d}.mp4')],
                        check=True)
     # склейка с растворением: старт кадра n = сумма (d_i - X)
     starts, t = [], 0.0
@@ -78,6 +109,9 @@ def main():
         ins += ['-i', str(w)]
         fc.append(f'[{k + n}:a]adelay={int((starts[n] + LEAD) * 1000)}:all=1[a{n}]')
     fc.append(''.join(f'[a{n}]' for n in range(len(wavs))) + f'amix=inputs={len(wavs)}:normalize=0,apad[aout]')
+    if animate:                                   # полоска прогресса под шапкой: сколько осталось
+        fc.append(f"{prev}drawbox=x=90:y=266:w='max(2,900*t/{total:.3f})':h=6:color=0xc8000f:t=fill[vp]")
+        prev = '[vp]'
     out = root / 'film.mp4'
     subprocess.run(['ffmpeg', '-y', '-v', 'error', *ins, '-filter_complex', ';'.join(fc),
                     '-map', prev, '-map', '[aout]', '-t', f'{total:.3f}',
