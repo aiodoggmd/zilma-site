@@ -43,7 +43,6 @@ const videoLd = list.map((l) => ({
           <button type="button" class="lesson-bubble lc-play" data-video={l.video} data-poster={l.poster} data-title={l.title} data-article={`/articles/${l.article}/`} data-id={l.id}
                   aria-label={`Смотреть урок: ${l.title}, ${fmt(l.duration)}`}>
             <img src={l.poster} alt="" width="540" height="960" loading="lazy" />
-            <span class="lc-time">▶ {fmt(l.duration)}</span>
           </button>
           <h2 class="lc-title">{l.title}</h2>
           <p class="lc-sub">{l.subtitle}</p>

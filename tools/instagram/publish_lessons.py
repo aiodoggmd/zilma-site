@@ -9,7 +9,10 @@ public/videos/lessons/<id>.mp4 (720×1280, ~1–2 МБ). Обложки <id>-bub
 """
 import json
 import subprocess
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
 
 NEWS = Path('../NEWS/video')
 OUT = Path('public/videos/lessons')
@@ -48,10 +51,6 @@ def main():
             continue
         src = NEWS / folder / 'film.mp4'
         web = OUT / f'{lid}.mp4'
-        poster = OUT / f'{lid}-poster.webp'               # постер — кадр самого ролика (с шапкой ZILMA)
-        if src.exists() and (not poster.exists() or poster.stat().st_mtime < src.stat().st_mtime):
-            subprocess.run(['ffmpeg', '-y', '-v', 'error', '-ss', '1.3', '-i', str(src), '-frames:v', '1',
-                            '-vf', 'scale=540:960', '-q:v', '80', str(poster)], check=True)
         for need in (src, OUT / f'{lid}-bubble.webp', OUT / f'{lid}-poster.webp'):
             if not need.exists():
                 raise SystemExit(f'нет файла: {need}')
@@ -65,6 +64,11 @@ def main():
         print(f'{lid}: {round(dur(src))} с, {web.stat().st_size / 1048576:.1f} МБ')
     Path('src/data/lessons.json').write_text(json.dumps(out, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     print('lessons.json: уроков', len(out))
+    # обложки 9:16 с фото и названием — make_posters.py; для нового урока добавить фото в его PHOTO
+    import make_posters
+    for l in out:
+        make_posters.poster(l).save(OUT / f"{l['id']}-poster.webp", quality=82)
+    print('обложки обновлены')
 
 
 if __name__ == '__main__':
