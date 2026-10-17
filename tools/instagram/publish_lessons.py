@@ -32,7 +32,7 @@ LESSONS = [
     ('brass-05-icy', '2026-10-15-brass-05-icy', BRASS, 'Ледяной блонд без желтизны', 'Matrix Tonal Control: 1 : 1, 3%, 20 минут и оттенки', '2026-10-17'),
 ]
 # На сайте — только одобренные Олегом. Серия о рыжине ждёт его просмотра (17.10.2026).
-PUBLISHED = {l[0] for l in LESSONS if l[0].startswith('copper-')}
+PUBLISHED = {l[0] for l in LESSONS if l[0].startswith(('copper-', 'brass-'))}   # рыжина одобрена Олегом 17.10.2026
 
 
 def dur(f):
